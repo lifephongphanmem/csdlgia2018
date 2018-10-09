@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\LePhiTruocBaCtDf;
+use App\LePhiTruocBaCt;
 use App\NhomLePhiTruocBa;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
-class LePhiTruocBaCtDfController extends Controller
+class LePhiTruocBaCtController extends Controller
 {
     public function store(Request $request){
         $result = array(
@@ -25,13 +25,12 @@ class LePhiTruocBaCtDfController extends Controller
         $inputs = $request->all();
         if(isset($inputs['nhanhieu'])){
             $inputs['giatinhlptb'] = getMoneyToDb($inputs['giatinhlptb']);
-            $inputs['mahuyen'] = session('admin')->mahuyen != '' ? session('admin')->mahuyen : 'T' ;
-            $modeladd = new LePhiTruocBaCtDf();
+            $modeladd = new LePhiTruocBaCt();
             $modeladd->create($inputs);
 
-            $model = LePhiTruocBaCtDf::where('mahuyen',$inputs['mahuyen'])
-                    ->join('nhomlephitruocba','nhomlephitruocba.manhom','=','lephitruocbactdf.manhom')
-                    ->select('lephitruocbactdf.*','nhomlephitruocba.nhomxe')->get();
+            $model = LePhiTruocBaCt::where('mahs',$inputs['mahs'])
+                ->join('nhomlephitruocba','nhomlephitruocba.manhom','=','lephitruocbact.manhom')
+                ->select('lephitruocbact.*','nhomlephitruocba.nhomxe')->get();
 
             $result['message'] = '<div class="row" id="dsmhbog">';
             $result['message'] .= '<div class="col-md-12">';
@@ -72,9 +71,9 @@ class LePhiTruocBaCtDfController extends Controller
                 $result['message'] .= '</table>';
                 $result['message'] .= '</div>';
                 $result['message'] .= '</div>';
-                }
             }
-            $result['status'] = 'success';
+        }
+        $result['status'] = 'success';
         die(json_encode($result));
     }
 
@@ -96,7 +95,7 @@ class LePhiTruocBaCtDfController extends Controller
         if(isset($inputs['id'])){
             $id = $inputs['id'];
 
-            $model = LePhiTruocBaCtDf::findOrFail($id);
+            $model = LePhiTruocBaCt::findOrFail($id);
             $modelnhomxe = NhomLePhiTruocBa::all();
             //dd($model);
             $result['message'] = '<div class="modal-body" id="ttmhbogedit">';
@@ -173,13 +172,13 @@ class LePhiTruocBaCtDfController extends Controller
         $inputs = $request->all();
         if(isset($inputs['nhanhieu'])){
             $inputs['giatinhlptb'] = getMoneyToDb($inputs['giatinhlptb']);
-            $modeladd = LePhiTruocBaCtDf::where('id',$inputs['id'])->first();
+            $modeladd = LePhiTruocBaCt::where('id',$inputs['id'])->first();
             unset($inputs['id']);
             $modeladd->update($inputs);
 
-            $model = LePhiTruocBaCtDf::where('mahuyen',$modeladd->mahuyen)
-                ->join('nhomlephitruocba','nhomlephitruocba.manhom','=','lephitruocbactdf.manhom')
-                ->select('lephitruocbactdf.*','nhomlephitruocba.nhomxe')->get();
+            $model = LePhiTruocBaCt::where('mahs',$inputs['mahs'])
+                ->join('nhomlephitruocba','nhomlephitruocba.manhom','=','lephitruocbact.manhom')
+                ->select('lephitruocbact.*','nhomlephitruocba.nhomxe')->get();
 
             $result['message'] = '<div class="row" id="dsmhbog">';
             $result['message'] .= '<div class="col-md-12">';
@@ -240,14 +239,13 @@ class LePhiTruocBaCtDfController extends Controller
         }
         $inputs = $request->all();
         if(isset($inputs['id'])){
-            $inputs['mahuyen'] = session('admin')->mahuyen != '' ? session('admin')->mahuyen : 'T' ;
-            $modeladd = LePhiTruocBaCtDf::where('id',$inputs['id'])->first();
+            $modeladd = LePhiTruocBaCt::where('id',$inputs['id'])->first();
             $modeladd->delete();
 
 
-            $model = LePhiTruocBaCtDf::where('mahuyen',$inputs['mahuyen'])
-                ->join('nhomlephitruocba','nhomlephitruocba.manhom','=','lephitruocbactdf.manhom')
-                ->select('lephitruocbactdf.*','nhomlephitruocba.nhomxe')->get();
+            $model = LePhiTruocBaCt::where('mahs',$inputs['mahs'])
+                ->join('nhomlephitruocba','nhomlephitruocba.manhom','=','lephitruocbact.manhom')
+                ->select('lephitruocbact.*','nhomlephitruocba.nhomxe')->get();
 
             $result['message'] = '<div class="row" id="dsmhbog">';
             $result['message'] .= '<div class="col-md-12">';

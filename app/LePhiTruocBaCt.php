@@ -14,6 +14,7 @@ class LePhiTruocBaCt extends Model
         'nhanhieu',
         'tentm',
         'ttlv',
+        'socho',
         'giatinhlptb'
         ];
 }

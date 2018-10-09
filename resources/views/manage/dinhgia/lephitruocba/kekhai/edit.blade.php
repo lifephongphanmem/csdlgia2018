@@ -50,7 +50,7 @@
         function createmhbog(){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/lephitruocbactdf/add',
+                url: '/lephitruocbact/add',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -60,6 +60,7 @@
                     ttlv: $('#ttlv').val(),
                     socho: $('#socho').val(),
                     giatinhlptb: $('#giatinhlptb').val(),
+                    mahs : $('#mahs').val()
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -81,7 +82,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/lephitruocbactdf/show',
+                url: '/lephitruocbact/show',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -101,7 +102,7 @@
         function updatemhbog(){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/lephitruocbactdf/update',
+                url: '/lephitruocbact/update',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -112,6 +113,7 @@
                     ttlv: $('#ttlvedit').val(),
                     socho: $('#sochoedit').val(),
                     giatinhlptb: $('#giatinhlptbedit').val(),
+                    mahs: $('#mahs').val(),
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -135,11 +137,12 @@
         function delmhbog() {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/lephitruocbactdf/del',
+                url: '/lephitruocbact/del',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
-                    id: $('input[name="iddelete"]').val()
+                    id: $('input[name="iddelete"]').val(),
+                    mahs : $('#mahs').val()
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -164,7 +167,7 @@
 
 
     <h3 class="page-title">
-        Thông tin hồ sơ lệ phí trước bạ<small> thêm mới</small>
+        Thông tin hồ sơ lệ phí trước bạ<small> chỉnh sửa</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -177,7 +180,7 @@
                 </div-->
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    {!! Form::open(['url'=>'lephitruocba', 'id' => 'create_lephitruocba', 'class'=>'horizontal-form']) !!}
+                    {!! Form::model($model, ['method' => 'PATCH', 'url'=>'lephitruocba/'. $model->id, 'class'=>'horizontal-form','id'=>'update_lephitruocba']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
                         <div class="form-body">
@@ -186,7 +189,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label">Thông tin quyết định<span class="require">*</span></label>
-                                        <input type="text" class="form-control required" name="soqd" id="soqd" autofocus>
+                                        {!!Form::text('soqd',null, array('id' => 'soqd','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
 
@@ -195,15 +198,17 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Ngày áp dụng<span class="require">*</span></label>
-                                        {!!Form::text('ngayapdung',null, array('id' => 'ngayapdung','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
+                                        {!!Form::text('ngayapdung',date('d/m/Y',  strtotime($model->ngayapdung)), array('id' => 'ngayapdung','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Ghi chú</label>
-                                        <input type="text" class="form-control" name="ghichu" id="ghichu">
+                                        {!!Form::text('ghichu',null, array('id' => 'ghichu','class' => 'form-control'))!!}
+
                                     </div>
                                 </div>
+                                <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}">
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -214,7 +219,6 @@
                                 </div>
                                 <!--/span-->
                             </div>
-
                             <div class="row" id="dsmhbog">
                                 <div class="col-md-12">
                                     <table class="table table-striped table-bordered table-hover" id="sample_3">
@@ -263,7 +267,7 @@
             <div style="text-align: center">
                 <a href="{{url('lephitruocba')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
-                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
+                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
             </div>
             {!! Form::close() !!}
             <!-- END VALIDATION STATES-->
@@ -272,7 +276,7 @@
     <script type="text/javascript">
         function validateForm(){
 
-            var validator = $("#create_lephitruocba").validate({
+            var validator = $("#update_lephitruocba").validate({
                 rules: {
                     ten :"required"
                 },

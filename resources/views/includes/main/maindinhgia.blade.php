@@ -4,6 +4,8 @@
         <span class="title">Định giá</span>
         <span class="arrow"></span>
     </a>
+
+
     <ul class="sub-menu" style="display: none;">
         <li>
             <a href="javascript:;">
@@ -27,13 +29,10 @@
             </a>
             <ul class="sub-menu">
                 <li>
-                    <a href="#">Sample Link 1</a>
+                    <a href="{{url('giathuematdatmatnuoc')}}">Thông tin giá thuê mặt đất- mặt nước</a>
                 </li>
                 <li>
-                    <a href="#">Sample Link 2</a>
-                </li>
-                <li>
-                    <a href="#">Sample Link 3</a>
+                    <a href="{{url('timkiemgiathuematdatmatnuoc')}}">Tìm kiếm thông tin</a>
                 </li>
             </ul>
         </li>
@@ -88,22 +87,6 @@
         <li>
             <a href="javascript:;">
                 Giá thuê tài sản công<span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-                <li>
-                    <a href="#">Sample Link 1</a>
-                </li>
-                <li>
-                    <a href="#">Sample Link 2</a>
-                </li>
-                <li>
-                    <a href="#">Sample Link 3</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="javascript:;">
-                Giá SP-DV công ích<span class="arrow"></span>
             </a>
             <ul class="sub-menu">
                 <li>
@@ -183,6 +166,22 @@
         </li>
         <li>
             <a href="javascript:;">
+                Giá thuế tài nguyên<span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li>
+                    <a href="#">Nhóm </a>
+                </li>
+                <li>
+                    <a href="#">Sample Link 2</a>
+                </li>
+                <li>
+                    <a href="#">Sample Link 3</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;">
                 Giá lệ phí trước bạ <span class="arrow"></span>
             </a>
             <ul class="sub-menu">
@@ -193,24 +192,7 @@
                     <a href="{{url('lephitruocba')}}">Thông tin giá LPTB</a>
                 </li>
                 <li>
-                    <a href="#">Tìm kiếm thông tin</a>
-                </li>
-            </ul>
-        </li>
-        <li class="">
-            <a href="javascript:;">
-                <span class="title">Giá HH-DV khác</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu" style="display: none;">
-                <li>
-                    <a href="#">Sample Link 1</a>
-                </li>
-                <li>
-                    <a href="#">Sample Link 2</a>
-                </li>
-                <li>
-                    <a href="#">Sample Link 3</a>
+                    <a href="{{url('timkiemlephitruocba')}}">Tìm kiếm thông tin</a>
                 </li>
             </ul>
         </li>

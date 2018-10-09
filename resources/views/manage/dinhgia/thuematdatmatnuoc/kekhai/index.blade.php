@@ -3,15 +3,6 @@
 @section('custom-style')
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
-    <!--link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css')}}"/-->
-    <!-- BEGIN THEME STYLES -->
-    <!--link href="{{url('assets/global/css/components.css')}}" id="style_components" rel="stylesheet" type="text/css"/>
-    <link href="{{url('assets/global/css/plugins.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{url('assets/admin/layout/css/layout.css')}}" rel="stylesheet" type="text/css"/>
-    <link id="style_color" href="{{url('assets/admin/layout/css/themes/darkblue.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{url('assets/admin/layout/css/custom.css')}}" rel="stylesheet" type="text/css"/-->
-    <!-- END THEME STYLES -->
 @stop
 
 
@@ -21,9 +12,6 @@
     <script type="text/javascript" src="{{url('assets/global/plugins/select2/select2.min.js')}}"></script>
     <script type="text/javascript" src="{{url('assets/global/plugins/datatables/media/js/jquery.dataTables.min.js')}}"></script>
     <script type="text/javascript" src="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')}}"></script>
-    <!--script type="text/javascript" src="{{url('assets/global/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js')}}"></script>
-    <script type="text/javascript" src="{{url('assets/global/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js')}}"></script>
-    <script type="text/javascript" src="{{url('assets/global/plugins/datatables/extensions/Scroller/js/dataTables.scroller.min.js')}}"></script-->
     <!-- END PAGE LEVEL PLUGINS -->
     <script src="{{url('assets/admin/pages/scripts/table-managed.js')}}"></script>
     <script>
@@ -33,18 +21,27 @@
         $(function(){
             $('#nam').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
-                var url = '/lephitruocba?' + namhs;
+                var url = '/giathuematdatmatnuoc?'+namhs;
                 window.location.href = url;
             });
             $('#trangthai').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
                 var trangthai = '&trangthai=' + $('#trangthai').val();
-                var url = '/lephitruocba?' + namhs + trangthai;
+                var url = '/giathuematdatmatnuoc?'+namhs + trangthai;
+                window.location.href = url;
+            });
+
+            $('#diaban').change(function() {
+                var nam = '&nam='+ $('#nam').val();
+                var trangthai = '&trangthai=' + $('#trangthai').val();
+                var diaban = '&diaban='+ $('#diaban').val();
+                var url = '/giathuematdatmatnuoc?' + nam +trangthai + diaban;
+
                 window.location.href = url;
             });
 
         });
-        function getId(id){
+        function confirmDelete(id) {
             document.getElementById("iddelete").value=id;
         }
         function confirmHoanthanh(id) {
@@ -56,29 +53,28 @@
         function confirmCB(id){
             document.getElementById("idcongbo").value=id;
         }
-
     </script>
 @stop
 
 @section('content')
 
     <h3 class="page-title">
-        Thông tin hồ sơ <small>&nbsp;lệ phí tước bạ</small>
+        Thông tin hồ sơ thuê<small>&nbsp;mặt đất- mặt nước</small>
     </h3>
+
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
-            <div class="portlet box wi">
+            <div class="portlet box">
                 <div class="portlet-title">
                     <div class="caption">
                     </div>
                     <div class="actions">
-                        <a href="{{url('lephitruocba/create')}}" class="btn btn-default btn-sm">
+                        <a href="{{url('giathuematdatmatnuoc/create?&diaban='.$diaban)}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
-                        <!--a href="" class="btn btn-default btn-sm">
-                            <i class="fa fa-print"></i> Print </a-->
                     </div>
+
                 </div>
                 <div class="portlet-body">
                     <div class="row">
@@ -87,7 +83,7 @@
                                 <label>Năm hồ sơ</label>
                                 <select name="nam" id="nam" class="form-control">
                                     @if ($nam_start = intval(date('Y')) - 5 ) @endif
-                                    @if ($nam_stop = intval(date('Y')) + 1 ) @endif
+                                    @if ($nam_stop = intval(date('Y')) + 1) @endif
                                     @for($i = $nam_start; $i <= $nam_stop; $i++)
                                         <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>Năm {{$i}}</option>
                                     @endfor
@@ -105,63 +101,70 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="table-toolbar">
+                        @if(session('admin')->level == 'T' || session('admin')->level == 'H')
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>Địa bàn quản lý</label>
+                                    <select name="diaban" id="diaban" class="form-control">
+                                        @foreach($modeldb as $db)
+                                            <option value="{{$db->district}}" {{$db->district == $diaban ? 'selected' : ''}}>{{$db->diaban}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>
                         <tr>
-                            <!--th class="table-checkbox">
-                                <input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/>
-                            </th-->
                             <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center">Số quyết định</th>
                             <th style="text-align: center">Ngày áp dụng</th>
                             <th style="text-align: center">Ghi chú</th>
                             <th style="text-align: center">Trạng thái</th>
-                            <th width="20%%" style="text-align: center">Thao tác</th>
+                            <th style="text-align: center" width="33%">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($model as $key=>$tt)
-                        <tr>
-                            <td style="text-align: center">{{$key + 1}}</td>
-                            <td class="success">{{$tt->soqd}}</td>
-                            <td class="text-center" style="font-weight: bold">{{getDayVn($tt->ngayapdung)}}</td>
-                            <td>{{$tt->ghichu}}</td>
-                            <td style="text-align: center">
-                                @if($tt->trangthai == 'HT')
-                                    <span class="badge badge-warning">Hoàn thành</span>
-                                @elseif($tt->trangthai == 'CHT')
-                                    <span class="badge badge-danger">Chưa hoàn thành</span>
-                                @elseif($tt->trangthai == 'HHT')
-                                    <span class="badge badge-danger">Hủy hoàn thành</span>
-                                @else
-                                    <span class="badge badge-success">Công bố</span>
-                                @endif
-                            </td>
-                            <td>
-                                <a href="{{url('lephitruocba/'.$tt->id)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
-                                @if($tt->trangthai == 'CHT' || $tt->trangthai == 'HHT')
-                                    <a href="{{url('lephitruocba/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs">
-                                        <i class="fa fa-edit"></i> Chỉnh sửa </a>
-                                    <button type="button" onclick="confirmHoanthanh('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn thành</button>
-                                    @if($tt->trangthai == 'CHT')
-                                        <button type="button" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal" onclick="getId('{{$tt->id}}')">
-                                            <i class="fa fa-trash-o"></i>&nbsp; Xóa</button>
-                                    @endif
-                                @endif
-                                @if($tt->trangthai == 'HT' || $tt->trangthai == 'CB')
+                            <tr>
+                                <td style="text-align: center">{{$key + 1}}</td>
+                                <td style="text-align: center">{{$tt->soqd}}</td>
+                                <td style="text-align: center">{{getDayVn($tt->ngayapdung)}}</td>
+                                <td>{{$tt->ghichu}}</td>
+                                <td style="text-align: center">
                                     @if($tt->trangthai == 'HT')
+                                        <span class="badge badge-warning">Hoàn thành</span>
+                                    @elseif($tt->trangthai == 'CHT')
+                                        <span class="badge badge-danger">Chưa hoàn thành</span>
+                                    @elseif($tt->trangthai == 'HHT')
+                                        <span class="badge badge-danger">Hủy hoàn thành</span>
+                                    @else
+                                        <span class="badge badge-success">Công bố</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{url('giathuematdatmatnuoc/'.$tt->id)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                    @if($tt->trangthai == 'CHT' || $tt->trangthai == 'HHT')
+                                        <a href="{{url('giathuematdatmatnuoc/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                        <button type="button" onclick="confirmHoanthanh('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn thành</button>
+                                        @if($tt->trangthai == 'CHT')
+                                        <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                        Xóa</button>
+                                        @endif
+                                    @endif
+                                    @if($tt->trangthai == 'HT' || $tt->trangthai == 'CB')
+                                        @if($tt->trangthai == 'HT')
                                         <button type="button" onclick="confirmCB('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal-confirm" data-toggle="modal"><i class="fa fa-send"></i>&nbsp;
                                             Công bố</button>
+                                        @endif
+                                        <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
+                                            Hủy hoàn thành</button>
                                     @endif
-                                    <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
-                                        Hủy hoàn thành</button>
-                                @endif
 
-                            </td>
-                        </tr>
+                                    <!--a href="{{url('hoso-thamdinhgia/'.$tt->mahs.'/history')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Lịch sử</a-->
+                                </td>
+                            </tr>
                         @endforeach
                         </tbody>
                     </table>
@@ -176,33 +179,35 @@
     <!-- END DASHBOARD STATS -->
     <div class="clearfix">
     </div>
-    <div class="modal fade" id="delete-modal-confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    @include('includes.e.modal-attackfile')
+    <!--Modal Delete-->
+    <div id="delete-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+        {!! Form::open(['url'=>'giathuematdatmatnuoc/delete','id' => 'frm_delete'])!!}
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['url'=>'lephitruocba/delete','id' => 'frm_delete'])!!}
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Đồng ý xóa?</h4>
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true"
+                            class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Đồng ý xoá?</h4>
+                    <input type="hidden" name="iddelete" id="iddelete">
+
                 </div>
-                <input type="hidden" name="iddelete" id="iddelete">
                 <div class="modal-footer">
-                    <button type="submit" class="btn blue" onclick="ClickDelete()">Đồng ý</button>
-                    <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickdelete()">Đồng ý</button>
                 </div>
-                {!! Form::close() !!}
             </div>
-            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-dialog -->
+        {!! Form::close() !!}
     </div>
     <script>
-        function ClickDelete(){
-            $('#frm-demlete').submit();
+        function clickdelete(){
+            $('#frm_delete').submit();
         }
     </script>
     <!--Modal Hoàn thành-->
     <div id="hoanthanh-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-        {!! Form::open(['url'=>'lephitruocba/hoanthanh','id' => 'frm_hoanthanh'])!!}
+        {!! Form::open(['url'=>'giathuematdatmatnuoc/hoanthanh','id' => 'frm_hoanthanh'])!!}
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
@@ -226,7 +231,7 @@
     </div>
     <!--Modal Hủy Hoàn thành-->
     <div id="huyhoanthanh-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-        {!! Form::open(['url'=>'lephitruocba/huyhoanthanh','id' => 'frm_huyhoanthanh'])!!}
+        {!! Form::open(['url'=>'giathuematdatmatnuoc/huyhoanthanh','id' => 'frm_huyhoanthanh'])!!}
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
@@ -250,7 +255,7 @@
     </div>
     <!--Modal Hủy Hoàn thành-->
     <div id="congbo-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-        {!! Form::open(['url'=>'lephitruocba/congbo','id' => 'frm_congbo'])!!}
+        {!! Form::open(['url'=>'giathuematdatmatnuoc/congbo','id' => 'frm_congbo'])!!}
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
@@ -283,4 +288,5 @@
             $('#frm_huyhoanthanh').submit();
         }
     </script>
+
 @stop
