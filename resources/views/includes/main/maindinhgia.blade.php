@@ -42,13 +42,13 @@
             </a>
             <ul class="sub-menu">
                 <li>
-                    <a href="#">Sample Link 1</a>
+                    <a href="{{url('dmgiarung')}}">Danh mục giá rừng</a>
                 </li>
                 <li>
-                    <a href="#">Sample Link 2</a>
+                    <a href="{{url('giarung')}}">Thông tin giá rừng</a>
                 </li>
                 <li>
-                    <a href="#">Sample Link 3</a>
+                    <a href="{{url('timkiemgiarung')}}">Tìm kiếm thông tin</a>
                 </li>
             </ul>
         </li>
@@ -170,7 +170,7 @@
             </a>
             <ul class="sub-menu">
                 <li>
-                    <a href="#">Nhóm </a>
+                    <a href="{{url('nhomthuetn')}}">DM thuế tài nguyên </a>
                 </li>
                 <li>
                     <a href="#">Sample Link 2</a>

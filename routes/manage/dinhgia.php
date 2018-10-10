@@ -54,4 +54,32 @@ Route::get('giathuematdatmatnuocct/store','GiaThueDatNuocCtController@store');
 Route::get('giathuematdatmatnuocct/edit','GiaThueDatNuocCtController@edit');
 Route::get('giathuematdatmatnuocct/update','GiaThueDatNuocCtController@update');
 Route::get('giathuematdatmatnuocct/del','GiaThueDatNuocCtController@destroy');
+
+//Giá rừng
+Route::resource('dmgiarung','DmGiaRungController');
+Route::post('dmgiarung/update','DmGiaRungController@update');
+
+Route::resource('giarung','GiaRungController');
+Route::post('giarung/delete','GiaRungController@destroy');
+
+Route::post('giarung/hoanthanh','GiaRungController@hoanthanh');
+Route::post('giarung/huyhoanthanh','GiaRungController@huyhoanthanh');
+Route::post('giarung/congbo','GiaRungController@congbo');
+
+Route::get('giarungctdf/add','GiaRungCtDfController@store');
+Route::get('giarungctdf/show','GiaRungCtDfController@show');
+Route::get('giarungctdf/update','GiaRungCtDfController@update');
+Route::get('giarungctdf/del','GiaRungCtDfController@destroy');
+
+Route::get('giarungct/add','GiaRungCtController@store');
+Route::get('giarungct/show','GiaRungCtController@show');
+Route::get('giarungct/update','GiaRungCtController@update');
+Route::get('giarungct/del','GiaRungCtController@destroy');
+
+Route::get('timkiemgiarung','GiaRungController@search');
+
+//Thuế tài nguyên
+Route::resource('nhomthuetn','NhomThueTnController');
+Route::get('nhomthuetn/show','NhomThueTnController@show');
+Route::post('nhomthuetn/update','NhomThueTnController@update');
 ?>
