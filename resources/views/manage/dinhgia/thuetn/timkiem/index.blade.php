@@ -33,20 +33,28 @@
         $(function(){
             $('#nam').change(function() {
                 var nam = '&nam=' + $('#nam').val();
-                var url = 'timkiemgiathuematdatmatnuoc?' + nam ;
+                var url = 'timkiemthuetainguyen?' + nam ;
                 window.location.href = url;
             });
-            $('#diaban').change(function() {
-                var diaban = '&diaban=' + $('#diaban').val();
+            $('#district').change(function() {
+                var district = '&district=' + $('#district').val();
                 var nam = '&nam=' + $('#nam').val();
-                var url = 'timkiemgiathuematdatmatnuoc?' + nam + diaban;
+                var url = 'timkiemthuetainguyen?' + nam + district;
                 window.location.href = url;
             });
-            $('#vitri').change(function() {
-                var diaban = '&diaban=' + $('#diaban').val();
+            $('#manhom').change(function() {
+                var district = '&district=' + $('#district').val();
                 var nam = '&nam=' + $('#nam').val();
-                var vitri = '&vitri=' + $('#vitri').val();
-                var url = 'timkiemgiathuematdatmatnuoc?' + nam + diaban + vitri;
+                var manhom = '&manhom='+ $('#manhom').val();
+                var url = 'timkiemthuetainguyen?' + nam + district + manhom;
+                window.location.href = url;
+            });
+            $('#tenhh').change(function() {
+                var district = '&district=' + $('#district').val();
+                var nam = '&nam=' + $('#nam').val();
+                var manhom = '&manhom='+ $('#manhom').val();
+                var tenhh = '&tenhh=' + $('#tenhh').val();
+                var url = 'timkiemthuetainguyen?' + nam + district + manhom + tenhh;
                 window.location.href = url;
             });
 
@@ -57,7 +65,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Tìm kiếm thông tin <small>&nbsp;thẩm định giá tài sản NN</small>
+        Tìm kiếm thông tin <small>&nbsp;thuế tài nguyên</small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -66,7 +74,7 @@
             <div class="portlet box wi">
                 <div class="portlet-body">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label>Năm</label>
                             <select name="nam" id="nam" class="form-control">
                                 @if ($nam_start = intval(date('Y')) - 5 ) @endif
@@ -76,19 +84,28 @@
                                 @endfor
                             </select>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-3">
                             <label>Địa bàn quản lý</label>
-                            <select name="diaban" id="diaban" class="form-control">
+                            <select name="district" id="district" class="form-control">
                                 <option value="">--Chọn địa bàn--</option>
                                 @foreach($modeldb as $db)
-                                    <option value="{{$db->district}}" {{$db->district == $diaban ? 'selected' : ''}}>{{$db->diaban}}</option>
+                                    <option value="{{$db->district}}" {{$db->district == $district ? 'selected' : ''}}>{{$db->diaban}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label>Vị trí cho thuê</label>
+                            <label>Nhóm mặt hàng</label>
+                            <select name="manhom" id="manhom" class="form-control">
+                                <option value="">--Chọn mặt hàng--</option>
+                                @foreach($modelnhomtn as $nhomtn)
+                                    <option value="{{$nhomtn->manhom}}" {{$nhomtn->manhom == $manhom ? 'selected' : ''}}>{{$nhomtn->tennhom}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Tên mặt hàng</label>
                             <div class="form-group">
-                                {!! Form::text('vitri',$vitri, array('id'=>'vitri','class'=>'form-control'))!!}
+                                {!! Form::text('tenhh',$tenhh, array('id'=>'tenhh','class'=>'form-control'))!!}
                             </div>
                         </div>
 
@@ -102,24 +119,28 @@
                                 <input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/>
                             </th-->
                             <th width="2%" style="text-align: center">STT</th>
+                            <th style="text-align: center">Địa bàn</th>
                             <th style="text-align: center" >Số quyết định</th>
                             <th style="text-align: center">Ngày áp dụng</th>
-                            <th style="text-align: center">Vị trí</th>
-                            <th style="text-align: center">Mô tả</th>
-                            <th style="text-align: center">Diện tích</th>
-                            <th style="text-align: center">Đơn giá
+                            <th style="text-align: center">Cấp độ</th>
+                            <th style="text-align: center">Mã hàng hóa</th>
+                            <th style="text-align: center">Tên hàng hóa</th>
+                            <th style="text-align: center">Đơn vị tính</th>
+                            <th style="text-align: center" width="10%">Giá tính thuế<br> tài nguyên</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
-                                <td>{{$tt->soqd}}</td>
-                                <td>{{getDayVn($tt->ngayapdung)}}</td>
-                                <td class="success">{{$tt->vitri}}</td>
-                                <td style="text-align: center; font-weight: bold;">{{$tt->mota}}</td>
-                                <td style="text-align: right; font-weight: bold;" class="active">{{number_format($tt->dientich)}}</td>
-                                <td style="text-align: right; font-weight: bold;" class="active">{{number_format($tt->dongia)}}</td>
+                                <td>{{$tt->diaban}}</td>
+                                <td class="success">{{$tt->soqd}}</td>
+                                <td style="text-align: center">{{getDayVn($tt->ngayapdung)}}</td>
+                                <td style="text-align: center">{{$tt->capdo}}</td>
+                                <td style="text-align: center">{{$tt->mahh}}</td>
+                                <td class="active" style="font-weight: bold">{{$tt->tenhh}}</td>
+                                <td style="text-align: center">{{$tt->dvt}}</td>
+                                <td style="text-align: right;font-weight: bold">{{$tt->dvt!= '' ? number_format($tt->giatttn) : ''}}</td>
                             </tr>
                         @endforeach
                         </tbody>

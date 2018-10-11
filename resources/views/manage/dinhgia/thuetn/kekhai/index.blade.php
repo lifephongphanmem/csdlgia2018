@@ -21,21 +21,21 @@
         $(function(){
             $('#nam').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
-                var url = '/giathuematdatmatnuoc?'+namhs;
+                var url = '/thuetainguyen?'+namhs;
                 window.location.href = url;
             });
             $('#trangthai').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
                 var trangthai = '&trangthai=' + $('#trangthai').val();
-                var url = '/giathuematdatmatnuoc?'+namhs + trangthai;
+                var url = '/thuetainguyen?'+namhs + trangthai;
                 window.location.href = url;
             });
 
-            $('#diaban').change(function() {
+            $('#district').change(function() {
                 var nam = '&nam='+ $('#nam').val();
                 var trangthai = '&trangthai=' + $('#trangthai').val();
-                var diaban = '&diaban='+ $('#diaban').val();
-                var url = '/giathuematdatmatnuoc?' + nam +trangthai + diaban;
+                var district = '&district='+ $('#district').val();
+                var url = '/thuetainguyen?' + nam +trangthai + district;
 
                 window.location.href = url;
             });
@@ -53,13 +53,16 @@
         function confirmCB(id){
             document.getElementById("idcongbo").value=id;
         }
+        function clickcreate(){
+            $('#frm_create').submit();
+        }
     </script>
 @stop
 
 @section('content')
 
     <h3 class="page-title">
-        Thông tin hồ sơ thuê<small>&nbsp;mặt đất- mặt nước</small>
+        Thông tin hồ sơ <small>&nbsp;thuế tài nguyên</small>
     </h3>
 
     <!-- END PAGE HEADER-->
@@ -71,8 +74,8 @@
                     <div class="caption">
                     </div>
                     <div class="actions">
-                        <a href="{{url('giathuematdatmatnuoc/create?&diaban='.$diaban)}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-plus"></i> Thêm mới </a>
+                        <button type="button" class="btn btn-default btn-sm" data-target="#create-modal-confirm" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;
+                            Thêm mới</button>
                     </div>
 
                 </div>
@@ -105,9 +108,9 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label>Địa bàn quản lý</label>
-                                    <select name="diaban" id="diaban" class="form-control">
+                                    <select name="district" id="district" class="form-control">
                                         @foreach($modeldb as $db)
-                                            <option value="{{$db->district}}" {{$db->district == $diaban ? 'selected' : ''}}>{{$db->diaban}}</option>
+                                            <option value="{{$db->district}}" {{$db->district == $district ? 'selected' : ''}}>{{$db->diaban}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -120,17 +123,19 @@
                             <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center">Số quyết định</th>
                             <th style="text-align: center">Ngày áp dụng</th>
+                            <th style="text-align: center">Nhóm tài nguyên</th>
                             <th style="text-align: center">Ghi chú</th>
-                            <th style="text-align: center">Trạng thái</th>
-                            <th style="text-align: center" width="33%">Thao tác</th>
+                            <th style="text-align: center" width="10%">Trạng thái</th>
+                            <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
-                                <td style="text-align: center">{{$tt->soqd}}</td>
+                                <td class="active"  style="font-weight: bold">{{$tt->soqd}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->ngayapdung)}}</td>
+                                <td class="success" style="font-weight: bold">{{$tt->tennhom}}</td>
                                 <td>{{$tt->ghichu}}</td>
                                 <td style="text-align: center">
                                     @if($tt->trangthai == 'HT')
@@ -144,9 +149,9 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{url('giathuematdatmatnuoc/'.$tt->id)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                    <a href="{{url('thuetainguyen/'.$tt->id)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                     @if($tt->trangthai == 'CHT' || $tt->trangthai == 'HHT')
-                                        <a href="{{url('giathuematdatmatnuoc/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                        <a href="{{url('thuetainguyen/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                         <button type="button" onclick="confirmHoanthanh('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn thành</button>
                                         @if($tt->trangthai == 'CHT')
                                         <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
@@ -180,9 +185,43 @@
     <div class="clearfix">
     </div>
     @include('includes.e.modal-attackfile')
+    <!--Modal Create-->
+    <div id="create-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade bs-modal-lg">
+        {!! Form::open(['url'=>'/thuetainguyen/create','id' => 'frm_create','method'=>'post'])!!}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Thêm mới kê khai giá thuế tài nguyên</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label text-right">Phân loại tài nguyên</label>
+                            <div class="col-md-8">
+                                <select name="manhom" id="manhom" class="form-control">
+                                    @foreach($m_nhomthuetn as $ct)
+                                        <option value="{{$ct->manhom}}">{{$ct->tennhom}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <input type="hidden" name="getdistrict" id="getdistrict" value="{{$district}}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickcreate()">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+        {!! Form::close() !!}
+    </div>
     <!--Modal Delete-->
     <div id="delete-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-        {!! Form::open(['url'=>'giathuematdatmatnuoc/delete','id' => 'frm_delete'])!!}
+        {!! Form::open(['url'=>'thuetainguyen/delete','id' => 'frm_delete'])!!}
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
@@ -207,7 +246,7 @@
     </script>
     <!--Modal Hoàn thành-->
     <div id="hoanthanh-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-        {!! Form::open(['url'=>'giathuematdatmatnuoc/hoanthanh','id' => 'frm_hoanthanh'])!!}
+        {!! Form::open(['url'=>'thuetainguyen/hoanthanh','id' => 'frm_hoanthanh'])!!}
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
@@ -231,7 +270,7 @@
     </div>
     <!--Modal Hủy Hoàn thành-->
     <div id="huyhoanthanh-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-        {!! Form::open(['url'=>'giathuematdatmatnuoc/huyhoanthanh','id' => 'frm_huyhoanthanh'])!!}
+        {!! Form::open(['url'=>'thuetainguyen/huyhoanthanh','id' => 'frm_huyhoanthanh'])!!}
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
@@ -253,9 +292,9 @@
         </div>
         {!! Form::close() !!}
     </div>
-    <!--Modal Hủy Hoàn thành-->
+    <!--Modal Công bố-->
     <div id="congbo-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-        {!! Form::open(['url'=>'giathuematdatmatnuoc/congbo','id' => 'frm_congbo'])!!}
+        {!! Form::open(['url'=>'thuetainguyen/congbo','id' => 'frm_congbo'])!!}
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">

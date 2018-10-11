@@ -26,49 +26,15 @@
         });
     </script>
     <script>
-        function clearForm(){
-            $('#vitri').val('');
-            $('#mota').val('');
-            $('#dientich').val('');
-            $('#dongia').val('');
-        }
-        function capnhatts(){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '/giathuematdatmatnuocct/store',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    vitri: $('input[name="vitri"]').val(),
-                    mota: $('input[name="mota"]').val(),
-                    dientich: $('input[name="dientich"]').val(),
-                    dongia: $('input[name="dongia"]').val(),
-                    mahs: $('input[name="mahs"]').val(),
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if(data.status == 'success') {
-                        toastr.success("Cập nhật thông tin tài sản thành công", "Thành công!");
-                        $('#dsts').replaceWith(data.message);
-                        jQuery(document).ready(function() {
-                            TableManaged.init();
-                        });
-                        $('#modal-create').modal("hide");
-                    }
-                    else
-                        toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
-                }
-            })
-        }
         function editItem(id) {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/giathuematdatmatnuocct/edit',
+                url: '/thuetainguyenct/edit',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
-                    id: id,
+                    id: id
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -77,7 +43,7 @@
                         InputMask();
                     }
                     else
-                        toastr.error("Không thể chỉnh sửa thông tin tài sản!", "Lỗi!");
+                        toastr.error("Không thể chỉnh sửa thông tin mặt hàng!", "Lỗi!");
                 }
             })
         }
@@ -86,21 +52,18 @@
             //alert('vcl');
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/giathuematdatmatnuocct/update',
+                url: '/thuetainguyenct/update',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
                     id: $('input[name="idedit"]').val(),
-                    vitri: $('input[name="vitriedit"]').val(),
-                    mota: $('input[name="motaedit"]').val(),
-                    dientich: $('input[name="dientichedit"]').val(),
-                    dongia: $('input[name="dongiaedit"]').val(),
-                    mahs: $('input[name="mahs"]').val(),
+                    giatttn: $('input[name="edit_giatttn"]').val(),
+                    mahs: $('input[name="mahs"]').val()
                 },
                 dataType: 'JSON',
                 success: function (data) {
                     if(data.status == 'success') {
-                        toastr.success("Chỉnh sửa thông tin tài sản thành công", "Thành công!");
+                        toastr.success("Chỉnh sửa thông tin mặt hàng thành công", "Thành công!");
                         $('#dsts').replaceWith(data.message);
                         jQuery(document).ready(function() {
                             TableManaged.init();
@@ -113,40 +76,12 @@
                 }
             })
         }
-        function getid(id){
-            document.getElementById("iddelete").value=id;
-        }
-        function delrow(){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '/giathuematdatmatnuocct/del',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    id: $('input[name="iddelete"]').val(),
-                    mahs: $('input[name="mahs"]').val(),
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    //if(data.status == 'success') {
-                    toastr.success("Bạn đã xóa thông tin tài sản thành công!", "Thành công!");
-                    $('#dsts').replaceWith(data.message);
-                    jQuery(document).ready(function() {
-                        TableManaged.init();
-                    });
-                    $('#modal-delete').modal("hide");
-
-                    //}
-                }
-            })
-
-        }
     </script>
 @stop
 
 @section('content')
     <h3 class="page-title">
-        Hồ sơ thuê mặt đất mặt nước<small> chỉnh sửa</small>
+        Hồ sơ thuế tài nguyên<small> thêm mới</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -154,12 +89,26 @@
     <div class="row center">
         <div class="col-md-12 center">
             <!-- BEGIN VALIDATION STATES-->
-            {!! Form::model($model, ['method' => 'PATCH', 'url'=>'giathuematdatmatnuoc/'. $model->id, 'class'=>'horizontal-form','id'=>'update_giathuematdatmatnuoc']) !!}
+            {!! Form::model($model, ['method' => 'PATCH', 'url'=>'thuetainguyen/'. $model->id, 'class'=>'horizontal-form','id'=>'update_thuetainguyen']) !!}
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
 
                     <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Nhóm tài nguyên:</label>
+                                    <label class="control-label" style="color: blue;font-weight: bold">{{$tennhom}}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Địa bàn quản lý:</label>
+                                    <label class="control-label" style="color: blue;font-weight: bold">{{$diaban}}</label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -176,6 +125,7 @@
                             </div>
                             <!--/span-->
                         </div>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -186,38 +136,33 @@
                         </div>
                         <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}">
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <button type="button" data-target="#modal-create" data-toggle="modal" class="btn btn-success btn-xs" onclick="clearForm()"><i class="fa fa-plus"></i>&nbsp;Thêm mới vị trí</button>
-                                    &nbsp;
-                                </div>
-                            </div>
-                        </div>
                         <div class="row" id="dsts">
                             <div class="col-md-12">
                                 <table class="table table-striped table-bordered table-hover" id="sample_3">
                                     <thead>
                                     <tr>
                                         <th width="2%" style="text-align: center">STT</th>
-                                        <th style="text-align: center">Vị trí</th>
-                                        <th style="text-align: center">Mô tả</th>
-                                        <th style="text-align: center" width="10%">Diện tích</th>
-                                        <th style="text-align: center" width="10%">Đơn giá</th>
+                                        <th style="text-align: center">Cấp độ</th>
+                                        <th style="text-align: center">Mã hàng hóa</th>
+                                        <th style="text-align: center">Tên hàng hóa</th>
+                                        <th style="text-align: center">Đơn vị tính</th>
+                                        <th style="text-align: center" width="10%">Giá tính thuế<br> tài nguyên</th>
                                         <th style="text-align: center" width="15%">Thao tác</th>
                                     </tr>
                                     </thead>
                                     <tbody id="ttts">
                                     @foreach($modelct as $key=>$tt)
-                                        <tr id={{$tt->id}}>
-                                            <td style="text-align: center">{{($key +1)}}</td>
-                                            <td class="active">{{$tt->vitri}}</td>
-                                            <td>{{$tt->mota}}</td>
-                                            <td style="text-align: center;font-weight: bold" >{{number_format($tt->dientich)}}</td>
-                                            <td style="text-align: right;font-weight: bold">{{number_format($tt->dongia)}}</td>
+                                        <tr>
+                                            <td style="text-align: center">{{$key+1}}</td>
+                                            <td style="text-align: center">{{$tt->capdo}}</td>
+                                            <td style="text-align: center">{{$tt->mahh}}</td>
+                                            <td class="active" style="font-weight: bold">{{$tt->tenhh}}</td>
+                                            <td style="text-align: center">{{$tt->dvt}}</td>
+                                            <td style="text-align: right;font-weight: bold">{{$tt->dvt!= '' ? number_format($tt->giatttn) : ''}}</td>
                                             <td>
-                                                <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem({{$tt->id}})"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>
-                                                <button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid({{$tt->id}})" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                @if($tt->dvt != '')
+                                                    <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem({{$tt->id}})"><i class="fa fa-edit"></i>&nbsp;Kê khai</button>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
@@ -233,7 +178,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12" style="text-align: center">
-                    <a href="{{url('giathuematdatmatnuoc?trangthai='.$model->trangthai.'&diaban='.$model->district)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                    <a href="{{url('thuetainguyen?&district='.$model->district.'&trangthai='.$model->trangthai)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                     <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                     <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
                 </div>
@@ -248,7 +193,7 @@
     <script type="text/javascript">
         function validateForm(){
 
-            var validator = $("#update_giathuematdatmatnuoc").validate({
+            var validator = $("#update_thuetainguyen").validate({
                 rules: {
                     ten :"required"
                 },
@@ -262,12 +207,12 @@
 
 
     <!--Modal Edit-->
-    <div class="modal fade bs-modal-lg" id="modal-edit" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+    <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Chỉnh sửa thông tin vị trí cho thuê</h4>
+                    <h4 class="modal-title">Kê khai giá mặt hàng thuế tài nguyên</h4>
                 </div>
                 <div class="modal-body" id="tttsedit">
                 </div>
@@ -280,74 +225,6 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-    <!--Model Create-->
-    <div class="modal fade bs-modal-lg" id="modal-create" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Thêm mới thông tin vị trí cho thuê</h4>
-                </div>
-                <div class="modal-body" id="ttmhbog">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label">Vị trí<span class="require">*</span></label>
-                                <input type="text" id="vitri" name="vitri" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label">Mô tả</label>
-                                <input type="text" name="mota" id="mota" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Diện tích</label>
-                                <input type="text" name="dientich" id="dientich" data-mask="fdecimal" class="form-control" style="text-align: right;font-weight: bold">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Đơn giá<span class="require">*</span></label>
-                                <input type="text" name="dongia" id="dongia" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
-                    <button type="button" class="btn btn-primary" onclick="capnhatts()">Thêm mới</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!--Model Delete-->
-    <div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Đồng ý xóa thông tin?</h4>
-                </div>
-                <input type="hidden" id="iddelete" name="iddelete">
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
-                    <button type="button" class="btn btn-primary" onclick="delrow()">Đồng ý</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    @include('includes.script.set_date_thoihanthamdinh')
     @include('includes.script.inputmask-ajax-scripts')
     @include('includes.script.create-header-scripts')
 @stop

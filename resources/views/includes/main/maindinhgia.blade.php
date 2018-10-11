@@ -173,10 +173,10 @@
                     <a href="{{url('nhomthuetn')}}">DM thuế tài nguyên </a>
                 </li>
                 <li>
-                    <a href="#">Sample Link 2</a>
+                    <a href="{{url('thuetainguyen')}}">Thông tin thuế TN</a>
                 </li>
                 <li>
-                    <a href="#">Sample Link 3</a>
+                    <a href="{{url('timkiemthuetainguyen')}}">Tìm kiếm thông tin</a>
                 </li>
             </ul>
         </li>

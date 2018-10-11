@@ -25,11 +25,63 @@
             $(":input").inputmask();
         });
     </script>
+    <script>
+        function editItem(id) {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            //alert(id);
+            $.ajax({
+                url: '/thuetainguyenct/edit',
+                type: 'GET',
+                data: {
+                    _token: CSRF_TOKEN,
+                    id: id
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    if(data.status == 'success') {
+                        $('#tttsedit').replaceWith(data.message);
+                        InputMask();
+                    }
+                    else
+                        toastr.error("Không thể chỉnh sửa thông tin mặt hàng!", "Lỗi!");
+                }
+            })
+        }
+
+        function updatets(){
+            //alert('vcl');
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '/thuetainguyenct/update',
+                type: 'GET',
+                data: {
+                    _token: CSRF_TOKEN,
+                    id: $('input[name="idedit"]').val(),
+                    giatttn: $('input[name="edit_giatttn"]').val(),
+                    mahs: $('input[name="mahs"]').val()
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    if(data.status == 'success') {
+                        toastr.success("Chỉnh sửa thông tin mặt hàng thành công", "Thành công!");
+                        $('#dsts').replaceWith(data.message);
+                        jQuery(document).ready(function() {
+                            TableManaged.init();
+                        });
+                        $('#modal-edit').modal("hide");
+
+
+                    }else
+                        toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
+                }
+            })
+        }
+    </script>
 @stop
 
 @section('content')
     <h3 class="page-title">
-        Hồ sơ thuê mặt đất mặt nước<small> chi tiết</small>
+        Hồ sơ thuế tài nguyên<small>chi tiết</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -37,7 +89,7 @@
     <div class="row center">
         <div class="col-md-12 center">
             <!-- BEGIN VALIDATION STATES-->
-            {!! Form::model($model, ['class'=>'horizontal-form','id'=>'update_giathuematdatmatnuoc']) !!}
+            {!! Form::model($model, [ 'class'=>'horizontal-form','id'=>'update_thuetainguyen']) !!}
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
@@ -46,24 +98,39 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label class="control-label">Nhóm tài nguyên:</label>
+                                    <label class="control-label" style="color: blue;font-weight: bold">{{$tennhom}}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Địa bàn quản lý:</label>
+                                    <label class="control-label" style="color: blue;font-weight: bold">{{$diaban}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label class="control-label">Số quyết định<span class="require">*</span></label>
-                                    {!!Form::text('soqd',null, array('id' => 'soqd','class' => 'form-control required','autofocus','readonly'))!!}
+                                    {!!Form::text('soqd',null, array('id' => 'soqd','class' => 'form-control required','autofocus'))!!}
                                 </div>
                             </div>
                             <!--/span-->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Ngày áp dụng<span class="require">*</span></label>
-                                    {!!Form::text('ngayapdung',date('d/m/Y',  strtotime($model->ngayapdung)), array('id' => 'ngayapdung','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required','readonly'))!!}
+                                    {!!Form::text('ngayapdung',date('d/m/Y',  strtotime($model->ngayapdung)), array('id' => 'ngayapdung','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                                 </div>
                             </div>
                             <!--/span-->
                         </div>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="control-label">Ghi chú</label>
-                                    {!!Form::text('ghichu',null, array('id' => 'ghichu','class' => 'form-control','readonly'))!!}
+                                    {!!Form::text('ghichu',null, array('id' => 'ghichu','class' => 'form-control'))!!}
                                 </div>
                             </div>
                         </div>
@@ -75,20 +142,22 @@
                                     <thead>
                                     <tr>
                                         <th width="2%" style="text-align: center">STT</th>
-                                        <th style="text-align: center">Vị trí</th>
-                                        <th style="text-align: center">Mô tả</th>
-                                        <th style="text-align: center" width="10%">Diện tích</th>
-                                        <th style="text-align: center" width="10%">Đơn giá</th>
+                                        <th style="text-align: center">Cấp độ</th>
+                                        <th style="text-align: center">Mã hàng hóa</th>
+                                        <th style="text-align: center">Tên hàng hóa</th>
+                                        <th style="text-align: center">Đơn vị tính</th>
+                                        <th style="text-align: center" width="10%">Giá tính thuế<br> tài nguyên</th>
                                     </tr>
                                     </thead>
                                     <tbody id="ttts">
                                     @foreach($modelct as $key=>$tt)
-                                        <tr id={{$tt->id}}>
-                                            <td style="text-align: center">{{($key +1)}}</td>
-                                            <td class="active">{{$tt->vitri}}</td>
-                                            <td>{{$tt->mota}}</td>
-                                            <td style="text-align: center;font-weight: bold" >{{number_format($tt->dientich)}}</td>
-                                            <td style="text-align: right;font-weight: bold">{{number_format($tt->dongia)}}</td>
+                                        <tr>
+                                            <td style="text-align: center">{{$key+1}}</td>
+                                            <td style="text-align: center">{{$tt->capdo}}</td>
+                                            <td style="text-align: center">{{$tt->mahh}}</td>
+                                            <td class="active" style="font-weight: bold">{{$tt->tenhh}}</td>
+                                            <td style="text-align: center">{{$tt->dvt}}</td>
+                                            <td style="text-align: right;font-weight: bold">{{$tt->dvt!= '' ? number_format($tt->giatttn) : ''}}</td>
                                         </tr>
                                     @endforeach
 
@@ -103,7 +172,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12" style="text-align: center">
-                    <a href="{{url('giathuematdatmatnuoc?trangthai='.$model->trangthai.'&diaban='.$model->district)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                    <a href="{{url('thuetainguyen?&district='.$model->district.'&trangthai='.$model->trangthai)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 </div>
             </div>
             {!! Form::close() !!}
@@ -112,6 +181,5 @@
             <!-- END VALIDATION STATES-->
         </div>
     </div>
-
 
 @stop

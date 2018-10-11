@@ -28,11 +28,12 @@
         function ClickCreate(){
             var valid=true;
             var message='';
-            var tennhom = $('#tennhom').val();
-            var manhom = $('#manhom').val();
+            var magoc = $('#magoc').val();
+            var mahh = $('#mahh').val();
+            var tenhh = $('#tenhh').val();
 
 
-            if(tennhom == '' || manhom == ''){
+            if(magoc == '' || mahh == '' || tenhh == ''){
                 valid=false;
                 message +='Các thông tin nhập không được bỏ trống \n';
             }
@@ -48,9 +49,12 @@
         function ClickUpdate(){
             var valid=true;
             var message='';
-            var tennhom = $('#edit_tennhom').val();
+            var magoc = $('#edit_magoc').val();
+            var mahh = $('#edit_mahh').val();
+            var tenhh = $('#edit_tenhh').val();
 
-            if(tennhom == '' ){
+
+            if(magoc == '' || mahh == '' || tenhh == ''){
                 valid=false;
                 message +='Các thông tin nhập không được bỏ trống \n';
             }
@@ -66,7 +70,7 @@
         function ClickEdit(id){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: 'nhomthuetn/show',
+                url: 'dmthuetn/show',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -89,7 +93,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Danh mục nhóm  <small>&nbsp;thuế tài nguyên</small>
+        Danh mục mặt hàng chi tiết<small>&nbsp;thuế tài nguyên</small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -107,18 +111,26 @@
                         <thead>
                         <tr>
                             <th style="text-align: center" width="2%">STT</th>
-                            <th style="text-align: center">Mã nhóm</th>
                             <th style="text-align: center">Tên nhóm</th>
+                            <th style="text-align: center">Mã <br>hàng hóa</th>
+                            <th style="text-align: center">Mã gốc</th>
+                            <th style="text-align: center">Cấp độ</th>
+                            <th style="text-align: center">Đơn vi<br>tính</th>
+                            <th style="text-align: center">Tên hàng hóa</th>
                             <th style="text-align: center">Theo dõi</th>
-                            <th style="text-align: center" width="20%">Thao tác</th>
+                            <th style="text-align: center" width="15%">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($model as $key=>$tt)
                         <tr class="odd gradeX">
                             <td style="text-align: center">{{$key + 1}}</td>
-                            <td>{{$tt->manhom}}</td>
                             <td class="active" >{{$tt->tennhom}}</td>
+                            <td style="text-align: center">{{$tt->mahh}}</td>
+                            <td style="text-align: center">{{$tt->magoc}}</td>
+                            <td style="text-align: center">{{$tt->capdo}}</td>
+                            <td style="text-align: center">{{$tt->dvt}}</td>
+                            <td class="success" style="font-weight: bold">{{$tt->tenhh}}</td>
                             <td style="text-align: center">
                                 @if($tt->theodoi == 'KTD')
                                     <span class="badge badge-active">Không theo dõi</span>
@@ -128,9 +140,6 @@
                             </td>
                             <td>
                                 <button type="button" onclick="ClickEdit('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
-                                @if($tt->theodoi == 'TD')
-                                <a href="{{url('dmthuetn?&manhom='.$tt->manhom)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
-                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -150,29 +159,63 @@
     <div class="modal fade" id="modal-create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['url'=>'nhomthuetn','id' => 'frm_create'])!!}
+                {!! Form::open(['url'=>'dmthuetn','id' => 'frm_create'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Thêm mới nhóm tài nguyên?</h4>
+                    <h4 class="modal-title">Thêm mới mặt hàng thuế tài nguyên?</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">Mã nhóm<span class="require">*</span></label>
-                                <input type="text" name="manhom" id="manhom" class="form-control">
+                                <label class="control-label">Mã gốc<span class="require">*</span></label>
+                                <input type="text" name="magoc" id="magoc" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Cấp độ<span class="require">*</span></label>
+                                <select name="capdo" id="capdo" class="form-control" style="text-align: center">
+                                    @for($i=1;$i<=6;$i++)
+                                        <option value="{{$i}}">{{$i}}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Mã hàng hóa<span class="require">*</span></label>
+                                <input type="text" name="mahh" id="mahh" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Đơn vị tính<span class="require">*</span></label>
+                                <select name="dvt" id="dvt" class="form-control" style="text-align: center">
+                                    <option value="">--Chọn đơn vị tính--</option>
+                                    <option value="tấn">Tấn</option>
+                                    <option value="m3">m3</option>
+                                    <option value="cây">cây</option>
+                                    <option value="kg">kg</option>
+                                    <option value="Ste">Ste</option>
+                                    <option value="m">m</option>
+                                    <option value="viên">viên</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="control-label">Tên nhóm<span class="require">*</span></label>
-                                <input type="text" name="tennhom" id="tennhom" class="form-control">
+                                <label class="control-label">Tên hàng hóa<span class="require">*</span></label>
+                                <input type="text" name="tenhh" id="tenhh" class="form-control">
                             </div>
                         </div>
                     </div>
                 </div>
+                <input type="hidden" name="manhom" id="manhom" value="{{$manhom}}">
                 <div class="modal-footer">
                     <button type="submit" class="btn blue" onclick="ClickCreate()">Đồng ý</button>
                     <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
@@ -191,7 +234,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title">Chỉnh sửa nhóm loại rừng?</h4>
                 </div>
-                {!! Form::open(['url'=>'nhomthuetn/update','id' => 'frm_update'])!!}
+                {!! Form::open(['url'=>'dmthuetn/update','id' => 'frm_update'])!!}
                 <div class="modal-body" id="edit-tt">
                 </div>
                 <div class="modal-footer">
@@ -208,7 +251,7 @@
     <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['url'=>'dmgiarung/delete','id' => 'frm_delete'])!!}
+                {!! Form::open(['url'=>'dmthuetn/delete','id' => 'frm_delete'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title">Đồng ý xóa?</h4>
