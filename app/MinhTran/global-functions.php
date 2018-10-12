@@ -566,6 +566,7 @@ function getPermissionDefault($level) {
             'unapprove'=> 0
         ),
     );
+    $roles['X'] = array();
     return json_encode($roles[$level]);
 }
 

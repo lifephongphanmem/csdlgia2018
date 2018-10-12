@@ -30,7 +30,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/thuetainguyenctdf/edit',
+                url: '/dichvukcbctdf/edit',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -43,7 +43,7 @@
                         InputMask();
                     }
                     else
-                        toastr.error("Không thể chỉnh sửa thông tin mặt hàng!", "Lỗi!");
+                        toastr.error("Không thể chỉnh sửa thông tin dịch vụ!", "Lỗi!");
                 }
             })
         }
@@ -52,14 +52,14 @@
             //alert('vcl');
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/thuetainguyenctdf/update',
+                url: '/dichvukcbctdf/update',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
                     id: $('input[name="idedit"]').val(),
-                    giatttn: $('input[name="edit_giatttn"]').val(),
-                    district: $('input[name="district"]').val()
-                    manhom: $('input[name="manhom"]').val()
+                    giadv: $('input[name="edit_giadv"]').val(),
+                    maxa: $('input[name="maxa"]').val(),
+                    manhom: $('input[name="manhom"]').val(),
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -82,7 +82,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Hồ sơ thuế tài nguyên<small> thêm mới</small>
+        Hồ sơ giá dịch vụ khám chữa bệnh<small> thêm mới</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -90,7 +90,7 @@
     <div class="row center">
         <div class="col-md-12 center">
             <!-- BEGIN VALIDATION STATES-->
-            {!! Form::open(['url'=>'thuetainguyen', 'id' => 'create_thuetainguyen', 'class'=>'horizontal-form']) !!}
+            {!! Form::open(['url'=>'dichvukcb', 'id' => 'create_dichvukcb', 'class'=>'horizontal-form']) !!}
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
@@ -99,14 +99,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Nhóm tài nguyên:</label>
+                                    <label class="control-label">Nhóm dịch vụ:</label>
                                     <label class="control-label" style="color: blue;font-weight: bold">{{$tennhom}}</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Địa bàn quản lý:</label>
-                                    <label class="control-label" style="color: blue;font-weight: bold">{{$diaban}}</label>
+                                    <label class="control-label">Đơn vị:</label>
+                                    <label class="control-label" style="color: blue;font-weight: bold">{{$dv}}</label>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" name="district" id="district" value="{{$district}}">
+                        <input type="hidden" name="maxa" id="maxa" value="{{$maxa}}">
                         <input type="hidden" name="manhom" id="manhom" value="{{$manhom}}">
 
                         <div class="row" id="dsts">
@@ -145,10 +145,10 @@
                                     <tr>
                                         <th width="2%" style="text-align: center">STT</th>
                                         <th style="text-align: center">Cấp độ</th>
-                                        <th style="text-align: center">Mã hàng hóa</th>
-                                        <th style="text-align: center">Tên hàng hóa</th>
+                                        <th style="text-align: center">Mã dịch vụ</th>
+                                        <th style="text-align: center">Tên dịch vụ</th>
                                         <th style="text-align: center">Đơn vị tính</th>
-                                        <th style="text-align: center" width="10%">Giá tính thuế<br> tài nguyên</th>
+                                        <th style="text-align: center" width="10%">Giá dịch vụ</th>
                                         <th style="text-align: center" width="15%">Thao tác</th>
                                     </tr>
                                     </thead>
@@ -157,10 +157,10 @@
                                             <tr>
                                                 <td style="text-align: center">{{$key+1}}</td>
                                                 <td style="text-align: center">{{$tt->capdo}}</td>
-                                                <td style="text-align: center">{{$tt->mahh}}</td>
-                                                <td class="active" style="font-weight: bold">{{$tt->tenhh}}</td>
+                                                <td style="text-align: center">{{$tt->madv}}</td>
+                                                <td class="active" style="font-weight: bold">{{$tt->tendichvu}}</td>
                                                 <td style="text-align: center">{{$tt->dvt}}</td>
-                                                <td style="text-align: right;font-weight: bold">{{$tt->dvt!= '' ? number_format($tt->giatttn) : ''}}</td>
+                                                <td style="text-align: right;font-weight: bold">{{$tt->dvt!= '' ? number_format($tt->giadv) : ''}}</td>
                                                 <td>
                                                     @if($tt->dvt != '')
                                                         <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem({{$tt->id}})"><i class="fa fa-edit"></i>&nbsp;Kê khai</button>
@@ -180,7 +180,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12" style="text-align: center">
-                    <a href="{{url('thuetainguyen?&district='.$district)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                    <a href="{{url('dichvukcb?&maxa='.$maxa)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                     <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                     <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
                 </div>
@@ -195,7 +195,7 @@
     <script type="text/javascript">
         function validateForm(){
 
-            var validator = $("#create_thuetainguyen").validate({
+            var validator = $("#create_dichvukcb").validate({
                 rules: {
                     ten :"required"
                 },
@@ -214,7 +214,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Kê khai giá mặt hàng thuế tài nguyên</h4>
+                    <h4 class="modal-title">Kê khai giá dịch vụ khám chữa bệnh</h4>
                 </div>
                 <div class="modal-body" id="tttsedit">
                 </div>

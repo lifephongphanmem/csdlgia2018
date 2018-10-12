@@ -30,7 +30,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/thuetainguyenctdf/edit',
+                url: '/dichvukcbct/edit',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -43,7 +43,7 @@
                         InputMask();
                     }
                     else
-                        toastr.error("Không thể chỉnh sửa thông tin mặt hàng!", "Lỗi!");
+                        toastr.error("Không thể chỉnh sửa thông tin dịch vụ!", "Lỗi!");
                 }
             })
         }
@@ -52,19 +52,19 @@
             //alert('vcl');
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/thuetainguyenctdf/update',
+                url: '/dichvukcbct/update',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
                     id: $('input[name="idedit"]').val(),
-                    giatttn: $('input[name="edit_giatttn"]').val(),
-                    district: $('input[name="district"]').val()
-                    manhom: $('input[name="manhom"]').val()
+                    giadv: $('input[name="edit_giadv"]').val(),
+                    mahs: $('input[name="mahs"]').val(),
+
                 },
                 dataType: 'JSON',
                 success: function (data) {
                     if(data.status == 'success') {
-                        toastr.success("Chỉnh sửa thông tin mặt hàng thành công", "Thành công!");
+                        toastr.success("Chỉnh sửa thông tin dịch vụ thành công", "Thành công!");
                         $('#dsts').replaceWith(data.message);
                         jQuery(document).ready(function() {
                             TableManaged.init();
@@ -82,7 +82,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Hồ sơ thuế tài nguyên<small> thêm mới</small>
+        Hồ sơ giá dịch vụ khám chữa bệnh<small>chỉnh sửa</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -90,7 +90,7 @@
     <div class="row center">
         <div class="col-md-12 center">
             <!-- BEGIN VALIDATION STATES-->
-            {!! Form::open(['url'=>'thuetainguyen', 'id' => 'create_thuetainguyen', 'class'=>'horizontal-form']) !!}
+            {!! Form::model($model, ['method' => 'PATCH', 'url'=>'dichvukcb/'. $model->id, 'class'=>'horizontal-form','id'=>'update_dichvukcb']) !!}
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
@@ -99,14 +99,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Nhóm tài nguyên:</label>
+                                    <label class="control-label">Nhóm dịch vụ:</label>
                                     <label class="control-label" style="color: blue;font-weight: bold">{{$tennhom}}</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Địa bàn quản lý:</label>
-                                    <label class="control-label" style="color: blue;font-weight: bold">{{$diaban}}</label>
+                                    <label class="control-label">Đơn vị:</label>
+                                    <label class="control-label" style="color: blue;font-weight: bold">{{$dv}}</label>
                                 </div>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Ngày áp dụng<span class="require">*</span></label>
-                                    {!!Form::text('ngayapdung',null, array('id' => 'ngayapdung','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
+                                    {!!Form::text('ngayapdung',date('d/m/Y',  strtotime($model->ngayapdung)), array('id' => 'ngayapdung','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                                 </div>
                             </div>
                             <!--/span-->
@@ -135,8 +135,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" name="district" id="district" value="{{$district}}">
-                        <input type="hidden" name="manhom" id="manhom" value="{{$manhom}}">
+                        <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}">
 
                         <div class="row" id="dsts">
                             <div class="col-md-12">
@@ -145,29 +144,29 @@
                                     <tr>
                                         <th width="2%" style="text-align: center">STT</th>
                                         <th style="text-align: center">Cấp độ</th>
-                                        <th style="text-align: center">Mã hàng hóa</th>
-                                        <th style="text-align: center">Tên hàng hóa</th>
+                                        <th style="text-align: center">Mã dịch vụ</th>
+                                        <th style="text-align: center">Tên dịch vụ</th>
                                         <th style="text-align: center">Đơn vị tính</th>
-                                        <th style="text-align: center" width="10%">Giá tính thuế<br> tài nguyên</th>
+                                        <th style="text-align: center" width="10%">Giá dịch vụ</th>
                                         <th style="text-align: center" width="15%">Thao tác</th>
                                     </tr>
                                     </thead>
                                     <tbody id="ttts">
-                                        @foreach($modelct as $key=>$tt)
-                                            <tr>
-                                                <td style="text-align: center">{{$key+1}}</td>
-                                                <td style="text-align: center">{{$tt->capdo}}</td>
-                                                <td style="text-align: center">{{$tt->mahh}}</td>
-                                                <td class="active" style="font-weight: bold">{{$tt->tenhh}}</td>
-                                                <td style="text-align: center">{{$tt->dvt}}</td>
-                                                <td style="text-align: right;font-weight: bold">{{$tt->dvt!= '' ? number_format($tt->giatttn) : ''}}</td>
-                                                <td>
-                                                    @if($tt->dvt != '')
-                                                        <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem({{$tt->id}})"><i class="fa fa-edit"></i>&nbsp;Kê khai</button>
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                    @foreach($modelct as $key=>$tt)
+                                        <tr>
+                                            <td style="text-align: center">{{$key+1}}</td>
+                                            <td style="text-align: center">{{$tt->capdo}}</td>
+                                            <td style="text-align: center">{{$tt->madv}}</td>
+                                            <td class="active" style="font-weight: bold">{{$tt->tendv}}</td>
+                                            <td style="text-align: center">{{$tt->dvt}}</td>
+                                            <td style="text-align: right;font-weight: bold">{{$tt->dvt!= '' ? number_format($tt->giadv) : ''}}</td>
+                                            <td>
+                                                @if($tt->dvt != '')
+                                                    <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem({{$tt->id}})"><i class="fa fa-edit"></i>&nbsp;Kê khai</button>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
                                     </tbody>
                                 </table>
@@ -180,7 +179,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12" style="text-align: center">
-                    <a href="{{url('thuetainguyen?&district='.$district)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                    <a href="{{url('dichvukcb?&maxa='.$model->maxa.'&trangthai='.$model->trangthai)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                     <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                     <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
                 </div>
@@ -195,7 +194,7 @@
     <script type="text/javascript">
         function validateForm(){
 
-            var validator = $("#create_thuetainguyen").validate({
+            var validator = $("#update_dichvukcb").validate({
                 rules: {
                     ten :"required"
                 },
@@ -214,7 +213,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Kê khai giá mặt hàng thuế tài nguyên</h4>
+                    <h4 class="modal-title">Kê khai giá dịch vụ khám chữa bệnh</h4>
                 </div>
                 <div class="modal-body" id="tttsedit">
                 </div>

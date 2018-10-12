@@ -100,4 +100,26 @@ Route::get('/thuetainguyenctdf/update','ThueTaiNguyenCtDfController@update');
 Route::get('/thuetainguyenct/edit','ThueTaiNguyenCtController@edit');
 Route::get('/thuetainguyenct/update','ThueTaiNguyenCtController@update');
 
+//DV Khám chữa bệnh
+Route::resource('nhomdichvukcb','NhomDvKcbController');
+Route::get('nhomdichvukcb/show','NhomDvKcbController@show');
+Route::post('nhomdichvukcb/update','NhomDvKcbController@update');
+Route::resource('dmdichvukcb','DmDvKcbController');
+Route::get('dmdichvukcb/show','DmDvKcbController@show');
+Route::post('dmdichvukcb/update','DmDvKcbController@update');
+
+Route::resource('dichvukcb','DvKcbController');
+Route::post('dichvukcb/create','DvKcbController@create');
+Route::post('dichvukcb/delete','DvKcbController@destroy');
+Route::post('dichvukcb/hoanthanh','DvKcbController@hoanthanh');
+Route::post('dichvukcb/huyhoanthanh','DvKcbController@huyhoanthanh');
+Route::post('dichvukcb/congbo','DvKcbController@congbo');
+Route::get('timkiemdichvukcb','DvKcbController@search');
+
+Route::get('/dichvukcbctdf/edit','DvKcbCtDfController@edit');
+Route::get('/dichvukcbctdf/update','DvKcbCtDfController@update');
+
+Route::get('/dichvukcbct/edit','DvKcbCtController@edit');
+Route::get('/dichvukcbct/update','DvKcbCtController@update');
+
 ?>

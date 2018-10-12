@@ -122,13 +122,13 @@
             </a>
             <ul class="sub-menu">
                 <li>
-                    <a href="#">Sample Link 1</a>
+                    <a href="{{url('nhomdichvukcb')}}">Nhóm DV KCB</a>
                 </li>
                 <li>
-                    <a href="#">Sample Link 2</a>
+                    <a href="{{url('dichvukcb')}}">Thông tin DV KCB</a>
                 </li>
                 <li>
-                    <a href="#">Sample Link 3</a>
+                    <a href="{{url('timkiemdichvukcb')}}">Tìm kiếm thông tin</a>
                 </li>
             </ul>
         </li>

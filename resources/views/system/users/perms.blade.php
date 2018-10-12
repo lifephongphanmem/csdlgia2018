@@ -44,28 +44,12 @@
                 </div>
                 <div class="portlet-body">
                     <div class="row">
-                        @if($model->sadmin == 'sa' || $model->sadmin == 'satc' || $model->sadmin == 'sact' || $model->sadmin == 'sagt' )
-                            @include('system.users.includeperms.permsa')
-                        @else
-                            @if( $model->level != 'DVLT' && $model->level != 'DVVT' && $model->level != 'DVGS' && $model->level != 'DVTACN')
-                                @include('system.users.includeperms.perm_hhdv')
-                            @endif
-                            @if(canGeneral('dvlt','dvlt'))
-                                @include('system.users.includeperms.permdvlt')
-                            @endif
-                            @if(canGeneral('dvvt','vtxk') || canGeneral('dvvt','vtxb') || canGeneral('vtxtx','vtxb') || canGeneral('dvvt','vtch'))
-                                @include('system.users.includeperms.permdvvt')
-                            @endif
-                            @if(canGeneral('dvgs','dvgs'))
-                                @include('system.users.includeperms.permdvgs')
-                            @endif
-                            @if(canGeneral('dvtacn','dvtacn'))
-                                @include('system.users.includeperms.permdvtacn')
-                            @endif
-                        @endif
+
                     </div>
+                    @include('includes.per.index')
                 </div>
             </div>
+
             <div style="text-align: center">
             <?php
                 if($model->level == 'satc' || $model->level == 'sact' || $model->level == 'sagt' || $model->level == 'sa')

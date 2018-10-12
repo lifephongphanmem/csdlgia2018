@@ -187,7 +187,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </li>
                     <li class="menu-dropdown classic-menu-dropdown ">
                         <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
-                            Cơ sở dữ liệu giá<i class="fa fa-angle-down"></i>
+                            Mặt hàng BOG<i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu pull-left">
                         </ul>
@@ -195,7 +195,21 @@ License: You must have a valid license purchased only from themeforest(the above
 
                     <li class="menu-dropdown classic-menu-dropdown ">
                         <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
-                            Giá dịch vụ <i class="fa fa-angle-down"></i>
+                            Định giá<i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu pull-left">
+                        </ul>
+                    </li>
+                    <li class="menu-dropdown classic-menu-dropdown ">
+                        <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
+                            Thẩm định giá TSNN<i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu pull-left">
+                        </ul>
+                    </li>
+                    <li class="menu-dropdown classic-menu-dropdown ">
+                        <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
+                            Kê khai giá HH-DV<i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu pull-left">
                         </ul>

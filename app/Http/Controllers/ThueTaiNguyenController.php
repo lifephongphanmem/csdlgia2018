@@ -63,7 +63,8 @@ class ThueTaiNguyenController extends Controller
             if(isset($inputs['manhom']) && isset($inputs['getdistrict'])) {
                 $tennhom = NhomThueTn::where('manhom', $inputs['manhom'])->first()->tennhom;
                 $diaban = DiaBanHd::where('district', $inputs['getdistrict'])->where('level', 'H')->first()->diaban;
-                $checkct = ThueTaiNguyenCtDf::where('district',$inputs['getdistrict'])->count();
+                $checkct = ThueTaiNguyenCtDf::where('district',$inputs['getdistrict'])
+                    ->where('manhom',$inputs['manhom'])->count();
                 if($checkct == 0){
 
                     $modeldm = DmThueTn::where('manhom', $inputs['manhom'])->get();
@@ -79,7 +80,8 @@ class ThueTaiNguyenController extends Controller
                         $modelctnew->save();
                     }
                 }
-                $modelct = ThueTaiNguyenCtDf::where('district',$inputs['getdistrict'])->get();
+                $modelct = ThueTaiNguyenCtDf::where('district',$inputs['getdistrict'])
+                    ->where('manhom',$inputs['manhom'])->get();
                 return view('manage.dinhgia.thuetn.kekhai.create')
                     ->with('district', $inputs['getdistrict'])
                     ->with('diaban', $diaban)

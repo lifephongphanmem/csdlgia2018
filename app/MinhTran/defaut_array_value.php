@@ -39,8 +39,9 @@ function getDiaDanhH(){
         ->get();
 
     $options = array();
-
+    $options[''] = '--Chọn địa bàn quản lý--';
     foreach ($diadanhhs as $diadanhh) {
+
 
         $options[$diadanhh->district] = $diadanhh->diaban;
     }

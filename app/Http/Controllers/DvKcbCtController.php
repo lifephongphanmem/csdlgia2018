@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\ThueTaiNguyenCtDf;
+use App\DvKcbCt;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
-class ThueTaiNguyenCtDfController extends Controller
+class DvKcbCtController extends Controller
 {
     public function edit(Request $request){
         $result = array(
@@ -26,7 +26,7 @@ class ThueTaiNguyenCtDfController extends Controller
 
         if(isset($inputs['id'])){
 
-            $model = ThueTaiNguyenCtDf::where('id',$inputs['id'])
+            $model = DvKcbCt::where('id',$inputs['id'])
                 ->first();
             //dd($model);
             $result['message'] = '<div class="modal-body" id="tttsedit">';
@@ -34,8 +34,8 @@ class ThueTaiNguyenCtDfController extends Controller
 
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Giá tính thuế tài nguyên<span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" name="edit_giatttn" id="edit_giatttn" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold" value="'.$model->giatttn.'"></div>';
+            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Giá dịch vụ<span class="require">*</span></label>';
+            $result['message'] .= '<div><input type="text" name="edit_giadv" id="edit_giadv" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold" value="'.$model->giadv.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
@@ -66,12 +66,12 @@ class ThueTaiNguyenCtDfController extends Controller
         $inputs = $request->all();
 
         if(isset($inputs['id'])){
-            $modelupdate = ThueTaiNguyenCtDf::where('id',$inputs['id'])->first();
-            $inputs['giatttn'] = getDbl($inputs['giatttn']);
+            $modelupdate = DvKcbCt::where('id',$inputs['id'])->first();
+            $inputs['giadv'] = getDbl($inputs['giadv']);
             $modelupdate->update($inputs);
 
-            $model = ThueTaiNguyenCtDf::where('district',$inputs['district'])
-                ->where('manhom',$inputs['manhom'])->get();
+            $model = DvKcbCt::where('mahs',$inputs['mahs'])
+                ->get();
 
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
@@ -80,10 +80,10 @@ class ThueTaiNguyenCtDfController extends Controller
             $result['message'] .= '<tr>';
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
             $result['message'] .= '<th style="text-align: center">Cấp độ</th>';
-            $result['message'] .= '<th style="text-align: center">Mã hàng hóa</th>';
-            $result['message'] .= '<th style="text-align: center">Tên hàng hóa</th>';
+            $result['message'] .= '<th style="text-align: center">Mã dịch vụ</th>';
+            $result['message'] .= '<th style="text-align: center">Tên dịch vụ</th>';
             $result['message'] .= '<th style="text-align: center">Đơn vị tính</th>';
-            $result['message'] .= '<th style="text-align: center" width="10%">Giá tính thuế<br> tài nguyên</th>';
+            $result['message'] .= '<th style="text-align: center" width="10%">Giá dịch vụ</th>';
             $result['message'] .= '<th style="text-align: center" width="15%">Thao tác</th>';
             $result['message'] .= '</tr>';
             $result['message'] .= '</thead>';
@@ -93,10 +93,10 @@ class ThueTaiNguyenCtDfController extends Controller
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
                     $result['message'] .= '<td style="text-align: center">'.$tents->capdo.'</td>';
-                    $result['message'] .= '<td style="text-align: center">'.$tents->mahh.'</td>';
-                    $result['message'] .= '<td class="active" style="font-weight: bold">'.$tents->tenhh.'</td>';
+                    $result['message'] .= '<td style="text-align: center">'.$tents->madv.'</td>';
+                    $result['message'] .= '<td class="active" style="font-weight: bold">'.$tents->tendichvu.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.$tents->dvt.'</td>';
-                    $result['message'] .= '<td style="text-align: right;font-weight: bold">'.($tents->dvt != '' ? number_format($tents->giatttn) : '').'</td>';
+                    $result['message'] .= '<td style="text-align: right;font-weight: bold">'.($tents->dvt != '' ? number_format($tents->giadv) : '').'</td>';
                     $result['message'] .= '<td>';
                     if($tents->dvt != '')
                         $result['message'] .= '<button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('.$tents->id.');"><i class="fa fa-edit"></i>&nbsp;Kê khai</button>';
