@@ -48,4 +48,29 @@ function getDiaDanhH(){
     return $options;
 }
 
+function getDtapdungdvlt(){
+    $dtads = \App\DtAdDvLt::all();
+
+    $options = array();
+    $options['00'] = '--Chọn loại đối tượng áp dụng--';
+    foreach ($dtads as $dtad) {
+        $options[$dtad->madtad] = $dtad->tendtad;
+    }
+    return $options;
+}
+
+function getDvtDvLt(){
+    $dvt = array(
+        ''=>'--Chọn đơn vị tính--',
+        'Đồng/giường/ngày đêm'=>'Đồng/giường/ngày đêm',
+        'Đồng/phòng/ngày đêm'=>'Đồng/phòng/ngày đêm',
+        'Đồng/phòng/tuần'=> 'Đồng/phòng/tuần',
+        'Đồng/phòng/tháng'=> 'Đồng/phòng/tháng',
+        'Đồng/căn hộ/ngày đêm'=>'Đồng/căn hộ/ngày đêm',
+        'Đồng/căn hộ/tuần'=> 'Đồng/căn hộ/tuần' ,
+        'Đồng/căn hộ/tháng'=>'Đồng/căn hộ/tháng',
+    );
+    return $dvt;
+}
+
 ?>

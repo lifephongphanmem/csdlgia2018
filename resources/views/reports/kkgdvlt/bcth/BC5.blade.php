@@ -105,18 +105,9 @@
         <th>Ngày thực hiện<br> mức giá kê khai</th>
         <th>Thời hạn giải quyết</th>
     </tr>
-    @foreach($m_cqcq as $cskd)
-        <?php $model_kk=$model->where('cqcq',$cskd->maqhns) ?>
-        @if(count($model_kk)>0)
-            <tr>
-                <th style="text-align: left" colspan="10">
-                    {{$cskd->tendv.': '. count($model_kk).' hồ sơ.'}}
-                </th>
-            </tr>
-            <?php $i=1;?>
-            @foreach($model_kk as $key => $ttkk)
+            @foreach($model as $key => $ttkk)
                 <tr>
-                    <th style="text-align: center">{{$i++}}</th>
+                    <th style="text-align: center">{{$key+1}}</th>
                     <th style="text-align: left">{{$ttkk->tencskd}}</th>
                     <th style="text-align: center">{{$ttkk->loaihang}} sao</th>
                     <th style="text-align: left">{{$ttkk->diachikd}}</th>
@@ -128,8 +119,6 @@
                     <th style="text-align: center">{{$ttkk->thoihan}}</th>
                 </tr>
             @endforeach
-        @endif
-    @endforeach
     <tr>
         <th style="text-align: left" colspan="10">
             {{'Tổng cộng: '. count($model).' hồ sơ.'}}

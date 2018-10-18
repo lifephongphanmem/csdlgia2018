@@ -23,10 +23,10 @@
             document.getElementById("iddelete").value=id;
         }
         $(function(){
-            $('#level').change(function() {
-                var current_path_url = '/xetduyet_thaydoi_ttdoanhnghiep?';
-                var pl = '&level='+$('#level').val();
-                var url = current_path_url+pl;
+            $('#trangthai').change(function() {
+                var current_path_url = '/xetduyettdttdn?';
+                var trangthai = '&trangthai='+$('#trangthai').val();
+                var url = current_path_url + trangthai;
                 window.location.href = url;
             });
         })
@@ -49,27 +49,9 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <select class="form-control" name="level" id="level">
-                                    @if(canGeneral('dvlt','dvlt') )
-                                        @if(can('ttdn','dvlt'))
-                                            <option value="DVLT" {{($level == "DVLT") ? 'selected' : ''}}>Dịch vụ lưu trú</option>
-                                        @endif
-                                    @endif
-                                    @if(canGeneral('dvvt','vtxk') || canGeneral('dvvt','vtxb') || canGeneral('dvvt','vtxtx') || canGeneral('dvvt','vtch'))
-                                        @if(can('ttdn','dvvt'))
-                                            <option value="DVVT" {{($level == "DVVT") ? 'selected' : ''}}>Dịch vụ vận tải</option>
-                                        @endif
-                                    @endif
-                                    @if(canGeneral('dvgs','dvgs'))
-                                        @if(can('ttdn','dvgs'))
-                                            <option value="DVGS" {{($level == "DVGS") ? 'selected' : ''}}>Mặt hàng sữa</option>
-                                        @endif
-                                    @endif
-                                    @if(canGeneral('dvtacn','dvtacn'))
-                                        @if(can('ttdn','dvtacn'))
-                                            <option value="DVTACN" {{($level == "DVTACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
-                                        @endif
-                                    @endif
+                                <select class="form-control" name="trangthai" id="trangthai">
+                                    <option value="CD" {{($trangthai == "CD") ? 'selected' : ''}}>Chờ duyệt</option>
+                                    <option value="BTL" {{($trangthai == "BTL") ? 'selected' : ''}}>Bị trả lại</option>
                                 </select>
                             </div>
                         </div>
@@ -85,6 +67,7 @@
                             <th style="text-align: center">Ngày thay đổi</th>
                             <th style="text-align: center">Tên doanh nghiệp</th>
                             <th style="text-align: center">Mã số thuế</th>
+                            <th style="text-align: center">Phân loại</th>
                             <th style="text-align: center">Trạng thái</th>
                             <th style="text-align: center" width="25%">Thao tác</th>
                         </tr>
@@ -96,18 +79,19 @@
                                 <td style="text-align: center" width="15%">{{getDateTime($tt->created_at)}}</td>
                                 <td class="active" width="20%">{{$tt->tendn}}</td>
                                 <td width="10%" style="text-align: center"> {{$tt->maxa}}</td>
-                                @if($tt->trangthai == 'Chờ duyệt')
-                                    <td align="center"><span class="badge badge-warning">{{$tt->trangthai}}</span>
+                                <td style="text-align: center"> {{$tt->level}}</td>
+                                @if($tt->trangthai == 'CD')
+                                    <td align="center"><span class="badge badge-warning">Chờ duyệt</span>
 
                                     </td>
-                                @elseif($tt->trangthai == 'Bị trả lại')
+                                @elseif($tt->trangthai == 'BTL')
                                         <td align="center">
-                                            <span class="badge badge-danger">{{$tt->trangthai}}</span><br>&nbsp;
+                                            <span class="badge badge-danger">Bị trả lại</span><br>&nbsp;
                                             Lý do: <b>{{$tt->lydo}}</b>
                                         </td>
                                 @endif
                                 <td>
-                                    <a href="{{url('xetduyet_thaydoi_ttdoanhnghiep/'.$tt->id)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                    <a href="{{url('xetduyettdttdn/'.$tt->id)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
 
                                     <!--button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                         Xóa</button-->
@@ -131,7 +115,7 @@
     <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['url'=>'xetduyet_thaydoi_thongtindoanhnghiep/delete','id' => 'frm_delete'])!!}
+                {!! Form::open(['url'=>'xetduyettdttdn/delete','id' => 'frm_delete'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title">Đồng ý xóa?</h4>

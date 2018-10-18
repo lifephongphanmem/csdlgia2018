@@ -190,6 +190,12 @@ License: You must have a valid license purchased only from themeforest(the above
                             Mặt hàng BOG<i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu pull-left">
+                            <?php $modelmhbinhongia = \App\DmMhBinhOnGia::all()?>
+                            @foreach($modelmhbinhongia as $binhongia)
+                                <li>
+                                    <a href="{{url('binhongia?mamh='.$binhongia->mamh)}}">-{{$binhongia->tenmh}}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </li>
 

@@ -90,7 +90,7 @@ class GeneralConfigsController extends Controller
             if(session('admin')->sadmin == 'ssa')
             {
                 $model = GeneralConfigs::first();
-                $setting = $model->setting;
+                $setting = isset($model->setting) ? $model->setting : '';
 
                 return view('system.general.setting')
                     ->with('model',$model)

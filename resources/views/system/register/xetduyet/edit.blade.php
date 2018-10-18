@@ -127,7 +127,7 @@
                                     <label class="control-label">Cơ quan chủ quản</label>
                                     <select class="form-control" id="mahuyen" name="mahuyen">
                                         @foreach($cqcq as $tt)
-                                            <option value="{{$tt->mahuyen}}" {{($tt->mahuyen == $model->mahuyen) ? 'selected' : ''}} >{{$tt->tendv}}</option>
+                                            <option value="{{$tt->maxa}}" {{($tt->mahuyen == $model->mahuyen) ? 'selected' : ''}} >{{$tt->tendv}}</option>
                                         @endforeach
                                     </select>
                                 </div>

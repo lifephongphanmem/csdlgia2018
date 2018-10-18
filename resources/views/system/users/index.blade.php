@@ -101,7 +101,26 @@
                                     <option value="T" {{($pl == "T") ? 'selected' : ''}}>Tổng hợp</option>
                                     <option value="H" {{($pl == "H") ? 'selected' : ''}}>Đơn vị quản lý</option>
                                     <option value="X" {{($pl == "X") ? 'selected' : ''}}>Đơn vị</option>
-                                    <option value="DN" {{($pl == "DN") ? 'selected' : ''}}>Doanh nghiệp</option>
+                                    @if(canGeneral('dvlt','dvlt') )
+                                        @if(can('ttdn','dvlt'))
+                                            <option value="DVLT" {{($pl == "DVLT") ? 'selected' : ''}}>Dịch vụ lưu trú</option>
+                                        @endif
+                                    @endif
+                                    @if(canGeneral('dvvt','vtxk') || canGeneral('dvvt','vtxb') || canGeneral('dvvt','vtxtx') || canGeneral('dvvt','vtch'))
+                                        @if(can('ttdn','dvvt'))
+                                            <option value="DVVT" {{($pl == "DVVT") ? 'selected' : ''}}>Dịch vụ vận tải</option>
+                                        @endif
+                                    @endif
+                                    @if(canGeneral('dvgs','dvgs'))
+                                        @if(can('ttdn','dvgs'))
+                                            <option value="DVGS" {{($pl == "DVGS") ? 'selected' : ''}}>Mặt hàng sữa</option>
+                                        @endif
+                                    @endif
+                                    @if(canGeneral('dvtacn','dvtacn'))
+                                        @if(can('ttdn','dvtacn'))
+                                            <option value="DVTACN" {{($pl == "DVTACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
+                                        @endif
+                                    @endif
                                 </select>
                             </div>
                         </div>

@@ -331,7 +331,7 @@
 <!--Modal Thoại BC5-->
 <div id="BC5-thoai-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
     <div class="modal-dialog">
-        {!! Form::open(['url'=>'/reports/dich_vu_luu_tru/BC5','target'=>'_blank' , 'id' => 'frm_bc5', 'class'=>'form-horizontal form-validate']) !!}
+        {!! Form::open(['url'=>'/reports/kekhaidvlt/BC5','target'=>'_blank' , 'id' => 'frm_bc5', 'class'=>'form-horizontal form-validate']) !!}
         <div class="modal-content">
             <div class="modal-header modal-header-primary">
                 <button type="button" data-dismiss="modal" aria-hidden="true"
@@ -401,8 +401,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickBC5('/reports/dich_vu_luu_tru/BC5')">Đồng ý</button>
-                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickBC5_excel('/reports/dich_vu_luu_tru/BC5_excel')">Xuất Excel</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickBC5('/reports/kekhaidvlt/BC5')">Đồng ý</button>
+                <!--button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickBC5_excel('/reports/dich_vu_luu_tru/BC5_excel')">Xuất Excel</button-->
                 <!--button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickPL1Excel('/reports/tt55-2011-BTC/PL1Excel')">Xuất Excel</button-->
             </div>
             {!! Form::close() !!}
@@ -413,7 +413,7 @@
 <!--Modal Thoại BC6-->
 <div id="BC6-thoai-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
     <div class="modal-dialog">
-        {!! Form::open(['url'=>'/reports/dich_vu_luu_tru/BC6','target'=>'_blank' , 'id' => 'frm_bc6', 'class'=>'form-horizontal form-validate']) !!}
+        {!! Form::open(['url'=>'/reports/kekhaidvlt/BC6','target'=>'_blank' , 'id' => 'frm_bc6', 'class'=>'form-horizontal form-validate']) !!}
         <div class="modal-content">
             <div class="modal-header modal-header-primary">
                 <button type="button" data-dismiss="modal" aria-hidden="true"
@@ -477,8 +477,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickBC6('/reports/dich_vu_luu_tru/BC6')">Đồng ý</button>
-                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickBC6_excel('/reports/dich_vu_luu_tru/BC6_excel')">Xuất Excel</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickBC6('/reports/kekhaidvlt/BC6')">Đồng ý</button>
+                <!--button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickBC6_excel('/reports/dich_vu_luu_tru/BC6_excel')">Xuất Excel</button-->
             </div>
             {!! Form::close() !!}
         </div>

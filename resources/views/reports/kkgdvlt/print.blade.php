@@ -148,23 +148,21 @@
 <p style="text-align: right; font-size: 16px;"><i>Đơn vị tính: {{$modelkk->dvt}}</i></p>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <tr>
-        <th width="30%">Loại phòng/ Quy<br>cách chất lượng<br>phòng</th>
-        <th width="40%">Số hiệu<br>Phòng</th>
-        <th width="10%">Mức giá kê<br>khai trước<br>liền kề</th>
-        <th width="10%">Mức giá kê<br>khai trước<bR> cuối tuần<br>liền kề</th>
-        <th width="10%">Mức giá kê<br>khai</th>
-        <th width="10%">Mức giá kê<br>khai <br>cuối tuần</th>
+        <th width="20%">Đối tượng áp dụng</th>
+        <th width="30%" style="text-align: center">Loại phòng/ Quy<br>cách chất lượng<br>phòng</th>
+        <th width="20%" style="text-align: center">Số hiệu<br>Phòng</th>
+        <th width="10%" style="text-align: center">Mức giá kê<br>khai trước<br>liền kề</th>
+        <th width="10%" style="text-align: center">Mức giá kê<br>khai</th>
         <th>Ghi chú</th>
     </tr>
     @foreach($modelkkct as $ctkk)
         <tr>
-            <th style="text-align: left">{{$ctkk->loaip.'-'.$ctkk->qccl}}</th>
-            <th style="text-align: left">{{getTtPhong($ctkk->sohieu)}}</th>
-            <th style="text-align: right">{{number_format($ctkk->mucgialk)}}</th>
-            <th style="text-align: right">{{number_format($ctkk->mucgialkct)}}</th>
-            <th style="text-align: right">{{number_format($ctkk->mucgiakk)}}</th>
-            <th style="text-align: right">{{number_format($ctkk->mucgiakkct)}}</th>
-            <th>{{$ctkk->ghichu}}</th>
+            <td style="text-align: left;font-weight: bold">{{$ctkk->tendtad}}</td>
+            <td style="text-align: left">{{$ctkk->loaip.'-'.$ctkk->qccl}}</td>
+            <td style="text-align: left">{{getTtPhong($ctkk->sohieu)}}</td>
+            <td style="text-align: right">{{number_format($ctkk->mucgialk)}}</td>
+            <td style="text-align: right">{{number_format($ctkk->mucgiakk)}}</td>
+            <td>{{$ctkk->ghichu}}</td>
         </tr>
     @endforeach
 </table>
@@ -228,18 +226,18 @@
 <p style="text-align: right; font-size: 16px;"><i>Đơn vị tính: {{$modelkk->dvt}}</i></p>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <tr>
-        <th width="30%">Loại phòng/ Quy<br>cách chất lượng<br>phòng</th>
-        <th width="40%">Số hiệu<br>Phòng</th>
+        <<th width="20%">Đối tượng áp dụng</th>
+        <th width="30%" style="text-align: center">Loại phòng/ Quy<br>cách chất lượng<br>phòng</th>
+        <th width="20%" style="text-align: center">Số hiệu<br>Phòng</th>
         <th width="15%">Mức giá niêm<br>yết</th>
-        <th width="15%">Mức giá niêm<br>yết<br>cuối tuần</th>
         <th>Ghi chú</th>
     </tr>
     @foreach($modelkkct as $ctkk)
         <tr>
+            <td style="text-align: left;font-weight: bold">{{$ctkk->tendtad}}</td>
             <th style="text-align: left">{{$ctkk->loaip.' - '.$ctkk->qccl}}</th>
             <th style="text-align: left">{{getTtPhong($ctkk->sohieu)}}</th>
             <th style="text-align: right">{{number_format($ctkk->mucgiakk)}}</th>
-            <th style="text-align: right">{{number_format($ctkk->mucgiakkct)}}</th>
             <th>{{$ctkk->ghichu}}</th>
         </tr>
     @endforeach

@@ -42,8 +42,8 @@
                     <div class="caption">
                     </div>
                     <div class="actions">
-                        @if($model->trangthai == 'Chờ duyệt')
-                        <a href="{{url('xetduyet_thaydoi_ttdoanhnghiep/'.$modeltttd->id.'/duyet')}}" class="btn btn-default btn-sm">
+                        @if($modeltttd->trangthai == 'CD')
+                        <a href="{{url('xetduyettdttdn/'.$modeltttd->id.'/duyet')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-check"></i> Đồng ý thay đổi thông tin </a>
                         <button type="button" onclick="confirmTraLai({{$modeltttd->id}})" class="btn btn-default btn-xs mbs" data-target="#tralai-modal" data-toggle="modal"><i class="fa fa-reply"></i>&nbsp;
                             Trả lại</button>
@@ -355,7 +355,7 @@
             </div>
             <div class="row" style="text-align: center">
                 <div class="col-md-12">
-                    <a href="{{url('xetduyet_thaydoi_ttdoanhnghiep?&level='.$model->level)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                    <a href="{{url('xetduyettdttdn')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 </div>
             </div>
         </div>
@@ -365,7 +365,7 @@
     <div class="modal fade" id="tralai-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['url'=>'xetduyet_thaydoi_ttdoanhnghiep/tralai','id' => 'frm_tralai'])!!}
+                {!! Form::open(['url'=>'xetduyettdttdn/tralai','id' => 'frm_tralai'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title">Đồng ý trả lại hồ sơ thay đổi thông tin doanh nghiệp?</h4>

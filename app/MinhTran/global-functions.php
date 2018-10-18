@@ -3,425 +3,80 @@ function getPermissionDefault($level) {
     $roles = array();
 
     $roles['T'] = array(
-        'dvlt' => array(
+        'bog' => array(
             'index' => 1,
-            'approve'=> 1
         ),
-        'dvvt' => array(
+        'dinhgia' => array(
             'index' => 1,
-            'approve'=> 1
         ),
-        'dvgs' => array(
+        'thamdinh' => array(
             'index' => 1,
-            'approve'=> 1
         ),
-        'dvtacn' => array(
-            'index' => 1,
-            'approve'=> 1
+        'kkgia'=>array(
+            'index'=>1,
         ),
-        'kkdvlt' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1
-        ),
-        'kkdvvtxk' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1
-        ),
-        'kkdvvtxb' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1
-        ),
-        'kkdvvtxtx' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1
-        ),
-        'kkdvvtch' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1
-        ),
-        'kkdvgs' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1
-        ),
-        'kkdvtacn' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1
-        ),
-        'hhtt' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'hhdvtn' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'hhxnk' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'kkgtw' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'kkgdp' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'tsnnnhadat' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'tsnnotokhac' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'gttruocba' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'gthuetn' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'tdgia' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'congbogia' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'ttqd' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0
-        ),
-        'loaidat' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'vitri' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
+
     );
     $roles['H'] = array(
-        'dvlt' => array(
+        'bog' => array(
             'index' => 1,
+        ),
+        'dinhgia' => array(
+            'index' => 1,
+        ),
+        'thamdinh' => array(
+            'index' => 1,
+        ),
+        'kkgia'=>array(
+            'index'=>1,
+        ),
+    );
+    $roles['X'] = array(
+        'bog' => array(
+            'index' => 1,
+        ),
+        'dinhgia' => array(
+            'index' => 1,
+        ),
+        'thamdinh' => array(
+            'index' => 1,
+        ),
+        'kkgia'=>array(
+            'index'=>1,
+        ),
+    );
+    $roles['DVLT'] = array(
+        'kkgia'=>array(
+            'index'=>1,
+        ),
+        'ttdn'=> array(
+            'index'=>1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
             'approve'=> 1
         ),
-        'dvvt' => array(
+        'dmdvlt' => array(
             'index' => 1,
-            'approve'=> 1
-        ),
-        'dvgs' => array(
-            'index' => 1,
-            'approve'=> 1
-        ),
-        'dvtacn' => array(
-            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
             'approve'=> 1
         ),
         'kkdvlt' => array(
             'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
             'approve'=> 1
-        ),
-        'kkdvvtxk' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1
-        ),
-        'kkdvvtxb' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1
-        ),
-        'kkdvvtxtx' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1
-        ),
-        'kkdvvtch' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1
-        ),
-        'kkdvgs' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1
-        ),
-        'kkdvtacn' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1
-        ),
-        'hhtt' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'hhdvtn' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'hhxnk' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'kkgtw' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'kkgdp' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'tsnnnhadat' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'tsnnotokhac' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'gttruocba' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'gthuetn' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'tdgia' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'congbogia' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'ttqd' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 0
-        ),
-        'loaidat' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
-        ),
-        'vitri' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 1
         ),
     );
-    $roles['DN'] = array(
-        'dvvt' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1
-        ),
-        'kkdvvtxk' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1
-        ),
-        'dvvtxk' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1
-        ),
-        'kkdvvtxb' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1
-        ),
-        'dvvtxb' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1
-        ),
-        'kkdvvtxtx' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1
-        ),
-        'dvvtxtx' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1
-        ),
-        'kkdvvtch' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1
-        ),
-        'dvvtch' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1
-        ),
-    );
-    $roles['DVGS'] = array(
+    $roles['TPCTE6T'] = array(
         'dvgs' => array(
             'index' => 1,
+        ),
+        'ttdvgs' => array(
+            'index' => 1,
             'create' => 1,
             'edit' => 1,
             'delete' => 1,
@@ -435,15 +90,18 @@ function getPermissionDefault($level) {
             'approve'=> 1
         ),
     );
-    $roles['DVTACN'] = array(
-        'dvtacn' => array(
-            'index' => 1,
+    $roles['TACN'] = array(
+        'kkgia'=>array(
+            'index'=>1,
+        ),
+        'ttdn'=> array(
+            'index'=>1,
             'create' => 1,
             'edit' => 1,
             'delete' => 1,
             'approve'=> 1
         ),
-        'kkdvtacn' => array(
+        'kktacn' => array(
             'index' => 1,
             'create' => 1,
             'edit' => 1,
@@ -451,122 +109,6 @@ function getPermissionDefault($level) {
             'approve'=> 1
         ),
     );
-    //Phần hàng hóa, dịch vụ
-    $roles['HHDV'] = array(
-        'hhtt' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1,
-            'unapprove'=> 0
-        ),
-        'hhdvtn' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1,
-            'unapprove'=> 0
-        ),
-        'hhxnk' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1,
-            'unapprove'=> 0
-        ),
-        'kkgtw' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1,
-            'unapprove'=> 0
-        ),
-        'kkgdp' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1,
-            'unapprove'=> 0
-        ),
-        'tsnnnhadat' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1,
-            'unapprove'=> 0
-        ),
-        'tsnnotokhac' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1,
-            'unapprove'=> 0
-        ),
-        'gttruocba' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1,
-            'unapprove'=> 0
-        ),
-        'gthuetn' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1,
-            'unapprove'=> 0
-        ),
-        'tdgia' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1,
-            'unapprove'=> 0
-        ),
-        'congbogia' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1,
-            'unapprove'=> 0
-        ),
-        'ttqd' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 0,
-            'unapprove'=> 0
-        ),
-        'loaidat' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 0
-        ),
-        'vitri' => array(
-            'index' => 1,
-            'create' => 0,
-            'edit' => 0,
-            'delete' => 0,
-            'approve'=> 1,
-            'unapprove'=> 0
-        ),
-    );
-    $roles['X'] = array();
     return json_encode($roles[$level]);
 }
 
@@ -609,13 +151,13 @@ function can($module = null, $action = null)
 }
 
 function canEdit($trangthai){
-    if(session('admin')->sadmin == 'ssa' || session('admin'))
+    if(session('admin')->sadmin == 'ssa')
        return true;
     else{
-        if ($trangthai == 'Chờ duyệt' || $trangthai == 'Đã duyệt') {
-            return false;
-        } else {
+        if ($trangthai == 'CC' || $trangthai == 'BTL') {
             return true;
+        } else {
+            return false;
         }
     }
 }
@@ -878,13 +420,13 @@ function getTtPhong($str)
 function getNgayHieuLuc($ngaynhap,$pl){
     $dayngaynhap = date('D',strtotime($ngaynhap));
     if($pl == 'DVLT')
-        $thoihan = isset(getGeneralConfigs()['thoihanlt']) ? getGeneralConfigs()['thoihanlt'] : 0;
+        $thoihan = isset(getGeneralConfigs()['thoihanlt']) ? getGeneralConfigs()['thoihanlt'] : 2;
     elseif($pl == 'DVVT')
-        $thoihan = isset(getGeneralConfigs()['thoihanvt']) ? getGeneralConfigs()['thoihanvt'] : 0;
+        $thoihan = isset(getGeneralConfigs()['thoihanvt']) ? getGeneralConfigs()['thoihanvt'] : 2;
     elseif($pl == 'DVGS')
-        $thoihan = isset(getGeneralConfigs()['thoihangs']) ? getGeneralConfigs()['thoihangs'] : 0;
+        $thoihan = isset(getGeneralConfigs()['thoihangs']) ? getGeneralConfigs()['thoihangs'] : 2;
     elseif($pl == 'DVTACN')
-        $thoihan = isset(getGeneralConfigs()['thoihantacn']) ? getGeneralConfigs()['thoihantacn'] : 0;
+        $thoihan = isset(getGeneralConfigs()['thoihantacn']) ? getGeneralConfigs()['thoihantacn'] : 2;
     $ngaynghi = 0;
 
     if ($dayngaynhap == 'Thu') {
@@ -992,6 +534,43 @@ function IntToRoman($number)
         $number -= 1;
     }
     return $roman;
+}
+
+function getThXdHsDvLt($ngaychuyen,$ngayduyet){
+    //Kiểm tra giờ chuyển quá 16h thì sang ngày sau
+    //if (date('H', strtotime($ngaychuyen)) > 16) {
+    //Không tính ngày chuyển hs, ngày tiếp theo sẽ là ngày xét duyệt
+    $date = date_create($ngaychuyen);
+    $datenew = date_modify($date, "+1 days");
+    $ngaychuyen = date_format($datenew, "Y-m-d");
+    /*} else {
+        $ngaychuyen = date("Y-m-d",strtotime($ngaychuyen));
+    }*/
+    $ngaylv = 0;
+    while (strtotime($ngaychuyen) <= strtotime($ngayduyet)) {
+        $checkngay = \App\TtNgayNghiLe::where('ngaytu', '<=', $ngaychuyen)
+            ->where('ngayden', '>=', $ngaychuyen)->first();
+        if (count($checkngay) > 0)
+            $ngaylv = $ngaylv;
+        elseif (date('D', strtotime($ngaychuyen)) == 'Sat')
+            $ngaylv = $ngaylv;
+        elseif (date('D', strtotime($ngaychuyen)) == 'Sun')
+            $ngaylv = $ngaylv;
+        else
+            $ngaylv = $ngaylv + 1;
+        $datestart = date_create($ngaychuyen);
+        $datestartnew = date_modify($datestart, "+1 days");
+        $ngaychuyen = date_format($datestartnew, "Y-m-d");
+
+    }
+    if ($ngaylv < (isset(getGeneralConfigs()['thoihan_lt']) ? getGeneralConfigs()['thoihan_lt'] : 2)) {
+        $thoihan= 'Trước thời hạn';
+    } elseif ($ngaylv == (isset(getGeneralConfigs()['thoihan_lt']) ? getGeneralConfigs()['thoihan_lt'] : 2)) {
+        $thoihan = 'Đúng thời hạn';
+    } else {
+        $thoihan = 'Quá thời hạn';
+    }
+    return $thoihan;
 }
 
 

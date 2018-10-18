@@ -117,40 +117,32 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--Modal đăng ký-->
 <div id="dangky-doanhnghiep" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
 	<div class="modal-dialog">
-		{!! Form::open(['url'=>'reports/dvlt/BC1','target'=>'_blank' , 'id' => 'frm_BC1', 'class'=>'form-horizontal form-validate']) !!}
 		<div class="modal-content">
 			<div class="modal-header modal-header-primary">
 				<button type="button" data-dismiss="modal" aria-hidden="true"
 						class="close">&times;</button>
-				<h4 id="modal-header-primary-label" class="modal-title">Doanh nghiệp của bạn cung cấp dịch vụ???</h4>
+				<h4 id="modal-header-primary-label" class="modal-title">Đăng ký tài khoản kê khai, niêm yết giá!!!</h4>
 			</div>
 			<div class="modal-body">
 				<div class="form-horizontal">
 					<div class="form-group">
 						<div class="col-md-12" align="center">
-							@if(canGeneral('dvlt','dvlt'))
-							<a class="btn btn-primary" data-toggle="modal" href="{{url('dangkytaikhoan?&level=DVLT')}}">
-								Dịch vụ lưu trú </a>
-							@endif
-							@if(canGeneral('dvvt','vtxk') || canGeneral('dvvt','vtxb') || canGeneral('dvvt','vtxtx') || canGeneral('dvvt','vtch'))
-							<a class="btn btn-success" data-toggle="modal" href="{{url('dangkytaikhoan?&level=DVVT')}}">
-								Dịch vụ vận tải </a>
-							@endif
-							@if(canGeneral('dvgs','dvgs'))
-							<a class="btn btn-warning" data-toggle="modal" href="{{url('dangkytaikhoan?&level=DVGS')}}">Dịch vụ giá sữa</a>
-							@endif
-							@if(canGeneral('dvtacn','dvtacn'))
-								<a class="btn btn-info" data-toggle="modal" href="{{url('dangkytaikhoan?&level=DVTACN')}}">Thức ăn chăn nuôi</a>
-							@endif
+								<a class="btn btn-primary" data-toggle="modal" href="{{url('dangkytaikhoan?&level=DVLT')}}">
+									Dịch vụ lưu trú </a>
+								<a class="btn btn-success" data-toggle="modal" href="{{url('dangkytaikhoan?&level=DVVT')}}">
+									Dịch vụ vận tải </a>
+								<a class="btn btn-warning" data-toggle="modal" href="{{url('dangkytaikhoan?&level=TPTED6T')}}">Thực phẩm cho TE dưới 6 tuổi</a>
+								<a class="btn btn-info" data-toggle="modal" href="{{url('dangkytaikhoan?&level=TACN')}}">Thức ăn chăn nuôi</a>
 						</div>
 					</div>
 
 				</div>
 			</div>
 			<div class="modal-footer">
+
 				<button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+				<a href="{{url('dangkytaikhoan')}}" class="btn green">Đăng ký tài khoản</a>
 			</div>
-			{!! Form::close() !!}
 		</div>
 	</div>
 </div>

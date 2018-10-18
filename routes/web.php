@@ -7,6 +7,7 @@ Route::get('/ajax/checkmaqhns','AjaxController@checkmaqhns');
 Route::get('/ajax/checkmasothue','AjaxController@checkmasothue');
 Route::get('/ajax/registerthongtin','AjaxController@registerthongtin');
 Route::get('/ajax/getTown','AjaxController@getTown');
+Route::get('ajax/reggetper','AjaxController@reggetper');
 
 // <editor-fold defaultstate="collapsed" desc="--Đăng ký tài khoản--">
 Route::get('/ajax/registercheckmasothue','RegisterController@checkmasothue');
@@ -65,6 +66,10 @@ Route::get('users/unlock/{id}/{pl}','UsersController@unlockuser');
 Route::get('users/create','UsersController@create');
 Route::post('users','UsersController@store');
 
+Route::resource('xetduyettdttdn','TdTtDnController');
+Route::post('xetduyettdttdn/tralai','TdTtDnController@tralai');
+Route::get('xetduyettdttdn/{id}/duyet','TdTtDnController@duyet');
+
 //EndUsers
 // </editor-fold>//End Setting
 
@@ -76,6 +81,7 @@ Route::post('users','UsersController@store');
 include('manage/bog.php');
 include('manage/dinhgia.php');
 include('manage/thamdinhgia.php');
+include('manage/kekhaigia.php');
 
 
 

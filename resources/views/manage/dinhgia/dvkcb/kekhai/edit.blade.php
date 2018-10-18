@@ -157,7 +157,7 @@
                                             <td style="text-align: center">{{$key+1}}</td>
                                             <td style="text-align: center">{{$tt->capdo}}</td>
                                             <td style="text-align: center">{{$tt->madv}}</td>
-                                            <td class="active" style="font-weight: bold">{{$tt->tendv}}</td>
+                                            <td class="active" style="font-weight: bold">{{$tt->tendichvu}}</td>
                                             <td style="text-align: center">{{$tt->dvt}}</td>
                                             <td style="text-align: right;font-weight: bold">{{$tt->dvt!= '' ? number_format($tt->giadv) : ''}}</td>
                                             <td>

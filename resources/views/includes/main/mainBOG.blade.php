@@ -1,3 +1,4 @@
+@if(can('bog','index'))
 <li class="">
     <a href="javascript:;">
         <i class="icon-folder"></i>
@@ -19,3 +20,4 @@
         @endforeach
     </ul>
 </li>
+@endif

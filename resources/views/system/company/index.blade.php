@@ -57,26 +57,10 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <select class="form-control" name="level" id="level">
-                                    @if(canGeneral('dvlt','dvlt') )
-                                        @if(can('ttdn','dvlt'))
                                         <option value="DVLT" {{($level == "DVLT") ? 'selected' : ''}}>Dịch vụ lưu trú</option>
-                                        @endif
-                                    @endif
-                                    @if(canGeneral('dvvt','vtxk') || canGeneral('dvvt','vtxb') || canGeneral('dvvt','vtxtx') || canGeneral('dvvt','vtch'))
-                                        @if(can('ttdn','dvvt'))
                                         <option value="DVVT" {{($level == "DVVT") ? 'selected' : ''}}>Dịch vụ vận tải</option>
-                                        @endif
-                                    @endif
-                                    @if(canGeneral('dvgs','dvgs'))
-                                        @if(can('ttdn','dvgs'))
                                         <option value="DVGS" {{($level == "DVGS") ? 'selected' : ''}}>Mặt hàng sữa</option>
-                                        @endif
-                                    @endif
-                                    @if(canGeneral('dvtacn','dvtacn'))
-                                        @if(can('ttdn','dvtacn'))
-                                        <option value="DVTACN" {{($level == "DVTACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
-                                        @endif
-                                    @endif
+                                        <option value="TACN" {{($level == "TACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
                                 </select>
                             </div>
                         </div>

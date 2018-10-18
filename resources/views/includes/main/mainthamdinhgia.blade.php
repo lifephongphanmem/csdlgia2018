@@ -1,3 +1,4 @@
+@if(can('thamdinh','index'))
 <li class="">
     <a href="javascript:;">
         <i class="icon-folder"></i>
@@ -13,3 +14,4 @@
         </li>
     </ul>
 </li>
+@endif

@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\DiaBanHd;
 use App\District;
+use App\KkGiaDvLt;
 use App\Register;
 use App\Town;
+use App\TtNgayNghiLe;
 use App\Users;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -219,4 +222,68 @@ class AjaxController extends Controller
 
         die(json_encode($result));
     }
+
+    public function reggetper(Request $request){
+        $result = array(
+            'status' => 'fail',
+            'message' => 'error',
+        );
+        $inputs = $request->all();
+        $pl = $inputs['pl'];
+        if($pl == ''){
+            $result['message'] = '<div  class="row" id="per">';
+            $result['message'] .= '<div>';
+            $result['status'] = 'success';
+        }elseif($pl == 'VT'){
+            $result['message'] = '<div class="row" id="per">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="form-group">';
+            $result['message'] .= '<div class="icheck-inline">';
+            $result['message'] .= '<span><input type="checkbox" value="1" name="roles[dvcc][vtxk]" checked>&nbsp; Vận tải xe khách </label>&nbsp;';
+            $result['message'] .= '<span><input type="checkbox" value="1" name="roles[dvcc][vtxb]" checked>&nbsp; Vận tải xe buýt </label>&nbsp;';
+            $result['message'] .= '<span><input type="checkbox" value="1" name="roles[dvcc][vtxtx]" checked>&nbsp; Vận tải xe taxi </label>&nbsp;';
+            $result['message'] .= '<span><input type="checkbox" value="1" name="roles[dvcc][vtch]" checked>&nbsp; Vận tải chở hàng</label>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['status'] = 'success';
+        }elseif($pl == 'TC'){
+            $result['message'] = '<div class="row" id="per">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="form-group">';
+            $result['message'] .= '<div class="icheck-inline">';
+            $result['message'] .= '<span><input type="checkbox" value="1" name="roles[dvcc][dvlt]" checked>&nbsp; Dịch vụ lưu trú</label>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['status'] = 'success';
+        }elseif($pl == 'CT'){
+            $result['message'] = '<div class="row" id="per">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="form-group">';
+            $result['message'] .= '<div class="icheck-inline">';
+            $result['message'] .= '<span><input type="checkbox" value="1" name="roles[dvcc][giasua]" checked>&nbsp; Giá sữa</label>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['status'] = 'success';
+        }elseif($pl == 'NN'){
+            $result['message'] = '<div class="row" id="per">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="form-group">';
+            $result['message'] .= '<div class="icheck-inline">';
+            $result['message'] .= '<span><input type="checkbox" value="1" name="roles[dvcc][tacn]" checked>&nbsp; Thức ăn chăn nuôi</label>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['status'] = 'success';
+        }
+        die(json_encode($result));
+    }
+
+
 }

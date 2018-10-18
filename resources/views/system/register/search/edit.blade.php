@@ -60,8 +60,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!--a href="">
         <img src="{{ url('images/LIFESOFT.png')}}"  width="130" alt="Công ty TNHH phát triển phần mềm Cuộc Sống"/>
     </a-->
-    <h2 style="text-transform: uppercase;"><b style="color: #000000">PHẦN MỀM CƠ SỞ DỮ LIỆU VỀ GIÁ
-            {{isset(getGeneralConfigs()['diadanh']) ? getGeneralConfigs()['diadanh'] : ''}}</b></h2>
+    <h2 style="text-transform: uppercase;color: blue;">Chỉnh sửa thông tin đăng ký tài khoản <br>doanh nghiệp đăng ký, kê khai, niêm yết giá</h2>
 </div>
 <!-- END LOGO -->
 <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -152,7 +151,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <select class="form-control" name="mahuyen" id="mahuyen" required>
                         <option value="">--Chọn đơn vị quản lý--</option>
                         @foreach($cqcq as $tt)
-                            <option value="{{$tt->mahuyen}}" {{$model->mahuyen == $tt->mahuyen ? 'selected' : ''}}>{{$tt->tendv}}</option>
+                            <option value="{{$tt->maxa}}" {{$model->mahuyen == $tt->maxa ? 'selected' : ''}}>{{$tt->tendv}}</option>
                         @endforeach
                     </select>
                 </div>
