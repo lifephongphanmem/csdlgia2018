@@ -155,13 +155,13 @@
             </a>
             <ul class="sub-menu">
                 <li>
-                    <a href="#">Sample Link 1</a>
+                    <a href="{{url('nhomhanghoadichvu')}}">Danh mục HH-DV</a>
                 </li>
                 <li>
-                    <a href="#">Sample Link 2</a>
+                    <a href="{{url('giahhdvkhac')}}">Thông tin hồ sơ</a>
                 </li>
                 <li>
-                    <a href="#">Sample Link 3</a>
+                    <a href="{{url('timkiemgiahhdvkhac')}}">Tìm kiếm thông tin</a>
                 </li>
             </ul>
         </li>

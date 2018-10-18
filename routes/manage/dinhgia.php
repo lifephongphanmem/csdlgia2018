@@ -122,4 +122,26 @@ Route::get('/dichvukcbctdf/update','DvKcbCtDfController@update');
 Route::get('/dichvukcbct/edit','DvKcbCtController@edit');
 Route::get('/dichvukcbct/update','DvKcbCtController@update');
 
+//Giá HH-DV khác
+Route::resource('nhomhanghoadichvu','NhomHhDvKController');
+Route::get('nhomhanghoadichvu/show','NhomHhDvKController@show');
+Route::post('nhomhanghoadichvu/update','NhomHhDvKController@update');
+Route::resource('dmhanghoadichvu','DmHhDvKController');
+Route::get('dmhanghoadichvu/show','DmHhDvKController@show');
+Route::post('dmhanghoadichvu/update','DmHhDvKController@update');
+
+Route::resource('giahhdvkhac','GiaHhDvKController');
+Route::post('giahhdvkhac/create','GiaHhDvKController@create');
+Route::post('giahhdvkhac/delete','GiaHhDvKController@destroy');
+Route::post('giahhdvkhac/hoanthanh','GiaHhDvKController@hoanthanh');
+Route::post('giahhdvkhac/huyhoanthanh','GiaHhDvKController@huyhoanthanh');
+Route::post('giahhdvkhac/congbo','GiaHhDvKController@congbo');
+Route::get('timkiemgiahhdvkhac','GiaHhDvKController@search');
+
+Route::get('/giahhdvkhacctdf/edit','GiaHhDvKCtDfController@edit');
+Route::get('/giahhdvkhacctdf/update','GiaHhDvKCtDfController@update');
+
+Route::get('/giahhdvkhacct/edit','GiaHhDvKCtController@edit');
+Route::get('/giahhdvkhacct/update','GiaHhDvKCtController@update');
+
 ?>

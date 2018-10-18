@@ -11,5 +11,6 @@ class DmMhBinhOnGia extends Model
         'id',
         'mamh',
         'tenmh',
+        'hienthi'
     ];
 }

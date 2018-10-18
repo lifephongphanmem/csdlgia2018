@@ -15,7 +15,7 @@
         <?php $modelmhbinhongia = \App\DmMhBinhOnGia::all()?>
         @foreach($modelmhbinhongia as $binhongia)
         <li>
-            <a href="{{url('binhongia?mamh='.$binhongia->mamh)}}">{{$binhongia->tenmh}}</a>
+            <a href="{{url('binhongia?mamh='.$binhongia->mamh)}}">{{$binhongia->hienthi != '' ? $binhongia->hienthi : $binhongia->tenmh}}</a>
         </li>
         @endforeach
     </ul>

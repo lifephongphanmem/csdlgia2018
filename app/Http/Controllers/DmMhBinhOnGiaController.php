@@ -63,6 +63,13 @@ class DmMhBinhOnGiaController extends Controller
         $result['message'] .= '<input type="text" name="edit_tenmh" id="edit_tenmh" class="form-control" value="'.$model->tenmh.'"/>';
         $result['message'] .= '</div></div>';
         $result['message'] .= '</div>';
+        $result['message'] .= '<div class="row">';
+        $result['message'] .= '<div class="col-md-12">';
+        $result['message'] .= '<div class="form-group">';
+        $result['message'] .= '<label class="control-label">Hiển thị<span class="require">*</span></label>';
+        $result['message'] .= '<input type="text" name="edit_hienthi" id="edit_hienthi" class="form-control" value="'.$model->hienthi.'"/>';
+        $result['message'] .= '</div></div>';
+        $result['message'] .= '</div>';
         $result['message'] .= '<input type="hidden" name="edit_id" id="edit_id" class="form-control" value="'.$model->id.'"/>';
 
         $result['message'] .= '</div>';
@@ -79,6 +86,7 @@ class DmMhBinhOnGiaController extends Controller
             $model = DmMhBinhOnGia::findOrFail($id);
             $model->mamh = $inputs['edit_mamh'];
             $model->tenmh = $inputs['edit_tenmh'];
+            $model->hienthi = $inputs['edit_hienthi'];
             $model->save();
             return redirect('dmmhbinhongia');
         }else

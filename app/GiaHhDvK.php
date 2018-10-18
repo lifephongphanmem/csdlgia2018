@@ -1,0 +1,22 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class GiaHhDvK extends Model
+{
+    protected $table = 'giahhdvk';
+    protected $fillable = [
+        'id',
+        'mahs',
+        'maxa',
+        'mahuyen',
+        'district',
+        'manhom',
+        'ngayapdung',
+        'soqd',
+        'ghichu',
+        'trangthai',
+    ];
+}
