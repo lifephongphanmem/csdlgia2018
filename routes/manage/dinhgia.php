@@ -100,6 +100,9 @@ Route::get('/thuetainguyenctdf/update','ThueTaiNguyenCtDfController@update');
 Route::get('/thuetainguyenct/edit','ThueTaiNguyenCtController@edit');
 Route::get('/thuetainguyenct/update','ThueTaiNguyenCtController@update');
 
+Route::get('reportsthuetainguyen','ReportsThueTNController@index');
+Route::post('reportsthuetainguyen/bc1','ReportsThueTNController@BC1');
+
 //DV Khám chữa bệnh
 Route::resource('nhomdichvukcb','NhomDvKcbController');
 Route::get('nhomdichvukcb/show','NhomDvKcbController@show');

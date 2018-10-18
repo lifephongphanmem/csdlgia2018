@@ -179,6 +179,9 @@
                 <li>
                     <a href="{{url('timkiemthuetainguyen')}}">Tìm kiếm thông tin</a>
                 </li>
+                <li>
+                    <a href="{{url('reportsthuetainguyen')}}">Báo cáo tổng hợp</a>
+                </li>
             </ul>
         </li>
         <li>

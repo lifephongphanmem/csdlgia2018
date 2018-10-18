@@ -39,6 +39,12 @@
         function clickdelete(){
             $('#frm_delete').submit();
         }
+        function expand(){
+            $("#example-advanced").treetable('expandAll');
+        }
+        function collapse(){
+            $("#example-advanced").treetable('collapseAll');
+        }
     </script>
 
 
@@ -70,6 +76,14 @@
                                         <option value="{{$diaban->district}}" {{$diaban->district == $district ? 'selected' :'' }}>{{$diaban->diaban}}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <button id="expand" onclick="expand()">Expand All</button>
+                                <button id="collapse" onclick="collapse() ">Collapse All</button>
                             </div>
                         </div>
                     </div>

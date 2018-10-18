@@ -5,6 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>{{$pageTitle}}</title>
+    <link rel="shortcut icon" href="{{ url('images/LIFESOFT.png')}}" type="image/x-icon">
     <style type="text/css">
         body {
             font: normal 12px/16px time, serif;
@@ -28,7 +29,7 @@
 <table cellspacing="0" cellpadding="0" border="0">
     <tr>
         <td style="text-align: center; text-transform: uppercase;" width="30%">
-            <b>SỞ TÀI CHÍNH TỈNH, THÀNH PHỐ</b><br>
+            <b></b><br>
             --------<br>
         </td>
         <td style="text-align: left;" width="70%">
@@ -37,8 +38,13 @@
     </tr>
     <tr>
         <td colspan="2" style="text-align: center; font-size: 16px; text-transform: uppercase;">
-            <b>THÔNG TIN VỀ GIÁ THUẾ TÀI NGUYÊN NĂM {{$thongtin['nam']}}</b>
+            <b>BÁO CÁO GIÁ THUẾ TÀI NGUYÊN</b>
+
         </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;">Từ ngày: {{getDayVn($inputs['ngaytu'])}} - Đến ngày: {{getDayVn($inputs['ngayden'])}}
+        <br>Nhóm tài nguyên: {{$inputs['tennhom']}}</td>
     </tr>
 
 </table>
@@ -56,28 +62,24 @@
         <th>3</th>
         <th>4</th>
     </tr>
-    @foreach($nhomtn as $key=>$tt)
+    @foreach($modelgr as $key=>$tt)
         <!--Nhóm tài nguyên-->
         <tr style="font-weight: bold">
-            <td>{{ConverToRoman($key+1)}}</td>
-            <td style="text-align: left">{{$tt->tennhom}}</td>
-            <td></td>
-            <td></td>
+            <td style="text-align: left" colspan="4">Địa bàn: {{$tt->diaban}}-Theo số QĐ: {{$tt->soqd}} - Ngày áp dụng: {{getDayVn($tt->ngayapdung)}}</td>
         </tr>
-        <!--Tài nguyên-->
-        <?php $i=1; ?>
-        <!--phần 1-->
-        @foreach($model as $k=>$ct)
-            @if($tt->manhom == $ct->manhom)
-                <tr>
-                    <td>{{$i++}}</td>
-                    <td style="text-align: left">{{$ct->tenhh}}</td>
-                    <td>{{$ct->dvt}}</td>
-                    <td style="text-align: right">{{number_format($ct->giatn)}}</td>
-                </tr>
-                <!--phần chi tiết tạm thời làm 2 vòng foreach => nên nghiên cứu làm hàm đệ quy để cho danh mục có nhiều nhánh-->
+        <?php $i=1;
+            $modelct = $model->where('mahs',$tt->mahs);
+        ?>
 
-            @endif
+        @foreach($modelct as $ct)
+            <tr>
+                <td>{{$i++}}</td>
+                <td style="text-align: left;font-weight: bold">{{$ct->tenhh}}</td>
+                <td style="text-align: center;font-weight: bold">{{$ct->dvt}}</td>
+                <td style="text-align: right;font-weight: bold">{{$ct->dvt!= '' ? number_format($ct->giatttn) : ''}}</td>
+            </tr>
+            <!--phần chi tiết tạm thời làm 2 vòng foreach => nên nghiên cứu làm hàm đệ quy để cho danh mục có nhiều nhánh-->
+
         @endforeach
     @endforeach
 </table>

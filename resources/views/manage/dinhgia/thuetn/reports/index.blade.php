@@ -34,5 +34,5 @@
             </div>
         </div>
     </div>
-    @include('reports.hhdv.thuetn.thoai.modal-thoai')
+    @include('manage.dinhgia.thuetn.reports.thoai.modal-thoai')
 @stop
