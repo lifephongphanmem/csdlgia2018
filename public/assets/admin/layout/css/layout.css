@@ -2225,6 +2225,7 @@ Page content
     min-height: 600px;
     padding: 25px 20px 10px 20px;
     background-image: url(/../assets/app/media/img/bg/bg-3.jpg);
+    /*add background*/
 
   }
   .page-content-wrapper .page-content.no-min-height {

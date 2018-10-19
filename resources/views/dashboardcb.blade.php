@@ -21,6 +21,11 @@
 
 @section('content-cb')
     <div class="container">
+        @include('includes.dasboardcongbo.bog')
+        @include('includes.dasboardcongbo.dinhgia')
+        @include('includes.dasboardcongbo.thamdinhgia')
+        @include('includes.dasboardcongbo.kkgia')
+
         <div class="col-md-12">
             <div class="col-md-6"></div>
             <div class="col-md-6" style="text-align: right">Tổng cộng&nbsp;

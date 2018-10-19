@@ -1,4 +1,3 @@
-@if(count($modellt) > 0)
 <div class="row margin-top-10">
     <div class=" col-sm-12">
         <!-- BEGIN PORTLET-->
@@ -38,4 +37,3 @@
         <!-- END PORTLET-->
     </div>
 </div>
-@endif
