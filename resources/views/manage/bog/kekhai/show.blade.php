@@ -53,7 +53,7 @@
     <!-- END PAGE HEADER-->
 
     <!-- BEGIN DASHBOARD STATS -->
-    <div class="row center">
+    <div class="row">
         <div class="col-md-12 center">
             <!-- BEGIN VALIDATION STATES-->
             <div class="portlet box blue">

@@ -2200,8 +2200,8 @@ Page content
 .page-content {
   margin-top: 0px;
   padding: 0px;
-  background-color: #fff;
-}
+  /*background-color: #fff;*/
+  }
 .page-container-bg-solid .page-content {
   background: #F1F3FA;
 }
@@ -2224,9 +2224,13 @@ Page content
     margin-top: 0px;
     min-height: 600px;
     padding: 25px 20px 10px 20px;
+    background-image: url(/../assets/app/media/img/bg/bg-3.jpg);
+
   }
   .page-content-wrapper .page-content.no-min-height {
+
     min-height: auto;
+
   }
   .page-sidebar-fixed.page-sidebar-hover-on .page-content-wrapper .page-content {
     margin-left: 45px;

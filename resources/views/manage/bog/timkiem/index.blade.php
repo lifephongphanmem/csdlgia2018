@@ -61,7 +61,7 @@
         Tìm kiếm thông tin <small>&nbsp;mặt hàng BOG</small>
     </h3>
     <!-- END PAGE HEADER-->
-    <div class="row">
+    <div class="row" >
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box wi">

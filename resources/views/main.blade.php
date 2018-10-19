@@ -325,7 +325,7 @@ License: You must have a valid license purchased only from themeforest(the above
     </div>
     <!-- END SIDEBAR -->
     <!-- BEGIN CONTENT -->
-    <div class="page-content-wrapper" >
+    <div class="page-content-wrapper">
         <div class="page-content">
             <!-- BEGIN PAGE HEADER-->
             <div class="page-bar">
@@ -348,6 +348,7 @@ License: You must have a valid license purchased only from themeforest(the above
             </div>
 
             @yield('content')
+
         </div>
     </div>
     <!-- END CONTENT -->

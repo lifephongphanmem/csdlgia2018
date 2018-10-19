@@ -148,7 +148,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN HEADER -->
 <div class="page-header">
     <!-- BEGIN HEADER TOP -->
-    <div class="page-header-top">
+    <div class="page-header-top" style="background-image: url(../assets/app/media/img/bg/bg-3.jpg)">
         <div class="container">
             <!-- BEGIN LOGO -->
             <div class="page-logo">
@@ -235,7 +235,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN PAGE HEAD -->
     <!-- END PAGE HEAD -->
     <!-- BEGIN PAGE CONTENT -->
-    <div class="page-content">
+    <div class="page-content" style="background-image: url(../assets/app/media/img/bg/bg-3.jpg)">
         @yield('content-cb')
     </div>
     <!-- END PAGE CONTENT -->
