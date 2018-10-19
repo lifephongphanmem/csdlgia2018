@@ -132,22 +132,28 @@ class BinhOnGiaController extends Controller
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
             $inputs['tenhh'] = isset($inputs['tenhh']) ? $inputs['tenhh'] : '';
-
+            $inputs['mamh'] = isset($inputs['mamh']) ? $inputs['mamh'] : '';
             $model = BinhOnGiaCt::join('binhongia','binhongiact.mahs','=','binhongia.mahs')
-                ->select('binhongiact.*','binhongia.soqd','binhongia.ngayapdung','binhongia.gioapdung')
-                ->whereYear('binhongia.ngayapdung',$inputs['nam'])
+                ->join('dmmhbinhongia','binhongia.mamh','=','dmmhbinhongia.mamh')
+                ->select('binhongiact.*','binhongia.soqd','binhongia.ngayapdung','binhongia.gioapdung','binhongia.mamh','dmmhbinhongia.tenmh')
+
                 ->where('binhongia.trangthai','HT')
                 ->OrWhere('binhongia.trangthai','CB');
             if($inputs['tenhh'] != '')
                 $model = $model->where('binhongiact.tenhh','like','%'.$inputs['tenhh'].'%');
+            if($inputs['nam'] != '')
+                $model = $model->whereYear('binhongia.ngayapdung',$inputs['nam']);
+            if($inputs['mamh'] != '')
+                $model = $model->where('binhongia.mamh',$inputs['mamh']);
 
             $model = $model->get();
+            $m_mhbog = DmMhBinhOnGia::all();
 
 
             return view('manage.bog.timkiem.index')
                 ->with('model',$model)
-                ->with('nam',$inputs['nam'])
-                ->with('tenhh',$inputs['tenhh'])
+                ->with('inputs',$inputs)
+                ->with('m_mhbog',$m_mhbog)
                 ->with('pageTitle','Tìm kiếm thông tin mặt hang bog');
         }else
             return view('errors.notlogin');

@@ -1,133 +1,113 @@
-@extends('main')
 
-@section('custom-style')
-    <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
-    <link type="text/css" rel="stylesheet" href="{{ url('vendors/bootstrap-datepicker/css/datepicker.css') }}">
-@stop
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>{{$pageTitle}}</title>
+    <style type="text/css">
+        body {
+            font: normal 12px/16px time, serif;
+        }
 
+        table, p {
+            width: 98%;
+            margin: auto;
+        }
 
-@section('custom-script')
-    <script type="text/javascript" src="{{url('assets/global/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
-    <script type="text/javascript" src="{{url('assets/global/plugins/select2/select2.min.js')}}"></script>
-    <script type="text/javascript" src="{{url('assets/global/plugins/datatables/media/js/jquery.dataTables.min.js')}}"></script>
-    <script type="text/javascript" src="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')}}"></script>
-    <!-- END PAGE LEVEL PLUGINS -->
-    <script src="{{url('assets/admin/pages/scripts/table-managed.js')}}"></script>
-    <script>
-        jQuery(document).ready(function() {
-            TableManaged.init();
-        });
-    </script>
-    <script src="{{url('minhtran/jquery.inputmask.bundle.min.js')}}"></script>
-    <script>
-        $(document).ready(function(){
-            $(":input").inputmask();
-        });
-    </script>
-@stop
+        table tr td:first-child {
+            text-align: center;
+        }
 
-@section('content')
-    <h3 class="page-title">
-        Hồ sơ giá dịch vụ khám chữa bệnh<small>chỉnh sửa</small>
-    </h3>
-    <!-- END PAGE HEADER-->
+        td, th {
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+<table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <td style="text-align: center; text-transform: uppercase;" width="30%">
+            <b></b><br>
+            --------<br>
+        </td>
+        <td style="text-align: left;" width="70%">
 
-    <!-- BEGIN DASHBOARD STATS -->
-    <div class="row center">
-        <div class="col-md-12 center">
-            <!-- BEGIN VALIDATION STATES-->
-            {!! Form::model($model, ['class'=>'horizontal-form','id'=>'update_dichvukcb']) !!}
-            <div class="portlet box blue">
-                <div class="portlet-body form">
-                    <!-- BEGIN FORM-->
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center; font-size: 16px; text-transform: uppercase;">
+            <b>GIÁ {{$tennhom}}<br></b>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center; font-size: 14px;">
+            (Ban hành kèm theo Quyết định số ..{{$model->soqd}}..)
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: right; font-size: 14px;">
+            <i>Đơn vị tính: Đồng</i>
+        </td>
+    </tr>
+</table>
+<table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
+    <tr>
+        <th width="2%">STT</th>
+        <th>Mã dịch vụ</th>
+        <th>Các loại dịch vụ</th>
+        <th>Đơn vị tính</th>
+        <th>Đơn giá</th>
+    </tr>
+    <tr style="font-style: italic; font-size: 10px; line-height: 15px;">
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+    </tr>
+        <?php
+            $modelct1 = $modelct->where('capdo','1');
+            $i = 1;
+        ?>
 
-                    <div class="form-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Nhóm dịch vụ:</label>
-                                    <label class="control-label" style="color: blue;font-weight: bold">{{$tennhom}}</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Đơn vị:</label>
-                                    <label class="control-label" style="color: blue;font-weight: bold">{{$dv}}</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Số quyết định<span class="require">*</span></label>
-                                    {!!Form::text('soqd',null, array('id' => 'soqd','class' => 'form-control required','autofocus'))!!}
-                                </div>
-                            </div>
-                            <!--/span-->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Ngày áp dụng<span class="require">*</span></label>
-                                    {!!Form::text('ngayapdung',date('d/m/Y',  strtotime($model->ngayapdung)), array('id' => 'ngayapdung','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
-                                </div>
-                            </div>
-                            <!--/span-->
-                        </div>
+    @foreach($modelct1 as $c1 => $vlcap1)
+        <tr>
+            <td style="text-align: center">{{$i++}}</td>
+            <td>{{$vlcap1->madv}}</td>
+            <td>{{$vlcap1->tendichvu}}</td>
+            <td style="text-align: center">{{$vlcap1->dvt}}</td>
+            <td style="text-align: right;font-weight: bold">{{$vlcap1->dvt != '' ? number_format($vlcap1->giadv) : ''}}</td>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label">Ghi chú</label>
-                                    {!!Form::text('ghichu',null, array('id' => 'ghichu','class' => 'form-control'))!!}
-                                </div>
-                            </div>
-                        </div>
-                        <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}">
+        </tr>
+        <?php
+            $modelct2 = $modelct->where('capdo','2')->where('magoc',$vlcap1->madv);
+            $j =1;
+        ?>
+        @foreach($modelct2 as $vlcap2)
+            <tr>
+                <td>{{($i-1).'.'.($j++)}}</td>
+                <td>{{$vlcap2->madv}}</td>
+                <td>&nbsp;{{$vlcap2->tendichvu}}</td>
+                <td style="text-align: center">{{$vlcap2->dvt}}</td>
+                <td style="text-align: right;font-weight: bold">{{$vlcap2->dvt != '' ? number_format($vlcap2->giadv) : ''}}</td>
 
-                        <div class="row" id="dsts">
-                            <div class="col-md-12">
-                                <table class="table table-striped table-bordered table-hover" id="sample_3">
-                                    <thead>
-                                    <tr>
-                                        <th width="2%" style="text-align: center">STT</th>
-                                        <th style="text-align: center">Cấp độ</th>
-                                        <th style="text-align: center">Mã dịch vụ</th>
-                                        <th style="text-align: center">Tên dịch vụ</th>
-                                        <th style="text-align: center">Đơn vị tính</th>
-                                        <th style="text-align: center" width="10%">Giá dịch vụ</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="ttts">
-                                    @foreach($modelct as $key=>$tt)
-                                        <tr>
-                                            <td style="text-align: center">{{$key+1}}</td>
-                                            <td style="text-align: center">{{$tt->capdo}}</td>
-                                            <td style="text-align: center">{{$tt->madv}}</td>
-                                            <td class="active" style="font-weight: bold">{{$tt->tendichvu}}</td>
-                                            <td style="text-align: center">{{$tt->dvt}}</td>
-                                            <td style="text-align: right;font-weight: bold">{{$tt->dvt!= '' ? number_format($tt->giadv) : ''}}</td>
-                                        </tr>
-                                    @endforeach
+            </tr>
+            <?php
+            $modelct3 = $modelct->where('capdo','3')->where('magoc',$vlcap2->madv);
+            ?>
+            @foreach($modelct3 as $vlcap3)
+                <tr>
+                    <td></td>
+                    <td>{{$vlcap3->madv}}</td>
+                    <td>&ensp;{{$vlcap3->tendichvu}}</td>
+                    <td style="text-align: center">{{$vlcap3->dvt}}</td>
+                    <td style="text-align: right;font-weight: bold">{{$vlcap3->dvt != '' ? number_format($vlcap2->giadv) : ''}}</td>
 
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12" style="text-align: center">
-                    <a href="{{url('dichvukcb?&maxa='.$model->maxa.'&trangthai='.$model->trangthai)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
-                </div>
-            </div>
-            {!! Form::close() !!}
-            <!-- END FORM-->
-
-            <!-- END VALIDATION STATES-->
-        </div>
-    </div>
-
-@stop
+                </tr>
+            @endforeach
+        @endforeach
+    @endforeach
+</table>
+</body>
+</html>

@@ -12,6 +12,9 @@
         <li>
             <a href="{{url('timkiemthamdinhgia')}}">Tìm kiếm thông tin</a>
         </li>
+        <li>
+            <a href="{{url('baocaoththamdinhgia')}}">Báo cáo tổng hợp</a>
+        </li>
     </ul>
 </li>
 @endif

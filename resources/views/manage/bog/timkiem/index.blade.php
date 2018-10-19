@@ -36,10 +36,18 @@
                 var url = 'timkiemthongtinbog?' + nam ;
                 window.location.href = url;
             });
+            $('#mamh').change(function() {
+                var tenhh = '&tenhh=' + $('#tenhh').val();
+                var nam = '&nam=' + $('#nam').val();
+                var mamh = '&mamh=' + $('#mamh').val();
+                var url = 'timkiemthongtinbog?' + nam + tenhh + mamh;
+                window.location.href = url;
+            });
             $('#tenhh').change(function() {
                 var tenhh = '&tenhh=' + $('#tenhh').val();
                 var nam = '&nam=' + $('#nam').val();
-                var url = 'timkiemthongtinbog?' + nam + tenhh;
+                var mamh = '&mamh=' + $('#mamh').val();
+                var url = 'timkiemthongtinbog?' + nam + tenhh + mamh;
                 window.location.href = url;
             });
 
@@ -65,14 +73,23 @@
                                 @if ($nam_start = intval(date('Y')) - 5 ) @endif
                                 @if ($nam_stop = intval(date('Y')) + 1 ) @endif
                                 @for($i = $nam_start; $i <= $nam_stop; $i++)
-                                    <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>Năm {{$i}}</option>
+                                    <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
                                 @endfor
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            <label>Mặt hàng</label>
+                            <select name="mamh" id="mamh" class="form-control">
+                                <option value="">--Chọn mặt hàng BOG--</option>
+                                @foreach($m_mhbog as $binhongia)
+                                    <option value="{{$binhongia->mamh}}" {{$binhongia->mamh == $inputs['mamh'] ? 'selected' : ''}}>{{$binhongia->hienthi != '' ? $binhongia->hienthi : $binhongia->tenmh}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-md-3">
                             <label>Tên mặt hàng BOG</label>
                             <div class="form-group">
-                                {!! Form::text('tenhh',$tenhh, array('id'=>'tenhh','class'=>'form-control'))!!}
+                                {!! Form::text('tenhh',$inputs['tenhh'], array('id'=>'tenhh','class'=>'form-control'))!!}
                             </div>
                         </div>
 
@@ -86,6 +103,7 @@
                                 <input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/>
                             </th-->
                             <th width="2%" style="text-align: center">STT</th>
+                            <th style="text-align: center">Nhóm mặt hàng BOG</th>
                             <th style="text-align: center">Tên mặt hàng BOG</th>
                             <th style="text-align: center" >Giá tối thiểu</th>
                             <th style="text-align: center">Giá tối đa</th>
@@ -99,6 +117,7 @@
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
+                                <td class="active">{{$tt->tenmh}}</td>
                                 <td class="success">{{$tt->tenhh}}</td>
                                 <td style="text-align: right; font-weight: bold;" class="active">{{number_format($tt->giatoithieu)}}</td>
                                 <td style="text-align: right; font-weight: bold;" class="active">{{number_format($tt->giatoida)}}</td>

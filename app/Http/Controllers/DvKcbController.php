@@ -50,7 +50,7 @@ class DvKcbController extends Controller
                 ->with('maxa',$inputs['maxa'])
                 ->with('trangthai',$inputs['trangthai'])
                 ->with('m_nhomdvkcb',$m_nhomdvkcb)
-                ->with('pageTitle','Thông tin hồ sơ thuế tài nguyên');
+                ->with('pageTitle','Thông tin hồ sơ giá dịch vụ khám chữa bệnh');
 
         }else
             return view('errors.notlogin');

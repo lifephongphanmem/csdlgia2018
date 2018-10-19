@@ -115,9 +115,11 @@ class LePhiTruocBaController extends Controller
             $modelct =  LePhiTruocBaCt::where('mahs',$model->mahs)
                 ->join('nhomlephitruocba','nhomlephitruocba.manhom','=','lephitruocbact.manhom')
                 ->select('lephitruocbact.*','nhomlephitruocba.nhomxe')->get();
+            $modelgr = NhomLePhiTruocBa::all();
             return view('manage.dinhgia.lephitruocba.kekhai.show')
                 ->with('model',$model)
                 ->with('modelct',$modelct)
+                ->with('modelgr',$modelgr)
                 ->with('pageTitle','Thông tin hồ sơ lệ phí trước bạ');
         }else
             return view('errors.notlogin');

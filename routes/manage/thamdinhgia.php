@@ -18,4 +18,7 @@ Route::get('thamdinhgiact/store','ThamDinhGiaCtController@store');
 Route::get('thamdinhgiact/edit','ThamDinhGiaCtController@edit');
 Route::get('thamdinhgiact/update','ThamDinhGiaCtController@update');
 Route::get('thamdinhgiact/del','ThamDinhGiaCtController@destroy');
+
+Route::get('baocaoththamdinhgia','ReportsThamDinhGiaController@index');
+Route::post('baocaoththamdinhgia/BC1','ReportsThamDinhGiaController@Bc1');
 ?>
