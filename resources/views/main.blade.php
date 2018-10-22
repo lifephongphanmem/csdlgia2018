@@ -297,6 +297,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     @include('includes.main.maindinhgia')
                     @include('includes.main.mainthamdinhgia')
                     @include('includes.main.mainkkgia')
+                    @include('includes.main.mainvbqlnn')
                 @endif
 
                 @if(session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa')

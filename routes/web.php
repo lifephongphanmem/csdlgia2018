@@ -82,6 +82,7 @@ include('manage/bog.php');
 include('manage/dinhgia.php');
 include('manage/thamdinhgia.php');
 include('manage/kekhaigia.php');
+include('manage/vbqlnn.php');
 
 
 
