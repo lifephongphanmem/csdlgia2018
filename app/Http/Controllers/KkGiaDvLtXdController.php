@@ -25,6 +25,7 @@ class KkGiaDvLtXdController extends Controller
                 if(session('admin')->level == 'T')
                     $model = KkGiaDvLt::leftJoin('cskddvlt','cskddvlt.macskd','=','kkgiadvlt.macskd')
                         ->leftJoin('company','company.maxa','=','kkgiadvlt.maxa')
+                        ->where('company.level','DVLT')
                         ->select('kkgiadvlt.*','cskddvlt.tencskd','company.tendn')
                         ->where('kkgiadvlt.trangthai',$inputs['trangthai'])
                         ->whereYear('kkgiadvlt.ngaychuyen',$inputs['nam'])
@@ -32,6 +33,7 @@ class KkGiaDvLtXdController extends Controller
                 else
                     $model = KkGiaDvLt::leftJoin('cskddvlt','cskddvlt.macskd','=','kkgiadvlt.macskd')
                         ->leftJoin('company','company.maxa','=','kkgiadvlt.maxa')
+                        ->where('company.level','DVLT')
                         ->select('kkgiadvlt.*','cskddvlt.tencskd','company.tendn')
                         ->where('kkgiadvlt.trangthai',$inputs['trangthai'])
                         ->whereYear('kkgiadvlt.ngaychuyen',$inputs['nam'])
