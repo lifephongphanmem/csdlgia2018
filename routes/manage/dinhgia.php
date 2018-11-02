@@ -147,4 +147,27 @@ Route::get('/giahhdvkhacctdf/update','GiaHhDvKCtDfController@update');
 Route::get('/giahhdvkhacct/edit','GiaHhDvKCtController@edit');
 Route::get('/giahhdvkhacct/update','GiaHhDvKCtController@update');
 
+//Phí Lệ phí
+Route::resource('nhomphilephi','DmPhiLePhiController');
+Route::post('nhomphilephi/update','DmPhiLePhiController@update');
+
+Route::resource('philephi','PhiLePhiController');
+Route::post('philephi/delete','PhiLePhiController@destroy');
+
+Route::post('philephi/hoanthanh','PhiLePhiController@hoanthanh');
+Route::post('philephi/huyhoanthanh','PhiLePhiController@huyhoanthanh');
+Route::post('philephi/congbo','PhiLePhiController@congbo');
+
+Route::get('timkiemthongtinphilephi','PhiLePhiController@search');
+
+Route::get('philephictdf/store','PhiLePhiCtDfController@store');
+Route::get('philephictdf/show','PhiLePhiCtDfController@show');
+Route::get('philephictdf/update','PhiLePhiCtDfController@update');
+Route::get('philephictdf/del','PhiLePhiCtDfController@destroy');
+
+Route::get('philephict/store','PhiLePhiCtController@store');
+Route::get('philephict/show','PhiLePhiCtController@show');
+Route::get('philephict/update','PhiLePhiCtController@update');
+Route::get('philephict/del','PhiLePhiCtController@destroy');
+
 ?>

@@ -15,6 +15,9 @@ function getPermissionDefault($level) {
         'kkgia'=>array(
             'index'=>1,
         ),
+        'vbqlnn'=>array(
+            'index'=>1,
+        ),
 
     );
     $roles['H'] = array(
@@ -30,6 +33,9 @@ function getPermissionDefault($level) {
         'kkgia'=>array(
             'index'=>1,
         ),
+        'vbqlnn'=>array(
+            'index'=>1,
+        ),
     );
     $roles['X'] = array(
         'bog' => array(
@@ -42,6 +48,9 @@ function getPermissionDefault($level) {
             'index' => 1,
         ),
         'kkgia'=>array(
+            'index'=>1,
+        ),
+        'vbqlnn'=>array(
             'index'=>1,
         ),
     );
@@ -71,18 +80,18 @@ function getPermissionDefault($level) {
             'approve'=> 1
         ),
     );
-    $roles['TPCTE6T'] = array(
-        'dvgs' => array(
+    $roles['DVGS'] = array(
+        'kkgia' => array(
             'index' => 1,
         ),
-        'ttdvgs' => array(
+        'ttdn' => array(
             'index' => 1,
             'create' => 1,
             'edit' => 1,
             'delete' => 1,
             'approve'=> 1
         ),
-        'kkdvgs' => array(
+        'kktpcnte6t' => array(
             'index' => 1,
             'create' => 1,
             'edit' => 1,
@@ -102,6 +111,46 @@ function getPermissionDefault($level) {
             'approve'=> 1
         ),
         'kktacn' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+    );
+    $roles['DVVT'] = array(
+        'kkgia'=>array(
+            'index'=>1,
+        ),
+        'ttdn'=> array(
+            'index'=>1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'kkvtxk' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'kkvtxb' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'kkvttx' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'kkvtch' => array(
             'index' => 1,
             'create' => 1,
             'edit' => 1,
@@ -163,21 +212,21 @@ function canEdit($trangthai){
 }
 
 function canChuyenXoa($trangthai){
-    if($trangthai == 'Chờ chuyển' || $trangthai == 'Bị trả lại')
+    if($trangthai == 'CC' || $trangthai == 'BTL')
         return true;
     else
         return false;
 }
 
 function canShowLyDo($trangthai){
-    if($trangthai == 'Bị trả lại')
+    if($trangthai == 'BTL')
         return true;
     else
         return false;
 }
 
 function canApprove($trangthai){
-    if($trangthai == 'Chờ duyệt')
+    if($trangthai == 'CD')
         return true;
     else
         return false;

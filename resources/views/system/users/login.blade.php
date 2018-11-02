@@ -126,22 +126,39 @@ License: You must have a valid license purchased only from themeforest(the above
 			<div class="modal-body">
 				<div class="form-horizontal">
 					<div class="form-group">
-						<div class="col-md-12" align="center">
-								<a class="btn btn-primary" data-toggle="modal" href="{{url('dangkytaikhoan?&level=DVLT')}}">
+						<div class="row" style="text-align: center">
+							<div class="col-md-12" >
+								<div class="col-xs-5 col-sm-3">
+									<a href="{{url('dangkytaikhoan?&level=DVLT')}}" class="btn default blue-stripe">
 									Dịch vụ lưu trú </a>
-								<a class="btn btn-success" data-toggle="modal" href="{{url('dangkytaikhoan?&level=DVVT')}}">
-									Dịch vụ vận tải </a>
-								<a class="btn btn-warning" data-toggle="modal" href="{{url('dangkytaikhoan?&level=TPTED6T')}}">Thực phẩm cho TE dưới 6 tuổi</a>
-								<a class="btn btn-info" data-toggle="modal" href="{{url('dangkytaikhoan?&level=TACN')}}">Thức ăn chăn nuôi</a>
+								</div>
+								<div class="col-xs-5 col-sm-3">
+									<a class="btn default blue-stripe" href="{{url('dangkytaikhoan?&level=DVVT')}}">
+										Dịch vụ vận tải </a>
+								</div>
+								<div class="col-xs-5 col-sm-3">
+									<a class="btn default blue-stripe" href="{{url('dangkytaikhoan?&level=DVGS')}}">TPCN cho TE dưới 6 tuổi</a>
+								</div>
+
+							</div>
 						</div>
 					</div>
+					<!--div class="form-group">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="col-xs-6 col-sm-4">
+									<a class="btn default blue-stripe" href="{{url('dangkytaikhoan?&level=TACN')}}">Thức ăn chăn nuôi</a>
+								</div>
+							</div>
+						</div>
+					</div-->
 
 				</div>
 			</div>
 			<div class="modal-footer">
 
 				<button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-				<a href="{{url('dangkytaikhoan')}}" class="btn green">Đăng ký tài khoản</a>
+				<!--a href="{{url('dangkytaikhoan')}}" class="btn green">Đăng ký tài khoản</a-->
 			</div>
 		</div>
 	</div>

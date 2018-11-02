@@ -31,7 +31,7 @@ class GiaHhDvKController extends Controller
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
             } else {
                 $modeldb = DiaBanHd::where('level', 'H')->where('district', session('admin')->district)->get();
-                $inputs['district'] = isset($inputs['district']) ? $inputs['maxa'] : session('admin')->district;
+                $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : session('admin')->district;
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CHT';
             }
 

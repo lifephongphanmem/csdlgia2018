@@ -5,8 +5,6 @@
         <span class="title">Định giá</span>
         <span class="arrow"></span>
     </a>
-
-
     <ul class="sub-menu" style="display: none;">
         <li>
             <a href="javascript:;">
@@ -197,6 +195,22 @@
                 </li>
                 <li>
                     <a href="{{url('timkiemlephitruocba')}}">Tìm kiếm thông tin</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;">
+                Phí, lệ phí <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li>
+                    <a href="{{url('nhomphilephi')}}">Danh mục nhóm phí lệ phí</a>
+                </li>
+                <li>
+                    <a href="{{url('philephi')}}">Thông tin giá phí, lệ phí</a>
+                </li>
+                <li>
+                    <a href="{{url('timkiemthongtinphilephi')}}">Tìm kiếm thông tin</a>
                 </li>
             </ul>
         </li>
