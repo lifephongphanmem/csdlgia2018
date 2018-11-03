@@ -24,6 +24,19 @@
         </li>
         <li>
             <a href="javascript:;">
+                Giá đấu giá đất <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li>
+                    <a href="{{url('thongtingiacacloaidat')}}">Thông tin đấu giá đất</a>
+                </li>
+                <li>
+                    <a href="{{url('timkiemthongtingiacacloaidat')}}">Tìm kiếm thông tin</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;">
                 Giá thuê đất, nước<span class="arrow"></span>
             </a>
             <ul class="sub-menu">

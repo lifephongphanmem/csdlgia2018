@@ -105,7 +105,7 @@
                             <tr data-tt-id="{{$cap1->maso}}" style="display: none">
                                 <td>{{$cap1->vitri}}</td>
                                 <td>{{$cap1->soqd}}</td>
-                                <td>{{dinhdangso($cap1->giadat)}}</td>
+                                <td style="text-align: right; font-weight: bold">{{dinhdangso($cap1->giadat)}}</td>
                                 <td>
                                     <button type="button" onclick="addchirld('{{$cap1->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
                                     <button type="button" onclick="editvitri('{{$cap1->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
@@ -119,7 +119,7 @@
                                 <tr data-tt-id="{{$cap2->maso}}" data-tt-parent-id="{{$cap2->magoc}}">
                                     <td>{{$cap2->vitri}}</td>
                                     <td>{{$cap2->soqd}}</td>
-                                    <td>{{dinhdangso($cap2->giadat)}}</td>
+                                    <td style="text-align: right; font-weight: bold">{{dinhdangso($cap2->giadat)}}</td>
                                     <td>
                                         <button type="button" onclick="addchirld('{{$cap2->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
                                         <button type="button" onclick="editvitri('{{$cap2->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
@@ -133,7 +133,7 @@
                                     <tr data-tt-id="{{$cap3->maso}}" data-tt-parent-id="{{$cap3->magoc}}">
                                         <td>{{$cap3->vitri}}</td>
                                         <td>{{$cap3->soqd}}</td>
-                                        <td>{{dinhdangso($cap3->giadat)}}</td>
+                                        <td style="text-align: right; font-weight: bold">{{dinhdangso($cap3->giadat)}}</td>
                                         <td>
                                             <button type="button" onclick="addchirld('{{$cap3->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
                                             <button type="button" onclick="editvitri('{{$cap3->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
@@ -147,7 +147,7 @@
                                         <tr data-tt-id="{{$cap4->maso}}" data-tt-parent-id="{{$cap4->magoc}}">
                                             <td>{{$cap4->vitri}}</td>
                                             <td>{{$cap4->soquyetdinh}}</td>
-                                            <td>{{dinhdangso($cap4->giadat)}}</td>
+                                            <td style="text-align: right; font-weight: bold">{{dinhdangso($cap4->giadat)}}</td>
                                             <td>
                                                 <button type="button" onclick="addchirld('{{$cap4->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
                                                 <button type="button" onclick="editvitri('{{$cap4->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
@@ -161,7 +161,7 @@
                                             <tr data-tt-id="{{$cap5->maso}}" data-tt-parent-id="{{$cap5->magoc}}">
                                                 <td>{{$cap5->vitri}}</td>
                                                 <td>{{$cap5->soqd}}</td>
-                                                <td>{{dinhdangso($cap5->giadat)}}</td>
+                                                <td style="text-align: right; font-weight: bold">{{dinhdangso($cap5->giadat)}}</td>
                                                 <td>
                                                     <button type="button" onclick="addchirld('{{$cap5->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
                                                     <button type="button" onclick="editvitri('{{$cap5->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
@@ -175,7 +175,7 @@
                                                 <tr data-tt-id="{{$cap6->maso}}" data-tt-parent-id="{{$cap6->magoc}}">
                                                     <td>{{$cap6->vitri}}</td>
                                                     <td>{{$cap6->soqd}}</td>
-                                                    <td>{{dinhdangso($cap6->giadat)}}</td>
+                                                    <td style="text-align: right; font-weight: bold">{{dinhdangso($cap6->giadat)}}</td>
                                                     <td>
                                                         <button type="button" onclick="addchirld('{{$cap6->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
                                                         <button type="button" onclick="editvitri('{{$cap6->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
@@ -189,7 +189,7 @@
                                                     <tr data-tt-id="{{$cap7->maso}}" data-tt-parent-id="{{$cap7->magoc}}">
                                                         <td>{{$cap7->vitri}}</td>
                                                         <td>{{$cap7->soqd}}</td>
-                                                        <td>{{dinhdangso($cap7->giadat)}}</td>
+                                                        <td style="text-align: right; font-weight: bold">{{dinhdangso($cap7->giadat)}}</td>
                                                         <td>
                                                             <!--button type="button" onclick="addchirld('{{$cap7->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button-->
                                                             <button type="button" onclick="editvitri('{{$cap7->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>

@@ -144,7 +144,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{url('philephi/'.$tt->id)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                <a href="{{url('philephi/'.$tt->id)}}" class="btn btn-default btn-xs mbs" target="_blank"><i class="fa fa-eye" ></i>&nbsp;Xem chi tiết</a>
                                 @if($tt->trangthai == 'CHT' || $tt->trangthai == 'HHT')
                                     <a href="{{url('philephi/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs">
                                         <i class="fa fa-edit"></i> Chỉnh sửa </a>

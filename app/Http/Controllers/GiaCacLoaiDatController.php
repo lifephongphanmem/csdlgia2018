@@ -94,15 +94,16 @@ class GiaCacLoaiDatController extends Controller
         $result['message'] .= '<textarea name="edit_vitri" id="edit_vitri" class="form-control">'.$model->vitri;
         $result['message'] .= '</textarea></div></div>';
         $result['message'] .= '</div>';
-
-        $result['message'] .= '<div class="row">';
-        $result['message'] .= '<div class="col-md-12">';
-        $result['message'] .= '<div class="form-group">';
-        $result['message'] .= '<label class="control-label">Giá đất<span class="require">*</span></label>';
-        $result['message'] .= '<input type="text" name="edit_giadat" id="edit_giadat" class="form-control" data-mask="fdecimal" value="'.$model->giadat.'" '.($sub_node==true?'readonly':'').'/>';
-        $result['message'] .= '<input type="hidden" name="idedit" id="idedit" class="form-control" value="'.$model->id.'"/>';
-        $result['message'] .= '</div></div>';
-        $result['message'] .= '</div>';
+        if($sub_node == false) {
+            $result['message'] .= '<div class="row">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="form-group">';
+            $result['message'] .= '<label class="control-label">Giá đất<span class="require">*</span></label>';
+            $result['message'] .= '<input type="text" name="edit_giadat" id="edit_giadat" class="form-control" data-mask="fdecimal" style="text-align: right; font-weight: bold" value="' . $model->giadat . '" ' . '/>';
+            $result['message'] .= '<input type="hidden" name="idedit" id="idedit" class="form-control" value="' . $model->id . '"/>';
+            $result['message'] .= '</div></div>';
+            $result['message'] .= '</div>';
+        }
 
         $result['message'] .= '<div class="row">';
         $result['message'] .= '<div class="col-md-12">';
