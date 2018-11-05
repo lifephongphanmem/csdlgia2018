@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2018 at 09:59 AM
+-- Generation Time: Nov 05, 2018 at 09:26 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -136,7 +136,8 @@ CREATE TABLE `company` (
 
 INSERT INTO `company` (`id`, `maxa`, `mahuyen`, `tendn`, `diachi`, `tel`, `fax`, `email`, `diadanh`, `chucdanh`, `nguoiky`, `noidknopthue`, `settingdvvt`, `vtxk`, `vtxb`, `vtxtx`, `vtch`, `ghichu`, `trangthai`, `tailieu`, `giayphepkd`, `level`, `avatar`, `pl`, `created_at`, `updated_at`) VALUES
 (2, '1234567890', 'PTCQHBT', 'Công ty TNHH phát triển phần mềm Cuộc Sống1', 'Quận Hai Bà Trưng - Thành Phố Hà Nội', '0436343965', '87612121', 'minhtranlife@gmail.com', 'TP. Hà Nội', 'Giám đốc', 'Nguyễn Thị Minh Tuyết', 'Chi cục thuế TP Hà Nội', '', 0, 0, 0, 0, NULL, 'CD', 'sđa', '09876543', 'DVLT', 'no-image-available.jpg', '', '2018-10-15 02:43:46', '2018-10-15 08:01:34'),
-(3, '1234567890', 'PTCQHBT', 'Công ty TNHH Thức ăn chăn nuôi1', 'Hà Nội', '0976543', '09876543', 'minhtranlife@gmail.com', 'Hà Nội', 'Giám đốc ', 'Nguyễn Văn A', 'Chi cục thuế TP Hà Nội', '', 0, 0, 0, 0, NULL, 'CD', 'sđá', '09876543', 'TACN', 'no-image-available.jpg', 'PP', '2018-10-17 07:06:44', '2018-10-17 07:14:17');
+(3, '1234567890', 'PTCQHBT', 'Công ty TNHH Thức ăn chăn nuôi1', 'Hà Nội', '0976543', '09876543', 'minhtranlife@gmail.com', 'Hà Nội', 'Giám đốc ', 'Nguyễn Văn A', 'Chi cục thuế TP Hà Nội', '', 0, 0, 0, 0, NULL, 'CD', 'sđá', '09876543', 'TACN', 'no-image-available.jpg', 'PP', '2018-10-17 07:06:44', '2018-10-17 07:14:17'),
+(4, '098765', 'PTCQCG', 'DN Sữa', 'HN', '0987', '0987t', 'mrgaupeo@gmail.com', 'Hà Nội', 'Giám đốc', 'Trần Đức Minh', 'ấ', '', 0, 0, 0, 0, NULL, 'CD', 'sdsad', '987yt', 'DVGS', 'no-image-available.jpg', 'PP', '2018-10-31 07:37:05', '2018-10-31 07:51:05');
 
 -- --------------------------------------------------------
 
@@ -167,6 +168,83 @@ CREATE TABLE `cskddvlt` (
 
 INSERT INTO `cskddvlt` (`id`, `macskd`, `maxa`, `mahuyen`, `tencskd`, `loaihang`, `diachikd`, `telkd`, `link`, `avatar`, `town`, `district`, `created_at`, `updated_at`) VALUES
 (1, '1234567890_1539591802', '1234567890', 'PTCQHBT', 'Khách sạn Quốc Tế', '3', 'Hà Nội', '09876543', 'http:://phanmemcuocsong.com', 'no-image-available.jpg', '', 'QCG', '2018-10-15 08:23:22', '2018-10-16 01:54:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `daugiadat`
+--
+
+CREATE TABLE `daugiadat` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `soqd` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `diadiem` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `donvi` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tgdaugia` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tgddbanhsdaugia` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dkdaugia` text COLLATE utf8_unicode_ci,
+  `htdaugia` text COLLATE utf8_unicode_ci,
+  `thdaugia` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ghichu` text COLLATE utf8_unicode_ci,
+  `mahs` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `trangthai` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `daugiadat`
+--
+
+INSERT INTO `daugiadat` (`id`, `soqd`, `diadiem`, `donvi`, `tgdaugia`, `tgddbanhsdaugia`, `dkdaugia`, `htdaugia`, `thdaugia`, `ghichu`, `mahs`, `trangthai`, `created_at`, `updated_at`) VALUES
+(1, '1Kèm theo Quyết định số 53/2018/QĐ-UBND ngày 31/12/2018', 'Trung tâm dịch vụ đấu giá tài sản thành phố Đà Nẵng - Địa chỉ: Số 08 Phan Bội Châu, quận Hải Châu, thành phố Đà Nẵng', 'Công ty cổ phần Lilama 7, địa chỉ: Số 332 đường 2/9 quận Hải Châu, thành phố Đà Nẵng.', 'Đến trước 16 giờ 00 ngày 12/11/2018 tại nơi có tài sản', 'Đến trước 16 giờ 00 ngày 12/11/2018 tại Trung tâm dịch vụ đấu giá tài sản thành phố Đà Nẵng.', 'Người tham gia đấu giá đã hoàn thành việc đăng ký, mua hồ sơ và nộp tiền đặt trước đúng thời hạn quy định', 'Bỏ phiếu gián tiếp', 'Trước 10 giờ 00 ngày 15/11/2018 tại Trung tâm dịch vụ đấu giá tài sản thành phố Đà Nẵng', 'Tiền mua hồ sơ 500.000 đồng/hồ sơ', 'T1541402991', 'HT', '2018-11-05 07:29:51', '2018-11-05 08:13:57');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `daugiadatct`
+--
+
+CREATE TABLE `daugiadatct` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `vitridiadiem` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mucgiasan` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mucgiadaugia` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `donvidaugia` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mahs` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `daugiadatct`
+--
+
+INSERT INTO `daugiadatct` (`id`, `vitridiadiem`, `mucgiasan`, `mucgiadaugia`, `donvidaugia`, `mahs`, `created_at`, `updated_at`) VALUES
+(1, 'Vị trí đất số 01 thửa 2 với diện tích 100.000m2', '2000000000', '2500000000', '', 'T1541402991', '2018-11-05 07:29:51', '2018-11-05 07:49:19'),
+(2, 'Lô số 03, đường 12 - Khu công nghiệp Tiên Sơn - Diện tích 505.000m2', '3000000000', '0', '', NULL, '2018-11-05 07:46:11', '2018-11-05 07:46:11'),
+(3, 'Lô số 03, đường 12 - Khu công nghiệp Tiên Sơn - Diện tích 505.000m2', '3000000000', '0', '', NULL, '2018-11-05 07:46:14', '2018-11-05 07:46:14'),
+(4, 'Lô số 03, đường 12 - Khu công nghiệp Tiên Sơn - Diện tích 505.000m2', '3000000000', '0', '', NULL, '2018-11-05 07:46:14', '2018-11-05 07:46:14'),
+(5, 'Lô số 03, đường 12 - Khu công nghiệp Tiên Sơn - Diện tích 505.000m2', '3000000000', '0', '', NULL, '2018-11-05 07:46:15', '2018-11-05 07:46:15'),
+(6, 'Lô số 03, đường 12 - Khu công nghiệp Tiên Sơn - Diện tích 505.000m2', '3000000000', '0', '', NULL, '2018-11-05 07:46:26', '2018-11-05 07:46:26'),
+(8, 'Lô 03 đường 12 Khu đô thị Gamuda', '15000000000', '0', '', 'T1541402991', '2018-11-05 07:47:30', '2018-11-05 07:47:30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `daugiadatctdf`
+--
+
+CREATE TABLE `daugiadatctdf` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `vitridiadiem` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mucgiasan` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mucgiadaugia` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `donvidaugia` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mahuyen` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -352,6 +430,28 @@ INSERT INTO `dmmhbinhongia` (`id`, `mamh`, `tenmh`, `hienthi`, `created_at`, `up
 (9, 'DADTL', 'Đường ăn, bao gồm đường trắng và đường tinh luyện', 'Đường', '2018-10-18 07:08:08', '2018-10-18 07:17:49'),
 (10, 'TGTT', 'Thóc, gạo tẻ thường', 'Thóc, gạo', '2018-10-18 07:08:28', '2018-10-18 07:18:00'),
 (11, 'TPCB', 'Thuốc phòng bệnh, chữa bệnh cho người thuộc danh mục thuốc chữa bệnh thiết yếu sử dụng tại cơ sở khám bệnh, chữa bệnh.', 'Thuốc phòng chữa bệnh cho người', '2018-10-18 07:08:57', '2018-10-18 07:18:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dmphilephi`
+--
+
+CREATE TABLE `dmphilephi` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `manhom` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tennhom` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dvt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `dmphilephi`
+--
+
+INSERT INTO `dmphilephi` (`id`, `manhom`, `tennhom`, `dvt`, `created_at`, `updated_at`) VALUES
+(1, 'PSDCTDV', 'Mức thu phí sử dụng công trình kết cấu hạ tầng, công trình dịch vụ, tiện ích công cộng trong khu vuẹc cửa khẩu trên địa bàn tỉnh Lạng Sơn', 'đồng/xe/lần ra, vào', '2018-11-01 09:02:48', '2018-11-01 09:09:04');
 
 -- --------------------------------------------------------
 
@@ -1238,18 +1338,17 @@ CREATE TABLE `giacacloaidat` (
 --
 
 INSERT INTO `giacacloaidat` (`id`, `maso`, `magoc`, `macapdo`, `capdo`, `vitri`, `hienthi`, `ngaynhap`, `soqd`, `giadat`, `sapxep`, `ghichu`, `mahuyen`, `username`, `thaotac`, `created_at`, `updated_at`) VALUES
-(1, '1', '', '1', '1', 'Khu vực 1', NULL, NULL, '', 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 07:24:48', '2018-10-02 08:30:24'),
+(1, '1', '', '1', '1', 'Phường Mai Dịch', NULL, NULL, '', 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 07:24:48', '2018-11-02 08:42:38'),
 (2, '2', '', '2', '1', 'Khu vực 2', NULL, NULL, '001', 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 07:28:36', '2018-10-02 08:00:39'),
 (3, '3', '', '3', '1', 'Khu vực 3', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 08:04:09', '2018-10-02 08:04:09'),
-(16, '1.1', '1', '1', '2', '1.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 09:29:15', '2018-10-02 09:29:15'),
-(17, '1.2', '1', '2', '2', '1.2', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 09:29:39', '2018-10-02 09:29:39'),
-(18, '1.1.1', '1.1', '1', '3', '1.1.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 09:30:26', '2018-10-02 09:30:26'),
-(19, '1.1.1.1', '1.1.1', '1', '4', '1.1.1.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 09:33:21', '2018-10-02 09:33:21'),
+(16, '1.1', '1', '1', '2', 'Đường Hồ Tùng Mậu', NULL, NULL, '', 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 09:29:15', '2018-11-02 08:42:59'),
+(17, '1.2', '1', '2', '2', 'Đường Xuân Thủy', NULL, NULL, '', 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 09:29:39', '2018-11-02 08:43:13'),
+(18, '1.1.1', '1.1', '1', '3', 'Đoạn từ ngã tư giao đường Lê Đức Thọ đến Cầu Diễn', NULL, NULL, '', 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 09:30:26', '2018-11-02 08:45:13'),
 (27, '1.2.1', '1.2', '1', '3', '1.2.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 12:56:51', '2018-10-02 12:56:51'),
 (28, '2.1', '2', '1', '2', '2.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 12:57:32', '2018-10-02 12:57:32'),
 (29, '3.1', '3', '1', '2', '3.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 12:57:48', '2018-10-02 12:57:48'),
 (30, '3.1.1', '3.1', '1', '3', '3.1.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 12:58:18', '2018-10-02 12:58:18'),
-(31, '1.3', '1', '3', '2', '1.3', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 12:58:42', '2018-10-02 12:58:42'),
+(31, '1.3', '1', '3', '2', 'Đường Phạm Văn Đồng', NULL, NULL, '', 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 12:58:42', '2018-11-02 08:43:30'),
 (32, '1.3.1', '1.3', '1', '3', '1.3.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 12:59:11', '2018-10-02 12:59:11'),
 (33, '4', NULL, '4', '1', 'Khu vực 4', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 13:02:04', '2018-10-02 13:02:04'),
 (34, '4.1', '4', '1', '2', '4.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 13:02:13', '2018-10-02 13:02:13'),
@@ -1268,7 +1367,10 @@ INSERT INTO `giacacloaidat` (`id`, `maso`, `magoc`, `macapdo`, `capdo`, `vitri`,
 (48, '1.1.1.1', '1.1.1', '1', '4', 'Quận 1- Huyện 1- Xã 1- Phường 1', NULL, NULL, NULL, 0, NULL, NULL, 'QHBT', NULL, NULL, '2018-10-03 02:33:49', '2018-10-03 02:33:49'),
 (49, '1.1.1.1.1', '1.1.1.1', '1', '5', 'Quận 1- Huyện 1- Xã 1- Phường 1 - Tổ 1 ', NULL, NULL, NULL, 0, NULL, NULL, 'QHBT', NULL, NULL, '2018-10-03 02:34:20', '2018-10-03 02:34:20'),
 (50, '1.1.1.1.1.1', '1.1.1.1.1', '1', '6', 'Quận 1- Huyện 1- Xã 1- Phường 1 - Tổ 1 - Xóm 1', NULL, NULL, NULL, 0, NULL, NULL, 'QHBT', NULL, NULL, '2018-10-03 02:34:38', '2018-10-03 02:34:38'),
-(51, '1.1.1.1.1.1.1', '1.1.1.1.1.1', '1', '7', 'Quận 1- Huyện 1- Xã 1- Phường 1 - Tổ 1  - Xóm 1 - Nhà 1', NULL, NULL, NULL, 0, NULL, NULL, 'QHBT', NULL, NULL, '2018-10-03 02:35:02', '2018-10-03 02:35:02');
+(51, '1.1.1.1.1.1.1', '1.1.1.1.1.1', '1', '7', 'Quận 1- Huyện 1- Xã 1- Phường 1 - Tổ 1  - Xóm 1 - Nhà 1', NULL, NULL, NULL, 0, NULL, NULL, 'QHBT', NULL, NULL, '2018-10-03 02:35:02', '2018-10-03 02:35:02'),
+(52, '1.1.2', '1.1', '2', '3', 'Đoạn từ ngã tư cầu vượt Mai Dịch đến ngã tư giao đường Lê Đức Thọ', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-11-02 08:44:23', '2018-11-02 08:44:23'),
+(53, '1.1.1.2', '1.1.1', '2', '4', 'Trong ngõ cách đường từ 10m trở lên', NULL, NULL, '', 10000000, NULL, NULL, 'QCG', NULL, NULL, '2018-11-02 08:46:28', '2018-11-02 08:47:27'),
+(54, '1.1.1.3', '1.1.1', '3', '4', 'Mặt đường ', NULL, NULL, '', 15000000, NULL, NULL, 'QCG', NULL, NULL, '2018-11-02 08:47:54', '2018-11-02 08:48:14');
 
 -- --------------------------------------------------------
 
@@ -1601,6 +1703,158 @@ INSERT INTO `kkgiadvltctdf` (`id`, `maxa`, `loaip`, `qccl`, `sohieu`, `ghichu`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kkgs`
+--
+
+CREATE TABLE `kkgs` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `mahs` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `maxa` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mahuyen` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `thqd` text COLLATE utf8_unicode_ci,
+  `ngaynhap` date DEFAULT NULL,
+  `socv` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `socvlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ngaycvlk` date DEFAULT NULL,
+  `ngayhieuluc` date DEFAULT NULL,
+  `ttnguoinop` text COLLATE utf8_unicode_ci,
+  `ngaynhan` date DEFAULT NULL,
+  `sohsnhan` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ghichu` text COLLATE utf8_unicode_ci,
+  `ngaychuyen` datetime DEFAULT NULL,
+  `lydo` text COLLATE utf8_unicode_ci,
+  `trangthai` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `plhs` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `thoihan` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `kkgs`
+--
+
+INSERT INTO `kkgs` (`id`, `mahs`, `maxa`, `mahuyen`, `thqd`, `ngaynhap`, `socv`, `socvlk`, `ngaycvlk`, `ngayhieuluc`, `ttnguoinop`, `ngaynhan`, `sohsnhan`, `ghichu`, `ngaychuyen`, `lydo`, `trangthai`, `plhs`, `thoihan`, `created_at`, `updated_at`) VALUES
+(1, '0987651540974523', '098765', 'PTCQCG', 'Thực hiện theo công văn số 01', '2018-10-31', '001', '', NULL, '2018-11-02', 'Test 2', '2018-10-31', '0', '', '2018-10-31 16:07:57', 'Tesst', 'DD', NULL, 'Trước thời hạn', '2018-10-31 08:28:43', '2018-10-31 09:22:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kkgsct`
+--
+
+CREATE TABLE `kkgsct` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `maxa` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mahuyen` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mahs` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tenhh` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `qccl` text COLLATE utf8_unicode_ci,
+  `dvt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ghichu` text COLLATE utf8_unicode_ci,
+  `giaQlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaClk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCttlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCvtlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCnclk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCkhlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCklk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCclk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCcmlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCtclk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCbhlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCqllk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaTClk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCPlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaZlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaZdvlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaQ` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaC` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCtt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCvt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCnc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCkh` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCcm` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCtc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCbh` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCql` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaTC` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCP` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaZ` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaZdv` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `kkgsct`
+--
+
+INSERT INTO `kkgsct` (`id`, `maxa`, `mahuyen`, `mahs`, `tenhh`, `qccl`, `dvt`, `ghichu`, `giaQlk`, `giaClk`, `giaCttlk`, `giaCvtlk`, `giaCnclk`, `giaCkhlk`, `giaCklk`, `giaCclk`, `giaCcmlk`, `giaCtclk`, `giaCbhlk`, `giaCqllk`, `giaTClk`, `giaCPlk`, `giaZlk`, `giaZdvlk`, `giaQ`, `giaC`, `giaCtt`, `giaCvt`, `giaCnc`, `giaCkh`, `giaCk`, `giaCc`, `giaCcm`, `giaCtc`, `giaCbh`, `giaCql`, `giaTC`, `giaCP`, `giaZ`, `giaZdv`, `created_at`, `updated_at`) VALUES
+(1, '098765', 'PTCQCG', '0987651540974523', 'a1', 'a3', 'a2', 'a4', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '16', '15', '14', '13', '12', '11', '10', '9', '8', '7', '6', '5', '4', '3', '2', '1', '2018-10-31 08:28:43', '2018-10-31 08:28:43'),
+(2, '098765', 'PTCQCG', '0987651540974523', 'd', 'da', 'd', 'da', '16', '15', '14', '13', '12', '11', '10', '9', '8', '7', '6', '5', '4', '3', '2', '1', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '2018-10-31 08:43:51', '2018-10-31 08:46:51');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kkgsctdf`
+--
+
+CREATE TABLE `kkgsctdf` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `maxa` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tenhh` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `qccl` text COLLATE utf8_unicode_ci,
+  `dvt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ghichu` text COLLATE utf8_unicode_ci,
+  `giaQlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaClk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCttlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCvtlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCnclk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCkhlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCklk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCclk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCcmlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCtclk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCbhlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCqllk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaTClk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCPlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaZlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaZdvlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaQ` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaC` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCtt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCvt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCnc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCkh` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCcm` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCtc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCbh` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCql` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaTC` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaCP` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaZ` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giaZdv` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `kkgsctdf`
+--
+
+INSERT INTO `kkgsctdf` (`id`, `maxa`, `tenhh`, `qccl`, `dvt`, `ghichu`, `giaQlk`, `giaClk`, `giaCttlk`, `giaCvtlk`, `giaCnclk`, `giaCkhlk`, `giaCklk`, `giaCclk`, `giaCcmlk`, `giaCtclk`, `giaCbhlk`, `giaCqllk`, `giaTClk`, `giaCPlk`, `giaZlk`, `giaZdvlk`, `giaQ`, `giaC`, `giaCtt`, `giaCvt`, `giaCnc`, `giaCkh`, `giaCk`, `giaCc`, `giaCcm`, `giaCtc`, `giaCbh`, `giaCql`, `giaTC`, `giaCP`, `giaZ`, `giaZdv`, `created_at`, `updated_at`) VALUES
+(1, '098765', 'a1', 'a3', 'a2', 'a4', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '16', '15', '14', '13', '12', '11', '10', '9', '8', '7', '6', '5', '4', '3', '2', '1', '2018-10-31 08:21:27', '2018-10-31 08:24:17');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `lephitruocba`
 --
 
@@ -1755,7 +2009,17 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (51, '2018_10_18_103443_create_giahhdvkctdf_table', 39),
 (52, '2018_10_18_111812_create_giahhdvkct_table', 40),
 (53, '2018_10_22_085407_create_vanbanqlnn_table', 41),
-(54, '2018_10_22_091816_create_loaivbqlnn_table', 41);
+(54, '2018_10_22_091816_create_loaivbqlnn_table', 41),
+(55, '2018_10_31_145541_create_kkgs_table', 42),
+(56, '2018_10_31_145657_create_kkgsct_table', 42),
+(57, '2018_10_31_145751_create_kkgsctdf_table', 42),
+(58, '2018_11_01_153815_create_dmphilephi_table', 43),
+(59, '2018_11_01_161226_create_philephi_table', 44),
+(60, '2018_11_02_102813_create_philephictdf_table', 45),
+(61, '2018_11_02_105902_create_philephict_table', 46),
+(62, '2018_11_05_093753_create_daugiadat_table', 47),
+(63, '2018_11_05_095547_create_daugiadatctdf_table', 47),
+(64, '2018_11_05_111141_create_daugiadatct_table', 48);
 
 -- --------------------------------------------------------
 
@@ -1852,6 +2116,68 @@ INSERT INTO `nhomthuetn` (`id`, `manhom`, `tennhom`, `sapxep`, `theodoi`, `creat
 (4, '04', 'HẢI SẢN TỰ NHIÊN', '4', 'TD', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (5, '05', 'NƯỚC THIÊN NHIÊN', '5', 'TD', '0000-00-00 00:00:00', '2018-10-10 09:20:33'),
 (6, '06', 'YẾN SÀO THIÊN NHIÊN', '6', 'KTD', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `philephi`
+--
+
+CREATE TABLE `philephi` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `manhom` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mahs` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `soqd` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ngayapdung` date DEFAULT NULL,
+  `ghichu` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `trangthai` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `philephi`
+--
+
+INSERT INTO `philephi` (`id`, `manhom`, `mahs`, `soqd`, `ngayapdung`, `ghichu`, `trangthai`, `created_at`, `updated_at`) VALUES
+(5, 'PSDCTDV', 'T1541143237', 'Kèm theo Quyết định số 53/2016/QĐ-UBND ngày 31/12/2016', '2018-12-31', '', 'CB', '2018-11-02 07:20:37', '2018-11-02 08:18:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `philephict`
+--
+
+CREATE TABLE `philephict` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `mahs` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ptcp` text COLLATE utf8_unicode_ci,
+  `mucthuphi` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `philephict`
+--
+
+INSERT INTO `philephict` (`id`, `mahs`, `ptcp`, `mucthuphi`, `created_at`, `updated_at`) VALUES
+(2, 'T1541143237', 'Xe oto dưới 2 tấn, xe ba gác', '1000001', '2018-11-02 07:20:37', '2018-11-02 07:59:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `philephictdf`
+--
+
+CREATE TABLE `philephictdf` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `mahuyen` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ptcp` text COLLATE utf8_unicode_ci,
+  `mucthuphi` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2328,7 +2654,8 @@ INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `status`, `m
 (7, 'Phòng tài chính quận Hai Bà Trưng', 'ptcquanhaibatrung', 'e10adc3949ba59abbe56e057f20f883e', NULL, 'Kích hoạt', 'PTCQHBT', 'STCHN', NULL, 'QHBT', 'X', NULL, NULL, NULL, NULL, NULL, NULL, '2018-10-04 01:50:27', '2018-10-04 01:50:27'),
 (9, 'Công ty TNHH phát triển phần mềm Cuộc Sống', 'pmcuocsong', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', '1234567890', 'PTCQHBT', NULL, NULL, 'DVLT', NULL, NULL, NULL, NULL, NULL, 'Minh Trần(minhtran) - 15/10/2018 09:43:46', '2018-10-15 02:43:46', '2018-10-15 02:43:46'),
 (10, 'Công ty TNHH Thức ăn chăn nuôi', 'tnhhthucan', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', '1234567890', 'PTCQHBT', NULL, NULL, 'TACN', NULL, NULL, NULL, NULL, NULL, 'Minh Trần(minhtran) - 17/10/2018 14:06:44', '2018-10-17 07:06:44', '2018-10-17 07:06:44'),
-(11, 'Administrator', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', NULL, NULL, NULL, NULL, 'T', 'ssa', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(11, 'Administrator', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', NULL, NULL, NULL, NULL, 'T', 'ssa', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(12, 'DN Sữa', 'dnsua', 'e10adc3949ba59abbe56e057f20f883e', 'mrgaupeo@gmail.com', 'Kích hoạt', '098765', 'PTCQCG', NULL, NULL, 'DVGS', NULL, NULL, NULL, NULL, NULL, 'Minh Trần(minhtran) - 31/10/2018 14:37:06', '2018-10-31 07:37:06', '2018-10-31 07:37:06');
 
 -- --------------------------------------------------------
 
@@ -2419,7 +2746,24 @@ INSERT INTO `viewpage` (`id`, `ip`, `session`, `created_at`, `updated_at`) VALUE
 (31, '::1', 'LMwW00hJr9yvWPUom2OBhclLAKVZsRukchAXpnRm', '2018-10-22 01:36:14', '2018-10-22 01:36:14'),
 (32, '::1', 'ar3M2oCOozlD1CSx7SEAzAYL6NgzBiX2ABCuDhQx', '2018-10-22 01:38:54', '2018-10-22 01:38:54'),
 (33, '::1', 'F8PxQ80a7h8QB3scjYATbjrrgnrtEQfRaJrjRktc', '2018-10-22 01:41:48', '2018-10-22 01:41:48'),
-(34, '::1', 'cJVWqrg0nBayqstZeOA73sqNM0uS7GSkdq6OpX00', '2018-10-22 01:47:31', '2018-10-22 01:47:31');
+(34, '::1', 'cJVWqrg0nBayqstZeOA73sqNM0uS7GSkdq6OpX00', '2018-10-22 01:47:31', '2018-10-22 01:47:31'),
+(35, '::1', 'JuDod53GTC0E13s1SP9v3lPPO4tP39QCttnZlJFS', '2018-10-30 09:14:52', '2018-10-30 09:14:52'),
+(36, '::1', 'WfQqWmDj9jpn8B0T32a7aEh0BL1EVXReTSSwmbEz', '2018-10-31 02:48:21', '2018-10-31 02:48:21'),
+(37, '::1', 'bMkWg3m8137lk9LVZbumqZ7wQiwLjzWhDB66ciKQ', '2018-10-31 03:04:08', '2018-10-31 03:04:08'),
+(38, '::1', 'AR9lyomxFEOJWkbzdll1ROnKRbRZgo3Jj6UaGCZN', '2018-10-31 03:08:12', '2018-10-31 03:08:12'),
+(39, '::1', 'bqyNRk5UFpnGApuErhs7EEdB1jESwWZtrEFvxH9g', '2018-10-31 06:55:50', '2018-10-31 06:55:50'),
+(40, '::1', 'IDGZSL3dr6XrKhlvEdITwT3Wt8RxYJseH40gohD8', '2018-10-31 07:32:55', '2018-10-31 07:32:55'),
+(41, '::1', 'Mvlm2RrKfEtNX8rSQ0llVvYeRujYlF44SjqehGif', '2018-10-31 07:34:26', '2018-10-31 07:34:26'),
+(42, '::1', 'TIAOR7nWbecLuZQM3H2Ewq9X6BFmpjMupMJMC0I8', '2018-11-01 02:07:04', '2018-11-01 02:07:04'),
+(43, '::1', 'BOMxkwnOYTO7Xa5r5XdtKWttepkzZbpReXE9I9fJ', '2018-11-01 03:02:17', '2018-11-01 03:02:17'),
+(44, '::1', 'PtLPcZ5ZyWZ68CLTfYplxHEps5ZuDFVAGJ9nGJXJ', '2018-11-01 07:31:53', '2018-11-01 07:31:53'),
+(45, '::1', '58o2Yrx26cPz3PzvG8oVpbTvFjoVjpyhAPdL7asy', '2018-11-02 02:41:50', '2018-11-02 02:41:50'),
+(46, '::1', 'VCGLa027g0p98LGdn2YHjAOOqKn9wOaRNekFFWl5', '2018-11-02 07:02:28', '2018-11-02 07:02:28'),
+(47, '::1', 'ia4wIgBlRmyBM1hHBp9c9bMcgyFOOa3rFdEEgMf1', '2018-11-03 03:22:50', '2018-11-03 03:22:50'),
+(48, '::1', 'ZggDi3UGVgC6k9Pyn682Sxx0iCD6Vv8rlWIMbBF4', '2018-11-03 16:12:57', '2018-11-03 16:12:57'),
+(49, '::1', 'jX7ksUi4bAsRM6J6pzFkVUFrbrlJQUUdGV3p9AOp', '2018-11-04 01:23:49', '2018-11-04 01:23:49'),
+(50, '::1', 'yjISJwmZCz6jbTKBzxtLgRvldlSocIfrtD3G3VtI', '2018-11-04 08:12:56', '2018-11-04 08:12:56'),
+(51, '::1', 'UYf7VdUTXixrFZn7Pi2yGKkQwc4KJstWJBkv1czd', '2018-11-05 02:30:15', '2018-11-05 02:30:15');
 
 --
 -- Indexes for dumped tables
@@ -2456,6 +2800,24 @@ ALTER TABLE `cskddvlt`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `daugiadat`
+--
+ALTER TABLE `daugiadat`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `daugiadatct`
+--
+ALTER TABLE `daugiadatct`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `daugiadatctdf`
+--
+ALTER TABLE `daugiadatctdf`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `diabanhd`
 --
 ALTER TABLE `diabanhd`
@@ -2489,6 +2851,12 @@ ALTER TABLE `dmhhdvk`
 -- Indexes for table `dmmhbinhongia`
 --
 ALTER TABLE `dmmhbinhongia`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dmphilephi`
+--
+ALTER TABLE `dmphilephi`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2612,6 +2980,24 @@ ALTER TABLE `kkgiadvltctdf`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `kkgs`
+--
+ALTER TABLE `kkgs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kkgsct`
+--
+ALTER TABLE `kkgsct`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kkgsctdf`
+--
+ALTER TABLE `kkgsctdf`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `lephitruocba`
 --
 ALTER TABLE `lephitruocba`
@@ -2663,6 +3049,24 @@ ALTER TABLE `nhomlephitruocba`
 -- Indexes for table `nhomthuetn`
 --
 ALTER TABLE `nhomthuetn`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `philephi`
+--
+ALTER TABLE `philephi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `philephict`
+--
+ALTER TABLE `philephict`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `philephictdf`
+--
+ALTER TABLE `philephictdf`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2767,12 +3171,27 @@ ALTER TABLE `binhongiactdf`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `cskddvlt`
 --
 ALTER TABLE `cskddvlt`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `daugiadat`
+--
+ALTER TABLE `daugiadat`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `daugiadatct`
+--
+ALTER TABLE `daugiadatct`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `daugiadatctdf`
+--
+ALTER TABLE `daugiadatctdf`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `diabanhd`
 --
@@ -2803,6 +3222,11 @@ ALTER TABLE `dmhhdvk`
 --
 ALTER TABLE `dmmhbinhongia`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `dmphilephi`
+--
+ALTER TABLE `dmphilephi`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `dmqdgiadat`
 --
@@ -2842,7 +3266,7 @@ ALTER TABLE `general-configs`
 -- AUTO_INCREMENT for table `giacacloaidat`
 --
 ALTER TABLE `giacacloaidat`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT for table `giahhdvk`
 --
@@ -2904,6 +3328,21 @@ ALTER TABLE `kkgiadvltct`
 ALTER TABLE `kkgiadvltctdf`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
+-- AUTO_INCREMENT for table `kkgs`
+--
+ALTER TABLE `kkgs`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `kkgsct`
+--
+ALTER TABLE `kkgsct`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `kkgsctdf`
+--
+ALTER TABLE `kkgsctdf`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `lephitruocba`
 --
 ALTER TABLE `lephitruocba`
@@ -2927,7 +3366,7 @@ ALTER TABLE `loaivbqlnn`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 --
 -- AUTO_INCREMENT for table `nhomdvkcb`
 --
@@ -2948,6 +3387,21 @@ ALTER TABLE `nhomlephitruocba`
 --
 ALTER TABLE `nhomthuetn`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `philephi`
+--
+ALTER TABLE `philephi`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `philephict`
+--
+ALTER TABLE `philephict`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `philephictdf`
+--
+ALTER TABLE `philephictdf`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `register`
 --
@@ -3002,7 +3456,7 @@ ALTER TABLE `ttngaynghile`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `vanbanqlnn`
 --
@@ -3012,7 +3466,7 @@ ALTER TABLE `vanbanqlnn`
 -- AUTO_INCREMENT for table `viewpage`
 --
 ALTER TABLE `viewpage`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;COMMIT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
