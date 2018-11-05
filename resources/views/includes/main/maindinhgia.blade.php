@@ -28,10 +28,10 @@
             </a>
             <ul class="sub-menu">
                 <li>
-                    <a href="{{url('thongtingiacacloaidat')}}">Thông tin đấu giá đất</a>
+                    <a href="{{url('thongtindaugiadat')}}">Thông tin đấu giá đất</a>
                 </li>
                 <li>
-                    <a href="{{url('timkiemthongtingiacacloaidat')}}">Tìm kiếm thông tin</a>
+                    <a href="{{url('timkiemthongtindaugiadat')}}">Tìm kiếm thông tin</a>
                 </li>
             </ul>
         </li>

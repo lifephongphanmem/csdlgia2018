@@ -170,4 +170,21 @@ Route::get('philephict/show','PhiLePhiCtController@show');
 Route::get('philephict/update','PhiLePhiCtController@update');
 Route::get('philephict/del','PhiLePhiCtController@destroy');
 
+//Đầu giá đất
+Route::resource('thongtindaugiadat','DauGiaDatController');
+Route::post('thongtindaugiadat/hoanthanh','DauGiaDatController@hoanthanh');
+Route::post('thongtindaugiadat/huyhoanthanh','DauGiaDatController@huyhoanthanh');
+Route::post('thongtindaugiadat/congbo','DauGiaDatController@congbo');
+Route::get('timkiemthongtindaugiadat','DauGiaDatController@search');
+
+Route::get('thongtindaugiadatctdf/store','DauGiaDatCtDfController@store');
+Route::get('thongtindaugiadatctdf/show','DauGiaDatCtDfController@show');
+Route::get('thongtindaugiadatctdf/update','DauGiaDatCtDfController@update');
+Route::get('thongtindaugiadatctdf/del','DauGiaDatCtDfController@destroy');
+
+Route::get('thongtindaugiadatct/store','DauGiaDatCtController@store');
+Route::get('thongtindaugiadatct/show','DauGiaDatCtController@show');
+Route::get('thongtindaugiadatct/update','DauGiaDatCtController@update');
+Route::get('thongtindaugiadatct/del','DauGiaDatCtController@destroy');
+
 ?>
