@@ -73,7 +73,6 @@
                             <label>Địa bàn quản lý</label>
                             <div class="form-group">
                                 <select name="mahuyen" id="mahuyen" class="form-control">
-                                    <option value="">--Chọn địa bàn--</option>
                                     @foreach($modeldiaban as $ct)
                                         <option value="{{$ct->district}}" {{$ct->district==$mahuyen? 'selected':''}}>{{ $ct->diaban}}</option>
                                     @endforeach
@@ -109,6 +108,7 @@
                                 <input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/>
                             </th-->
                             <th width="2%" style="text-align: center">STT</th>
+                            <th style="text-align: center">Địa bàn</th>
                             <th style="text-align: center">Vị trí</th>
                             <th style="text-align: center" width="10%">Căn cứ quyết định</th>
                             <th style="text-align: center" width="10%">Giá đất</th>
@@ -118,6 +118,7 @@
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
+                                <td>{{$tt->hienthi}}</td>
                                 <td class="success">{{$tt->vitri}}</td>
                                 <td class="text-center">{{$tt->soqd}}</td>
                                 <td style="text-align: right; font-weight: bold;" class="active">{{number_format($tt->giadat)}}</td>

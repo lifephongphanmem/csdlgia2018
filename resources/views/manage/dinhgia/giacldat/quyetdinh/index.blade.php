@@ -65,19 +65,6 @@
                     </div>
                 </div>
                 <div class="portlet-body">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <select name="nam" id="nam" class="form-control">
-                                    @if ($nam_start = intval(date('Y')) - 5 ) @endif
-                                    @if ($nam_stop = intval(date('Y')) + 1 ) @endif
-                                    @for($i = $nam_start; $i <= $nam_stop; $i++)
-                                        <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>Năm {{$i}}</option>
-                                    @endfor
-                                </select>
-                            </div>
-                        </div>
-                    </div>
                     <div class="table-toolbar">
                     </div>
                     <table class="table table-striped table-bordered table-hover" id="sample_3">

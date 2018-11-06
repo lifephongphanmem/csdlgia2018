@@ -13,7 +13,9 @@ class DmQdGiaDatController extends Controller
         if (Session::has('admin')) {
             $inputs = $request->all();
             $nam = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-            $model = DmQdGiaDat::whereYear('ngayquyetdinh',$nam)->geT();
+            $model = DmQdGiaDat::orderBy('id', 'ASC')
+                ->get();
+
             return view('manage.dinhgia.giacldat.quyetdinh.index')
                 ->with('model',$model)
                 ->with('nam',$nam)

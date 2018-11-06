@@ -20,7 +20,7 @@ class CreateGiacacloaidatTable extends Migration
             $table->string('macapdo')->nullable();
             $table->string('capdo')->nullable();//
             $table->text('vitri')->nullable();
-            $table->string('hienthi')->nullable();//hiển thị số thứ tự trên báo cáo
+            $table->text('hienthi')->nullable();//hiển thị số thứ tự trên báo cáo
             $table->date('ngaynhap')->nullable();
             $table->string('soqd')->nullable();
             $table->double('giadat')->default(0);

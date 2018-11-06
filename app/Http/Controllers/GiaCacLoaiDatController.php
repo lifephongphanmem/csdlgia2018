@@ -15,10 +15,7 @@ class GiaCacLoaiDatController extends Controller
     public function index(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
-            if(session('admin')->level == 'T' || session('admin')->level == 'H')
-                $districtdf = DiaBanHd::where('level','H')->first()->district;
-            else
-                $districtdf = session('admin')->district;
+            $districtdf = DiaBanHd::where('level', 'H')->first()->district;
             $inputs['district'] = isset($inputs['district'])? $inputs['district'] : $districtdf;
 
             $model = GiaCacLoaiDat::where('mahuyen',$inputs['district'])->get();
@@ -165,6 +162,11 @@ class GiaCacLoaiDatController extends Controller
         $inputs['capdo'] = $model->capdo+1;
 
         $inputs['macapdo'] = getDbl(GiaCacLoaiDat::where('mahuyen',$inputs['mahuyen'])->where('capdo',($model->capdo +1))->where('magoc',$model->maso)->max('macapdo')) + 1;
+        if($model->capdo == 1)
+            $inputs['hienthi'] = $model->vitri;
+        else
+            $inputs['hienthi'] = $model->hienthi.' - '.$model->vitri;
+
         $inputs['maso'] = $model->maso.'.'.$inputs['macapdo'];
         $inputs['magoc'] = $model->maso;
         //$inputs['macapdo'] = $model
@@ -193,7 +195,7 @@ class GiaCacLoaiDatController extends Controller
             $inputs['soqd'] = isset($inputs['soqd']) ? $inputs['soqd'] : '';
             $modelqdgiadat = DmQdGiaDat::all();
 
-            $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : '';
+            $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : DiaBanHd::where('level','H')->first()->district;
             $modeldiaban = DiaBanHd::where('level','H')->get();
 
             $inputs['vitri'] = isset($inputs['vitri']) ? $inputs['vitri'] : '';
@@ -203,6 +205,7 @@ class GiaCacLoaiDatController extends Controller
                 $model = $model->where('mahuyen',$inputs['mahuyen']);
             if($inputs['soqd'] != '')
                 $model = $model->where('soqd',$inputs['soqd']);
+
             if($inputs['vitri'] != '')
                 $model = $model->where('vitri','like','%'.$inputs['vitri'].'%');
             $model = $model->get();
