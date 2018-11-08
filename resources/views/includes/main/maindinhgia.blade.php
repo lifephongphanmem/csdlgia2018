@@ -1,3 +1,4 @@
+@if(canGeneral('dinhgia','index'))
 @if(can('dinhgia','index'))
 <li class="">
     <a href="javascript:;">
@@ -229,4 +230,5 @@
         </li>
     </ul>
 </li>
+@endif
 @endif

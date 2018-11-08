@@ -5,7 +5,7 @@
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <input type="checkbox" {{ (isset($permission->bog->index) && $permission->bog->index == 1) ? 'checked' : '' }} value="1" name="roles[hhtt][index]"/> Mặt hàng bình ổn giá
+                    <input type="checkbox" {{ (isset($permission->bog->index) && $permission->bog->index == 1) ? 'checked' : '' }} value="1" name="roles[bog][index]"/> Mặt hàng bình ổn giá
                 </div>
                 <div class="tools">
                     <a href="" class="expand" data-original-title="" title="">
@@ -42,10 +42,6 @@
                                 <tr>
                                     <td><input type="checkbox" {{ (isset($permission->dmbog->delete) && $permission->dmbog->delete == 1) ? 'checked' : '' }} value="1" name="roles[dmbog][delete]"/></td>
                                     <td>Xóa</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" {{ (isset($permission->dmbog->approve) && $permission->dmbog->approve == 1) ? 'checked' : '' }} value="1" name="roles[dmbog][approve]"/></td>
-                                    <td>Xét duyệt</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -98,11 +94,11 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td><input type="checkbox" {{ (isset($permission->bcbog->index) && $permission->bcbog->index == 1) ? 'checked' : '' }} value="1" name="roles[bcbog][index]"/></td>
+                                    <td><input type="checkbox" {{ (isset($permission->thbog->baocao) && $permission->thbog->baocao == 1) ? 'checked' : '' }} value="1" name="roles[thbog][baocao]"/></td>
                                     <td>Báo cáo</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" {{ (isset($permission->cbbog->index) && $permission->cbbog->index == 1) ? 'checked' : '' }} value="1" name="roles[cbbog][index]"/></td>
+                                    <td><input type="checkbox" {{ (isset($permission->thbog->congbo) && $permission->thbog->congbo == 1) ? 'checked' : '' }} value="1" name="roles[thbog][congbo]"/></td>
                                     <td>Công bố </td>
                                 </tr>
                                 </tbody>

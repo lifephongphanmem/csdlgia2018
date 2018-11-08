@@ -1,3 +1,4 @@
+@if(canGeneral('kkgia','index'))
 @if(can('kkgia','index'))
 <li class="">
     <a href="javascript:;">
@@ -213,4 +214,5 @@
 
     </ul>
 </li>
+@endif
 @endif

@@ -29,16 +29,27 @@
         Cấu hình <small>&nbsp;chức năng của chương trình</small>
     </h3>
     <!-- END PAGE HEADER-->
-    <div class="row"><div class="col-md-12">
-        {!! Form::open(['url' => '/setting'])!!}
+    {!! Form::open(['url' => '/setting'])!!}
+    <div class="row">
+        <div class="col-md-12">
+
         <!-- BEGIN EXAMPLE TABLE PORTLET-->
         <div class="portlet box">
             <div class="portlet-body">
                 @include('system.general.include.bog')
                 @include('system.general.include.dinhgia')
+                @include('system.general.include.thamdinhgia')
+                @include('system.general.include.kekhaigia')
+                @include('system.general.include.vbqlnn')
             </div>
         </div>
+        <div class="col-md-12" style="text-align: center">
+            <a href="{{url('general')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+            <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Cập nhật</button>
+        </div>
     </div>
+    {!! Form::close() !!}
 
 
 

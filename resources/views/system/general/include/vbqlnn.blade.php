@@ -4,7 +4,7 @@
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <input type="checkbox" {{ (isset($setting->dinhgia->index) && $setting->dinhgia->index == 1) ? 'checked' : '' }} value="1" name="roles[dinhgia][index]"/> Định giá
+                    <input type="checkbox" {{ (isset($setting->vbqlnn->index) && $setting->vbqlnn->index == 1) ? 'checked' : '' }} value="1" name="roles[vbqlnn][index]"/> Văn bản quản lý nhà nước về giá
                 </div>
                 <div class="tools">
                     <a href="" class="expand" data-original-title="" title="">
@@ -18,12 +18,12 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
                                 <tr>
-                                    <td width="2%"><input type="checkbox" {{ (isset($setting->giacacloaidat->index) && $setting->giacacloaidat->index == 1) ? 'checked' : '' }} value="1" name="roles[giacacloaidat][index]"/></td>
-                                    <td>Giá các loại đất</td>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->vbgia->index) && $setting->vbgia->index == 1) ? 'checked' : '' }} value="1" name="roles[vbgia][index]"/></td>
+                                    <td>Văn bản quản lý NN về giá</td>
                                 </tr>
                                 <tr>
-                                    <td width="2"><input type="checkbox" {{ (isset($setting->giacacloaidat->congbo) && $setting->giacacloaidat->congbo == 1) ? 'checked' : '' }} value="1" name="roles[giacacloaidat][congbo]"/></td>
-                                    <td>Công bố giá các loại đất</td>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->vbgia->congbo) && $setting->vbgia->congbo == 1) ? 'checked' : '' }} value="1" name="roles[vbgia][congbo]"/></td>
+                                    <td>Công bố văn bản quản lý NN về giá</td>
                                 </tr>
                                 </tbody>
                             </table>

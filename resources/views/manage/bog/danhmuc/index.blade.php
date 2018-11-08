@@ -111,7 +111,9 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
+                        @if(can('dmbog','create'))
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#modal-create" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm mới</button>
+                        @endif
                     </div>
                 </div>
                 <div class="portlet-body">
@@ -134,7 +136,9 @@
                             <td class="active">{{$tt->tenmh}}</td>
                             <td class="success">{{$tt->hienthi}}</td>
                             <td>
+                                @if(can('dmbog','edit'))
                                 <button type="button" onclick="ClickEdit('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

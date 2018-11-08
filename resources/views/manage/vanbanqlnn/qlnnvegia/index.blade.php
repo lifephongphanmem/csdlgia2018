@@ -70,32 +70,7 @@
     <h3 class="page-title">
         Văn bản quản lý nhà nước<small>&nbsp;về giá</small>
     </h3>
-    <div class="row">
-        <div class="col-md-2">
-            <div class="form-group">
-                <select name="nam" id="nam" class="form-control">
-                    @if ($nam_start = intval(date('Y')) - 5 ) @endif
-                    @if ($nam_stop = intval(date('Y'))) @endif
-                    @for($i = $nam_start; $i <= $nam_stop; $i++)
-                        <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
-                    @endfor
-                </select>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <select class="form-control" name="phanloai" id="phanloai">
-                    <option value="tw" {{$inputs['phanloai'] == 'tw' ? 'selected' : ''}}>Trung ương</option>
-                    <option value="dp"{{$inputs['phanloai'] == 'dp' ? 'selected' : ''}}>Địa phương</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                {!! Form::select('loaivb',getLoaiVbQlNn(),$inputs['loaivb'], ['id' => 'loaivb','class' => 'form-control']) !!}
-            </div>
-        </div>
-    </div>
+
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">
@@ -106,8 +81,10 @@
                         <div class="caption">
                         </div>
                         <div class="actions">
+                            @if(can('vbgia','create'))
                             <a href="{{url('vanbanqlnnvegia/create?&phanloai='.$inputs['phanloai'])}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-plus"></i> Thêm mới </a>
+                            @endif
 
                             <!--a href="" class="btn btn-default btn-sm">
                                 <i class="fa fa-print"></i> Print </a-->
@@ -115,6 +92,32 @@
                     </div>
                 @endif
                 <div class="portlet-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <select name="nam" id="nam" class="form-control">
+                                    @if ($nam_start = intval(date('Y')) - 5 ) @endif
+                                    @if ($nam_stop = intval(date('Y'))) @endif
+                                    @for($i = $nam_start; $i <= $nam_stop; $i++)
+                                        <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <select class="form-control" name="phanloai" id="phanloai">
+                                    <option value="tw" {{$inputs['phanloai'] == 'tw' ? 'selected' : ''}}>Trung ương</option>
+                                    <option value="dp"{{$inputs['phanloai'] == 'dp' ? 'selected' : ''}}>Địa phương</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                {!! Form::select('loaivb',getLoaiVbQlNn(),$inputs['loaivb'], ['id' => 'loaivb','class' => 'form-control']) !!}
+                            </div>
+                        </div>
+                    </div>
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>
                         <tr>
@@ -137,10 +140,14 @@
                                 <td class="success">{{$tt->kyhieuvb}}</td>
                                 <td>{{$tt->tieude}}</td>
                                 <td>
+                                    @if(can('vbgia','edit'))
                                     <a href="{{url('vanbanqlnnvegia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                    @endif
                                     <button type="button" onclick="get_attack('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#dinhkem-modal-confirm" data-toggle="modal"><i class="fa fa-cloud-download"></i>&nbsp;Tải tệp</button>
+                                    @if(can('vbgia','delete'))
                                     <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                         Xóa</button>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

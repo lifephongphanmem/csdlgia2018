@@ -6,35 +6,109 @@ function getPermissionDefault($level) {
         'bog' => array(
             'index' => 1,
         ),
+        'dmbog'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+        ),
+        'kkbog'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thbog'=>array(
+            'baocao'=>1,
+            'congbo'=>1,
+        ),
         'dinhgia' => array(
             'index' => 1,
         ),
-        'thamdinh' => array(
+        //Thẩm định giá
+        'thamdinhgia' => array(
             'index' => 1,
         ),
+        'kkthamdinhgia'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'ththamdinhgia'=>array(
+            'baocao'=>1,
+            'congbo'=>1,
+        ),
+        //Kê khai giá
         'kkgia'=>array(
             'index'=>1,
         ),
+        //VBQLNN về giá
         'vbqlnn'=>array(
             'index'=>1,
+        ),
+        'vbgia'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
         ),
 
     );
     $roles['H'] = array(
+        //Bình ổn giá
         'bog' => array(
             'index' => 1,
+        ),
+        'dmbog'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+        ),
+        'kkbog'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thbog'=>array(
+            'baocao'=>1,
+            'congbo'=>0,
         ),
         'dinhgia' => array(
             'index' => 1,
         ),
-        'thamdinh' => array(
+        //Thẩm định giá
+        'thamdinhgia' => array(
             'index' => 1,
+        ),
+        'kkthamdinhgia'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'ththamdinhgia'=>array(
+            'baocao'=>1,
+            'congbo'=>0,
         ),
         'kkgia'=>array(
             'index'=>1,
         ),
+        //VBQLNN về giá
         'vbqlnn'=>array(
             'index'=>1,
+        ),
+        'vbgia'=>array(
+            'index'=>1,
+            'create'=>0,
+            'edit'=>0,
+            'delete'=>0,
         ),
     );
     $roles['X'] = array(
@@ -44,14 +118,32 @@ function getPermissionDefault($level) {
         'dinhgia' => array(
             'index' => 1,
         ),
-        'thamdinh' => array(
+        //Thẩm định giá
+        'thamdinhgia' => array(
             'index' => 1,
+        ),
+        'kkthamdinhgia'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'ththamdinhgia'=>array(
+            'baocao'=>1,
+            'congbo'=>0,
         ),
         'kkgia'=>array(
             'index'=>1,
         ),
         'vbqlnn'=>array(
             'index'=>1,
+        ),
+        'vbgia'=>array(
+            'index'=>1,
+            'create'=>0,
+            'edit'=>0,
+            'delete'=>0,
         ),
     );
     $roles['DVLT'] = array(

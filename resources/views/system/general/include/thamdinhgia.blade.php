@@ -4,7 +4,7 @@
             <div class="portlet box blue">
                 <div class="portlet-title">
                     <div class="caption">
-                        Bình ổn giá
+                        Thẩm định giá TSNN
                     </div>
                     <div class="tools">
                         <a href="" class="expand" data-original-title="" title="">
@@ -18,8 +18,8 @@
                                 <table class="table table-striped table-bordered table-hover">
                                     <tbody>
                                     <tr>
-                                        <td width="2%"><input type="checkbox" {{ (isset($setting->bog->index) && $setting->bog->index == 1) ? 'checked' : '' }} value="1" name="roles[bog][index]"/></td>
-                                        <td>Bình ổn giá</td>
+                                        <td width="2%"><input type="checkbox" {{ (isset($setting->thamdinhgia->index) && $setting->thamdinhgia->index == 1) ? 'checked' : '' }} value="1" name="roles[thamdinhgia][index]"/></td>
+                                        <td>Thẩm định giá</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -28,8 +28,8 @@
                                 <table class="table table-striped table-bordered table-hover">
                                     <tbody>
                                     <tr>
-                                        <td width="2%"><input type="checkbox" {{ (isset($setting->bog->congbo) && $setting->bog->congbo == 1) ? 'checked' : '' }} value="1" name="roles[bog][congbo]"/></td>
-                                        <td>Công bố bình ổn giá</td>
+                                        <td width="2%"><input type="checkbox" {{ (isset($setting->thamdinhgia->congbo) && $setting->thamdinhgia->congbo == 1) ? 'checked' : '' }} value="1" name="roles[thamdinhgia][congbo]"/></td>
+                                        <td>Công bố thẩm định giá</td>
                                     </tr>
                                     </tbody>
                                 </table>
