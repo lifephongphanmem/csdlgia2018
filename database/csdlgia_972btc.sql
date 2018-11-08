@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2018 at 09:26 AM
+-- Generation Time: Nov 08, 2018 at 02:33 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -1307,6 +1307,13 @@ CREATE TABLE `general-configs` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `general-configs`
+--
+
+INSERT INTO `general-configs` (`id`, `tendonvi`, `maqhns`, `diachi`, `tel`, `thutruong`, `ketoan`, `nguoilapbieu`, `diadanh`, `setting`, `thongtinhd`, `thoihanlt`, `thoihanvt`, `thoihangs`, `thoihantacn`, `sodvvt`, `created_at`, `updated_at`) VALUES
+(1, 'Sở Tài Chính tỉnh Cuộc Sống', '09876543', 'Cuộc Sống - Thành Phố Hà Nội', 'Cuộc Sống', 'Nguyễn Thị Minh Tuyết', 'Nguyễn Thị Mỹ Hạnh', 'Nguyễn Thị Mỹ Hường', 'Cuộc Sống', '{\"bog\":{\"index\":\"1\"},\"dinhgia\":{\"index\":\"1\"},\"thamdinhgia\":{\"index\":\"1\"},\"kkgia\":{\"index\":\"1\"},\"vbqlnn\":{\"index\":\"1\"}}', '', 0, 0, 0, 0, 0, '2018-11-07 09:17:11', '2018-11-07 09:20:56');
+
 -- --------------------------------------------------------
 
 --
@@ -1320,7 +1327,7 @@ CREATE TABLE `giacacloaidat` (
   `macapdo` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `capdo` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `vitri` text COLLATE utf8_unicode_ci,
-  `hienthi` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `hienthi` text COLLATE utf8_unicode_ci,
   `ngaynhap` date DEFAULT NULL,
   `soqd` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `giadat` double NOT NULL DEFAULT '0',
@@ -1338,39 +1345,10 @@ CREATE TABLE `giacacloaidat` (
 --
 
 INSERT INTO `giacacloaidat` (`id`, `maso`, `magoc`, `macapdo`, `capdo`, `vitri`, `hienthi`, `ngaynhap`, `soqd`, `giadat`, `sapxep`, `ghichu`, `mahuyen`, `username`, `thaotac`, `created_at`, `updated_at`) VALUES
-(1, '1', '', '1', '1', 'Phường Mai Dịch', NULL, NULL, '', 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 07:24:48', '2018-11-02 08:42:38'),
-(2, '2', '', '2', '1', 'Khu vực 2', NULL, NULL, '001', 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 07:28:36', '2018-10-02 08:00:39'),
-(3, '3', '', '3', '1', 'Khu vực 3', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 08:04:09', '2018-10-02 08:04:09'),
-(16, '1.1', '1', '1', '2', 'Đường Hồ Tùng Mậu', NULL, NULL, '', 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 09:29:15', '2018-11-02 08:42:59'),
-(17, '1.2', '1', '2', '2', 'Đường Xuân Thủy', NULL, NULL, '', 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 09:29:39', '2018-11-02 08:43:13'),
-(18, '1.1.1', '1.1', '1', '3', 'Đoạn từ ngã tư giao đường Lê Đức Thọ đến Cầu Diễn', NULL, NULL, '', 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 09:30:26', '2018-11-02 08:45:13'),
-(27, '1.2.1', '1.2', '1', '3', '1.2.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 12:56:51', '2018-10-02 12:56:51'),
-(28, '2.1', '2', '1', '2', '2.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 12:57:32', '2018-10-02 12:57:32'),
-(29, '3.1', '3', '1', '2', '3.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 12:57:48', '2018-10-02 12:57:48'),
-(30, '3.1.1', '3.1', '1', '3', '3.1.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 12:58:18', '2018-10-02 12:58:18'),
-(31, '1.3', '1', '3', '2', 'Đường Phạm Văn Đồng', NULL, NULL, '', 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 12:58:42', '2018-11-02 08:43:30'),
-(32, '1.3.1', '1.3', '1', '3', '1.3.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 12:59:11', '2018-10-02 12:59:11'),
-(33, '4', NULL, '4', '1', 'Khu vực 4', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 13:02:04', '2018-10-02 13:02:04'),
-(34, '4.1', '4', '1', '2', '4.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 13:02:13', '2018-10-02 13:02:13'),
-(35, '5', NULL, '5', '1', 'Khu vực 5', NULL, NULL, '', 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 13:02:25', '2018-10-02 13:03:02'),
-(36, '5.1', '5', '1', '2', '5.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 13:03:09', '2018-10-02 13:03:09'),
-(37, '5.1.1', '5.1', '1', '3', '5.1.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 13:07:25', '2018-10-02 13:07:25'),
-(38, '5.1.1.1', '5.1.1', '1', '4', '5.1.1.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 13:07:37', '2018-10-02 13:07:37'),
-(39, '5.1.1.1.1', '5.1.1.1', '1', '5', '5.1.1.1.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 13:07:52', '2018-10-02 13:07:52'),
-(40, '5.1.1.1.1.1', '5.1.1.1.1', '1', '6', '5.1.1.1.1.1', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 13:08:18', '2018-10-02 13:08:18'),
-(41, '5.1.1.1.1.1.1', '5.1.1.1.1.1', '1', '7', '5.1.1.1.1.1.1', NULL, NULL, '001', 4000000, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 13:08:38', '2018-10-04 01:26:33'),
-(42, '5.2', '5', '2', '2', '5.2', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 13:09:09', '2018-10-02 13:09:09'),
-(44, '1.4', '1', '4', '2', '1.4', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-10-02 13:23:28', '2018-10-02 13:23:28'),
-(45, '1', NULL, '1', '1', 'Quận 1', NULL, NULL, NULL, 0, NULL, NULL, 'QHBT', NULL, NULL, '2018-10-03 02:32:37', '2018-10-03 02:32:37'),
-(46, '1.1', '1', '1', '2', 'Quận 1- Huyện 1', NULL, NULL, NULL, 0, NULL, NULL, 'QHBT', NULL, NULL, '2018-10-03 02:32:47', '2018-10-03 02:32:47'),
-(47, '1.1.1', '1.1', '1', '3', 'Quận 1- Huyện 1- Xã 1', NULL, NULL, '', 0, NULL, NULL, 'QHBT', NULL, NULL, '2018-10-03 02:33:03', '2018-10-03 02:33:25'),
-(48, '1.1.1.1', '1.1.1', '1', '4', 'Quận 1- Huyện 1- Xã 1- Phường 1', NULL, NULL, NULL, 0, NULL, NULL, 'QHBT', NULL, NULL, '2018-10-03 02:33:49', '2018-10-03 02:33:49'),
-(49, '1.1.1.1.1', '1.1.1.1', '1', '5', 'Quận 1- Huyện 1- Xã 1- Phường 1 - Tổ 1 ', NULL, NULL, NULL, 0, NULL, NULL, 'QHBT', NULL, NULL, '2018-10-03 02:34:20', '2018-10-03 02:34:20'),
-(50, '1.1.1.1.1.1', '1.1.1.1.1', '1', '6', 'Quận 1- Huyện 1- Xã 1- Phường 1 - Tổ 1 - Xóm 1', NULL, NULL, NULL, 0, NULL, NULL, 'QHBT', NULL, NULL, '2018-10-03 02:34:38', '2018-10-03 02:34:38'),
-(51, '1.1.1.1.1.1.1', '1.1.1.1.1.1', '1', '7', 'Quận 1- Huyện 1- Xã 1- Phường 1 - Tổ 1  - Xóm 1 - Nhà 1', NULL, NULL, NULL, 0, NULL, NULL, 'QHBT', NULL, NULL, '2018-10-03 02:35:02', '2018-10-03 02:35:02'),
-(52, '1.1.2', '1.1', '2', '3', 'Đoạn từ ngã tư cầu vượt Mai Dịch đến ngã tư giao đường Lê Đức Thọ', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-11-02 08:44:23', '2018-11-02 08:44:23'),
-(53, '1.1.1.2', '1.1.1', '2', '4', 'Trong ngõ cách đường từ 10m trở lên', NULL, NULL, '', 10000000, NULL, NULL, 'QCG', NULL, NULL, '2018-11-02 08:46:28', '2018-11-02 08:47:27'),
-(54, '1.1.1.3', '1.1.1', '3', '4', 'Mặt đường ', NULL, NULL, '', 15000000, NULL, NULL, 'QCG', NULL, NULL, '2018-11-02 08:47:54', '2018-11-02 08:48:14');
+(55, '1', NULL, '1', '1', 'Phường Mai Dịch', NULL, NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-11-06 02:06:41', '2018-11-06 02:06:41'),
+(56, '1.1', '1', '1', '2', 'Đường Phạm Văn Đồng', 'Phường Mai Dịch', NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-11-06 02:09:02', '2018-11-06 02:09:02'),
+(57, '1.1.1', '1.1', '1', '3', 'Ngõ 1', 'Phường Mai Dịch - Đường Phạm Văn Đồng', NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-11-06 02:09:27', '2018-11-06 02:09:27'),
+(58, '1.1.1.1', '1.1.1', '1', '4', 'Ngách 1', 'Phường Mai Dịch - Đường Phạm Văn Đồng - Ngõ 1', NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-11-06 02:09:50', '2018-11-06 02:09:50');
 
 -- --------------------------------------------------------
 
@@ -2763,7 +2741,12 @@ INSERT INTO `viewpage` (`id`, `ip`, `session`, `created_at`, `updated_at`) VALUE
 (48, '::1', 'ZggDi3UGVgC6k9Pyn682Sxx0iCD6Vv8rlWIMbBF4', '2018-11-03 16:12:57', '2018-11-03 16:12:57'),
 (49, '::1', 'jX7ksUi4bAsRM6J6pzFkVUFrbrlJQUUdGV3p9AOp', '2018-11-04 01:23:49', '2018-11-04 01:23:49'),
 (50, '::1', 'yjISJwmZCz6jbTKBzxtLgRvldlSocIfrtD3G3VtI', '2018-11-04 08:12:56', '2018-11-04 08:12:56'),
-(51, '::1', 'UYf7VdUTXixrFZn7Pi2yGKkQwc4KJstWJBkv1czd', '2018-11-05 02:30:15', '2018-11-05 02:30:15');
+(51, '::1', 'UYf7VdUTXixrFZn7Pi2yGKkQwc4KJstWJBkv1czd', '2018-11-05 02:30:15', '2018-11-05 02:30:15'),
+(52, '::1', 'MZigfiBDN7shGX74XiKophWCtzZBOWIbLH8nyjEU', '2018-11-06 01:56:04', '2018-11-06 01:56:04'),
+(53, '::1', '8f2IaOzFaNf1NUhvR0lkwExM5BE53VvyGM1IAh7O', '2018-11-07 02:55:17', '2018-11-07 02:55:17'),
+(54, '::1', 'B2T4CM7c41RbV4RWKptcoNQ3qu4ZBUdQdSJ9su1K', '2018-11-07 03:52:25', '2018-11-07 03:52:25'),
+(55, '::1', 'IpUp3JRfEc2hYCbbtrHpDjTVWlH1JC2lbw3Is1hk', '2018-11-07 07:32:29', '2018-11-07 07:32:29'),
+(56, '::1', '2MUhsTTdcg0RulVtpfiOgZyxGFNjf7vbRMBajvTy', '2018-11-07 07:35:49', '2018-11-07 07:35:49');
 
 --
 -- Indexes for dumped tables
@@ -3261,12 +3244,12 @@ ALTER TABLE `dvkcbctdf`
 -- AUTO_INCREMENT for table `general-configs`
 --
 ALTER TABLE `general-configs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `giacacloaidat`
 --
 ALTER TABLE `giacacloaidat`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 --
 -- AUTO_INCREMENT for table `giahhdvk`
 --
@@ -3466,7 +3449,7 @@ ALTER TABLE `vanbanqlnn`
 -- AUTO_INCREMENT for table `viewpage`
 --
 ALTER TABLE `viewpage`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;COMMIT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
