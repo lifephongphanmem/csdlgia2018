@@ -117,7 +117,7 @@
                 <li><a href="{{url('thongtindoanhnghiep')}}">Thông tin doanh nghiệp</a></li>
                 @endif
             @endif
-            <li>
+            <!--li>
                 <a href="javascript:;">
                     <span class="title">Vận tải xe khách</span>
                     <span class="arrow"></span>
@@ -152,7 +152,7 @@
                 <ul class="sub-menu" style="display: none;">
                     <li><a href="">Kê khai giá</a> </li>
                 </ul>
-            </li>
+            </li-->
         @endif
         <!--li>
             <a href="javascript:;">

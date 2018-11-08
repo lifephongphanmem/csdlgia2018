@@ -65,7 +65,7 @@
                 </li>
             </ul>
         </li>
-        <li>
+        <!--li>
             <a href="javascript:;">
                 Giá thuê, mua nhà XH<span class="arrow"></span>
             </a>
@@ -128,7 +128,7 @@
                     <a href="#">Sample Link 3</a>
                 </li>
             </ul>
-        </li>
+        </li-->
         <li>
             <a href="javascript:;">
                 Giá DV KCB<span class="arrow"></span>
