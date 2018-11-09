@@ -48,9 +48,7 @@ class GiaHhDvKController extends Controller
             return view('manage.dinhgia.giahhdvk.kekhai.index')
                 ->with('model', $model)
                 ->with('modeldb', $modeldb)
-                ->with('nam', $inputs['nam'])
-                ->with('district', $inputs['district'])
-                ->with('trangthai', $inputs['trangthai'])
+                ->with('inputs',$inputs)
                 ->with('m_nhom', $m_nhom)
                 ->with('pageTitle', 'Thông tin hồ sơ giá hàng hóa dịch vụ');
 

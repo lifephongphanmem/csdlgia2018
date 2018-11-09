@@ -5,7 +5,7 @@
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <input type="checkbox" {{ (isset($permission->dinhgia->index) && $permission->dinhgia->index == 1) ? 'checked' : '' }} value="1" name="roles[hhtt][index]"/> Định giá
+                    <input type="checkbox" {{ (isset($permission->dinhgia->index) && $permission->dinhgia->index == 1) ? 'checked' : '' }} value="1" name="roles[dinhgia][index]"/> Định giá
                 </div>
                 <div class="tools">
                     <a href="" class="expand" data-original-title="" title="">
@@ -14,43 +14,20 @@
             </div>
             <div class="portlet-body form" style="display: none;">
                 <div class="form-body">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <table class="table table-striped table-bordered table-hover">
-                                <thead class="action">
-                                <tr>
-                                    <th class="table-checkbox" width="5%">
-                                        <!--input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/-->
-                                    </th>
-                                    <th>Chức năng</th>
-
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td><input type="checkbox" {{ (isset($permission->hhtt->index) && $permission->hhtt->index == 1) ? 'checked' : '' }} value="1" name="roles[hhtt][index]"/></td>
-                                    <td>Xem</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" {{ (isset($permission->hhtt->create) && $permission->hhtt->create == 1) ? 'checked' : '' }} value="1" name="roles[hhtt][create]"/></td>
-                                    <td>Thêm mới</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" {{ (isset($permission->hhtt->edit) && $permission->hhtt->edit == 1) ? 'checked' : '' }} value="1" name="roles[hhtt][edit]"/></td>
-                                    <td>Chỉnh sửa</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" {{ (isset($permission->hhtt->delete) && $permission->hhtt->delete == 1) ? 'checked' : '' }} value="1" name="roles[hhtt][delete]"/></td>
-                                    <td>Xóa</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" {{ (isset($permission->hhtt->approve) && $permission->hhtt->approve == 1) ? 'checked' : '' }} value="1" name="roles[hhtt][approve]"/></td>
-                                    <td>Xét duyệt</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                    @include('includes.per.include.dinhgia.giacldat')
+                    @include('includes.per.include.dinhgia.giadaugiadat')
+                    @include('includes.per.include.dinhgia.giathuematdatnuoc')
+                    @include('includes.per.include.dinhgia.giarung')
+                    @include('includes.per.include.dinhgia.giathuemuanhaxh')
+                    @include('includes.per.include.dinhgia.gianuocsh')
+                    @include('includes.per.include.dinhgia.giathuetsc')
+                    @include('includes.per.include.dinhgia.giadvgddt')
+                    @include('includes.per.include.dinhgia.giadvkcb')
+                    @include('includes.per.include.dinhgia.trogiatrocuoc')
+                    @include('includes.per.include.dinhgia.giahhdvk')
+                    @include('includes.per.include.dinhgia.giathuetn')
+                    @include('includes.per.include.dinhgia.gialephitruocba')
+                    @include('includes.per.include.dinhgia.giaphilephi')
                 </div>
             </div>
         </div>

@@ -42,6 +42,13 @@
                 var url = '/giarung?' + namhs + trangthai;
                 window.location.href = url;
             });
+            $('#district').change(function() {
+                var namhs = '&nam=' + $('#nam').val();
+                var trangthai = '&trangthai=' + $('#trangthai').val();
+                var district = '&district=' + $('#district').val();
+                var url = '/giarung?' + namhs + trangthai + district;
+                window.location.href = url;
+            });
 
         });
         function getId(id){
@@ -74,8 +81,10 @@
                     <div class="caption">
                     </div>
                     <div class="actions">
-                        <a href="{{url('giarung/create')}}" class="btn btn-default btn-sm">
+                        @if(can('kkgiarung','create'))
+                        <a href="{{url('giarung/create?&district='.$inputs['district'])}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
+                        @endif
                         <!--a href="" class="btn btn-default btn-sm">
                             <i class="fa fa-print"></i> Print </a-->
                     </div>
@@ -89,7 +98,7 @@
                                     @if ($nam_start = intval(date('Y')) - 5 ) @endif
                                     @if ($nam_stop = intval(date('Y')) + 1 ) @endif
                                     @for($i = $nam_start; $i <= $nam_stop; $i++)
-                                        <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>Năm {{$i}}</option>
+                                        <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
                                     @endfor
                                 </select>
                             </div>
@@ -98,13 +107,27 @@
                             <div class="form-group">
                                 <label>Trạng thái hồ sơ</label>
                                 <select name="trangthai" id="trangthai" class="form-control">
-                                    <option value="CHT" {{$trangthai == 'CHT' ? 'selected' : ''}}>Chưa hoàn thành</option>
-                                    <option value="HT" {{$trangthai == 'HT' ? 'selected' : ''}}>Hoàn thành</option>
-                                    <option value="HHT" {{$trangthai == 'HHT' ? 'selected' : ''}}>Hủy hoàn thành</option>
-                                    <option value="CB" {{$trangthai == 'CB' ? 'selected' : ''}}>Công bố</option>
+                                    @if(session('admin')->level == 'X')
+                                    <option value="CHT" {{$inputs['trangthai'] == 'CHT' ? 'selected' : ''}}>Chưa hoàn thành</option>
+                                    @endif
+                                    <option value="HT" {{$inputs['trangthai'] == 'HT' ? 'selected' : ''}}>Hoàn thành</option>
+                                    <option value="HHT" {{$inputs['trangthai'] == 'HHT' ? 'selected' : ''}}>Hủy hoàn thành</option>
+                                    <option value="CB" {{$inputs['trangthai'] == 'CB' ? 'selected' : ''}}>Công bố</option>
                                 </select>
                             </div>
                         </div>
+                        @if(session('admin')->level != 'X')
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Địa bàn quản lý</label>
+                                <select name="district" id="district" class="form-control">
+                                    @foreach($districts as $district)
+                                        <option value="{{$district->district}}" {{$district->district == $inputs['district'] ? 'selected' : ''}}>{{$district->diaban}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        @endif
                     </div>
                     <div class="table-toolbar">
                     </div>
@@ -141,23 +164,35 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{url('giarung/'.$tt->id)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                <a href="{{url('giarung/'.$tt->id)}}" class="btn btn-default btn-xs mbs" target="_blank"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                 @if($tt->trangthai == 'CHT' || $tt->trangthai == 'HHT')
+                                    @if(can('kkgiarung','edit'))
                                     <a href="{{url('giarung/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs">
                                         <i class="fa fa-edit"></i> Chỉnh sửa </a>
+                                    @endif
+                                    @if(can('kkgiarung','approve'))
                                     <button type="button" onclick="confirmHoanthanh('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn thành</button>
+                                    @endif
                                     @if($tt->trangthai == 'CHT')
+                                        @if(can('kkgiarung','delete'))
                                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal" onclick="getId('{{$tt->id}}')">
                                             <i class="fa fa-trash-o"></i>&nbsp; Xóa</button>
+                                        @endif
                                     @endif
                                 @endif
                                 @if($tt->trangthai == 'HT' || $tt->trangthai == 'CB')
+                                    @if(session('admin')->level == 'H' || session('admin')->level == 'T')
                                     @if($tt->trangthai == 'HT')
+                                        @if(can('thgiarung','congbo'))
                                         <button type="button" onclick="confirmCB('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal-confirm" data-toggle="modal"><i class="fa fa-send"></i>&nbsp;
                                             Công bố</button>
+                                        @endif
                                     @endif
-                                    <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
-                                        Hủy hoàn thành</button>
+                                    @if(can('kkgiarung','approve'))
+                                        <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
+                                            Hủy hoàn thành</button>
+                                    @endif
+                                    @endif
                                 @endif
 
                             </td>

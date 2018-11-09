@@ -1,5 +1,5 @@
 @if(canGeneral('thamdinhgia','index'))
-@if(can('thamdinh','index'))
+@if(can('thamdinhgia','index'))
 <li class="">
     <a href="javascript:;">
         <i class="icon-folder"></i>
@@ -12,9 +12,11 @@
             <a href="{{url('thamdinhgia')}}">Hồ sơ thẩm định giá</a>
         </li>
         @endif
+        @if(can('ththamdinhgia','timkiem'))
         <li>
             <a href="{{url('timkiemthamdinhgia')}}">Tìm kiếm thông tin</a>
         </li>
+        @endif
         @if(can('ththamdinhgia','baocao'))
         <li>
             <a href="{{url('baocaoththamdinhgia')}}">Báo cáo tổng hợp</a>

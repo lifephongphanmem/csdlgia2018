@@ -152,6 +152,7 @@ Route::resource('nhomphilephi','DmPhiLePhiController');
 Route::post('nhomphilephi/update','DmPhiLePhiController@update');
 
 Route::resource('philephi','PhiLePhiController');
+Route::post('philephi/create','PhiLePhiController@create');
 Route::post('philephi/delete','PhiLePhiController@destroy');
 
 Route::post('philephi/hoanthanh','PhiLePhiController@hoanthanh');

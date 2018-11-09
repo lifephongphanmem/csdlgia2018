@@ -14,6 +14,7 @@ class GiaRung extends Model
         'soqd',
         'ngayapdung',
         'trangthai',
-        'ghichu'
+        'ghichu',
+        'district'
     ];
 }

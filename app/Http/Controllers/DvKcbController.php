@@ -46,9 +46,7 @@ class DvKcbController extends Controller
             return view('manage.dinhgia.dvkcb.kekhai.index')
                 ->with('model',$model)
                 ->with('modeldv',$modeldv)
-                ->with('nam',$inputs['nam'])
-                ->with('maxa',$inputs['maxa'])
-                ->with('trangthai',$inputs['trangthai'])
+                ->with('inputs',$inputs)
                 ->with('m_nhomdvkcb',$m_nhomdvkcb)
                 ->with('pageTitle','Thông tin hồ sơ giá dịch vụ khám chữa bệnh');
 

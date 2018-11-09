@@ -79,6 +79,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
@@ -87,7 +88,7 @@
                             </div>
                         </div>
                     </div>
-                    @endif
+
                     <input type="hidden" name="district" id="district" value="{{$district}}">
 
                     <table id="example-advanced" class="treetable">
@@ -107,10 +108,16 @@
                                 <td>{{$cap1->soqd}}</td>
                                 <td style="text-align: right; font-weight: bold">{{dinhdangso($cap1->giadat)}}</td>
                                 <td>
+                                    @if(can('kkgiacldat','create'))
                                     <button type="button" onclick="addchirld('{{$cap1->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                                    @endif
+                                    @if(can('kkgiacldat','edit'))
                                     <button type="button" onclick="editvitri('{{$cap1->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                    @endif
                                     @if($cap1->b_xoa)
+                                        @if(can('kkgiacldat','delete'))
                                         <button type="button" onclick="confirmDelete('{{$cap1->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                        @endif
                                     @endif
                                 </td>
                             </tr>
@@ -121,10 +128,16 @@
                                     <td>{{$cap2->soqd}}</td>
                                     <td style="text-align: right; font-weight: bold">{{dinhdangso($cap2->giadat)}}</td>
                                     <td>
+                                        @if(can('kkgiacldat','create'))
                                         <button type="button" onclick="addchirld('{{$cap2->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                                        @endif
+                                        @if(can('kkgiacldat','edit'))
                                         <button type="button" onclick="editvitri('{{$cap2->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                        @endif
                                         @if($cap2->b_xoa)
+                                            @if(can('kkgiacldat','delete'))
                                             <button type="button" onclick="confirmDelete('{{$cap2->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                            @endif
                                         @endif
                                     </td>
                                 </tr>
@@ -135,10 +148,16 @@
                                         <td>{{$cap3->soqd}}</td>
                                         <td style="text-align: right; font-weight: bold">{{dinhdangso($cap3->giadat)}}</td>
                                         <td>
+                                            @if(can('kkgiacldat','create'))
                                             <button type="button" onclick="addchirld('{{$cap3->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                                            @endif
+                                            @if(can('kkgiacldat','edit'))
                                             <button type="button" onclick="editvitri('{{$cap3->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                            @endif
                                             @if($cap3->b_xoa)
+                                                @if(can('kkgiacldat','delete'))
                                                 <button type="button" onclick="confirmDelete('{{$cap3->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                @endif
                                             @endif
                                         </td>
                                     </tr>
@@ -149,10 +168,16 @@
                                             <td>{{$cap4->soquyetdinh}}</td>
                                             <td style="text-align: right; font-weight: bold">{{dinhdangso($cap4->giadat)}}</td>
                                             <td>
+                                                @if(can('kkgiacldat','create'))
                                                 <button type="button" onclick="addchirld('{{$cap4->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                                                @endif
+                                                @if(can('kkgiacldat','edit'))
                                                 <button type="button" onclick="editvitri('{{$cap4->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                @endif
                                                 @if($cap4->b_xoa)
+                                                    @if(can('kkgiacldat','delete'))
                                                     <button type="button" onclick="confirmDelete('{{$cap4->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                    @endif
                                                 @endif
                                             </td>
                                         </tr>
@@ -163,10 +188,16 @@
                                                 <td>{{$cap5->soqd}}</td>
                                                 <td style="text-align: right; font-weight: bold">{{dinhdangso($cap5->giadat)}}</td>
                                                 <td>
+                                                    @if(can('kkgiacldat','create'))
                                                     <button type="button" onclick="addchirld('{{$cap5->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                                                    @endif
+                                                    @if(can('kkgiacldat','edit'))
                                                     <button type="button" onclick="editvitri('{{$cap5->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                    @endif
                                                     @if($cap5->b_xoa)
+                                                        @if(can('kkgiacldat','delete'))
                                                         <button type="button" onclick="confirmDelete('{{$cap5->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                        @endif
                                                     @endif
                                                 </td>
                                             </tr>
@@ -177,10 +208,16 @@
                                                     <td>{{$cap6->soqd}}</td>
                                                     <td style="text-align: right; font-weight: bold">{{dinhdangso($cap6->giadat)}}</td>
                                                     <td>
+                                                        @if(can('kkgiacldat','create'))
                                                         <button type="button" onclick="addchirld('{{$cap6->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                                                        @endif
+                                                        @if(can('kkgiacldat','edit'))
                                                         <button type="button" onclick="editvitri('{{$cap6->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                        @endif
                                                         @if($cap6->b_xoa)
+                                                            @if(can('kkgiacldat','delete'))
                                                             <button type="button" onclick="confirmDelete('{{$cap6->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                            @endif
                                                         @endif
                                                     </td>
                                                 </tr>
@@ -192,9 +229,13 @@
                                                         <td style="text-align: right; font-weight: bold">{{dinhdangso($cap7->giadat)}}</td>
                                                         <td>
                                                             <!--button type="button" onclick="addchirld('{{$cap7->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button-->
+                                                            @if(can('kkgiacldat','edit'))
                                                             <button type="button" onclick="editvitri('{{$cap7->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                            @endif
                                                             @if($cap7->b_xoa)
+                                                                @if(can('kkgiacldat','delete'))
                                                                 <button type="button" onclick="confirmDelete('{{$cap7->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                                @endif
                                                             @endif
                                                         </td>
                                                     </tr>

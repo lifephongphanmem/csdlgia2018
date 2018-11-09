@@ -19,18 +19,14 @@ class GiaThueDatNuocController extends Controller
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
 
 
-            if(session('admin')->level == 'T') {
-                $modeldb = DiaBanHd::where('level','H')->get();
-                $inputs['diaban'] = isset($inputs['diaban']) ? $inputs['diaban'] : $modeldb->first()->district;
-                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
-            }elseif(session('admin')->level == 'H') {
-                $modeldb = DiaBanHd::where('level','H')->get();
-                $inputs['diaban'] = isset($inputs['diaban']) ? $inputs['diaban'] : $modeldb->first()->district;
-                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
-            }else {
+            if(session('admin')->level == 'X') {
                 $modeldb = DiaBanHd::where('level','H')->where('district', session('admin')->district)->get();
                 $inputs['diaban'] = isset($inputs['diaban']) ? $inputs['diaban'] : session('admin')->district;
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CHT';
+            }else {
+                $modeldb = DiaBanHd::where('level','H')->get();
+                $inputs['diaban'] = isset($inputs['diaban']) ? $inputs['diaban'] : $modeldb->first()->district;
+                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
             }
 
             $model = GiaThueDatNuoc::whereYear('ngayapdung',$inputs['nam']);
@@ -43,9 +39,7 @@ class GiaThueDatNuocController extends Controller
             return view('manage.dinhgia.thuematdatmatnuoc.kekhai.index')
                 ->with('model',$model)
                 ->with('modeldb',$modeldb)
-                ->with('nam',$inputs['nam'])
-                ->with('diaban',$inputs['diaban'])
-                ->with('trangthai',$inputs['trangthai'])
+                ->with('inputs',$inputs)
                 ->with('pageTitle','Thông tin hồ sơ thuê mặt đất, mặt nước');
 
         }else
@@ -55,6 +49,8 @@ class GiaThueDatNuocController extends Controller
     public function create(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
+            if(session('admin')->level == 'X')
+                $inputs['diaban'] = session('admin')->district;
             $modelct = GiaThueDatNuocCtDf::where('district',$inputs['diaban'])->get();
             return view('manage.dinhgia.thuematdatmatnuoc.kekhai.create')
                 ->with('modelct',$modelct)

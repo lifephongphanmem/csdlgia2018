@@ -28,11 +28,10 @@ class GiaRungCtDfController extends Controller
             $inputs['dongiat50'] = getMoneyToDb($inputs['dongiat50']);
             $inputs['dongiat1'] = getMoneyToDb($inputs['dongiat1']);
             $inputs['dongiaxp'] = getMoneyToDb($inputs['dongiaxp']);
-            $inputs['mahuyen'] = session('admin')->mahuyen != '' ? session('admin')->mahuyen : 'T' ;
             $modeladd = new GiaRungCtDf();
             $modeladd->create($inputs);
 
-            $model = GiaRungCtDf::where('mahuyen',$inputs['mahuyen'])
+            $model = GiaRungCtDf::where('district',$inputs['district'])
                 ->join('dmgiarung','dmgiarung.manhom','=','giarungctdf.manhom')
                 ->select('giarungctdf.*','dmgiarung.tennhom')->get();
 
@@ -111,7 +110,7 @@ class GiaRungCtDfController extends Controller
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-12">';
             $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Nhóm rừng</b><span class="require">*</span></label>';
-            $result['message'] .= '<div><select name="thapdungedit" id="thapdungedit" class="form-control">';
+            $result['message'] .= '<div><select name="manhomedit" id="manhomedit" class="form-control">';
             foreach($modelnhom as $nhom){
                 if($nhom->manhom == $model->manhom)
                     $result['message'] .= '<option value="'.$nhom->manhom.'" selected>'.$nhom->tennhom.' </option>';
@@ -188,12 +187,11 @@ class GiaRungCtDfController extends Controller
             $inputs['dongiat50'] = getMoneyToDb($inputs['dongiat50']);
             $inputs['dongiat1'] = getMoneyToDb($inputs['dongiat1']);
             $inputs['dongiaxp'] = getMoneyToDb($inputs['dongiaxp']);
-            $inputs['mahuyen'] = session('admin')->mahuyen != '' ? session('admin')->mahuyen : 'T' ;
             $modeladd = GiaRungCtDf::where('id',$inputs['id'])->first();
             unset($inputs['id']);
             $modeladd->update($inputs);
 
-            $model = GiaRungCtDf::where('mahuyen',$inputs['mahuyen'])
+            $model = GiaRungCtDf::where('district',$inputs['district'])
                 ->join('dmgiarung','dmgiarung.manhom','=','giarungctdf.manhom')
                 ->select('giarungctdf.*','dmgiarung.tennhom')->get();
 
@@ -260,11 +258,10 @@ class GiaRungCtDfController extends Controller
         }
         $inputs = $request->all();
         if(isset($inputs['id'])){
-            $inputs['mahuyen'] = session('admin')->mahuyen != '' ? session('admin')->mahuyen : 'T' ;
             $modeladd = GiaRungCtDf::where('id',$inputs['id'])->first();
             $modeladd->delete();
 
-            $model = GiaRungCtDf::where('mahuyen',$inputs['mahuyen'])
+            $model = GiaRungCtDf::where('district',$inputs['district'])
                 ->join('dmgiarung','dmgiarung.manhom','=','giarungctdf.manhom')
                 ->select('giarungctdf.*','dmgiarung.tennhom')->get();
 

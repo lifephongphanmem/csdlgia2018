@@ -62,6 +62,7 @@
                     dongiat50: $('#dongiat50').val(),
                     dongiat1: $('#dongiat1').val(),
                     dongiaxp: $('#dongiaxp').val(),
+                    district: $('#district').val()
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -114,7 +115,8 @@
                     dongiasd: $('#dongiasdedit').val(),
                     dongiat50: $('#dongiat50edit').val(),
                     dongiat1: $('#dongiat1edit').val(),
-                    dongiaxp: $('#dongiaxpedit').val()
+                    dongiaxp: $('#dongiaxpedit').val(),
+                    district: $('#district').val()
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -142,7 +144,8 @@
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
-                    id: $('input[name="iddelete"]').val()
+                    id: $('input[name="iddelete"]').val(),
+                    district: $('#district').val()
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -167,7 +170,7 @@
 
 
     <h3 class="page-title">
-        Thông tin hồ sơ lệ phí trước bạ<small> thêm mới</small>
+        Thông tin hồ sơ giá rừng<small> thêm mới</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -182,7 +185,7 @@
                     <!-- BEGIN FORM-->
                     {!! Form::open(['url'=>'giarung', 'id' => 'create_giarung', 'class'=>'horizontal-form']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
-
+                        <input type="hidden" name="district" id="district" value="{{$inputs['district']}}">
                         <div class="form-body">
 
                             <div class="row">

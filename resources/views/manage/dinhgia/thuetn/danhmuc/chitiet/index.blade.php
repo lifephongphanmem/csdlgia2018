@@ -102,7 +102,10 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
+                        @if(can('dmgiathuetn','create'))
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#modal-create" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm mới</button>
+                        @endif
+                        <a href="{{url('nhomthuetn')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                     </div>
                 </div>
                 <div class="portlet-body">
@@ -139,7 +142,9 @@
                                 @endif
                             </td>
                             <td>
+                                @if(can('dmgiathuetn','edit'))
                                 <button type="button" onclick="ClickEdit('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

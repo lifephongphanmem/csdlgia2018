@@ -31,15 +31,22 @@
             TableManaged.init();
         });
         $(function(){
+            $('#district').change(function() {
+                var district = '&district=' + $('#district').val();
+                var url = 'timkiemgiarung?' + district ;
+                window.location.href = url;
+            });
             $('#nam').change(function() {
                 var nam = '&nam=' + $('#nam').val();
-                var url = 'timkiemgiarung?' + nam ;
+                var district = '&district=' + $('#district').val();
+                var url = 'timkiemgiarung?' + district + nam ;
                 window.location.href = url;
             });
             $('#loairung').change(function() {
+                var district = '&district=' + $('#district').val();
                 var loairung = '&loairung=' + $('#loairung').val();
                 var nam = '&nam=' + $('#nam').val();
-                var url = 'timkiemgiarung?' + nam + loairung;
+                var url = 'timkiemgiarung?' + district + nam + loairung;
                 window.location.href = url;
             });
 
@@ -61,18 +68,27 @@
                     <div class="row">
                         <div class="col-md-3">
                             <label>Năm</label>
+                            <select name="district" id="district" class="form-control">
+                                <option value="">--Chọn địa bàn--</option>
+                                @foreach($districts as $district)
+                                    <option value="{{$district->district}}" {{$district->district == $inputs['district'] ? 'selected' : ''}}>{{$district->diaban}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Năm</label>
                             <select name="nam" id="nam" class="form-control">
                                 @if ($nam_start = intval(date('Y')) - 5 ) @endif
                                 @if ($nam_stop = intval(date('Y')) + 1 ) @endif
                                 @for($i = $nam_start; $i <= $nam_stop; $i++)
-                                    <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>Năm {{$i}}</option>
+                                    <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
                                 @endfor
                             </select>
                         </div>
                         <div class="col-md-3">
                             <label>Loại rừng</label>
                             <div class="form-group">
-                                {!! Form::text('loairung',$loairung, array('id'=>'loairung','class'=>'form-control'))!!}
+                                {!! Form::text('loairung',$inputs['loairung'], array('id'=>'loairung','class'=>'form-control'))!!}
                             </div>
                         </div>
 
@@ -86,6 +102,7 @@
                                 <input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/>
                             </th-->
                             <th width="2%" style="text-align: center">STT</th>
+                            <th>Địa bàn</th>
                             <th style="text-align: center" >Số QĐ</th>
                             <th style="text-align: center">Ngày áp dụng</th>
                             <th style="text-align: center">Nhóm rừng</th>
@@ -101,6 +118,7 @@
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
+                                <td>{{$tt->diaban}}</td>
                                 <td>{{$tt->soqd}}</td>
                                 <td>{{getDayVn($tt->ngayapdung)}}</td>
                                 <td>{{$tt->tennhom}}</td>

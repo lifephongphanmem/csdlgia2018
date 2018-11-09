@@ -12,7 +12,9 @@
             <a href="{{url('dmmhbinhongia')}}">Danh mục MH BOG</a>
         </li>
         @endif
+        @if(can('thbog','timkiem'))
         <li><a href="{{url('timkiemthongtinbog')}}">Tìm kiếm thông tin BOG</a> </li>
+        @endif
         <?php $modelmhbinhongia = \App\DmMhBinhOnGia::all()?>
         @if(can('kkbog','index'))
         @foreach($modelmhbinhongia as $binhongia)

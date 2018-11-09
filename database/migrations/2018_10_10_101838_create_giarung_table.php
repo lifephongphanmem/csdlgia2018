@@ -20,6 +20,7 @@ class CreateGiarungTable extends Migration
             $table->date('ngayapdung')->nullable();
             $table->string('ghichu')->nullable();
             $table->string('trangthai')->nullable();
+            $table->string('district')->nullable();
             $table->timestamps();
         });
     }

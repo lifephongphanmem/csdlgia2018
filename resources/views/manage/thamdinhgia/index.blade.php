@@ -187,15 +187,17 @@
                                         @endif
                                     @endif
                                     @if($tt->trangthai == 'HT' || $tt->trangthai == 'CB')
-                                        @if($tt->trangthai == 'HT')
-                                            @if(can('ththamdinhgia','congbo'))
-                                            <button type="button" onclick="confirmCB('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal-confirm" data-toggle="modal"><i class="fa fa-send"></i>&nbsp;
-                                                Công bố</button>
+                                        @if(session('admin')->level == 'T' || session('admin')->level == 'H')
+                                            @if($tt->trangthai == 'HT')
+                                                @if(can('ththamdinhgia','congbo'))
+                                                <button type="button" onclick="confirmCB('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal-confirm" data-toggle="modal"><i class="fa fa-send"></i>&nbsp;
+                                                    Công bố</button>
+                                                @endif
                                             @endif
-                                        @endif
-                                        @if(can('kkthamdinhgia','approve'))
-                                        <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
-                                            Hủy hoàn thành</button>
+                                            @if(can('kkthamdinhgia','approve'))
+                                            <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
+                                                Hủy hoàn thành</button>
+                                            @endif
                                         @endif
                                     @endif
 

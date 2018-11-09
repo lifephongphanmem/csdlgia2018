@@ -58,8 +58,10 @@
                     <div class="caption">
                     </div>
                     <div class="actions">
+                        @if(can('dmgiacldat','create'))
                         <a href="{{url('dmqdgiadat/create')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
+                        @endif
                         <!--a href="" class="btn btn-default btn-sm">
                             <i class="fa fa-print"></i> Print </a-->
                     </div>
@@ -90,12 +92,14 @@
                             <td>{{$tt->mota}}</td>
                             <td>{{$tt->ghichu}}</td>
                             <td>
+                                @if(can('dmgiacldat','edit'))
                                 <a href="{{url('dmqdgiadat/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs">
                                     <i class="fa fa-edit"></i> Chỉnh sửa </a>
-
+                                @endif
+                                @if(can('dmgiacldat','delete'))
                                 <button type="button" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal" onclick="getId('{{$tt->id}}')">
                                     <i class="fa fa-trash-o"></i>&nbsp; Xóa</button>
-
+                                @endif
                             </td>
                         </tr>
                         @endforeach

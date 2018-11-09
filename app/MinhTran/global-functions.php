@@ -82,6 +82,16 @@ function getPermissionDefault($level) {
         'dinhgia' => array(
             'index' => 1,
         ),
+        //Giá các loại đất
+        'giacldat'=>array(
+            'index'=>1,
+        ),
+        'dmgiacldat'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+        ),
         //Thẩm định giá
         'thamdinhgia' => array(
             'index' => 1,
@@ -112,13 +122,306 @@ function getPermissionDefault($level) {
         ),
     );
     $roles['X'] = array(
+    //Bình ổn giá
         'bog' => array(
             'index' => 1,
         ),
+        'dmbog'=>array(
+            'index'=>1,
+            'create'=>0,
+            'edit'=>0,
+            'delete'=>0,
+        ),
+        'kkbog'=>array(
+            'index'=>1,
+            'create'=>0,
+            'edit'=>0,
+            'delete'=>0,
+        ),
+
+        'thbog'=>array(
+            'baocao'=>1,
+            'congbo'=>0,
+            'timkiem'=>1,
+        ),
+    //End Bình ổn giá
+    //Định giá
         'dinhgia' => array(
             'index' => 1,
         ),
-        //Thẩm định giá
+        //Giá các loại đất
+        'giacldat'=>array(
+            'index'=>1,
+        ),
+        'dmgiacldat'=>array(
+            'index'=>1,
+            'create'=>0,
+            'edit'=>0,
+            'delete'=>0,
+        ),
+        'kkgiacldat'=>array(
+            'index'=>1,
+            'create'=>0,
+            'edit'=>0,
+            'delete'=>0,
+        ),
+        'thgiacldat'=>array(
+            'baocao'=>1,
+            'congbo'=>0,
+            'timkiem'=>1,
+        ),
+        //Giá đấu giá đất
+        'giadaugiadat'=>array(
+            'index'=>1,
+        ),
+        'kkgiadaugiadat'=>array(
+            'index'=>0,
+            'create'=>0,
+            'edit'=>0,
+            'delete'=>0,
+            'approve'=>0,
+        ),
+        'thgiadaugiadat'=>array(
+            'baocao'=>1,
+            'congbo'=>0,
+            'timkiem'=>1,
+        ),
+        //Giá thuê mặt đất, nước
+        'giathuedatnuoc'=>array(
+            'index'=>1,
+        ),
+        'kkgiathuedatnuoc'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thgiathuedatnuoc'=>array(
+            'baocao'=>1,
+            'congbo'=>0,
+            'timkiem'=>1,
+        ),
+        //Giá rừng
+        'giarung'=>array(
+            'index'=>1,
+        ),
+        'dmgiarung'=>array(
+            'index'=>0,
+            'create'=>0,
+            'edit'=>0,
+            'delete'=>0,
+        ),
+        'kkgiarung'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thgiarung'=>array(
+            'baocao'=>1,
+            'congbo'=>0,
+            'timkiem'=>1,
+        ),
+        //Giá thuê mua nhà XH
+        'giathuemuanhaxh'=>array(
+            'index'=>1,
+        ),
+        'kkgiathuemuanhaxh'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thgiathuemuanhaxh'=>array(
+            'baocao'=>1,
+            'congbo'=>0,
+            'timkiem'=>1,
+        ),
+        //Giá nước sạch sinh hoạt
+        'gianuocsh'=>array(
+            'index'=>1,
+        ),
+        'kkgianuocsh'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thgianuocsh'=>array(
+            'baocao'=>1,
+            'congbo'=>0,
+            'timkiem'=>1,
+        ),
+        //Giá thuê tài sản công
+        'giathuetsc'=>array(
+            'index'=>1,
+        ),
+        'kkgiathuetsc'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thgiathuetsc'=>array(
+            'baocao'=>1,
+            'congbo'=>0,
+            'timkiem'=>1,
+        ),
+        //Giá DV GD-DT
+        'giadvgddt'=>array(
+            'index'=>1,
+        ),
+        'kkgiadvgddt'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thgiadvgddt'=>array(
+            'baocao'=>1,
+            'congbo'=>0,
+            'timkiem'=>1,
+        ),
+        //Giá DV KCB
+        'giadvkcb'=>array(
+            'index'=>1,
+        ),
+        'dmgiadvkcb'=>array(
+            'index'=>1,
+            'create'=>0,
+            'edit'=>0,
+            'delete'=>0,
+        ),
+        'kkgiadvkcb'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thgiadvkcb'=>array(
+            'baocao'=>1,
+            'congbo'=>0,
+            'timkiem'=>1,
+        ),
+        //Mức trợ giá, trợ cước
+        'trogiatrocuoc'=>array(
+            'index'=>1,
+        ),
+        'dmtrogiatrocuoc'=>array(
+            'index'=>1,
+            'create'=>0,
+            'edit'=>0,
+            'delete'=>0,
+        ),
+        'kktrogiatrocuoc'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thtrogiatrocuoc'=>array(
+            'baocao'=>1,
+            'congbo'=>0,
+            'timkiem'=>1,
+        ),
+        //Giá HH-DV khác
+        'giahhdvk'=>array(
+            'index'=>1,
+        ),
+        'dmgiahhdvk'=>array(
+            'index'=>1,
+            'create'=>0,
+            'edit'=>0,
+            'delete'=>0,
+        ),
+        'kkgiahhdvk'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thgiahhdvk'=>array(
+            'baocao'=>1,
+            'congbo'=>0,
+            'timkiem'=>1,
+        ),
+        //Giá thuế tài nguyên
+        'giathuetn'=>array(
+            'index'=>1,
+        ),
+        'dmgiathuetn'=>array(
+            'index'=>1,
+            'create'=>0,
+            'edit'=>0,
+            'delete'=>0,
+        ),
+        'kkgiathuetn'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thgiathuetn'=>array(
+            'baocao'=>1,
+            'congbo'=>0,
+            'timkiem'=>1,
+        ),
+        //Giá lệ phí trước bạ
+        'gialephitruocba'=>array(
+            'index'=>1,
+        ),
+        'dmgialephitruocba'=>array(
+            'index'=>1,
+            'create'=>0,
+            'edit'=>0,
+            'delete'=>0,
+        ),
+        'kkgialephitruocba'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thgialephitruocba'=>array(
+            'baocao'=>1,
+            'congbo'=>0,
+            'timkiem'=>1,
+        ),
+        //Giá phí lệ phí
+        'giaphilephi'=>array(
+            'index'=>1,
+        ),
+        'dmgiaphilephi'=>array(
+            'index'=>1,
+            'create'=>0,
+            'edit'=>0,
+            'delete'=>0,
+        ),
+        'kkgiaphilephi'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thgiaphilephi'=>array(
+            'baocao'=>1,
+            'congbo'=>0,
+            'timkiem'=>1,
+        ),
+    //End Định Giá
+    //Thẩm định giá
         'thamdinhgia' => array(
             'index' => 1,
         ),
@@ -132,10 +435,16 @@ function getPermissionDefault($level) {
         'ththamdinhgia'=>array(
             'baocao'=>1,
             'congbo'=>0,
+            'timkiem'=>1,
         ),
+    //End Thẩm định giá
+    //Kê khai giá
         'kkgia'=>array(
             'index'=>1,
         ),
+
+    //End Kê khai giá
+    //Văn bản QLNN
         'vbqlnn'=>array(
             'index'=>1,
         ),
@@ -145,6 +454,7 @@ function getPermissionDefault($level) {
             'edit'=>0,
             'delete'=>0,
         ),
+    //End Văn bản QLNN
     );
     $roles['DVLT'] = array(
         'kkgia'=>array(

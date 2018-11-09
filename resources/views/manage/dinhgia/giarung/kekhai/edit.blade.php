@@ -170,7 +170,7 @@
 
 
     <h3 class="page-title">
-        Thông tin hồ sơ lệ phí trước bạ<small> chỉnh sửa</small>
+        Thông tin hồ sơ giá rừng<small> chỉnh sửa</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -266,7 +266,7 @@
             <div style="text-align: center">
                 <a href="{{url('giarung')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
-                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
+                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
             </div>
             {!! Form::close() !!}
             <!-- END VALIDATION STATES-->
