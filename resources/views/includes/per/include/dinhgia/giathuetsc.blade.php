@@ -5,7 +5,7 @@
         <div class="portlet box green">
             <div class="portlet-title">
                 <div class="caption">
-                    <input type="checkbox" {{ (isset($permission->giathuetsc->index) && $permission->giathuetsc->index == 1) ? 'checked' : '' }} value="1" name="roles[giathuetsc][index]"/>Giá thuê tài sản công
+                    <input type="checkbox" {{ (isset($permission->giathuetscong->index) && $permission->giathuetscong->index == 1) ? 'checked' : '' }} value="1" name="roles[giathuetscong][index]"/>Giá thuê tài sản công
                 </div>
                 <div class="tools">
                     <a href="" class="expand" data-original-title="" title="">
@@ -27,23 +27,23 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td><input type="checkbox" {{ (isset($permission->kkgiathuetsc->index) && $permission->kkgiathuetsc->index == 1) ? 'checked' : '' }} value="1" name="roles[kkgiathuetsc][index]"/></td>
+                                    <td><input type="checkbox" {{ (isset($permission->kkgiathuetscong->index) && $permission->kkgiathuetscong->index == 1) ? 'checked' : '' }} value="1" name="roles[kkgiathuetscong][index]"/></td>
                                     <td>Xem</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" {{ (isset($permission->kkgiathuetsc->create) && $permission->kkgiathuetsc->create == 1) ? 'checked' : '' }} value="1" name="roles[kkgiathuetsc][create]"/></td>
+                                    <td><input type="checkbox" {{ (isset($permission->kkgiathuetscong->create) && $permission->kkgiathuetscong->create == 1) ? 'checked' : '' }} value="1" name="roles[kkgiathuetscong][create]"/></td>
                                     <td>Thêm mới</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" {{ (isset($permission->kkgiathuetsc->edit) && $permission->kkgiathuetsc->edit == 1) ? 'checked' : '' }} value="1" name="roles[kkgiathuetsc][edit]"/></td>
+                                    <td><input type="checkbox" {{ (isset($permission->kkgiathuetscong->edit) && $permission->kkgiathuetscong->edit == 1) ? 'checked' : '' }} value="1" name="roles[kkgiathuetscong][edit]"/></td>
                                     <td>Chỉnh sửa</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" {{ (isset($permission->kkgiathuetsc->delete) && $permission->kkgiathuetsc->delete == 1) ? 'checked' : '' }} value="1" name="roles[kkgiathuetsc][delete]"/></td>
+                                    <td><input type="checkbox" {{ (isset($permission->kkgiathuetscong->delete) && $permission->kkgiathuetscong->delete == 1) ? 'checked' : '' }} value="1" name="roles[kkgiathuetscong][delete]"/></td>
                                     <td>Xóa</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" {{ (isset($permission->kkgiathuetsc->approve) && $permission->kkgiathuetsc->approve == 1) ? 'checked' : '' }} value="1" name="roles[kkgiathuetsc][approve]"/></td>
+                                    <td><input type="checkbox" {{ (isset($permission->kkgiathuetscong->approve) && $permission->kkgiathuetscong->approve == 1) ? 'checked' : '' }} value="1" name="roles[kkgiathuetscong][approve]"/></td>
                                     <td>Xét duyệt</td>
                                 </tr>
                                 </tbody>
@@ -60,15 +60,15 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td><input type="checkbox" {{ (isset($permission->thgiathuetsc->baocao) && $permission->thgiathuetsc->baocao == 1) ? 'checked' : '' }} value="1" name="roles[thgiathuetsc][baocao]"/></td>
+                                    <td><input type="checkbox" {{ (isset($permission->thgiathuetscong->baocao) && $permission->thgiathuetscong->baocao == 1) ? 'checked' : '' }} value="1" name="roles[thgiathuetscong][baocao]"/></td>
                                     <td>Báo cáo tổng hợp</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" {{ (isset($permission->thgiathuetsc->congbo) && $permission->thgiathuetsc->congbo == 1) ? 'checked' : '' }} value="1" name="roles[thgiathuetsc][congbo]"/></td>
+                                    <td><input type="checkbox" {{ (isset($permission->thgiathuetscong->congbo) && $permission->thgiathuetscong->congbo == 1) ? 'checked' : '' }} value="1" name="roles[thgiathuetscong][congbo]"/></td>
                                     <td>Công bố</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" {{ (isset($permission->thgiathuetsc->timkiem) && $permission->thgiathuetsc->timkiem == 1) ? 'checked' : '' }} value="1" name="roles[thgiathuetsc][timkiem]"/></td>
+                                    <td><input type="checkbox" {{ (isset($permission->thgiathuetscong->timkiem) && $permission->thgiathuetscong->timkiem == 1) ? 'checked' : '' }} value="1" name="roles[thgiathuetscong][timkiem]"/></td>
                                     <td>Tìm kiếm</td>
                                 </tr>
                                 </tbody>

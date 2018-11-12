@@ -131,33 +131,33 @@
                 <ul class="sub-menu">
                     @if(can('kkgianuocsh','index'))
                     <li>
-                        <a href="">Thông tin giá nước sạch sinh hoạt</a>
+                        <a href="{{url('thongtingianuocsinhhoat')}}">Thông tin giá nước sạch sinh hoạt</a>
                     </li>
                     @endif
                     @if(can('thgianuocsh','timkiem'))
                     <li>
-                        <a href="">Tìm kiếm thông tin</a>
+                        <a href="{{url('timkiemthongtingianuocsinhhoat')}}">Tìm kiếm thông tin</a>
                     </li>
                     @endif
                 </ul>
             </li>
             @endif
         @endif
-        @if(canGeneral('giathuetsc','index'))
-            @if(can('giathuetsc','index'))
+        @if(canGeneral('giathuetscong','index'))
+            @if(can('giathuetscong','index'))
             <li>
                 <a href="javascript:;">
                     Giá thuê tài sản công<span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                    @if(can('kkgiathuetsc','index'))
+                    @if(can('kkgiathuetscong','index'))
                     <li>
-                        <a href="">Thông tin giá thuê tài sản công</a>
+                        <a href="{{url('thongtinthuetaisancong')}}">Thông tin giá thuê tài sản công</a>
                     </li>
                     @endif
-                    @if(can('thgiathuetsc','timkiem'))
+                    @if(can('thgiathuetscong','timkiem'))
                     <li>
-                        <a href="">Tìm kiếm thông tin</a>
+                        <a href="{{url('timkiemthongtinthuetaisancong')}}">Tìm kiếm thông tin</a>
                     </li>
                     @endif
                 </ul>

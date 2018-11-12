@@ -102,11 +102,11 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
                                 <tr>
-                                    <td width="2%"><input type="checkbox" {{ (isset($setting->giathuetsc->index) && $setting->giathuetsc->index == 1) ? 'checked' : '' }} value="1" name="roles[giathuetsc][index]"/></td>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->giathuetscong->index) && $setting->giathuetscong->index == 1) ? 'checked' : '' }} value="1" name="roles[giathuetscong][index]"/></td>
                                     <td>Giá thuê tài sản công</td>
                                 </tr>
                                 <tr>
-                                    <td width="2"><input type="checkbox" {{ (isset($setting->giathuetsc->congbo) && $setting->giathuetsc->congbo == 1) ? 'checked' : '' }} value="1" name="roles[cbgiathuetsc][congbo]"/></td>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->giathuetscong->congbo) && $setting->giathuetscong->congbo == 1) ? 'checked' : '' }} value="1" name="roles[giathuetscong][congbo]"/></td>
                                     <td>Công bố giá thuê tài sản công</td>
                                 </tr>
                                 </tbody>
@@ -210,6 +210,7 @@
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
                 </div>
             </div>

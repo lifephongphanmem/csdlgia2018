@@ -257,17 +257,17 @@ function getPermissionDefault($level) {
             'timkiem'=>1,
         ),
         //Giá thuê tài sản công
-        'giathuetsc'=>array(
+        'giathuetscong'=>array(
             'index'=>1,
         ),
-        'kkgiathuetsc'=>array(
+        'kkgiathuetscong'=>array(
             'index'=>1,
             'create'=>1,
             'edit'=>1,
             'delete'=>1,
             'approve'=>1,
         ),
-        'thgiathuetsc'=>array(
+        'thgiathuetscong'=>array(
             'baocao'=>1,
             'congbo'=>0,
             'timkiem'=>1,
@@ -420,6 +420,7 @@ function getPermissionDefault($level) {
             'congbo'=>0,
             'timkiem'=>1,
         ),
+
     //End Định Giá
     //Thẩm định giá
         'thamdinhgia' => array(
