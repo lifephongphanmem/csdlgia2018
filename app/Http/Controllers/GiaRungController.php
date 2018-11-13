@@ -32,7 +32,6 @@ class GiaRungController extends Controller
                 $model = $model->where('trangthai',$inputs['trangthai']);
 
             $model=$model->get();
-            //dd($inputs['district']);
 
             return view('manage.dinhgia.giarung.kekhai.index')
                 ->with('model',$model)
@@ -87,7 +86,7 @@ class GiaRungController extends Controller
                 }
                 $modelctdf->delete();
             }
-            return redirect('giarung');
+            return redirect('giarung?&district='.$inputs['district'].'&trangthai=CHT');
 
         }else
             return view('errors.notlogin');
@@ -117,7 +116,7 @@ class GiaRungController extends Controller
             $inputs['ngayapdung'] = getDateToDb($inputs['ngayapdung']);
             $model = GiaRung::findOrFail($id);
             $model->update($inputs);
-            return redirect('giarung?&trangthai='.$model->trangthai);
+            return redirect('giarung?&trangthai='.$model->trangthai.'&district='.$model->district);
         }else
             return view('errors.notlogin');
     }
@@ -127,9 +126,10 @@ class GiaRungController extends Controller
             $inputs = $request->all();
             $id = $inputs['iddelete'];
             $model = GiaRung::findOrFail($id);
+            $district = $model->district;
             $modelct = GiaRungCt::where('mahs',$model->mahs)->delete();
             $model->delete();
-            return redirect('giarung');
+            return redirect('giarung?&trangthai=CHT&district='.$district);
         }else
             return view('errors.notlogin');
     }
@@ -141,7 +141,7 @@ class GiaRungController extends Controller
             $model = GiaRung::findOrFail($id);
             $model->trangthai = 'HT';
             $model->save();
-            return redirect('giarung?&trangthai=HT');
+            return redirect('giarung?&trangthai=HT&district='.$model->district);
         }else
             return view('errors.notlogin');
     }
@@ -153,7 +153,7 @@ class GiaRungController extends Controller
             $model = GiaRung::findOrFail($id);
             $model->trangthai = 'HHT';
             $model->save();
-            return redirect('giarung?&trangthai=HHT');
+            return redirect('giarung?&trangthai=HHT&district='.$model->district);
         }else
             return view('errors.notlogin');
     }
@@ -165,7 +165,7 @@ class GiaRungController extends Controller
             $model = GiaRung::findOrFail($id);
             $model->trangthai = 'CB';
             $model->save();
-            return redirect('giarung?&trangthai=CB');
+            return redirect('giarung?&trangthai=CB&district='.$model->district);
         }else
             return view('errors.notlogin');
     }
@@ -182,8 +182,7 @@ class GiaRungController extends Controller
                 ->join('dmgiarung','dmgiarung.manhom','=','giarungct.manhom')
                 ->join('diabanhd','diabanhd.district','=','giarung.district')
                 ->select('giarungct.*','giarung.soqd','giarung.ngayapdung','giarung.trangthai','dmgiarung.tennhom','diabanhd.diaban')
-                ->where('giarung.trangthai','HT')
-                ->OrWhere('giarung.trangthai','CB');
+                ->whereIn('giarung.trangthai',['HT','CB']);
             if($inputs['nam'] != '')
                 $model = $model->whereYear('giarung.ngayapdung',$inputs['nam']);
             if($inputs['loairung'] != '')

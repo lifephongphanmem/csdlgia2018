@@ -19,21 +19,14 @@ class ThueTaiNguyenController extends Controller
         if(Session::has('admin')){
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-
-            if(session('admin')->level == 'T') {
-                $modeldb = DiaBanHd::where('level','H')->get();
-                $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : $modeldb->first()->district;
-                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
-            }elseif(session('admin')->level == 'H') {
-                $modeldb = DiaBanHd::where('level','H')->get();
-                $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : $modeldb->first()->district;
-                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
-            }else {
-                $modeldb = DiaBanHd::where('level','H')->where('district',session('admin')->district)->get();
-                $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : session('admin')->district;
+            $modeldb = DiaBanHd::where('level','H')->get();
+            if(session('admin')->level == 'X') {
+                $inputs['district'] = session('admin')->district;
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CHT';
+            }else {
+                $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : $modeldb->first()->district;
+                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
             }
-
 
             $model = ThueTaiNguyen::join('nhomthuetn','nhomthuetn.manhom','=','thuetainguyen.manhom')
                 ->select('thuetainguyen.*','nhomthuetn.tennhom')
@@ -162,7 +155,7 @@ class ThueTaiNguyenController extends Controller
             $district = $model->district;
             $modelct = ThueTaiNguyenCt::where('mahs',$model->mahs)->delete();
             $model->delete();
-            return redirect('thuetainguyen?&district='.$district);
+            return redirect('thuetainguyen?&district='.$district.'&trangthai=CHT');
         }else
             return view('errors.notlogin');
     }
@@ -197,8 +190,7 @@ class ThueTaiNguyenController extends Controller
                 ->join('diabanhd','diabanhd.district','=','thuetainguyen.district')
                 ->select('thuetainguyenct.*','thuetainguyen.soqd','thuetainguyen.ngayapdung','diabanhd.diaban',
                     'nhomthuetn.tennhom')
-                ->where('thuetainguyen.trangthai','HT')
-                ->OrWhere('thuetainguyen.trangthai','CB');
+                ->whereIn('thuetainguyen.trangthai',['HT','CB']);
             if($inputs['nam'] != '')
                 $model = $model->whereYear('thuetainguyen.ngayapdung',$inputs['nam']);
             if($inputs['district'] != '')

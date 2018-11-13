@@ -42,7 +42,8 @@
                     vitridiadiem: $('input[name="vitridiadiem"]').val(),
                     mucgiasan: $('input[name="mucgiasan"]').val(),
                     mucgiadaugia: $('input[name="mucgiadaugia"]').val(),
-                    donvidaugia: $('input[name="donvidaugia"]').val()
+                    donvidaugia: $('input[name="donvidaugia"]').val(),
+                    district: $('#district').val(),
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -93,7 +94,8 @@
                     vitridiadiem: $('input[name="vitridiadiemedit"]').val(),
                     mucgiasan: $('input[name="mucgiasanedit"]').val(),
                     mucgiadaugia: $('input[name="mucgiadaugiaedit"]').val(),
-                    donvidaugia: $('input[name="donvidaugiaedit"]').val()
+                    donvidaugia: $('input[name="donvidaugiaedit"]').val(),
+                    district: $('#district').val(),
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -122,6 +124,7 @@
                 data: {
                     _token: CSRF_TOKEN,
                     id: $('input[name="iddelete"]').val(),
+                    district: $('#district').val(),
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -157,6 +160,14 @@
                     <!-- BEGIN FORM-->
 
                     <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Địa bàn:<span class="require">*</span></label>
+                                    <label style="color: blue;font-weight: bold">{{$modeldb->diaban}}</label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -244,6 +255,7 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" name="district" id="district" value="{{$modeldb->district}}">
                         <div class="row" id="dsts">
                             <div class="col-md-12">
                                 <table class="table table-striped table-bordered table-hover" id="sample_3">
@@ -262,9 +274,9 @@
                                         <tr id={{$tt->id}}>
                                             <td style="text-align: center">{{($key +1)}}</td>
                                             <td class="active">{{$tt->vitridiadiem}}</td>
-                                            <td style="text-align: center;font-weight: bold" >{{number_format($tt->mucgiasan)}}</td>
+                                            <td style="text-align: right;font-weight: bold" >{{number_format($tt->mucgiasan)}}</td>
                                             <td style="text-align: right;font-weight: bold">{{number_format($tt->mucgiadaugia)}}</td>
-                                            <td style="text-align: right;font-weight: bold">{{$tt->donvidaugia}}</td>
+                                            <td style="text-align: left;font-weight: bold">{{$tt->donvidaugia}}</td>
                                             <td>
                                                 <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem({{$tt->id}})"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>
                                                 <button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid({{$tt->id}})" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
@@ -283,7 +295,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12" style="text-align: center">
-                    <a href="{{url('thongtindaugiadat')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                    <a href="{{url('thongtindaugiadat?&district='.$modeldb->district)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                     <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                     <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
                 </div>

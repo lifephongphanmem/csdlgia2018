@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DauGiaDat;
 use App\DauGiaDatCt;
 use App\DauGiaDatCtDf;
+use App\DiaBanHd;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -15,27 +16,42 @@ class DauGiaDatController extends Controller
         if(Session::has('admin')){
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-            $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CHT';
+
+            $modeldb = DiaBanHd::where('level','H')->get();
+            if(session('admin')->level == 'X') {
+                $inputs['district'] = session('admin')->district;
+                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CHT';
+            }else {
+                $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : $modeldb->first()->district;
+                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
+            }
 
             $model = DauGiaDat::where('trangthai',$inputs['trangthai'])
                 ->WhereYear('created_at',$inputs['nam'])
+                ->where('district',$inputs['district'])
                 ->get();
             return view('manage.dinhgia.giadaugiadat.kekhai.index')
                 ->with('model',$model)
+                ->with('modeldb',$modeldb)
                 ->with('inputs',$inputs)
                 ->with('pageTitle','Thông tin hồ sơ đấu giá đất');
         }else
             return view('errors.notlogin');
     }
 
-    public function create(){
+    public function create(Request $request){
         if(Session::has('admin')){
-            $inputs['mahuyen'] = session('admin')->mahuyen!= '' ? session('admin')->mahuyen : 'T';
-
-            $modelct = DauGiaDatCtDf::where('mahuyen',$inputs['mahuyen'])
+            $inputs = $request->all();
+            if(session('admin')->level == 'X')
+                $inputs['district'] = session('admin')->district;
+            $modeldb = DiaBanHd::where('level','H')
+                ->where('district',$inputs['district'])
+                ->first();
+            $modelct = DauGiaDatCtDf::where('district',$inputs['district'])
                 ->get();
             return view('manage.dinhgia.giadaugiadat.kekhai.create')
                 ->with('modelct',$modelct)
+                ->with('modeldb',$modeldb)
                 ->with('pageTitle','Thông tin hồ sơ đấu giá đất thêm mới');
         }else
             return view('errors.notlogin');
@@ -44,12 +60,11 @@ class DauGiaDatController extends Controller
     public function store(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
-            $inputs['mahuyen'] = session('admin')->mahuyen!= '' ? session('admin')->mahuyen : 'T';
-            $inputs['mahs'] = $inputs['mahuyen'].getdate()[0];
+            $inputs['mahs'] = $inputs['district'].getdate()[0];
             $inputs['trangthai'] = 'CHT';
             $model = new DauGiaDat();
             if($model->create($inputs)){
-                $modelctdf = DauGiaDatCtDf::where('mahuyen',$inputs['mahuyen']);
+                $modelctdf = DauGiaDatCtDf::where('district',$inputs['district']);
                 foreach($modelctdf->get() as $ctdf){
                     $modelct = new DauGiaDatCt();
                     $modelct->vitridiadiem = $ctdf->vitridiadiem;
@@ -61,7 +76,7 @@ class DauGiaDatController extends Controller
                 }
                 $modelctdf->delete();
             }
-            return redirect('thongtindaugiadat');
+            return redirect('thongtindaugiadat?&district='.$model->district.'&trangthai='.$inputs['trangthai']);
         }else
             return view('errors.notlogin');
     }
@@ -85,7 +100,7 @@ class DauGiaDatController extends Controller
             $model = DauGiaDat::findOrFail($id);
             $model->update($inputs);
 
-            return redirect('thongtindaugiadat');
+            return redirect('thongtindaugiadat?&district='.$model->district.'&trangthai='.$inputs['trangthai']);
         }else
             return view('errors.notlogin');
     }
@@ -109,9 +124,10 @@ class DauGiaDatController extends Controller
             $inputs = $request->all();
             $id = $inputs['iddelete'];
             $model = DauGiaDat::findOrFail($id);
+            $district = $model->district;
             $modelct = DauGiaDatCt::where('mahs',$model->mahs)->delete();
             $model->delete();
-            return redirect('thongtindaugiadat');
+            return redirect('thongtindaugiadat?&district='.$district.'&trangthai=CHT');
         }else
             return view('errors.notlogin');
     }
@@ -159,8 +175,7 @@ class DauGiaDatController extends Controller
             $inputs['vitridiadiem'] = isset($inputs['vitridiadiem']) ? $inputs['vitridiadiem'] : '';
             $model = DauGiaDatCt::join('daugiadat','daugiadat.mahs','=','daugiadatct.mahs')
                 ->select('daugiadatct.*','daugiadat.soqd','daugiadat.donvi','daugiadat.trangthai','daugiadat.thdaugia','daugiadat.created_at','daugiadat.diadiem')
-                ->where('daugiadat.trangthai','HT')
-                ->OrWhere('daugiadat.trangthai','CB');
+                ->whereIn('daugiadat.trangthai',['HT','CB']);
 
             if($inputs['nam'] != '')
                 $model = $model->whereYear('daugiadat.created_at',$inputs['nam']);

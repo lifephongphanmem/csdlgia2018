@@ -20,5 +20,9 @@ class DauGiaDat extends Model
         'thdaugia',
         'ghichu',
         'trangthai',
+        'district',
+        'maxa',
+        'mahuyen',
+
     ];
 }

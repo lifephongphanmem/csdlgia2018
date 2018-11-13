@@ -88,7 +88,7 @@ class GiaThueTsCongController extends Controller
                 $modelctdf->delete();
             }
 
-            return redirect('thongtinthuetaisancong?&trangthai='.$inputs['trangthai']);
+            return redirect('thongtinthuetaisancong?&trangthai='.$inputs['trangthai'].'&maxa='.$inputs['maxa']);
         }else
             return view('errors.notlogin');
     }
@@ -113,7 +113,7 @@ class GiaThueTsCongController extends Controller
             $inputs = $request->all();
             $model = GiaThueTsCong::findOrFail($id);
             $model->update($inputs);
-            return redirect('thongtinthuetaisancong?&trangthai='.$model->trangthai);
+            return redirect('thongtinthuetaisancong?&trangthai='.$model->trangthai.'&maxa='.$model->maxa);
         }else
             return view('errors.notlogin');
     }
@@ -122,9 +122,10 @@ class GiaThueTsCongController extends Controller
         if(Session::has('admin')){
             $inputs = $request->all();
             $model = GiaThueTsCong::where('id',$inputs['iddelete'])->first();
+            $maxa = $model->maxa;
             $modelct = GiaThueTsCongCt::where('mahs',$model->mahs)->delete();
             $model->delete();
-            return redirect('thongtinthuetaisancong');
+            return redirect('thongtinthuetaisancong?&trangthai=CHT&maxa='.$maxa);
         }else
             return view('errors.notlogin');
     }
@@ -191,9 +192,7 @@ class GiaThueTsCongController extends Controller
             $model = GiaThueTsCongCt::join('giathuetscong','giathuetscong.mahs','=','giathuetscongct.mahs')
                 ->join('town','town.maxa','=','giathuetscong.maxa')
                 ->select('giathuetscongct.*','giathuetscong.nam','giathuetscong.maxa','town.tendv','giathuetscong.trangthai')
-
-                ->where('giathuetscong.trangthai','HT')
-                ->OrWhere('giathuetscong.trangthai','CB');
+                ->whereIn('giathuetscong.trangthai',['HT','CB']);
             if($inputs['nam']!= '')
                 $model = $model->where('giathuetscong.nam',$inputs['nam']);
             if($inputs['tents'] != '')

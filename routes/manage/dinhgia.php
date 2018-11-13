@@ -39,6 +39,7 @@ Route::get('timkiemlephitruocba','LePhiTruocBaController@search');
 
 //Giá thuê mặt đất-nước
 Route::resource('giathuematdatmatnuoc','GiaThueDatNuocController');
+Route::post('giathuematdatmatnuoc/delete','GiaThueDatNuocController@destroy');
 Route::post('giathuematdatmatnuoc/hoanthanh','GiaThueDatNuocController@hoanthanh');
 Route::post('giathuematdatmatnuoc/huyhoanthanh','GiaThueDatNuocController@huyhoanthanh');
 Route::post('giathuematdatmatnuoc/congbo','GiaThueDatNuocController@congbo');
@@ -61,7 +62,6 @@ Route::post('dmgiarung/update','DmGiaRungController@update');
 
 Route::resource('giarung','GiaRungController');
 Route::post('giarung/delete','GiaRungController@destroy');
-
 Route::post('giarung/hoanthanh','GiaRungController@hoanthanh');
 Route::post('giarung/huyhoanthanh','GiaRungController@huyhoanthanh');
 Route::post('giarung/congbo','GiaRungController@congbo');

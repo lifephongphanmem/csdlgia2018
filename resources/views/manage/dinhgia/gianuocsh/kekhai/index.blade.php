@@ -74,8 +74,10 @@
                     <div class="caption">
                     </div>
                     <div class="actions">
+                        @if(can('kkgianuocsh','create'))
                         <a href="{{url('thongtingianuocsinhhoat/create')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
+                        @endif
                         <!--a href="" class="btn btn-default btn-sm">
                             <i class="fa fa-print"></i> Print </a-->
                     </div>
@@ -98,7 +100,9 @@
                             <div class="form-group">
                                 <label>Trạng thái hồ sơ</label>
                                 <select name="trangthai" id="trangthai" class="form-control">
+                                    @if(can('kkgianuocsh','create'))
                                     <option value="CHT" {{$inputs['trangthai'] == 'CHT' ? 'selected' : ''}}>Chưa hoàn thành</option>
+                                    @endif
                                     <option value="HT" {{$inputs['trangthai'] == 'HT' ? 'selected' : ''}}>Hoàn thành</option>
                                     <option value="HHT" {{$inputs['trangthai'] == 'HHT' ? 'selected' : ''}}>Hủy hoàn thành</option>
                                     <option value="CB" {{$inputs['trangthai'] == 'CB' ? 'selected' : ''}}>Công bố</option>
@@ -143,9 +147,13 @@
                             <td>
                                 <a href="{{url('thongtingianuocsinhhoat/'.$tt->id)}}" class="btn btn-default btn-xs mbs" target="_blank"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                 @if($tt->trangthai == 'CHT' || $tt->trangthai == 'HHT')
+                                    @if(can('kkgianuocsh','edit'))
                                     <a href="{{url('thongtingianuocsinhhoat/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs">
                                         <i class="fa fa-edit"></i> Chỉnh sửa </a>
+                                    @endif
+                                    @if(can('kkgianuocsh','approve'))
                                     <button type="button" onclick="confirmHoanthanh('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn thành</button>
+                                    @endif
                                     @if($tt->trangthai == 'CHT')
                                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal" onclick="getId('{{$tt->id}}')">
                                             <i class="fa fa-trash-o"></i>&nbsp; Xóa</button>
@@ -154,11 +162,15 @@
                                 @if($tt->trangthai == 'HT' || $tt->trangthai == 'CB')
                                     @if(session('admin')->level == 'T' || session('admin')->level == 'H')
                                         @if($tt->trangthai == 'HT')
+                                            @if(can('thgianuocsh','congbo'))
                                             <button type="button" onclick="confirmCB('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal-confirm" data-toggle="modal"><i class="fa fa-send"></i>&nbsp;
                                                 Công bố</button>
                                             @endif
+                                        @endif
+                                        @if(can('kkgianuocsh','approve'))
                                         <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
                                             Hủy hoàn thành</button>
+                                        @endif
                                     @endif
                                 @endif
 

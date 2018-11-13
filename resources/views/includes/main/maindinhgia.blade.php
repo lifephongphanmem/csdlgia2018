@@ -1,7 +1,7 @@
 @if(canGeneral('dinhgia','index'))
 @if(can('dinhgia','index'))
 <li class="">
-    <a href="javascript:;">
+    <a href="">
         <i class="icon-folder"></i>
         <span class="title">Định giá</span>
         <span class="arrow"></span>
@@ -10,7 +10,7 @@
         @if(canGeneral('giacldat','index'))
             @if(can('giacldat','index'))
             <li>
-                <a href="javascript:;">
+                <a href="">
                     Giá các loại đất <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
@@ -36,7 +36,7 @@
         @if(canGeneral('giadaugiadat','index'))
             @if(can('giadaugiadat','index'))
             <li>
-                <a href="javascript:;">
+                <a href="">
                     Giá đấu giá đất <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
@@ -57,7 +57,7 @@
         @if(canGeneral('giathuedatnuoc','index'))
             @if(can('giathuedatnuoc','index'))
             <li>
-                <a href="javascript:;">
+                <a href="">
                     Giá thuê đất, nước<span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
@@ -78,7 +78,7 @@
         @if(canGeneral('giarung','index'))
             @if(can('giarung','index'))
         <li>
-            <a href="javascript:;">
+            <a href="">
                 Giá rừng<span class="arrow"></span>
             </a>
             <ul class="sub-menu">
@@ -104,7 +104,7 @@
         @if(canGeneral('giathuemuanhaxh','index'))
             @if(can('giathuemuanhaxh','index'))
             <li>
-                <a href="javascript:;">
+                <a href="">
                     Giá thuê, mua nhà XH<span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
@@ -125,7 +125,7 @@
         @if(canGeneral('gianuocsh','index'))
             @if(can('gianuocsh','index'))
             <li>
-                <a href="javascript:;">
+                <a href="">
                     Giá nước sạch sinh hoạt<span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
@@ -146,7 +146,7 @@
         @if(canGeneral('giathuetscong','index'))
             @if(can('giathuetscong','index'))
             <li>
-                <a href="javascript:;">
+                <a href="">
                     Giá thuê tài sản công<span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
@@ -167,18 +167,18 @@
         @if(canGeneral('giadvgddt','index'))
             @if(can('giadvgddt','index'))
             <li>
-                <a href="javascript:;">
+                <a href="">
                     Giá dịch vụ GD-ĐT<span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
                     @if(can('kkgiadvgddt','index'))
                     <li>
-                        <a href="#">Thông tin giá DV GD-DT</a>
+                        <a href="">Thông tin giá DV GD-DT</a>
                     </li>
                     @endif
                     @if(can('thgiadvgddt','timkiem'))
                     <li>
-                        <a href="#">Tìm kiếm thông tin</a>
+                        <a href="">Tìm kiếm thông tin</a>
                     </li>
                     @endif
                 </ul>
@@ -188,7 +188,7 @@
         @if(canGeneral('giadvkcb','index'))
             @if(can('giadvkcb','index'))
             <li>
-                <a href="javascript:;">
+                <a href="">
                     Giá DV KCB<span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
@@ -214,7 +214,7 @@
         @if(canGeneral('trogiatrocuoc','index'))
             @if(can('trogiatrocuoc','index'))
             <li>
-                <a href="javascript:;">
+                <a href="">
                     Mức trợ giá, trợ cước<span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
@@ -240,7 +240,7 @@
         @if(canGeneral('giahhdvk','index'))
             @if(can('giahhdvk','index'))
             <li>
-                <a href="javascript:;">
+                <a href="">
                     Giá HH-DV khác <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
@@ -297,7 +297,7 @@
         @if(canGeneral('gialephitruocba','index'))
             @if(can('gialephitruocba','index'))
             <li>
-                <a href="javascript:;">
+                <a href="">
                     Giá lệ phí trước bạ <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
@@ -323,7 +323,7 @@
         @if(canGeneral('giaphilephi','index'))
             @if(can('giaphilephi','index'))
             <li>
-                <a href="javascript:;">
+                <a href="">
                     Phí, lệ phí <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
@@ -346,6 +346,22 @@
             </li>
             @endif
         @endif
+        <li>
+            <a href="">
+                Giá SP, DVCI, DVSNC, HH-DV đặt hàng <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li>
+                    <a href="">Danh mục SP, DVCI, DVSNC, HH-DV đặt hàng</a>
+                </li>
+                <li>
+                    <a href="">Thông tin giá SP, DVCI, DVSNC, HH-DV đặt hàng</a>
+                </li>
+                <li>
+                    <a href="">Tìm kiếm thông tin</a>
+                </li>
+            </ul>
+        </li>
     </ul>
 </li>
 @endif

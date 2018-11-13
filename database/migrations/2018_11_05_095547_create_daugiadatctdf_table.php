@@ -20,6 +20,8 @@ class CreateDaugiadatctdfTable extends Migration
             $table->string('mucgiadaugia')->nullable();
             $table->string('donvidaugia')->nullable();
             $table->string('mahuyen')->nullable();
+            $table->string('maxa')->nullable();
+            $table->string('district')->nullable();
             $table->timestamps();
         });
     }

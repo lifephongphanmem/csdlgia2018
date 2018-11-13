@@ -25,11 +25,10 @@ class DauGiaDatCtDfController extends Controller
         if(isset($inputs['vitridiadiem'])){
             $inputs['mucgiasan'] = getMoneyToDb($inputs['mucgiasan']);
             $inputs['mucgiadaugia'] = getMoneyToDb($inputs['mucgiadaugia']);
-            $inputs['mahuyen'] = session('admin')->mahuyen != '' ? session('admin')->mahuyen : 'T';
             $modeladd = new DauGiaDatCtDf();
             $modeladd->create($inputs);
 
-            $model = DauGiaDatCtDf::where('mahuyen',$inputs['mahuyen'])
+            $model = DauGiaDatCtDf::where('district',$inputs['district'])
                 ->get();
 
             $result['message'] = '<div class="row" id="dsts">';
@@ -51,7 +50,7 @@ class DauGiaDatCtDfController extends Controller
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
                     $result['message'] .= '<td class="active">'.$tents->vitridiadiem.'</td>';
-                    $result['message'] .= '<td style="text-align: center;font-weight: bold">'.number_format($tents->mucgiasan).'</td>';
+                    $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->mucgiasan).'</td>';
                     $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->mucgiadaugia).'</td>';
                     $result['message'] .= '<td>'.$tents->donvidaugia.'</td>';
                     $result['message'] .= '<td>'.
@@ -157,9 +156,8 @@ class DauGiaDatCtDfController extends Controller
             $inputs['mucgiasan'] = getMoneyToDb($inputs['mucgiasan']);
             $inputs['mucgiadaugia'] = getMoneyToDb($inputs['mucgiadaugia']);
             $modelupdate->update($inputs);
-            $inputs['mahuyen'] = session('admin')->mahuyen != '' ? session('admin')->mahuyen : 'T';
 
-            $model = DauGiaDatCtDf::where('mahuyen',$inputs['mahuyen'])
+            $model = DauGiaDatCtDf::where('district',$inputs['district'])
                 ->get();
 
             $result['message'] = '<div class="row" id="dsts">';
@@ -181,7 +179,7 @@ class DauGiaDatCtDfController extends Controller
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
                     $result['message'] .= '<td class="active">'.$tents->vitridiadiem.'</td>';
-                    $result['message'] .= '<td style="text-align: center;font-weight: bold">'.number_format($tents->mucgiasan).'</td>';
+                    $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->mucgiasan).'</td>';
                     $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->mucgiadaugia).'</td>';
                     $result['message'] .= '<td>'.$tents->donvidaugia.'</td>';
                     $result['message'] .= '<td>'.
@@ -218,9 +216,8 @@ class DauGiaDatCtDfController extends Controller
 
         if(isset($inputs['id'])){
             $modelts = DauGiaDatCtDf::where('id',$inputs['id'])->delete();
-            $inputs['mahuyen'] = session('admin')->mahuyen != '' ? session('admin')->mahuyen : 'T';
 
-            $model = DauGiaDatCtDf::where('mahuyen',$inputs['mahuyen'])
+            $model = DauGiaDatCtDf::where('district',$inputs['district'])
                 ->get();
 
             $result['message'] = '<div class="row" id="dsts">';
@@ -242,7 +239,7 @@ class DauGiaDatCtDfController extends Controller
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
                     $result['message'] .= '<td class="active">'.$tents->vitridiadiem.'</td>';
-                    $result['message'] .= '<td style="text-align: center;font-weight: bold">'.number_format($tents->mucgiasan).'</td>';
+                    $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->mucgiasan).'</td>';
                     $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->mucgiadaugia).'</td>';
                     $result['message'] .= '<td>'.$tents->donvidaugia.'</td>';
                     $result['message'] .= '<td>'.

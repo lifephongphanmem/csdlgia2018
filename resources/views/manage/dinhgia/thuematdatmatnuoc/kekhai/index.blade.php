@@ -96,7 +96,7 @@
                             <div class="form-group">
                                 <label>Trạng thái hồ sơ</label>
                                 <select name="trangthai" id="trangthai" class="form-control">
-                                    @if(session('admin')->level == 'X')
+                                    @if(can('kkgiathuedatnuoc','create'))
                                     <option value="CHT" {{$inputs['trangthai'] == 'CHT' ? 'selected' : ''}}>Chưa hoàn thành</option>
                                     @endif
                                     <option value="HT" {{$inputs['trangthai'] == 'HT' ? 'selected' : ''}}>Hoàn thành</option>

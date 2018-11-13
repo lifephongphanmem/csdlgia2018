@@ -26,6 +26,9 @@ class CreateDaugiadatTable extends Migration
             $table->text('ghichu')->nullable();
             $table->string('trangthai')->nullable();
             $table->string('mahs')->nullable();
+            $table->string('district')->nullable();
+            $table->string('maxa')->nullable();
+            $table->string('mahuyen')->nullable();
             $table->timestamps();
         });
     }

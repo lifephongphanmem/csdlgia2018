@@ -17,14 +17,12 @@ class GiaThueDatNuocController extends Controller
         if(Session::has('admin')){
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-
-
+            $modeldb = DiaBanHd::where('level','H')->get();
             if(session('admin')->level == 'X') {
-                $modeldb = DiaBanHd::where('level','H')->where('district', session('admin')->district)->get();
                 $inputs['diaban'] = isset($inputs['diaban']) ? $inputs['diaban'] : session('admin')->district;
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CHT';
             }else {
-                $modeldb = DiaBanHd::where('level','H')->get();
+
                 $inputs['diaban'] = isset($inputs['diaban']) ? $inputs['diaban'] : $modeldb->first()->district;
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
             }
@@ -80,7 +78,7 @@ class GiaThueDatNuocController extends Controller
                 }
                 $modelctdf->delete();
             }
-            return redirect('giathuematdatmatnuoc?&diaban='.$inputs['district']);
+            return redirect('giathuematdatmatnuoc?&diaban='.$inputs['district'].'&trangthai='.$inputs['trangthai']);
         }else
             return view('errors.notlogin');
     }
@@ -117,6 +115,19 @@ class GiaThueDatNuocController extends Controller
                 ->with('model',$model)
                 ->with('modelct',$modelct)
                 ->with('pageTitle','Hồ sơ thuê mặt đất, mặt nước chi tiết');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function destroy(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $id = $inputs['iddelete'];
+            $model = GiaThueDatNuoc::findOrFail($id);
+            $district = $model->district;
+            $modelct = GiaThueDatNuocCt::where('mahs',$model->mahs)->delete();
+            $model->delete();
+            return redirect('giathuematdatmatnuoc?&diaban='.$district.'&trangthai=CHT');
         }else
             return view('errors.notlogin');
     }
@@ -167,9 +178,7 @@ class GiaThueDatNuocController extends Controller
 
             $model = GiaThueDatNuocCt::join('giathuedatnuoc','giathuedatnuoc.mahs','=','giathuedatnuocct.mahs')
                 ->select('giathuedatnuocct.*','giathuedatnuoc.soqd','giathuedatnuoc.ngayapdung','giathuedatnuoc.trangthai','giathuedatnuoc.ghichu')
-
-                ->where('giathuedatnuoc.trangthai','HT')
-                ->OrWhere('giathuedatnuoc.trangthai','CB');
+                ->whereIn('giathuedatnuoc.trangthai',['HT','CB']);
             if($inputs['nam']!= '')
                 $model = $model->whereYear('giathuedatnuoc.ngayapdung',$inputs['nam']);
             if($inputs['vitri'] != '')

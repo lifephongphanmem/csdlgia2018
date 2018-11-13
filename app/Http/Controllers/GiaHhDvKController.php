@@ -20,21 +20,14 @@ class GiaHhDvKController extends Controller
         if (Session::has('admin')) {
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-
-            if (session('admin')->level == 'T') {
-                $modeldb = DiaBanHd::where('level', 'H')->get();
-                $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : $modeldb->first()->district;
-                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
-            } elseif (session('admin')->level == 'H') {
-                $modeldb = DiaBanHd::where('level', 'H')->get();
-                $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : $modeldb->first()->district;
-                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
-            } else {
-                $modeldb = DiaBanHd::where('level', 'H')->where('district', session('admin')->district)->get();
-                $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : session('admin')->district;
+            $modeldb = DiaBanHd::where('level','H')->get();
+            if(session('admin')->level == 'X') {
+                $inputs['district'] = session('admin')->district;
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CHT';
+            }else {
+                $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : $modeldb->first()->district;
+                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
             }
-
 
             $model = GiaHhDvK::join('nhomhhdvk','nhomhhdvk.manhom','=','giahhdvk.manhom')
                 ->select('giahhdvk.*', 'nhomhhdvk.tennhom')
@@ -104,7 +97,6 @@ class GiaHhDvKController extends Controller
             if($model->create($inputs)){
                 $modelctdf = GiaHhDvKCtDf::where('district',$inputs['district'])
                     ->where('manhom',$inputs['manhom']);
-
                 foreach($modelctdf->get() as $ctdf){
                     $modelct = new GiaHhDvKCt();
                     $modelct->manhom = $ctdf->manhom;
@@ -117,8 +109,8 @@ class GiaHhDvKController extends Controller
                     $modelct->giatoida = $ctdf->giatoida;
                     $modelct->save();
                 }
+                $modelctdf->delete();
             }
-            $modelctdf->delete();
             return redirect('giahhdvkhac?&district='.$inputs['district'].'&trangthai='.$inputs['trangthai']);
 
         }else
@@ -181,7 +173,7 @@ class GiaHhDvKController extends Controller
             $district = $model->district;
             $modelct = GiaHhDvKCt::where('mahs',$model->mahs)->delete();
             $model->delete();
-            return redirect('giahhdvkhac?&district='.$district);
+            return redirect('giahhdvkhac?&district='.$district.'&trangthai=CHT');
         }else
             return view('errors.notlogin');
     }
@@ -200,8 +192,7 @@ class GiaHhDvKController extends Controller
                 ->join('diabanhd','diabanhd.district','=','giahhdvk.district')
                 ->select('giahhdvkct.*','giahhdvk.soqd','giahhdvk.ngayapdung','diabanhd.diaban',
                     'nhomhhdvk.tennhom')
-                ->where('giahhdvk.trangthai','HT')
-                ->OrWhere('giahhdvk.trangthai','CB');
+                ->whereIn('giahhdvk.trangthai',['HT','CB']);
             if($inputs['nam'] != '')
                 $model = $model->whereYear('giahhdvk.ngayapdung',$inputs['nam']);
             if($inputs['district'] != '')

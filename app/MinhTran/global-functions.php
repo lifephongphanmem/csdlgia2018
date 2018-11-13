@@ -246,10 +246,10 @@ function getPermissionDefault($level) {
         ),
         'kkgianuocsh'=>array(
             'index'=>1,
-            'create'=>1,
-            'edit'=>1,
-            'delete'=>1,
-            'approve'=>1,
+            'create'=>0,
+            'edit'=>0,
+            'delete'=>0,
+            'approve'=>0,
         ),
         'thgianuocsh'=>array(
             'baocao'=>1,

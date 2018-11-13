@@ -30,6 +30,13 @@
                 var url = '/thongtindaugiadat?'+namhs + trangthai;
                 window.location.href = url;
             });
+            $('#district').change(function() {
+                var namhs = '&nam=' + $('#nam').val();
+                var trangthai = '&trangthai=' + $('#trangthai').val();
+                var district = '&district=' + $('#district').val();
+                var url = '/thongtindaugiadat?'+namhs + trangthai + district;
+                window.location.href = url;
+            });
 
         });
         function confirmDelete(id) {
@@ -63,7 +70,7 @@
                     </div>
                     <div class="actions">
                         @if(can('kkgiadaugiadat','create'))
-                        <a href="{{url('thongtindaugiadat/create')}}" class="btn btn-default btn-sm">
+                        <a href="{{url('thongtindaugiadat/create?&district='.$inputs['district'])}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
                         @endif
                     </div>
@@ -87,13 +94,27 @@
                             <div class="form-group">
                                 <label>Trạng thái hồ sơ</label>
                                 <select name="trangthai" id="trangthai" class="form-control">
+                                    @if(can('kkgiadaugiadat','create'))
                                     <option value="CHT" {{$inputs['trangthai'] == 'CHT' ? 'selected' : ''}}>Chưa hoàn thành</option>
+                                    @endif
                                     <option value="HT" {{$inputs['trangthai'] == 'HT' ? 'selected' : ''}}>Hoàn thành</option>
                                     <option value="HHT" {{$inputs['trangthai'] == 'HHT' ? 'selected' : ''}}>Hủy hoàn thành</option>
                                     <option value="CB" {{$inputs['trangthai'] == 'CB' ? 'selected' : ''}}>Công bố</option>
                                 </select>
                             </div>
                         </div>
+                        @if(session('admin')->level == 'T' || session('admin')->level == 'H')
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Địa bàn quản lý</label>
+                                <select name="district" id="district" class="form-control">
+                                    @foreach($modeldb as $db)
+                                        <option value="{{$db->district}}" {{$db->district == $inputs['district'] ? 'selected' : ''}}>{{$db->diaban}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        @endif
                     </div>
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>

@@ -15,14 +15,14 @@ class GiaCacLoaiDatController extends Controller
     public function index(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
-            if(session('admin')->level == 'T' || session('admin') == 'H')
-                $districtdf = DiaBanHd::where('level', 'H')->first()->district;
+            $model_diaban = DiaBanHd::where('level','H')->get();
+            if(session('admin')->level == 'X')
+                $inputs['district'] = session('admin')->district;
             else
-                $districtdf = session('admin')->district;
-            $inputs['district'] = isset($inputs['district'])? $inputs['district'] : $districtdf;
+                $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : $model_diaban->first()->district;
 
             $model = GiaCacLoaiDat::where('mahuyen',$inputs['district'])->get();
-            $model_diaban = DiaBanHd::where('level','H')->get();
+
             $model_quyetdinh = DmQdGiaDat::all();
             foreach($model as $ct){
                 $ct->b_xoa = true; //mặc định đc xóa

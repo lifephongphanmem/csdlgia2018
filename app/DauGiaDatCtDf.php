@@ -10,6 +10,8 @@ class DauGiaDatCtDf extends Model
     protected $fillable = [
         'id',
         'mahuyen',
+        'maxa',
+        'district',
         'vitridiadiem',
         'mucgiasan',
         'mucgiadaugia',

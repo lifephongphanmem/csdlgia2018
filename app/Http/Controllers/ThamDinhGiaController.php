@@ -17,18 +17,17 @@ class ThamDinhGiaController extends Controller
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
 
-            if(session('admin')->level == 'T') {
-                $modeldv = Town::all();
-                $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
-                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
-            }elseif(session('admin')->level == 'H') {
-                $modeldv = Town::where('mahuyen', session('admin')->mahuyen)->get();
-                $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
-                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
-            }else {
-                $modeldv = Town::where('mahuyen', session('admin')->mahuyen)->where('maxa', session('admin')->maxa)->get();
-                $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : session('admin')->maxa;
+            if(session('admin')->level == 'X') {
+                $modeldv = Town::where('maxa',session('admin')->maxa)->get();
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CHT';
+                $inputs['maxa'] = session('admin')->maxa;
+            }else {
+                if(session('admin')->level == 'T')
+                    $modeldv = Town::all();
+                else
+                    $modeldv = Town::where('mahuyen',$mahuyen)->get();
+                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
+                $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
             }
 
 
@@ -98,7 +97,7 @@ class ThamDinhGiaController extends Controller
                 }
                 $modelctdf->delete();
             }
-            return redirect('thamdinhgia?&maxa='.$inputs['maxa']);
+            return redirect('thamdinhgia?&maxa='.$inputs['maxa'].'&trangthai='.$inputs['trangthai']);
 
         }else
             return view('errors.notlogin');
@@ -124,7 +123,7 @@ class ThamDinhGiaController extends Controller
             $inputs['quy'] = Thang2Quy(getMonth($inputs['thoidiem']));
             $model = ThamDinhGia::findOrFail($id);
             $model->update($inputs);
-            return redirect('thamdinhgia?&maxa='.$inputs['maxa']);
+            return redirect('thamdinhgia?&maxa='.$inputs['maxa'].'&trangthai='.$model->trangthai);
 
         }else
             return view('errors.notlogin');
@@ -138,7 +137,7 @@ class ThamDinhGiaController extends Controller
             $maxa = $model->maxa;
             $modelct = ThamDinhGiaCt::where('mahs',$model->mahs)->delete();
             $model->delete();
-            return redirect('thamdinhgia?&maxa='.$maxa);
+            return redirect('thamdinhgia?&maxa='.$maxa.'&trangthai=CHT');
         }else
             return view('errors.notlogin');
     }
@@ -164,8 +163,7 @@ class ThamDinhGiaController extends Controller
                 ->select('thamdinhgiact.*','thamdinhgia.thoidiem','thamdinhgia.thuevat','thamdinhgia.sotbkl',
                 'thamdinhgia.thoihan','thamdinhgia.ppthamdinh')
                 ->whereYear('thamdinhgia.thoidiem',$inputs['nam'])
-                ->where('thamdinhgia.trangthai','HT')
-                ->OrWhere('thamdinhgia.trangthai','CB');
+                ->whereIn('thamdinhgia.trangthai',['HT','CB']);
             if($inputs['tents'] != '')
                 $model = $model->where('thamdinhgiact.tents','like','%'.$inputs['tents'].'%');
             $model = $model->get();
@@ -325,7 +323,7 @@ class ThamDinhGiaController extends Controller
             $model = ThamDinhGia::findOrFail($id);
             $model->trangthai = 'HT';
             $model->save();
-            return redirect('thamdinhgia?&trangthai=HT');
+            return redirect('thamdinhgia?&trangthai=HT&maxa='.$model->maxa);
         }else
             return view('errors.notlogin');
     }
@@ -337,7 +335,7 @@ class ThamDinhGiaController extends Controller
             $model = ThamDinhGia::findOrFail($id);
             $model->trangthai = 'HHT';
             $model->save();
-            return redirect('thamdinhgia?&trangthai=HHT');
+            return redirect('thamdinhgia?&trangthai=HHT&maxa='.$model->maxa);
         }else
             return view('errors.notlogin');
     }
@@ -349,7 +347,7 @@ class ThamDinhGiaController extends Controller
             $model = ThamDinhGia::findOrFail($id);
             $model->trangthai = 'CB';
             $model->save();
-            return redirect('thamdinhgia?&trangthai=CB');
+            return redirect('thamdinhgia?&trangthai=CB&maxa='.$model->maxa);
         }else
             return view('errors.notlogin');
     }

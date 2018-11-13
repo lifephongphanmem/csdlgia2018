@@ -100,7 +100,9 @@
                             <div class="form-group">
                                 <label>Trạng thái hồ sơ</label>
                                 <select name="trangthai" id="trangthai" class="form-control">
+                                    @if(can('kkgialephitruocba','create'))
                                     <option value="CHT" {{$trangthai == 'CHT' ? 'selected' : ''}}>Chưa hoàn thành</option>
+                                    @endif
                                     <option value="HT" {{$trangthai == 'HT' ? 'selected' : ''}}>Hoàn thành</option>
                                     <option value="HHT" {{$trangthai == 'HHT' ? 'selected' : ''}}>Hủy hoàn thành</option>
                                     <option value="CB" {{$trangthai == 'CB' ? 'selected' : ''}}>Công bố</option>

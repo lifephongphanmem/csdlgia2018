@@ -19,20 +19,18 @@ class DvKcbController extends Controller
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
 
-            if(session('admin')->level == 'T') {
-                $modeldv = Town::all();
-                $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
-                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
-            }elseif(session('admin')->level == 'H') {
-                $modeldv = Town::where('mahuyen',session('admin')->mahuyen)->get();
-                $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
-                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
-            }else {
-                $modeldv = Town::where('mahuyen',session('admin')->mahuyen)->where('maxa',session('admin')->maxa)->get();
-                $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : session('admin')->maxa;
+            if(session('admin')->level == 'X'){
+                $modeldv = Town::where('maxa',session('admin')->maxa)->get();
+                $inputs['maxa'] = session('admin')->maxa;
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CHT';
+            }else{
+                if(session('admin')->level == 'T')
+                    $modeldv = Town::all();
+                else
+                    $modeldv = Town::where('mahuyen',$mahuyen)->get();
+                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
+                $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
             }
-
 
             $model = DvKcb::join('nhomdvkcb','nhomdvkcb.manhom','=','dvkcb.manhom')
                 ->select('dvkcb.*','nhomdvkcb.tennhom')
@@ -103,7 +101,6 @@ class DvKcbController extends Controller
             if($model->create($inputs)){
                 $modelctdf = DvKcbCtDf::where('maxa',$inputs['maxa'])
                     ->where('manhom',$inputs['manhom']);
-
                 foreach($modelctdf->get() as $ctdf){
                     $modelct = new DvKcbCt();
                     $modelct->manhom = $ctdf->manhom;
@@ -118,8 +115,9 @@ class DvKcbController extends Controller
                     $model->sapxep = $ctdf->sapxep;
                     $modelct->save();
                 }
+                $modelctdf->delete();
             }
-            $modelctdf->delete();
+
             return redirect('dichvukcb?&maxa='.$inputs['maxa'].'&trangthai='.$inputs['trangthai']);
 
         }else
@@ -164,7 +162,7 @@ class DvKcbController extends Controller
             $maxa = $model->maxa;
             $modelct = DvKcbCt::where('mahs',$model->mahs)->delete();
             $model->delete();
-            return redirect('dichvukcb?&maxa='.$maxa);
+            return redirect('dichvukcb?&maxa='.$maxa.'&trangthai=CHT');
         }else
             return view('errors.notlogin');
     }
@@ -198,8 +196,7 @@ class DvKcbController extends Controller
                 ->join('town','town.maxa','=','dvkcb.maxa')
                 ->select('dvkcbct.*','dvkcb.soqd','dvkcb.ngayapdung','town.tendv',
                     'nhomdvkcb.tennhom')
-                ->where('dvkcb.trangthai','HT')
-                ->OrWhere('dvkcb.trangthai','CB');
+                ->whereIn('dvkcb.trangthai',['HT','CB']);
             if($inputs['nam'] != '')
                 $model = $model->whereYear('dvkcb.ngayapdung',$inputs['nam']);
             if($inputs['manhom'] != '')

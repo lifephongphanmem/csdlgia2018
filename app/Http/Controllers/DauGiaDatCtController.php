@@ -50,7 +50,7 @@ class DauGiaDatCtController extends Controller
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
                     $result['message'] .= '<td class="active">'.$tents->vitridiadiem.'</td>';
-                    $result['message'] .= '<td style="text-align: center;font-weight: bold">'.number_format($tents->mucgiasan).'</td>';
+                    $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->mucgiasan).'</td>';
                     $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->mucgiadaugia).'</td>';
                     $result['message'] .= '<td>'.$tents->donvidaugia.'</td>';
                     $result['message'] .= '<td>'.
@@ -179,7 +179,7 @@ class DauGiaDatCtController extends Controller
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
                     $result['message'] .= '<td class="active">'.$tents->vitridiadiem.'</td>';
-                    $result['message'] .= '<td style="text-align: center;font-weight: bold">'.number_format($tents->mucgiasan).'</td>';
+                    $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->mucgiasan).'</td>';
                     $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->mucgiadaugia).'</td>';
                     $result['message'] .= '<td>'.$tents->donvidaugia.'</td>';
                     $result['message'] .= '<td>'.
@@ -239,7 +239,7 @@ class DauGiaDatCtController extends Controller
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
                     $result['message'] .= '<td class="active">'.$tents->vitridiadiem.'</td>';
-                    $result['message'] .= '<td style="text-align: center;font-weight: bold">'.number_format($tents->mucgiasan).'</td>';
+                    $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->mucgiasan).'</td>';
                     $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->mucgiadaugia).'</td>';
                     $result['message'] .= '<td>'.$tents->donvidaugia.'</td>';
                     $result['message'] .= '<td>'.

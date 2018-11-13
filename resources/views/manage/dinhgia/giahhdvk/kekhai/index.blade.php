@@ -74,8 +74,10 @@
                     <div class="caption">
                     </div>
                     <div class="actions">
+                        @if(can('kkgiahhdvk','create'))
                         <button type="button" class="btn btn-default btn-sm" data-target="#create-modal-confirm" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;
                             Thêm mới</button>
+                        @endif
                     </div>
 
                 </div>
@@ -97,7 +99,7 @@
                             <div class="form-group">
                                 <label>Trạng thái hồ sơ</label>
                                 <select name="trangthai" id="trangthai" class="form-control">
-                                    @if(session('admin')->level == 'X')
+                                    @if(can('kkgiahhdvk','create'))
                                     <option value="CHT" {{$inputs['trangthai'] == 'CHT' ? 'selected' : ''}}>Chưa hoàn thành</option>
                                     @endif
                                     <option value="HT" {{$inputs['trangthai'] == 'HT' ? 'selected' : ''}}>Hoàn thành</option>
