@@ -37,7 +37,6 @@
 @stop
 
 @section('content')
-
     <h3 class="page-title">
         Danh sách đơn vị<small>&nbsp;</small>
     </h3>
@@ -56,6 +55,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
+                                <label>Đơn vị quản lý</label>
                                 <select class="form-control" name="mahuyen" id="mahuyen">
                                     @foreach($district as $tt)
                                         <option value="{{$tt->mahuyen}}" {{$mahuyen == $tt->mahuyen ? 'selected' : ''}}>{{$tt->tendv}}</option>

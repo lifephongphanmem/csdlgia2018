@@ -28,11 +28,11 @@
         function ClickCreate(){
             var valid=true;
             var message='';
-            var nhomxe = $('#nhomxe').val();
             var manhom = $('#manhom').val();
+            var tennhom = $('#tennhom').val();
 
 
-            if(nhomxe == '' || manhom == ''){
+            if(manhom == '' || tennhom == ''){
                 valid=false;
                 message +='Các thông tin nhập không được bỏ trống \n';
             }
@@ -66,7 +66,7 @@
         function ClickEdit(id){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: 'nhomlephitruocba/show',
+                url: 'danhmucgiadvgddt/show',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -89,7 +89,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Danh mục nhóm xe tính <small>&nbsp;lệ phí trước bạ</small>
+        Danh mục nhóm <small>&nbsp;giá dịch vụ giáo dục đào tạo</small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -98,7 +98,7 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
-                        @if(can('dmlephitruocba','create'))
+                        @if(can('dmgiadvgddt','create'))
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#modal-create" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm mới</button>
                         @endif
                     </div>
@@ -109,8 +109,8 @@
                         <thead>
                         <tr>
                             <th style="text-align: center" width="2%">STT</th>
-                            <th style="text-align: center">Mã nhóm xe</th>
-                            <th style="text-align: center">Nhóm xe</th>
+                            <th style="text-align: center">Mã nhóm</th>
+                            <th style="text-align: center">Tên nhóm</th>
                             <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
                         </thead>
@@ -119,10 +119,13 @@
                         <tr class="odd gradeX">
                             <td style="text-align: center">{{$key + 1}}</td>
                             <td>{{$tt->manhom}}</td>
-                            <td class="active" >{{$tt->nhomxe}}</td>
+                            <td class="active" >{{$tt->tennhom}}</td>
                             <td>
-                                @if(can('dmlephitruocba','edit'))
+                                @if(can('dmgiadvgddt','edit'))
                                 <button type="button" onclick="ClickEdit('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                @endif
+                                @if(can('dmgiadvgddt','delete'))
+                                    <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-delete" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                 @endif
                             </td>
                         </tr>
@@ -143,16 +146,16 @@
     <div class="modal fade" id="modal-create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['url'=>'nhomlephitruocba','id' => 'frm_create'])!!}
+                {!! Form::open(['url'=>'danhmucgiadvgddt','id' => 'frm_create'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Thêm mới nhóm xe tính lệ phí trước bạ?</h4>
+                    <h4 class="modal-title">Thêm mới nhóm giá dịch vụ giáo dục đào tạo?</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="control-label">Mã nhóm loại xe<span class="require">*</span></label>
+                                <label class="control-label">Mã nhóm<span class="require">*</span></label>
                                 <input type="text" name="manhom" id="manhom" class="form-control">
                             </div>
                         </div>
@@ -160,8 +163,9 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="control-label">Tên nhóm loại xe<span class="require">*</span></label>
-                                <input type="text" name="nhomxe" id="nhomxe" class="form-control">
+                                <label class="control-label">Tên nhóm<span class="require">*</span></label>
+                                <textarea rows="4" cols="50" name="tennhom" id="tennhom" class="form-control">
+                                </textarea>
                             </div>
                         </div>
                     </div>
@@ -184,7 +188,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title">Chỉnh sửa nhóm loại xe lệ phí trước bạ?</h4>
                 </div>
-                {!! Form::open(['url'=>'nhomlephitruocba/update','id' => 'frm_update'])!!}
+                {!! Form::open(['url'=>'danhmucgiadvgddt/update','id' => 'frm_update'])!!}
                 <div class="modal-body" id="edit-tt">
                 </div>
                 <div class="modal-footer">
@@ -198,10 +202,10 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['url'=>'nhomlephitruocba/delete','id' => 'frm_delete'])!!}
+                {!! Form::open(['url'=>'danhmucgiadvgddt/delete','id' => 'frm_delete'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title">Đồng ý xóa?</h4>

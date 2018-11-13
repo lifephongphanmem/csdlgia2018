@@ -276,6 +276,12 @@ function getPermissionDefault($level) {
         'giadvgddt'=>array(
             'index'=>1,
         ),
+        'dmgiadvgddt'=>array(
+            'index'=>1,
+            'create'=>0,
+            'edit'=>0,
+            'delete'=>0,
+        ),
         'kkgiadvgddt'=>array(
             'index'=>1,
             'create'=>1,

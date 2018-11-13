@@ -171,9 +171,14 @@
                     Giá dịch vụ GD-ĐT<span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
+                    @if(can('dmgiadvgddt','index'))
+                        <li>
+                            <a href="{{url('danhmucgiadvgddt')}}">Danh mục giá DV GD-ĐT</a>
+                        </li>
+                    @endif
                     @if(can('kkgiadvgddt','index'))
                     <li>
-                        <a href="">Thông tin giá DV GD-DT</a>
+                        <a href="{{url('thongtingiadvgddt')}}">Thông tin giá DV GD-DT</a>
                     </li>
                     @endif
                     @if(can('thgiadvgddt','timkiem'))

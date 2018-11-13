@@ -224,5 +224,28 @@ Route::get('thongtingianuocsinhhoatct/show','GiaNuocShCtController@show');
 Route::get('thongtingianuocsinhhoatct/update','GiaNuocShCtController@update');
 Route::get('thongtingianuocsinhhoatct/del','GiaNuocShCtController@destroy');
 
+//Giá DV GD-ĐT
+Route::resource('danhmucgiadvgddt','DmGiaDvGdDtController');
+Route::post('danhmucgiadvgddt/update','DmGiaDvGdDtController@update');
+Route::post('danhmucgiadvgddt/delete','DmGiaDvGdDtController@destroy');
+
+Route::resource('thongtingiadvgddt','GiaDvGdDtController');
+Route::post('thongtingiadvgddt/create','GiaDvGdDtController@create');
+Route::post('thongtingiadvgddt/delete','GiaDvGdDtController@destroy');
+Route::post('thongtingiadvgddt/hoanthanh','GiaDvGdDtController@hoanthanh');
+Route::post('thongtingiadvgddt/huyhoanthanh','GiaDvGdDtController@huyhoanthanh');
+Route::post('thongtingiadvgddt/congbo','GiaDvGdDtController@congbo');
+Route::get('timkiemthongtingiadvgddt','GiaDvGdDtController@search');
+
+Route::get('thongtingiadvgddtctdf/store','GiaDvGdDtCtDfController@store');
+Route::get('thongtingiadvgddtctdf/show','GiaDvGdDtCtDfController@show');
+Route::get('thongtingiadvgddtctdf/update','GiaDvGdDtCtDfController@update');
+Route::get('thongtingiadvgddtctdf/del','GiaDvGdDtCtDfController@destroy');
+
+Route::get('thongtingiadvgddtct/store','GiaDvGdDtCtController@store');
+Route::get('thongtingiadvgddtct/show','GiaDvGdDtCtController@show');
+Route::get('thongtingiadvgddtct/update','GiaDvGdDtCtController@update');
+Route::get('thongtingiadvgddtct/del','GiaDvGdDtCtController@destroy');
+
 
 ?>

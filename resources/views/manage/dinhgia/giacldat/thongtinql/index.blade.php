@@ -71,6 +71,7 @@
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
+                                <label>Địa bàn</label>
                                 <select name="district" id="district" class="form-control">
                                     @foreach($model_diaban as $diaban)
                                         <option value="{{$diaban->district}}" {{$diaban->district == $district ? 'selected' :'' }}>{{$diaban->diaban}}</option>

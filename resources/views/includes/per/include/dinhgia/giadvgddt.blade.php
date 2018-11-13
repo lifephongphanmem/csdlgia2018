@@ -21,6 +21,36 @@
                                 <tr>
                                     <th class="table-checkbox" width="2%">
                                     </th>
+                                    <th>Danh mục giá DV GT-DT</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><input type="checkbox" {{ (isset($permission->dmgiadvgddt->index) && $permission->dmgiadvgddt->index == 1) ? 'checked' : '' }} value="1" name="roles[dmgiadvgddt][index]"/></td>
+                                    <td>Xem</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" {{ (isset($permission->dmgiadvgddt->create) && $permission->dmgiadvgddt->create == 1) ? 'checked' : '' }} value="1" name="roles[dmgiadvgddt][create]"/></td>
+                                    <td>Thêm mới</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" {{ (isset($permission->dmgiadvgddt->edit) && $permission->dmgiadvgddt->edit == 1) ? 'checked' : '' }} value="1" name="roles[dmgiadvgddt][edit]"/></td>
+                                    <td>Chỉnh sửa</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" {{ (isset($permission->dmgiadvgddt->delete) && $permission->dmgiadvgddt->delete == 1) ? 'checked' : '' }} value="1" name="roles[dmgiadvgddt][delete]"/></td>
+                                    <td>Xóa</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead class="action">
+                                <tr>
+                                    <th class="table-checkbox" width="2%">
+                                    </th>
                                     <th>Kê khai giá DV GT-DT</th>
 
                                 </tr>
