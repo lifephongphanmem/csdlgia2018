@@ -28,6 +28,7 @@
                     @include('includes.per.include.dinhgia.giathuetn')
                     @include('includes.per.include.dinhgia.gialephitruocba')
                     @include('includes.per.include.dinhgia.giaphilephi')
+                    @include('includes.per.include.dinhgia.giaspdvci')
                 </div>
             </div>
         </div>

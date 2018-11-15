@@ -50,10 +50,10 @@
                                     </tbody>
                                 </table>
                             </div>
-                            @include('includes.per.kkgiadvlt')
-                            @include('includes.per.kkgiadvvt')
-                            @include('includes.per.kkgiatpcted6t')
-                            @include('includes.per.kkgiatacn')
+                            @include('includes.per.include.kkgia.kkgiadvlt')
+                            @include('includes.per.include.kkgia.kkgiadvvt')
+                            @include('includes.per.include.kkgia.kkgiatpcted6t')
+                            @include('includes.per.include.kkgia.kkgiatacn')
                         </div>
 
                     </div>

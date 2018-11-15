@@ -247,5 +247,28 @@ Route::get('thongtingiadvgddtct/show','GiaDvGdDtCtController@show');
 Route::get('thongtingiadvgddtct/update','GiaDvGdDtCtController@update');
 Route::get('thongtingiadvgddtct/del','GiaDvGdDtCtController@destroy');
 
+//Giá thuê mua nhà XH
+Route::resource('danhmucgiathuemuanhaxh','DmGiaThueMuaNhaXhController');
+Route::post('danhmucgiathuemuanhaxh/update','DmGiaThueMuaNhaXhController@update');
+Route::post('danhmucgiathuemuanhaxh/delete','DmGiaThueMuaNhaXhController@destroy');
+
+Route::resource('thongtingiathuemuanhaxh','GiaThueMuaNhaXhController');
+Route::post('thongtingiathuemuanhaxh/create','GiaThueMuaNhaXhController@create');
+Route::post('thongtingiathuemuanhaxh/delete','GiaThueMuaNhaXhController@destroy');
+Route::post('thongtingiathuemuanhaxh/hoanthanh','GiaThueMuaNhaXhController@hoanthanh');
+Route::post('thongtingiathuemuanhaxh/huyhoanthanh','GiaThueMuaNhaXhController@huyhoanthanh');
+Route::post('thongtingiathuemuanhaxh/congbo','GiaThueMuaNhaXhController@congbo');
+Route::get('timkiemthongtingiathuemuanhaxh','GiaThueMuaNhaXhController@search');
+
+Route::get('thongtingiathuemuanhaxhctdf/store','GiaThueMuaNhaXhCtDfController@store');
+Route::get('thongtingiathuemuanhaxhctdf/show','GiaThueMuaNhaXhCtDfController@show');
+Route::get('thongtingiathuemuanhaxhctdf/update','GiaThueMuaNhaXhCtDfController@update');
+Route::get('thongtingiathuemuanhaxhctdf/del','GiaThueMuaNhaXhCtDfController@destroy');
+
+Route::get('thongtingiathuemuanhaxhct/store','GiaThueMuaNhaXhCtController@store');
+Route::get('thongtingiathuemuanhaxhct/show','GiaThueMuaNhaXhCtController@show');
+Route::get('thongtingiathuemuanhaxhct/update','GiaThueMuaNhaXhCtController@update');
+Route::get('thongtingiathuemuanhaxhct/del','GiaThueMuaNhaXhCtController@destroy');
+
 
 ?>

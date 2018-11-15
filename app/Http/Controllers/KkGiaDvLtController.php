@@ -17,15 +17,23 @@ use Illuminate\Support\Facades\Session;
 
 class KkGiaDvLtController extends Controller
 {
-    public function ttcskd(){
+    public function ttcskd(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'DVLT' || session('admin')->level == 'T' || session('admin')->level == 'H') {
-                if(session('admin')->level == 'T')
-                    $model = CsKdDvLt::all();
-                else
-                    $model = CsKdDvLt::where('mahuyen',session('admin')->mahuyen)
-                        ->where('maxa',session('admin')->maxa)
-                        ->get();
+            if (session('admin')->level == 'DVLT' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+                $model = CsKdDvLt::join('company','company.maxa','=','cskddvlt.maxa')
+                    ->where('company.level','DVLT')
+                    ->select('cskddvlt.*','company.tendn');
+
+                if(session('admin')->level == 'T' || session('admin')->level == 'H') {
+                    if(session('admin')->level == 'H')
+                        $modeldv = Town::where('mahuyen',session('admin')->mahuyen)->get();
+                }elseif(session('admin')->level == 'X') {
+                    $model = $model->where('cskddvlt.mahuyen', session('admin')->mahuyen);
+                }else {
+                    $model = $model->where('cskddvlt.mahuyen', session('admin')->mahuyen)
+                        ->where('maxa', session('admin')->maxa);
+                }
+                $model = $model->get();
                 return view('manage.kkgia.dvlt.kkgia.kkgiadv.ttcskd')
                     ->with('model', $model)
                     ->with('pageTitle', 'Danh sách cơ sở kinh doanh dịch vụ lưu trú');
@@ -39,7 +47,7 @@ class KkGiaDvLtController extends Controller
 
     public function index(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'DVLT' || session('admin')->level == 'T' || session('admin')->level == 'H') {
+            if (session('admin')->level == 'DVLT' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $inputs['macskd'] = isset($inputs['macskd']) ? $inputs['macskd'] : '';
                 $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');

@@ -228,6 +228,12 @@ function getPermissionDefault($level) {
         'giathuemuanhaxh'=>array(
             'index'=>1,
         ),
+        'dmgiathuemuanhaxh'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+        ),
         'kkgiathuemuanhaxh'=>array(
             'index'=>1,
             'create'=>1,
@@ -422,6 +428,28 @@ function getPermissionDefault($level) {
             'approve'=>1,
         ),
         'thgiaphilephi'=>array(
+            'baocao'=>1,
+            'congbo'=>0,
+            'timkiem'=>1,
+        ),
+        //Giá sản phẩm dịch vụ công ích
+        'giaspdvci'=>array(
+            'index'=>1,
+        ),
+        'dmgiaspdvci'=>array(
+            'index'=>1,
+            'create'=>0,
+            'edit'=>0,
+            'delete'=>0,
+        ),
+        'kkgiaspdvci'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thgiaspdvci'=>array(
             'baocao'=>1,
             'congbo'=>0,
             'timkiem'=>1,

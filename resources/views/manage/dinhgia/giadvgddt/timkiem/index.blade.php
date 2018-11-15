@@ -33,13 +33,20 @@
         $(function(){
             $('#nam').change(function() {
                 var nam = '&nam=' + $('#nam').val();
-                var url = 'timkiemlephitruocba?' + nam ;
+                var url = 'timkiemthongtingiadvgddt?' + nam ;
                 window.location.href = url;
             });
-            $('#tentm').change(function() {
-                var tentm = '&tentm=' + $('#tentm').val();
+            $('#manhom').change(function() {
+                var manhom = '&manhom=' + $('#manhom').val();
                 var nam = '&nam=' + $('#nam').val();
-                var url = 'timkiemlephitruocba?' + nam + tentm;
+                var url = 'timkiemthongtingiadvgddt?' + nam + manhom;
+                window.location.href = url;
+            });
+            $('#mota').change(function() {
+                var mota = '&mota=' + $('#mota').val();
+                var nam = '&nam=' + $('#nam').val();
+                var manhom = '&manhom=' + $('#manhom').val();
+                var url = 'timkiemthongtingiadvgddt?' + nam + manhom + mota;
                 window.location.href = url;
             });
 
@@ -50,7 +57,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Tìm kiếm thông tin <small>&nbsp;lệ phí trước bạ</small>
+        Tìm kiếm thông tin <small>&nbsp;giá dịch vụ giáo dục đào tạo</small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -65,17 +72,27 @@
                                 @if ($nam_start = intval(date('Y')) - 5 ) @endif
                                 @if ($nam_stop = intval(date('Y')) + 1 ) @endif
                                 @for($i = $nam_start; $i <= $nam_stop; $i++)
-                                    <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>Năm {{$i}}</option>
+                                    <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
                                 @endfor
                             </select>
                         </div>
-                        <div class="col-md-3">
-                            <label>Số loại/Tên thương mại</label>
+                        <div class="col-md-9">
+                            <label>Mô tả</label>
                             <div class="form-group">
-                                {!! Form::text('tentm',$tentm, array('id'=>'tentm','class'=>'form-control'))!!}
+                                {!! Form::text('mota',$inputs['mota'], array('id'=>'mota','class'=>'form-control'))!!}
                             </div>
                         </div>
-
+                        <div class="col-md-12">
+                            <label>Nhóm giáo dục đào tạo</label>
+                            <div class="form-group">
+                                <select name="manhom" id="manhom" class="form-control">
+                                    <option value="">--Chọn nhóm--</option>
+                                    @foreach($m_nhom as $nhom)
+                                        <option value="{{$nhom->manhom}}" {{$nhom->manhom == $inputs['manhom'] ? 'selected' : ''}}>{{$nhom->tennhom}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="table-toolbar">
                     </div>
@@ -86,24 +103,22 @@
                                 <input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/>
                             </th-->
                             <th width="2%" style="text-align: center">STT</th>
+                            <th style="text-align: center" >Tên nhóm</th>
                             <th style="text-align: center" >Số QĐ</th>
                             <th style="text-align: center">Ngày áp dụng</th>
-                            <th style="text-align: center">Nhóm xe</th>
-                            <th style="text-align: center">Nhãn hiệu</th>
-                            <th style="text-align: center">Tên thương mại</th>
-                            <th style="text-align: center">Giá tính LPTB</th>
+                            <th style="text-align: center">Mô tả</th>
+                            <th style="text-align: center" width="10%">Giá dịch vụ</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
-                                <td>{{$tt->soqd}}</td>
-                                <td>{{getDayVn($tt->ngayapdung)}}</td>
-                                <td>{{$tt->nhomxe}}</td>
-                                <td>{{$tt->nhanhieu}}</td>
-                                <td class="success">{{$tt->tentm}}</td>
-                                <td style="text-align: right; font-weight: bold;" class="active">{{number_format($tt->giatinhlptb)}}</td>
+                                <td width="30%" style="font-weight: bold">{{$tt->tennhom}}</td>
+                                <td width="20%">{{$tt->soqd}}</td>
+                                <td width="10%">{{getDayVn($tt->ngayapdung)}}</td>
+                                <td class="active">{{$tt->mota}}</td>
+                                <td style="text-align: right;font-weight: bold" width="10%">{{number_format($tt->giadv)}}</td>
                         @endforeach
                         </tbody>
                     </table>

@@ -1,4 +1,5 @@
 <!--Giá thuê mặt đất nước-->
+@if(canGeneral('giathuedatnuoc','index'))
 <div class="row">
     <div class="col-md-12 ">
         <!-- BEGIN SAMPLE FORM PORTLET-->
@@ -80,3 +81,4 @@
         </div>
     </div>
 </div>
+@endif

@@ -210,6 +210,20 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->giaspdvci->index) && $setting->giaspdvci->index == 1) ? 'checked' : '' }} value="1" name="roles[giaspdvci][index]"/></td>
+                                    <td>Giá sp-dv công ích</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->giaspdvci->congbo) && $setting->giaspdvci->congbo == 1) ? 'checked' : '' }} value="1" name="roles[giaspdvci][congbo]"/></td>
+                                    <td>Công bố giá sp-dv công ích</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
                     </div>
                 </div>

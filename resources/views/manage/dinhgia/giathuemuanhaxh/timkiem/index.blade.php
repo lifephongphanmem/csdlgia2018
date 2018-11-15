@@ -30,26 +30,23 @@
         jQuery(document).ready(function() {
             TableManaged.init();
         });
-        function getId(id){
-            document.getElementById("iddelete").value=id;
-        }
         $(function(){
-            $('#mahuyen').change(function() {
-                var mahuyen = '&mahuyen='+$('#mahuyen').val();
-                var url = 'timkiemthongtingiacacloaidat?'+mahuyen;
+            $('#nam').change(function() {
+                var nam = '&nam=' + $('#nam').val();
+                var url = 'timkiemthongtingiathuemuanhaxh?' + nam ;
                 window.location.href = url;
             });
-            $('#soqd').change(function() {
-                var mahuyen = '&mahuyen='+$('#mahuyen').val();
-                var soqd = '&soqd='+ $('#soqd').val();
-                var url = 'timkiemthongtingiacacloaidat?' + mahuyen + soqd;
+            $('#manhom').change(function() {
+                var manhom = '&manhom=' + $('#manhom').val();
+                var nam = '&nam=' + $('#nam').val();
+                var url = 'timkiemthongtingiathuemuanhaxh?' + nam + manhom;
                 window.location.href = url;
             });
-            $('#vitri').change(function() {
-                var mahuyen = '&mahuyen='+$('#mahuyen').val();
-                var soqd = '&soqd='+ $('#soqd').val();
-                var vitri = '&vitri=' + $('#vitri').val();
-                var url = 'timkiemthongtingiacacloaidat?' + mahuyen + soqd + vitri;
+            $('#loainha').change(function() {
+                var loainha = '&loainha=' + $('#loainha').val();
+                var nam = '&nam=' + $('#nam').val();
+                var manhom = '&manhom=' + $('#manhom').val();
+                var url = 'timkiemthongtingiathuemuanhaxh?' + nam + manhom + loainha;
                 window.location.href = url;
             });
 
@@ -60,7 +57,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Tìm kiếm thông tin <small>&nbsp;giá các loại đất</small>
+        Tìm kiếm thông tin <small>&nbsp;giá thuê mua nhà xã hội</small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -69,35 +66,33 @@
             <div class="portlet box wi">
                 <div class="portlet-body">
                     <div class="row">
-                        <div class="col-md-2">
-                            <label>Địa bàn quản lý</label>
+                        <div class="col-md-3">
+                            <label>Năm</label>
+                            <select name="nam" id="nam" class="form-control">
+                                @if ($nam_start = intval(date('Y')) - 5 ) @endif
+                                @if ($nam_stop = intval(date('Y')) + 1 ) @endif
+                                @for($i = $nam_start; $i <= $nam_stop; $i++)
+                                    <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
+                                @endfor
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Nhóm giáo dục đào tạo</label>
                             <div class="form-group">
-                                <select name="mahuyen" id="mahuyen" class="form-control">
-                                    @foreach($modeldiaban as $ct)
-                                        <option value="{{$ct->district}}" {{$ct->district==$mahuyen? 'selected':''}}>{{ $ct->diaban}}</option>
+                                <select name="manhom" id="manhom" class="form-control">
+                                    <option value="">--Chọn nhóm--</option>
+                                    @foreach($m_nhom as $nhom)
+                                        <option value="{{$nhom->manhom}}" {{$nhom->manhom == $inputs['manhom'] ? 'selected' : ''}}>{{$nhom->tennhom}}</option>
                                     @endforeach
                                 </select>
                             </div>
-
                         </div>
-                        <div class="col-md-5">
-                            <label>Thông tư quyết định</label>
+                        <div class="col-md-6">
+                            <label>Loại nhà</label>
                             <div class="form-group">
-                                <select name="soqd" id="soqd" class="form-control">
-                                    <option value="">--Chọn thông tư quyết định--</option>
-                                    @foreach($modelqdgiadat as $ct)
-                                        <option value="{{$ct->soquyetdinh}}" {{$ct->soquyetdinh==$soqd? 'selected':''}}>{{ $ct->mota}}</option>
-                                    @endforeach
-                                </select>
+                                {!! Form::text('loainha',$inputs['loainha'], array('id'=>'loainha','class'=>'form-control'))!!}
                             </div>
                         </div>
-                        <div class="col-md-5">
-                            <label>Khu vực/vị trí</label>
-                            <div class="form-group">
-                                {!! Form::text('vitri',$vitri, array('id'=>'vitri','class'=>'form-control'))!!}
-                            </div>
-                        </div>
-
                     </div>
                     <div class="table-toolbar">
                     </div>
@@ -108,21 +103,26 @@
                                 <input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/>
                             </th-->
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Địa bàn</th>
-                            <th style="text-align: center">Vị trí</th>
-                            <th style="text-align: center" width="10%">Căn cứ quyết định</th>
-                            <th style="text-align: center" width="10%">Giá đất</th>
+                            <th style="text-align: center" >Tên nhóm</th>
+                            <th style="text-align: center" >Số QĐ</th>
+                            <th style="text-align: center">Ngày áp dụng</th>
+                            <th style="text-align: center">Loại nhà</th>
+                            <th style="text-align: center">Thời gian</th>
+                            <th style="text-align: center" width="10%">Giá dịch vụ</th>
+                            <th style="text-align: center" width="10%">Hệ số điều chỉnh</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($model as $key=>$tt)
+                        @foreach($model as $key=>$ct)
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
-                                <td>{{$tt->hienthi}}</td>
-                                <td class="success">{{$tt->vitri}}</td>
-                                <td class="text-center">{{$tt->soqd}}</td>
-                                <td style="text-align: right; font-weight: bold;" class="active">{{number_format($tt->giadat)}}</td>
-                            </tr>
+                                <td width="30%" style="font-weight: bold">{{$ct->tennhom}}</td>
+                                <td width="20%">{{$ct->soqd}}</td>
+                                <td width="10%">{{getDayVn($ct->ngayapdung)}}</td>
+                                <td class="active">{{$ct->loainha}}</td>
+                                <td>{{$ct->thoigian}}</td>
+                                <td style="text-align: right;font-weight: bold">{{number_format($ct->dongia)}}</td>
+                                <td>{{$ct->hesodc}}</td>
                         @endforeach
                         </tbody>
                     </table>
@@ -137,28 +137,22 @@
     <!-- END DASHBOARD STATS -->
     <div class="clearfix">
     </div>
-    <div class="modal fade" id="delete-modal-confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <!--Modal Edit-->
+    <div class="modal fade bs-modal-lg" id="modal-show" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                {!! Form::open(['url'=>'dmqdgiadat/delete','id' => 'frm_delete'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Đồng ý xóa?</h4>
+                    <h4 class="modal-title">Thông tin chi tiết tài sản thẩm định giá</h4>
                 </div>
-                <input type="hidden" name="iddelete" id="iddelete">
+                <div class="modal-body" id="tttsedit">
+                </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn blue" onclick="ClickDelete()">Đồng ý</button>
-                    <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
                 </div>
-                {!! Form::close() !!}
             </div>
             <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
     </div>
-    <script>
-        function ClickDelete(){
-            $('#frm-demlete').submit();
-        }
-    </script>
 @stop

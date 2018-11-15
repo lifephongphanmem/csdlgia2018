@@ -49,7 +49,7 @@ class CsKdDvLtController extends Controller
         if (Session::has('admin')) {
             if (session('admin')->level == 'DVLT') {
                 $inputs = $request->all();
-                $inputs['macskd'] = session('admin')->maxa . '_'.getdate()[0];
+                $inputs['macskd'] = session('admin')->maxa .getdate()[0];
                 $inputs['maxa'] = session('admin')->maxa;
                 $inputs['mahuyen'] = session('admin')->mahuyen;
                 if(isset($inputs['avatar'])){

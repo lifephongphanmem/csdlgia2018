@@ -1,4 +1,5 @@
 <!--Giá thuê mua nhà xã hội-->
+@if(canGeneral('giathuemuanhaxh','index'))
 <div class="row">
     <div class="col-md-12 ">
         <!-- BEGIN SAMPLE FORM PORTLET-->
@@ -15,6 +16,36 @@
             <div class="portlet-body form" style="display: none;">
                 <div class="form-body">
                     <div class="row">
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead class="action">
+                                <tr>
+                                    <th class="table-checkbox" width="2%">
+                                    </th>
+                                    <th>Danh mục giá thuê mua nhà XH</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><input type="checkbox" {{ (isset($permission->dmgiathuemuanhaxh->index) && $permission->dmgiathuemuanhaxh->index == 1) ? 'checked' : '' }} value="1" name="roles[dmgiathuemuanhaxh][index]"/></td>
+                                    <td>Xem</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" {{ (isset($permission->dmgiathuemuanhaxh->create) && $permission->dmgiathuemuanhaxh->create == 1) ? 'checked' : '' }} value="1" name="roles[dmgiathuemuanhaxh][create]"/></td>
+                                    <td>Thêm mới</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" {{ (isset($permission->dmgiathuemuanhaxh->edit) && $permission->dmgiathuemuanhaxh->edit == 1) ? 'checked' : '' }} value="1" name="roles[dmgiathuemuanhaxh][edit]"/></td>
+                                    <td>Chỉnh sửa</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" {{ (isset($permission->dmgiathuemuanhaxh->delete) && $permission->dmgiathuemuanhaxh->delete == 1) ? 'checked' : '' }} value="1" name="roles[dmgiathuemuanhaxh][delete]"/></td>
+                                    <td>Xóa</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="col-md-3">
                             <table class="table table-striped table-bordered table-hover">
                                 <thead class="action">
@@ -80,3 +111,4 @@
         </div>
     </div>
 </div>
+@endif

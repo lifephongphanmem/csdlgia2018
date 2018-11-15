@@ -1,4 +1,5 @@
 <!--Giá nước sạch sinh hoạt-->
+@if(canGeneral('gianuocsh','index'))
 <div class="row">
     <div class="col-md-12 ">
         <!-- BEGIN SAMPLE FORM PORTLET-->
@@ -80,3 +81,4 @@
         </div>
     </div>
 </div>
+@endif

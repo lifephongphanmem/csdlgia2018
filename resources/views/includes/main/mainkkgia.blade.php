@@ -7,7 +7,11 @@
         <span class="arrow"></span>
     </a>
     <ul class="sub-menu" style="display: none;">
-
+        @if(session('admin')->level != 'T' && session('admin')->level != 'H' && session('admin')->level != 'X')
+            @if(can('ttdn','index'))
+                <li><a href="{{url('thongtindoanhnghiep')}}">Thông tin doanh nghiệp</a></li>
+            @endif
+        @endif
         <!--li>
             <a href="javascript:;">
                 <span class="title">Xi măng, thép xây dựng</span>
@@ -197,11 +201,11 @@
             </a>
             <ul class="sub-menu" style="display: none;">
                 @if(session('admin')->level == 'DVLT')
-                <li><a href="{{url('thongtindoanhnghiep')}}">Thông tin doanh nghiệp</a></li>
                 <li><a href="{{url('thongtincskd')}}">Danh sách CSKD</a> </li>
                 <li><a href="{{url('thongtincskdkkdvlt')}}">Kê khai giá DVLT</a> </li>
                 @endif
                 @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
+                    <li><a href="{{url('thongtincskdkkdvlt')}}">Kê khai giá DVLT</a> </li>
                     <li><a href="{{url('xetduyetkkgiadvlt')}}">Thông tin hồ sơ xét duyệt</a></li>
 
                     <li><a href="{{url('timkiemkkgiadvlt')}}">Tìm kiếm thông tin</a> </li>

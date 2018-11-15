@@ -108,14 +108,19 @@
                     Giá thuê, mua nhà XH<span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
+                    @if(can('dmgiathuemuanhaxh','index'))
+                    <li>
+                        <a href="{{url('danhmucgiathuemuanhaxh')}}">Danh mục thuê mua nhà XH</a>
+                    </li>
+                    @endif
                     @if(can('kkgiathuemuanhaxh','index'))
                     <li>
-                        <a href="">Thông tin thuê mua nhà XH</a>
+                        <a href="{{url('thongtingiathuemuanhaxh')}}">Thông tin thuê mua nhà XH</a>
                     </li>
                     @endif
                     @if(can('thgiathuemuanhaxh','timkiem'))
                     <li>
-                        <a href="">Tìm kiếm thông tin</a>
+                        <a href="{{url('timkiemthongtingiathuemuanhaxh')}}">Tìm kiếm thông tin</a>
                     </li>
                     @endif
                 </ul>
@@ -183,7 +188,7 @@
                     @endif
                     @if(can('thgiadvgddt','timkiem'))
                     <li>
-                        <a href="">Tìm kiếm thông tin</a>
+                        <a href="{{url('timkiemthongtingiadvgddt')}}">Tìm kiếm thông tin</a>
                     </li>
                     @endif
                 </ul>
