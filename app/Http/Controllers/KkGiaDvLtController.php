@@ -31,7 +31,7 @@ class KkGiaDvLtController extends Controller
                     $model = $model->where('cskddvlt.mahuyen', session('admin')->mahuyen);
                 }else {
                     $model = $model->where('cskddvlt.mahuyen', session('admin')->mahuyen)
-                        ->where('maxa', session('admin')->maxa);
+                        ->where('cskddvlt.maxa', session('admin')->maxa);
                 }
                 $model = $model->get();
                 return view('manage.kkgia.dvlt.kkgia.kkgiadv.ttcskd')
