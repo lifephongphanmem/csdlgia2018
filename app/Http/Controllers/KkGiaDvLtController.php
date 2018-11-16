@@ -21,15 +21,15 @@ class KkGiaDvLtController extends Controller
         if (Session::has('admin')) {
             if (session('admin')->level == 'DVLT' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $model = CsKdDvLt::join('company','company.maxa','=','cskddvlt.maxa')
+                    ->join('town','town.maxa','=','cskddvlt.mahuyen')
                     ->where('company.level','DVLT')
-                    ->select('cskddvlt.*','company.tendn');
+                    ->select('cskddvlt.*','company.tendn','town.tendv');
 
                 if(session('admin')->level == 'T' || session('admin')->level == 'H') {
-                    if(session('admin')->level == 'H')
-                        $modeldv = Town::where('mahuyen',session('admin')->mahuyen)->get();
+                    $model = $model;
                 }elseif(session('admin')->level == 'X') {
-                    $model = $model->where('cskddvlt.mahuyen', session('admin')->mahuyen);
-                }else {
+                    $model = $model->where('cskddvlt.mahuyen', session('admin')->maxa);
+                }else {//dndvlt
                     $model = $model->where('cskddvlt.mahuyen', session('admin')->mahuyen)
                         ->where('cskddvlt.maxa', session('admin')->maxa);
                 }

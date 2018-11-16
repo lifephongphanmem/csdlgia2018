@@ -37,6 +37,7 @@
                         <thead>
                         <tr>
                             <th style="text-align: center" width="2%">STT</th>
+                            <th style="text-align: center">Cơ quan quản lý</th>
                             <th style="text-align: center" width="25%">Tên Doanh nghiệp</th>
                             <th style="text-align: center" width="25%">Tên cơ sở kinh doanh</th>
                             <th style="text-align: center" width="10%">Loại hạng</th>
@@ -48,6 +49,7 @@
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key+1}}</td>
+                                <td style="font-weight: bold">{{$tt->tendv}}</td>
                                 <td style="font-weight: bold">{{$tt->tendn}}</td>
                                 <td class="active">{{$tt->tencskd}}</td>
                                 <td style="text-align: center">{{$tt->loaihang}}</td>

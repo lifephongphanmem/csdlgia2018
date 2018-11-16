@@ -246,6 +246,7 @@
     <div class="row">
         <div class="col-md-2">
             <div class="form-group">
+                <label>Năm hồ sơ</label>
                 <select name="nam" id="nam" class="form-control">
                     @if ($nam_start = intval(date('Y')) - 5 ) @endif
                     @if ($nam_stop = intval(date('Y')) + 1 ) @endif
@@ -257,6 +258,7 @@
         </div>
         <div class="col-md-4">
             <div class="form-group">
+                <label>Trạng thái hồ sơ</label>
                 <select name="trangthai" id="trangthai" class="form-control">
                     <option value="CD" {{$trangthai == 'CD' ? 'selected' : ''}}>Hồ sơ chờ duyệt</option>
                     <option value="BTL" {{$trangthai == 'BTL' ? 'selected' : ''}}>Hồ sơ bị trả lại</option>
