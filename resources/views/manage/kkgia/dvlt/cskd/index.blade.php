@@ -40,8 +40,10 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
+                        @if(can('dmdvlt','create'))
                         <a href="{{url('thongtincskd/create')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
+                        @endif
                     </div>
                 </div>
                 <div class="note note-success">
@@ -76,7 +78,9 @@
                                 <td>{{$tt->loaihang}}</td>
                                 <td>{{$tt->diachikd}}</td>
                                 <td>
+                                    @if(can('dmdvlt','edit'))
                                     <a href="{{url('thongtincskd/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

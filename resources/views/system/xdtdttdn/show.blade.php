@@ -42,11 +42,13 @@
                     <div class="caption">
                     </div>
                     <div class="actions">
-                        @if($modeltttd->trangthai == 'CD')
-                        <a href="{{url('xetduyettdttdn/'.$modeltttd->id.'/duyet')}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-check"></i> Đồng ý thay đổi thông tin </a>
-                        <button type="button" onclick="confirmTraLai({{$modeltttd->id}})" class="btn btn-default btn-xs mbs" data-target="#tralai-modal" data-toggle="modal"><i class="fa fa-reply"></i>&nbsp;
-                            Trả lại</button>
+                        @if(can('ttdn', 'approve'))
+                            @if($modeltttd->trangthai == 'CD')
+                            <a href="{{url('xetduyettdttdn/'.$modeltttd->id.'/duyet')}}" class="btn btn-default btn-sm">
+                                <i class="fa fa-check"></i> Đồng ý thay đổi thông tin </a>
+                            <button type="button" onclick="confirmTraLai({{$modeltttd->id}})" class="btn btn-default btn-xs mbs" data-target="#tralai-modal" data-toggle="modal"><i class="fa fa-reply"></i>&nbsp;
+                                Trả lại</button>
+                            @endif
                         @endif
                     </div>
                 </div>
@@ -355,7 +357,7 @@
             </div>
             <div class="row" style="text-align: center">
                 <div class="col-md-12">
-                    <a href="{{url('xetduyettdttdn')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                    <a href="{{url('xetduyettdttdn?level='.$modeltttd->level.'&maxa='.$modeltttd->mahuyen.'&trangthai='.$modeltttd->trangthai)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 </div>
             </div>
         </div>

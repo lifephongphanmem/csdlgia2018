@@ -1,4 +1,4 @@
-
+@if(canGeneral('kkgia','index'))
     <div class="row">
         <div class="col-md-12 ">
             <!-- BEGIN SAMPLE FORM PORTLET-->
@@ -51,9 +51,6 @@
                                 </table>
                             </div>
                             @include('includes.per.include.kkgia.kkgiadvlt')
-                            @include('includes.per.include.kkgia.kkgiadvvt')
-                            @include('includes.per.include.kkgia.kkgiatpcted6t')
-                            @include('includes.per.include.kkgia.kkgiatacn')
                         </div>
 
                     </div>
@@ -61,3 +58,4 @@
             </div>
         </div>
     </div>
+@endif

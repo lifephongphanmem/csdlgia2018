@@ -312,7 +312,6 @@ License: You must have a valid license purchased only from themeforest(the above
                         <li><a href="{{url('district')}}"> Danh sách đơn vị quản lý</a></li>
                         <li><a href="{{url('town')}}"> Danh sách đơn vị</a></li>
                         <li><a href="{{url('company')}}"> Danh sách doanh nghiệp</a></li>
-                        <li><a href="{{url('xetduyettdttdn')}}"> Xét duyệt thay đổi thông tin doanh nghiệp</a></li>
                         <li><a href="{{url('users')}}"> Quản lý tài khoản</a></li>
                         <li><a href="{{url('register')}}"> Tài khoản đăng ký</a></li>
                         <li><a href="{{url('general')}}">Cấu hình hệ thống</a></li>

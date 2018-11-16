@@ -18,11 +18,11 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
                                 <tr>
-                                    <td width="2%"><input type="checkbox" {{ (isset($setting->giadvlt->index) && $setting->giadvlt->index == 1) ? 'checked' : '' }} value="1" name="roles[giadvlt][index]"/></td>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->dvlt->index) && $setting->dvlt->index == 1) ? 'checked' : '' }} value="1" name="roles[dvlt][index]"/></td>
                                     <td>Giá dịch vụ lưu trú</td>
                                 </tr>
                                 <tr>
-                                    <td width="2"><input type="checkbox" {{ (isset($setting->giadvlt->congbo) && $setting->giadvlt->congbo == 1) ? 'checked' : '' }} value="1" name="roles[giadvlt][congbo]"/></td>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->dvlt->congbo) && $setting->dvlt->congbo == 1) ? 'checked' : '' }} value="1" name="roles[dvlt][congbo]"/></td>
                                     <td>Công bố giá dịch vụ lưu trú</td>
                                 </tr>
                                 </tbody>

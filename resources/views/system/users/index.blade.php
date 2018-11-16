@@ -96,6 +96,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
+                                <label>Phân loại tài khoản</label>
                                 <select class="form-control" name="phanloai" id="phanloai">
                                     <option value="HT" {{($pl == "HT") ? 'selected' : ''}}>Quản trị hệ thống</option>
                                     <option value="T" {{($pl == "T") ? 'selected' : ''}}>Tổng hợp</option>

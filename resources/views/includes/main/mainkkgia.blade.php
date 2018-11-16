@@ -11,6 +11,10 @@
             @if(can('ttdn','index'))
                 <li><a href="{{url('thongtindoanhnghiep')}}">Thông tin doanh nghiệp</a></li>
             @endif
+        @else
+            @if(can('ttdn','approve'))
+            <li><a href="{{url('xetduyettdttdn')}}"> Xét duyệt thay đổi thông tin doanh nghiệp</a></li>
+            @endif
         @endif
         <!--li>
             <a href="javascript:;">
@@ -192,27 +196,37 @@
             </ul>
         </li>
         @endif
-
-        @if(can('kkdvlt','index'))
-        <li>
-            <a href="">
-                <span class="title">Dịch vụ lưu trú</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu" style="display: none;">
-                @if(session('admin')->level == 'DVLT')
-                <li><a href="{{url('thongtincskd')}}">Danh sách CSKD</a> </li>
-                <li><a href="{{url('thongtincskdkkdvlt')}}">Kê khai giá DVLT</a> </li>
-                @endif
-                @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
-                    <li><a href="{{url('thongtincskdkkdvlt')}}">Kê khai giá DVLT</a> </li>
-                    <li><a href="{{url('xetduyetkkgiadvlt')}}">Thông tin hồ sơ xét duyệt</a></li>
-
-                    <li><a href="{{url('timkiemkkgiadvlt')}}">Tìm kiếm thông tin</a> </li>
-                <li><a href="{{url('baocaokekhaidvlt')}}">Báo cáo thống kê</a></li>
-                @endif
-            </ul>
-        </li>
+        @if(canGeneral('dvlt','index'))
+            @if(can('kkdvlt','index'))
+            <li>
+                <a href="">
+                    <span class="title">Dịch vụ lưu trú</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu" style="display: none;">
+                    @if(session('admin')->level == 'DVLT')
+                        @if(can('dmdvlt','index'))
+                            <li><a href="{{url('thongtincskd')}}">Danh sách CSKD</a> </li>
+                        @endif
+                        @if(can('kkdvlt','index'))
+                            <li><a href="{{url('thongtincskdkkdvlt')}}">Kê khai giá DVLT</a> </li>
+                        @endif
+                    @endif
+                    @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
+                        @if(can('kkdvlt','index'))
+                            <li><a href="{{url('thongtincskdkkdvlt')}}">Kê khai giá DVLT</a></li>
+                            <li><a href="{{url('xetduyetkkgiadvlt')}}">Thông tin hồ sơ xét duyệt</a></li>
+                        @endif
+                        @if(can('thdvlt','timkiem'))
+                            <li><a href="{{url('timkiemkkgiadvlt')}}">Tìm kiếm thông tin</a> </li>
+                        @endif
+                        @if(can('thdvlt','baocao'))
+                        <li><a href="{{url('baocaokekhaidvlt')}}">Báo cáo thống kê</a></li>
+                        @endif
+                    @endif
+                </ul>
+            </li>
+            @endif
         @endif
 
 

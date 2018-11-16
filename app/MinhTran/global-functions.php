@@ -477,6 +477,34 @@ function getPermissionDefault($level) {
         'kkgia'=>array(
             'index'=>1,
         ),
+        //Dịch vụ lưu trú
+        'ttdn'=>array(
+            'index'=>1,
+            'create'=>0,
+            'edit'=>1,
+            'delete'=>0,
+            'approve'=>1,
+        ),
+        'dmdvlt'=>array(
+            'index'=>0,
+            'create'=>0,
+            'edit'=>0,
+            'delete'=>0,
+        ),
+        'kkdvlt'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thdvlt'=>array(
+            'baocao'=>1,
+            'congbo'=>1,
+            'timkiem'=>1,
+            'xdttdn'=>1,
+        ),
+
 
     //End Kê khai giá
     //Văn bản QLNN
@@ -495,26 +523,32 @@ function getPermissionDefault($level) {
         'kkgia'=>array(
             'index'=>1,
         ),
-        'ttdn'=> array(
+        //Dịch vụ lưu trú
+        'ttdn'=>array(
             'index'=>1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1
+            'create'=>0,
+            'edit'=>1,
+            'delete'=>0,
+            'approve'=>1,
         ),
-        'dmdvlt' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1
+        'dmdvlt'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
         ),
-        'kkdvlt' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1
+        'kkdvlt'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thdvlt'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
         ),
     );
     $roles['DVGS'] = array(
