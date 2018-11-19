@@ -20,22 +20,31 @@ class KkGsXdController extends Controller
                 $inputs = $request->all();
                 $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CD';
-                if(session('admin')->level == 'T')
-                    $model = KkGs::leftjoin('company','company.maxa','=','kkgs.maxa')
-                        ->select('kkgs.*','company.tendn')
-                        ->where('kkgs.trangthai',$inputs['trangthai'])
-                        ->whereYear('kkgs.ngaychuyen',$inputs['nam'])
+                $model = KkGs::leftjoin('company','company.maxa','=','kkgs.maxa')
+                    ->select('kkgs.*','company.tendn')
+                    ->where('kkgs.trangthai',$inputs['trangthai'])
+                    ->whereYear('kkgs.ngaychuyen',$inputs['nam']);
+                if(session('admin')->level == 'T'){
+                    $modeldv = Town::all();
+                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldv->first()->maxa;
+                    $model = $model->where('kkgs.mahuyen',$inputs['mahuyen']);
+                }elseif(session('admin')->level == 'H'){
+                    $modeldv = Town::where('mahuyen',session('admin')->mahuyen)->get();
+                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldv->first()->maxa;
+                    $model = $model->where('kkgs.mahuyen',$inputs['mahuyen']);
+                }else{
+                    $modeldv = Town::where('mahuyen',session('admin')->mahuyen)
+                        ->where('maxa',session('admin')->maxa)
                         ->get();
-                else
-                    $model = KkGs::where('trangthai',$inputs['trangthai'])
-                        ->whereYear('ngaychuyen',$inputs['nam'])
-                        ->where('mahuyen',session('admin')->maxa)
-                        ->get();
+                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldv->first()->maxa;
+                    $model = $model->where('kkgs.mahuyen',$inputs['mahuyen']);
+                }
+                $model = $model->get();
                 return view('manage.kkgia.dvgs.kkgia.xetduyet.index')
                     ->with('model', $model)
-                    ->with('nam',$inputs['nam'])
-                    ->with('trangthai',$inputs['trangthai'])
-                    ->with('pageTitle', 'Danh sách hồ sơ kê khai giá mặt hàng sữa');
+                    ->with('inputs',$inputs)
+                    ->with('modeldv',$modeldv)
+                    ->with('pageTitle', 'Xét duyệt hồ sơ kê khai giá TPCN cho TE dưới 6 tuổi');
             }else{
                 return view('errors.perm');
             }
@@ -63,7 +72,7 @@ class KkGsXdController extends Controller
 
             $modelhs = KkGs::where('id',$inputs['id'])
                 ->first();
-            $modeldn = Company::where('maxa',$modelhs->maxa)->where('level','DVGS')->first();
+            $modeldn = Company::where('maxa',$modelhs->maxa)->where('level','TPCNTE6T')->first();
 
             $result['message'] = '<div class="form-group" id="ttdnkkdvgs"> ';
             $result['message'] .= '<label style="color: blue"><b>'.$modeldn->tendn.'</b> Kê khai giá sữa số công văn <b>'.$modelhs->socv.'</b> ngày áp dụng <b>'.getDayVn($modelhs->ngayhieuluc).'</b></b></label>';
@@ -83,7 +92,7 @@ class KkGsXdController extends Controller
                 $model = KkGs::where('id',$inputs['idtralai'])->first();
                 if($model->update($inputs)){
                     $tencqcq = Town::where('maxa',$model->mahuyen)->first();
-                    $dn = Company::where('maxa',$model->maxa)->where('level','DVGS')->first();
+                    $dn = Company::where('maxa',$model->maxa)->where('level','TPCNTE6T')->first();
                     $data=[];
                     $data['tendn'] = $dn->tendn;
                     $data['masothue'] = $model->maxa;
@@ -101,7 +110,7 @@ class KkGsXdController extends Controller
                         $message->from('phanmemcsdlgia@gmail.com','Phần mềm CSDL giá');
                     });
                 }
-                return redirect('xdkekhaigiasua');
+                return redirect('xdkekhaigiatpcnte6t?&trangthai='.$inputs['trangthai'].'mahuyen='.$model->mahuyen);
             }else{
                 return view('errors.perm');
             }
@@ -132,7 +141,7 @@ class KkGsXdController extends Controller
             $model = Town::where('maxa',$modelhs->mahuyen)
                 ->first();
             $modeldn = Company::where('maxa',$modelhs->maxa)
-                ->where('level','DVGS')
+                ->where('level','TPCNTE6T')
                 ->first();
 
             $ngay = Carbon::now()->toDateString();
@@ -189,7 +198,9 @@ class KkGsXdController extends Controller
                 //$this->congbo($id);
 
                 $tencqcq = Town::where('maxa',$model->mahuyen)->first();
-                $dn = Company::where('maxa',$model->maxa)->first();
+                $dn = Company::where('maxa',$model->maxa)
+                    ->where('level','TPCNTE6T')
+                    ->first();
                 $data=[];
                 $data['tendn'] = $dn->tendn;
                 $data['tg'] = Carbon::now()->toDateTimeString();
@@ -212,7 +223,7 @@ class KkGsXdController extends Controller
                 });
 
             }
-            return redirect('xdkekhaigiasua');
+            return redirect('xdkekhaigiatpcnte6t?&trangthai=DD&mahuyen='.$model->mahuyen);
         }else
             return view('errors.notlogin');
     }
@@ -234,7 +245,7 @@ class KkGsXdController extends Controller
             return view('manage.kkgia.dvgs.kkgia.timkiem.index')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
-                ->with('pageTitle','Tìm kiếm thông tin kê khai giá mặt hàng sữa');
+                ->with('pageTitle','Tìm kiếm thông tin kê khai giá TPCN cho TE dưới 6 tuổi');
         }else
             return view('errors.notlogin');
     }

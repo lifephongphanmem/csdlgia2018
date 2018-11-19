@@ -15,11 +15,45 @@ use Illuminate\Support\Facades\Session;
 
 class KkGsController extends Controller
 {
+    public function ttdn(Request $request){
+        if (Session::has('admin')) {
+            if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+                $inputs = $request->all();
+                if(session('admin')->level == 'T'){
+                    $modeldv = Town::all();
+                    $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
+                }elseif(session('admin')->level == 'H'){
+                    $modeldv = Town::where('mahuyen',session('admin')->mahuyen)->get();
+                    $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
+                }else{
+                    $modeldv = Town::where('mahuyen',session('admin')->mahuyen)
+                        ->where('maxa',session('admin')->maxa)
+                        ->get();
+                    $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : session('admin')->maxa;
+                }
+
+                $model = Company::join('town','town.maxa','=','company.mahuyen')
+                    ->select('company.*','town.tendv')
+                    ->where('company.level','TPCNTE6T')
+                    ->where('company.mahuyen',$inputs['maxa'])
+                    ->get();
+                return view('manage.kkgia.dvgs.kkgia.kkgiadv.ttdn')
+                    ->with('model', $model)
+                    ->with('modeldv',$modeldv)
+                    ->with('inputs',$inputs)
+                    ->with('pageTitle', 'Danh sách doanh nghiệp kê khai giá TPCN cho TE dưới 6 tuổi');
+            } else {
+                return view('errors.perm');
+            }
+        }else
+            return view('errors.notlogin');
+    }
+
     public function index(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'DVGS' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+            if (session('admin')->level == 'TPCNTE6T' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
-                if(session('admin')->level == 'T' || session('admin')->level == 'H')
+                if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
                     $inputs['masothue'] = isset($inputs['masothue']) ? $inputs['masothue'] : '';
                 else
                     $inputs['masothue'] = session('admin')->maxa;
@@ -32,14 +66,14 @@ class KkGsController extends Controller
                     ->orderBy('id', 'desc')
                     ->get();
                 $modeldn = Company::where('maxa', $inputs['masothue'])
-                    ->where('level', 'DVGS')->first();
+                    ->where('level', 'TPCNTE6T')->first();
                 return view('manage.kkgia.dvgs.kkgia.kkgiadv.index')
                     ->with('model', $model)
                     ->with('modeldn', $modeldn)
                     ->with('nam', $inputs['nam'])
                     ->with('trangthai', $inputs['trangthai'])
                     ->with('masothue', $inputs['masothue'])
-                    ->with('pageTitle', 'Danh sách hồ sơ kê khai giá sữa');
+                    ->with('pageTitle', 'Danh sách hồ sơ kê khai giá TPCN cho TE dưới 6 tuổi');
             } else {
                 return view('errors.perm');
             }
@@ -51,13 +85,13 @@ class KkGsController extends Controller
         if (Session::has('admin')) {
             $inputs = $request->all();
 
-            $modeldelctdf = KkGsCtDf::where('maxa',$inputs['masothue'])->get();
+            $modelct = KkGsCtDf::where('maxa',$inputs['masothue'])->get();
 
             $modeldn = Company::where('maxa', $inputs['masothue'])
-                ->where('level', 'DVGS')->first();
+                ->where('level', 'TPCNTE6T')->first();
 
             $datenow = date('Y-m-d');
-            $ngayhieuluc = date('d/m/Y', strtotime(getNgayHieuLuc($datenow,'DVGS')));
+            $ngayhieuluc = date('d/m/Y', strtotime(getNgayHieuLuc($datenow,'TPCNTE6T')));
             $ngaynhap = date('d/m/Y', strtotime($datenow));
 
             return view('manage.kkgia.dvgs.kkgia.kkgiadv.create')
@@ -65,6 +99,7 @@ class KkGsController extends Controller
                 ->with('maxa', $inputs['masothue'])
                 ->with('ngaynhap', $ngaynhap)
                 ->with('ngayhieuluc', $ngayhieuluc)
+                ->with('modelct',$modelct)
                 ->with('pageTitle', 'Kê khai giá mặt hàng sữa');
 
 
@@ -86,8 +121,8 @@ class KkGsController extends Controller
                 $inputs['trangthai'] = 'CC';
                 $model = new KkGs();
                 if($model->create($inputs)){
-                    $modelctdf = KkGsCtDf::where('maxa',$inputs['maxa'])->get();
-                    foreach($modelctdf as $ctdf){
+                    $modelctdf = KkGsCtDf::where('maxa',$inputs['maxa']);
+                    foreach($modelctdf->get() as $ctdf){
                         $modelct = new KkGsCt();
                         $modelct->maxa = $inputs['maxa'];
                         $modelct->mahuyen = $inputs['mahuyen'];
@@ -132,8 +167,9 @@ class KkGsController extends Controller
                         $modelct->giaZdv= $ctdf->giaZdv;
                         $modelct->save();
                     }
+                    $modelctdf->delete();
                 }
-                return redirect('kekhaigiasua?&masothue='.$inputs['maxa']);
+                return redirect('kekhaithucphamchucnangchote6t?&masothue='.$inputs['maxa']);
             }else
                 return view('errors.perm');
         }else
@@ -147,7 +183,7 @@ class KkGsController extends Controller
             $model = KkGs::findOrFail($id);
 
             $modeldn = Company::where('maxa', $model->maxa)
-                ->where('level', 'DVGS')->first();
+                ->where('level', 'TPCNTE6T')->first();
             $modelct = KkGsCt::where('mahs',$model->mahs)
                 ->get();
 
@@ -162,7 +198,7 @@ class KkGsController extends Controller
 
     public function update(Request $request,$id){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'DVGS' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+            if (session('admin')->level == 'TPCNTE6T' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $inputs['ngayhieuluc'] = getDateToDb($inputs['ngayhieuluc']);
                 if($inputs['ngaycvlk'] != '')
@@ -171,7 +207,7 @@ class KkGsController extends Controller
                     unset($inputs['ngaycvlk']);
                 $model = KkGs::findOrFail($id);
                 $model->update($inputs);
-                return redirect('kekhaigiasua?&masothue='.$inputs['maxa'].'&trangthai='.$model->trangthai);
+                return redirect('kekhaithucphamchucnangchote6t?&masothue='.$inputs['maxa'].'&trangthai='.$model->trangthai);
             }else
                 return view('errors.perm');
         }else
@@ -184,7 +220,7 @@ class KkGsController extends Controller
             $mahs = $input['mahs'];
             $modelkk = KkGs::where('mahs',$mahs)->first();
             $modeldn = Company::where('maxa',$modelkk->maxa)
-                ->where('level','DVGS')
+                ->where('level','TPCNTE6T')
                 ->first();
             $modelkkct = KkGsCt::where('mahs',$modelkk->mahs)
                 ->get();
@@ -195,7 +231,7 @@ class KkGsController extends Controller
                 ->with('modeldn',$modeldn)
                 ->with('modelkkct',$modelkkct)
                 ->with('modelcqcq',$modelcqcq)
-                ->with('pageTitle','Hồ sơ kê khai giá mặt hàng sữa;');
+                ->with('pageTitle','Hồ sơ kê khai giá TPCN cho TE dưới 6 tuổi;');
 
         }else
             return view('errors.notlogin');
@@ -230,7 +266,7 @@ class KkGsController extends Controller
 
     public function chuyen(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'DVGS' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+            if (session('admin')->level == 'TPCNTE6T' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $model = KkGs::where('id',$inputs['idchuyen'])
                     ->first();
@@ -239,7 +275,7 @@ class KkGsController extends Controller
                 if($model->update($inputs)){
                     $tencqcq = Town::where('maxa',$model->mahuyen)->first();
                     $dn = Company::where('maxa',$model->maxa)
-                        ->where('level','DVGS')
+                        ->where('level','TPCNTE6T')
                         ->first();
                     $data=[];
                     $data['tendn'] = $dn->tendn;
@@ -259,7 +295,7 @@ class KkGsController extends Controller
                         $message->from('phanmemcsdlgia@gmail.com','Phần mềm CSDL giá');
                     });
                 }
-                return redirect('kekhaigiasua?&masothue='.$model->maxa.'&trangthai='.$model->trangthai);
+                return redirect('kekhaithucphamchucnangchote6t?&masothue='.$model->maxa.'&trangthai='.$model->trangthai);
             }else
                 return view('errors.perm');
         }else
@@ -304,7 +340,7 @@ class KkGsController extends Controller
                     $modelct = KkGsCt::where('mahs',$model->mahs)
                         ->delete();
                 }
-                return redirect('kekhaigiasua?&masothue='.$model->maxa);
+                return redirect('kekhaithucphamchucnangchote6t?&masothue='.$model->maxa);
             }else{
                 return view('errors.perm');
             }

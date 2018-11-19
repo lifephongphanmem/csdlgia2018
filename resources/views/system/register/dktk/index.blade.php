@@ -326,14 +326,14 @@ License: You must have a valid license purchased only from themeforest(the above
         Demo.init();
         // init background slide images
         $.backstretch([
-                    "{{url('assets/admin/pages/media/bg/3.jpg')}}",
-                    "{{url('assets/admin/pages/media/bg/2.jpg')}}",
-                    "{{url('assets/admin/pages/media/bg/1.jpg')}}",
-                    "{{url('assets/admin/pages/media/bg/4.jpg')}}"
-                ], {
-                    fade: 1000,
-                    duration: 8000
-                }
+                "{{url('assets/admin/pages/media/bg/3.jpg')}}",
+                "{{url('assets/admin/pages/media/bg/2.jpg')}}",
+                "{{url('assets/admin/pages/media/bg/1.jpg')}}",
+                "{{url('assets/admin/pages/media/bg/4.jpg')}}"
+            ], {
+                fade: 1000,
+                duration: 8000
+            }
         );
     });
 </script>

@@ -137,7 +137,7 @@ License: You must have a valid license purchased only from themeforest(the above
 										Dịch vụ vận tải </a>
 								</div>
 								<div class="col-xs-5 col-sm-3">
-									<a class="btn default blue-stripe" href="{{url('dangkytaikhoan?&level=DVGS')}}">TPCN cho TE dưới 6 tuổi</a>
+									<a class="btn default blue-stripe" href="{{url('dangkytaikhoan?&level=TPCNTE6T')}}">TPCN cho TE dưới 6 tuổi</a>
 								</div>
 
 							</div>

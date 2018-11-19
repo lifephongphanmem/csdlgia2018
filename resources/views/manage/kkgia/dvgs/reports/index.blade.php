@@ -31,7 +31,7 @@
                                 <li><a data-target="#BC3-thoai-confirm" data-toggle="modal">Báo cáo tổng hợp hồ sơ kê khai giá (theo đơn vị kê khai)</a></li>
                                 <li><a data-target="#BC4-thoai-confirm" data-toggle="modal">Báo cáo chi tiết hồ sơ kê khai giá (theo đơn vị kê khai)</a></li-->
                                 <li><a data-target="#BC5-thoai-confirm" data-toggle="modal">Báo cáo kết quả giải quyết hồ sơ</a></li>
-                                <li><a data-target="#BC6-thoai-confirm" data-toggle="modal">Báo cáo đơn vị kê khai dịch vụ lưu trú</a></li>
+                                <li><a data-target="#BC6-thoai-confirm" data-toggle="modal">Báo cáo đơn vị kê khai TPCN cho TE dưới 6 tuổi</a></li>
                             </ol>
                         </div>
                     </div>

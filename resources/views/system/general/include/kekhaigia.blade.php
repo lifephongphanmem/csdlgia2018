@@ -32,11 +32,11 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
                                 <tr>
-                                    <td width="2%"><input type="checkbox" {{ (isset($setting->giadvlt->index) && $setting->giadvlt->index == 1) ? 'checked' : '' }} value="1" name="roles[giadvlt][index]"/></td>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->tpcnte6t->index) && $setting->tpcnte6t->index == 1) ? 'checked' : '' }} value="1" name="roles[tpcnte6t][index]"/></td>
                                     <td>TPCN dành cho TE dưới 6 tuổi</td>
                                 </tr>
                                 <tr>
-                                    <td width="2"><input type="checkbox" {{ (isset($setting->giadvlt->congbo) && $setting->giadvlt->congbo == 1) ? 'checked' : '' }} value="1" name="roles[giadvlt][congbo]"/></td>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->tpcnte6t->congbo) && $setting->tpcnte6t->congbo == 1) ? 'checked' : '' }} value="1" name="roles[tpcnte6t][congbo]"/></td>
                                     <td>Công bố giá TPCN dành cho TE dưới 6 tuổi</td>
                                 </tr>
                                 </tbody>

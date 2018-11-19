@@ -29,9 +29,9 @@
         Quản lý phân quyền chức năng cho<small>&nbsp;tài khoản</small>
     </h3>
     <!-- END PAGE HEADER-->
+    {!! Form::open(['url' => '/users/phan-quyen'])!!}
     <div class="row">
         <div class="col-md-12">
-            {!! Form::open(['url' => '/users/phan-quyen'])!!}
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box">
                 <div class="portlet-title">
@@ -43,36 +43,27 @@
                     </div>
                 </div>
                 <div class="portlet-body">
-                    <div class="row">
-
-                    </div>
                     @include('includes.per.index')
                 </div>
             </div>
-
-            <div style="text-align: center">
+        </div>
+        <div class="col-md-12" style="text-align: center">
             <?php
-                if($model->level == 'satc' || $model->level == 'sact' || $model->level == 'sagt' || $model->level == 'sa')
-                    $phanloai = 'HT';
-                else
-                    $phanloai = $model->level;
+            if($model->level == 'satc' || $model->level == 'sact' || $model->level == 'sagt' || $model->level == 'sa')
+                $phanloai = 'HT';
+            else
+                $phanloai = $model->level;
             ?>
 
             <a href="{{url('users?&phanloai='.$phanloai)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
             <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
             <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Cập nhật</button>
         </div>
-        {!! Form::close() !!}
+    </div>
+
+    {!! Form::close() !!}
         <!-- END EXAMPLE TABLE PORTLET-->
-        {!! Form::hidden('id', $model->id)!!}
-        {!! Form::close() !!}
-        </div>
-
-        <!-- BEGIN DASHBOARD STATS -->
-
-        <!-- END DASHBOARD STATS -->
         <div class="clearfix"></div>
 
 
-</div>
 @stop

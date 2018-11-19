@@ -86,10 +86,10 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <select class="form-control" name="level" id="level">
-                                                <option value="DVLT" {{($level == "DVLT") ? 'selected' : ''}}>Dịch vụ lưu trú</option>
-                                                <option value="DVVT" {{($level == "DVVT") ? 'selected' : ''}}>Dịch vụ vận tải</option>
-                                                <option value="DVGS" {{($level == "DVGS") ? 'selected' : ''}}>Mặt hàng sữa</option>
-                                                <option value="TACN" {{($level == "TACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
+                                        <option value="DVLT" {{($level == "DVLT") ? 'selected' : ''}}>Dịch vụ lưu trú</option>
+                                        <option value="DVVT" {{($level == "DVVT") ? 'selected' : ''}}>Dịch vụ vận tải</option>
+                                        <option value="TPCNTE6T" {{($level == "TPCNTE6T") ? 'selected' : ''}}>TPCN cho TE dưới 6 tuổi</option>
+                                        <option value="TACN" {{($level == "TACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
                                     </select>
                                 </div>
                             </div>

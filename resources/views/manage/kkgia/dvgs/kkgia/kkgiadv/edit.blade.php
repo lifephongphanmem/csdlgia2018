@@ -405,7 +405,7 @@
 
     <!-- END PAGE HEADER-->
     <div class="row">
-        {!! Form::model($model, ['method' => 'PATCH', 'url'=>'kekhaigiasua/'. $model->id, 'class'=>'horizontal-form','id'=>'update_kkdvgs']) !!}
+        {!! Form::model($model, ['method' => 'PATCH', 'url'=>'kekhaithucphamchucnangchote6t/'. $model->id, 'class'=>'horizontal-form','id'=>'update_kkdvgs']) !!}
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box blue">

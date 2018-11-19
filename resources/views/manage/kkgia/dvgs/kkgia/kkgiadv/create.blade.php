@@ -501,13 +501,13 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin hồ sơ kê khai giá <small>&nbsp;mặt hàng sữa thêm mới</small>
+        Thông tin hồ sơ kê khai giá <small>&nbsp;TPCN cho TE dưới 6 tuổi thêm mới</small>
         <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
     </h3>
 
     <!-- END PAGE HEADER-->
     <div class="row">
-        {!! Form::open(['url'=>'kekhaigiasua', 'id' => 'create_kkdvgs', 'class'=>'horizontal-form']) !!}
+        {!! Form::open(['url'=>'kekhaithucphamchucnangchote6t', 'id' => 'create_kkdvgs', 'class'=>'horizontal-form']) !!}
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box blue">
@@ -605,11 +605,28 @@
                                     <th style="text-align: center">Ghi chú</th>
                                     <th style="text-align: center">Mức giá <br>liền kề</th>
                                     <th style="text-align: center">Mức giá <br>kê khai</th>
-                                    <th style="text-align: center">Thao tác</th>
+                                    <th style="text-align: center" width="20%">Thao tác</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($modelct as $key=>$tt)
+                                        <tr>
+                                            <td style="text-align: center">{{$key+1}}</td>
+                                            <td class="active">{{$tt->tenhh}}</td>
+                                            <td style="text-align: left">{{$tt->qccl}}</td>
+                                            <td style="text-align: center">{{$tt->dvt}}</td>
+                                            <td style="text-align: left">{{$tt->ghichu}}</td>
+                                            <td style="text-align: right">{{number_format($tt->giaZdvlk)}}</td>
+                                            <td style="text-align: right">{{number_format($tt->giaZdv)}}</td>
+                                            <td>
+                                                <button type="button" data-target="#modal-kkgialk" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="kkgialk({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Kê khai giá liền kề</button>
+                                                <button type="button" data-target="#modal-kkgia" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="kkgia({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Kê khai giá</button>
+                                                <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editTtPh({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa thông tin</button>
+                                                <button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid({{$tt->id}});" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
 
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -618,7 +635,7 @@
             </div>
             <!-- END EXAMPLE TABLE PORTLET-->
             <div style="text-align: center">
-                <a href="{{url('kekhaigiasua?&masothue='.$maxa)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('kekhaithucphamchucnangchote6t?&masothue='.$maxa)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
             </div>

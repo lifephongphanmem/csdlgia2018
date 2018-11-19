@@ -1,14 +1,14 @@
 <?php
-//Route::get('thongtindnkkgs','KkGsController@ttdn');
-Route::resource('kekhaigiasua','KkGsController');
-Route::post('kekhaigiasua/chuyen','KkGsController@chuyen');
-Route::get('/kkgdvgs/showlydo','KkGsController@showlydo');
-Route::post('kekhaigiasua/delete','KkGsController@delete');
-Route::get('kekhaigiasua/prints','KkGsController@prints');
+Route::get('thongtindntpcn6t','KkGsController@ttdn');
+Route::resource('kekhaithucphamchucnangchote6t','KkGsController');
+Route::post('kekhaithucphamchucnangchote6t/chuyen','KkGsController@chuyen');
+Route::get('/kkgs/showlydo','KkGsController@showlydo');
+Route::post('kekhaithucphamchucnangchote6t/delete','KkGsController@delete');
+Route::get('kekhaithucphamchucnangchote6t/prints','KkGsController@prints');
 
 
 //Ajax chuyen
-Route::get('/kkgdvgs/kiemtra','KkGsController@kiemtra');
+Route::get('/kktpcn6t/kiemtra','KkGsController@kiemtra');
 //End Ajax chuyển
 
 //Ajax create
@@ -35,17 +35,17 @@ Route::get('/kkgdvgs/upkkgialkedit','KkGsCtController@upkkgialk');
 //End Ajax edit
 
 //Xét duyệt kk giá sữa
-Route::get('xdkekhaigiasua','KkGsXdController@index');
-Route::post('xdkekhaigiasua/tralai','KkGsXdController@tralai');
-Route::get('xdkekhaigiasua/ttnhanhs','KkGsXdController@ttnhanhs');
-Route::post('xdkekhaigiasua/nhanhs','KkGsXdController@nhanhs');
+Route::get('xdkekhaigiatpcnte6t','KkGsXdController@index');
+Route::post('xdkekhaigiatpcnte6t/tralai','KkGsXdController@tralai');
+Route::get('xdkekhaigiatpcnte6t/ttnhanhs','KkGsXdController@ttnhanhs');
+Route::post('xdkekhaigiatpcnte6t/nhanhs','KkGsXdController@nhanhs');
 //End xét duyệt kk giá sữa
-Route::get('timkiemkekhaigiasua','KkGsXdController@search');
+Route::get('timkiemkekhaigiatpcnte6t','KkGsXdController@search');
 
 //Ajax
 Route::get('/ttdnkkdvgs','KkGsXdController@ttdnkkdvgs');
 
-Route::get('baocaokekhaigiasua','ReportsKkGsController@index');
+Route::get('baocaokekhaigiatpcnte6t','ReportsKkGsController@index');
 Route::post('reports/kekhaigiasua/BC5','ReportsKkGsController@dvltbc5');
 Route::post('reports/kekhaigiasua/BC6','ReportsKkGsController@dvltbc6');
 

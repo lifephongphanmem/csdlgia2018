@@ -346,14 +346,14 @@
                         </div>
                     </div>
 
-                    @if(session('admin')->level == 'T')
+                    @if(session('admin')->level == 'T' || session('admin')->level == 'H')
                         <div class="form-group">
                             <label class="col-md-4 control-label"><b>Đơn vị chủ quản</b></label>
                             <div class="col-md-6 ">
-                                <select class="form-control select2me" name="cqcq" id="cqcq">
-                                    <option value="all">--Tất cả--</option>
+                                <select class="form-control select2me" name="mahuyen" id="mahuyen">
+                                    <option value="">--Tất cả--</option>
                                     @foreach($model as $cqcq)
-                                        <option value="{{$cqcq->maqhns}}">{{$cqcq->tendv}}</option>
+                                        <option value="{{$cqcq->maxa}}">{{$cqcq->tendv}}</option>
                                     @endforeach
                                 </select>
                             </div>

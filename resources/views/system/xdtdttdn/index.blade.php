@@ -71,6 +71,10 @@
                                     @if(can('thdvlt','xdttdn'))
                                         <option value="DVLT" {{($inputs['level'] == "DVLT") ? 'selected' : ''}}>Doanh nghiệp dịch vụ lưu trú</option>
                                     @endif
+                                    @if(can('thtpcnte6t','xdttdn'))
+                                        <option value="TPCNTE6T" {{($inputs['level'] == "TPCNTE6T") ? 'selected' : ''}}>Doanh nghiệp TPCN cho TE dưới 6 tuổi</option>
+                                    @endif
+
                                 </select>
                             </div>
                         </div>

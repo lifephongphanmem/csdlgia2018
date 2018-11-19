@@ -485,6 +485,9 @@ function getPermissionDefault($level) {
             'delete'=>0,
             'approve'=>1,
         ),
+        'dvlt'=>array(
+            'index'=>1,
+        ),
         'dmdvlt'=>array(
             'index'=>0,
             'create'=>0,
@@ -499,6 +502,23 @@ function getPermissionDefault($level) {
             'approve'=>1,
         ),
         'thdvlt'=>array(
+            'baocao'=>1,
+            'congbo'=>1,
+            'timkiem'=>1,
+            'xdttdn'=>1,
+        ),
+        //TPCNTE6T
+        'tpcnte6t'=>array(
+            'index'=>1,
+        ),
+        'kktpcnte6t'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thtpcnte6t'=>array(
             'baocao'=>1,
             'congbo'=>1,
             'timkiem'=>1,
@@ -531,6 +551,9 @@ function getPermissionDefault($level) {
             'delete'=>0,
             'approve'=>1,
         ),
+        'dvlt'=>array(
+            'index'=>1,
+        ),
         'dmdvlt'=>array(
             'index'=>1,
             'create'=>1,
@@ -551,7 +574,7 @@ function getPermissionDefault($level) {
             'xdttdn'=>0,
         ),
     );
-    $roles['DVGS'] = array(
+    $roles['TPCNTE6T'] = array(
         'kkgia' => array(
             'index' => 1,
         ),
@@ -562,12 +585,21 @@ function getPermissionDefault($level) {
             'delete' => 1,
             'approve'=> 1
         ),
-        'kktpcnte6t' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1
+        'tpcnte6t'=>array(
+            'index'=>1,
+        ),
+        'kktpcnte6t'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thtpcnte6t'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
         ),
     );
     $roles['TACN'] = array(
@@ -943,7 +975,7 @@ function getNgayHieuLuc($ngaynhap,$pl){
         $thoihan = isset(getGeneralConfigs()['thoihanlt']) ? getGeneralConfigs()['thoihanlt'] : 2;
     elseif($pl == 'DVVT')
         $thoihan = isset(getGeneralConfigs()['thoihanvt']) ? getGeneralConfigs()['thoihanvt'] : 2;
-    elseif($pl == 'DVGS')
+    elseif($pl == 'TPCNTE6T')
         $thoihan = isset(getGeneralConfigs()['thoihangs']) ? getGeneralConfigs()['thoihangs'] : 2;
     elseif($pl == 'DVTACN')
         $thoihan = isset(getGeneralConfigs()['thoihantacn']) ? getGeneralConfigs()['thoihantacn'] : 2;

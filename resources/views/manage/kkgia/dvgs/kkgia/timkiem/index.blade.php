@@ -23,13 +23,13 @@
         $(function(){
             $('#nam').change(function() {
                 var namhs = $('#nam').val();
-                var url = '/timkiemkekhaigiasua?'+namhs;
+                var url = '/timkiemkekhaigiatpcnte6t?'+namhs;
                 window.location.href = url;
             });
             $('#tenhh').change(function() {
                 var namhs = '&nam='+ $('#nam').val();
                 var tenhh = '&tenhh=' + $('#tenhh').val();
-                var url = '/timkiemkekhaigiasua?'+namhs + tenhh;
+                var url = '/timkiemkekhaigiatpcnte6t?'+namhs + tenhh;
                 window.location.href = url;
             });
 
@@ -40,7 +40,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Tìm kiếm thông tin kê khai giá<small>&nbsp;mặt hàng sữa</small>
+        Tìm kiếm thông tin kê khai giá<small>&nbsp;TPCN cho TE dưới 6 tuổi</small>
     </h3>
     <div class="row">
         <div class="col-md-2">
@@ -87,7 +87,7 @@
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key+1}}</td>
-                                <td class="active"><b>Tên DN: </b> {{$tt->tendn}}<br>
+                                <td class="active"><b>Tên DN: </b> {{$tt->tendn}}
                                     <br><b>Mã số thuế:</b> {{$tt->maxa}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->ngayhieuluc)}}</td>
                                 <td style="text-align: left">{{$tt->tenhh}}</td>

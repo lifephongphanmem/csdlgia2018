@@ -12,7 +12,7 @@ include('kkgia/dvlt.php');
 
 
 //DVGS
-include('kkgia/dvgs.php');
+include('kkgia/tpcnte6t.php');
 
 
 

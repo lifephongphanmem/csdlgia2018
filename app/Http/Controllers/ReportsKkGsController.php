@@ -29,10 +29,17 @@ class ReportsKkGsController extends Controller
     public function dvltbc5(Request $request){
         if (Session::has('admin')) {
             $input = $request->all();
+
             $model = KkGs::whereBetween('kkgs.ngaynhan',[$input['ngaytu'], $input['ngayden']])
                 ->leftjoin('company','company.maxa','=','kkgs.maxa')
-                ->select('kkgs.*','company.tendn','company.diachi','company.tel')
-                ->get();
+                ->select('kkgs.*','company.tendn','company.diachi','company.tel');
+            if(session('admin')->level == 'T' || session('admin')->level == 'H')
+                $input['mahuyen'] = isset($input['mahuyen']) ? $input['mahuyen'] : '';
+            else
+                $input['mahuyen'] = session('admin')->maxa;
+            if($input['mahuyen'] !='')
+                $model = $model->where('kkgs.mahuyen',$input['mahuyen']);
+            $model = $model->get();
             return view('manage.kkgia.dvgs.reports.BC5')
                 ->with('input',$input)
                 ->with('model',$model)

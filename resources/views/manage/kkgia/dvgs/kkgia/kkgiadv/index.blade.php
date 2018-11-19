@@ -25,7 +25,7 @@
                 var nam = $('#namhs').val();
                 var masothue = $('#masothue').val();
                 var trangthai = $('#trangthai').val();
-                var url = '/kekhaigiasua?&masothue='+masothue+'&nam='+nam+'&trangthai='+trangthai;
+                var url = '/kekhaithucphamchucnangchote6t?&masothue='+masothue+'&nam='+nam+'&trangthai='+trangthai;
 
                 window.location.href = url;
             });
@@ -33,7 +33,7 @@
                 var nam = $('#namhs').val();
                 var masothue = $('#masothue').val();
                 var trangthai = $('#trangthai').val();
-                var url = '/kekhaigiasua?&masothue='+masothue+'&nam='+nam+'&trangthai='+trangthai;
+                var url = '/kekhaithucphamchucnangchote6t?&masothue='+masothue+'&nam='+nam+'&trangthai='+trangthai;
                 window.location.href = url;
             });
 
@@ -53,7 +53,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/kkgdvgs/kiemtra',
+                url: '/kktpcn6t/kiemtra',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -98,7 +98,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/kkgdvgs/showlydo',
+                url: '/kkgs/showlydo',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -120,7 +120,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin hồ sơ kê khai giá<small>&nbsp;mặt hàng sữa</small>
+        Thông tin hồ sơ kê khai giá<small>&nbsp;TPCN cho TE dưới 6 tuổi</small>
         <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
     </h3>
     <!-- END PAGE HEADER-->
@@ -130,14 +130,12 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
-                        @if(can('kkdvgs','create'))
-                            <!--a href="{{url('ke_khai_dich_vu_luu_tru/co_so_kinh_doanh=/copy')}}" class="btn btn-default btn-sm">
-                                <i class="fa fa-plus"></i> Kê khai giá dịch vụ </a-->
-                                <a href="{{url('kekhaigiasua/create?&masothue='.$masothue)}}" class="btn btn-default btn-sm">
+                        @if(can('kktpcnte6t','create'))
+                                <a href="{{url('kekhaithucphamchucnangchote6t/create?&masothue='.$masothue)}}" class="btn btn-default btn-sm">
                                     <i class="fa fa-plus"></i> Kê khai mới </a>
                         @endif
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H')
-                            <a href="{{url('thongtindnkkgs')}}" class="btn btn-default btn-sm">
+                            <a href="{{url('thongtindntpcn6t')}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-reply"></i> Quay lại </a>
                         @endif
                     </div>
@@ -148,6 +146,7 @@
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
+                                    <label>Năm hồ sơ</label>
                                     <select name="namhs" id="namhs" class="form-control">
                                         @if ($nam_start = intval(date('Y')) - 5 ) @endif
                                         @if ($nam_stop = intval(date('Y')) + 1 ) @endif
@@ -159,6 +158,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
+                                    <label>Trạng thái hồ sơ</label>
                                     <select name="trangthai" id="trangthai" class="form-control">
                                         <option value="CC" {{$trangthai == 'CC' ? 'selected' : ''}}>Hồ sơ chờ chuyển</option>
                                         <option value="CD" {{$trangthai == 'CD' ? 'selected' : ''}}>Hồ sơ chờ duyệt</option>
@@ -211,17 +211,19 @@
                                     </td>
                                 @endif
                                 <td>
-                                    <a href="{{url('kekhaigiasua/prints?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                    <a href="{{url('kekhaithucphamchucnangchote6t/prints?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                     @if(canEdit($tt->trangthai))
-                                        @if(can('kkdvgs','edit'))
-                                            <a href="{{url('kekhaigiasua/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                        @if(can('kktpcnte6t','edit'))
+                                            <a href="{{url('kekhaithucphamchucnangchote6t/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                         @endif
                                         @if(canChuyenXoa($tt->trangthai))
-                                            @if(can('kkdvgs','delete'))
-                                            <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
-                                                Xóa</button>
+                                            @if(can('kktpcnte6t','delete'))
+                                                @if($tt->trangthai == 'CC')
+                                                <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                                    Xóa</button>
+                                                @endif
                                             @endif
-                                            @if(can('kkdvgs','approve'))
+                                            @if(can('kktpcnte6t','approve'))
                                             <button type="button" onclick="confirmChuyen('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyen-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
                                                 Chuyển</button>
                                                 @if(session('admin')->sadmin == 'ssa')
@@ -254,7 +256,7 @@
         <div class="modal fade" id="chuyen-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    {!! Form::open(['url'=>'kekhaigiasua/chuyen','id' => 'frm_chuyen'])!!}
+                    {!! Form::open(['url'=>'kekhaithucphamchucnangchote6t/chuyen','id' => 'frm_chuyen'])!!}
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                         <h4 class="modal-title">Đồng ý chuyển hồ sơ?</h4>
@@ -284,7 +286,7 @@
         <div class="modal fade" id="chuyenhscham-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    {!! Form::open(['url'=>'ke_khai_dich_vu_luu_tru/chuyenhscham','id' => 'frm_chuyenhscham'])!!}
+                    {!! Form::open(['url'=>'kekhaithucphamchucnangchote6t/chuyenhscham','id' => 'frm_chuyenhscham'])!!}
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                         <h4 class="modal-title">Đồng ý chuyển hồ sơ bị chậm?</h4>
@@ -306,7 +308,7 @@
         <div class="modal fade" id="copy-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    {!! Form::open(['url'=>'ke_khai_dich_vu_luu_tru/copy','id' => 'frm_chuyen'])!!}
+                    {!! Form::open(['url'=>'kekhaithucphamchucnangchote6t/copy','id' => 'frm_chuyen'])!!}
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                         <h4 class="modal-title">Sao chép hồ sơ kê khai?</h4>
@@ -353,7 +355,7 @@
     <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['url'=>'kekhaigiasua/delete','id' => 'frm_delete'])!!}
+                {!! Form::open(['url'=>'kekhaithucphamchucnangchote6t/delete','id' => 'frm_delete'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title">Đồng ý xóa?</h4>

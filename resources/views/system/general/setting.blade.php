@@ -32,7 +32,6 @@
     {!! Form::open(['url' => '/setting'])!!}
     <div class="row">
         <div class="col-md-12">
-
         <!-- BEGIN EXAMPLE TABLE PORTLET-->
         <div class="portlet box">
             <div class="portlet-body">
@@ -53,12 +52,11 @@
 
 
 
-        {!! Form::close() !!}
 
         <!-- BEGIN DASHBOARD STATS -->
 
         <!-- END DASHBOARD STATS -->
-        <div class="clearfix"></div>
+    <div class="clearfix"></div>
 
 
 

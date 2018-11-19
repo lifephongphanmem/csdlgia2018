@@ -50,8 +50,9 @@
                                     </tbody>
                                 </table>
                             </div>
-                            @include('includes.per.include.kkgia.kkgiadvlt')
                         </div>
+                        @include('includes.per.include.kkgia.kkgiadvlt')
+                        @include('includes.per.include.kkgia.kkgiatpcnted6t')
 
                     </div>
                 </div>

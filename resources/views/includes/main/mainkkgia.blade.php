@@ -171,33 +171,37 @@
 
             </ul>
         </li-->
-        @if(can('kkdvgs','index'))
-        <li>
-            <a href="javascript:;">
-                <span class="title">Thực phẩm chức năng cho trẻ em dưới 6 tuổi</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu" style="display: none;">
-                @if(session('admin')->level == 'DVGS')
-                    @if(can('ttdn','index'))
-                    <li><a href="{{url('thongtindoanhnghiep')}}">Thông tin doanh nghiệp</a></li>
+        @if(canGeneral('tpcnte6t','index'))
+            @if(can('tpcnte6t','index'))
+            <li>
+                <a href="javascript:;">
+                    <span class="title">Thực phẩm chức năng cho trẻ em dưới 6 tuổi</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu" style="display: none;">
+                    @if(session('admin')->level == 'TPCNTE6T')
+                        @if(can('kktpcnte6t','index'))
+                        <li><a href="{{url('kekhaithucphamchucnangchote6t')}}">Kê khai giá TPCN cho TE dưới 6 tuổi</a> </li>
+                        @endif
                     @endif
-                    @if(can('kkdvgs','create'))
-                    <li><a href="{{url('kekhaigiasua')}}">Kê khai giá thực phẩm chức năng</a> </li>
+                    @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
+                        @if(can('kktpcnte6t','index'))
+                            <li><a href="{{url('thongtindntpcn6t')}}">Kê khai giá TPCN cho TE duosi 6 tuổi</a></li>
+                            <li><a href="{{url('xdkekhaigiatpcnte6t')}}">Thông tin hồ sơ xét duyệt</a></li>
+                        @endif
+                        @if(can('tpcnte6t','timkiem'))
+                        <li><a href="{{url('timkiemkekhaigiatpcnte6t')}}">Tìm kiếm thông tin</a> </li>
+                        @endif
+                        @if(can('tpcnte6t','baocao'))
+                        <li><a href="{{url('baocaokekhaigiatpcnte6t')}}">Báo cáo thống kê</a></li>
+                        @endif
                     @endif
-                @endif
-                @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
-                    @if(can('kkdvgs','approve'))
-                    <li><a href="{{url('xdkekhaigiasua')}}">Thông tin hồ sơ xét duyệt</a></li>
-                    @endif
-                    <li><a href="{{url('timkiemkekhaigiasua')}}">Tìm kiếm thông tin</a> </li>
-                    <li><a href="{{url('baocaokekhaigiasua')}}">Báo cáo thống kê</a></li>
-                @endif
-            </ul>
-        </li>
+                </ul>
+            </li>
+            @endif
         @endif
         @if(canGeneral('dvlt','index'))
-            @if(can('kkdvlt','index'))
+            @if(can('dvlt','index'))
             <li>
                 <a href="">
                     <span class="title">Dịch vụ lưu trú</span>
