@@ -97,15 +97,21 @@
         }
         $(function(){
             $('#nam').change(function() {
-                var namhs = $('#nam').val();
-                var trangthai = $('#trangthai').val();
-                var url = '/xetduyetkkgiadvlt?&nam='+namhs+'&trangthai='+trangthai;
+                var namhs = '&nam='+ $('#nam').val();
+                var url = '/xetduyetkkgiadvlt?' + namhs;
                 window.location.href = url;
             });
             $('#trangthai').change(function() {
-                var namhs = $('#nam').val();
-                var trangthai = $('#trangthai').val();
-                var url = '/xetduyetkkgiadvlt?&nam='+namhs+'&trangthai='+trangthai;
+                var namhs = '&nam='+ $('#nam').val();
+                var trangthai = '&trangthai='+ $('#trangthai').val();
+                var url = '/xetduyetkkgiadvlt?' + namhs + trangthai;
+                window.location.href = url;
+            });
+            $('#maxa').change(function() {
+                var namhs = '&nam='+ $('#nam').val();
+                var trangthai = '&trangthai='+ $('#trangthai').val();
+                var maxa = '&maxa=' + $('#maxa').val();
+                var url = '/xetduyetkkgiadvlt?' + namhs + trangthai + maxa;
                 window.location.href = url;
             });
 
@@ -251,21 +257,33 @@
                     @if ($nam_start = intval(date('Y')) - 5 ) @endif
                     @if ($nam_stop = intval(date('Y')) + 1 ) @endif
                     @for($i = $nam_start; $i <= $nam_stop; $i++)
-                        <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>Năm {{$i}}</option>
+                        <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
                     @endfor
                 </select>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="form-group">
                 <label>Trạng thái hồ sơ</label>
                 <select name="trangthai" id="trangthai" class="form-control">
-                    <option value="CD" {{$trangthai == 'CD' ? 'selected' : ''}}>Hồ sơ chờ duyệt</option>
-                    <option value="BTL" {{$trangthai == 'BTL' ? 'selected' : ''}}>Hồ sơ bị trả lại</option>
-                    <option value="DD" {{$trangthai == 'DD' ? 'selected' : ''}}>Hồ sơ đã duyệt</option>
+                    <option value="CD" {{$inputs['trangthai'] == 'CD' ? 'selected' : ''}}>Hồ sơ chờ duyệt</option>
+                    <option value="BTL" {{$inputs['trangthai'] == 'BTL' ? 'selected' : ''}}>Hồ sơ bị trả lại</option>
+                    <option value="DD" {{$inputs['trangthai'] == 'DD' ? 'selected' : ''}}>Hồ sơ đã duyệt</option>
                 </select>
             </div>
         </div>
+        @if(session('admin')->level != 'X')
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Đơn vị quản lý</label>
+                <select name="maxa" id="maxa" class="form-control">
+                   @foreach($modeldv as $dv)
+                       <option value="{{$dv->maxa}}" {{$dv->maxa == $inputs['maxa'] ? 'selected' : ''}}>{{$dv->tendv}}</option>
+                   @endforeach
+                </select>
+            </div>
+        </div>
+        @endif
 
     </div>
 

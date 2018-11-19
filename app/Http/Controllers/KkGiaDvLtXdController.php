@@ -17,34 +17,39 @@ class KkGiaDvLtXdController extends Controller
 {
     public function index(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'T' || session('admin')->level == 'X') {
+            if (session('admin')->level == 'T' || session('admin')->level == 'X' || session('admin')->level == 'H') {
                 $inputs = $request->all();
                 $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CD';
-
-                if(session('admin')->level == 'T')
-                    $model = KkGiaDvLt::leftJoin('cskddvlt','cskddvlt.macskd','=','kkgiadvlt.macskd')
-                        ->leftJoin('company','company.maxa','=','kkgiadvlt.maxa')
-                        ->where('company.level','DVLT')
-                        ->select('kkgiadvlt.*','cskddvlt.tencskd','company.tendn')
-                        ->where('kkgiadvlt.trangthai',$inputs['trangthai'])
-                        ->whereYear('kkgiadvlt.ngaychuyen',$inputs['nam'])
+                $model = KkGiaDvLt::leftJoin('cskddvlt','cskddvlt.macskd','=','kkgiadvlt.macskd')
+                    ->leftJoin('company','company.maxa','=','kkgiadvlt.maxa')
+                    ->where('company.level','DVLT')
+                    ->select('kkgiadvlt.*','cskddvlt.tencskd','company.tendn')
+                    ->where('kkgiadvlt.trangthai',$inputs['trangthai'])
+                    ->whereYear('kkgiadvlt.ngaychuyen',$inputs['nam']);
+                if(session('admin')->level == 'T') {
+                    $modeldv = Town::all();
+                    $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
+                    $model = $model->where('kkgiadvlt.mahuyen', $inputs['maxa']);
+                }elseif(session('admin')->level == 'H') {
+                    $modeldv = Town::where('mahuyen',session('admin')->mahuyen)
                         ->get();
-                else
-                    $model = KkGiaDvLt::leftJoin('cskddvlt','cskddvlt.macskd','=','kkgiadvlt.macskd')
-                        ->leftJoin('company','company.maxa','=','kkgiadvlt.maxa')
-                        ->where('company.level','DVLT')
-                        ->select('kkgiadvlt.*','cskddvlt.tencskd','company.tendn')
-                        ->where('kkgiadvlt.trangthai',$inputs['trangthai'])
-                        ->whereYear('kkgiadvlt.ngaychuyen',$inputs['nam'])
-                        ->where('kkgiadvlt.mahuyen',session('admin')->maxa)
+                    $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
+                    $model = $model->where('kkgiadvlt.mahuyen', $inputs['maxa']);
+                }else {
+                    $modeldv = Town::where('mahuyen',session('admin')->mahuyen)
+                        ->where('maxa',session('admin')->maxa)
                         ->get();
+                    $inputs['maxa'] = session('admin')->maxa;
+                    $model = $model->where('kkgiadvlt.mahuyen', $inputs['maxa']);
+                }
                 //dd($model);
+                $model = $model->get();
 
                 return view('manage.kkgia.dvlt.kkgia.xetduyet.index')
                     ->with('model', $model)
-                    ->with('nam',$inputs['nam'])
-                    ->with('trangthai',$inputs['trangthai'])
+                    ->with('modeldv',$modeldv)
+                    ->with('inputs',$inputs)
                     ->with('pageTitle', 'Danh sách hồ sơ kê khai giá dịch vụ lưu trú');
             }else{
                 return view('errors.perm');
@@ -112,7 +117,7 @@ class KkGiaDvLtXdController extends Controller
                         $message->from('phanmemcsdlgia@gmail.com','Phần mềm CSDL giá');
                     });
                 }
-                return redirect('xetduyetkkgiadvlt');
+                return redirect('xetduyetkkgiadvlt?&trangthai=BTL&maxa='.$model->mahuyen);
             }else{
                 return view('errors.perm');
             }
@@ -218,7 +223,7 @@ class KkGiaDvLtXdController extends Controller
                     $message->from('phanmemcsdlgia@gmail.com','Phần mềm CSDL giá');
                 });
             }
-            return redirect('xetduyetkkgiadvlt');
+            return redirect('xetduyetkkgiadvlt?&trangthai=DD&maxa='.$model->mahuyen);
         }else
             return view('errors.notlogin');
     }
