@@ -74,6 +74,9 @@
                                     @if(can('thtpcnte6t','xdttdn'))
                                         <option value="TPCNTE6T" {{($inputs['level'] == "TPCNTE6T") ? 'selected' : ''}}>Doanh nghiệp TPCN cho TE dưới 6 tuổi</option>
                                     @endif
+                                    @if(can('thtacn','xdttdn'))
+                                        <option value="TACN" {{($inputs['level'] == "TACN") ? 'selected' : ''}}>Doanh nghiệp TACN</option>
+                                    @endif
 
                                 </select>
                             </div>

@@ -42,6 +42,20 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->tacn->index) && $setting->tacn->index == 1) ? 'checked' : '' }} value="1" name="roles[tacn][index]"/></td>
+                                    <td>Thức ăn chăn nuôi</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->tacn->congbo) && $setting->tacn->congbo == 1) ? 'checked' : '' }} value="1" name="roles[tacn][congbo]"/></td>
+                                    <td>Công bố giá thức ăn chăn nuôi</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

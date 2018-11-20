@@ -24,7 +24,6 @@
                                                 <!--input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/-->
                                             </th>
                                             <th>Kê khai giá TPCNTE6T</th>
-
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -60,7 +59,6 @@
                                                     <!--input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/-->
                                                 </th>
                                                 <th>Tổng hợp giá TPCNTE6T</th>
-
                                             </tr>
                                             </thead>
                                             <tbody>

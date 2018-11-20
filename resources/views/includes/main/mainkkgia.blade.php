@@ -38,25 +38,34 @@
                 <li><a href="">Kê khai giá</a></li>
             </ul>
         </li-->
-        @if(can('kktacn','index'))
-        <!--li>
-            <a href="javascript:;">
-                <span class="title">Thức ăn chăn nuôi</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu" style="display: none;">
-                @if(session('admin')->level == 'TACN')
-                    <li><a href="{{url('thongtindoanhnghiep')}}">Thông tin doanh nghiệp</a></li>
-                    <li><a href="{{url('kekhaigiatacn')}}">Kê khai giá TACN</a> </li>
-                @endif
-                @if(session('admin')->level == 'X' || session('admin')->level == 'T' || session('admin')->level == 'H')
-                    <li><a href="{{url('xetduyetkekhaigiatacn')}}">Thông tin hồ sơ xét duyệt</a></li>
-
-                    <li><a href="{{url('timkiemkekhaigiatacn')}}">Tìm kiếm thông tin</a> </li>
-                    <li><a href="{{url('baocaokekhaitacn')}}">Báo cáo thống kê</a></li>
-                @endif
-            </ul>
-        </li-->
+        @if(canGeneral('tacn','index'))
+            @if(can('tacn','index'))
+            <li>
+                <a href="javascript:;">
+                    <span class="title">Thức ăn chăn nuôi</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu" style="display: none;">
+                    @if(session('admin')->level == 'TACN')
+                        @if(can('kktacn','index'))
+                        <li><a href="{{url('kekhaigiathucanchannuoi')}}">Kê khai giá TACN</a> </li>
+                        @endif
+                    @endif
+                    @if(session('admin')->level == 'X' || session('admin')->level == 'T' || session('admin')->level == 'H')
+                        @if(can('kktacn','index'))
+                        <li><a href="{{url('thontindntacn')}}">Kê khai giá TACN</a> </li>
+                        <li><a href="{{url('xetduyetkekhaigiatacn')}}">Thông tin hồ sơ xét duyệt</a></li>
+                        @endif
+                        @if(can('thtacn','timkiem'))
+                        <li><a href="{{url('timkiemkekhaigiatacn')}}">Tìm kiếm thông tin</a> </li>
+                        @endif
+                        @if(can('thtacn','baocao'))
+                        <li><a href="{{url('baocaokekhaitacn')}}">Báo cáo thống kê</a></li>
+                        @endif
+                    @endif
+                </ul>
+            </li>
+            @endif
         @endif
         <!--li>
             <a href="javascript:;">
@@ -162,15 +171,6 @@
                 </ul>
             </li-->
         @endif
-        <!--li>
-            <a href="javascript:;">
-                <span class="title">Thực phẩm chức năng cho trẻ em dưới 6 tuổi</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu" style="display: none;">
-
-            </ul>
-        </li-->
         @if(canGeneral('tpcnte6t','index'))
             @if(can('tpcnte6t','index'))
             <li>
@@ -232,8 +232,6 @@
             </li>
             @endif
         @endif
-
-
     </ul>
 </li>
 @endif

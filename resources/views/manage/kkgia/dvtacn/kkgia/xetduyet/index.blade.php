@@ -97,21 +97,21 @@
         }
         $(function(){
             $('#nam').change(function() {
-                var namhs = '&nam='+ $('#nam').val();
-                var url = '/xetduyetkkgiadvlt?' + namhs;
+                var namhs = '&nam=' + $('#nam').val();
+                var url = '/xetduyetkekhaigiatacn?'+namhs;
                 window.location.href = url;
             });
             $('#trangthai').change(function() {
-                var namhs = '&nam='+ $('#nam').val();
-                var trangthai = '&trangthai='+ $('#trangthai').val();
-                var url = '/xetduyetkkgiadvlt?' + namhs + trangthai;
+                var namhs = '&nam=' + $('#nam').val();
+                var trangthai = '&trangthai=' +  $('#trangthai').val();
+                var url = '/xetduyetkekhaigiatacn?'+namhs+trangthai;
                 window.location.href = url;
             });
-            $('#maxa').change(function() {
-                var namhs = '&nam='+ $('#nam').val();
-                var trangthai = '&trangthai='+ $('#trangthai').val();
-                var maxa = '&maxa=' + $('#maxa').val();
-                var url = '/xetduyetkkgiadvlt?' + namhs + trangthai + maxa;
+            $('#mahuyen').change(function() {
+                var namhs = '&nam=' + $('#nam').val();
+                var trangthai = '&trangthai=' +  $('#trangthai').val();
+                var mahuyen = '&mahuyen=' + $('#mahuyen').val();
+                var url = '/xetduyetkekhaigiatacn?'+namhs+trangthai+mahuyen;
                 window.location.href = url;
             });
 
@@ -120,7 +120,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: 'xetduyetkkgiadvlt/ttdnkkdvlt',
+                url: '/ttdnkktacn',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -129,7 +129,7 @@
                 dataType: 'JSON',
                 success: function (data) {
                     if (data.status == 'success') {
-                        $('#ttdnkkdvlt').replaceWith(data.message);
+                        $('#ttdnkkdvgs').replaceWith(data.message);
                         document.getElementById("idtralai").value=id;
                     }
                 }
@@ -151,7 +151,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/xetduyetkkgiadvlt/ttnhanhs',
+                url: '/xetduyetkekhaigiatacn/ttnhanhs',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -177,7 +177,7 @@
             //alert(mahs);
 
             $.ajax({
-                url: '/xdkkgiadvlt/nhanhsedit',
+                url: '/xetduyetkekhaigiatacn/nhanhsedit',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -198,13 +198,13 @@
         function ClickNhanHsedit(){
             $('#frm_nhanhsedit').submit();
         }
-
+        //Chưa làm
         function confirmHuyduyet(mahs){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(mahs);
 
             $.ajax({
-                url: '/xdkkgiadvlt/tthuyduyet',
+                url: '/xetduyetkekhaigiatacn/tthuyduyet',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -226,7 +226,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/reports/showlydo',
+                url: '/kktacn/showlydo',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -247,7 +247,9 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin xét duyệt kê khai giá<small>&nbsp;dịch vụ lưu trú</small>
+        Thông tin xét duyệt kê khai giá<br><small>&nbsp;Thức ăn chăn nuôi cho gia súc, gia cầm và thủy sản; thuốc thủ y để
+            tiêu độc, sát trùng, tay trùng, trị bệnh cho gia súc, gia cầm và thủy sản theo quy
+            định của Bộ Nông nghiệp và Phát trỉến nông thôn</small>
     </h3>
     <div class="row">
         <div class="col-md-2">
@@ -262,7 +264,7 @@
                 </select>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="form-group">
                 <label>Trạng thái hồ sơ</label>
                 <select name="trangthai" id="trangthai" class="form-control">
@@ -272,17 +274,17 @@
                 </select>
             </div>
         </div>
-        @if(session('admin')->level != 'X')
-        <div class="col-md-3">
-            <div class="form-group">
-                <label>Đơn vị quản lý</label>
-                <select name="maxa" id="maxa" class="form-control">
-                   @foreach($modeldv as $dv)
-                       <option value="{{$dv->maxa}}" {{$dv->maxa == $inputs['maxa'] ? 'selected' : ''}}>{{$dv->tendv}}</option>
-                   @endforeach
-                </select>
+        @if(session('admin')->level == 'T' || session('admin')->level == 'H')
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label>Đơn vị quản lý</label>
+                    <select name="mahuyen" id="mahuyen" class="form-control">
+                        @foreach($modeldv as $dv)
+                            <option value="{{$dv->maxa}}" {{$dv->maxa == $inputs['mahuyen'] ? 'selected' : ''}}>{{$dv->tendv}}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
-        </div>
         @endif
 
     </div>
@@ -312,9 +314,9 @@
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key+1}}</td>
-                                <td class="active"><b>Tên DN: </b> {{$tt->tendn}}<br>
-                                    <b>Tên CSKD: </b>{{$tt->tencskd}}
-                                    <br><b>Mã số thuế:</b> {{$tt->maxa}}</td>
+                                <td class="active">{{$tt->tendn}}
+                                    <br><b>Mã số thuế:</b> {{$tt->maxa}}
+                                    <br><b>Mã hồ sơ:</b> {{$tt->mahs}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->ngaynhap)}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->ngayhieuluc)}}</td>
                                 <td style="text-align: center" class="danger">{{$tt->socv}}</td>
@@ -335,21 +337,21 @@
                                     </td>
                                 @endif
                                 <td>
-                                    <a href="{{url('kekhaigiadvlt/prints?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
-                                    @if(canEdit($tt->trangthai))
+                                    <a href="{{url('kekhaigiathucanchannuoi/prints?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                    @if(canApprove($tt->trangthai))
                                         @if(can('kkdvlt','approve'))
-                                            @if($tt->trangthai == 'CD')
                                             <button type="button" onclick="ClickTraLai({{$tt->id}})" class="btn btn-default btn-xs mbs" data-target="#tralai-modal" data-toggle="modal"><i class="fa fa-reply"></i>&nbsp;
                                                 Trả lại</button>
                                             <button type="button" onclick="confirmNhanHs({{$tt->id}})" class="btn btn-default btn-xs mbs" data-target="#nhanhs-modal" data-toggle="modal"><i class="fa fa-share"></i>&nbsp;
                                                 Nhận hồ sơ</button>
-                                            @endif
                                         @endif
                                     @endif
-                                    @if($tt->trangthai == 'BTL')
+                                    @if(canShowLyDo($tt->trangthai))
                                         <button type="button" data-target="#lydo-modal" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="viewLyDo({{$tt->id}})"><i class="fa fa-search"></i>&nbsp;Lý do trả lại</button>
                                     @endif
                                         <!--a href="{{url('ke_khai_dich_vu_luu_tru/'.$tt->mahs.'/history')}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Lịch sử</a-->
+
+
                                 </td>
                             </tr>
                         @endforeach
@@ -369,13 +371,13 @@
         <div class="modal fade" id="tralai-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    {!! Form::open(['url'=>'xetduyetkkgiadvlt/tralai','id' => 'frm_tralai'])!!}
+                    {!! Form::open(['url'=>'xetduyetkekhaigiatacn/tralai','id' => 'frm_tralai'])!!}
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                         <h4 class="modal-title">Đồng ý trả lại hồ sơ?</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group" id="ttdnkkdvlt">
+                        <div class="form-group" id="ttdnkkdvgs">
                             </div>
                         <div class="form-group">
                             <label><b>Lý do trả lại</b></label>
@@ -400,7 +402,7 @@
     <div class="modal fade" id="nhanhs-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['url'=>'xetduyetkkgiadvlt/nhanhs','id' => 'frm_nhanhs'])!!}
+                {!! Form::open(['url'=>'xetduyetkekhaigiatacn/nhanhs','id' => 'frm_nhanhs'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title">Đồng ý nhận hồ sơ?</h4>
@@ -422,7 +424,7 @@
     <div class="modal fade" id="nhanhsedit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['url'=>'xetduyetkkgiadvlt/nhanhsedit','id' => 'frm_nhanhsedit'])!!}
+                {!! Form::open(['url'=>'xetduyetkekhaigiatacn/nhanhsedit','id' => 'frm_nhanhsedit'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title">Chỉnh sửa thông tin nhận hồ sơ?</h4>
@@ -444,7 +446,7 @@
     <div class="modal fade" id="huyduyet-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['url'=>'xetduyetkkgiadvlt/huyduyet','id' => 'frm_huyduyet'])!!}
+                {!! Form::open(['url'=>'xetduyetkekhaigiatacn/huyduyet','id' => 'frm_huyduyet'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title">Đồng ý huỷ duyệt hồ sơ?</h4>

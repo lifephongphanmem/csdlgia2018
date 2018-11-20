@@ -2,9 +2,9 @@
 Route::resource('thongtincskd','CsKdDvLtController');
 Route::get('thongtincskdkkdvlt','KkGiaDvLtController@ttcskd');
 Route::resource('kekhaigiadvlt','KkGiaDvLtController');
-Route::get('kkgdvlt/ktchuyendvlt','KkGiaDvLtController@ktchuyendvlt');
+Route::get('reports/ktchuyendvlt','KkGiaDvLtController@ktchuyendvlt');
 Route::post('kekhaigiadvlt/chuyen','KkGiaDvLtController@chuyen');
-Route::get('/kkgdvlt/showlydo','KkGiaDvLtController@showlydo');
+Route::get('/reports/showlydo','KkGiaDvLtController@showlydo');
 Route::post('kekhaigiadvlt/delete','KkGiaDvLtController@delete');
 
 

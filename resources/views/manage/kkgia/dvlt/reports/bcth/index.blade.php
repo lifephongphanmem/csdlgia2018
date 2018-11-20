@@ -39,5 +39,5 @@
             </div>
         </div>
     </div>
-    @include('reports.kkgdvlt.bcth.modal-thoai')
+    @include('manage.kkgia.dvlt.reports.bcth.modal-thoai')
 @stop

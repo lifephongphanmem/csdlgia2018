@@ -524,6 +524,23 @@ function getPermissionDefault($level) {
             'timkiem'=>1,
             'xdttdn'=>1,
         ),
+        //TACN
+        'tacn'=>array(
+            'index'=>1,
+        ),
+        'kktacn'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thtacn'=>array(
+            'baocao'=>1,
+            'congbo'=>1,
+            'timkiem'=>1,
+            'xdttdn'=>1,
+        ),
 
 
     //End Kê khai giá
@@ -613,12 +630,21 @@ function getPermissionDefault($level) {
             'delete' => 1,
             'approve'=> 1
         ),
-        'kktacn' => array(
-            'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1
+        'tacn'=>array(
+            'index'=>1,
+        ),
+        'kktacn'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thtacn'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
         ),
     );
     $roles['DVVT'] = array(
@@ -977,7 +1003,7 @@ function getNgayHieuLuc($ngaynhap,$pl){
         $thoihan = isset(getGeneralConfigs()['thoihanvt']) ? getGeneralConfigs()['thoihanvt'] : 2;
     elseif($pl == 'TPCNTE6T')
         $thoihan = isset(getGeneralConfigs()['thoihangs']) ? getGeneralConfigs()['thoihangs'] : 2;
-    elseif($pl == 'DVTACN')
+    elseif($pl == 'TACN')
         $thoihan = isset(getGeneralConfigs()['thoihantacn']) ? getGeneralConfigs()['thoihantacn'] : 2;
     $ngaynghi = 0;
 

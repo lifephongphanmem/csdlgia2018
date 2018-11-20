@@ -20,22 +20,38 @@ class KkGiaDvLtController extends Controller
     public function ttcskd(Request $request){
         if (Session::has('admin')) {
             if (session('admin')->level == 'DVLT' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+                $inputs = $request->all();
                 $model = CsKdDvLt::join('company','company.maxa','=','cskddvlt.maxa')
                     ->join('town','town.maxa','=','cskddvlt.mahuyen')
                     ->where('company.level','DVLT')
                     ->select('cskddvlt.*','company.tendn','town.tendv');
 
-                if(session('admin')->level == 'T' || session('admin')->level == 'H') {
-                    $model = $model;
+                if(session('admin')->level == 'T') {
+                    $modeldv = Town::all();
+                    $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
+                    $model = $model->where('cskddvlt.mahuyen',$inputs['maxa']);
+                }elseif(session('admin')->level == 'H') {
+                    $modeldv = Town::where('mahuyen',session('admin')->mahuyen)->get();
+                    $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
+                    $model = $model->where('cskddvlt.mahuyen',$inputs['maxa']);
                 }elseif(session('admin')->level == 'X') {
-                    $model = $model->where('cskddvlt.mahuyen', session('admin')->maxa);
+                    $modeldv = Town::where('mahuyen',session('admin')->mahuyen)
+                        ->where('maxa',session('admin')->maxa)
+                        ->get();
+                    $inputs['maxa'] = session('admin')->maxa;
+                    $model = $model->where('cskddvlt.mahuyen',$inputs['maxa']);
                 }else {//dndvlt
+                    $modeldv = Town::where('maxa',session('admin')->mahuyen)
+                        ->get();
+                    $inputs['maxa'] = session('admin')->maxa;
                     $model = $model->where('cskddvlt.mahuyen', session('admin')->mahuyen)
-                        ->where('cskddvlt.maxa', session('admin')->maxa);
+                        ->where('cskddvlt.maxa', $inputs['maxa']);
                 }
                 $model = $model->get();
                 return view('manage.kkgia.dvlt.kkgia.kkgiadv.ttcskd')
                     ->with('model', $model)
+                    ->with('modeldv',$modeldv)
+                    ->with('inputs',$inputs)
                     ->with('pageTitle', 'Danh sách cơ sở kinh doanh dịch vụ lưu trú');
             }else{
                 return view('errors.perm');
@@ -155,7 +171,7 @@ class KkGiaDvLtController extends Controller
                 ->get();
             $modelcqcq = Town::where('maxa',$modeldn->mahuyen)
                 ->first();
-            return view('reports.kkgdvlt.print')
+            return view('manage.kkgia.dvlt.reports.print')
                 ->with('modelkk',$modelkk)
                 ->with('modeldn',$modeldn)
                 ->with('modelcskd',$modelcskd)

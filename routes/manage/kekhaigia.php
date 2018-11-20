@@ -14,6 +14,8 @@ include('kkgia/dvlt.php');
 //DVGS
 include('kkgia/tpcnte6t.php');
 
+//TACN
+include('kkgia/tacn.php');
 
 
 ?>

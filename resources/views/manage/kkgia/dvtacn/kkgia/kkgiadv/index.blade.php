@@ -23,9 +23,17 @@
 
             $('#namhs').change(function() {
                 var nam = $('#namhs').val();
-                var macskd = $('#macskd').val();
-                var url = '/kekhaigiadvlt?&macskd='+macskd+'&nam='+nam;
+                var masothue = $('#masothue').val();
+                var trangthai = $('#trangthai').val();
+                var url = '/kekhaigiathucanchannuoi?&masothue='+masothue+'&nam='+nam+'&trangthai='+trangthai;
 
+                window.location.href = url;
+            });
+            $('#trangthai').change(function() {
+                var nam = $('#namhs').val();
+                var masothue = $('#masothue').val();
+                var trangthai = $('#trangthai').val();
+                var url = '/kekhaigiathucanchannuoi?&masothue='+masothue+'&nam='+nam+'&trangthai='+trangthai;
                 window.location.href = url;
             });
 
@@ -45,7 +53,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: 'reports/ktchuyendvlt',
+                url: '/kktacn/kiemtra',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -90,7 +98,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/reports/showlydo',
+                url: '/kktacn/showlydo',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -112,8 +120,10 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin kê khai giá<small>&nbsp;dịch vụ lưu trú</small>
-        <p><h5 style="color: blue">{{$modelcskd->tencskd}} - {{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
+        Thông tin kê khai giá<br><small>&nbsp;Thức ăn chăn nuôi cho gia súc, gia cầm và thủy sản; thuốc thủ y để
+            tiêu độc, sát trùng, tay trùng, trị bệnh cho gia súc, gia cầm và thủy sản theo quy
+            định của Bộ Nông nghiệp và Phát trỉến nông thôn</small>
+        <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}} - Cơ quan chủ quản: {{$modeldv->tendv}}</h5></p>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -122,14 +132,16 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
-                        @if(can('kkdvlt','create'))
-                            <a href="{{url('kekhaigiadvlt/create?&macskd='.$macskd.'&masothue='.$modeldn->maxa)}}" class="btn btn-default btn-sm">
-                                <i class="fa fa-plus"></i> Kê khai mới </a>
+                        @if(can('kktacn','create'))
+                                <a href="{{url('kekhaigiathucanchannuoi/create?&masothue='.$inputs['masothue'])}}" class="btn btn-default btn-sm">
+                                    <i class="fa fa-plus"></i> Kê khai mới </a>
                         @endif
-                        <a href="{{url('thongtincskdkkdvlt')}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-reply"></i> Quay lại </a>
+                        @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
+                            <a href="{{url('thontindntacn?&mahuyen='.$modeldn->mahuyen)}}" class="btn btn-default btn-sm">
+                                <i class="fa fa-reply"></i> Quay lại </a>
+                        @endif
                     </div>
-                <input type="hidden" name="macskd" id="macskd" value="{{$macskd}}">
+                <input type="hidden" name="masothue" id="masothue" value="{{$inputs['masothue']}}">
                 </div>
                 <div class="portlet-body">
                     <div class="portlet-body">
@@ -141,8 +153,19 @@
                                         @if ($nam_start = intval(date('Y')) - 5 ) @endif
                                         @if ($nam_stop = intval(date('Y')) + 1 ) @endif
                                         @for($i = $nam_start; $i <= $nam_stop; $i++)
-                                            <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>Năm {{$i}}</option>
+                                            <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
                                         @endfor
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Trạng thái hồ sơ</label>
+                                    <select name="trangthai" id="trangthai" class="form-control">
+                                        <option value="CC" {{$inputs['trangthai'] == 'CC' ? 'selected' : ''}}>Hồ sơ chờ chuyển</option>
+                                        <option value="CD" {{$inputs['trangthai'] == 'CD' ? 'selected' : ''}}>Hồ sơ chờ duyệt</option>
+                                        <option value="BTL" {{$inputs['trangthai'] == 'BTL' ? 'selected' : ''}}>Hồ sơ bị trả lại</option>
+                                        <option value="DD" {{$inputs['trangthai'] == 'DD' ? 'selected' : ''}}>Hồ sơ đã duyệt</option>
                                     </select>
                                 </div>
                             </div>
@@ -170,54 +193,55 @@
                                 <td style="text-align: center">{{$tt->socvlk}}</td>
                                 <td style="text-align: center">{{$tt->ttnguoinop}}</td>
                                 @if($tt->trangthai == "CC")
-                                <td align="center"><span class="badge badge-warning">Chờ chuyển</span></td>
+                                    <td align="center"><span class="badge badge-warning">Chờ chuyển</span></td>
                                 @elseif($tt->trangthai == 'CD')
                                     <td align="center"><span class="badge badge-blue">Chờ duyệt</span>
+                                        <br>Thời gian chuyển:<br><b>{{getDateTime($tt->ngaychuyen)}}</b>
+                                    </td>
+                                @elseif($tt->trangthai == 'CN')
+                                    <td align="center"><span class="badge badge-warning">Chờ nhận</span>
                                         <br>Thời gian chuyển:<br><b>{{getDateTime($tt->ngaychuyen)}}</b>
                                     </td>
                                 @elseif($tt->trangthai == 'BTL')
                                     <td align="center">
                                         <span class="badge badge-danger">Bị trả lại</span><br>&nbsp;
                                     </td>
-                                @elseif($tt->trangthai == 'CB')
-                                    <td align="center"><span class="badge badge-warning">Công bố</span>
-                                        <br>Thời gian chuyển:<br><b>{{getDateTime($tt->ngaychuyen)}}</b>
-                                    </td>
                                 @else
                                     <td align="center">
-                                        <span class="badge badge-success">Đã duyệt</span>
+                                        <span class="badge badge-success">{{$tt->trangthai}}</span>
                                         <br>Thời gian chuyển:<br><b>{{getDateTime($tt->ngaychuyen)}}</b>
                                     </td>
                                 @endif
                                 <td>
-                                    <a href="{{url('kekhaigiadvlt/prints?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
-
+                                    <a href="{{url('kekhaigiathucanchannuoi/prints?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                     @if(canEdit($tt->trangthai))
-                                        @if(can('kkdvlt','edit'))
-                                            <a href="{{url('kekhaigiadvlt/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                        @if(can('kktacn','edit'))
+                                            <a href="{{url('kekhaigiathucanchannuoi/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                         @endif
-                                        @if($tt->trangthai == 'CC' || $tt->trangthai=='BTL')
-                                            @if($tt->trangthai == 'CC')
-                                                @if(can('kkdvlt','delete'))
-                                                <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
-                                                    Xóa</button>
+                                        @if(canChuyenXoa($tt->trangthai))
+                                            @if(can('kktacn','delete'))
+                                                @if($tt->trangthai == 'CC')
+                                            <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                                Xóa</button>
                                                 @endif
                                             @endif
-                                            @if( $tt->trangthai == 'BTL')
-                                            <button type="button" data-target="#lydo-modal" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="viewLyDo({{$tt->id}})"><i class="fa fa-search"></i>&nbsp;Lý do trả lại</button>
-                                            @endif
-                                            @if(can('kkdvlt','approve'))
-                                                <button type="button" onclick="confirmChuyen('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyen-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
-                                                    Chuyển</button>
+                                            @if(can('kktacn','approve'))
+                                            <button type="button" onclick="confirmChuyen('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyen-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
+                                                Chuyển</button>
+                                                @if(session('admin')->sadmin == 'ssa')
+                                                    <!--button type="button" onclick="confirmChuyenHSCham('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyenhscham-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
+                                                        Chuyển HS chậm</button-->
+                                                @endif
                                             @endif
                                         @endif
+                                        @if(canShowLyDo($tt->trangthai))
+                                        <button type="button" data-target="#lydo-modal" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="viewLyDo({{$tt->id}})"><i class="fa fa-search"></i>&nbsp;Lý do trả lại</button>
+                                        @endif
                                     @endif
-                                    <!--a href="{{url('ke_khai_gia_sua/'.$tt->mahs.'/history')}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Lịch sử</a-->
-
+                                    <!--a href="{{url('kkthucanchannuoi/'.$tt->mahs.'/history')}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Lịch sử</a-->
                                 </td>
                             </tr>
                         @endforeach
-
                         </tbody>
                     </table>
                 </div>
@@ -234,7 +258,7 @@
         <div class="modal fade" id="chuyen-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    {!! Form::open(['url'=>'kekhaigiadvlt/chuyen','id' => 'frm_chuyen'])!!}
+                    {!! Form::open(['url'=>'kekhaigiathucanchannuoi/chuyen','id' => 'frm_chuyen'])!!}
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                         <h4 class="modal-title">Đồng ý chuyển hồ sơ?</h4>
@@ -264,7 +288,7 @@
         <div class="modal fade" id="chuyenhscham-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    {!! Form::open(['url'=>'ke_khai_dich_vu_luu_tru/chuyenhscham','id' => 'frm_chuyenhscham'])!!}
+                    {!! Form::open(['url'=>'kekhaigiathucanchannuoi/chuyenhscham','id' => 'frm_chuyenhscham'])!!}
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                         <h4 class="modal-title">Đồng ý chuyển hồ sơ bị chậm?</h4>
@@ -286,7 +310,7 @@
         <div class="modal fade" id="copy-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    {!! Form::open(['url'=>'ke_khai_dich_vu_luu_tru/copy','id' => 'frm_chuyen'])!!}
+                    {!! Form::open(['url'=>'kekhaigiathucanchannuoi/copy','id' => 'frm_chuyen'])!!}
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                         <h4 class="modal-title">Sao chép hồ sơ kê khai?</h4>
@@ -314,7 +338,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Lý do trả lại hồ sơ?</h4>
+                    <h4 class="modal-title"><b>Lý do trả lại hồ sơ?</b></h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group" id="showlydo">
@@ -333,7 +357,7 @@
     <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['url'=>'kekhaigiadvlt/delete','id' => 'frm_delete'])!!}
+                {!! Form::open(['url'=>'kekhaigiathucanchannuoi/delete','id' => 'frm_delete'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title">Đồng ý xóa?</h4>

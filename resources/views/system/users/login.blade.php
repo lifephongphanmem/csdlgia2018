@@ -127,7 +127,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				<div class="form-horizontal">
 					<div class="form-group">
 						<div class="row" style="text-align: center">
-							<div class="col-md-12" >
+							<div class="col-md-12" style="text-align: center">
 								<div class="col-xs-5 col-sm-3">
 									<a href="{{url('dangkytaikhoan?&level=DVLT')}}" class="btn default blue-stripe">
 									Dịch vụ lưu trú </a>
@@ -143,15 +143,15 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 						</div>
 					</div>
-					<!--div class="form-group">
+					<div class="form-group">
 						<div class="row">
-							<div class="col-md-12">
-								<div class="col-xs-6 col-sm-4">
+							<div class="col-md-12" style="text-align: center">
+								<div class="col-xs-5 col-sm-3">
 									<a class="btn default blue-stripe" href="{{url('dangkytaikhoan?&level=TACN')}}">Thức ăn chăn nuôi</a>
 								</div>
 							</div>
 						</div>
-					</div-->
+					</div>
 
 				</div>
 			</div>

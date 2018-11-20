@@ -18,7 +18,7 @@ class ReportsKkDvLtController extends Controller
                 $model_donvi = Company::where('level','DVLT')->select('tendn','maxa')->get();
                 $model_cskd = CsKdDvLt::select('tencskd','macskd')->get();
 
-            return view('reports.kkgdvlt.bcth.index')
+            return view('manage.kkgia.dvlt.reports.bcth.index')
                 ->with('model',$model)
                 ->with('model_donvi',$model_donvi)
                 ->with('model_cskd',$model_cskd)
@@ -43,7 +43,7 @@ class ReportsKkDvLtController extends Controller
                 ->get();
             $modelcqcq = DmDvQl::where('maqhns',$modeldn->cqcq)
                 ->first();
-            return view('reports.kkgdvlt.print')
+            return view('reports.reports.print')
                 ->with('modelkk',$modelkk)
                 ->with('modeldn',$modeldn)
                 ->with('modelcskd',$modelcskd)
@@ -72,7 +72,7 @@ class ReportsKkDvLtController extends Controller
                 ->get();
             $modelcqcq = DmDvQl::where('maqhns',$modeldn->cqcq)
                 ->first();
-            return view('reports.kkgdvlt.printks')
+            return view('reports.reports.printks')
                 ->with('modelkk',$modelkk)
                 ->with('modeldn',$modeldn)
                 ->with('modelcskd',$modelcskd)
@@ -109,7 +109,7 @@ class ReportsKkDvLtController extends Controller
             $modelcqcq = DmDvQl::where('maqhns',$modelkk->cqcq)->first();
             $modelkkct = KkGDvTaCnCt::where('mahs',$mahs)->get();
             //dd($modelcqcq);
-            return view('reports.kkgdvtacn.print')
+            return view('reports.reports.print')
                 ->with('modelkk',$modelkk)
                 ->with('modeldn',$modeldn)
                 ->with('modelcqcq',$modelcqcq)
@@ -143,7 +143,7 @@ class ReportsKkDvLtController extends Controller
 
             $model=$this->get_KKG_TH($input);
 
-            return view('reports.kkgdvlt.bcth.BC1')
+            return view('reports.reports.bcth.BC1')
                 ->with('modelcqcq',$modelcqcq)
                 ->with('input',$input)
                 ->with('model',$model)
@@ -172,7 +172,7 @@ class ReportsKkDvLtController extends Controller
             $model=$this->get_KKG_TH($input);
             Excel::create('BaoCao1',function($excel) use($modelcqcq,$input,$model,$m_cqcq){
                 $excel->sheet('New sheet', function($sheet) use($modelcqcq,$input,$model,$m_cqcq){
-                    $sheet->loadView('reports.kkgdvlt.bcth.BC1')
+                    $sheet->loadView('reports.reports.bcth.BC1')
                         ->with('modelcqcq',$modelcqcq)
                         ->with('input',$input)
                         ->with('model',$model)
@@ -288,7 +288,7 @@ class ReportsKkDvLtController extends Controller
                 }
             }
 
-            return view('reports.kkgdvlt.bcth.BC2')
+            return view('reports.reports.bcth.BC2')
                 ->with('modelcqcq',$modelcqcq)
                 ->with('input',$input)
                 ->with('model',$model)
@@ -391,7 +391,7 @@ class ReportsKkDvLtController extends Controller
 
             Excel::create('BaoCao2',function($excel) use($modelcqcq,$input,$model,$m_cqcq,$modelctkk){
                 $excel->sheet('New sheet', function($sheet) use($modelcqcq,$input,$model,$m_cqcq,$modelctkk){
-                    $sheet->loadView('reports.kkgdvlt.bcth.BC2')
+                    $sheet->loadView('reports.reports.bcth.BC2')
                         ->with('modelcqcq',$modelcqcq)
                         ->with('input',$input)
                         ->with('model',$model)
@@ -419,7 +419,7 @@ class ReportsKkDvLtController extends Controller
             $modelcqcq = DmDvQl::where('maqhns',$m_donvi->cqcq)->first();
             $model=$this->get_KKG_CT($input);
 
-            return view('reports.kkgdvlt.bcth.BC3')
+            return view('reports.reports.bcth.BC3')
                 ->with('modelcqcq',$modelcqcq)
                 ->with('input',$input)
                 ->with('model',$model)
@@ -438,7 +438,7 @@ class ReportsKkDvLtController extends Controller
 
             Excel::create('BaoCao3',function($excel) use($modelcqcq,$input,$model,$m_donvi){
                 $excel->sheet('New sheet', function($sheet) use($modelcqcq,$input,$model,$m_donvi){
-                    $sheet->loadView('reports.kkgdvlt.bcth.BC3')
+                    $sheet->loadView('reports.reports.bcth.BC3')
                         ->with('modelcqcq',$modelcqcq)
                         ->with('input',$input)
                         ->with('model',$model)
@@ -470,7 +470,7 @@ class ReportsKkDvLtController extends Controller
             }
             $modelctkk = KkGDvLtCt::whereIn('mahs',explode(',',$mahss))->get();
 
-            return view('reports.kkgdvlt.bcth.BC4')
+            return view('reports.reports.bcth.BC4')
                 ->with('modelcqcq',$modelcqcq)
                 ->with('input',$input)
                 ->with('model',$model)
@@ -497,7 +497,7 @@ class ReportsKkDvLtController extends Controller
 
             Excel::create('BaoCao4',function($excel) use($modelcqcq,$input,$model,$m_donvi,$modelctkk){
                 $excel->sheet('New sheet', function($sheet) use($modelcqcq,$input,$model,$m_donvi,$modelctkk){
-                    $sheet->loadView('reports.kkgdvlt.bcth.BC4')
+                    $sheet->loadView('reports.reports.bcth.BC4')
                         ->with('modelcqcq',$modelcqcq)
                         ->with('input',$input)
                         ->with('model',$model)
@@ -524,7 +524,7 @@ class ReportsKkDvLtController extends Controller
                 ->leftjoin('cskddvlt','cskddvlt.macskd','=','kkgiadvlt.macskd')
                 ->select('kkgiadvlt.*','cskddvlt.tencskd','cskddvlt.loaihang','cskddvlt.diachikd','cskddvlt.telkd')
                 ->get();
-            return view('reports.kkgdvlt.bcth.BC5')
+            return view('manage.kkgia.dvlt.reports.bcth.BC5')
                 ->with('input',$input)
                 ->with('model',$model)
                 ->with('pageTitle','Báo cáo thống kê các đơn vị kê khai giá trong khoảng thời gian');
@@ -560,7 +560,7 @@ class ReportsKkDvLtController extends Controller
 
             Excel::create('BaoCao5',function($excel) use($modelcqcq,$input,$model,$m_cqcq){
                 $excel->sheet('New sheet', function($sheet) use($modelcqcq,$input,$model,$m_cqcq){
-                    $sheet->loadView('reports.kkgdvlt.bcth.BC5')
+                    $sheet->loadView('reports.reports.bcth.BC5')
                         ->with('modelcqcq',$modelcqcq)
                         ->with('input',$input)
                         ->with('model',$model)
@@ -590,61 +590,61 @@ class ReportsKkDvLtController extends Controller
     function get_KKG_TH($input){
         if(session('admin')->level == 'T'){//Kết xuất báo cáo quyền Tỉnh
             if($input['cqcq']=='all'&&$input['loaihang']=='all'){
-                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','kkgdvlt.macskd')
-                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','kkgdvlt.*')
-                    ->where('kkgdvlt.trangthai', 'Chờ duyệt')
-                    ->OrWhere('kkgdvlt.trangthai', 'Duyệt')
-                    ->whereBetween('kkgdvlt.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
-                    ->orderBy('kkgdvlt.ngaychuyen')
+                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','reports.macskd')
+                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','reports.*')
+                    ->where('reports.trangthai', 'Chờ duyệt')
+                    ->OrWhere('reports.trangthai', 'Duyệt')
+                    ->whereBetween('reports.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
+                    ->orderBy('reports.ngaychuyen')
                     ->get();
             }elseif($input['cqcq']=='all'&&$input['loaihang']!='all'){
-                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','kkgdvlt.macskd')
-                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','kkgdvlt.*')
+                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','reports.macskd')
+                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','reports.*')
                     ->where('trangthai', 'Chờ duyệt')
-                    ->OrWhere('kkgdvlt.trangthai', 'Duyệt')
-                    ->whereBetween('kkgdvlt.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
+                    ->OrWhere('reports.trangthai', 'Duyệt')
+                    ->whereBetween('reports.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
                     ->where('cskddvlt.loaihang', $input['loaihang'])
-                    ->orderBy('kkgdvlt.ngaychuyen')
+                    ->orderBy('reports.ngaychuyen')
                     ->get();
             }elseif($input['cqcq']!='all'&&$input['loaihang']=='all'){
-                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','kkgdvlt.macskd')
-                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','kkgdvlt.*')
+                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','reports.macskd')
+                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','reports.*')
                     ->where('trangthai', 'Chờ duyệt')
-                    ->OrWhere('kkgdvlt.trangthai', 'Duyệt')
-                    ->whereBetween('kkgdvlt.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
-                    ->where('kkgdvlt.cqcq',$input['cqcq'])
-                    ->orderBy('kkgdvlt.ngaychuyen')
+                    ->OrWhere('reports.trangthai', 'Duyệt')
+                    ->whereBetween('reports.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
+                    ->where('reports.cqcq',$input['cqcq'])
+                    ->orderBy('reports.ngaychuyen')
                     ->get();
             }else{
-                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','kkgdvlt.macskd')
-                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','kkgdvlt.*')
+                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','reports.macskd')
+                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','reports.*')
                     ->where('trangthai', 'Chờ duyệt')
-                    ->OrWhere('kkgdvlt.trangthai', 'Duyệt')
-                    ->whereBetween('kkgdvlt.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
-                    ->where('kkgdvlt.cqcq',$input['cqcq'])
+                    ->OrWhere('reports.trangthai', 'Duyệt')
+                    ->whereBetween('reports.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
+                    ->where('reports.cqcq',$input['cqcq'])
                     ->where('cskddvlt.loaihang', $input['loaihang'])
-                    ->orderBy('kkgdvlt.ngaychuyen')
+                    ->orderBy('reports.ngaychuyen')
                     ->get();
             }
         }else{//Kết xuất báo cáo quyền Huyện
             if($input['loaihang']=='all'){
-                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','kkgdvlt.macskd')
-                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','kkgdvlt.*')
-                    ->where('kkgdvlt.trangthai', 'Chờ duyệt')
-                    ->OrWhere('kkgdvlt.trangthai', 'Duyệt')
-                    ->where('kkgdvlt.cqcq',session('admin')->cqcq)
-                    ->whereBetween('kkgdvlt.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
-                    ->orderBy('kkgdvlt.ngaychuyen')
+                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','reports.macskd')
+                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','reports.*')
+                    ->where('reports.trangthai', 'Chờ duyệt')
+                    ->OrWhere('reports.trangthai', 'Duyệt')
+                    ->where('reports.cqcq',session('admin')->cqcq)
+                    ->whereBetween('reports.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
+                    ->orderBy('reports.ngaychuyen')
                     ->get();
             }else{
-                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','kkgdvlt.macskd')
-                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','kkgdvlt.*')
+                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','reports.macskd')
+                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','reports.*')
                     ->where('trangthai', 'Chờ duyệt')
-                    ->OrWhere('kkgdvlt.trangthai', 'Duyệt')
-                    ->where('kkgdvlt.cqcq',session('admin')->cqcq)
-                    ->whereBetween('kkgdvlt.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
+                    ->OrWhere('reports.trangthai', 'Duyệt')
+                    ->where('reports.cqcq',session('admin')->cqcq)
+                    ->whereBetween('reports.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
                     ->where('cskddvlt.loaihang', $input['loaihang'])
-                    ->orderBy('kkgdvlt.ngaychuyen')
+                    ->orderBy('reports.ngaychuyen')
                     ->get();
             }
         }
@@ -655,23 +655,23 @@ class ReportsKkDvLtController extends Controller
     //Lấy dữ liệu kê khai giá theo đơn vị kê khai giá
     function get_KKG_CT($input){
         if($input['loaihang']=='all'){
-            $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','kkgdvlt.macskd')
-                ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','kkgdvlt.*')
-                ->where('kkgdvlt.trangthai', 'Chờ duyệt')
-                ->OrWhere('kkgdvlt.trangthai', 'Duyệt')
-                ->where('kkgdvlt.masothue',$input['masothue'])
-                ->whereBetween('kkgdvlt.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
-                ->orderBy('kkgdvlt.ngaychuyen')
+            $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','reports.macskd')
+                ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','reports.*')
+                ->where('reports.trangthai', 'Chờ duyệt')
+                ->OrWhere('reports.trangthai', 'Duyệt')
+                ->where('reports.masothue',$input['masothue'])
+                ->whereBetween('reports.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
+                ->orderBy('reports.ngaychuyen')
                 ->get();
         }else{
-            $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','kkgdvlt.macskd')
-                ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','kkgdvlt.*')
+            $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','reports.macskd')
+                ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','reports.*')
                 ->where('trangthai', 'Chờ duyệt')
-                ->OrWhere('kkgdvlt.trangthai', 'Duyệt')
-                ->where('kkgdvlt.masothue',$input['masothue'])
-                ->whereBetween('kkgdvlt.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
+                ->OrWhere('reports.trangthai', 'Duyệt')
+                ->where('reports.masothue',$input['masothue'])
+                ->whereBetween('reports.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
                 ->where('cskddvlt.loaihang', $input['loaihang'])
-                ->orderBy('kkgdvlt.ngaychuyen')
+                ->orderBy('reports.ngaychuyen')
                 ->get();
         }
 
@@ -682,55 +682,55 @@ class ReportsKkDvLtController extends Controller
     function get_KKG_GQ($input){
         if(session('admin')->level == 'T'){//Kết xuất báo cáo quyền Tỉnh
             if($input['cqcq']=='all'&&$input['loaihang']=='all'){
-                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','kkgdvlt.macskd')
-                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','kkgdvlt.*')
-                    ->Where('kkgdvlt.trangthai', 'Duyệt')
-                    ->whereBetween('kkgdvlt.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
-                    ->orderBy('kkgdvlt.ngaychuyen')
+                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','reports.macskd')
+                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','reports.*')
+                    ->Where('reports.trangthai', 'Duyệt')
+                    ->whereBetween('reports.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
+                    ->orderBy('reports.ngaychuyen')
                     ->get();
             }elseif($input['cqcq']=='all'&&$input['loaihang']!='all'){
-                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','kkgdvlt.macskd')
-                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','kkgdvlt.*')
-                    ->Where('kkgdvlt.trangthai', 'Duyệt')
-                    ->whereBetween('kkgdvlt.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
+                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','reports.macskd')
+                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','reports.*')
+                    ->Where('reports.trangthai', 'Duyệt')
+                    ->whereBetween('reports.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
                     ->where('cskddvlt.loaihang', $input['loaihang'])
-                    ->orderBy('kkgdvlt.ngaychuyen')
+                    ->orderBy('reports.ngaychuyen')
                     ->get();
             }elseif($input['cqcq']!='all'&&$input['loaihang']=='all'){
-                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','kkgdvlt.macskd')
-                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','kkgdvlt.*')
-                    ->Where('kkgdvlt.trangthai', 'Duyệt')
-                    ->whereBetween('kkgdvlt.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
-                    ->where('kkgdvlt.cqcq',$input['cqcq'])
-                    ->orderBy('kkgdvlt.ngaychuyen')
+                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','reports.macskd')
+                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','reports.*')
+                    ->Where('reports.trangthai', 'Duyệt')
+                    ->whereBetween('reports.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
+                    ->where('reports.cqcq',$input['cqcq'])
+                    ->orderBy('reports.ngaychuyen')
                     ->get();
             }else{
-                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','kkgdvlt.macskd')
-                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','kkgdvlt.*')
-                    ->Where('kkgdvlt.trangthai', 'Duyệt')
-                    ->whereBetween('kkgdvlt.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
-                    ->where('kkgdvlt.cqcq',$input['cqcq'])
+                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','reports.macskd')
+                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','reports.*')
+                    ->Where('reports.trangthai', 'Duyệt')
+                    ->whereBetween('reports.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
+                    ->where('reports.cqcq',$input['cqcq'])
                     ->where('cskddvlt.loaihang', $input['loaihang'])
-                    ->orderBy('kkgdvlt.ngaychuyen')
+                    ->orderBy('reports.ngaychuyen')
                     ->get();
             }
         }else{//Kết xuất báo cáo quyền Huyện
             if($input['loaihang']=='all'){
-                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','kkgdvlt.macskd')
-                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','kkgdvlt.*')
-                    ->Where('kkgdvlt.trangthai', 'Duyệt')
-                    ->where('kkgdvlt.cqcq',session('admin')->cqcq)
-                    ->whereBetween('kkgdvlt.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
-                    ->orderBy('kkgdvlt.ngaychuyen')
+                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','reports.macskd')
+                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','reports.*')
+                    ->Where('reports.trangthai', 'Duyệt')
+                    ->where('reports.cqcq',session('admin')->cqcq)
+                    ->whereBetween('reports.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
+                    ->orderBy('reports.ngaychuyen')
                     ->get();
             }else{
-                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','kkgdvlt.macskd')
-                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','kkgdvlt.*')
-                    ->Where('kkgdvlt.trangthai', 'Duyệt')
-                    ->where('kkgdvlt.cqcq',session('admin')->cqcq)
-                    ->whereBetween('kkgdvlt.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
+                $model = KkGDvLt::join('cskddvlt','cskddvlt.macskd','=','reports.macskd')
+                    ->select('cskddvlt.tencskd','cskddvlt.diachikd','cskddvlt.telkd','cskddvlt.loaihang','reports.*')
+                    ->Where('reports.trangthai', 'Duyệt')
+                    ->where('reports.cqcq',session('admin')->cqcq)
+                    ->whereBetween('reports.ngaychuyen', [$input['ngaytu'], $input['ngayden']])
                     ->where('cskddvlt.loaihang', $input['loaihang'])
-                    ->orderBy('kkgdvlt.ngaychuyen')
+                    ->orderBy('reports.ngaychuyen')
                     ->get();
             }
         }
@@ -752,7 +752,7 @@ class ReportsKkDvLtController extends Controller
                 }
             }
 
-            return view('reports.kkgdvlt.bcth.BC6')
+            return view('manage.kkgia.dvlt.reports.bcth.BC6')
                 ->with('inputs',$inputs)
                 ->with('model',$model)
                 ->with('pageTitle','Báo cáo đơn vị kê khai giá dịch vụ lưu trú');
@@ -797,7 +797,7 @@ class ReportsKkDvLtController extends Controller
 
             Excel::create('BaoCao6',function($excel) use($modelcqcq,$inputs,$model){
                 $excel->sheet('New sheet', function($sheet) use($modelcqcq,$inputs,$model){
-                    $sheet->loadView('reports.kkgdvlt.bcth.BC6')
+                    $sheet->loadView('reports.reports.bcth.BC6')
                         ->with('modelcqcq',$modelcqcq)
                         ->with('inputs',$inputs)
                         ->with('model',$model)
@@ -844,7 +844,7 @@ class ReportsKkDvLtController extends Controller
                 ->whereYear('ngaynhan',$input['nam'])
                 ->get();
 
-            return view('reports.kkgdvlt.bcth.BC7')
+            return view('reports.reports.bcth.BC7')
                 ->with('modelcqcq',$modelcqcq)
                 ->with('input',$input)
                 ->with('model',$model)
@@ -872,7 +872,7 @@ class ReportsKkDvLtController extends Controller
 
             $model=$this->get_KKG_TH($input);
 
-            return view('reports.kkgdvlt.bcth.BC8')
+            return view('reports.reports.bcth.BC8')
                 ->with('modelcqcq',$modelcqcq)
                 ->with('input',$input)
                 ->with('model',$model)
@@ -902,7 +902,7 @@ class ReportsKkDvLtController extends Controller
                 $mahss = $mahss.$kk->mahs.',';
             }
             $modelctkk = KkGDvLtCt::whereIn('mahs',explode(',',$mahss))->get();
-            return view('reports.kkgdvlt.bcth.BC9')
+            return view('reports.reports.bcth.BC9')
                 ->with('modelcqcq',$modelcqcq)
                 ->with('input',$input)
                 ->with('model',$model)
