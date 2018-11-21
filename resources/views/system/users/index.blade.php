@@ -103,9 +103,9 @@
                                     <option value="H" {{($pl == "H") ? 'selected' : ''}}>Đơn vị quản lý</option>
                                     <option value="X" {{($pl == "X") ? 'selected' : ''}}>Đơn vị</option>
                                     <option value="DVLT" {{($pl == "DVLT") ? 'selected' : ''}}>Dịch vụ lưu trú</option>
-                                    <!--option value="DVVT" {{($pl == "DVVT") ? 'selected' : ''}}>Dịch vụ vận tải</option-->
+                                    <option value="DVVT" {{($pl == "DVVT") ? 'selected' : ''}}>Dịch vụ vận tải</option>
                                     <option value="TPCNTE6T" {{($pl == "TPCNTE6T") ? 'selected' : ''}}>TPCN dành cho TE dưới 6 tuổi</option>
-                                    <!--option value="DVTACN" {{($pl == "DVTACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option-->
+                                    <option value="TACN" {{($pl == "TACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
                                 </select>
                             </div>
                         </div>

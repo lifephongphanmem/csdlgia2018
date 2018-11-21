@@ -128,26 +128,21 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div class="form-group">
 						<div class="row" style="text-align: center">
 							<div class="col-md-12" style="text-align: center">
-								<div class="col-xs-5 col-sm-3">
-									<a href="{{url('dangkytaikhoan?&level=DVLT')}}" class="btn default blue-stripe">
-									Dịch vụ lưu trú </a>
+								<div class="profile-userbuttons">
+									<a href="{{url('dangkytaikhoan?&level=DVLT')}}" class="btn btn-circle green-haze btn-sm">
+										Doanh nghiệp cung cấp dịch vụ lưu trú </a>&nbsp;
+									<a class="btn btn-circle green-haze btn-sm" href="{{url('dangkytaikhoan?&level=DVVT')}}">
+										Doanh nghiệp cung cấp dịch vụ vận tải </a>
 								</div>
-								<div class="col-xs-5 col-sm-3">
-									<a class="btn default blue-stripe" href="{{url('dangkytaikhoan?&level=DVVT')}}">
-										Dịch vụ vận tải </a>
-								</div>
-								<div class="col-xs-5 col-sm-3">
-									<a class="btn default blue-stripe" href="{{url('dangkytaikhoan?&level=TPCNTE6T')}}">TPCN cho TE dưới 6 tuổi</a>
-								</div>
-
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-12" style="text-align: center">
-								<div class="col-xs-5 col-sm-3">
-									<a class="btn default blue-stripe" href="{{url('dangkytaikhoan?&level=TACN')}}">Thức ăn chăn nuôi</a>
+								<div class="profile-userbuttons">
+									<a class="btn btn-circle btn-danger btn-sm" href="{{url('dangkytaikhoan?&level=TPCNTE6T')}}"> Doanh nghiêp TPCN cho TE dưới 6 tuổi</a>&nbsp;
+									<a class="btn btn-circle btn-danger btn-sm" href="{{url('dangkytaikhoan?&level=TACN')}}">Doanh nghiệp Thức ăn chăn nuôi</a>
 								</div>
 							</div>
 						</div>

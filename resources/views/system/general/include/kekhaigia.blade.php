@@ -116,11 +116,11 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
                                 <tr>
-                                    <td width="2%"><input type="checkbox" {{ (isset($setting->vtk->index) && $setting->vtk->index == 1) ? 'checked' : '' }} value="1" name="roles[vtk][index]"/></td>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->vtch->index) && $setting->vtch->index == 1) ? 'checked' : '' }} value="1" name="roles[vtch][index]"/></td>
                                     <td>Vận tải khác</td>
                                 </tr>
                                 <tr>
-                                    <td width="2"><input type="checkbox" {{ (isset($setting->vtk->congbo) && $setting->vtxtx->congbo == 1) ? 'checked' : '' }} value="1" name="roles[vtk][congbo]"/></td>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->vtch->congbo) && $setting->vtch->congbo == 1) ? 'checked' : '' }} value="1" name="roles[vtch][congbo]"/></td>
                                     <td>Công bố giá vận tải khác</td>
                                 </tr>
                                 </tbody>

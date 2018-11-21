@@ -541,6 +541,102 @@ function getPermissionDefault($level) {
             'timkiem'=>1,
             'xdttdn'=>1,
         ),
+        //DVVT
+        'dvvt'=>array(
+            'index'=>1,
+        ),
+        'vtxk' => array(
+            'index' => 1,
+        ),
+        'dmvtxk' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'kkvtxk' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'thvtxk' => array(
+            'baocao'=>1,
+            'congbo'=>1,
+            'timkiem'=>1,
+            'xdttdn'=>1,
+        ),
+        'vtxb' => array(
+            'index' => 1,
+        ),
+        'dmvtxb' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'kkvtxb' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'thvtxb' => array(
+            'baocao'=>1,
+            'congbo'=>1,
+            'timkiem'=>1,
+            'xdttdn'=>1,
+        ),
+        'vtxtx' => array(
+            'index' => 1,
+        ),
+        'dmvtxtx' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'kkvtxtx' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'thvtxtx' => array(
+            'baocao'=>1,
+            'congbo'=>1,
+            'timkiem'=>1,
+            'xdttdn'=>1,
+        ),
+        'vtch' => array(
+            'index' => 1,
+        ),
+        'dmvtch' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'kkvtch' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'thvtch' => array(
+            'baocao'=>1,
+            'congbo'=>1,
+            'timkiem'=>1,
+            'xdttdn'=>1,
+        ),
 
 
     //End Kê khai giá
@@ -658,7 +754,36 @@ function getPermissionDefault($level) {
             'delete' => 1,
             'approve'=> 1
         ),
+        'dvvt'=>array(
+            'index'=>1,
+        ),
+        'vtxk' => array(
+            'index' => 1,
+        ),
+        'dmvtxk' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
         'kkvtxk' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'thvtxk' => array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+        'vtxb' => array(
+            'index' => 1,
+        ),
+        'dmvtxb' => array(
             'index' => 1,
             'create' => 1,
             'edit' => 1,
@@ -672,7 +797,39 @@ function getPermissionDefault($level) {
             'delete' => 1,
             'approve'=> 1
         ),
-        'kkvttx' => array(
+        'thvtxb' => array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+        'vtxtx' => array(
+            'index' => 1,
+        ),
+        'dmvtxtx' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'kkvtxtx' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'thvtxtx' => array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+        'vtch' => array(
+            'index' => 1,
+        ),
+        'dmvtch' => array(
             'index' => 1,
             'create' => 1,
             'edit' => 1,
@@ -685,6 +842,12 @@ function getPermissionDefault($level) {
             'edit' => 1,
             'delete' => 1,
             'approve'=> 1
+        ),
+        'thvtch' => array(
+            'baocao'=>1,
+            'congbo'=>1,
+            'timkiem'=>1,
+            'xdttdn'=>1,
         ),
     );
     return json_encode($roles[$level]);
@@ -838,13 +1001,22 @@ function getDouble($str)
     return floatval($sKQ);
 }
 
-function canDVVT($setting = null,$module = null, $action = null){
-    $setting = json_decode($setting, true);
-    //check permission
-    if(isset($setting[$module][$action]) && $setting[$module][$action] == 1) {
+function canDVVT($module = null, $action = null){
+    if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
         return true;
+    elseif(session('admin')->level == 'DVVT'){
+        $modeldv = \App\Company::where('maxa',session('admin')->maxa)
+            ->where('level','DVVT')
+            ->first();
+        $setting = json_decode($modeldv->settingdvvt, true);
+        //check permission
+        if(isset($setting[$module][$action]) && $setting[$module][$action] == 1) {
+            return true;
+        }else
+            return false;
     }else
         return false;
+
 }
 
 function canshow($module = null, $action = null)

@@ -237,7 +237,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span><input type="checkbox" value="1" name="roles[dvvt][vtxk]" checked> Vận tải xe khách </label>
                         <span><input type="checkbox" value="1" name="roles[dvvt][vtxb]" checked> Vận tải xe buýt </label>
                         <span><input type="checkbox" value="1" name="roles[dvvt][vtxtx]" checked> Vận tải xe taxi </label>
-                        <span><input type="checkbox" value="1" name="roles[dvvt][vtch]" checked> Vận tải chở hàng</label>
+                        <span><input type="checkbox" value="1" name="roles[dvvt][vtk]" checked> Vận tải khác</label>
                     </div>
                 </div>
             </div>

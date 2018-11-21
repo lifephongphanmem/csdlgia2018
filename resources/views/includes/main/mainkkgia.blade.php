@@ -132,70 +132,78 @@
             @if(can('dvvt','index'))
                 @if(canGeneral('vtxk','index'))
                     @if(can('vtxk','index'))
-                    <li>
-                        <a href="javascript:;">
-                            <span class="title">Vận tải xe khách</span>
-                            <span class="arrow"></span>
-                        </a>
-                        <ul class="sub-menu" style="display: none;">
-                            <li><a href="">Danh mục dịch vụ</a> </li>
-                            <li><a href="">Kê khai giá</a></li>
-                            <li><a href="">Xét duyệt hồ sơ kê khai</a></li>
-                            <li><a href="">Tìm kiếm hồ sơ kê khai</a></li>
-                            <li><a href="">Báo cáo</a></li>
-                        </ul>
-                    </li>
+                        @if(canDVVT('dvvt','vtxk'))
+                        <li>
+                            <a href="javascript:;">
+                                <span class="title">Vận tải xe khách</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu" style="display: none;">
+                                <li><a href="">Danh mục dịch vụ</a> </li>
+                                <li><a href="">Kê khai giá</a></li>
+                                <li><a href="">Xét duyệt hồ sơ kê khai</a></li>
+                                <li><a href="">Tìm kiếm hồ sơ kê khai</a></li>
+                                <li><a href="">Báo cáo</a></li>
+                            </ul>
+                        </li>
+                        @endif
                     @endif
                 @endif
                 @if(canGeneral('vtxb','index'))
                     @if(can('vtxb','index'))
-                    <li>
-                        <a href="javascript:;">
-                            <span class="title">Vận tải xe buýt</span>
-                            <span class="arrow"></span>
-                        </a>
-                        <ul class="sub-menu" style="display: none;">
-                            <li><a href="">Danh mục dịch vụ</a> </li>
-                            <li><a href="">Kê khai giá</a></li>
-                            <li><a href="">Xét duyệt hồ sơ kê khai</a></li>
-                            <li><a href="">Tìm kiếm hồ sơ kê khai</a></li>
-                            <li><a href="">Báo cáo</a></li>
-                        </ul>
-                    </li>
+                        @if(canDVVT('dvvt','vtxb'))
+                        <li>
+                            <a href="javascript:;">
+                                <span class="title">Vận tải xe buýt</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu" style="display: none;">
+                                <li><a href="">Danh mục dịch vụ</a> </li>
+                                <li><a href="">Kê khai giá</a></li>
+                                <li><a href="">Xét duyệt hồ sơ kê khai</a></li>
+                                <li><a href="">Tìm kiếm hồ sơ kê khai</a></li>
+                                <li><a href="">Báo cáo</a></li>
+                            </ul>
+                        </li>
+                        @endif
                     @endif
                 @endif
                 @if(canGeneral('vtxtx','index'))
                     @if(can('vtxtx','index'))
-                    <li>
-                        <a href="javascript:;">
-                            <span class="title">Vận tải xe taxi</span>
-                            <span class="arrow"></span>
-                        </a>
-                        <ul class="sub-menu" style="display: none;">
-                            <li><a href="">Danh mục dịch vụ</a> </li>
-                            <li><a href="">Kê khai giá</a></li>
-                            <li><a href="">Xét duyệt hồ sơ kê khai</a></li>
-                            <li><a href="">Tìm kiếm hồ sơ kê khai</a></li>
-                            <li><a href="">Báo cáo</a></li>
-                        </ul>
-                    </li>
+                        @if(canDVVT('dvvt','vtxtx'))
+                        <li>
+                            <a href="javascript:;">
+                                <span class="title">Vận tải xe taxi</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu" style="display: none;">
+                                <li><a href="">Danh mục dịch vụ</a> </li>
+                                <li><a href="">Kê khai giá</a></li>
+                                <li><a href="">Xét duyệt hồ sơ kê khai</a></li>
+                                <li><a href="">Tìm kiếm hồ sơ kê khai</a></li>
+                                <li><a href="">Báo cáo</a></li>
+                            </ul>
+                        </li>
+                        @endif
                     @endif
                 @endif
-                @if(canGeneral('vtk','index'))
-                    @if(can('vtk','index'))
-                    <li>
-                        <a href="javascript:;">
-                            <span class="title">Vận tải khác</span>
-                            <span class="arrow"></span>
-                        </a>
-                        <ul class="sub-menu" style="display: none;">
-                            <li><a href="">Danh mục dịch vụ</a> </li>
-                            <li><a href="">Kê khai giá</a></li>
-                            <li><a href="">Xét duyệt hồ sơ kê khai</a></li>
-                            <li><a href="">Tìm kiếm hồ sơ kê khai</a></li>
-                            <li><a href="">Báo cáo</a></li>
-                        </ul>
-                    </li>
+                @if(canGeneral('vtch','index'))
+                    @if(can('vtch','index'))
+                        @if(canDVVT('dvvt','vtch'))
+                        <li>
+                            <a href="javascript:;">
+                                <span class="title">Vận tải khác</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu" style="display: none;">
+                                <li><a href="">Danh mục dịch vụ</a> </li>
+                                <li><a href="">Kê khai giá</a></li>
+                                <li><a href="">Xét duyệt hồ sơ kê khai</a></li>
+                                <li><a href="">Tìm kiếm hồ sơ kê khai</a></li>
+                                <li><a href="">Báo cáo</a></li>
+                            </ul>
+                        </li>
+                        @endif
                     @endif
                 @endif
             @endif

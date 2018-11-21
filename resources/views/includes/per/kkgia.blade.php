@@ -54,6 +54,7 @@
                         @include('includes.per.include.kkgia.kkgiadvlt')
                         @include('includes.per.include.kkgia.kkgiatpcnted6t')
                         @include('includes.per.include.kkgia.kkgiatacn')
+                        @include('includes.per.include.kkgia.kkgiadvvt')
 
                     </div>
                 </div>

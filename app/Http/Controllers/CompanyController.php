@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Town;
 use App\TtDnTd;
 use App\Company;
+use App\Users;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -33,28 +34,15 @@ class CompanyController extends Controller
 
     public function edit($id){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa'
-                || session('admin')->sadmin == 'satc' || session('admin')->sadmin == 'sagt' || session('admin')->sadmin == 'sact'){
+            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa'){
                 $model = Company::findOrFail($id);
-                //Check quyền
-                if($model->level == 'DVLT' && can('ttdn','dvlt') || $model->level== 'DVVT' && can('ttdn','dvvt')
-                    || $model->level == 'DVGS' && can('ttdn','dvgs') || $model->level == 'DVTACN' && can('ttdn','dvtacn')) {
-                    if ($model->level == 'DVLT' || $model->level == 'TACN')
-                        $phanloaiql = 'TC';
-                    elseif ($model->level == 'DVGS')
-                        $phanloaiql = 'CT';
-                    else
-                        $phanloaiql = 'VT';
-                    $district = District::where('phanloaiql', $phanloaiql)
-                        ->get();
-                    $settingdvvt = !empty($model->settingdvvt) ? json_decode($model->settingdvvt) : '';
-                    return view('system.company.edit')
-                        ->with('model', $model)
-                        ->with('district', $district)
-                        ->with('settingdvvt', $settingdvvt)
-                        ->with('pageTitle', 'Chỉnh sửa thông tin doanh nghiệp cung cấp dịch vụ');
-                }else
-                    return view('errors.perm');
+                $district = Town::all();
+                $settingdvvt = !empty($model->settingdvvt) ? json_decode($model->settingdvvt) : '';
+                return view('system.company.edit')
+                    ->with('model', $model)
+                    ->with('district', $district)
+                    ->with('settingdvvt', $settingdvvt)
+                    ->with('pageTitle', 'Chỉnh sửa thông tin doanh nghiệp cung cấp dịch vụ');
             }else
                 return view('errors.perm');
         }else
@@ -63,8 +51,7 @@ class CompanyController extends Controller
 
     public function update(Request $request,$id){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa'
-                || session('admin')->sadmin == 'satc' || session('admin')->sadmin == 'sagt' || session('admin')->sadmin == 'sact'){
+            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa'){
                 $inputs = $request->all();
                 $model = Company::findOrFail($id);
                 $inputs['settingdvvt'] = isset($inputs['roles']) ? json_encode($inputs['roles']) : '';
@@ -73,6 +60,14 @@ class CompanyController extends Controller
                 $inputs['vtxb'] = isset($x['dvvt']['vtxb']) ? 1 : 0;
                 $inputs['vtxtx'] = isset($x['dvvt']['vtxtx']) ? 1 : 0;
                 $inputs['vtch'] = isset($x['dvvt']['vtch']) ? 1 : 0;
+                if($model->mahuyen != $inputs['mahuyen'] || $model->tendn != $inputs['tendn']){
+                    $modeluser = Users::where('maxa',$model->maxa)
+                        ->where('level',$model->level)
+                        ->first();
+                    $modeluser->mahuyen = $inputs['mahuyen'];
+                    $modeluser->name = $inputs['tendn'];
+                    $modeluser->save();
+                }
                 $model->update($inputs);
                 return redirect('company?&level='.$model->level);
             }else{
@@ -233,7 +228,7 @@ class CompanyController extends Controller
 
     public function upavatar(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'DVVT' || session('admin')->level == 'DVGS' || session('admin')->level == 'DVTACN') {
+            if (session('admin')->level == 'DVVT' || session('admin')->level == 'TPCNTE6T' || session('admin')->level == 'TACN') {
                 $inputs = $request->all();
                 $id = $inputs['id'];
                 $model = Company::findOrFail($id);

@@ -116,7 +116,7 @@
                                         <label class="control-label">Cơ quan chủ quản</label>
                                         <select class="form-control" id="mahuyen" name="mahuyen">
                                             @foreach($district as $tt)
-                                                <option value="{{$tt->mahuyen}}" {{($tt->mahuyen == $model->mahuyen) ? 'selected' : ''}} >{{$tt->tendv}}</option>
+                                                <option value="{{$tt->maxa}}" {{($tt->maxa == $model->mahuyen) ? 'selected' : ''}} >{{$tt->tendv}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -142,7 +142,7 @@
                                                 <label>
                                                     <input type="checkbox" value="1" {{(isset($settingdvvt->dvvt->vtxtx) && $settingdvvt->dvvt->vtxtx == 1) ? 'checked' : '' }} name="roles[dvvt][vtxtx]"> Vận tải xe taxi </label>
                                                 <label>
-                                                    <input type="checkbox" value="1" {{(isset($settingdvvt->dvvt->vtch) && $settingdvvt->dvvt->vtch == 1) ? 'checked' : '' }} name="roles[dvvt][vtch]"> Vận tải chở hàng</label>
+                                                    <input type="checkbox" value="1" {{(isset($settingdvvt->dvvt->vtch) && $settingdvvt->dvvt->vtch == 1) ? 'checked' : '' }} name="roles[dvvt][vtch]"> Vận tải khác</label>
                                             </div>
                                         </div>
                                     </div>

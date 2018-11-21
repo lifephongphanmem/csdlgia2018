@@ -152,12 +152,6 @@ class RegisterController extends Controller
         if(isset($model)){
             if($model->trangthai == 'Bị trả lại') {
 
-                if($model->level == 'DVLT' || $model->level =='TACN')
-                    $phanloaiql = 'TC';
-                elseif($model->level  == 'DVVT')
-                    $phanloaiql = 'VT';
-                elseif($model->level  == 'DVGS')
-                    $phanloaiql = 'CT';
                 $cqcq = Town::all();
                 $settingdvvt = !empty($model->settingdvvt) ? json_decode($model->settingdvvt) : '';
                 return view('system.register.search.edit')
@@ -203,7 +197,7 @@ class RegisterController extends Controller
                 if(isset($inputs['roles'])){
                     $inputs['settingdvvt'] = json_encode($inputs['roles']);
                     $x = $inputs['roles'];
-                    $inputs['vtxk'] = isset($inputs['dvvt']['vtxk']) ? 1 : 0;
+                    $inputs['vtxk'] = isset($x['dvvt']['vtxk']) ? 1 : 0;
                     $inputs['vtxb'] = isset($x['dvvt']['vtxb']) ? 1 : 0;
                     $inputs['vtxtx'] = isset($x['dvvt']['vtxtx']) ? 1 : 0;
                     $inputs['vtch'] = isset($x['dvvt']['vtch']) ? 1 : 0;
@@ -260,7 +254,7 @@ class RegisterController extends Controller
             if(isset($inputs['roles'])){
                 $inputs['settingdvvt'] = json_encode($inputs['roles']);
                 $x = $inputs['roles'];
-                $inputs['vtxk'] = isset($inputs['dvvt']['vtxk']) ? 1 : 0;
+                $inputs['vtxk'] = isset($x['dvvt']['vtxk']) ? 1 : 0;
                 $inputs['vtxb'] = isset($x['dvvt']['vtxb']) ? 1 : 0;
                 $inputs['vtxtx'] = isset($x['dvvt']['vtxtx']) ? 1 : 0;
                 $inputs['vtch'] = isset($x['dvvt']['vtch']) ? 1 : 0;
