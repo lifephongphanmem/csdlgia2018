@@ -38,8 +38,8 @@
                 <p>Nhằm chăm sóc, hổ trợ khách hàng nhanh chóng và tiện dụng nhất công ty xin cung cấp thông tin các cán bộ hỗ trợ khách hàng trong quá trình sử dụng.
                     Mọi vấn đề khúc mắc khách hàng có thẻ gọi điện thoại trực tiếp cho cán bộ để được hỗ trợ nhanh nhất có thể!</p>
                 <p>Số điện thoại công ty:</p>
-                <p>Phụ trách khối kỹ thuật: <br> Phó giám đốc:  Trần Ngọc Hiếu - số điện thoại:</p>
-                <p>Phụ trách khối tổng hợp:<br> Phó giám đốc: Đỗ Đức Hướng - số điện thoại:</p>
+                <p>Phụ trách khối kỹ thuật: <br><b> Phó giám đốc:  Trần Ngọc Hiếu </b>- tel: 096 8206844</p>
+                <p>Phụ trách khối tổng hợp:<br><b> Phó giám đốc: Đỗ Đức Hướng</b>- tel: 091 3563789</p>
             </div>
         </div>
     </div>
@@ -58,25 +58,25 @@
                     <td style="text-align: center">1</td>
                     <td style="font-weight: bold;">Nguyễn Xuân Trường</td>
                     <td>Trưởng phòng</td>
-                    <td>0979785068</td>
+                    <td>091 7737456</td>
                 </tr>
                 <tr>
                     <td style="text-align: center">2</td>
                     <td style="font-weight: bold">Hoàng Ngọc Long</td>
                     <td>Phó phòng</td>
-                    <td>0974 090556</td>
+                    <td>...</td>
                 </tr>
                 <tr>
                     <td style="text-align: center">3</td>
                     <td style="font-weight: bold">Triệu Hồng Đạt</td>
                     <td>Nhân viên</td>
-                    <td> 0986 012094</td>
+                    <td>093 6368122</td>
                 </tr>
                 <tr>
                     <td style="text-align: center">4</td>
                     <td style="font-weight: bold">Nguyễn Văn Hiển</td>
                     <td>Nhân viên</td>
-                    <td>0966 305 359</td>
+                    <td>...</td>
                 </tr>
             </table>
         </div>
@@ -93,7 +93,7 @@
                 <td style="text-align: center">1</td>
                 <td style="font-weight: bold">Nguyễn Văn Nguyên</td>
                 <td>Trưởng phòng</td>
-                <td>0979785068</td>
+                <td>0979 785068</td>
             </tr>
             <tr>
                 <td style="text-align: center">2</td>
@@ -105,7 +105,7 @@
                 <td style="text-align: center">3</td>
                 <td style="font-weight: bold">Nguyễn Văn Dũng</td>
                 <td>Nhân viên</td>
-                <td> 0986 012094</td>
+                <td>0986 012094</td>
             </tr>
             <tr>
                 <td style="text-align: center">4</td>
