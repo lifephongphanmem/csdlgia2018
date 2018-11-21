@@ -60,16 +60,13 @@ User email: hainv@outlook.com
 License code: PRO4-69G6Q4M-8YGNXX-M2N8-KCHVWYK
 
      * */
-    public function index()
-    {
+    public function index(){
         if (Session::has('admin')) {
             if(session('admin')->sadmin == 'sa' )
                 return redirect('general');
-            elseif(session('admin')->sadmin == 'satc' || session('admin')->sadmin == 'sagt' || session('admin')->sadmin == 'sact')
-                return redirect('company');
             else{
                 return view('dashboard')
-                    ->with('pageTitle','Tổng quan');
+                    ->with('pageTitle','Thông tin hỗ trợ');
             }
         }else{
             $ip = $_SERVER['REMOTE_ADDR'];

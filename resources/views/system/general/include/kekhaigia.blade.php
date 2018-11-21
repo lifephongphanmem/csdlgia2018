@@ -56,6 +56,76 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->dvvt->index) && $setting->dvvt->index == 1) ? 'checked' : '' }} value="1" name="roles[dvvt][index]"/></td>
+                                    <td>Dịch vụ vận tải</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->tacn->congbo) && $setting->tacn->congbo == 1) ? 'checked' : '' }} value="1" name="roles[tacn][congbo]"/></td>
+                                    <td>Công bố giá dịch vụ vận tải</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->vtxk->index) && $setting->vtxk->index == 1) ? 'checked' : '' }} value="1" name="roles[vtxk][index]"/></td>
+                                    <td>Vận tải xe khách</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->vtxk->congbo) && $setting->vtxk->congbo == 1) ? 'checked' : '' }} value="1" name="roles[vtxk][congbo]"/></td>
+                                    <td>Công bố giá vận tải xe khách</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->vtxb->index) && $setting->vtxb->index == 1) ? 'checked' : '' }} value="1" name="roles[vtxb][index]"/></td>
+                                    <td>Vận tải xe buýt</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->vtxb->congbo) && $setting->vtxb->congbo == 1) ? 'checked' : '' }} value="1" name="roles[vtxb][congbo]"/></td>
+                                    <td>Công bố giá vận tải xe buýt</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->vtxtx->index) && $setting->vtxtx->index == 1) ? 'checked' : '' }} value="1" name="roles[vtxtx][index]"/></td>
+                                    <td>Vận tải xe taxi</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->vtxtx->congbo) && $setting->vtxtx->congbo == 1) ? 'checked' : '' }} value="1" name="roles[vtxtx][congbo]"/></td>
+                                    <td>Công bố giá vận tải xe taxi</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->vtk->index) && $setting->vtk->index == 1) ? 'checked' : '' }} value="1" name="roles[vtk][index]"/></td>
+                                    <td>Vận tải khác</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->vtk->congbo) && $setting->vtxtx->congbo == 1) ? 'checked' : '' }} value="1" name="roles[vtk][congbo]"/></td>
+                                    <td>Công bố giá vận tải khác</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
