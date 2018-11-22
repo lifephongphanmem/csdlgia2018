@@ -39,7 +39,6 @@
                     Mọi vấn đề khúc mắc khách hàng có thẻ gọi điện thoại trực tiếp cho cán bộ để được hỗ trợ nhanh nhất có thể!</p>
                 <p>Số điện thoại công ty:</p>
                 <p>Phụ trách khối kỹ thuật: <br><b> Phó giám đốc:  Trần Ngọc Hiếu </b>- tel: 096 8206844</p>
-                <p>Phụ trách khối tổng hợp:<br><b> Phó giám đốc: Đỗ Đức Hướng</b>- tel: 091 3563789</p>
             </div>
         </div>
     </div>

@@ -139,11 +139,26 @@
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu" style="display: none;">
-                                <li><a href="">Danh mục dịch vụ</a> </li>
-                                <li><a href="">Kê khai giá</a></li>
-                                <li><a href="">Xét duyệt hồ sơ kê khai</a></li>
-                                <li><a href="">Tìm kiếm hồ sơ kê khai</a></li>
-                                <li><a href="">Báo cáo</a></li>
+                                @if(session('admin')->level == 'DVVT')
+                                    @if(can('dmvtxk','index'))
+                                    <!--li><a href="">Danh mục dịch vụ</a> </li-->
+                                    @endif
+                                    @if(can('kkvtxk','index'))
+                                    <li><a href="{{url('kekhaigiavantaixekhach')}}">Kê khai giá</a></li>
+                                    @endif
+                                @endif
+                                @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
+                                    @if(can('kkvtxk','index'))
+                                        <li><a href="{{url('thongtindnvtxk')}}">Kê khai giá vận tải xe khách</a></li>
+                                        <li><a href="">Xét duyệt hồ sơ kê khai</a></li>
+                                    @endif
+                                    @if(can('tpvtxk','timkiem'))
+                                            <li><a href="">Tìm kiếm hồ sơ kê khai</a></li>
+                                    @endif
+                                    @if(can('tpvtxk','baocao'))
+                                            <li><a href="">Báo cáo</a></li>
+                                    @endif
+                                @endif
                             </ul>
                         </li>
                         @endif

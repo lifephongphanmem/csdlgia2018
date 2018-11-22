@@ -17,5 +17,8 @@ include('kkgia/tpcnte6t.php');
 //TACN
 include('kkgia/tacn.php');
 
+//VTXK
+include('kkgia/vtxk.php');
+
 
 ?>
