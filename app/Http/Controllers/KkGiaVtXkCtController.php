@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\GiaVtXkCtDf;
+use App\GiaVtXkCt;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
-class KkGiaVtXkCtDfController extends Controller
+class KkGiaVtXkCtController extends Controller
 {
     public function store(Request $request){
         $result = array(
@@ -24,9 +24,9 @@ class KkGiaVtXkCtDfController extends Controller
         //dd($request);
         $inputs = $request->all();
         if(isset($inputs['mota'])){
-            $modelkkgia = new GiaVtXkCtDf();
+            $modelkkgia = new GiaVtXkCt();
             $modelkkgia->create($inputs);
-            $model = GiaVtXkCtDf::where('maxa',$inputs['maxa'])
+            $model = GiaVtXkCt::where('mahs',$inputs['mahs'])
                 ->get();
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
@@ -89,7 +89,7 @@ class KkGiaVtXkCtDfController extends Controller
         $inputs = $request->all();
         if(isset($inputs['id'])){
             $id = $inputs['id'];
-            $model = GiaVtXkCtDf::findOrFail($id);
+            $model = GiaVtXkCt::findOrFail($id);
             //dd($model);
             $result['message'] = '<div class="modal-body" id="ttpedit">';
             $result['message'] .= '<div class="row">';
@@ -163,9 +163,9 @@ class KkGiaVtXkCtDfController extends Controller
         //dd($request);
         $inputs = $request->all();
         if(isset($inputs['id'])){
-            $modelkkgia = GiaVtXkCtDf::where('id',$inputs['id'])->first();
+            $modelkkgia = GiaVtXkCt::where('id',$inputs['id'])->first();
             $modelkkgia->update($inputs);
-            $model = GiaVtXkCtDf::where('maxa',$inputs['maxa'])
+            $model = GiaVtXkCt::where('mahs',$inputs['mahs'])
                 ->get();
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
@@ -227,9 +227,9 @@ class KkGiaVtXkCtDfController extends Controller
         //dd($request);
         $inputs = $request->all();
         if(isset($inputs['id'])){
-            $modelkkgia = GiaVtXkCtDf::where('id',$inputs['id'])->first();
+            $modelkkgia = GiaVtXkCt::where('id',$inputs['id'])->first();
             $modelkkgia->delete();
-            $model = GiaVtXkCtDf::where('maxa',$inputs['maxa'])
+            $model = GiaVtXkCt::where('mahs',$inputs['mahs'])
                 ->get();
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
@@ -291,7 +291,7 @@ class KkGiaVtXkCtDfController extends Controller
         //dd($request);
         $inputs = $request->all();
         if(isset($inputs['id'])){
-            $model = GiaVtXkCtDf::where('id',$inputs['id'])
+            $model = GiaVtXkCt::where('id',$inputs['id'])
                 ->first();
 
             ($model->sltglk!= null)? $sltglk = $model->sltglk : $sltglk = 0;
@@ -432,7 +432,7 @@ class KkGiaVtXkCtDfController extends Controller
         //dd($request);
         $inputs = $request->all();
         if(isset($inputs['id'])){
-            $modelkkgia = GiaVtXkCtDf::where('id',$inputs['id'])->first();
+            $modelkkgia = GiaVtXkCt::where('id',$inputs['id'])->first();
             $inputs['sltglk'] = getMoneyToDb($inputs['sltglk']);
             $inputs['chiphisxkdlk'] = getMoneyToDb($inputs['chiphisxkdlk']);
             $inputs['chiphittlk'] = getMoneyToDb($inputs['chiphittlk']);
@@ -450,7 +450,7 @@ class KkGiaVtXkCtDfController extends Controller
             $inputs['giathanhtblk'] = getMoneyToDb($inputs['giathanhtblk']);
             $inputs['giathanhlk'] = getMoneyToDb($inputs['giathanhlk']);
             $modelkkgia->update($inputs);
-            $model = GiaVtXkCtDf::where('maxa',$inputs['maxa'])
+            $model = GiaVtXkCt::where('mahs',$inputs['mahs'])
                 ->get();
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
@@ -513,7 +513,7 @@ class KkGiaVtXkCtDfController extends Controller
         //dd($request);
         $inputs = $request->all();
         if(isset($inputs['id'])){
-            $model = GiaVtXkCtDf::where('id',$inputs['id'])
+            $model = GiaVtXkCt::where('id',$inputs['id'])
                 ->first();
             ($model->sltg!= null)? $sltg = $model->sltg : $sltg = 0;
             ($model->chiphisxkd!= null)? $chiphisxkd = $model->chiphisxkd : $chiphisxkd = 0;
@@ -653,7 +653,7 @@ class KkGiaVtXkCtDfController extends Controller
         //dd($request);
         $inputs = $request->all();
         if(isset($inputs['id'])){
-            $modelkkgia = GiaVtXkCtDf::where('id',$inputs['id'])->first();
+            $modelkkgia = GiaVtXkCt::where('id',$inputs['id'])->first();
             $inputs['sltg'] = getMoneyToDb($inputs['sltg']);
             $inputs['chiphisxkd'] = getMoneyToDb($inputs['chiphisxkd']);
             $inputs['chiphitt'] = getMoneyToDb($inputs['chiphitt']);
@@ -671,7 +671,7 @@ class KkGiaVtXkCtDfController extends Controller
             $inputs['giathanhtb'] = getMoneyToDb($inputs['giathanhtb']);
             $inputs['giathanh'] = getMoneyToDb($inputs['giathanh']);
             $modelkkgia->update($inputs);
-            $model = GiaVtXkCtDf::where('maxa',$inputs['maxa'])
+            $model = GiaVtXkCt::where('mahs',$inputs['mahs'])
                 ->get();
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';

@@ -150,10 +150,10 @@
                                 @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
                                     @if(can('kkvtxk','index'))
                                         <li><a href="{{url('thongtindnvtxk')}}">Kê khai giá vận tải xe khách</a></li>
-                                        <li><a href="">Xét duyệt hồ sơ kê khai</a></li>
+                                        <li><a href="{{url('xetduyetkekhaigiavtxk')}}">Xét duyệt hồ sơ kê khai</a></li>
                                     @endif
                                     @if(can('tpvtxk','timkiem'))
-                                            <li><a href="">Tìm kiếm hồ sơ kê khai</a></li>
+                                            <li><a href="{{url('timkiemgiavantaixekhach')}}">Tìm kiếm hồ sơ kê khai</a></li>
                                     @endif
                                     @if(can('tpvtxk','baocao'))
                                             <li><a href="">Báo cáo</a></li>

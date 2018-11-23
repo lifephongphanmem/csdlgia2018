@@ -503,7 +503,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Thông tin kê khai hồ sơ giá <small>&nbsp;vận tải xe khách</small>
+        Thông tin kê khai hồ sơ giá <small>&nbsp;vận tải xe khách thêm mới</small>
         <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
     </h3>
     <!-- END PAGE HEADER-->
@@ -532,9 +532,7 @@
                             </div>
                         </div>
                         <!--/span-->
-
                     </div>
-
                     <!--/row-->
                     <div class="row">
                         <div class="col-md-6">
