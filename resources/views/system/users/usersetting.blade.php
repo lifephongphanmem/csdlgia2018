@@ -1,7 +1,6 @@
 @extends('main')
 
 @section('custom-style')
-
 @stop
 
 
@@ -16,7 +15,6 @@
         Quản lý thông tin tài khoản
     </h3>
     <!-- END PAGE HEADER-->
-
     <!-- BEGIN DASHBOARD STATS -->
     <div class="row center">
         <div class="col-md-12 center">

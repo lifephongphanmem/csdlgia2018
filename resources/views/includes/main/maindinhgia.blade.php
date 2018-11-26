@@ -356,22 +356,33 @@
             </li>
             @endif
         @endif
-        <li>
-            <a href="">
-                Giá SP, DVCI, DVSNC, HH-DV đặt hàng <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-                <li>
-                    <a href="">Danh mục SP, DVCI, DVSNC, HH-DV đặt hàng</a>
-                </li>
-                <li>
-                    <a href="">Thông tin giá SP, DVCI, DVSNC, HH-DV đặt hàng</a>
-                </li>
-                <li>
-                    <a href="">Tìm kiếm thông tin</a>
-                </li>
-            </ul>
-        </li>
+        @if(canGeneral('giaspdvci','index'))
+            @if(can('giaspdvci','index'))
+            <li>
+                <a href="">
+                    Giá SP, DVCI, DVSNC, HH-DV đặt hàng <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    @if(can('dmgiaspdvci','index'))
+                    <li>
+                        <a href="">Danh mục SP, DVCI, DVSNC, HH-DV đặt hàng</a>
+                    </li>
+                    @endif
+                    @if(can('kkgiaspdvci','index'))
+                    <li>
+                        <a href="">Thông tin giá SP, DVCI, DVSNC, HH-DV đặt hàng</a>
+                    </li>
+                    @endif
+                    @if(can('thgiaspdvci','timkiem'))
+                    <li>
+                        <a href="">Tìm kiếm thông tin</a>
+                    </li>
+                    @endif
+                </ul>
+            </li>
+            @endif
+        @endif
+
     </ul>
 </li>
 @endif
