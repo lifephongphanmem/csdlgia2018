@@ -103,6 +103,8 @@
                         @if(can('dmgiadvkcb','create'))
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#modal-create" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm mới</button>
                         @endif
+                        <a href="{{url('nhomdichvukcb')}}" class="btn btn-default btn-sm">
+                            <i class="fa fa-reply"></i> Quay lại </a>
                     </div>
                 </div>
                 <div class="portlet-body">

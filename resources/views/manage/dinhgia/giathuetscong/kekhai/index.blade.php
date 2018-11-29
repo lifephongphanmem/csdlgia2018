@@ -70,8 +70,21 @@
                     </div>
                     <div class="actions">
                         @if(can('kkgiathuetscong','create'))
-                        <a href="{{url('thongtinthuetaisancong/create?&maxa='.$inputs['maxa'])}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-plus"></i> Thêm mới </a>
+                            <a href="{{url('thongtinthuetaisancong/create?&maxa='.$inputs['maxa'])}}" class="btn btn-default btn-sm">
+                                <i class="fa fa-plus"></i> Thêm mới </a>
+                            <div class="btn-group">
+                                <a class="btn btn-default btn-sm" href="" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    <i class="fa fa-file-excel-o"></i>&nbsp;Nhận dữ liệu <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li>
+                                        <a href="">File dữ liệu mẫu</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Nhận dữ liệu</a>
+                                    </li>
+                                </ul>
+                            </div>
                         @endif
                     </div>
 

@@ -60,10 +60,10 @@
             document.getElementById("iddelete").value=id;
         }
         $(function(){
-            $('#phanloai').change(function() {
+            $('#level').change(function() {
                 var current_path_url = '/users?';
-                var pl = '&phanloai='+$('#phanloai').val();
-                var url = current_path_url+pl;
+                var level = '&level='+$('#level').val();
+                var url = current_path_url + level;
                 window.location.href = url;
             });
         })
@@ -75,37 +75,51 @@
 
 @section('content')
     <h3 class="page-title">
-        Quản lý <small>&nbsp;tài khoản</small>
+        Quản lý thông tin<small>&nbsp;tài khoản truy cập</small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box">
-                @if(session('admin')->sadmin == 'ssa' ||
-                    (session('admin')->sadmin == 'sa' && $pl == "T" ))
-                    <div class="portlet-title">
+                @if(session('admin')->sadmin == 'ssa')
+                    <!--div class="portlet-title">
                         <div class="caption"></div>
                         <div class="actions">
                             <a href="{{url('users/create')}}" class="btn btn-default btn-sm">
-                                <i class="fa fa-plus"></i> Tạo tài khoản</a>
+                            <i class="fa fa-plus"></i> Tạo tài khoản</a>
                         </div>
-                    </div>
+                    </div-->
                 @endif
                 <div class="portlet-body">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Phân loại tài khoản</label>
-                                <select class="form-control" name="phanloai" id="phanloai">
-                                    <option value="HT" {{($pl == "HT") ? 'selected' : ''}}>Quản trị hệ thống</option>
-                                    <option value="T" {{($pl == "T") ? 'selected' : ''}}>Tổng hợp</option>
-                                    <option value="H" {{($pl == "H") ? 'selected' : ''}}>Đơn vị quản lý</option>
-                                    <option value="X" {{($pl == "X") ? 'selected' : ''}}>Đơn vị</option>
-                                    <option value="DVLT" {{($pl == "DVLT") ? 'selected' : ''}}>Dịch vụ lưu trú</option>
-                                    <option value="DVVT" {{($pl == "DVVT") ? 'selected' : ''}}>Dịch vụ vận tải</option>
-                                    <option value="TPCNTE6T" {{($pl == "TPCNTE6T") ? 'selected' : ''}}>TPCN dành cho TE dưới 6 tuổi</option>
-                                    <option value="TACN" {{($pl == "TACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
+                                <select class="form-control" name="level" id="level">
+                                    <option value="">--Chọn phân loại tài khoản--</option>
+                                    @if(session('admin')->sadmin == 'sa' || session('admin')->sadmin == 'ssa')
+                                    <option value="HT" {{($inputs['level'] == "HT") ? 'selected' : ''}}>Quản trị hệ thống</option>
+                                    <option value="T" {{($inputs['level'] == "T") ? 'selected' : ''}}>Tổng hợp</option>
+                                    @endif
+                                    @if(can('districts'.'index'))
+                                    <option value="H" {{($inputs['level'] == "H") ? 'selected' : ''}}>Đơn vị quản lý</option>
+                                    @endif
+                                    @if(can('towns','index'))
+                                    <option value="X" {{($inputs['level'] == "X") ? 'selected' : ''}}>Đơn vị</option>
+                                    @endif
+                                    @if(can('dndvlt','index'))
+                                    <option value="DVLT" {{($inputs['level'] == "DVLT") ? 'selected' : ''}}>Dịch vụ lưu trú</option>
+                                    @endif
+                                    @if(can('dndvvt','index'))
+                                    <option value="DVVT" {{($inputs['level'] == "DVVT") ? 'selected' : ''}}>Dịch vụ vận tải</option>
+                                    @endif
+                                    @if(can('dntpcnte6t','index'))
+                                    <option value="TPCNTE6T" {{($inputs['level'] == "TPCNTE6T") ? 'selected' : ''}}>TPCN dành cho TE dưới 6 tuổi</option>
+                                    @endif
+                                    @if(can('dntacn','index'))
+                                    <option value="TACN" {{($inputs['level'] == "TACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
+                                    @endif
                                 </select>
                             </div>
                         </div>
@@ -138,12 +152,17 @@
                                 @endif
                             </td>
                             <td>
+                                @if(can('users','approve'))
                                 <a href="{{url('users/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
-                                @if($tt->level != 'sa' || $tt->level != 'satc' || $tt->level != 'sact' || $tt->level != 'sagt')
                                 <a href="{{url('users/'.$tt->id.'/phan-quyen')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-cogs"></i>&nbsp;Phân quyền</a>
                                 @endif
+                                @if($tt->level == 'T' || $tt->level == 'X' || $tt->level == 'H')
+                                    @if(session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa')
+                                    <a href="{{url('users/'.$tt->id.'/copy')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-copy"></i>&nbsp;Copy</a>
+                                    @endif
+                                @endif
                                 @if(session('admin')->sadmin == 'ssa')
-                                <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                    <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                     Xóa</button>
                                 @endif
                             </td>

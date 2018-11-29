@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTtngaynghileTable extends Migration
+class CreateNgaynghileTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateTtngaynghileTable extends Migration
      */
     public function up()
     {
-        Schema::create('ttngaynghile', function (Blueprint $table) {
+        Schema::create('ngaynghile', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('ngaytu')->nullable();
-            $table->date('ngayden')->nullable();
             $table->string('mota')->nullable();
-            $table->string('nam')->nullable();
+            $table->date('tungay')->nullable();
+            $table->date('denngay')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateTtngaynghileTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ttngaynghile');
+        Schema::dropIfExists('ngaynghile');
     }
 }

@@ -134,7 +134,7 @@
                                 <a href="{{url('kekhaithucphamchucnangchote6t/create?&masothue='.$masothue)}}" class="btn btn-default btn-sm">
                                     <i class="fa fa-plus"></i> Kê khai mới </a>
                         @endif
-                        @if(session('admin')->level == 'T' || session('admin')->level == 'H')
+                        @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
                             <a href="{{url('thongtindntpcn6t')}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-reply"></i> Quay lại </a>
                         @endif

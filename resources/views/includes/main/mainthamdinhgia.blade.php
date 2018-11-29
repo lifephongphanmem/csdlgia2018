@@ -1,7 +1,7 @@
 @if(canGeneral('thamdinhgia','index'))
 @if(can('thamdinhgia','index'))
 <li class="">
-    <a href="javascript:;">
+    <a href="">
         <i class="icon-folder"></i>
         <span class="title">Thẩm định giá TSNN</span>
         <span class="arrow"></span>

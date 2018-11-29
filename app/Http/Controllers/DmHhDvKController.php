@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DmHhDvK;
+use App\NhomHhDvK;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -12,7 +13,7 @@ class DmHhDvKController extends Controller
     public function index(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
-
+            $modelnhom = NhomHhDvK::where('manhom',$inputs['manhom'])->first();
             $model = DmHhDvK::where('dmhhdvk.manhom',$inputs['manhom'])
                 ->join('nhomhhdvk','nhomhhdvk.manhom','=','dmhhdvk.manhom')
                 ->select('dmhhdvk.*','nhomhhdvk.tennhom')
@@ -20,6 +21,7 @@ class DmHhDvKController extends Controller
             return view('manage.dinhgia.giahhdvk.danhmuc.chitiet.index')
                 ->with('model',$model)
                 ->with('manhom',$inputs['manhom'])
+                ->with('modelnhom',$modelnhom)
                 ->with('pageTitle','Thông tin chi tiết hàng hóa dịch vụ');
 
         }else
@@ -73,6 +75,24 @@ class DmHhDvKController extends Controller
         $result['message'] .= '<option value="">--Chọn đơn vị tính--</option>';
         $result['message'] .= '<option value="lần"'.(($model->dvt == "lần") ? "selected" : "").'>Lần</option>';
         $result['message'] .= '<option value="ngày"'.(($model->dvt == "ngày") ? "selected" : "").'>Ngày</option>';
+        $result['message'] .= '<option value="đ/kg"'.(($model->dvt == "đ/kg") ? "selected" : "").'>đ/kg</option>';
+        $result['message'] .= '<option value="đ/lít"'.(($model->dvt == "đ/lít") ? "selected" : "").'>đ/lít</option>';
+        $result['message'] .= '<option value="đ/két (24 chai)"'.(($model->dvt == "đ/két (24 chai)") ? "selected" : "").'>đ/két (24 chai)</option>';
+        $result['message'] .= '<option value="đ/thùng (24 lon)"'.(($model->dvt == "đ/thùng (24 lon)") ? "selected" : "").'>đ/thùng (24 lon)</option>';
+        $result['message'] .= '<option value="đ/chai 750ml"'.(($model->dvt == "đ/chai 750ml") ? "selected" : "").'>đ/chai 750ml</option>';
+        $result['message'] .= '<option value="đ/lọ 100 viên"'.(($model->dvt == "đ/lọ 100 viên") ? "selected" : "").'>đ/lọ 100 viên</option>';
+        $result['message'] .= '<option value="đ/chai"'.(($model->dvt == "đ/chai") ? "selected" : "").'>đ/chai</option>';
+        $result['message'] .= '<option value="đ/chiếc"'.(($model->dvt == "đ/chiếc") ? "selected" : "").'>đ/chiếc</option>';
+        $result['message'] .= '<option value="đ/kg-đ/bao"'.(($model->dvt == "đ/kg-đ/bao") ? "selected" : "").'>đ/kg-đ/bao</option>';
+        $result['message'] .= '<option value="đ/mét"'.(($model->dvt == "đ/mét") ? "selected" : "").'>đ/mét</option>';
+        $result['message'] .= '<option value="đ/b/13kg"'.(($model->dvt == "đ/b/13kg") ? "selected" : "").'>đ/b/13kg</option>';
+        $result['message'] .= '<option value="đ/vé"'.(($model->dvt == "đ/vé") ? "selected" : "").'>đ/vé</option>';
+        $result['message'] .= '<option value="đ/km"'.(($model->dvt == "đ/km") ? "selected" : "").'>đ/km</option>';
+        $result['message'] .= '<option value="đ/lần/chiếc"'.(($model->dvt == "đ/lần/chiếc") ? "selected" : "").'>đ/lần/chiếc</option>';
+        $result['message'] .= '<option value="triệu đồng/chỉ"'.(($model->dvt == "triệu đồng/chỉ") ? "selected" : "").'>triệu đồng/chỉ</option>';
+        $result['message'] .= '<option value="đ/USD"'.(($model->dvt == "đ/USD") ? "selected" : "").'>đ/USD</option>';
+        $result['message'] .= '<option value="đ/Euro"'.(($model->dvt == "đ/Euro") ? "selected" : "").'>đ/Euro</option>';
+        $result['message'] .= '<option value="đ/NDT"'.(($model->dvt == "đ/NDT") ? "selected" : "").'>đ/NDT</option>';
         $result['message'] .= '</select>';
 
         $result['message'] .= '</div>';

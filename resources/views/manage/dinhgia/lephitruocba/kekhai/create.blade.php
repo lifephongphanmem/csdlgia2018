@@ -35,7 +35,6 @@
         });
     </script>
     <!--End date new-->
-
     <script>
         jQuery(document).ready(function() {
             TableManaged.init();
@@ -157,12 +156,8 @@
             })
         }
     </script>
-
 @stop
-
 @section('content')
-
-
     <h3 class="page-title">
         Thông tin hồ sơ lệ phí trước bạ<small> thêm mới</small>
     </h3>
@@ -252,13 +247,8 @@
                                 </div>
                             </div>
                         </div>
-
-
-
                     <!-- END FORM-->
                 </div>
-
-
             </div>
             <div style="text-align: center">
                 <a href="{{url('lephitruocba')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
@@ -288,7 +278,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Thêm mới thông tin mặt hàng bình ổn giá</h4>
+                    <h4 class="modal-title">Thêm mới thông tin mặt hàng thuế trước bạ</h4>
                 </div>
                 <div class="modal-body" id="ttmhbog">
                     <div class="row">

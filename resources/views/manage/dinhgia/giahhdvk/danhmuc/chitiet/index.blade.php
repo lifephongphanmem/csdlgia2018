@@ -91,7 +91,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Danh mục hàng hóa dịch vụ<small>&nbsp;chi tiết</small>
+        Danh mục hàng hóa - dịch vụ {{$modelnhom->tennhom}}<small>&nbsp;chi tiết</small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -180,6 +180,24 @@
                                     <option value="">--Chọn đơn vị tính--</option>
                                     <option value="lần">Lần</option>
                                     <option value="ngày">Ngày</option>
+                                    <option value="đ/kg">đ/kg</option>
+                                    <option value="đ/lít">đ/lít</option>
+                                    <option value="đ/két (24 chai)">đ/két (24 chai)</option>
+                                    <option value="đ/thùng (24 lon)">đ/thùng (24 lon)</option>
+                                    <option value="đ/chai 750ml">đ/chai 750ml</option>
+                                    <option value="đ/lọ 100 viên">đ/lọ 100 viên</option>
+                                    <option value="đ/chai">đ/chai</option>
+                                    <option value="đ/chiếc">đ/chiếc</option>
+                                    <option value="đ/kg-đ/bao">đ/kg-đ/bao</option>
+                                    <option value="đ/mét">đ/mét</option>
+                                    <option value="đ/b/13kg">đ/b/13kg</option>
+                                    <option value="đ/vé">đ/vé</option>
+                                    <option value="đ/km">đ/km</option>
+                                    <option value="đ/lần/chiếc">đ/lần/chiếc</option>
+                                    <option value="triệu đồng/chỉ">triệu đồng/chỉ</option>
+                                    <option value="đ/USD">đ/USD</option>
+                                    <option value="đ/Euro">đ/Euro</option>
+                                    <option value="đ/NDT">đ/NDT</option>
                                 </select>
                             </div>
                         </div>

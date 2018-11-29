@@ -50,10 +50,10 @@ License: You must have a valid license purchased only from themeforest(the above
 <body class="login">
 <!-- BEGIN LOGO -->
 <div class="logo">
-	<!--a href="">
+	<a href="">
 		<img src="{{ url('images/LIFESOFT.png')}}"  width="250" alt="Công ty TNHH phát triển phần mềm Cuộc Sống"/>
-	</a-->
-	<h2 style="text-transform: uppercase;"><b style="color: #000000">PHẦN MỀM CƠ SỞ DỮ LIỆU VỀ GIÁ
+	</a>
+	<h2 style="text-transform: uppercase;"><b style="color: #32c5d2">PHẦN MỀM CƠ SỞ DỮ LIỆU VỀ GIÁ
 			{{isset(getGeneralConfigs()['diadanh']) ? getGeneralConfigs()['diadanh'] : ''}}</b></h2>
 </div>
 <!-- END LOGO -->
@@ -65,7 +65,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <div class="content">
 	<!-- BEGIN LOGIN FORM -->
 		{!! Form::open(['url'=>'/signin','id' => 'form-login', 'class'=>'form-horizontal form-validate']) !!}
-		<h3 class="form-title">Đăng nhập</h3>
+		<p class="form-title"><span style="font-size: 19px">Welcome. </span><span style="color: #c9dce9; font-size: 17px">Please login</span></p>
 		<div class="alert alert-danger display-hide">
 			<button class="close" data-close="alert"></button>
 			<span>
@@ -87,8 +87,8 @@ License: You must have a valid license purchased only from themeforest(the above
 			</div>
 		</div>
 		<div class="form-actions">
-			<button type="submit" class="btn blue pull-right" id="login_button" onclick="validatePassword();">
-				Đăng nhập <i class="m-icon-swapright m-icon-white"></i>
+			<button type="submit" class="btn red pull-right" id="login_button" onclick="validatePassword();">
+				Login <i class="m-icon-swapright m-icon-white"></i>
 			</button>
 			<br>
 		</div>
@@ -111,7 +111,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END LOGIN -->
 <!-- BEGIN COPYRIGHT -->
 <div class="copyright">
-	2016 &copy; LifeSoft <a href="" >Tiện ích hơn - Hiệu quả hơn</a>
+	Copyright &copy;  2016 - {{date('Y')}} LifeSoft <a href="" >Tiện ích hơn - Hiệu quả hơn</a>
 </div>
 
 <!--Modal đăng ký-->
@@ -194,10 +194,9 @@ License: You must have a valid license purchased only from themeforest(the above
 		Demo.init();
 		// init background slide images
 		$.backstretch([
-					"{{url('assets/admin/pages/media/bg/3.jpg')}}",
-					"{{url('assets/admin/pages/media/bg/2.jpg')}}",
-					"{{url('assets/admin/pages/media/bg/1.jpg')}}",
-					"{{url('assets/admin/pages/media/bg/4.jpg')}}"
+					"{{url('assets/app/media/img/bg/bg-2.jpg')}}",
+					"{{url('assets/app/media/img/bg/bg-4.jpg')}}",
+					"{{url('assets/app/media/img/bg/bg-1.jpg')}}",
 				], {
 					fade: 1000,
 					duration: 8000

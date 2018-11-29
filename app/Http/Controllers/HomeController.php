@@ -62,7 +62,7 @@ License code: PRO4-69G6Q4M-8YGNXX-M2N8-KCHVWYK
      * */
     public function index(){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'sa')
+            if (session('admin')->level == 'HT')
                 return redirect('general');
             else {
                 return view('dashboard')

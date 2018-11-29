@@ -168,7 +168,7 @@
                     @if(can('vtxb','index'))
                         @if(canDVVT('dvvt','vtxb'))
                         <li>
-                            <a href="javascript:;">
+                            <a href="">
                                 <span class="title">Vận tải xe buýt</span>
                                 <span class="arrow"></span>
                             </a>
@@ -187,7 +187,7 @@
                     @if(can('vtxtx','index'))
                         @if(canDVVT('dvvt','vtxtx'))
                         <li>
-                            <a href="javascript:;">
+                            <a href="">
                                 <span class="title">Vận tải xe taxi</span>
                                 <span class="arrow"></span>
                             </a>
@@ -206,7 +206,7 @@
                     @if(can('vtch','index'))
                         @if(canDVVT('dvvt','vtch'))
                         <li>
-                            <a href="javascript:;">
+                            <a href="">
                                 <span class="title">Vận tải khác</span>
                                 <span class="arrow"></span>
                             </a>
@@ -226,7 +226,7 @@
         @if(canGeneral('tpcnte6t','index'))
             @if(can('tpcnte6t','index'))
             <li>
-                <a href="javascript:;">
+                <a href="">
                     <span class="title">Thực phẩm chức năng cho trẻ em dưới 6 tuổi</span>
                     <span class="arrow"></span>
                 </a>

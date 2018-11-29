@@ -1,7 +1,7 @@
 @if(canGeneral('bog','index'))
 @if(can('bog','index'))
 <li class="">
-    <a href="javascript:;">
+    <a href="">
         <i class="icon-folder"></i>
         <span class="title">Bình ổn giá</span>
         <span class="arrow"></span>

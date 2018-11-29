@@ -1,7 +1,7 @@
 @if(canGeneral('vbqlnn','index'))
 @if(can('vbqlnn','index'))
 <li class="">
-    <a href="javascript:;">
+    <a href="">
         <i class="icon-folder"></i>
         <span class="title">Văn bản QLNN về giá</span>
         <span class="arrow"></span>

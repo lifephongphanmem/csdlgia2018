@@ -850,6 +850,64 @@ function getPermissionDefault($level) {
             'xdttdn'=>1,
         ),
     );
+    $roles['HT'] = array(
+        'ngaynghile'=> array(
+            'index'=>1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 0,
+        ),
+        'dmdiadanh'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>0,
+        ),
+        'districts'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>0,
+            'approve'=>1
+        ),
+        'towns'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>0,
+            'approve'=>1
+        ),
+        'companys'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>0,
+            'approve'=>1
+        ),
+        'dndvlt'=>array(
+            'index'=>1,
+            'approve'=>1
+        ),
+        'dndvvt'=>array(
+            'index'=>1,
+            'approve'=>1
+        ),
+        'dntacn'=>array(
+            'index'=>1,
+            'approve'=>1
+        ),
+        'dntpcnte6t'=>array(
+            'index'=>1,
+            'approve'=>1
+        ),
+        'users'=>array(
+            'index'=>1,
+            'approve'=>1
+        ),
+        'register'=>array(
+            'index'=>1,
+        ),
+    );
     return json_encode($roles[$level]);
 }
 
@@ -1321,6 +1379,29 @@ function getThXdHsDvLt($ngaychuyen,$ngayduyet){
         $thoihan = 'Quá thời hạn';
     }
     return $thoihan;
+}
+
+function getLvUsers($level){
+    if($level == 'T')
+        $pltk = 'Tài khoản tổng hợp';
+    elseif($level == 'H')
+        $pltk = 'Tài khoản quản lý';
+    elseif($level == 'X')
+        $pltk = 'Tài khoản đơn vị';
+    elseif($level == 'HT')
+        $pltk = 'Tài khoản hệ thống';
+    elseif($level = 'DVLT')
+        $pltk = 'Tài khoản Doanh nghiệp dịch vụ lưu trú';
+    elseif($level = 'DVVT')
+        $pltk = 'Tài khoản Doanh nghiệp dịch vụ vận tải';
+    elseif($level = 'TACN')
+        $pltk = 'Tài khoản Doanh nghiệp thức ăn chăn nuôi';
+    elseif($level = 'TPCNTE6T')
+        $pltk = 'Tài khoản Doanh nghiệp thực phẩm chức năng dành cho trẻ em dưới 6 tuổi';
+    else
+        $pltk = 'Administrator';
+    return $pltk;
+
 }
 
 

@@ -117,52 +117,25 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa'
-                || session('admin')->sadmin == 'satc' || session('admin')->sadmin == 'sagt' || session('admin')->sadmin == 'sact') {
+            if (can('users','index')) {
                 $inputs = $request->all();
                 if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin =='sa')
-                    $inputs['phanloai'] = isset($inputs['phanloai']) ? $inputs['phanloai'] : 'T';
-                elseif(session('admin')->sadmin == 'sagt')
-                    $inputs['phanloai'] = isset($inputs['phanloai']) ? $inputs['phanloai'] : 'DVVT';
-                elseif(session('admin')->sadmin == 'satc')
-                    $inputs['phanloai'] = isset($inputs['phanloai']) ? $inputs['phanloai'] : 'DVLT';
-                elseif(session('admin')->sadmin == 'sact')
-                    $inputs['phanloai'] = isset($inputs['phanloai']) ? $inputs['phanloai'] : 'DVGS';
-                //checkquyền
-                if($inputs['phanloai'] == 'DVLT' && can('ttdn','dvlt') || $inputs['phanloai'] == 'DVVT' && can('ttdn','dvvt')
-                    || $inputs['phanloai'] == 'DVGS' && can('ttdn','dvgs') || $inputs['phanloai'] == 'DVTACN' && can('ttdn','dvtacn'))
-                    $model = Users::where('level', $inputs['phanloai'])
-                        ->orderBy('id', 'desc')
-                        ->get();
-                else{
-                    if ($inputs['phanloai'] == 'HT') {
-                        $model = User::wherein('level', array('satc', 'sact', 'sa', 'sagt'))
-                            ->get();
-                        if(session('admin')->sadmin != 'ssa') {
-                            $index_unset = 0;
-                            foreach ($model as $user) {
-                                if ( $user->sadmin == 'sa') {
-                                    unset($model[$index_unset]);
-                                }
-                                $index_unset++;
-                            }
-                        }
-                    }else{
-                        $model = Users::where('level', $inputs['phanloai'])
-                            ->orderBy('id', 'desc')
-                            ->get();
-                        $index_unset = 0;
-                        foreach ($model as $user) {
-                            if ($user->sadmin == 'ssa') {
-                                unset($model[$index_unset]);
-                            }
-                            $index_unset++;
-                        }
+                    $inputs['level'] = isset($inputs['level']) ? $inputs['level'] : 'HT';
+                else
+                    $inputs['level'] = isset($inputs['level']) ? $inputs['level'] : '';
+                $model = User::where('level',$inputs['level'])
+                    ->orderBy('id', 'desc')
+                    ->get();
+                $index_unset = 0;
+                foreach ($model as $user) {
+                    if ($user->username == 'minhtran') {
+                        unset($model[$index_unset]);
                     }
+                    $index_unset++;
                 }
                 return view('system.users.index')
                     ->with('model', $model)
-                    ->with('pl', $inputs['phanloai'])
+                    ->with('inputs', $inputs)
                     ->with('pageTitle', 'Danh sách tài khoản');
             }else
                 return view('errors.perm');
@@ -191,17 +164,10 @@ class UsersController extends Controller
             //quyền sa, ssa tạo tài khoản cấp tỉnh
             if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa') {
                 $inputs = $request->all();
-
                 $model = new Users();
-                $model->name = $inputs['name'];
-                $model->status =  $inputs['status'];
-                $model->level = 'T';
-                $model->username = $inputs['username'];
-                $model->password = md5($inputs['password']);
-                //$model->phone = $inputs['phone'];
-                $model->ttnguoitao = session('admin')->name.'('.session('admin')->username.')'. getDateTime(Carbon::now()->toDateTimeString());
-                $model->permission = getPermissionDefault('T');
-                $model->save();
+                $inputs['ttnguoitao'] = session('admin')->name.'('.session('admin')->username.')'. getDateTime(Carbon::now()->toDateTimeString());
+                $inputs['password'] = md5($inputs['password']);
+                $model->create($inputs);
                 return redirect('users');
 
             }else{
@@ -233,19 +199,11 @@ class UsersController extends Controller
     public function edit($id)
     {
         if (Session::has('admin')) {
+
             $model = Users::findOrFail($id);
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'satc'
-                || session('admin')->sadmin == 'savt' || session('admin')->sadmin == 'sa' || session('admin')->sadmin == 'sact') {
-                if($model->level == 'DVLT' && can('ttdn','dvlt') || $model->level== 'DVVT' && can('ttdn','dvvt')
-                    || $model->level == 'DVGS' && can('ttdn','dvgs') || $model->level == 'DVTACN' && can('ttdn','dvtacn')
-                    || session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa') {
-                    return view('system.users.edit')
-                        ->with('model', $model)
-                        ->with('pageTitle', 'Chỉnh sửa thông tin tài khoản');
-                }else
-                    return view('errors.perm');
-            }else
-                return view('errors.perm');
+            return view('system.users.edit')
+                ->with('model', $model)
+                ->with('pageTitle', 'Chỉnh sửa thông tin tài khoản');
         } else
             return view('errors.notlogin');
     }
@@ -295,25 +253,20 @@ class UsersController extends Controller
         if (Session::has('admin')) {
 
             $model = Users::findorFail($id);
-            if($model->level == 'DVLT' && can('ttdn','dvlt') || $model->level== 'DVVT' && can('ttdn','dvvt')
-                || $model->level == 'DVGS' && can('ttdn','dvgs') || $model->level == 'DVTACN' && can('ttdn','dvtacn')
-                || session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa') {
-                if ($model->level == 'DVVT') {
-                    $ttdn = Company::where('maxa', $model->maxa)
-                        ->where('level', 'DVVT')
-                        ->first();
-                    $setting = $ttdn->settingdvvt;
-                } else
-                    $setting = '';
-                $permission = !empty($model->permission) ? $model->permission : getPermissionDefault($model->level);
-                //dd(json_decode($permission));
-                return view('system.users.perms')
-                    ->with('permission', json_decode($permission))
-                    ->with('setting', $setting)
-                    ->with('model', $model)
-                    ->with('pageTitle', 'Phân quyền cho tài khoản');
-            }else
-                return view('errors.perm');
+            if ($model->level == 'DVVT') {
+                $ttdn = Company::where('maxa', $model->maxa)
+                    ->where('level', 'DVVT')
+                    ->first();
+                $setting = $ttdn->settingdvvt;
+            } else
+                $setting = '';
+            $permission = !empty($model->permission) ? $model->permission : getPermissionDefault($model->level);
+            //dd(json_decode($permission));
+            return view('system.users.perms')
+                ->with('permission', json_decode($permission))
+                ->with('setting', $setting)
+                ->with('model', $model)
+                ->with('pageTitle', 'Phân quyền cho tài khoản');
         } else
             return view('errors.notlogin');
     }
@@ -402,5 +355,18 @@ class UsersController extends Controller
         } else {
             dd('Mật khẩu cũ không đúng???');
         }
+    }
+
+    public function copy($id){
+        if (Session::has('admin')) {
+            if(session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa'){
+                $model = User::findOrFail($id);
+                return view('system.users.copy')
+                    ->with('model',$model)
+                    ->with('pageTitle','Sao chép thông tin tài khoản');
+            }else
+                return view('errors.perm');
+        } else
+            return view('errors.notlogin');
     }
 }

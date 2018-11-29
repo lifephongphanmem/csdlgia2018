@@ -87,12 +87,13 @@ class AjaxController extends Controller
 
     public function checkusername(Request $request){
         $result = array(
-            'message' => 'error',
             'status' => 'fail',
+            'message' => 'error',
         );
         if (!Session::has('admin')) {
             $result = array(
                 'status' => 'fail',
+                'message' => 'error',
             );
             die(json_encode($result));
         }
@@ -103,6 +104,7 @@ class AjaxController extends Controller
             $model = Users::where('username',$inputs['username'])->count();
             if ($model == 0) {
                 $result['status'] = 'success';
+                $result['message'] = 'ok';
             }
         }
         die(json_encode($result));

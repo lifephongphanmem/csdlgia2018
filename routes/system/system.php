@@ -35,9 +35,13 @@ Route::get('users/lock/{id}/{pl}','UsersController@lockuser');
 Route::get('users/unlock/{id}/{pl}','UsersController@unlockuser');
 Route::get('users/create','UsersController@create');
 Route::post('users','UsersController@store');
+Route::get('users/{id}/copy','UsersController@copy');
 
 Route::resource('xetduyettdttdn','TdTtDnController');
 Route::post('xetduyettdttdn/tralai','TdTtDnController@tralai');
 Route::get('xetduyettdttdn/{id}/duyet','TdTtDnController@duyet');
+
+Route::resource('thongtinngaynghile','NgayNghiLeController');
+Route::post('thongtinngaynghile/delete','NgayNghiLeController@destroy');
 //EndUsers
 ?>

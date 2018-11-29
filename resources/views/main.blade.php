@@ -292,7 +292,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </a>
                 </li>
                 <!--Manager-->
-                @if(session('admin')->sadmin != 'sa' && session('admin')->sadmin != 'satc')
+                @if(session('admin')->sadmin != 'sa')
                     @include('includes.main.mainBOG')
                     @include('includes.main.maindinhgia')
                     @include('includes.main.mainthamdinhgia')
@@ -308,12 +308,27 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span class="arrow "></span>
                     </a>
                     <ul class="sub-menu">
+                        @if(can('ngaynghile','index'))
+                        <li><a href="{{url('thongtinngaynghile')}}"> Thông tin ngày nghỉ lễ</a></li>
+                        @endif
+                        @if(can('dmdiadanh','index'))
                         <li><a href="{{url('danhmucdiadanh')}}"> Danh mục địa danh</a></li>
+                        @endif
+                        @if(can('districts','index'))
                         <li><a href="{{url('district')}}"> Danh sách đơn vị quản lý</a></li>
+                        @endif
+                        @if(can('towns','index'))
                         <li><a href="{{url('town')}}"> Danh sách đơn vị</a></li>
+                        @endif
+                        @if(can('companys','index'))
                         <li><a href="{{url('company')}}"> Danh sách doanh nghiệp</a></li>
+                        @endif
+                        @if(can('users','index'))
                         <li><a href="{{url('users')}}"> Quản lý tài khoản</a></li>
+                        @endif
+                        @if(can('register','index'))
                         <li><a href="{{url('register')}}"> Tài khoản đăng ký</a></li>
+                        @endif
                         <li><a href="{{url('general')}}">Cấu hình hệ thống</a></li>
                     </ul>
                 </li>
