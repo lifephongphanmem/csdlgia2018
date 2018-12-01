@@ -179,6 +179,8 @@ Route::post('thongtindaugiadat/huyhoanthanh','DauGiaDatController@huyhoanthanh')
 Route::post('thongtindaugiadat/congbo','DauGiaDatController@congbo');
 Route::get('timkiemthongtindaugiadat','DauGiaDatController@search');
 
+Route::get('reportshanghoadichvukhac','ReportsHhDvKController@index');
+
 Route::get('thongtindaugiadatctdf/store','DauGiaDatCtDfController@store');
 Route::get('thongtindaugiadatctdf/show','DauGiaDatCtDfController@show');
 Route::get('thongtindaugiadatctdf/update','DauGiaDatCtDfController@update');

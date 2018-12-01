@@ -170,7 +170,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{url('giahhdvkhac/'.$tt->id)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                    <a href="{{url('giahhdvkhac/'.$tt->id)}}" class="btn btn-default btn-xs mbs" target="_blank"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                     @if($tt->trangthai == 'CHT' || $tt->trangthai == 'HHT')
                                         @if(can('kkgiahhdvk','edit'))
                                         <a href="{{url('giahhdvkhac/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>

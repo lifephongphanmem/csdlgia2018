@@ -269,6 +269,11 @@
                         <a href="{{url('timkiemgiahhdvkhac')}}">Tìm kiếm thông tin</a>
                     </li>
                     @endif
+                    @if(can('thgiahhdvk','baocao'))
+                        <li>
+                            <a href="{{url('reportshanghoadichvukhac')}}">Báo cáo tổng hợp</a>
+                        </li>
+                    @endif
                 </ul>
             </li>
             @endif
