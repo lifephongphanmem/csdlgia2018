@@ -18,5 +18,7 @@ class GiaHhDvK extends Model
         'soqd',
         'ghichu',
         'trangthai',
+        'soqdlk',
+        'ngayapdunglk',
     ];
 }

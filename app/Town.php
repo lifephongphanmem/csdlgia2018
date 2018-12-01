@@ -17,6 +17,7 @@ class Town extends Model
         'diachi',
         'ttlienhe',
         'emailql',
-        'emailqt'
+        'emailqt',
+        'songaylv'
     ];
 }

@@ -18,6 +18,16 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
                                 <tr>
+                                    <td width="2%"> <input type="checkbox" {{ (isset($setting->kkgia->congbo) && $setting->kkgia->congbo == 1) ? 'checked' : '' }} value="1" name="roles[kkgia][congbo]"/> </td>
+                                    <td>Công bố kê khai giá</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
                                     <td width="2%"><input type="checkbox" {{ (isset($setting->dvlt->index) && $setting->dvlt->index == 1) ? 'checked' : '' }} value="1" name="roles[dvlt][index]"/></td>
                                     <td>Giá dịch vụ lưu trú</td>
                                 </tr>

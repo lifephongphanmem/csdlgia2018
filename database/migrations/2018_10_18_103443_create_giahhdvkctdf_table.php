@@ -23,8 +23,8 @@ class CreateGiahhdvkctdfTable extends Migration
             $table->string('tenhhdv')->nullable();
             $table->string('dacdiemkt')->nullable();
             $table->string('dvt')->nullable();
-            $table->string('giatoithieu')->nullable();
-            $table->string('giatoida')->nullable();
+            $table->string('gialk')->nullable();
+            $table->string('gia')->nullable();
             $table->timestamps();
         });
     }

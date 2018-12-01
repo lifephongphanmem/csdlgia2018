@@ -20,10 +20,12 @@ class CreateGiahhdvkTable extends Migration
             $table->string('mahuyen')->nullable();
             $table->string('district')->nullable();
             $table->string('manhom')->nullable();
-            $table->string('ngayapdung')->nullable();
+            $table->date('ngayapdung')->nullable();
             $table->string('soqd')->nullable();
             $table->string('ghichu')->nullable();
             $table->string('trangthai')->nullable();
+            $table->date('ngayapdunglk')->nullable();
+            $table->string('soqdlk')->nullable();
             $table->timestamps();
         });
     }

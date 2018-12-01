@@ -76,7 +76,7 @@ class DauGiaDatController extends Controller
                 }
                 $modelctdf->delete();
             }
-            return redirect('thongtindaugiadat?&district='.$model->district.'&trangthai='.$inputs['trangthai']);
+            return redirect('thongtindaugiadat?&district='.$inputs['district'].'&trangthai='.$inputs['trangthai']);
         }else
             return view('errors.notlogin');
     }

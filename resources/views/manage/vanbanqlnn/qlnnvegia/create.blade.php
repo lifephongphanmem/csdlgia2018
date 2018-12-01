@@ -4,7 +4,6 @@
     <link type="text/css" rel="stylesheet" href="{{ url('vendors/bootstrap-datepicker/css/datepicker.css') }}">
 @stop
 
-
 @section('custom-script')
     <script type="text/javascript" src="{{url('assets/global/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
     <!--cript src="{{url('assets/admin/pages/scripts/form-validation.js')}}"></script-->
@@ -12,13 +11,10 @@
 @stop
 
 @section('content')
-
-
     <h3 class="page-title">
         Văn bản quản lý nhà nước về giá<small> thêm mới</small>
     </h3>
     <!-- END PAGE HEADER-->
-
     <!-- BEGIN DASHBOARD STATS -->
     <div class="row center">
         <div class="col-md-12 center">
@@ -36,8 +32,6 @@
                                         {!!Form::text('kyhieuvb',null, array('id' => 'kyhieuvb','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
-                                <!--/span-->
-
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -46,14 +40,12 @@
                                         {!!Form::text('dvbanhanh',null, array('id' => 'dvbanhanh','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
-                                <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Loại văn bản<span class="require">*</span></label>
                                         {!! Form::select('loaivb',getLoaiVbQlNn(),null, ['id' => 'loaivb','class' => 'form-control required']) !!}
                                     </div>
                                 </div>
-                                <!--/span-->
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -63,14 +55,12 @@
 
                                     </div>
                                 </div>
-                                <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Ngày áp dụng</label>
                                         {!!Form::text('ngayapdung',null, array('id' => 'ngayapdung','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                                     </div>
                                 </div>
-                                <!--/span-->
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -79,14 +69,12 @@
                                         {!!Form::text('tieude',null, array('id' => 'tieude','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
-                                <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Ghi chú<span class="require">*</span></label>
                                         {!!Form::text('ghichu',null, array('id' => 'ghichu','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
-                                <!--/span-->
                             </div>
                             {!!Form::hidden('phanloai',$inputs['phanloai'], array('id' => 'phanloai','class' => 'form-control'))!!}
                             <div class="row">
@@ -127,24 +115,22 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                        </div>
-                        <div class="form-actions">
-                            <div class="col-md-12" style="text-align: center">
-                                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Thêm mới</button>
-                                <button type="reset" class="btn default"> Hủy</button>
-                            </div>
-                        </div>
-                    {!! Form::close() !!}
                     <!-- END FORM-->
                 </div>
             </div>
+            <div class="col-md-12" style="text-align: center">
+                <a href="{{url('vanbanqlnnvegia')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <button type="reset" class="btn default"> Hủy</button>
+                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Thêm mới</button>
+            </div>
             <!-- END VALIDATION STATES-->
         </div>
+        {!! Form::close() !!}
     </div>
     <script type="text/javascript">
         function validateForm(){
-
             var validator = $("#create_ttttqd").validate({
                 rules: {
                     ten :"required"
@@ -165,7 +151,6 @@
                     data: {
                         _token: CSRF_TOKEN,
                         khvb:$(this).val()
-
                     },
                     success: function (respond) {
                         if(respond != 'ok'){
@@ -174,7 +159,6 @@
                             $('input[name="khvb"]').focus();
                         }
                     }
-
                 });
             })
         }(jQuery));

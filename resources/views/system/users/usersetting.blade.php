@@ -16,6 +16,13 @@
     </h3>
     <!-- END PAGE HEADER-->
     <!-- BEGIN DASHBOARD STATS -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="note note-success">
+                <p>Trong trường hợp khách hàng mất mật khẩu truy cập chương trình. Email xác thực của khách hàng dưới đây sẽ nhận email thông tin từ chương trình giúp khách hàng có thể lấy lại mật khẩu của mình!!!</p>
+            </div>
+        </div>
+    </div>
     <div class="row center">
         <div class="col-md-12 center">
             <!-- BEGIN VALIDATION STATES-->

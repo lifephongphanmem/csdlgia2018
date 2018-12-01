@@ -55,22 +55,45 @@ class GiaHhDvKController extends Controller
             if(isset($inputs['manhom']) && isset($inputs['getdistrict'])) {
                 $tennhom = NhomHhDvK::where('manhom', $inputs['manhom'])->first()->tennhom;
                 $diaban = DiaBanHd::where('district', $inputs['getdistrict'])->where('level', 'H')->first()->diaban;
-                $checkct = GiaHhDvKCtDf::where('district',$inputs['getdistrict'])
-                    ->where('manhom',$inputs['manhom'])->count();
-                if($checkct == 0){
-
-                    $modeldm = DmHhDvK::where('manhom', $inputs['manhom'])->get();
-                    foreach ($modeldm as $dm) {
+                $modelidlk = GiaHhDvK::where('trangthai','CB')
+                    ->where('manhom',$inputs['manhom'])
+                    ->where('district',$inputs['getdistrict'])
+                    ->max('id');
+                if($modelidlk != null){
+                    $modellk = GiaHhDvK::where('id',$modelidlk)
+                       ->first();
+                    $modelctlk = GiaHhDvKCt::where('mahs',$modellk->mahs)
+                        ->get();
+                    foreach ($modelctlk as $ct) {
                         $modelctnew = new GiaHhDvKCtDf();
                         $modelctnew->district = $inputs['getdistrict'];
-                        $modelctnew->manhom = $dm->manhom;
-                        $modelctnew->mahhdv = $dm->mahhdv;
-                        $modelctnew->tenhhdv = $dm->tenhhdv;
-                        $modelctnew->dacdiemkt = $dm->dacdiemkt;
-                        $modelctnew->dvt = $dm->dvt;
+                        $modelctnew->manhom = $ct->manhom;
+                        $modelctnew->mahhdv = $ct->mahhdv;
+                        $modelctnew->tenhhdv = $ct->tenhhdv;
+                        $modelctnew->dacdiemkt = $ct->dacdiemkt;
+                        $modelctnew->dvt = $ct->dvt;
+                        $modelctnew->gialk = $ct->gia;
                         $modelctnew->save();
                     }
+                }else{
+                    $modellk = '';
+                    $checkct = GiaHhDvKCtDf::where('district',$inputs['getdistrict'])
+                        ->where('manhom',$inputs['manhom'])->count();
+                    if($checkct == 0){
+                        $modeldm = DmHhDvK::where('manhom', $inputs['manhom'])->get();
+                        foreach ($modeldm as $dm) {
+                            $modelctnew = new GiaHhDvKCtDf();
+                            $modelctnew->district = $inputs['getdistrict'];
+                            $modelctnew->manhom = $dm->manhom;
+                            $modelctnew->mahhdv = $dm->mahhdv;
+                            $modelctnew->tenhhdv = $dm->tenhhdv;
+                            $modelctnew->dacdiemkt = $dm->dacdiemkt;
+                            $modelctnew->dvt = $dm->dvt;
+                            $modelctnew->save();
+                        }
+                    }
                 }
+
                 $modelct = GiaHhDvKCtDf::where('district',$inputs['getdistrict'])
                     ->where('manhom',$inputs['manhom'])->get();
                 return view('manage.dinhgia.giahhdvk.kekhai.create')
@@ -79,6 +102,7 @@ class GiaHhDvKController extends Controller
                     ->with('manhom', $inputs['manhom'])
                     ->with('tennhom', $tennhom)
                     ->with('modelct',$modelct)
+                    ->with('modellk',$modellk)
                     ->with('pageTitle', 'Kê khai giá hàng hóa dịch vụ thêm mới');
             }else
                 dd('Lỗi!Bạn cần xem lại thao tác!');
@@ -93,6 +117,11 @@ class GiaHhDvKController extends Controller
             $inputs['ngayapdung'] = getDateToDb($inputs['ngayapdung']);
             $inputs['mahs'] = $inputs['district'].getdate()[0];
             $inputs['trangthai'] = 'CHT';
+            if($inputs['ngayapdunglk'] != '')
+                $inputs['ngayapdunglk'] = getDateToDb($inputs['ngayapdunglk']);
+            else
+                unset($inputs['ngayapdunglk']);
+
             $model = new GiaHhDvK();
             if($model->create($inputs)){
                 $modelctdf = GiaHhDvKCtDf::where('district',$inputs['district'])
@@ -105,8 +134,8 @@ class GiaHhDvKController extends Controller
                     $modelct->dacdiemkt = $ctdf->dacdiemkt;
                     $modelct->dvt = $ctdf->dvt;
                     $modelct->mahs = $inputs['mahs'];
-                    $modelct->giatoithieu = $ctdf->giatoithieu;
-                    $modelct->giatoida = $ctdf->giatoida;
+                    $modelct->gialk = $ctdf->gialk;
+                    $modelct->gia = $ctdf->gia;
                     $modelct->save();
                 }
                 $modelctdf->delete();
@@ -120,16 +149,16 @@ class GiaHhDvKController extends Controller
     public function show($id){
         if(Session::has('admin')){
             $model = GiaHhDvK::findOrFail($id);
-                $tennhom = NhomHhDvK::where('manhom', $model->manhom)->first()->tennhom;
-                $diaban = DiaBanHd::where('district',$model->district)->where('level', 'H')->first()->diaban;
-                $modelct = GiaHhDvKCt::where('mahs',$model->mahs)
-                    ->get();
-                return view('manage.dinhgia.giahhdvk.kekhai.show')
-                    ->with('diaban', $diaban)
-                    ->with('tennhom', $tennhom)
-                    ->with('modelct',$modelct)
-                    ->with('model',$model)
-                    ->with('pageTitle', 'Kê khai giá hàng hóa dịch vụ chi tiết');
+            $tennhom = NhomHhDvK::where('manhom', $model->manhom)->first()->tennhom;
+            $diaban = DiaBanHd::where('district',$model->district)->where('level', 'H')->first()->diaban;
+            $modelct = GiaHhDvKCt::where('mahs',$model->mahs)
+                ->get();
+            return view('manage.dinhgia.giahhdvk.reports.prints')
+                ->with('diaban', $diaban)
+                ->with('tennhom', $tennhom)
+                ->with('modelct',$modelct)
+                ->with('model',$model)
+                ->with('pageTitle', 'Kê khai giá hàng hóa dịch vụ chi tiết');
 
         }else
             return view('errors.notlogin');
@@ -157,6 +186,10 @@ class GiaHhDvKController extends Controller
         if(Session::has('admin')){
             $inputs = $request->all();
             $inputs['ngayapdung'] = getDateToDb($inputs['ngayapdung']);
+            if($inputs['ngayapdunglk'] != '')
+                $inputs['ngayapdunglk'] = getDateToDb($inputs['ngayapdunglk']);
+            else
+                unset($inputs['ngayapdunglk']);
             $model = GiaHhDvK::findOrFail($id);
             $model->update($inputs);
             return redirect('giahhdvkhac?&district='.$model->district.'&trangthai='.$model->trangthai);

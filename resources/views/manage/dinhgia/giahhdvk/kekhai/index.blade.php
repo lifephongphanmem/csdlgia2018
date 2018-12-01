@@ -140,6 +140,8 @@
                             <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center">Số quyết định</th>
                             <th style="text-align: center">Ngày áp dụng</th>
+                            <th style="text-align: center">Số quyết định liền kề</th>
+                            <th style="text-align: center">Ngày áp dụng liền kế</th>
                             <th style="text-align: center">Nhóm hàng hóa dịch vụ</th>
                             <th style="text-align: center">Ghi chú</th>
                             <th style="text-align: center" width="10%">Trạng thái</th>
@@ -152,6 +154,8 @@
                                 <td style="text-align: center">{{$key + 1}}</td>
                                 <td class="active"  style="font-weight: bold">{{$tt->soqd}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->ngayapdung)}}</td>
+                                <td style="font-weight: bold">{{$tt->soqdlk}}</td>
+                                <td style="text-align: center">{{getDayVn($tt->ngayapdunglk)}}</td>
                                 <td class="success" style="font-weight: bold">{{$tt->tennhom}}</td>
                                 <td>{{$tt->ghichu}}</td>
                                 <td style="text-align: center">

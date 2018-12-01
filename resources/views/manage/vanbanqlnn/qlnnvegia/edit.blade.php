@@ -141,18 +141,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-actions">
-                            <div class="col-md-12" style="text-align: center">
-                                <a href="{{url('vanbanqlnnvegia')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
-                                <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
-                                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
-                            </div>
-                        </div>
-                    {!! Form::close() !!}
+
                     <!-- END FORM-->
                 </div>
             </div>
+            <div class="col-md-12" style="text-align: center">
+                <a href="{{url('vanbanqlnnvegia')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
+                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhập</button>
+            </div>
             <!-- END VALIDATION STATES-->
+            {!! Form::close() !!}
         </div>
     </div>
     <script type="text/javascript">

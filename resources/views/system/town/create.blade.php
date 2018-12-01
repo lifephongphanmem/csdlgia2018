@@ -101,12 +101,28 @@
                                         <input type="text" class="form-control required" name="emailql" id="emailql">
                                     </div>
                                 </div>
-                                <!--div class="col-md-6">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Email quản trị<span class="require">*</span></label>
                                         <input type="text" class="form-control required" name="emailqt" id="emailqt">
                                     </div>
-                                </div-->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Số ngày làm việc<span class="require">*</span></label>
+                                        {!! Form::select('songaylv', array(
+                                        '1'=>'1',
+                                        '2'=>'2',
+                                        '3'=>'3',
+                                        '4'=>'4',
+                                        '5'=>'5',
+                                        '6'=>'6',
+                                        '7'=>'7',
+                                        ),2, array('id'=>'district','class'=>'form-control'))!!}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     <!-- END FORM-->

@@ -57,8 +57,8 @@
                 data: {
                     _token: CSRF_TOKEN,
                     id: $('input[name="idedit"]').val(),
-                    giatoithieu: $('input[name="edit_giatoithieu"]').val(),
-                    giatoida: $('input[name="edit_giatoida"]').val(),
+                    gialk: $('input[name="edit_gialk"]').val(),
+                    gia: $('input[name="edit_gia"]').val(),
                     district: $('input[name="district"]').val(),
                     manhom: $('input[name="manhom"]').val(),
                 },
@@ -121,8 +121,24 @@
                             <!--/span-->
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Ngày áp dụng<span class="require">*</span></label>
+                                    <label class="control-label">Ngày báo cáo<span class="require">*</span></label>
                                     {!!Form::text('ngayapdung',null, array('id' => 'ngayapdung','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Số quyết định liền kề<span class="require">*</span></label>
+                                    {!!Form::text('soqdlk',($modellk != '' ? $modellk->soqd : ''), array('id' => 'soqdlk','class' => 'form-control'))!!}
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Ngày báo cáo liền kề<span class="require">*</span></label>
+                                    {!!Form::text('ngayapdunglk',($modellk != '' ? date('d/m/Y',  strtotime($modellk->ngayapdung)) : null), array('id' => 'ngayapdunglk','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
                                 </div>
                             </div>
                             <!--/span-->
@@ -149,8 +165,8 @@
                                         <th style="text-align: center">Tên hàng hóa dịch vụ</th>
                                         <th style="text-align: center">Đặc điểm kỹ thuật</th>
                                         <th style="text-align: center">Đơn vị tính</th>
-                                        <th style="text-align: center" width="10%">Giá tối thiểu</th>
-                                        <th style="text-align: center" width="10%">Giá tối đa</th>
+                                        <th style="text-align: center" width="10%">Giá liền kề</th>
+                                        <th style="text-align: center" width="10%">Giá </th>
                                         <th style="text-align: center" width="15%">Thao tác</th>
                                     </tr>
                                     </thead>
@@ -162,8 +178,8 @@
                                                 <td class="active" style="font-weight: bold">{{$tt->tenhhdv}}</td>
                                                 <td style="text-align: center">{{$tt->dacdiemkt}}</td>
                                                 <td style="text-align: center">{{$tt->dvt}}</td>
-                                                <td style="text-align: right;font-weight: bold">{{number_format($tt->giatoithieu)}}</td>
-                                                <td style="text-align: right;font-weight: bold">{{number_format($tt->giatoida)}}</td>
+                                                <td style="text-align: right;font-weight: bold">{{number_format($tt->gialk)}}</td>
+                                                <td style="text-align: right;font-weight: bold">{{number_format($tt->gia)}}</td>
                                                 <td>
                                                     <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem({{$tt->id}})"><i class="fa fa-edit"></i>&nbsp;Kê khai</button>
                                                 </td>

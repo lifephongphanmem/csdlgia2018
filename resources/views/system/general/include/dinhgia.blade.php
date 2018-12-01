@@ -18,6 +18,16 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
                                 <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->dinhgia->congbo) && $setting->dinhgia->congbo == 1) ? 'checked' : '' }} value="1" name="roles[dinhgia][congbo]"/></td>
+                                    <td>Công bố định giá</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
                                     <td width="2%"><input type="checkbox" {{ (isset($setting->giacldat->index) && $setting->giacldat->index == 1) ? 'checked' : '' }} value="1" name="roles[giacldat][index]"/></td>
                                     <td>Giá các loại đất</td>
                                 </tr>
@@ -78,7 +88,7 @@
                                     <td>Giá thuê mua nhà XH</td>
                                 </tr>
                                 <tr>
-                                    <td width="2"><input type="checkbox" {{ (isset($setting->giathuemuanhaxh->congbo) && $setting->giathuemuanhaxh->congbo == 1) ? 'checked' : '' }} value="1" name="roles[cbgiathuemuanhaxh][congbo]"/></td>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->giathuemuanhaxh->congbo) && $setting->giathuemuanhaxh->congbo == 1) ? 'checked' : '' }} value="1" name="roles[giathuemuanhaxh][congbo]"/></td>
                                     <td>Công bố giá thuê mua nhà XH</td>
                                 </tr>
                                 </tbody>

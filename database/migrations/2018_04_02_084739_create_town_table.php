@@ -24,6 +24,7 @@ class CreateTownTable extends Migration
             $table->text('ttlienhe')->nullable();
             $table->string('emailql')->nullable();
             $table->string('emailqt')->nullable();
+            $table->string('songaylv')->nullable();
             $table->timestamps();
         });
     }

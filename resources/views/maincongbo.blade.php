@@ -198,7 +198,6 @@ License: You must have a valid license purchased only from themeforest(the above
                             @endforeach
                         </ul>
                     </li>
-
                     <li class="menu-dropdown classic-menu-dropdown ">
                         <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
                             Định giá<i class="fa fa-angle-down"></i>
@@ -220,8 +219,13 @@ License: You must have a valid license purchased only from themeforest(the above
                         <ul class="dropdown-menu pull-left">
                         </ul>
                     </li>
-
-
+                        <li class="menu-dropdown classic-menu-dropdown ">
+                            <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
+                                Văn bản quản lý giá <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu pull-left">
+                            </ul>
+                        </li>
                 </ul>
             </div>
             <!-- END MEGA MENU -->

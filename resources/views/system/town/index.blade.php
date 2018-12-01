@@ -70,7 +70,7 @@
                         <tr>
                             <th style="text-align: center" width="2%">STT</th>
                             <th style="text-align: center" width="30%">Tên đơn vị</th>
-                            <th style="text-align: center">Mã quan hệ ngân sách</th>
+                            <th style="text-align: center">Mã đơn vị</th>
                             <th style="text-align: center" width="20%">Địa chỉ</th>
                             <th style="text-align: center" width="10%">Thao tác</th>
                         </tr>
@@ -81,7 +81,7 @@
                             <td style="text-align: center">{{$key + 1}}</td>
                             <td class="active" >{{$tt->tendv}}</td>
                             <td>{{$tt->maxa}}</td>
-                            <td style="text-align: center">{{$tt->diachi}}</td>
+                            <td>{{$tt->diachi}}</td>
                             <td>
                                 <a href="{{url('town/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                 <!--button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;

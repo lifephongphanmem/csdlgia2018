@@ -173,6 +173,7 @@ Route::get('philephict/del','PhiLePhiCtController@destroy');
 
 //Đầu giá đất
 Route::resource('thongtindaugiadat','DauGiaDatController');
+Route::post('thongtindaugiadat/delete','DauGiaDatController@destroy');
 Route::post('thongtindaugiadat/hoanthanh','DauGiaDatController@hoanthanh');
 Route::post('thongtindaugiadat/huyhoanthanh','DauGiaDatController@huyhoanthanh');
 Route::post('thongtindaugiadat/congbo','DauGiaDatController@congbo');

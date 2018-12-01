@@ -64,6 +64,8 @@
                 <div class="portlet-title">
                     <div class="actions">
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#modal-create-lv1" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Khu vục/Vị trí Nhóm I</button>
+                        <button type="button" class="btn btn-default btn-xs mbs" id="expand" onclick="expand()"><i class="fa fa-angle-double-down"></i>&nbsp;Expand All</button>
+                        <button type="button" class="btn btn-default btn-xs mbs" id="collapse" onclick="collapse()"><i class="fa fa-angle-double-up"></i>&nbsp;Collapse All</button>
                     </div>
                 </div>
                 <div class="portlet-body">
@@ -81,15 +83,6 @@
                         </div>
                     </div>
                     @endif
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <button id="expand" onclick="expand()">Expand All</button>
-                                <button id="collapse" onclick="collapse() ">Collapse All</button>
-                            </div>
-                        </div>
-                    </div>
-
                     <input type="hidden" name="district" id="district" value="{{$district}}">
 
                     <table id="example-advanced" class="treetable">

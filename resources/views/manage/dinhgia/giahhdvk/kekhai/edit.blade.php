@@ -57,8 +57,8 @@
                 data: {
                     _token: CSRF_TOKEN,
                     id: $('input[name="idedit"]').val(),
-                    giatoithieu: $('input[name="edit_giatoithieu"]').val(),
-                    giatoida: $('input[name="edit_giatoida"]').val(),
+                    gialk: $('input[name="edit_gialk"]').val(),
+                    gia: $('input[name="edit_gia"]').val(),
                     mahs: $('input[name="mahs"]').val(),
                 },
                 dataType: 'JSON',
@@ -82,7 +82,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Hồ sơ giá hàng hóa dịch vụ<small> thêm mới</small>
+        Hồ sơ giá hàng hóa dịch vụ<small> chỉnh sửa</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -126,6 +126,22 @@
                             </div>
                             <!--/span-->
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Số quyết định liền kề<span class="require">*</span></label>
+                                    {!!Form::text('soqdlk',null, array('id' => 'soqdlk','class' => 'form-control'))!!}
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Ngày báo cáo liền kề<span class="require">*</span></label>
+                                    {!!Form::text('ngayapdunglk',($model->ngayapdunglk != '' ? date('d/m/Y',  strtotime($model->ngayapdunglk)) : null), array('id' => 'ngayapdunglk','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
 
                         <div class="row">
                             <div class="col-md-12">
@@ -147,8 +163,8 @@
                                         <th style="text-align: center">Tên hàng hóa dịch vụ</th>
                                         <th style="text-align: center">Đặc điểm kỹ thuật</th>
                                         <th style="text-align: center">Đơn vị tính</th>
-                                        <th style="text-align: center" width="10%">Giá tối thiểu</th>
-                                        <th style="text-align: center" width="10%">Giá tối đa</th>
+                                        <th style="text-align: center" width="10%">Giá liền kề</th>
+                                        <th style="text-align: center" width="10%">Giá</th>
                                         <th style="text-align: center" width="15%">Thao tác</th>
                                     </tr>
                                     </thead>
@@ -160,8 +176,8 @@
                                             <td class="active" style="font-weight: bold">{{$tt->tenhhdv}}</td>
                                             <td style="text-align: center">{{$tt->dacdiemkt}}</td>
                                             <td style="text-align: center">{{$tt->dvt}}</td>
-                                            <td style="text-align: right;font-weight: bold">{{number_format($tt->giatoithieu)}}</td>
-                                            <td style="text-align: right;font-weight: bold">{{number_format($tt->giatoida)}}</td>
+                                            <td style="text-align: right;font-weight: bold">{{number_format($tt->gialk)}}</td>
+                                            <td style="text-align: right;font-weight: bold">{{number_format($tt->gia)}}</td>
                                             <td>
                                                 <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem({{$tt->id}})"><i class="fa fa-edit"></i>&nbsp;Kê khai</button>
                                             </td>
@@ -181,7 +197,7 @@
                 <div class="col-md-12" style="text-align: center">
                     <a href="{{url('giahhdvkhac?&district='.$model->district.'&trangthai='.$model->trangthai)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                     <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
-                    <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
+                    <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i>Cập nhật</button>
                 </div>
             </div>
             {!! Form::close() !!}

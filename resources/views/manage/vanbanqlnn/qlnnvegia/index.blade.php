@@ -95,6 +95,7 @@
                     <div class="row">
                         <div class="col-md-2">
                             <div class="form-group">
+                                <label>Năm</label>
                                 <select name="nam" id="nam" class="form-control">
                                     @if ($nam_start = intval(date('Y')) - 5 ) @endif
                                     @if ($nam_stop = intval(date('Y'))) @endif
@@ -106,6 +107,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
+                                <label>Phân loại</label>
                                 <select class="form-control" name="phanloai" id="phanloai">
                                     <option value="tw" {{$inputs['phanloai'] == 'tw' ? 'selected' : ''}}>Trung ương</option>
                                     <option value="dp"{{$inputs['phanloai'] == 'dp' ? 'selected' : ''}}>Địa phương</option>
@@ -114,6 +116,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
+                                <label>Loại văn bản</label>
                                 {!! Form::select('loaivb',getLoaiVbQlNn(),$inputs['loaivb'], ['id' => 'loaivb','class' => 'form-control']) !!}
                             </div>
                         </div>

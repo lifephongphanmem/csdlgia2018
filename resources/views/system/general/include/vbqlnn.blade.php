@@ -18,6 +18,16 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
                                 <tr>
+                                    <td width="2%"> <input type="checkbox" {{ (isset($setting->vbqlnn->congbo) && $setting->vbqlnn->congbo == 1) ? 'checked' : '' }} value="1" name="roles[vbqlnn][congbo]"/> </td>
+                                    <td>Công bố văn bản quản lý NN</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
                                     <td width="2%"><input type="checkbox" {{ (isset($setting->vbgia->index) && $setting->vbgia->index == 1) ? 'checked' : '' }} value="1" name="roles[vbgia][index]"/></td>
                                     <td>Văn bản quản lý NN về giá</td>
                                 </tr>

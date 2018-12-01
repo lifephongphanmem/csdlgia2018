@@ -34,15 +34,15 @@ class GiaHhDvKCtController extends Controller
 
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Giá tối thiểu<span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" name="edit_giatoithieu" id="edit_giatoithieu" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold" value="'.$model->giatoithieu.'"></div>';
+            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Giá liền kề<span class="require">*</span></label>';
+            $result['message'] .= '<div><input type="text" name="edit_gialk" id="edit_gialk" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold" value="'.$model->gialk.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-12">';
             $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Giá tối đa<span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" name="edit_giatoida" id="edit_giatoida" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold" value="'.$model->giatoida.'"></div>';
+            $result['message'] .= '<div><input type="text" name="edit_gia" id="edit_gia" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold" value="'.$model->gia.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
@@ -74,8 +74,8 @@ class GiaHhDvKCtController extends Controller
 
         if(isset($inputs['id'])){
             $modelupdate = GiaHhDvKCt::where('id',$inputs['id'])->first();
-            $inputs['giatoithieu'] = getDbl($inputs['giatoithieu']);
-            $inputs['giatoida'] = getDbl($inputs['giatoida']);
+            $inputs['gialk'] = getDbl($inputs['gialk']);
+            $inputs['gia'] = getDbl($inputs['gia']);
             $modelupdate->update($inputs);
 
             $model = GiaHhDvKCt::where('mahs',$inputs['mahs'])
@@ -91,8 +91,8 @@ class GiaHhDvKCtController extends Controller
             $result['message'] .= '<th style="text-align: center">Tên hàng hóa dịch vụ</th>';
             $result['message'] .= '<th style="text-align: center">Đặc điểm kỹ thuật</th>';
             $result['message'] .= '<th style="text-align: center">Đơn vị tính</th>';
-            $result['message'] .= '<th style="text-align: center" width="10%">Giá tối thiểu</th>';
-            $result['message'] .= '<th style="text-align: center" width="10%">Giá tối đa</th>';
+            $result['message'] .= '<th style="text-align: center" width="10%">Giá liền kề</th>';
+            $result['message'] .= '<th style="text-align: center" width="10%">Giá </th>';
             $result['message'] .= '<th style="text-align: center" width="15%">Thao tác</th>';
             $result['message'] .= '</tr>';
             $result['message'] .= '</thead>';
@@ -105,8 +105,8 @@ class GiaHhDvKCtController extends Controller
                     $result['message'] .= '<td class="active" style="font-weight: bold">'.$tents->tenhhdv.'</td>';
                     $result['message'] .= '<td>'.$tents->dacdiemkt.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.$tents->dvt.'</td>';
-                    $result['message'] .= '<td style="text-align: right;font-weight: bold">'. number_format($tents->giatoithieu).'</td>';
-                    $result['message'] .= '<td style="text-align: right;font-weight: bold">'. number_format($tents->giatoida).'</td>';
+                    $result['message'] .= '<td style="text-align: right;font-weight: bold">'. number_format($tents->gialk).'</td>';
+                    $result['message'] .= '<td style="text-align: right;font-weight: bold">'. number_format($tents->gia).'</td>';
                     $result['message'] .= '<td>';
                     $result['message'] .= '<button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('.$tents->id.');"><i class="fa fa-edit"></i>&nbsp;Kê khai</button>';
                     $result['message'] .= '</td>';
