@@ -95,7 +95,8 @@
             <td style="text-align: right;font-weight: bold">{{number_format($tt->gialk)}}</td>
             <td style="text-align: right;font-weight: bold">{{number_format($tt->gia)}}</td>
             <td style="text-align: right;font-weight: bold">{{number_format($tt->gia - $tt->gialk)}}</td>
-            <td style="text-align: right;font-weight: bold">{{round(number_format($tt->gia)/(number_format($tt->gialk) == 0 ? '1' : number_format($tt->gialk)),2)}}</td>
+            <td style="text-align: right;font-weight: bold">{{number_format($tt->gialk) == 0 ? number_format($tt->gia) == 0 ? 0 : 100
+                            : round(number_format($tt->gia)/number_format($tt->giath),2)}}</td>
             <td></td>
         </tr>
     @endforeach
