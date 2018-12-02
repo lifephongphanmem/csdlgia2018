@@ -34,12 +34,14 @@ class ReportsHhDvKController extends Controller
                 $modelidlk = GiaHhDvK::where('manhom',$inputs['manhom'])
                     ->where('district',$diaban->district)
                     ->where('ngayapdung','<',getDateToDb($inputs['ngayapdunglk']))
+                    ->where('trangthai','CB')
                     ->max('id');
                 if($modelidlk != null)
                     $idlk = $idlk.$modelidlk.',';
                 $modelid = GiaHhDvK::where('manhom',$inputs['manhom'])
                     ->where('district',$diaban->district)
                     ->where('ngayapdung','<',getDateToDb($inputs['ngayapdung']))
+                    ->where('trangthai','CB')
                     ->max('id');
                 if($modelid != null)
                     $id = $id.$modelid.',';

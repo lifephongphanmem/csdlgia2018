@@ -125,8 +125,7 @@
                             <th style="text-align: center">Tên hàng hóa dịch vụ</th>
                             <th style="text-align: center">Đặc điểm kỹ thuật</th>
                             <th style="text-align: center">Đơn vị tính</th>
-                            <th style="text-align: center" width="10%">Giá tối thiểu</th>
-                            <th style="text-align: center" width="10%">Giá tối đa</th>
+                            <th style="text-align: center" width="10%">Giá</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -139,8 +138,7 @@
                                 <td class="active" style="font-weight: bold">{{$tt->tenhhdv}}</td>
                                 <td style="text-align: center">{{$tt->dacdiemkt}}</td>
                                 <td style="text-align: center">{{$tt->dvt}}</td>
-                                <td style="text-align: right;font-weight: bold">{{number_format($tt->giatoithieu)}}</td>
-                                <td style="text-align: right;font-weight: bold">{{number_format($tt->giatoida)}}</td>
+                                <td style="text-align: right;font-weight: bold">{{number_format($tt->gia)}}</td>
 
                             </tr>
                         @endforeach
