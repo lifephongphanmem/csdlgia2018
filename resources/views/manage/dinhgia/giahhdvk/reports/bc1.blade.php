@@ -38,20 +38,17 @@
     <tr>
         <td width="40%" style="text-transform: uppercase;">
             --------<br><br>
-            Số: {{$model->soqd}}
+            Số:
         </td>
         <td>
             <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>
             <b><i><u>Độc lập - Tự do - Hạnh phúc</u></i></b><br><br>
-            <i>{{$diaban}}, Ngày {{date('d',strtotime($model->ngayapdung))}} tháng {{date('m',strtotime($model->ngayapdung))}}  năm {{date('Y',strtotime($model->ngayapdung))}}</i>
+            <i>....., Ngày ..... tháng ..... năm .....</i>
         </td>
     </tr>
 </table>
 
 <p style="text-align: center; font-weight: bold; font-size: 16px;">BÁO CÁO<br>GIÁ THỊ TRƯỜNG HÀNG HÓA, DỊCH VỤ</p>
-<p>Địa bàn: {{$diaban}}</p>
-<p>Số quyết định liền kề: {{$model->soqdlk}}</p>
-<p>Ngày báo cáo liền kề: {{getDayVn($model->ngayapdunglk)}}</p>
 
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <tr>
@@ -60,8 +57,8 @@
         <th style="text-align: center" rowspan="2">Tên hàng hóa dịch vụ</th>
         <th style="text-align: center" rowspan="2">Đặc điểm kỹ thuật</th>
         <th style="text-align: center" rowspan="2">Đơn vị tính</th>
-        <th style="text-align: center" width="10%" rowspan="2">Giá liền kề<br>({{getDayVn($model->ngayapdunglk)}})</th>
-        <th style="text-align: center" width="10%" rowspan="2">Giá<br>({{getDayVn(getDayVn($model->ngayapdung))}})</th>
+        <th style="text-align: center" width="10%" rowspan="2">Giá liền kề<br>({{getDayVn($inputs['ngayapdunglk'])}})</th>
+        <th style="text-align: center" width="10%" rowspan="2">Giá<br>({{getDayVn($inputs['ngayapdung'])}})</th>
         <th style="text-align: center" width="10%" colspan="2">Tăng, giảm</th>
         <th style="text-align: center" width="10%" rowspan="2">Ghi chú</th>
     </tr>
@@ -92,10 +89,10 @@
             <td class="active" style="font-weight: bold">{{$tt->tenhhdv}}</td>
             <td style="text-align: center">{{$tt->dacdiemkt}}</td>
             <td style="text-align: center">{{$tt->dvt}}</td>
-            <td style="text-align: right;font-weight: bold">{{number_format($tt->gialk)}}</td>
-            <td style="text-align: right;font-weight: bold">{{number_format($tt->gia)}}</td>
-            <td style="text-align: right;font-weight: bold">{{number_format($tt->gia - $tt->gialk)}}</td>
-            <td style="text-align: right;font-weight: bold">{{round(number_format($tt->gia)/(number_format($tt->gialk) == 0 ? '1' : number_format($tt->gialk)),2)}}</td>
+            <td style="text-align: right;font-weight: bold">{{number_format($tt->giathlk)}}</td>
+            <td style="text-align: right;font-weight: bold">{{number_format($tt->giath)}}</td>
+            <td style="text-align: right;font-weight: bold">{{number_format($tt->giath - $tt->giathlk)}}</td>
+            <td style="text-align: right;font-weight: bold">{{round(number_format($tt->giath)/(number_format($tt->giathlk) == 0 ? '1' : number_format($tt->giathlk)),2)}}</td>
             <td></td>
         </tr>
     @endforeach

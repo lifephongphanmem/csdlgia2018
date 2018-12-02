@@ -263,9 +263,8 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <div class="page-footer">
     <div class="container">
-
         <div class="col-md-12">
-        2016 &copy; LifeSoft <a href="" >Tiện ích hơn - Hiệu quả hơn</a>
+            Copyright &copy;  2016 - {{date('Y')}} LifeSoft <a href="" >Tiện ích hơn - Hiệu quả hơn</a>
         </div>
     </div>
 </div>

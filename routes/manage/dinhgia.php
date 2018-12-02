@@ -147,6 +147,9 @@ Route::get('/giahhdvkhacctdf/update','GiaHhDvKCtDfController@update');
 Route::get('/giahhdvkhacct/edit','GiaHhDvKCtController@edit');
 Route::get('/giahhdvkhacct/update','GiaHhDvKCtController@update');
 
+Route::get('reportshanghoadichvukhac','ReportsHhDvKController@index');
+Route::post('reportshanghoadichvukhac/bc1','ReportsHhDvKController@bc1');
+
 //Phí Lệ phí
 Route::resource('nhomphilephi','DmPhiLePhiController');
 Route::post('nhomphilephi/update','DmPhiLePhiController@update');
@@ -178,8 +181,6 @@ Route::post('thongtindaugiadat/hoanthanh','DauGiaDatController@hoanthanh');
 Route::post('thongtindaugiadat/huyhoanthanh','DauGiaDatController@huyhoanthanh');
 Route::post('thongtindaugiadat/congbo','DauGiaDatController@congbo');
 Route::get('timkiemthongtindaugiadat','DauGiaDatController@search');
-
-Route::get('reportshanghoadichvukhac','ReportsHhDvKController@index');
 
 Route::get('thongtindaugiadatctdf/store','DauGiaDatCtDfController@store');
 Route::get('thongtindaugiadatctdf/show','DauGiaDatCtDfController@show');
