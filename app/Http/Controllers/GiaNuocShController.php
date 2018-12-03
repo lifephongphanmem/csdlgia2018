@@ -130,6 +130,23 @@ class GiaNuocShController extends Controller
             return view('errors.notlogin');
     }
 
+    public function destroy(Request $request){
+        if(Session::has('admin')){
+            if(session('admin')->level == 'T' || session('admin')->level == 'H') {
+                $inputs = $request->all();
+                $id = $inputs['iddelete'];
+                $model = GiaNuocSh::findOrFail($id);
+                if($model->delete())
+                    $modelct = GiaNuocShCt::where('mahs',$model->mahs)
+                        ->delete();
+                return redirect('thongtingianuocsinhhoat');
+            }else
+                return view('errors.perm');
+
+        }else
+            return view('errors.notlogin');
+    }
+
     public function hoanthanh(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
