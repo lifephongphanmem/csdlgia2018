@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2018 at 05:28 AM
+-- Generation Time: Dec 03, 2018 at 09:39 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -580,7 +580,21 @@ CREATE TABLE `dmphilephi` (
 --
 
 INSERT INTO `dmphilephi` (`id`, `manhom`, `tennhom`, `dvt`, `created_at`, `updated_at`) VALUES
-(1, 'PSDCTDV', 'Mức thu phí sử dụng công trình kết cấu hạ tầng, công trình dịch vụ, tiện ích công cộng trong khu vuẹc cửa khẩu trên địa bàn tỉnh Lạng Sơn', 'đồng/xe/lần ra, vào', '2018-11-01 09:02:48', '2018-11-01 09:09:04');
+(2, '01', 'Phí kiểm tra Nhà nước về chất lượng hàng hóa', '', '2018-12-03 05:51:43', '2018-12-03 05:51:43'),
+(3, '02', 'Phí thử nghiệm chất lượng sản phẩm, vật tư, nguyên vật liệu', NULL, '2018-12-03 05:52:18', '2018-12-03 05:52:18'),
+(4, '03', 'Phí đấu thầu, đấu giá', NULL, '2018-12-03 05:52:31', '2018-12-03 05:52:31'),
+(5, '04', 'Phí thẩm định kết quả đấu thầu', NULL, '2018-12-03 05:52:45', '2018-12-03 05:52:45'),
+(6, '05', 'Phí khai thác tư liệu tại các Bảo tàng, khu di tích lịch sử, văn hóa', NULL, '2018-12-03 05:53:06', '2018-12-03 05:53:06'),
+(7, '06', 'Phí giám định di vật, cổ vật, bảo vật quốc gia', NULL, '2018-12-03 05:53:23', '2018-12-03 05:53:23'),
+(8, '07', 'Phí giới thiệu việc làm', NULL, '2018-12-03 05:53:38', '2018-12-03 05:53:38'),
+(9, '08', 'Phí dự thi, dự tuyển', NULL, '2018-12-03 05:53:52', '2018-12-03 05:53:52'),
+(10, '09', 'Phí kiểm nghiệm trang thiết bị y tế', NULL, '2018-12-03 05:54:11', '2018-12-03 05:54:11'),
+(11, '10', 'Phí kiểm định phương tiện đo lường', NULL, '2018-12-03 05:54:22', '2018-12-03 05:54:22'),
+(12, '11', 'Phí giám định tư pháp', NULL, '2018-12-03 05:54:42', '2018-12-03 05:54:42'),
+(13, '12', 'Phí sử dụng bến, bãi, mặt nước', NULL, '2018-12-03 05:54:53', '2018-12-03 05:54:53'),
+(14, '13', 'Phí kiểm nghiệm dư lượng thuộc bảo vệ thực vật và sản phẩm thực vật', NULL, '2018-12-03 05:55:12', '2018-12-03 05:55:12'),
+(15, '14', 'Phí kiểm nghiệm chất lượng thức ăn chăn nuôi', NULL, '2018-12-03 05:55:22', '2018-12-03 05:55:22'),
+(16, '15', 'Phí kiểm tra vệ sinh thú y', NULL, '2018-12-03 05:55:33', '2018-12-03 05:55:33');
 
 -- --------------------------------------------------------
 
@@ -1574,7 +1588,7 @@ CREATE TABLE `giahhdvk` (
 --
 
 INSERT INTO `giahhdvk` (`id`, `mahs`, `maxa`, `mahuyen`, `district`, `manhom`, `ngayapdung`, `soqd`, `ghichu`, `trangthai`, `ngayapdunglk`, `soqdlk`, `created_at`, `updated_at`) VALUES
-(3, 'QCG1543635747', NULL, NULL, 'QCG', '01', '2018-12-01', '002', '', 'CHT', '2018-11-18', '001', '2018-12-01 03:42:27', '2018-12-01 03:49:08');
+(3, 'QCG1543635747', NULL, NULL, 'QCG', '01', '2018-12-01', '002', '', 'HT', '2018-11-18', '001', '2018-12-01 03:42:27', '2018-12-02 04:01:08');
 
 -- --------------------------------------------------------
 
@@ -1604,7 +1618,7 @@ CREATE TABLE `giahhdvkct` (
 --
 
 INSERT INTO `giahhdvkct` (`id`, `mahs`, `maxa`, `mahuyen`, `district`, `manhom`, `mahhdv`, `tenhhdv`, `dacdiemkt`, `dvt`, `gialk`, `gia`, `created_at`, `updated_at`) VALUES
-(3, 'QCG1543635747', NULL, NULL, NULL, '01', '1.001', 'Thóc tẻ thường', 'Khô', 'đ/kg', '110000', '130000', '2018-12-01 03:42:27', '2018-12-01 03:47:36'),
+(3, 'QCG1543635747', NULL, NULL, NULL, '01', '1.001', 'Thóc tẻ thường', 'Khô', 'đ/kg', '150000', '130000', '2018-12-01 03:42:27', '2018-12-01 04:41:44'),
 (4, 'QCG1543635747', NULL, NULL, NULL, '01', '1.002', 'Gạo tẻ thường', '', 'đ/kg', NULL, NULL, '2018-12-01 03:42:27', '2018-12-01 03:42:27'),
 (5, 'QCG1543635747', NULL, NULL, NULL, '01', '1.003', 'Gạo tám thơm, nàng hương', '', 'đ/kg', NULL, NULL, '2018-12-01 03:42:27', '2018-12-01 03:42:27'),
 (6, 'QCG1543635747', NULL, NULL, NULL, '01', '1.004', 'Thịt lợn thăn', '', 'đ/kg', NULL, NULL, '2018-12-01 03:42:27', '2018-12-01 03:42:27'),
@@ -2941,10 +2955,12 @@ CREATE TABLE `philephi` (
   `id` int(10) UNSIGNED NOT NULL,
   `manhom` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `mahs` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota` text COLLATE utf8_unicode_ci,
   `soqd` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ngayapdung` date DEFAULT NULL,
   `ghichu` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `trangthai` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dvt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -2953,8 +2969,8 @@ CREATE TABLE `philephi` (
 -- Dumping data for table `philephi`
 --
 
-INSERT INTO `philephi` (`id`, `manhom`, `mahs`, `soqd`, `ngayapdung`, `ghichu`, `trangthai`, `created_at`, `updated_at`) VALUES
-(5, 'PSDCTDV', 'T1541143237', 'Kèm theo Quyết định số 53/2016/QĐ-UBND ngày 31/12/2016', '2018-12-31', '', 'HHT', '2018-11-02 07:20:37', '2018-11-09 08:48:42');
+INSERT INTO `philephi` (`id`, `manhom`, `mahs`, `mota`, `soqd`, `ngayapdung`, `ghichu`, `trangthai`, `dvt`, `created_at`, `updated_at`) VALUES
+(6, '12', 'T1543821729', 'MỨC THU PHÍ SỬ DỤNG CÔNG TRÌNH KẾT CẤU HẠ TẦNG, CÔNG TRÌNH DỊCH VỤ, TIỆN ÍCH CÔNG CỘNG TRONG KHU VỰC CỬA KHẨU TRÊN ĐỊA BÀN TỈNH LẠNG SƠN', 'Quyết số 53 /2016/QĐ-UBND ngày 31/12/2016 của Ủy ban nhân dân tỉnh Lạng Sơn', '2018-01-01', '', 'CHT', 'đồng/xe/lần ra, vào', '2018-12-03 07:22:09', '2018-12-03 07:25:23');
 
 -- --------------------------------------------------------
 
@@ -2967,6 +2983,7 @@ CREATE TABLE `philephict` (
   `mahs` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ptcp` text COLLATE utf8_unicode_ci,
   `mucthuphi` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ghichu` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -2975,8 +2992,14 @@ CREATE TABLE `philephict` (
 -- Dumping data for table `philephict`
 --
 
-INSERT INTO `philephict` (`id`, `mahs`, `ptcp`, `mucthuphi`, `created_at`, `updated_at`) VALUES
-(2, 'T1541143237', 'Xe oto dưới 2 tấn, xe ba gác', '1000001', '2018-11-02 07:20:37', '2018-11-02 07:59:04');
+INSERT INTO `philephict` (`id`, `mahs`, `ptcp`, `mucthuphi`, `ghichu`, `created_at`, `updated_at`) VALUES
+(3, 'T1543821729', 'Phương tiện vận tải chở hàng hóa xuất khẩu, nhập khẩu - Xe ô tô có trọng tải dưới 02 tấn, xe ba bánh và các loại xe tương tự chở hàng hóa xuất khẩu là rau, củ tươi các loại.', '100000', NULL, '2018-12-03 07:22:10', '2018-12-03 07:22:10'),
+(4, 'T1543821729', 'Phương tiện vận tải chở hàng hóa xuất khẩu, nhập khẩu - Xe ô tô có trọng tải dưới 02 tấn, xe ba bánh và các loại xe tương tự chở hàng hóa xuất khẩu, nhập khẩu (không thuộc đối tượng 1 nêu trên).', '150000', NULL, '2018-12-03 07:22:10', '2018-12-03 07:22:10'),
+(5, 'T1543821729', 'Phương tiện vận tải chở hàng hóa xuất khẩu, nhập khẩu - Xe ô tô có trọng tải từ 02 đến dưới 04 tấn', '200000', NULL, '2018-12-03 07:22:10', '2018-12-03 07:22:10'),
+(6, 'T1543821729', 'Phương tiện vận tải chở hàng hóa xuất khẩu, nhập khẩu - Xe ô tô có trọng tải từ 04 tấn đến dưới 10 tấn', '300000', NULL, '2018-12-03 07:22:10', '2018-12-03 07:22:10'),
+(7, 'T1543821729', 'Phương tiện vận tải chở hàng hóa xuất khẩu, nhập khẩu - Xe ô tô có trọng tải từ 10 tấn đến dưới 18 tấn; xe chở hàng bằng container 20 fit', '500000', NULL, '2018-12-03 07:22:10', '2018-12-03 07:22:10'),
+(8, 'T1543821729', 'Phương tiện vận tải chở hàng hóa xuất khẩu, nhập khẩu - Xe ô tô có trọng tải từ 18 tấn trở lên; xe chở hàng bằng container 40 fit', '800000', NULL, '2018-12-03 07:22:10', '2018-12-03 07:22:10'),
+(9, 'T1543821729', 'Phương tiện vận tải chở hàng hóa xuất khẩu, nhập khẩu - Xe ô tô chở quặng xuất khẩu', '0', 'Nhân hệ số 5 đối với các mức giá trên', '2018-12-03 07:22:10', '2018-12-03 07:22:10');
 
 -- --------------------------------------------------------
 
@@ -2989,6 +3012,7 @@ CREATE TABLE `philephictdf` (
   `mahuyen` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ptcp` text COLLATE utf8_unicode_ci,
   `mucthuphi` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ghichu` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -3774,7 +3798,9 @@ INSERT INTO `viewpage` (`id`, `ip`, `session`, `created_at`, `updated_at`) VALUE
 (105, '::1', 'k46vpqfjnbf9M8txrrCgX2HGhzlgfXgabPcdoWC4', '2018-11-29 07:18:55', '2018-11-29 07:18:55'),
 (106, '::1', '3HOwcth7OFCz5dI5rjTuHFQptG2CPRtnXi2eTrIv', '2018-11-30 02:48:08', '2018-11-30 02:48:08'),
 (107, '::1', 'yGw5rr5UT5SfrTjT5PW59RsQwkFsi0ADQN84lMoH', '2018-11-30 07:17:28', '2018-11-30 07:17:28'),
-(108, '::1', 'ljRdu1OINDYliEs87Rzb3Lo9YygYcBm49YpdNBow', '2018-12-01 02:52:34', '2018-12-01 02:52:34');
+(108, '::1', 'ljRdu1OINDYliEs87Rzb3Lo9YygYcBm49YpdNBow', '2018-12-01 02:52:34', '2018-12-01 02:52:34'),
+(109, '::1', '8IJVaGcXIOp4zEOXdl5ZtYbzDjV3V3zZ1quuj19I', '2018-12-02 02:29:51', '2018-12-02 02:29:51'),
+(110, '::1', 'gR24liRXXW3LhzdJpKK2hwhyPntU583qUnDyf2Li', '2018-12-03 02:10:45', '2018-12-03 02:10:45');
 
 --
 -- Indexes for dumped tables
@@ -4318,17 +4344,17 @@ ALTER TABLE `cskddvlt`
 -- AUTO_INCREMENT for table `daugiadat`
 --
 ALTER TABLE `daugiadat`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `daugiadatct`
 --
 ALTER TABLE `daugiadatct`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `daugiadatctdf`
 --
 ALTER TABLE `daugiadatctdf`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `diabanhd`
 --
@@ -4373,7 +4399,7 @@ ALTER TABLE `dmmhbinhongia`
 -- AUTO_INCREMENT for table `dmphilephi`
 --
 ALTER TABLE `dmphilephi`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `dmqdgiadat`
 --
@@ -4443,7 +4469,7 @@ ALTER TABLE `giahhdvkct`
 -- AUTO_INCREMENT for table `giahhdvkctdf`
 --
 ALTER TABLE `giahhdvkctdf`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `gianuocsh`
 --
@@ -4633,17 +4659,17 @@ ALTER TABLE `nhomthuetn`
 -- AUTO_INCREMENT for table `philephi`
 --
 ALTER TABLE `philephi`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `philephict`
 --
 ALTER TABLE `philephict`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `philephictdf`
 --
 ALTER TABLE `philephictdf`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `register`
 --
@@ -4708,7 +4734,7 @@ ALTER TABLE `vanbanqlnn`
 -- AUTO_INCREMENT for table `viewpage`
 --
 ALTER TABLE `viewpage`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;COMMIT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

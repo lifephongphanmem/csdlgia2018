@@ -10,10 +10,12 @@ class PhiLePhi extends Model
     protected $fillable = [
         'id',
         'mahs',
+        'mota',
         'soqd',
         'ngayapdung',
         'trangthai',
         'ghichu',
-        'manhom'
+        'manhom',
+        'dvt'
     ];
 }

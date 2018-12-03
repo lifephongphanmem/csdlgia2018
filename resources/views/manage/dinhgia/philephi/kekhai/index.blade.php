@@ -133,8 +133,9 @@
                                 <input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/>
                             </th-->
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Nhóm phí lệ phí</th>
-                            <th style="text-align: center">Số quyết định</th>
+                            <th style="text-align: center" width="20%">Nhóm phí lệ phí</th>
+                            <th style="text-align: center" width="20%">Mô tả</th>
+                            <th style="text-align: center" width="10%">Số quyết định</th>
                             <th style="text-align: center">Ngày áp dụng</th>
                             <th style="text-align: center">Ghi chú</th>
                             <th style="text-align: center" width="10%">Trạng thái</th>
@@ -146,7 +147,8 @@
                         <tr>
                             <td style="text-align: center">{{$key + 1}}</td>
                             <td class="success">{{$tt->tennhom}}</td>
-                            <td class="success">{{$tt->soqd}}</td>
+                            <td class="active">{{$tt->mota}}</td>
+                            <td>{{$tt->soqd}}</td>
                             <td class="text-center" style="font-weight: bold">{{getDayVn($tt->ngayapdung)}}</td>
                             <td>{{$tt->ghichu}}</td>
                             <td style="text-align: center">
@@ -222,7 +224,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="control-label">Phân loại tài nguyên</label>
+                                <label class="control-label">Nhóm phí, lệ phí</label>
                                 <select name="manhom" id="manhom" class="form-control">
                                     @foreach($m_nhomphilephi as $ct)
                                         <option value="{{$ct->manhom}}">{{$ct->tennhom}}</option>

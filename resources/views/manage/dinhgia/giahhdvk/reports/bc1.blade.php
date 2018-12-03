@@ -1,6 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html lang="vi">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>{{$pageTitle}}</title>
@@ -33,7 +32,6 @@
     </style>
 </head>
 <body style="font:normal 14px Times, serif;">
-
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
         <td width="40%" style="text-transform: uppercase;">
@@ -97,7 +95,6 @@
             <td></td>
         </tr>
     @endforeach
-
 </table>
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:20px auto; text-align: center;">
     <tr>
@@ -108,7 +105,6 @@
             <b></b><br>
         </td>
     </tr>
-
 </table>
 </body>
 </html>

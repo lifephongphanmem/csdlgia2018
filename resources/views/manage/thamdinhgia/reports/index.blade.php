@@ -13,7 +13,7 @@
 
 
     <h3 class="page-title">
-       Thông tư<small> 142/2015/BTC</small>
+       Báo cáo tổng hợp<small> &nbsp;Thẩm định giá tài sản NN</small>
     </h3>
     <!-- END PAGE HEADER-->
 

@@ -53,6 +53,7 @@
                     _token: CSRF_TOKEN,
                     ptcp: $('#ptcp').val(),
                     mucthuphi: $('#mucthuphi').val(),
+                    ghichu: $('#ghichuct').val(),
                     mahs: $('#mahs').val()
                 },
                 dataType: 'JSON',
@@ -102,6 +103,7 @@
                     id: $('#idedit').val(),
                     ptcp: $('#ptcpedit').val(),
                     mucthuphi: $('#mucthuphiedit').val(),
+                    ghichu: $('#ghichuctedit').val(),
                     mahs: $('#mahs').val()
                 },
                 dataType: 'JSON',
@@ -184,11 +186,18 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
+                                        <label class="control-label">Mô tả<span class="require">*</span></label>
+                                        {!!Form::text('mota',null, array('id' => 'mota','class' => 'form-control required'))!!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                         <label class="control-label">Thông tin quyết định<span class="require">*</span></label>
                                         {!!Form::text('soqd',null, array('id' => 'soqd','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
-
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -199,8 +208,16 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label class="control-label">Đơn vị tính</label>
+                                        {!!Form::text('dvt',null, array('id' => 'dvt','class' => 'form-control required'))!!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                         <label class="control-label">Ghi chú</label>
-                                        <input type="text" class="form-control" name="ghichu" id="ghichu">
+                                        {!!Form::text('ghichu',null, array('id' => 'ghichu','class' => 'form-control'))!!}
                                     </div>
                                 </div>
                             </div>
@@ -221,8 +238,9 @@
                                         <thead>
                                         <tr>
                                             <th width="2%" style="text-align: center">STT</th>
-                                            <th style="text-align: center">Phương tiện chịu phí</th>
+                                            <th style="text-align: center">Tên phí</th>
                                             <th style="text-align: center">Mức thu phí</th>
+                                            <th style="text-align: center">Ghi chú</th>
                                             <th width="15%" style="text-align: center">Thao tác</th>
                                         </tr>
                                         </thead>
@@ -232,6 +250,7 @@
                                             <td style="text-align: center">{{$key+1}}</td>
                                             <td style="text-align: left">{{$ct->ptcp}}</td>
                                             <td style="text-align: right;font-weight: bold">{{number_format($ct->mucthuphi)}}</td>
+                                            <td style="text-align: left">{{$ct->ghichu}}</td>
                                             <td>
                                                 <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editmhbog({{$ct->id}})"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>
                                                 <button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid({{$ct->id}})" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
@@ -251,9 +270,10 @@
                 <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
             </div>
-            {!! Form::close() !!}
+
             <!-- END VALIDATION STATES-->
         </div>
+        {!! Form::close() !!}
     </div>
     <script type="text/javascript">
         function validateForm(){
@@ -279,7 +299,7 @@
                 <div class="modal-body" id="ttmhbog">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label"><b>Phương tiện chịu phí</b><span class="require">*</span></label>
+                            <div class="form-group"><label for="selGender" class="control-label"><b>Tên phí</b><span class="require">*</span></label>
                                 <div><input type="text" id="ptcp" name="ptcp" class="form-control"></div>
                             </div>
                         </div>
@@ -288,6 +308,11 @@
                         <div class="col-md-6">
                             <div class="form-group"><label for="selGender" class="control-label"><b>Mức thu phí</b><span class="require">*</span></label>
                                 <div><input type="text" style="text-align: right; font-weight: bold" id="mucthuphi" name="mucthuphi" class="form-control" data-mask="fdecimal"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group"><label for="selGender" class="control-label"><b>Ghi chú</b><span class="require">*</span></label>
+                                <div><input type="text" style="text-align: right; font-weight: bold" id="ghichuct" name="ghichuct" class="form-control"></div>
                             </div>
                         </div>
                     </div>
@@ -307,7 +332,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Chỉnh sửa thông tin lệ phí trước bạ</h4>
+                    <h4 class="modal-title">Chỉnh sửa thông tin phí, lệ phí</h4>
                 </div>
                 <div class="modal-body" id="ttmhbogedit">
 

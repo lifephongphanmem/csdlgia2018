@@ -111,7 +111,6 @@
                             <th style="text-align: center" width="2%">STT</th>
                             <th style="text-align: center">Mã nhóm</th>
                             <th style="text-align: center">Tên nhóm</th>
-                            <th style="text-align: center">Đơn vị tính</th>
                             <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
                         </thead>
@@ -121,7 +120,6 @@
                             <td style="text-align: center">{{$key + 1}}</td>
                             <td>{{$tt->manhom}}</td>
                             <td class="active" >{{$tt->tennhom}}</td>
-                            <td>{{$tt->dvt}}</td>
                             <td>
                                 @if(can('dmgiaphilephi','edit'))
                                 <button type="button" onclick="ClickEdit('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
@@ -148,7 +146,7 @@
                 {!! Form::open(['url'=>'nhomphilephi','id' => 'frm_create'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Thêm mới nhóm loại rừng?</h4>
+                    <h4 class="modal-title">Thêm mới nhóm phí lệ phí?</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -167,14 +165,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <!--div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="control-label">Đơn vị tính<span class="require">*</span></label>
                                 <input type="text" name="dvt" id="dvt" class="form-control">
                             </div>
                         </div>
-                    </div>
+                    </div-->
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn blue" onclick="ClickCreate()">Đồng ý</button>
@@ -192,7 +190,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Chỉnh sửa nhóm loại rừng?</h4>
+                    <h4 class="modal-title">Chỉnh sửa nhóm phí lệ phí</h4>
                 </div>
                 {!! Form::open(['url'=>'nhomphilephi/update','id' => 'frm_update'])!!}
                 <div class="modal-body" id="edit-tt">

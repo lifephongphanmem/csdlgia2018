@@ -16,11 +16,13 @@ class CreatePhilephiTable extends Migration
         Schema::create('philephi', function (Blueprint $table) {
             $table->increments('id');
             $table->string('mahs')->nullable();
+            $table->text('mota')->nullable();
             $table->string('soqd')->nullable();
             $table->date('ngayapdung')->nullable();
             $table->string('ghichu')->nullable();
             $table->string('trangthai')->nullable();
             $table->string('manhom')->nullable();
+            $table->string('dvt')->nullable();
             $table->timestamps();
         });
     }

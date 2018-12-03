@@ -66,6 +66,7 @@ class PhiLePhiController extends Controller
                     $modelct = new PhiLePhiCt();
                     $modelct->ptcp= $ctdf->ptcp;
                     $modelct->mucthuphi = $ctdf->mucthuphi;
+                    $modelct->ghichu = $ctdf->ghichu;
                     $modelct->mahs = $inputs['mahs'];
                     $modelct->save();
                 }

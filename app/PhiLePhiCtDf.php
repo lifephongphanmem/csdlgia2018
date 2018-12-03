@@ -12,5 +12,6 @@ class PhiLePhiCtDf extends Model
         'mahuyen',
         'ptcp',
         'mucthuphi',
+        'ghichu'
     ];
 }

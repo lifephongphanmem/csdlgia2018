@@ -52,20 +52,22 @@
         </td>
     </tr>
 </table>
-<p style="text-align: center;font-weight: bold;font-size: 20px">{{$m_nhomphilephi->tennhom}}</p>
+<p style="text-align: center;font-weight: bold;font-size: 20px;text-transform: uppercase;">{{$m_nhomphilephi->tennhom}}</p>
+<p style="text-align: center;font-weight: bold;font-size: 20px;text-transform: uppercase; ">{{$model->mota}}</p>
+
 <p style="text-align: center"><i >({{$model->soqd}})</i></p>
 
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <tr>
         <th width="2%">STT</th>
-        <th width="80%">Phương tiện chịu phí</th>
+        <th width="80%">Tên loại phí</th>
         <th>Mức thu phí<br>{{$m_nhomphilephi->dvt}}</th>
     </tr>
     @foreach($modelct as $key=>$tt)
     <tr>
         <td style="text-align: center">{{$key+1}}</td>
         <td>{{$tt->ptcp}}</td>
-        <td style="text-align: right">{{number_format($tt->mucthuphi)}}</td>
+        <td style="text-align: right; font-weight: bold">{{$tt->mucthuphi != 0 ? number_format($tt->mucthuphi) : $tt->ghichu}}</td>
     </tr>
     @endforeach
 </table>
@@ -82,7 +84,6 @@
             <br>
             <br>
             <b style="text-transform: uppercase;"></b>
-
         </td>
     </tr>
 </table>

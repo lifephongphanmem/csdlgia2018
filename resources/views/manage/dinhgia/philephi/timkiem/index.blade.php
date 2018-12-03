@@ -106,6 +106,7 @@
                                 <input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/>
                             </th-->
                             <th width="2%" style="text-align: center">STT</th>
+                            <th style="text-align: center" width="20%">Mô tả</th>
                             <th style="text-align: center" >Số QĐ</th>
                             <th style="text-align: center">Ngày áp dụng</th>
                             <th style="text-align: center">Nhóm phí lệ phí</th>
@@ -117,6 +118,7 @@
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
+                                <td>{{$tt->mota}}</td>
                                 <td>{{$tt->soqd}}</td>
                                 <td>{{getDayVn($tt->ngayapdung)}}</td>
                                 <td>{{$tt->tennhom}}</td>
