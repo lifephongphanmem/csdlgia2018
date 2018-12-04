@@ -10,7 +10,6 @@ Route::post('thongtindoanhnghiep/upavatar','CompanyController@upavatar');
 //DVLT
 include('kkgia/dvlt.php');
 
-
 //DVGS
 include('kkgia/tpcnte6t.php');
 
@@ -20,5 +19,10 @@ include('kkgia/tacn.php');
 //VTXK
 include('kkgia/vtxk.php');
 
+//VTXTX
+include('kkgia/vtxtx.php');
+
+//VLXD
+include('kkgia/vlxd.php');
 
 ?>

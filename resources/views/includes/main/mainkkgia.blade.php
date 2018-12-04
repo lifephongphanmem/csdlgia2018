@@ -3,7 +3,7 @@
 <li class="">
     <a href="javascript:;">
         <i class="icon-folder"></i>
-        <span class="title">Giá kê khai HH-DV</span>
+        <span class="title">Đăng ký giá - Niên yết giá</span>
         <span class="arrow"></span>
     </a>
     <ul class="sub-menu" style="display: none;">
@@ -134,7 +134,7 @@
                     @if(can('vtxk','index'))
                         @if(canDVVT('dvvt','vtxk'))
                         <li>
-                            <a href="javascript:;">
+                            <a href="">
                                 <span class="title">Vận tải xe khách</span>
                                 <span class="arrow"></span>
                             </a>
@@ -152,10 +152,10 @@
                                         <li><a href="{{url('thongtindnvtxk')}}">Kê khai giá vận tải xe khách</a></li>
                                         <li><a href="{{url('xetduyetkekhaigiavtxk')}}">Xét duyệt hồ sơ kê khai</a></li>
                                     @endif
-                                    @if(can('tpvtxk','timkiem'))
+                                    @if(can('thvtxk','timkiem'))
                                             <li><a href="{{url('timkiemgiavantaixekhach')}}">Tìm kiếm hồ sơ kê khai</a></li>
                                     @endif
-                                    @if(can('tpvtxk','baocao'))
+                                    @if(can('thvtxk','baocao'))
                                             <li><a href="">Báo cáo</a></li>
                                     @endif
                                 @endif
@@ -192,11 +192,26 @@
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu" style="display: none;">
-                                <li><a href="">Danh mục dịch vụ</a> </li>
-                                <li><a href="">Kê khai giá</a></li>
-                                <li><a href="">Xét duyệt hồ sơ kê khai</a></li>
-                                <li><a href="">Tìm kiếm hồ sơ kê khai</a></li>
-                                <li><a href="">Báo cáo</a></li>
+                                @if(session('admin')->level == 'DVVT')
+                                    @if(can('dmvtxtx','index'))
+                                        <!--li><a href="">Danh mục dịch vụ</a> </li-->
+                                    @endif
+                                    @if(can('kkvtxtx','index'))
+                                        <li><a href="{{url('kekhaigiavantaixetaxi')}}">Kê khai giá</a></li>
+                                    @endif
+                                @endif
+                                @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
+                                    @if(can('kkvtxtx','index'))
+                                        <li><a href="{{url('thongtindnvtxtx')}}">Kê khai giá vận tải xe taxi</a></li>
+                                        <li><a href="{{url('xetduyetkekhaigiavtxtx')}}">Xét duyệt hồ sơ kê khai</a></li>
+                                    @endif
+                                    @if(can('thvtxtx','timkiem'))
+                                        <li><a href="{{url('timkiemgiavantaixetaxi')}}">Tìm kiếm hồ sơ kê khai</a></li>
+                                    @endif
+                                    @if(can('thvtxtx','baocao'))
+                                        <li><a href="">Báo cáo</a></li>
+                                    @endif
+                                @endif
                             </ul>
                         </li>
                         @endif
@@ -284,6 +299,23 @@
             </li>
             @endif
         @endif
+        <li>
+            <a href="">
+                <span class="title">Vật liệu xây dựng</span>
+                <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu" style="display: none;">
+                @if(session('admin')->level == 'VLXD')
+                    <li><a href="{{url('thongtinkekhaigiavatlieuxaydung')}}">Kê khai giá VLXD</a> </li>
+                @endif
+                @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
+                        <li><a href="{{url('thongtindnkkgiavlxd')}}">Kê khai giá VLXD</a></li>
+                        <li><a href="{{url('xetduyetkkgiavlxd')}}">Thông tin hồ sơ xét duyệt</a></li>
+                        <li><a href="{{url('timkiemkkgiavlxd')}}">Tìm kiếm thông tin</a> </li>
+                        <li><a href="{{url('baocaokekhaigiavlxd')}}">Báo cáo thống kê</a></li>
+                @endif
+            </ul>
+        </li>
     </ul>
 </li>
 @endif

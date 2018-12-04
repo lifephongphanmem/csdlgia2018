@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2018 at 09:39 AM
+-- Generation Time: Dec 04, 2018 at 07:37 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -1455,7 +1455,7 @@ CREATE TABLE `general-configs` (
 --
 
 INSERT INTO `general-configs` (`id`, `tendonvi`, `maqhns`, `diachi`, `tel`, `thutruong`, `ketoan`, `nguoilapbieu`, `diadanh`, `setting`, `thongtinhd`, `thoihanlt`, `thoihanvt`, `thoihangs`, `thoihantacn`, `sodvvt`, `created_at`, `updated_at`) VALUES
-(1, 'Sở Tài Chính tỉnh Cuộc Sống', '09876543', 'Cuộc Sống - Thành Phố Hà Nội', 'Cuộc Sống', 'Nguyễn Thị Minh Tuyết', 'Nguyễn Thị Mỹ Hạnh', 'Nguyễn Thị Mỹ Hường', 'Cuộc Sống', '{\"bog\":{\"index\":\"1\",\"congbo\":\"1\"},\"dinhgia\":{\"index\":\"1\"},\"giacldat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadaugiadat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuedatnuoc\":{\"index\":\"1\",\"congbo\":\"1\"},\"giarung\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuemuanhaxh\":{\"index\":\"1\",\"congbo\":\"1\"},\"gianuocsh\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetscong\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvgddt\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvkcb\":{\"index\":\"1\",\"congbo\":\"1\"},\"giahhdvk\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetn\":{\"index\":\"1\",\"congbo\":\"1\"},\"gialephitruocba\":{\"index\":\"1\",\"congbo\":\"1\"},\"giaphilephi\":{\"index\":\"1\",\"congbo\":\"1\"},\"thamdinhgia\":{\"index\":\"1\",\"congbo\":\"1\"},\"kkgia\":{\"index\":\"1\"},\"dvlt\":{\"index\":\"1\",\"congbo\":\"1\"},\"tpcnte6t\":{\"index\":\"1\",\"congbo\":\"1\"},\"tacn\":{\"index\":\"1\",\"congbo\":\"1\"},\"dvvt\":{\"index\":\"1\"},\"vtxk\":{\"index\":\"1\",\"congbo\":\"1\"},\"vbqlnn\":{\"index\":\"1\"},\"vbgia\":{\"index\":\"1\",\"congbo\":\"1\"}}', '', 0, 0, 0, 0, 0, '2018-11-07 09:17:11', '2018-11-30 08:15:34');
+(1, 'Sở Tài Chính tỉnh Cuộc Sống', '09876543', 'Cuộc Sống - Thành Phố Hà Nội', 'Cuộc Sống', 'Nguyễn Thị Minh Tuyết', 'Nguyễn Thị Mỹ Hạnh', 'Nguyễn Thị Mỹ Hường', 'Cuộc Sống', '{\"bog\":{\"index\":\"1\",\"congbo\":\"1\"},\"dinhgia\":{\"index\":\"1\"},\"giacldat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadaugiadat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuedatnuoc\":{\"index\":\"1\",\"congbo\":\"1\"},\"giarung\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuemuanhaxh\":{\"index\":\"1\",\"congbo\":\"1\"},\"gianuocsh\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetscong\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvgddt\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvkcb\":{\"index\":\"1\",\"congbo\":\"1\"},\"giahhdvk\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetn\":{\"index\":\"1\",\"congbo\":\"1\"},\"gialephitruocba\":{\"index\":\"1\",\"congbo\":\"1\"},\"giaphilephi\":{\"index\":\"1\",\"congbo\":\"1\"},\"thamdinhgia\":{\"index\":\"1\",\"congbo\":\"1\"},\"kkgia\":{\"index\":\"1\"},\"dvlt\":{\"index\":\"1\",\"congbo\":\"1\"},\"tpcnte6t\":{\"index\":\"1\",\"congbo\":\"1\"},\"tacn\":{\"index\":\"1\",\"congbo\":\"1\"},\"dvvt\":{\"index\":\"1\"},\"vtxk\":{\"index\":\"1\",\"congbo\":\"1\"},\"vbqlnn\":{\"index\":\"1\"},\"vbgia\":{\"index\":\"1\",\"congbo\":\"1\"}}', '', 0, 0, 0, 0, 0, '2018-11-07 09:17:11', '2018-12-04 06:32:08');
 
 -- --------------------------------------------------------
 
@@ -1495,7 +1495,10 @@ INSERT INTO `giacacloaidat` (`id`, `maso`, `magoc`, `macapdo`, `capdo`, `vitri`,
 (60, '1', NULL, '1', '1', 'Đường Kim Ngưu', NULL, NULL, NULL, 0, NULL, NULL, 'QHBT', NULL, NULL, '2018-11-08 02:39:12', '2018-11-08 02:39:12'),
 (61, '1.1', '1', '1', '2', 'Ngõ 2', 'Đường Kim Ngưu', NULL, NULL, 0, NULL, NULL, 'QHBT', NULL, NULL, '2018-11-08 02:39:23', '2018-11-08 02:39:23'),
 (62, '1.1.1', '1.1', '1', '3', 'Ngách 1', 'Đường Kim Ngưu - Ngõ 2', NULL, NULL, 0, NULL, NULL, 'QHBT', NULL, NULL, '2018-11-08 02:39:33', '2018-11-08 02:39:33'),
-(64, '1.1.2', '1.1', '2', '3', 'Ngách 2', 'Đường Kim Ngưu - Ngõ 2', NULL, NULL, 0, NULL, NULL, 'QHBT', NULL, NULL, '2018-11-08 02:39:58', '2018-11-08 02:39:58');
+(64, '1.1.2', '1.1', '2', '3', 'Ngách 2', 'Đường Kim Ngưu - Ngõ 2', NULL, NULL, 0, NULL, NULL, 'QHBT', NULL, NULL, '2018-11-08 02:39:58', '2018-11-08 02:39:58'),
+(65, '1.1.1.1.1', '1.1.1.1', '1', '5', 'cách ngõ 1m', 'Phường Mai Dịch - Đường Phạm Văn Đồng - Ngõ 1 - Ngách 1', NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-12-03 11:49:57', '2018-12-03 11:49:57'),
+(66, '1.1.1.1.1.1', '1.1.1.1.1', '1', '6', 'ngõ 1', 'Phường Mai Dịch - Đường Phạm Văn Đồng - Ngõ 1 - Ngách 1 - cách ngõ 1m', NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-12-03 11:50:21', '2018-12-03 11:50:21'),
+(67, '1.1.1.1.1.1.1', '1.1.1.1.1.1', '1', '7', 'ngõ 2', 'Phường Mai Dịch - Đường Phạm Văn Đồng - Ngõ 1 - Ngách 1 - cách ngõ 1m - ngõ 1', NULL, NULL, 0, NULL, NULL, 'QCG', NULL, NULL, '2018-12-03 11:51:12', '2018-12-03 11:51:12');
 
 -- --------------------------------------------------------
 
@@ -1716,7 +1719,8 @@ CREATE TABLE `gianuocsh` (
 --
 
 INSERT INTO `gianuocsh` (`id`, `soqd`, `ngayapdung`, `ghichu`, `mahs`, `trangthai`, `created_at`, `updated_at`) VALUES
-(1, 'Kèm theo Quyết định số 53/2016/QĐ-UBND ngày 31/12/2016', '2018-11-12', '', 'T1542014413', 'HT', '2018-11-12 09:20:13', '2018-11-12 11:30:25');
+(1, 'Kèm theo Quyết định số 53/2016/QĐ-UBND ngày 31/12/2016', '2018-11-12', '', 'T1542014413', 'HT', '2018-11-12 09:20:13', '2018-11-12 11:30:25'),
+(2, 'Kèm theo Quyết định số 53/2016/QĐ-UBND ngày 31/12/2016', '2018-12-03', '', 'T1543828384', 'CHT', '2018-12-03 09:13:04', '2018-12-03 09:13:04');
 
 -- --------------------------------------------------------
 
@@ -2225,6 +2229,13 @@ CREATE TABLE `giavtxkctdf` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `giavtxkctdf`
+--
+
+INSERT INTO `giavtxkctdf` (`id`, `maxa`, `madichvu`, `loaixe`, `diemdau`, `diemcuoi`, `mota`, `qccl`, `dvt`, `sokm`, `sltglk`, `chiphisxkdlk`, `chiphittlk`, `chiphinllk`, `chiphinclk`, `chiphikhlk`, `chiphisxkddtlk`, `chiphiclk`, `chiphisxclk`, `chiphitclk`, `chiphibhlk`, `chiphiqllk`, `tchiphisxkdlk`, `chiphidvklk`, `giathanhtblk`, `giathanhlk`, `sltg`, `chiphisxkd`, `chiphitt`, `chiphinl`, `chiphinc`, `chiphikh`, `chiphisxkddt`, `chiphic`, `chiphisxc`, `chiphitc`, `chiphibh`, `chiphiql`, `tchiphisxkd`, `chiphidvk`, `giathanhtb`, `giathanh`, `giaitrinhctcp`, `giahllk`, `giahl`, `ghichu`, `thuevat`, `created_at`, `updated_at`) VALUES
+(1, '123456789', NULL, 'Xe 4 chỗ', NULL, NULL, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '2018-12-04 02:30:06', '2018-12-04 02:30:06');
+
 -- --------------------------------------------------------
 
 --
@@ -2484,6 +2495,80 @@ CREATE TABLE `kkgiatacnctdf` (
   `thuettdb` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `thuegtgt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `gbdct` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kkgiavtxtx`
+--
+
+CREATE TABLE `kkgiavtxtx` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `maxa` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mahuyen` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mahs` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ngaynhap` date DEFAULT NULL,
+  `ngayhieuluc` date DEFAULT NULL,
+  `socv` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `socvlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ngaycvlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ytcauthanhgia` text COLLATE utf8_unicode_ci,
+  `thydggadgia` text COLLATE utf8_unicode_ci,
+  `ttnguoinop` text COLLATE utf8_unicode_ci,
+  `ngaynhan` date DEFAULT NULL,
+  `sohsnhan` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ngaychuyen` datetime DEFAULT NULL,
+  `lydo` text COLLATE utf8_unicode_ci,
+  `trangthai` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `plhs` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `thoihan` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ghichu` text COLLATE utf8_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kkgiavtxtxct`
+--
+
+CREATE TABLE `kkgiavtxtxct` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `mahs` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `maxa` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `madichvu` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `loaixe` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `qccl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dvtlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dongialk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dvt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dongia` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kkgiavtxtxctdf`
+--
+
+CREATE TABLE `kkgiavtxtxctdf` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `maxa` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `madichvu` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `loaixe` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `qccl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mota` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dvtlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dongialk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dvt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dongia` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -2829,7 +2914,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (82, '2018_11_22_094519_create_giavtxk_table', 59),
 (83, '2018_11_22_094529_create_giavtxkctdf_table', 59),
 (84, '2018_11_22_094536_create_giavtxkct_table', 59),
-(85, '2018_11_29_143107_create_ngaynghile_table', 60);
+(85, '2018_11_29_143107_create_ngaynghile_table', 60),
+(86, '2018_12_04_092145_create_kkgiavtxtx_table', 61),
+(87, '2018_12_04_092935_create_kkgiavtxtxctdf_table', 61),
+(88, '2018_12_04_133347_create_kkgiavtxtxct_table', 62);
 
 -- --------------------------------------------------------
 
@@ -3800,7 +3888,9 @@ INSERT INTO `viewpage` (`id`, `ip`, `session`, `created_at`, `updated_at`) VALUE
 (107, '::1', 'yGw5rr5UT5SfrTjT5PW59RsQwkFsi0ADQN84lMoH', '2018-11-30 07:17:28', '2018-11-30 07:17:28'),
 (108, '::1', 'ljRdu1OINDYliEs87Rzb3Lo9YygYcBm49YpdNBow', '2018-12-01 02:52:34', '2018-12-01 02:52:34'),
 (109, '::1', '8IJVaGcXIOp4zEOXdl5ZtYbzDjV3V3zZ1quuj19I', '2018-12-02 02:29:51', '2018-12-02 02:29:51'),
-(110, '::1', 'gR24liRXXW3LhzdJpKK2hwhyPntU583qUnDyf2Li', '2018-12-03 02:10:45', '2018-12-03 02:10:45');
+(110, '::1', 'gR24liRXXW3LhzdJpKK2hwhyPntU583qUnDyf2Li', '2018-12-03 02:10:45', '2018-12-03 02:10:45'),
+(111, '::1', 'qNpqpKtEf5ZuPdYUYTrlJsPcKrM3YQazihxfiw11', '2018-12-04 02:09:54', '2018-12-04 02:09:54'),
+(112, '::1', 'nNEhML7R7eGtqHGXpKhXRZginDVzimj6shOa6Zpk', '2018-12-04 02:59:03', '2018-12-04 02:59:03');
 
 --
 -- Indexes for dumped tables
@@ -4137,6 +4227,24 @@ ALTER TABLE `kkgiatacnctdf`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `kkgiavtxtx`
+--
+ALTER TABLE `kkgiavtxtx`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kkgiavtxtxct`
+--
+ALTER TABLE `kkgiavtxtxct`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kkgiavtxtxctdf`
+--
+ALTER TABLE `kkgiavtxtxctdf`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `kkgs`
 --
 ALTER TABLE `kkgs`
@@ -4439,7 +4547,7 @@ ALTER TABLE `general-configs`
 -- AUTO_INCREMENT for table `giacacloaidat`
 --
 ALTER TABLE `giacacloaidat`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 --
 -- AUTO_INCREMENT for table `giadvgddt`
 --
@@ -4474,7 +4582,7 @@ ALTER TABLE `giahhdvkctdf`
 -- AUTO_INCREMENT for table `gianuocsh`
 --
 ALTER TABLE `gianuocsh`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `gianuocshct`
 --
@@ -4559,7 +4667,7 @@ ALTER TABLE `giavtxkct`
 -- AUTO_INCREMENT for table `giavtxkctdf`
 --
 ALTER TABLE `giavtxkctdf`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `kkgiadvlt`
 --
@@ -4589,6 +4697,21 @@ ALTER TABLE `kkgiatacnct`
 -- AUTO_INCREMENT for table `kkgiatacnctdf`
 --
 ALTER TABLE `kkgiatacnctdf`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `kkgiavtxtx`
+--
+ALTER TABLE `kkgiavtxtx`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `kkgiavtxtxct`
+--
+ALTER TABLE `kkgiavtxtxct`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `kkgiavtxtxctdf`
+--
+ALTER TABLE `kkgiavtxtxctdf`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `kkgs`
@@ -4629,7 +4752,7 @@ ALTER TABLE `loaivbqlnn`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 --
 -- AUTO_INCREMENT for table `ngaynghile`
 --
@@ -4669,7 +4792,7 @@ ALTER TABLE `philephict`
 -- AUTO_INCREMENT for table `philephictdf`
 --
 ALTER TABLE `philephictdf`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `register`
 --
@@ -4734,7 +4857,7 @@ ALTER TABLE `vanbanqlnn`
 -- AUTO_INCREMENT for table `viewpage`
 --
 ALTER TABLE `viewpage`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;COMMIT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
