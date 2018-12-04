@@ -35,6 +35,7 @@ class Company extends Model
         'settingdkg',
         'xangdau',
         'dien',
+        'khidaumo',
         'phan',
         'thuocbvtv',
         'vacxingiasuc',

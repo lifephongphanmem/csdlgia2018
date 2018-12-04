@@ -62,6 +62,7 @@
                                     <option value="DVVT" {{($level == "DVVT") ? 'selected' : ''}}>Dịch vụ vận tải</option>
                                     <option value="TPCNTE6T" {{($level == "TPCNTE6T") ? 'selected' : ''}}>Thực phẩm chức năng cho trẻ em dưới 6 tuổi</option>
                                     <option value="TACN" {{($level == "TACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
+                                    <option value="DKG" {{($level == "DKG") ? 'selected' : ''}}>Đăng ký giá</option>
                                 </select>
                             </div>
                         </div>

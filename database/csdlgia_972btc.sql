@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2018 at 07:37 AM
+-- Generation Time: Dec 04, 2018 at 08:31 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -126,6 +126,18 @@ CREATE TABLE `company` (
   `level` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `avatar` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `pl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `settingdkg` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `xangdau` double NOT NULL DEFAULT '0',
+  `dien` double NOT NULL DEFAULT '0',
+  `khidaumo` double NOT NULL DEFAULT '0',
+  `phan` double NOT NULL DEFAULT '0',
+  `thuocbvtv` double NOT NULL DEFAULT '0',
+  `vacxingiasuc` double NOT NULL DEFAULT '0',
+  `muoi` double NOT NULL DEFAULT '0',
+  `suate` double NOT NULL DEFAULT '0',
+  `duong` double NOT NULL DEFAULT '0',
+  `thocgao` double NOT NULL DEFAULT '0',
+  `thuocpb` double NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -134,11 +146,12 @@ CREATE TABLE `company` (
 -- Dumping data for table `company`
 --
 
-INSERT INTO `company` (`id`, `maxa`, `mahuyen`, `tendn`, `diachi`, `tel`, `fax`, `email`, `diadanh`, `chucdanh`, `nguoiky`, `noidknopthue`, `settingdvvt`, `vtxk`, `vtxb`, `vtxtx`, `vtch`, `ghichu`, `trangthai`, `tailieu`, `giayphepkd`, `level`, `avatar`, `pl`, `created_at`, `updated_at`) VALUES
-(2, '1234567890', 'PTCQHBT', 'Công ty TNHH phát triển phần mềm Cuộc Sống1', 'Quận Hai Bà Trưng - Thành Phố Hà Nội', '0436343965', '87612121', 'minhtranlife@gmail.com', 'TP. Hà Nội', 'Giám đốc', 'Nguyễn Thị Minh Tuyết', 'Chi cục thuế TP Hà Nội', '', 0, 0, 0, 0, NULL, 'CD', 'sđa', '09876543', 'DVLT', 'no-image-available.jpg', '', '2018-10-15 02:43:46', '2018-10-15 08:01:34'),
-(5, '0987654321', 'PTCQHBT', 'Công ty TNHH thực phẩm chức năng trẻ em ABC', 'Liên Ninh, Thanh Trì, Hà Nội', '09876543', '09876543', 'minhtranlife@gmail.com', 'Hà Nội', 'Giám đốc', 'Trần Đức Minh', 'Chi cục thuế Thanh Trì', '', 0, 0, 0, 0, NULL, 'Chờ duyệt', 'sdsad', '987yt', 'TPCNTE6T', 'no-image-available.jpg', 'SX', '2018-11-19 07:31:14', '2018-11-19 07:31:14'),
-(6, '123456789', 'PTCQCG', 'Công ty TNHH thức ăn chăn nuôi ABC1', 'Liên Ninh, Thanh Trì, Hà Nội', '834567890', '09876543', 'minhtranlife@gmail.com', 'Hà Nội', 'Giám đốc', 'Trần Đức Minh', 'Chi cục thuế Thanh Trì', '', 0, 0, 0, 0, NULL, 'CD', 'sdsad', '987yt', 'TACN', 'no-image-available.jpg', 'SX', '2018-11-20 02:35:18', '2018-11-20 02:36:54'),
-(7, '123456789', 'PTCQHBT', 'Doanh nghiệp dịch vụ vận tải', 'Liên Ninh, Thanh Trì, Hà Nội', '09876543', '09876543', 'minhtranlife@gmail.com', 'Hà Nội', 'Giám đốc', 'Trần Đức Minh', 'Chi cục thuế Thanh Trì', '{\"dvvt\":{\"vtxk\":\"1\",\"vtxb\":\"1\",\"vtxtx\":\"1\",\"vtch\":\"1\"}}', 1, 1, 1, 1, NULL, 'Chờ duyệt', 'sdsad', '987yt', 'DVVT', 'no-image-available.jpg', NULL, '2018-11-21 07:35:24', '2018-11-21 08:52:57');
+INSERT INTO `company` (`id`, `maxa`, `mahuyen`, `tendn`, `diachi`, `tel`, `fax`, `email`, `diadanh`, `chucdanh`, `nguoiky`, `noidknopthue`, `settingdvvt`, `vtxk`, `vtxb`, `vtxtx`, `vtch`, `ghichu`, `trangthai`, `tailieu`, `giayphepkd`, `level`, `avatar`, `pl`, `settingdkg`, `xangdau`, `dien`, `khidaumo`, `phan`, `thuocbvtv`, `vacxingiasuc`, `muoi`, `suate`, `duong`, `thocgao`, `thuocpb`, `created_at`, `updated_at`) VALUES
+(2, '1234567890', 'PTCQHBT', 'Công ty TNHH phát triển phần mềm Cuộc Sống1', 'Quận Hai Bà Trưng - Thành Phố Hà Nội', '0436343965', '87612121', 'minhtranlife@gmail.com', 'TP. Hà Nội', 'Giám đốc', 'Nguyễn Thị Minh Tuyết', 'Chi cục thuế TP Hà Nội', '', 0, 0, 0, 0, NULL, 'CD', 'sđa', '09876543', 'DVLT', 'no-image-available.jpg', '', NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2018-10-15 02:43:46', '2018-10-15 08:01:34'),
+(5, '0987654321', 'PTCQHBT', 'Công ty TNHH thực phẩm chức năng trẻ em ABC', 'Liên Ninh, Thanh Trì, Hà Nội', '09876543', '09876543', 'minhtranlife@gmail.com', 'Hà Nội', 'Giám đốc', 'Trần Đức Minh', 'Chi cục thuế Thanh Trì', '', 0, 0, 0, 0, NULL, 'Chờ duyệt', 'sdsad', '987yt', 'TPCNTE6T', 'no-image-available.jpg', 'SX', NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2018-11-19 07:31:14', '2018-11-19 07:31:14'),
+(6, '123456789', 'PTCQCG', 'Công ty TNHH thức ăn chăn nuôi ABC1', 'Liên Ninh, Thanh Trì, Hà Nội', '834567890', '09876543', 'minhtranlife@gmail.com', 'Hà Nội', 'Giám đốc', 'Trần Đức Minh', 'Chi cục thuế Thanh Trì', '', 0, 0, 0, 0, NULL, 'CD', 'sdsad', '987yt', 'TACN', 'no-image-available.jpg', 'SX', NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2018-11-20 02:35:18', '2018-11-20 02:36:54'),
+(7, '123456789', 'PTCQHBT', 'Doanh nghiệp dịch vụ vận tải', 'Liên Ninh, Thanh Trì, Hà Nội', '09876543', '09876543', 'minhtranlife@gmail.com', 'Hà Nội', 'Giám đốc', 'Trần Đức Minh', 'Chi cục thuế Thanh Trì', '{\"dvvt\":{\"vtxk\":\"1\",\"vtxb\":\"1\",\"vtxtx\":\"1\",\"vtch\":\"1\"}}', 1, 1, 1, 1, NULL, 'Chờ duyệt', 'sdsad', '987yt', 'DVVT', 'no-image-available.jpg', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2018-11-21 07:35:24', '2018-11-21 08:52:57'),
+(8, '123456789', 'PTCQHBT', 'Doanh nghiệp đăng ký giá', 'Liên Ninh, Thanh Trì, Hà Nội', '09876543', '09876543', 'minhtranlife@gmail.com', 'Hà Nội', 'Giám đốc', 'Trần Đức Minh', 'Chi cục thuế Thanh Trì', '{\"dkg\":{\r\n\"xangdau\":\"1\"\r\n,\"dien\":\"1\"\r\n,\"khidaumo\":\"1\"\r\n,\"phan\":\"1\"\r\n,\"thuocbvtv\":\"1\"\r\n,\"vacxingiasuc\":\"1\"\r\n,\"muoi\":\"1\"\r\n,\"suate\":\"1\"\r\n,\"duong\":\"1\"\r\n,\"thocgao\":\"1\"\r\n,\"thuocpb\":\"1\"\r\n}}', 0, 0, 0, 0, NULL, 'Chờ duyệt', 'sdsad', '987yt', 'DKG', 'no-image-available.jpg', NULL, NULL, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2018-11-21 07:35:24', '2018-11-21 08:52:57');
 
 -- --------------------------------------------------------
 
@@ -4442,7 +4455,7 @@ ALTER TABLE `binhongiactdf`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `cskddvlt`
 --

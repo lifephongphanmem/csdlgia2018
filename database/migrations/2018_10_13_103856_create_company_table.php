@@ -39,16 +39,17 @@ class CreateCompanyTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('pl')->nullable();
             $table->string('settingdkg')->nullable();
-            $table->string('xangdau')->nullable();
-            $table->string('dien')->nullable();
-            $table->string('phan')->nullable();
-            $table->string('thuocbvtv')->nullable();
-            $table->string('vacxingiasuc')->nullable();
-            $table->string('muoi')->nullable();
-            $table->string('suate')->nullable();
-            $table->string('duong')->nullable();
-            $table->string('thocgao')->nullable();
-            $table->string('thuocpb')->nullable();
+            $table->double('xangdau')->default(0);
+            $table->double('dien')->default(0);
+            $table->double('khidaumo')->default(0);
+            $table->double('phan')->default(0);
+            $table->double('thuocbvtv')->default(0);
+            $table->double('vacxingiasuc')->default(0);
+            $table->double('muoi')->default(0);
+            $table->double('suate')->default(0);
+            $table->double('duong')->default(0);
+            $table->double('thocgao')->default(0);
+            $table->double('thuocpb')->default(0);
 
             $table->timestamps();
         });
