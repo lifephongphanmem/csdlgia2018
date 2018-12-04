@@ -38,6 +38,18 @@ class CreateCompanyTable extends Migration
             $table->string('level')->nullable(); //Phân loại kd dịch vụ gì
             $table->string('avatar')->nullable();
             $table->string('pl')->nullable();
+            $table->string('settingdkg')->nullable();
+            $table->string('xangdau')->nullable();
+            $table->string('dien')->nullable();
+            $table->string('phan')->nullable();
+            $table->string('thuocbvtv')->nullable();
+            $table->string('vacxingiasuc')->nullable();
+            $table->string('muoi')->nullable();
+            $table->string('suate')->nullable();
+            $table->string('duong')->nullable();
+            $table->string('thocgao')->nullable();
+            $table->string('thuocpb')->nullable();
+
             $table->timestamps();
         });
     }

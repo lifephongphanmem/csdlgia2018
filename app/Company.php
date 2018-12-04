@@ -31,6 +31,17 @@ class Company extends Model
         'giayphepkd',
         'level',
         'avatar',
-        'pl'
+        'pl',
+        'settingdkg',
+        'xangdau',
+        'dien',
+        'phan',
+        'thuocbvtv',
+        'vacxingiasuc',
+        'muoi',
+        'suate',
+        'duong',
+        'thocgao',
+        'thuocpb',
     ];
 }
