@@ -10,6 +10,8 @@ Route::get('thongtingiacacloaidat/updatevitri','GiaCacLoaiDatController@updatevi
 Route::get('thongtingiacacloaidat/storechirld','GiaCacLoaiDatController@storechirld');
 Route::post('thongtingiacacloaidat/delete','GiaCacLoaiDatController@destroy');
 
+Route::get('reportsgiacldat','GiaCacLoaiDatController@show');
+
 Route::get('timkiemthongtingiacacloaidat','GiaCacLoaiDatController@search');
 
 

@@ -154,7 +154,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Thông tin hồ sơ lệ phí trước bạ<small> thêm mới</small>
+        Thông tin hồ sơ giá dịch vụ giáo dục đào tạo<small> thêm mới</small>
     </h3>
     <!-- END PAGE HEADER-->
 

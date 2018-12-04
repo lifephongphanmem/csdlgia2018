@@ -53,7 +53,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin giá đất <small> theo vị trí</small>
+        Thông tin giá <small> các loại đất </small>
     </h3>
 
     <!-- END PAGE HEADER-->
@@ -66,6 +66,7 @@
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#modal-create-lv1" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Khu vục/Vị trí Nhóm I</button>
                         <button type="button" class="btn btn-default btn-xs mbs" id="expand" onclick="expand()"><i class="fa fa-angle-double-down"></i>&nbsp;Expand All</button>
                         <button type="button" class="btn btn-default btn-xs mbs" id="collapse" onclick="collapse()"><i class="fa fa-angle-double-up"></i>&nbsp;Collapse All</button>
+                        <a href="{{url('reportsgiacldat?&district='.$district)}}" class="btn btn-default btn-xs mbs" target="_blank"><i class="fa fa-print"></i>&nbsp;Print</a>
                     </div>
                 </div>
                 <div class="portlet-body">

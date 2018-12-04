@@ -35,7 +35,6 @@ class GiaCacLoaiDatController extends Controller
                 ->with('model_diaban',$model_diaban)
                 ->with('model_quyetdinh',$model_quyetdinh)
                 ->with('district',$inputs['district'])
-                ->with('url','/giadat/vitri/')
                 ->with('pageTitle','Thông tin quản lý giá các loại đất');
 
         }else
@@ -220,6 +219,23 @@ class GiaCacLoaiDatController extends Controller
                 ->with('vitri',$inputs['vitri'])
                 ->with('model',$model)
                 ->with('pageTitle','Tìm kiếm thông tin giá các loại đất');
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function show(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $model_diaban = DiaBanHd::where('level','H')
+                ->where('district',$inputs['district'])
+                ->first();
+
+            $model = GiaCacLoaiDat::where('mahuyen',$inputs['district'])->get();
+            return view('manage.dinhgia.giacldat.reports.print')
+                ->with('model',$model)
+                ->with('model_diaban',$model_diaban)
+                ->with('pageTitle','Thông tin quản lý giá các loại đất');
 
         }else
             return view('errors.notlogin');

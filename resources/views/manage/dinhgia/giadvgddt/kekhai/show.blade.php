@@ -37,7 +37,7 @@
     </tr>
     <tr>
         <td colspan="2" style="text-align: center; font-size: 16px; text-transform: uppercase;">
-            <b>BẢNG GIÁ TỐI THIỂU TÍNH THUẾ TRUỚC BẠ <br>
+            <b>BẢNG GIÁ DỊCH VỤ GIÁO DỤC ĐÀO TẠO<br>
                 TRÊN ĐỊA BẠN TỈNH</b>
         </td>
     </tr>
