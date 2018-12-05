@@ -3,7 +3,7 @@
 <li class="">
     <a href="javascript:;">
         <i class="icon-folder"></i>
-        <span class="title">Đăng ký giá - Niên yết giá</span>
+        <span class="title">Kê khai giá - Niêm yết giá</span>
         <span class="arrow"></span>
     </a>
     <ul class="sub-menu" style="display: none;">

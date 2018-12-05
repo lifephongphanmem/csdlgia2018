@@ -20,10 +20,12 @@ class CreateKkgiavtxtxctdfTable extends Migration
             $table->string('loaixe')->nullable();
             $table->string('qccl')->nullable();
             $table->string('mota')->nullable();
-            $table->string('dvtlk')->nullable();
             $table->string('dongialk')->nullable();
-            $table->string('dvt')->nullable();
+            $table->string('sllk')->nullable();
+            $table->string('dvtlk')->nullable();
             $table->string('dongia')->nullable();
+            $table->string('sl')->nullable();
+            $table->string('dvt')->nullable();
             $table->timestamps();
         });
     }

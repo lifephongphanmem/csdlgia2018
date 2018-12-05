@@ -27,6 +27,7 @@ class KkGiaVtXtx extends Model
         'trangthai',
         'plhs',
         'thoihan',
+        'dvt',
         'ghichu'
     ];
 }

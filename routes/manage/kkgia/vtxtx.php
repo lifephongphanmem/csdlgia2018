@@ -1,9 +1,11 @@
 <?php
 Route::get('thongtindnvtxtx','KkGiaVtXtxController@ttdn');
 Route::resource('kekhaigiavantaixetaxi','KkGiaVtXtxController');
+Route::post('kekhaigiavantaixetaxi/delete','KkGiaVtXtxController@destroy');
+
 Route::post('kekhaigiavantaixetaxi/chuyen','KkGiaVtXtxController@chuyen');
 Route::get('/kkvtxtx/showlydo','KkGiaVtXtxController@showlydo');
-Route::post('kekhaigiavantaixetaxi/delete','KkGiaVtXtxController@delete');
+
 Route::get('kekhaigiavantaixetaxi/prints','KkGiaVtXtxController@prints');
 
 
@@ -11,25 +13,17 @@ Route::get('kekhaigiavantaixetaxi/prints','KkGiaVtXtxController@prints');
 Route::get('/kkvtxtx/kiemtra','KkGiaVtXtxController@kiemtra');
 //End Ajax chuyển
 
-Route::get('/giavtxkctdf/storett','KkGiaVtXkCtDfController@store');
-Route::get('/giavtxkctdf/edittt','KkGiaVtXkCtDfController@edit');
-Route::get('/giavtxkctdf/updatett','KkGiaVtXkCtDfController@update');
-Route::get('/giavtxkctdf/deletett','KkGiaVtXkCtDfController@delete');
-Route::get('/giavtxkctdf/kkgiahh','KkGiaVtXkCtDfController@kkgia');
-Route::get('/giavtxkctdf/upkkgia','KkGiaVtXkCtDfController@upkkgia');
-Route::get('/giavtxkctdf/kkgiahhlk','KkGiaVtXkCtDfController@kkgialk');
-Route::get('/giavtxkctdf/upkkgialk','KkGiaVtXkCtDfController@upkkgialk');
+Route::get('/kkvtxtxctdf/storett','KkGiaVtXtxCtDfController@store');
+Route::get('/kkvtxtxctdf/edittt','KkGiaVtXtxCtDfController@edit');
+Route::get('/kkvtxtxctdf/updatett','KkGiaVtXtxCtDfController@update');
+Route::get('/kkvtxtxctdf/deletett','KkGiaVtXtxCtDfController@destroy');
 //End Ajax create
 
 //Ajax edit
-Route::get('/giavtxkct/storett','KkGiaVtXkCtController@store');
-Route::get('/giavtxkct/edittt','KkGiaVtXkCtController@edit');
-Route::get('/giavtxkct/updatett','KkGiaVtXkCtController@update');
-Route::get('/giavtxkct/deletett','KkGiaVtXkCtController@delete');
-Route::get('/giavtxkct/kkgiahh','KkGiaVtXkCtController@kkgia');
-Route::get('/giavtxkct/upkkgia','KkGiaVtXkCtController@upkkgia');
-Route::get('/giavtxkct/kkgiahhlk','KkGiaVtXkCtController@kkgialk');
-Route::get('/giavtxkct/upkkgialk','KkGiaVtXkCtController@upkkgialk');
+Route::get('/kkvtxtxct/storett','KkGiaVtXtxCtController@store');
+Route::get('/kkvtxtxct/edittt','KkGiaVtXtxCtController@edit');
+Route::get('/kkvtxtxct/updatett','KkGiaVtXtxCtController@update');
+Route::get('/kkvtxtxct/deletett','KkGiaVtXtxCtController@destroy');
 //End Ajax edit
 
 //Xét duyệt kk

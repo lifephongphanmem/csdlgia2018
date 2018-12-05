@@ -139,9 +139,8 @@
     <tr>
         <th width="2%">STT</th>
         <th style="text-align: center">Loại xe</th>
-        <th style="text-align: center">Tên dịch vụ</th>
         <th>Quy cách, <br>chất lượng</th>
-        <th>Đơn vị<br>tính</th>
+        <th style="text-align: center">Mô tả</th>
         <th width="10%">Mức giá <br>đăng ký hiện<br>hành</th>
         <th width="10%">Mức giá <br>đăng ký mới</th>
         <th>Mức tăng giảm</th>
@@ -152,13 +151,12 @@
     <tr>
         <td style="text-align: center">{{$key+1}}</td>
         <td>{{$tt->loaixe}}</td>
-        <td>{{$tt->mota}}</td>
         <td>{{$tt->qccl}}</td>
-        <td style="text-align: center">{{$tt->dvt}}</td>
-        <td style="text-align: right">{{number_format($tt->giathanhlk)}}</td>
-        <td style="text-align: right">{{number_format($tt->giathanh)}}</td>
-        <td style="text-align: right">{{number_format($tt->giathanh - $tt->giathanhlk)}}</td>
-        <td style="text-align: right">{{number_format(($tt->giathanh - $tt->giathanhlk)/$tt->giathanhlk*100)}}%</td>
+        <td>{{$tt->mota}}</td>
+        <td style="text-align: right;font-weight: bold">{{number_format($tt->dongialk).'đ/'.$tt->sllk.' '.$tt->dvtlk}}</td>
+        <td style="text-align: right;font-weight: bold">{{number_format($tt->dongia).'đ/'.$tt->sl.' '.$tt->dvt}}</td>
+        <td style="text-align: right">{{number_format($tt->dongia/$tt->sl - $tt->dongialk/$tt->sllk)}}</td>
+        <td style="text-align: center">{{number_format(($tt->dongia/$tt->sl - $tt->dongialk/$tt->sllk)/($tt->dongialk/$tt->sllk)*100)}}%</td>
         <td>{{$tt->ghichu}}</td>
     </tr>
     @endforeach
@@ -183,180 +181,5 @@
         </td>
     </tr>
 </table>
-<!--Trang3-->
-@foreach($modelkkct as $ttpag)
-    <p style="page-break-before: always">
-    <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 25px; text-align: center;">
-        <tr>
-            <td width="40%" style="text-transform: uppercase;">
-                <b>{{$modeldn->tendn}}</b><br>
-                --------<br>
-            </td>
-            <td>
-                <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>
-                <b><i><u>Độc lập - Tự do - Hạnh phúc</u></i></b><br>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <i>{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i>
-            </td>
-        </tr>
-    </table>
-    <p style="text-align: center; font-weight: bold; font-size: 16px;"><b>THUYẾT MINH CƠ CẤU TÍNH GIÁ<br>
-            HÀNG HÓA, DỊCH VỤ  ĐĂNG KÝ GIÁ
-        </b></p>
-    <p style="text-align: center;">(Kèm theo công văn số {{$modelkk->socv}}  ngày {{ date("d",strtotime($modelkk->ngaynhap))}} tháng {{ date("m",strtotime($modelkk->ngaynhap))}} năm {{ date("Y",strtotime($modelkk->ngaynhap))}} của {{$modeldn->tendn}})</p>
-    <p style="text-align: left; font-size: 16px;"><b>Tên dịch vụ: {{$ttpag->mota}}</b></p>
-    <p style="text-align: left; font-size: 16px;"><b>Quy cách chất lượng: {{$ttpag->qccl}}</b></p>
-    <p style="text-align: left; font-size: 16px;"><b>Đơn vị tính: {{$ttpag->dvt}}</b></p>
-    <p style="text-align: left; font-size: 16px;"><b>Ghi chú: {{$ttpag->ghichu}}<b></b></p>
-    <p><b>I. BẢNG TỔNG HỢP TÍNH GIÁ VỐN, GIÁ BÁN HÀNG HÓA, DỊCH VỤ</b></p>
-
-    <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
-        <tr>
-            <th width="2%">STT</th>
-            <th>Khoản mục chi phí</th>
-            <th>ĐVT</th>
-            <th>Thành tiền</th>
-            <th>Ghi chú</th>
-        </tr>
-        <tr>
-            <td style="text-align: center"><b>A</b></td>
-            <td><b>Sản lượng tính giá (Q)</b></td>
-            <td style="text-align: center"><b></b></td>
-            <td style="text-align: right"><b>{{number_format($ttpag->sltg)}}</b></td>
-            <td style="text-align: right"><b></b></td>
-        </tr>
-        <tr>
-            <td style="text-align: center"><b>B</b></td>
-            <td><b>Chi phí sản xuất, kinh doanh</b></td>
-            <td style="text-align: center"><b>Đồng</b></td>
-            <td style="text-align: right"><b>{{number_format($ttpag->chiphisxkd)}}</b></td>
-            <td style="text-align: right"><b></b></td>
-        </tr>
-        <tr>
-            <td style="text-align: center"><b>I</b></td>
-            <td><b>Chi phí trực tiếp:</b></td>
-            <td style="text-align: center"><b>Đồng</b></td>
-            <td style="text-align: right"><b>{{number_format($ttpag->chiphitt)}}</b></td>
-            <td style="text-align: right"><b></b></td>
-        </tr>
-        <tr>
-            <td style="text-align: center">1</td>
-            <td><b>Chi phí nguyên liệu, vật liệu, công cụ, dụng cụ, nhiên liệu, năng lượng trực tiếp</b></td>
-            <td style="text-align: center">Đồng</td>
-            <td style="text-align: right"><b>{{number_format($ttpag->chiphinl)}}</b></td>
-            <td style="text-align: right"><b></b></td>
-        </tr>
-        <tr>
-            <td style="text-align: center">2</td>
-            <td><b>Chi phí nhân công trực tiếp</b></td>
-            <td style="text-align: center">Đồng</td>
-            <td style="text-align: right"><b>{{number_format($ttpag->chiphinc)}}</b></td>
-            <td style="text-align: right"><b></b></td>
-        </tr>
-        <tr>
-            <td style="text-align: center">3</td>
-            <td>Chi phí khấu hao máy móc thiết bị trực tiếp (trường hợp được trích khấu hao)</td>
-            <td style="text-align: center">Đồng</td>
-            <td style="text-align: right">{{number_format($ttpag->chiphikh)}}</td>
-            <td style="text-align: right"></td>
-        </tr>
-        <tr>
-            <td style="text-align: center">4</td>
-            <td>Chi phí sản xuất, kinh doanh (chưa tính ở mục 1,2,3) theo đặc thù</td>
-            <td style="text-align: center">Đồng</td>
-            <td style="text-align: right">{{number_format($ttpag->chiphisxkddt)}}</td>
-            <td style="text-align: right"></td>
-        </tr>
-        <tr>
-            <td style="text-align: center"><b>II</b></td>
-            <td><b>Chi phí chung</b></td>
-            <td style="text-align: center"><b>Đồng</b></td>
-            <td style="text-align: right"><b>{{number_format($ttpag->chiphic)}}</b></td>
-            <td style="text-align: right"><b></b></td>
-        </tr>
-        <tr>
-            <td style="text-align: center">5</td>
-            <td><b>Chi phí sản xuất chung</b></td>
-            <td style="text-align: center">Đồng</td>
-            <td style="text-align: right"><b>{{number_format($ttpag->chiphisxc)}}</b></td>
-            <td style="text-align: right"><b></b></td>
-        </tr>
-        <tr>
-            <td style="text-align: center">6</td>
-            <td><b>Chi phí tài chính (nếu có)</b></td>
-            <td style="text-align: center">Đồng</td>
-            <td style="text-align: right"><b>{{number_format($ttpag->chiphitc)}}</b></td>
-            <td style="text-align: right"><b></b></td>
-        </tr>
-        <tr>
-            <td style="text-align: center">7</td>
-            <td>Chi phí bán hàng</td>
-            <td style="text-align: center">Đồng</td>
-            <td style="text-align: right">{{number_format($ttpag->chiphibh)}}</td>
-            <td style="text-align: right"></td>
-        </tr>
-        <tr>
-            <td style="text-align: center">8</td>
-            <td>Chi phí quản lý</td>
-            <td style="text-align: center">Đồng</td>
-            <td style="text-align: right">{{number_format($ttpag->chiphiql)}}</td>
-            <td style="text-align: right"></td>
-        </tr>
-        <tr>
-            <td style="text-align: center"><b></b></td>
-            <td><b>Tổng chi phí sản xuất, kinh doanh (TC)</b></td>
-            <td style="text-align: center"><b>Đồng</b></td>
-            <td style="text-align: right"><b>{{number_format($ttpag->tchiphisxkd)}}</b></td>
-            <td style="text-align: right"><b></b></td>
-        </tr>
-        <tr>
-            <td style="text-align: center"><b>C</b></td>
-            <td><b>Chi phí phân bổ cho dịch vụ khác (nếu có) (CP)</b></td>
-            <td style="text-align: center"><b>Đồng</b></td>
-            <td style="text-align: right"><b>{{number_format($ttpag->chiphidvk)}}</b></td>
-            <td style="text-align: right"><b></b></td>
-        </tr>
-        <tr>
-            <td style="text-align: center"><b>D</b></td>
-            <td><b>Giá thành toàn bộ (TC-CP)</b></td>
-            <td style="text-align: center"><b>Đồng</b></td>
-            <td style="text-align: right"><b>{{number_format($ttpag->giathanhtb)}}</b></td>
-            <td style="text-align: right"><b></b></td>
-        </tr>
-        <tr>
-            <td style="text-align: center"><b>Đ</b></td>
-            <td><b>Giá thành toàn bộ 01 (một) đơn vị sản phẩm, dịch vụ (TC-CP)/Q</b></td>
-            <td style="text-align: center"><b>Đồng</b></td>
-            <td style="text-align: right"><b>{{number_format($ttpag->giathanh)}}</b></td>
-            <td style="text-align: right"><b></b></td>
-        </tr>
-    </table>
-<p><b>II . GIẢI TRÌNH CHI TIẾT CÁCH TÍNH CÁC KHOẢN CHI PHÍ (từ mục 1 đến mục 8 bảng tổng hợp tính giá)</b></p>
-<br>
-<table width="96%" border="0" cellspacing="0" cellpadding="0" style="margin:10px auto; text-align: center;">
-    <tr>
-        <td></td>
-        <td style="text-align: center;text-transform: uppercase; " width="60%">
-            <b>{{$modeldn->chucdanhky != '' ? $modeldn->chucdanhky : 'Giám đốc'}}</b><br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <b style="text-transform: uppercase;">{{$modeldn->nguoiky}}</b>
-
-        </td>
-    </tr>
-</table>
-@endforeach
-
 </body>
 </html>

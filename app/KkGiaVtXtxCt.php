@@ -15,9 +15,11 @@ class KkGiaVtXtxCt extends Model
         'loaixe',
         'qccl',
         'mota',
-        'dvtlk',
         'dongialk',
-        'dvt',
+        'sllk',
+        'dvtlk',
         'dongia',
+        'sl',
+        'dvt',
     ];
 }

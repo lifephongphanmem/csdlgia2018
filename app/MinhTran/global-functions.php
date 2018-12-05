@@ -2131,6 +2131,14 @@ function getMoneyToDb ($value){
     return $kq;
 }
 
+function getDecimalToDb($value){
+    if($value == ''){
+        $kq = 1;
+    }else {
+        $kq = str_replace(',', '.', $value);
+    }
+    return $kq;
+}
 function getRandomPassword(){
     $bytes = random_bytes(3); // length in bytes
     $kq = (bin2hex($bytes));

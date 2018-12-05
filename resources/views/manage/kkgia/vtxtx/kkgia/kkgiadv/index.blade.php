@@ -53,7 +53,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/kkvtxk/kiemtra',
+                url: '/kkvtxtx/kiemtra',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -211,19 +211,19 @@
                                     </td>
                                 @endif
                                 <td>
-                                    <a href="{{url('kekhaigiavantaixekhach/prints?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                    <a href="{{url('kekhaigiavantaixetaxi/prints?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                     @if(canEdit($tt->trangthai))
-                                        @if(can('kkvtxk','edit'))
-                                            <a href="{{url('kekhaigiavantaixekhach/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                        @if(can('kkvtxtx','edit'))
+                                            <a href="{{url('kekhaigiavantaixetaxi/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                         @endif
                                         @if(canChuyenXoa($tt->trangthai))
-                                            @if(can('kkvtxk','delete'))
+                                            @if(can('kkvtxtx','delete'))
                                                 @if($tt->trangthai == 'CC')
                                                 <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                                     Xóa</button>
                                                 @endif
                                             @endif
-                                            @if(can('kkvtxk','approve'))
+                                            @if(can('kkvtxtx','approve'))
                                                 @if($tt->trangthai == 'CC' || $tt->trangthai == 'BTL')
                                                 <button type="button" onclick="confirmChuyen('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyen-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
                                                     Chuyển</button>

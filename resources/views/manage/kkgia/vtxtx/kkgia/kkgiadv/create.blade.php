@@ -123,134 +123,6 @@
         // </editor-fold>
     </script>
     <script>
-        function kkgia(id){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            //alert(id);
-            $.ajax({
-                url: '/giavtxkctdf/kkgiahh',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    id: id,
-                    maxa: $('input[name="maxa"]').val()
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        $('#ttkkgia').replaceWith(data.message);
-                        InputMask();
-                    }
-                    else
-                        toastr.error("Không thể chỉnh sửa thông tin giá!", "Lỗi!");
-                }
-            })
-        }
-        function kkgialk(id){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            //alert(id);
-            $.ajax({
-                url: '/giavtxkctdf/kkgiahhlk',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    id: id,
-                    maxa: $('input[name="maxa"]').val()
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        $('#ttkkgialk').replaceWith(data.message);
-                        InputMask();
-                    }
-                    else
-                        toastr.error("Không thể chỉnh sửa thông tin !", "Lỗi!");
-                }
-            })
-        }
-        function upkkgia(){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '/giavtxkctdf/upkkgia',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    id: $('input[name="idkkgia"]').val(),
-                    sltg: $('#sltg').val(),
-                    chiphisxkd: $('#chiphisxkd').val(),
-                    chiphitt: $('#chiphitt').val(),
-                    chiphinl: $('#chiphinl').val(),
-                    chiphinc: $('#chiphinc').val(),
-                    chiphikh: $('#chiphikh').val(),
-                    chiphisxkddt: $('#chiphisxkddt').val(),
-                    chiphic: $('#chiphic').val(),
-                    chiphisxc: $('#chiphisxc').val(),
-                    chiphitc: $('#chiphitc').val(),
-                    chiphibh: $('#chiphibh').val(),
-                    chiphiql: $('#chiphiql').val(),
-                    tchiphisxkd: $('#tchiphisxkd').val(),
-                    chiphidvk: $('#chiphidvk').val(),
-                    giathanhtb: $('#giathanhtb').val(),
-                    giathanh: $('#giathanh').val(),
-                    maxa: $('input[name="maxa"]').val()
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        toastr.success("Cập nhật giá thành công", "Thành công!");
-                        $('#dsts').replaceWith(data.message);
-                        jQuery(document).ready(function() {
-                            TableManaged.init();
-                        });
-                        $('#modal-kkgia').modal("hide");
-
-                    } else
-                        toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
-                }
-            })
-
-        }
-        function upkkgialk(){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '/giavtxkctdf/upkkgialk',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    id: $('input[name="idkkgialk"]').val(),
-                    sltglk: $('#sltglk').val(),
-                    chiphisxkdlk: $('#chiphisxkdlk').val(),
-                    chiphittlk: $('#chiphittlk').val(),
-                    chiphinllk: $('#chiphinllk').val(),
-                    chiphinclk: $('#chiphinclk').val(),
-                    chiphikhlk: $('#chiphikhlk').val(),
-                    chiphisxkddtlk: $('#chiphisxkddtlk').val(),
-                    chiphiclk: $('#chiphiclk').val(),
-                    chiphisxclk: $('#chiphisxclk').val(),
-                    chiphitclk: $('#chiphitclk').val(),
-                    chiphibhlk: $('#chiphibhlk').val(),
-                    chiphiqllk: $('#chiphiqllk').val(),
-                    tchiphisxkdlk: $('#tchiphisxkdlk').val(),
-                    chiphidvklk: $('#chiphidvklk').val(),
-                    giathanhtblk: $('#giathanhtblk').val(),
-                    giathanhlk: $('#giathanhlk').val(),
-                    maxa: $('input[name="maxa"]').val()
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        toastr.success("Cập nhật thông tin giá thành công", "Thành công!");
-                        $('#dsts').replaceWith(data.message);
-                        jQuery(document).ready(function() {
-                            TableManaged.init();
-                        });
-                        $('#modal-kkgialk').modal("hide");
-
-                    } else
-                        toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
-                }
-            })
-
-        }
         function checkngay(){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
@@ -280,27 +152,35 @@
             $('input[name="ngayhieuluc"]').val('');
         }
         function clearForm(){
-            $('#loaixe').val('');
+            $('#loaixe').val('Xe 4 chỗ');
             $('#mota').val('');
             $('#qccl').val('');
-            $('#dvt').val('');
-            $('#sokm').val('');
             $('#ghichu').val('');
+            $('#dongialk').val(0);
+            $('#sllk').val(1);
+            $('#dvtlk').val('km');
+            $('#dongia').val(0);
+            $('#sl').val(1);
+            $('#dvt').val('km');
 
         }
         function createttp(){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/giavtxkctdf/storett',
+                url: '/kkvtxtxctdf/storett',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
                     loaixe: $('#loaixe').val(),
                     mota: $('#mota').val(),
                     qccl: $('#qccl').val(),
-                    dvt: $('#dvt').val(),
-                    sokm: $('#sokm').val(),
                     ghichu: $('#ghichu').val(),
+                    dongialk: $('#dongialk').val(),
+                    dvtlk: $('#dvtlk').val(),
+                    sllk: $('#sllk').val(),
+                    dongia: $('#dongia').val(),
+                    dvt: $('#dvt').val(),
+                    sl: $('#sl').val(),
                     maxa: $('input[name="maxa"]').val()
                 },
                 dataType: 'JSON',
@@ -321,7 +201,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/giavtxkctdf/edittt',
+                url: '/kkvtxtxctdf/edittt',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -331,6 +211,7 @@
                 success: function (data) {
                     if (data.status == 'success') {
                         $('#ttpedit').replaceWith(data.message);
+                        InputMask();
                     }
                     else
                         toastr.error("Không thể chỉnh sửa thông tin!", "Lỗi!");
@@ -341,7 +222,7 @@
         function updatets() {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/giavtxkctdf/updatett',
+                url: '/kkvtxtxctdf/updatett',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -349,9 +230,13 @@
                     loaixe: $('#loaixeedit').val(),
                     mota: $('#motaedit').val(),
                     qccl: $('#qccledit').val(),
-                    dvt: $('#dvtedit').val(),
-                    sokm: $('#sokmedit').val(),
                     ghichu: $('#ghichuedit').val(),
+                    dongialk: $('#dongialkedit').val(),
+                    dvtlk: $('#dvtlkedit').val(),
+                    sllk: $('#sllkedit').val(),
+                    dongia: $('#dongiaedit').val(),
+                    dvt: $('#dvtedit').val(),
+                    sl: $('#sledit').val(),
                     maxa: $('input[name="maxa"]').val()
                 },
                 dataType: 'JSON',
@@ -375,7 +260,7 @@
         function deleteRow() {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/giavtxkctdf/deletett',
+                url: '/kkvtxtxctdf/deletett',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -503,12 +388,12 @@
 
 @section('content')
     <h3 class="page-title">
-        Thông tin kê khai hồ sơ giá <small>&nbsp;vận tải xe khách thêm mới</small>
+        Thông tin kê khai hồ sơ giá <small>&nbsp;vận tải xe taxi thêm mới</small>
         <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
-        {!! Form::open(['url'=>'kekhaigiavantaixekhach', 'id' => 'create_kkvtxk', 'class'=>'horizontal-form']) !!}
+        {!! Form::open(['url'=>'kekhaigiavantaixetaxi', 'id' => 'create_kkvtxtx', 'class'=>'horizontal-form']) !!}
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box blue">
@@ -558,10 +443,18 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">Ghi chú</label>
+                                {!!Form::text('ghichu',(isset($modelcb) ? $modelcb->ghichu : ''), array('id' => 'ghichu','class' => 'form-control'))!!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="form-group"><label for="selGender" class="control-label">Các yếu tố chi phí cấu thành giá (đối với kê khai lần đầu); phân tích nguyên nhân, nêu rõ biến động của các yếu tố hình thành giá tác động làm tăng hoặc giảm giá (đối với kê khai lại).</label>
                                 <div>
-                                        <textarea id="ytcauthanhgia" class="form-control" name="ytcauthanhgia" cols="30" rows="5"
-                                        ></textarea>
+                                    <textarea id="ytcauthanhgia" class="form-control" name="ytcauthanhgia" cols="30" rows="5"
+                                    ></textarea>
                                 </div>
                             </div>
                         </div>
@@ -570,8 +463,7 @@
                         <div class="col-md-12">
                             <div class="form-group"><label for="selGender" class="control-label">Các trường hợp ưu đãi, giảm giá; điều kiện áp dụng giá (nếu có).</label>
                                 <div>
-                                        <textarea id="thydggadgia" class="form-control" name="thydggadgia" cols="30" rows="5"
-                                        ></textarea>
+                                    <textarea id="thydggadgia" class="form-control" name="thydggadgia" cols="30" rows="5"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -599,7 +491,6 @@
                                     <th style="text-align: center">Loại xe</th>
                                     <th style="text-align: center">Quy cách chất lượng</th>
                                     <th style="text-align: center">Mô tả</th>
-                                    <th style="text-align: center">Đơn vị<br>tính</th>
                                     <th style="text-align: center">Mức giá <br>liền kề</th>
                                     <th style="text-align: center">Mức giá <br>kê khai</th>
                                     <th style="text-align: center">Ghi chú</th>
@@ -612,14 +503,11 @@
                                         <td style="text-align: center">{{($key +1)}}</td>
                                         <td class="active">{{$tt->loaixe}}</td>
                                         <td style="text-align: left">{{$tt->qccl}}</td>
-                                        <td style="text-align: center">{{$tt->mota}}</td>
-                                        <td style="text-align: center">{{$tt->dvt}}</td>
-                                        <td style="text-align: right">{{number_format($tt->giathanhlk)}}</td>
-                                        <td style="text-align: right">{{number_format($tt->giathanh)}}</td>
+                                        <td style="text-align: left;font-weight: bold">{{$tt->mota}}</td>
+                                        <td style="text-align: right;font-weight: bold">{{number_format($tt->dongialk).'đ/'.$tt->sllk.' '.$tt->dvtlk}}</td>
+                                        <td style="text-align: right;font-weight: bold">{{number_format($tt->dongia).'đ/'.$tt->sl.' '.$tt->dvt}}</td>
                                         <td style="text-align: left">{{$tt->ghichu}}</td>
                                         <td>
-                                            <button type="button" data-target="#modal-kkgialk" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="kkgialk({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Kê khai giá liền kề</button>
-                                            <button type="button" data-target="#modal-kkgia" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="kkgia({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Kê khai giá</button>
                                             <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editTtPh({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa thông tin</button>
                                             <button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid({{$tt->id}});" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                         </td>
@@ -633,7 +521,7 @@
             </div>
             <!-- END EXAMPLE TABLE PORTLET-->
             <div style="text-align: center">
-                <a href="{{url('kekhaigiavantaixekhach?&masothue='.$maxa)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('kekhaigiavantaixetaxi?&masothue='.$maxa)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
             </div>
@@ -651,7 +539,7 @@
     <script type="text/javascript">
         function validateForm(){
 
-            var validator = $("#create_kkvtxk").validate({
+            var validator = $("#create_kkvtxtx").validate({
                 rules: {
                     ten :"required"
                 },
@@ -725,11 +613,6 @@
                                 'Xe 4 chỗ' => 'Xe 4 chỗ',
                                 'Xe 5 chỗ' => 'Xe 5 chỗ',
                                 'Xe 7 chỗ' => 'Xe 7 chỗ',
-                                'Xe 16 chỗ' => 'Xe 16 chỗ',
-                                'Xe 29 chỗ' => 'Xe 29 chỗ',
-                                'Xe 35 chỗ' => 'Xe 35 chỗ',
-                                'Xe 45 chỗ' => 'Xe 45 chỗ',
-                                'Xe 47 chỗ' => 'Xe 47 chỗ',
                                 'Loại xe khác' => 'Loại xe khác'),null, ['id' => 'loaixe','class' => 'form-control','required'=>'required']) !!}
                             </div>
                         </div>
@@ -741,24 +624,58 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-control-label"><b>Số km</b></label>
-                                {!!Form::text('sokm', null, array('id' => 'sokm','class' => 'form-control'))!!}
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-control-label"><b>Đơn vị tính</b><span class="require">*</span></label>
-                                {!!Form::text('dvt', null, array('id' => 'dvt','class' => 'form-control','required'=>'required'))!!}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="form-control-label"><b>Quy cách chất lượng dịch vụ</b></label>
                                 {!!Form::textarea('qccl', null, array('id' => 'qccl','class' => 'form-control','rows'=>'3'))!!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label"><b>Đơn giá liền kề</b></label>
+                                <input type="text" style="text-align: right; font-weight: bold" id="dongialk" name="dongialk" class="form-control" data-mask="fdecimal">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label"><b>Đơn vị tính liền kề</b></label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" style="text-align: right; font-weight: bold" id="sllk" name="sllk" class="form-control"  data-mask="fdecimal">
+                                    </div>
+                                    <div class="col-md-6">
+                                        {!! Form::select('dvtlk',array(
+                                        'km' => 'km',
+                                        'giờ' => 'giờ',
+                                        ),null, ['id' => 'dvtlk','class' => 'form-control','required'=>'required']) !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label"><b>Đơn giá kê khai</b></label>
+                                <input type="text" style="text-align: right; font-weight: bold" id="dongia" name="dongia" class="form-control" data-mask="fdecimal">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label"><b>Đơn vị tính</b></label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" style="text-align: right; font-weight: bold" id="sl" name="sl" class="form-control"  data-mask="fdecimal">
+                                    </div>
+                                    <div class="col-md-6">
+                                        {!! Form::select('dvt',array(
+                                        'km' => 'km',
+                                        'giờ' => 'giờ',
+                                        ),null, ['id' => 'dvt','class' => 'form-control','required'=>'required']) !!}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

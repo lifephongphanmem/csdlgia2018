@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\KkGiaVtXtx;
+use App\KkGiaVtXtxCt;
 use App\KkGiaVtXtxCtDf;
 use App\Town;
 use App\Company;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class KkGiaVtXtxController extends Controller
@@ -129,11 +132,11 @@ class KkGiaVtXtxController extends Controller
                 else
                     unset($inputs['ngaycvlk']);
                 $inputs['trangthai'] = 'CC';
-                $model = new GiaVtXk();
+                $model = new KkGiaVtXtx();
                 if($model->create($inputs)){
-                    $modelctdf = GiaVtXkCtDf::where('maxa',$inputs['maxa']);
+                    $modelctdf = KkGiaVtXtxCtDf::where('maxa',$inputs['maxa']);
                     foreach($modelctdf->get() as $ctdf){
-                        $modelct = new GiaVtXkCt();
+                        $modelct = new KkGiaVtXtxCt();
                         $arrays = $ctdf->toArray();
                         unset($arrays['id']);
                         $arrays['mahs'] = $inputs['mahs'];
@@ -141,7 +144,7 @@ class KkGiaVtXtxController extends Controller
                     }
                     $modelctdf->delete();
                 }
-                return redirect('kekhaigiavantaixekhach?&masothue='.$inputs['maxa']);
+                return redirect('kekhaigiavantaixetaxi?&masothue='.$inputs['maxa']);
             }else
                 return view('errors.perm');
         }else
@@ -152,20 +155,20 @@ class KkGiaVtXtxController extends Controller
         if (Session::has('admin')) {
             $inputs = $request->all();
             $mahs = $inputs['mahs'];
-            $modelkk = GiaVtXk::where('mahs',$mahs)->first();
+            $modelkk = KkGiaVtXtx::where('mahs',$mahs)->first();
             $modeldn = Company::where('maxa',$modelkk->maxa)
                 ->where('level','DVVT')
                 ->first();
-            $modelkkct = GiaVtXkCt::where('mahs',$modelkk->mahs)
+            $modelkkct = KkGiaVtXtxCt::where('mahs',$modelkk->mahs)
                 ->get();
             $modelcqcq = Town::where('maxa',$modeldn->mahuyen)
                 ->first();
-            return view('manage.kkgia.vtxk.reports.print')
+            return view('manage.kkgia.vtxtx.reports.print')
                 ->with('modelkk',$modelkk)
                 ->with('modeldn',$modeldn)
                 ->with('modelkkct',$modelkkct)
                 ->with('modelcqcq',$modelcqcq)
-                ->with('pageTitle','Kê khai giá vận tải xe khách');
+                ->with('pageTitle','Kê khai giá vận tải xe taxi');
 
         }else
             return view('errors.notlogin');
@@ -174,17 +177,17 @@ class KkGiaVtXtxController extends Controller
     public function edit($id){
         if (Session::has('admin')) {
             if (session('admin')->level == 'DVVT' || session('admin')->level == 'T' || session('admin')->level == 'H'  || session('admin')->level == 'X') {
-                $model = GiaVtXk::findOrFail($id);
+                $model = KkGiaVtXtx::findOrFail($id);
                 $modeldn = Company::where('maxa',$model->maxa)
                     ->where('level','DVVT')
                     ->first();
-                $modelct = GiaVtXkCt::where('mahs',$model->mahs)
+                $modelct = KkGiaVtXtxCt::where('mahs',$model->mahs)
                     ->get();
-                return view('manage.kkgia.vtxk.kkgia.kkgiadv.edit')
+                return view('manage.kkgia.vtxtx.kkgia.kkgiadv.edit')
                     ->with('model',$model)
                     ->with('modeldn',$modeldn)
                     ->with('modelct',$modelct)
-                    ->with('pageTitle','Kê khai giá vận tải xe khách chỉnh sửa');
+                    ->with('pageTitle','Kê khai giá vận tải xe taxi chỉnh sửa');
             }else
                 return view('errors.perm');
 
@@ -196,7 +199,7 @@ class KkGiaVtXtxController extends Controller
         if (Session::has('admin')) {
             if (session('admin')->level == 'DVVT' || session('admin')->level == 'T' || session('admin')->level == 'H'  || session('admin')->level == 'X') {
                 $inputs = $request->all();
-                $model = GiaVtXk::findOrFail($id);
+                $model = KkGiaVtXtx::findOrFail($id);
                 if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X' || $model->maxa == session('admin')->maxa) {
                     //$inputs['ngaynhap'] = getDateToDb($inputs['ngaynhap']);
                     $inputs['ngayhieuluc'] = getDateToDb($inputs['ngayhieuluc']);
@@ -205,7 +208,7 @@ class KkGiaVtXtxController extends Controller
                     else
                         unset($inputs['ngaycvlk']);
                     $model->update($inputs);
-                    return redirect('kekhaigiavantaixekhach?&masothue=' . $model->maxa . '&trangthai=' . $model->trangthai);
+                    return redirect('kekhaigiavantaixetaxi?&masothue=' . $model->maxa . '&trangthai=' . $model->trangthai);
                 } else
                     return view('errors.perm');
             }else
@@ -214,17 +217,17 @@ class KkGiaVtXtxController extends Controller
             return view('errors.notlogin');
     }
 
-    public function delete(Request $request){
+    public function destroy(Request $request){
         if (Session::has('admin')) {
             if (session('admin')->level == 'DVVT' || session('admin')->level == 'T' || session('admin')->level == 'H') {
                 $inputs = $request->all();
-                $model = GiaVtXk::where('id',$inputs['iddelete'])
+                $model = KkGiaVtXtx::where('id',$inputs['iddelete'])
                     ->first();
                 if($model->delete()){
-                    $modelct = GiaVtXkCt::where('mahs',$model->mahs)
+                    $modelct = KkGiaVtXtxCt::where('mahs',$model->mahs)
                         ->delete();
                 }
-                return redirect('kekhaigiavantaixekhach?&masothue='.$model->maxa.'&trangthai='.$model->trangthai);
+                return redirect('kekhaigiavantaixetaxi?&masothue='.$model->maxa.'&trangthai='.$model->trangthai);
             }else{
                 return view('errors.perm');
             }
@@ -249,7 +252,7 @@ class KkGiaVtXtxController extends Controller
         $inputs = $request->all();
 
         if(isset($inputs['id'])){
-            $model = GiaVtXk::where('id',$inputs['id'])
+            $model = KkGiaVtXtx::where('id',$inputs['id'])
                 ->first();
 
             $result['message'] = '<div class="form-group" id="tthschuyen">';
@@ -263,35 +266,39 @@ class KkGiaVtXtxController extends Controller
     public function chuyen(Request $request){
         if (Session::has('admin')) {
             if (session('admin')->level == 'DVVT' || session('admin')->level == 'T' || session('admin')->level == 'H') {
-                $inputs = $request->all();
-                $model = GiaVtXk::where('id',$inputs['idchuyen'])
-                    ->first();
-                $inputs['trangthai'] = 'CD';
-                $inputs['ngaychuyen'] = Carbon::now()->toDateTimeString();
-                if($model->update($inputs)){
-                    $tencqcq = Town::where('maxa',$model->mahuyen)->first();
-                    $dn = Company::where('maxa',$model->maxa)
-                        ->where('level','DVVT')
-                        ->first();
-                    $data=[];
-                    $data['tendn'] = $dn->tendn;
-                    $data['masothue'] = $model->masothue;
-                    $data['tg'] = $inputs['ngaychuyen'];
-                    $data['tencqcq'] = $tencqcq->tendv;
-                    $data['ttnguoinop'] = $inputs['ttnguoinop'];
-                    $maildn = $dn->email;
-                    $tendn = $dn->tendn;
-                    $mailql = $tencqcq->emailql;
-                    $tenql = $tencqcq->tendv;
 
-                    Mail::send('mail.kkgia',$data, function ($message) use($maildn,$tendn,$mailql,$tenql) {
-                        $message->to($maildn,$tendn)
-                            ->to($mailql,$tenql)
-                            ->subject('Thông báo nhận hồ sơ kê khai giá dịch vụ');
-                        $message->from('phanmemcsdlgia@gmail.com','Phần mềm CSDL giá');
-                    });
-                }
-                return redirect('kekhaigiavantaixekhach?&masothue='.$model->maxa.'&trangthai='.$model->trangthai);
+                $inputs = $request->all();
+                if(isset($inputs['idchuyen'])) {
+                    $model = KkGiaVtXtx::where('id', $inputs['idchuyen'])
+                        ->first();
+                    $inputs['trangthai'] = 'CD';
+                    $inputs['ngaychuyen'] = Carbon::now()->toDateTimeString();
+                    if ($model->update($inputs)) {
+                        $tencqcq = Town::where('maxa', $model->mahuyen)->first();
+                        $dn = Company::where('maxa', $model->maxa)
+                            ->where('level', 'DVVT')
+                            ->first();
+                        $data = [];
+                        $data['tendn'] = $dn->tendn;
+                        $data['masothue'] = $model->masothue;
+                        $data['tg'] = $inputs['ngaychuyen'];
+                        $data['tencqcq'] = $tencqcq->tendv;
+                        $data['ttnguoinop'] = $inputs['ttnguoinop'];
+                        $maildn = $dn->email;
+                        $tendn = $dn->tendn;
+                        $mailql = $tencqcq->emailql;
+                        $tenql = $tencqcq->tendv;
+
+                        Mail::send('mail.kkgia', $data, function ($message) use ($maildn, $tendn, $mailql, $tenql) {
+                            $message->to($maildn, $tendn)
+                                ->to($mailql, $tenql)
+                                ->subject('Thông báo nhận hồ sơ kê khai giá dịch vụ');
+                            $message->from('phanmemcsdlgia@gmail.com', 'Phần mềm CSDL giá');
+                        });
+                    }
+                    return redirect('kekhaigiavantaixetaxi?&masothue=' . $model->maxa . '&trangthai=' . $model->trangthai);
+                }else
+                    dd('Có lỗi xảy ra bạn không thể chuyển được hồ sơ');
             }else
                 return view('errors.perm');
         }else

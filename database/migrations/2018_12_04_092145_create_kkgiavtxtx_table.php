@@ -33,7 +33,9 @@ class CreateKkgiavtxtxTable extends Migration
             $table->string('trangthai')->nullable();
             $table->string('plhs')->nullable();
             $table->string('thoihan')->nullable();
+            $table->string('dvt')->nullable();
             $table->text('ghichu')->nullable();
+
             $table->timestamps();
         });
     }
