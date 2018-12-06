@@ -23,13 +23,20 @@
         $(function(){
             $('#nam').change(function() {
                 var namhs = $('#nam').val();
-                var url = '/timkiemgiavantaixekhach?'+namhs;
+                var url = '/timkiemgiavantaixetaxi?'+namhs;
+                window.location.href = url;
+            });
+            $('#loaixe').change(function() {
+                var namhs = '&nam='+ $('#nam').val();
+                var loaixe = '&loaixe=' + $('#loaixe').val();
+                var url = '/timkiemgiavantaixetaxi?'+namhs + loaixe;
                 window.location.href = url;
             });
             $('#mota').change(function() {
                 var namhs = '&nam='+ $('#nam').val();
+                var loaixe = '&loaixe=' + $('#loaixe').val();
                 var mota = '&mota=' + $('#mota').val();
-                var url = '/timkiemgiavantaixekhach?'+namhs + mota;
+                var url = '/timkiemgiavantaixetaxi?'+namhs + mota +  loaixe;
                 window.location.href = url;
             });
 
@@ -40,7 +47,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Tìm kiếm thông tin kê khai giá<small>&nbsp;vận tải xe khách</small>
+        Tìm kiếm thông tin kê khai giá<small>&nbsp;vận tải xe taxi</small>
     </h3>
     <div class="row">
         <div class="col-md-2">
@@ -55,16 +62,25 @@
                 </select>
             </div>
         </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Loại xe</label>
+                <select name="loaixe" id="loaixe" class="form-control">
+                    <option value="">--Chọn loại xe--</option>
+                    <option value="Xe 4 chỗ" {{"Xe 4 chỗ" == $inputs['loaixe'] ? 'selected' : ''}}>Xe 4 chỗ</option>
+                    <option value="Xe 5 chỗ" {{"Xe 5 chỗ" == $inputs['loaixe'] ? 'selected' : ''}}>Xe 5 chỗ</option>
+                    <option value="Xe 7 chỗ" {{"Xe 7 chỗ" == $inputs['loaixe'] ? 'selected' : ''}}>Xe 7 chỗ</option>
+                    <option value="Loại xe khác" {{"Loại xe khác" == $inputs['loaixe'] ? 'selected' : ''}}>Loại xe khác</option>
+                </select>
+            </div>
+        </div>
         <div class="col-md-5">
             <div class="form-group">
                 <label>Mô tả</label>
                 <input type="text" class="form-control" id="mota" name="mota" value="{{$inputs['mota']}}">
             </div>
         </div>
-
     </div>
-
-
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">
@@ -79,11 +95,9 @@
                             <th style="text-align: center" width="20%">Doanh nghiệp</th>
                             <th style="text-align: center" width="8%">Ngày thực hiện<br>mức giá</th>
                             <th style="text-align: center" >Loại xe</th>
-                            <th style="text-align: center" >Mô tả</th>
                             <th style="text-align: center" >Quy cách chất lượng</th>
-                            <th style="text-align: center" >Đơn vị tính</th>
+                            <th style="text-align: center" >Mô tả</th>
                             <th style="text-align: center" >Mức giá kê khai</th>
-
                         </tr>
                         </thead>
                         <tbody>
@@ -94,11 +108,9 @@
                                     <br><b>Mã số thuế:</b> {{$tt->maxa}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->ngayhieuluc)}}</td>
                                 <td style="text-align: left">{{$tt->loaixe}}</td>
-                                <td style="text-align: left">{{$tt->mota}}</td>
                                 <td style="text-align: left">{{$tt->qccl}}</td>
-                                <td style="text-align: left">{{$tt->dvt}}</td>
-                                <td style="text-align: right;font-weight: bold">{{number_format($tt->giathanh)}}</td>
-
+                                <td style="text-align: left">{{$tt->mota}}</td>
+                                <td style="text-align: right;font-weight: bold">{{number_format($tt->dongia).'đ/'.$tt->sl.' '.$tt->dvt}}</td>
                             </tr>
                         @endforeach
                         </tbody>

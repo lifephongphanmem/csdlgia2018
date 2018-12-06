@@ -135,7 +135,7 @@
                         @if(canDVVT('dvvt','vtxk'))
                         <li>
                             <a href="">
-                                <span class="title">Vận tải xe khách</span>
+                                <span class="title">Vận tải hành khách bằng ôtô tuyến cố định</span>
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu" style="display: none;">
@@ -169,7 +169,7 @@
                         @if(canDVVT('dvvt','vtxb'))
                         <li>
                             <a href="">
-                                <span class="title">Vận tải xe buýt</span>
+                                <span class="title">Vận tải hành khách bằng xe buýt theo tuyến cố định</span>
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu" style="display: none;">
@@ -188,7 +188,7 @@
                         @if(canDVVT('dvvt','vtxtx'))
                         <li>
                             <a href="">
-                                <span class="title">Vận tải xe taxi</span>
+                                <span class="title">Vận tải hành khách bằng xe taxi</span>
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu" style="display: none;">

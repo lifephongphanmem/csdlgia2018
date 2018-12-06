@@ -321,7 +321,7 @@ class KkGiaVtXtxController extends Controller
         $inputs = $request->all();
 
         if(isset($inputs['id'])){
-            $model = GiaVtXk::where('id',$inputs['id'])
+            $model = KkGiaVtXtx::where('id',$inputs['id'])
                 ->first();
 
             $result['message'] = '<div class="form-group" id="showlydo">';

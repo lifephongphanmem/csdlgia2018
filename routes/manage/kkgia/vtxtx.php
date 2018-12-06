@@ -27,13 +27,13 @@ Route::get('/kkvtxtxct/deletett','KkGiaVtXtxCtController@destroy');
 //End Ajax edit
 
 //Xét duyệt kk
-Route::get('xetduyetkekhaigiavtxk','KkGiaVtXkXdController@index');
-Route::post('xetduyetkekhaigiavtxk/tralai','KkGiaVtXkXdController@tralai');
-Route::get('xetduyetkekhaigiavtxk/ttnhanhs','KkGiaVtXkXdController@ttnhanhs');
-Route::post('xetduyetkekhaigiavtxk/nhanhs','KkGiaVtXkXdController@nhanhs');
-//End xét duyệt kk TACN
-Route::get('timkiemgiavantaixekhach','KkGiaVtXkXdController@search');
+Route::get('xetduyetkekhaigiavtxtx','KkGiaVtXtxXdController@index');
+Route::post('xetduyetkekhaigiavtxtx/tralai','KkGiaVtXtxXdController@tralai');
+Route::get('xetduyetkekhaigiavtxtx/ttnhanhs','KkGiaVtXtxXdController@ttnhanhs');
+Route::post('xetduyetkekhaigiavtxtx/nhanhs','KkGiaVtXtxXdController@nhanhs');
+//End xét duyệt kk
+Route::get('timkiemgiavantaixetaxi','KkGiaVtXtxXdController@search');
 
 //Ajax
-Route::get('/ttdnkkvtxk','KkGiaVtXkXdController@ttdnkkvtxk');
+Route::get('/ttdnkkvtxtx','KkGiaVtXtxXdController@ttdnkkvtxtx');
 ?>

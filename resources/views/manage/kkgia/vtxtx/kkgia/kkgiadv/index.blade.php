@@ -98,7 +98,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/kkvtxk/showlydo',
+                url: '/kkvtxtx/showlydo',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
