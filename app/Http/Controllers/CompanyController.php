@@ -38,10 +38,12 @@ class CompanyController extends Controller
                 $model = Company::findOrFail($id);
                 $district = Town::all();
                 $settingdvvt = !empty($model->settingdvvt) ? json_decode($model->settingdvvt) : '';
+                $loaihinhhd = !empty($model->loaihinhhd) ? json_decode($model->loaihinhhd) : '';
                 return view('system.company.edit')
                     ->with('model', $model)
                     ->with('district', $district)
                     ->with('settingdvvt', $settingdvvt)
+                    ->with('loaihinhhd',$loaihinhhd)
                     ->with('pageTitle', 'Chỉnh sửa thông tin doanh nghiệp cung cấp dịch vụ');
             }else
                 return view('errors.perm');
@@ -86,10 +88,12 @@ class CompanyController extends Controller
                     ->where('maxa',session('admin')->maxa)
                     ->first();
                 $settingdvvt = !empty($model->settingdvvt) ? json_decode($model->settingdvvt) : '';
+                $loaihinhhd = !empty($model->loaihinhhd) ? json_decode($model->$loaihinhhd) : '';
                 $modeltttd = TtDnTd::where('maxa', session('admin')->maxa)
                     ->where('level',$inputs['level'])
                     ->first();
                 $settingdvvttd = !empty($modeltttd->settingdvvt) ? json_decode($modeltttd->settingdvvt) : '';
+                $loaihinhhdtd = !empty($modeltttd->loaihinhhd) ? json_decode($modeltttd->$loaihinhhd) : '';
                 $model_cqcq = Town::where('maxa', session('admin')->mahuyen)->first();
                 if(count($model_cqcq)>0){
                     $model->tencqcq=$model_cqcq->tendv;
@@ -100,7 +104,10 @@ class CompanyController extends Controller
                     ->with('model', $model)
                     ->with('modeltttd', $modeltttd)
                     ->with('settingdvvt',$settingdvvt)
+                    ->with('loaihinhhd',$loaihinhhd)
                     ->with('settingdvvttd',$settingdvvttd)
+                    ->with('loaihinhhdtd',$loaihinhhdtd)
+
                     ->with('pageTitle', 'Thông tin doanh nghiệp');
         }else
             return view('errors.notlogin');
@@ -108,20 +115,16 @@ class CompanyController extends Controller
 
     public function ttdnedit($id){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'DVLT' || session('admin')->level == 'DVVT' ||
-                session('admin')->level == 'DVGS' || session('admin')->level == 'TACN') {
-                //Kiểm tra thông tin có thuộc quyền quản lý hay k
-                $model = Company::findOrFail($id);
-                if(session('admin')->maxa == $model->maxa) {
-                    $settingdvvt = !empty($model->settingdvvt) ? json_decode($model->settingdvvt) : '';
-                    return view('manage.kkgia.ttdn.edit')
-                        ->with('model', $model)
-                        ->with('settingdvvt',$settingdvvt)
-                        ->with('pageTitle', 'Thông tin doanh nghiệp chỉnh sửa');
-                }else
-                    return view('errors.noperm');
+            //Kiểm tra thông tin có thuộc quyền quản lý hay k
+            $model = Company::findOrFail($id);
+            if(session('admin')->maxa == $model->maxa) {
+                $settingdvvt = !empty($model->settingdvvt) ? json_decode($model->settingdvvt) : '';
+                return view('manage.kkgia.ttdn.edit')
+                    ->with('model', $model)
+                    ->with('settingdvvt',$settingdvvt)
+                    ->with('pageTitle', 'Thông tin doanh nghiệp chỉnh sửa');
             }else
-                return view('errors.perm');
+                return view('errors.noperm');
         }else
             return view('errors.notlogin');
     }

@@ -294,10 +294,9 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!--Manager-->
                 @if(session('admin')->sadmin != 'sa')
                     @include('includes.main.mainBOG')
-                    @include('includes.main.maindangkygia')
                     @include('includes.main.maindinhgia')
                     @include('includes.main.mainthamdinhgia')
-                    @include('includes.main.mainkkgia')
+                    @include('includes.main.mainkknydkgia')
                     @include('includes.main.mainvbqlnn')
                 @endif
 

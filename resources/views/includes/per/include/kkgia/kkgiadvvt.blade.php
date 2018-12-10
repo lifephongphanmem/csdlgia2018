@@ -16,6 +16,16 @@
                     <div class="portlet-body form" style="display: none;">
                         <div class="form-body">
                             <div class="row">
+                                <div class="col-md-6">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <tr>
+                                            <td> <input type="checkbox" {{ (isset($permission->dvvt->xdttdn) && $permission->dvvt->xdttdn == 1) ? 'checked' : '' }} value="1" name="roles[dvvt][xdttdn]"/></td>
+                                            <td>Xét duyệt thông tin doanh nghiệp</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-12 ">
                                     <!-- BEGIN SAMPLE FORM PORTLET-->
                                     <!--Vận tải xe khách-->

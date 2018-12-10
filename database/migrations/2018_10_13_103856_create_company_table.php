@@ -26,11 +26,6 @@ class CreateCompanyTable extends Migration
             $table->string('chucdanh')->nullable();
             $table->string('nguoiky')->nullable();
             $table->string('noidknopthue')->nullable();
-            $table->string('settingdvvt')->nullable();
-            $table->double('vtxk')->default(0);
-            $table->double('vtxb')->default(0);
-            $table->double('vtxtx')->default(0);
-            $table->double('vtch')->default(0);
             $table->string('ghichu')->nullable();
             $table->string('trangthai')->nullable();
             $table->string('tailieu')->nullable();
@@ -38,19 +33,25 @@ class CreateCompanyTable extends Migration
             $table->string('level')->nullable(); //Phân loại kd dịch vụ gì
             $table->string('avatar')->nullable();
             $table->string('pl')->nullable();
-            $table->string('settingdkg')->nullable();
+
+            $table->string('settingdvvt')->nullable();
+            $table->double('vtxk')->default(0);
+            $table->double('vtxb')->default(0);
+            $table->double('vtxtx')->default(0);
+            $table->double('vtch')->default(0);
+
+            $table->string('loaihinhhd')->nullable();
             $table->double('xangdau')->default(0);
             $table->double('dien')->default(0);
-            $table->double('khidaumo')->default(0);
+            $table->double('khidau')->default(0);
             $table->double('phan')->default(0);
             $table->double('thuocbvtv')->default(0);
-            $table->double('vacxingiasuc')->default(0);
+            $table->double('vacxingsgc')->default(0);
             $table->double('muoi')->default(0);
-            $table->double('suate')->default(0);
+            $table->double('suate6t')->default(0);
             $table->double('duong')->default(0);
             $table->double('thocgao')->default(0);
-            $table->double('thuocpb')->default(0);
-
+            $table->double('thuocpcb')->default(0);
             $table->timestamps();
         });
     }

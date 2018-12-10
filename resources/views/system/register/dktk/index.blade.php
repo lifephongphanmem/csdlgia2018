@@ -65,9 +65,11 @@ License: You must have a valid license purchased only from themeforest(the above
 <body class="login">
 <!-- BEGIN LOGO -->
 <div class="logo">
-    <a href="">
+    <!--a href="">
         <img src="{{ url('images/LIFESOFT.png')}}"  width="130" alt="Công ty TNHH phát triển phần mềm Cuộc Sống"/>
-    </a>
+    </a-->
+    <h2 style="text-transform: uppercase;"><b style="color: white">ĐĂNG KÝ TÀI KHOẢN ĐĂNG NHẬP <br><br>PHẦN MỀM CƠ SỞ DỮ LIỆU VỀ GIÁ
+            {{isset(getGeneralConfigs()['diadanh']) ? getGeneralConfigs()['diadanh'] : ''}}</b></h2>
 </div>
 <!-- END LOGO -->
 <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -180,24 +182,19 @@ License: You must have a valid license purchased only from themeforest(the above
                             <i class="fa fa-file"></i>
                             <input class="form-control required" type="text" placeholder="Link chia sẻ giấy đăng ký kinh doanh của doanh nghiệp" name="tailieu" id="tailieu">
                         </div>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
                         <p class="help-block">
                         <span class="label label-success label-sm">
                         Help: </span>
-                            <a target="_blank" href="http://help.csdlgia.vn/data/help/tienich/upfile/upfile.pdf">
-                                Hướng dẫn cách chia sẻ giấy phép đăng ký kinh doanh </a>
+                            <a target="_blank" href="http://help.csdlgia.vn/data/help/tienich/upfile/upfile.pdf">&nbsp;
+                                  Hướng dẫn cách chia sẻ giấy phép đăng ký kinh doanh </a>
                         </p>
                     </div>
                 </div>
-                @if($level != 'DVVT' && $level != 'DVLT')
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <select class="form-control" name="pl" id="pl">
-                                <option value="SX">Đơn vị Sản xuất</option>
-                                <option value="PP">Đơn vị Phân phối</option>
-                            </select>
-                        </div>
-                    </div>
-                @endif
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -230,20 +227,116 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
             </div>
             @if($level == 'DVVT')
+                <p>Doanh nghiệp đăng ký loại hình</p>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="form-group">
-                            <div class="icheck-inline">
-                        <span><input type="checkbox" value="1" name="roles[dvvt][vtxk]" checked> Vận tải xe khách </label>
-                        <span><input type="checkbox" value="1" name="roles[dvvt][vtxb]" checked> Vận tải xe buýt </label>
-                        <span><input type="checkbox" value="1" name="roles[dvvt][vtxtx]" checked> Vận tải xe taxi </label>
-                        <span><input type="checkbox" value="1" name="roles[dvvt][vtch]" checked> Vận tải chở hàng</label>
+                        @if(canGeneral('vtxk','index'))
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <input type="checkbox" value="1" name="roles[dvvt][vtxk]" checked> Vận tải xe khách
+                            </div>
+                        </div>
+                        @endif
+                        @if(canGeneral('vtxb','index'))
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <input type="checkbox" value="1" name="roles[dvvt][vtxb]" checked> Vận tải xe buýt
+                            </div>
+                        </div>
+                        @endif
+                        @if(canGeneral('vtxtx','index'))
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <input type="checkbox" value="1" name="roles[dvvt][vtxtx]" checked> Vận tải xe taxi
+                            </div>
+                        </div>
+                        @endif
+                        @if(canGeneral('vtch','index'))
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <input type="checkbox" value="1" name="roles[dvvt][vtch]" checked> Vận tải chở hàng
+                            </div>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+            @elseif($level == 'DKG')
+                <p>Doanh nghiệp đăng ký loại hình</p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="checkbox" value="1" name="roles[dkg][xangdau]" class="form-control"> Xăng dầu
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="checkbox" value="1" name="roles[dkg][dien]" class="form-control"> Điện bán lẻ
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="checkbox" value="1" name="roles[dkg][khidau]" class="form-control"> Khí dầu mỏ hóa lỏng
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="checkbox" value="1" name="roles[dkg][phan]" class="form-control"> Phân đạm urê; phân NPK
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="checkbox" value="1" name="roles[dkg][thuocbvtv]"> Thuốc bảo vệ thực vật
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="checkbox" value="1" name="roles[dkg][vacxingsgc]"> Vắc-xin phòng bệnh gia súc gia cầm
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="checkbox" value="1" name="roles[dkg][muoi]"> Muối ăn
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="checkbox" value="1" name="roles[dkg][suate6t]"> Sữa trẻ em dưới 6 tuổi
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="checkbox" value="1" name="roles[dkg][duong]"> Đường ăn
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="checkbox" value="1" name="roles[dkg][thocgao]"> Thóc, gạo tẻ thường
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="checkbox" value="1" name="roles[dkg][thuocpcb]"> Thuốc phòng, chữa bệnh cho người
                             </div>
                         </div>
                     </div>
                 </div>
             @endif
-
 
             <p>Thông tin đăng nhập</p>
             <div class="form-group">
@@ -288,7 +381,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END LOGIN -->
 <!-- BEGIN COPYRIGHT -->
 <div class="copyright">
-    2016 &copy; LifeSoft <a href="" >Tiện ích hơn - Hiệu quả hơn</a>
+    Copyright &copy;  2016 - {{date('Y')}} LifeSoft <a href="" >Tiện ích hơn - Hiệu quả hơn</a>
 </div>
 <!-- END COPYRIGHT -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
@@ -326,10 +419,9 @@ License: You must have a valid license purchased only from themeforest(the above
         Demo.init();
         // init background slide images
         $.backstretch([
-                "{{url('assets/admin/pages/media/bg/3.jpg')}}",
-                "{{url('assets/admin/pages/media/bg/2.jpg')}}",
-                "{{url('assets/admin/pages/media/bg/1.jpg')}}",
-                "{{url('assets/admin/pages/media/bg/4.jpg')}}"
+                    "{{url('assets/app/media/img/bg/bg-2.jpg')}}",
+                    "{{url('assets/app/media/img/bg/bg-4.jpg')}}",
+                    "{{url('assets/app/media/img/bg/bg-1.jpg')}}",
             ], {
                 fade: 1000,
                 duration: 8000

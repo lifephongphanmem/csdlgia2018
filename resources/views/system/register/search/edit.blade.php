@@ -60,7 +60,8 @@ License: You must have a valid license purchased only from themeforest(the above
     <!--a href="">
         <img src="{{ url('images/LIFESOFT.png')}}"  width="130" alt="Công ty TNHH phát triển phần mềm Cuộc Sống"/>
     </a-->
-    <h2 style="text-transform: uppercase;color: blue;">Chỉnh sửa thông tin đăng ký tài khoản <br>doanh nghiệp đăng ký, kê khai, niêm yết giá</h2>
+    <h2 style="text-transform: uppercase;"><b style="color: white">CHỈNH SỬA THÔNG TIN ĐĂNG KÝ TÀI KHOẢN ĐĂNG NHẬP <br><br>PHẦN MỀM CƠ SỞ DỮ LIỆU VỀ GIÁ
+            {{isset(getGeneralConfigs()['diadanh']) ? getGeneralConfigs()['diadanh'] : ''}}</b></h2>
 </div>
 <!-- END LOGO -->
 <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -172,24 +173,19 @@ License: You must have a valid license purchased only from themeforest(the above
                         <i class="fa fa-file"></i>
                         <input class="form-control required" type="text" placeholder="Link chia sẻ giấy đăng ký kinh doanh của doanh nghiệp" name="tailieu" id="tailieu" value="{{$model->tailieu}}">
                     </div>
-                    <p class="help-block">
+
+                </div>
+            </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <p class="help-block">
                         <span class="label label-success label-sm">
                         Help: </span>
                         <a target="_blank" href="http://help.csdlgia.vn/data/help/tienich/upfile/upfile.pdf">
                             Hướng dẫn cách chia sẻ giấy phép đăng ký kinh doanh </a>
-                    </p>
-                </div>
-            </div>
-            @if($model->level != 'DVVT' && $model->level != 'DVLT')
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <select class="form-control" name="pl" id="pl">
-                            <option value="SX" {{$model->pl == 'SX' ? 'selected' : ''}} >Đơn vị Sản xuất</option>
-                            <option value="PP" {{$model->pl == 'PP' ? 'selected' : ''}}>Đơn vị Phân phối</option>
-                        </select>
+                        </p>
                     </div>
                 </div>
-            @endif
         </div>
         <div class="row">
             <div class="col-md-6">
@@ -238,6 +234,81 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
             </div>
         </div>
+        @elseif($model->level == 'DKG')
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="checkbox" value="1" name="roles[dkg][xangdau]" {{ (isset($loaihinhhd->dkg->xangdau) && $loaihinhhd->dkg->xangdau == 1) ? 'checked' : '' }} class="form-control"> Xăng dầu
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="checkbox" value="1" name="roles[dkg][dien]" {{ (isset($loaihinhhd->dkg->dien) && $loaihinhhd->dkg->dien == 1) ? 'checked' : '' }} class="form-control"> Điện bán lẻ
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="checkbox" value="1" name="roles[dkg][khidau]" {{ (isset($loaihinhhd->dkg->khidau) && $loaihinhhd->dkg->khidau == 1) ? 'checked' : '' }} class="form-control"> Khí dầu mỏ hóa lỏng
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="checkbox" value="1" name="roles[dkg][phan]" {{ (isset($loaihinhhd->dkg->phan) && $loaihinhhd->dkg->phan == 1) ? 'checked' : '' }} class="form-control"> Phân đạm urê; phân NPK
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="checkbox" value="1" name="roles[dkg][thuocbvtv]" {{ (isset($loaihinhhd->dkg->thuocbvtv) && $loaihinhhd->dkg->thuocbvtv == 1) ? 'checked' : '' }}> Thuốc bảo vệ thực vật
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="checkbox" value="1" name="roles[dkg][vacxingsgc]" {{ (isset($loaihinhhd->dkg->vacxingsgc) && $loaihinhhd->dkg->vacxingsgc == 1) ? 'checked' : '' }}> Vắc-xin phòng bệnh gia súc gia cầm
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="checkbox" value="1" name="roles[dkg][muoi]" {{ (isset($loaihinhhd->dkg->muoi) && $loaihinhhd->dkg->muoi == 1) ? 'checked' : '' }}> Muối ăn
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="checkbox" value="1" name="roles[dkg][suate6t]" {{ (isset($loaihinhhd->dkg->suate6t) && $loaihinhhd->dkg->suate6t == 1) ? 'checked' : '' }}> Sữa trẻ em dưới 6 tuổi
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="checkbox" value="1" name="roles[dkg][duong]" {{ (isset($loaihinhhd->dkg->duong) && $loaihinhhd->dkg->duong == 1) ? 'checked' : '' }}> Đường ăn
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="checkbox" value="1" name="roles[dkg][thocgao]" {{ (isset($loaihinhhd->dkg->thocgao) && $loaihinhhd->dkg->thocgao == 1) ? 'checked' : '' }}> Thóc, gạo tẻ thường
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="checkbox" value="1" name="roles[dkg][thuocpcb]" {{ (isset($loaihinhhd->dkg->thuocpcb) && $loaihinhhd->dkg->thuocpcb == 1) ? 'checked' : '' }}> Thuốc phòng, chữa bệnh cho người
+                        </div>
+                    </div>
+                </div>
+            </div>
         @endif
 
         <p>Thông tin đăng nhập</p>
@@ -280,7 +351,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END LOGIN -->
 <!-- BEGIN COPYRIGHT -->
 <div class="copyright">
-    2016 &copy; LifeSoft <a href="" >Tiện ích hơn - Hiệu quả hơn</a>
+    Copyright &copy;  2016 - {{date('Y')}} LifeSoft <a href="" >Tiện ích hơn - Hiệu quả hơn</a>
 </div>
 <!-- END COPYRIGHT -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
@@ -318,10 +389,9 @@ License: You must have a valid license purchased only from themeforest(the above
         Demo.init();
         // init background slide images
         $.backstretch([
-                    "{{url('assets/admin/pages/media/bg/3.jpg')}}",
-                    "{{url('assets/admin/pages/media/bg/2.jpg')}}",
-                    "{{url('assets/admin/pages/media/bg/1.jpg')}}",
-                    "{{url('assets/admin/pages/media/bg/4.jpg')}}"
+                    "{{url('assets/app/media/img/bg/bg-2.jpg')}}",
+                    "{{url('assets/app/media/img/bg/bg-4.jpg')}}",
+                    "{{url('assets/app/media/img/bg/bg-1.jpg')}}",
                 ], {
                     fade: 1000,
                     duration: 8000

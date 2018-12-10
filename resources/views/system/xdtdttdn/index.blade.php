@@ -77,8 +77,11 @@
                                     @if(can('thtacn','xdttdn'))
                                         <option value="TACN" {{($inputs['level'] == "TACN") ? 'selected' : ''}}>Doanh nghiệp TACN</option>
                                     @endif
-                                    @if(can('thdvvt','xdttdn'))
+                                    @if(can('dvvt','xdttdn'))
                                         <option value="DVVT" {{($inputs['level'] == "DVVT") ? 'selected' : ''}}>Doanh nghiệp dịch vụ vận tải</option>
+                                    @endif
+                                    @if(can('dangkygia','xdttdn'))
+                                        <option value="DKG" {{($inputs['level'] == "DKG") ? 'selected' : ''}}>Doanh nghiệp đăng ký giá</option>
                                     @endif
 
                                 </select>

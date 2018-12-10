@@ -20,11 +20,7 @@ class Register extends Model
         'chucdanh',
         'nguoiky',
         'noidknopthue',
-        'settingdvvt',
-        'vtxk',
-        'vtxb',
-        'vtxtx',
-        'vtch',
+
         'ghichu',
         'tailieu',
         'giayphepkd',
@@ -34,6 +30,25 @@ class Register extends Model
         'trangthai',
         'lydo',
         'ma',
-        'pl'
+        'pl',
+
+        'settingdvvt',
+        'vtxk',
+        'vtxb',
+        'vtxtx',
+        'vtch',
+
+        'loaihinhhd',
+        'xangdau',
+        'dien',
+        'khidau',
+        'phan',
+        'thuocbvtv',
+        'vacxingsgc',
+        'muoi',
+        'suate6t',
+        'duong',
+        'thocgao',
+        'thuocpcb',
     ];
 }

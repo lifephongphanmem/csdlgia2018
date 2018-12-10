@@ -4,7 +4,7 @@
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <input type="checkbox" {{ (isset($setting->dinhgia->index) && $setting->dinhgia->index == 1) ? 'checked' : '' }} value="1" name="roles[dinhgia][index]"/> Định giá
+                    Định giá
                 </div>
                 <div class="tools">
                     <a href="" class="expand" data-original-title="" title="">
@@ -18,6 +18,9 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
                                 <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->dinhgia->index) && $setting->dinhgia->index == 1) ? 'checked' : '' }} value="1" name="roles[dinhgia][index]"/> </td>
+                                    <td>Định giá</td>
+                                </tr> <tr>
                                     <td width="2%"><input type="checkbox" {{ (isset($setting->dinhgia->congbo) && $setting->dinhgia->congbo == 1) ? 'checked' : '' }} value="1" name="roles[dinhgia][congbo]"/></td>
                                     <td>Công bố định giá</td>
                                 </tr>

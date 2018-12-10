@@ -70,10 +70,12 @@ class RegisterController extends Controller
                 $model = Register::findOrFail($id);
                 $dvcq = Town::where('maxa', $model->mahuyen)->first()->tendv;
                 $settingdvvt = !empty($model->settingdvvt) ? json_decode($model->settingdvvt) : '';
+                $loaihinhhd = !empty($model->loaihinhhd) ? json_decode($model->loaihinhhd) : '';
                 return view('system.register.xetduyet.show')
                     ->with('model', $model)
                     ->with('dvcq', $dvcq)
                     ->with('settingdvvt', $settingdvvt)
+                    ->with('loaihinhhd',$loaihinhhd)
                     ->with('pageTitle', 'Thông tin doanh nghiệp đăng ký tài khoản');
             }else
                 return view('errors.noperm');
@@ -154,10 +156,12 @@ class RegisterController extends Controller
 
                 $cqcq = Town::all();
                 $settingdvvt = !empty($model->settingdvvt) ? json_decode($model->settingdvvt) : '';
+                $loaihinhhd = !empty($model->loaihinhhd) ? json_decode($model->loaihinhhd) : '';
                 return view('system.register.search.edit')
                     ->with('cqcq', $cqcq)
                     ->with('model', $model)
                     ->with('settingdvvt',$settingdvvt)
+                    ->with('loaihinhhd',$loaihinhhd)
                     ->with('pageTitle', 'Chỉnh sửa thông tin đăng ký tài khoản');
             }else{
                 return view('system.register.view.register-edit-errors');
@@ -196,17 +200,24 @@ class RegisterController extends Controller
                 $inputs['ma'] = getdate()[0];
                 if(isset($inputs['roles'])){
                     $inputs['settingdvvt'] = json_encode($inputs['roles']);
+                    $inputs['loaihinhhd'] = json_encode($inputs['roles']);
                     $x = $inputs['roles'];
                     $inputs['vtxk'] = isset($x['dvvt']['vtxk']) ? 1 : 0;
                     $inputs['vtxb'] = isset($x['dvvt']['vtxb']) ? 1 : 0;
                     $inputs['vtxtx'] = isset($x['dvvt']['vtxtx']) ? 1 : 0;
                     $inputs['vtch'] = isset($x['dvvt']['vtch']) ? 1 : 0;
-                }else {
-                    $inputs['settingdvvt'] = '';
-                    $inputs['vtxk'] = 0;
-                    $inputs['vtxb'] = 0;
-                    $inputs['vtxtx'] = 0;
-                    $inputs['vtch'] = 0;
+
+                    $inputs['xangdau'] = isset($x['dkg']['xangdau']) ? 1 : 0;
+                    $inputs['dien'] = isset($x['dkg']['dien']) ? 1 : 0;
+                    $inputs['khidau'] = isset($x['dkg']['khidau']) ? 1 : 0;
+                    $inputs['phan'] = isset($x['dkg']['phan']) ? 1 : 0;
+                    $inputs['thuocbvtv'] = isset($x['dkg']['thuocbvtv']) ? 1 : 0;
+                    $inputs['vacxingsgc'] = isset($x['dkg']['vacxingsgc']) ? 1 : 0;
+                    $inputs['muoi'] = isset($x['dkg']['muoi']) ? 1 : 0;
+                    $inputs['suate6t'] = isset($x['dkg']['suate6t']) ? 1 : 0;
+                    $inputs['duong'] = isset($x['dkg']['duong']) ? 1 : 0;
+                    $inputs['thocgao'] = isset($x['dkg']['thocgao']) ? 1 : 0;
+                    $inputs['thuocpcb'] = isset($x['dkg']['thuocpcb']) ? 1 : 0;
                 }
 
                 $inputs['trangthai'] = 'Chờ duyệt';
@@ -253,17 +264,24 @@ class RegisterController extends Controller
             $inputs['settingdvvt'] = isset($inputs['roles']) ? json_encode($inputs['roles']) : '';
             if(isset($inputs['roles'])){
                 $inputs['settingdvvt'] = json_encode($inputs['roles']);
+                $inputs['loaihinhhd'] = json_encode($inputs['roles']);
                 $x = $inputs['roles'];
                 $inputs['vtxk'] = isset($x['dvvt']['vtxk']) ? 1 : 0;
                 $inputs['vtxb'] = isset($x['dvvt']['vtxb']) ? 1 : 0;
                 $inputs['vtxtx'] = isset($x['dvvt']['vtxtx']) ? 1 : 0;
                 $inputs['vtch'] = isset($x['dvvt']['vtch']) ? 1 : 0;
-            }else {
-                $inputs['settingdvvt'] = '';
-                $inputs['vtxk'] = 0;
-                $inputs['vtxb'] = 0;
-                $inputs['vtxtx'] = 0;
-                $inputs['vtch'] = 0;
+
+                $inputs['xangdau'] = isset($x['dkg']['xangdau']) ? 1 : 0;
+                $inputs['dien'] = isset($x['dkg']['dien']) ? 1 : 0;
+                $inputs['khidau'] = isset($x['dkg']['khidau']) ? 1 : 0;
+                $inputs['phan'] = isset($x['dkg']['phan']) ? 1 : 0;
+                $inputs['thuocbvtv'] = isset($x['dkg']['thuocbvtv']) ? 1 : 0;
+                $inputs['vacxingsgc'] = isset($x['dkg']['vacxingsgc']) ? 1 : 0;
+                $inputs['muoi'] = isset($x['dkg']['muoi']) ? 1 : 0;
+                $inputs['suate6t'] = isset($x['dkg']['suate6t']) ? 1 : 0;
+                $inputs['duong'] = isset($x['dkg']['duong']) ? 1 : 0;
+                $inputs['thocgao'] = isset($x['dkg']['thocgao']) ? 1 : 0;
+                $inputs['thuocpcb'] = isset($x['dkg']['thuocpcb']) ? 1 : 0;
             }
             $model = Register::findOrFail($id);
             if ($model->update($inputs)) {

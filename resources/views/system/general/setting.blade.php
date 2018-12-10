@@ -38,7 +38,7 @@
                 @include('system.general.include.bog')
                 @include('system.general.include.dinhgia')
                 @include('system.general.include.thamdinhgia')
-                @include('system.general.include.kekhaigia')
+                @include('system.general.include.kknydkgia')
                 @include('system.general.include.vbqlnn')
             </div>
         </div>

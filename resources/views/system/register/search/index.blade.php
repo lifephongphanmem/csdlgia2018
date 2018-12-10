@@ -77,18 +77,19 @@ License: You must have a valid license purchased only from themeforest(the above
 		<div class="input-icon">
 			<i class="fa fa-envelope"></i>
 			<select class="form-control required" name="level" id="level">
-				@if(canGeneral('dvlt','dvlt'))
+				@if(canGeneral('dvlt','index'))
 				<option value="DVLT">Dịch vụ lưu trú</option>
 				@endif
-				@if(canGeneral('dvvt','vtxk') || canGeneral('dvvt','vtxb') || canGeneral('dvvt','vtxtx') || canGeneral('dvvt','vtch'))
+				@if(canGeneral('dvvt','index'))
 				<option value="DVVT">Dịch vụ vận tải</option>
 				@endif
-				@if(canGeneral('dvgs','dvgs'))
-				<option value="DVGS">Dịch vụ giá sữa</option>
+				@if(canGeneral('tpcnte6t','index'))
+				<option value="TPCNTE6T">Thực phẩm chức năng dành cho trẻ em dưới 6 tuổi</option>
 				@endif
-				@if(canGeneral('dvtacn','dvtacn'))
+				@if(canGeneral('tacn','index'))
 				<option value="DVTACN">Dịch vụ thức ăn chăn nuôi</option>
 				@endif
+				<option value="DKG">Đăng ký giá</option>
 			</select>
 		</div>
 	</div>

@@ -121,10 +121,20 @@ License: You must have a valid license purchased only from themeforest(the above
 			<div class="modal-header modal-header-primary">
 				<button type="button" data-dismiss="modal" aria-hidden="true"
 						class="close">&times;</button>
-				<h4 id="modal-header-primary-label" class="modal-title">Đăng ký tài khoản kê khai, niêm yết giá!!!</h4>
+				<h4 id="modal-header-primary-label" class="modal-title">Đăng ký tài khoản đăng ký giá - kê khai giá, niêm yết giá!!!</h4>
 			</div>
 			<div class="modal-body">
 				<div class="form-horizontal">
+					<div class="form-group">
+						<div class="row" style="text-align: center">
+							<div class="col-md-12" style="text-align: center">
+								<div class="profile-userbuttons">
+									<a href="{{url('dangkytaikhoan?&level=DKG')}}" class="btn blue btn-sm">
+										Doanh nghiệp đăng ký giá</a>&nbsp;
+								</div>
+							</div>
+						</div>
+					</div>
 					<div class="form-group">
 						<div class="row" style="text-align: center">
 							<div class="col-md-12" style="text-align: center">

@@ -102,7 +102,7 @@
                                     <option value="HT" {{($inputs['level'] == "HT") ? 'selected' : ''}}>Quản trị hệ thống</option>
                                     <option value="T" {{($inputs['level'] == "T") ? 'selected' : ''}}>Tổng hợp</option>
                                     @endif
-                                    @if(can('districts'.'index'))
+                                    @if(can('districts','index'))
                                     <option value="H" {{($inputs['level'] == "H") ? 'selected' : ''}}>Đơn vị quản lý</option>
                                     @endif
                                     @if(can('towns','index'))
@@ -120,6 +120,8 @@
                                     @if(can('dntacn','index'))
                                     <option value="TACN" {{($inputs['level'] == "TACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
                                     @endif
+                                    <option value="DKG" {{($inputs['level'] == "DKG") ? 'selected' : ''}}>Đăng ký giá</option>
+
                                 </select>
                             </div>
                         </div>

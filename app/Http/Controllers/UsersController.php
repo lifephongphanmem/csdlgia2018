@@ -42,11 +42,16 @@ class UsersController extends Controller
         if (md5($input['password']) == $ttuser->password) {
             if ($ttuser->status == "Kích hoạt") {
                 if ($ttuser->level == 'DVVT') {
-                    $ttdnvt = Company::where('maxa', $ttuser->maxa)
+                    $ttdn = Company::where('maxa', $ttuser->maxa)
                         ->where('level','DVVT')
                         ->first();
-                    $dvvt = $ttdnvt->settingdvvt;
-                    $ttuser->dvvtcc = $dvvt;
+                    $ttuser->dvvtcc = $ttdn->settingdvvt;
+                    $ttuser->loaihinhhd = $ttdn->loaihinhhd;
+                }elseif($ttuser->level == 'DKG'){
+                    $ttdn = Company::where('maxa',$ttuser->maxa)
+                        ->where('level','DKG')
+                        ->first();
+                    $ttuser->loaihinhhd = $ttdn->loaihinhhd;
                 }
                 Session::put('admin', $ttuser);
 

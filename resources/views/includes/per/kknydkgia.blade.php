@@ -1,11 +1,11 @@
-@if(canGeneral('kkgia','index'))
+@if(canGeneral('kknydkgia','index'))
     <div class="row">
         <div class="col-md-12 ">
             <!-- BEGIN SAMPLE FORM PORTLET-->
             <div class="portlet box blue">
                 <div class="portlet-title">
                     <div class="caption">
-                        <input type="checkbox" {{ (isset($permission->kkgia->index) && $permission->kkgia->index == 1) ? 'checked' : '' }} value="1" name="roles[kkgia][index]"/> Kê khai giá hàng hóa- dịch vụ
+                        <input type="checkbox" {{ (isset($permission->kknydkgia->index) && $permission->kknydkgia->index == 1) ? 'checked' : '' }} value="1" name="roles[kknydkgia][index]"/>Kê khai- niêm yết - đăng ký giá hàng hóa- dịch vụ
                     </div>
                     <div class="tools">
                         <a href="" class="expand" data-original-title="" title="">
@@ -51,11 +51,8 @@
                                 </table>
                             </div>
                         </div>
-                        @include('includes.per.include.kkgia.kkgiadvlt')
-                        @include('includes.per.include.kkgia.kkgiatpcnted6t')
-                        @include('includes.per.include.kkgia.kkgiatacn')
-                        @include('includes.per.include.kkgia.kkgiadvvt')
-
+                        @include('includes.per.include.kkgia.kknygia')
+                        @include('includes.per.include.dangkygia.dangkygia')
                     </div>
                 </div>
             </div>

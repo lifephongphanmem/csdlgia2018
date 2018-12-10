@@ -4,7 +4,7 @@
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <input type="checkbox" {{ (isset($setting->kkgia->index) && $setting->kkgia->index == 1) ? 'checked' : '' }} value="1" name="roles[kkgia][index]"/> Kê khai giá
+                     Kê khai - niêm yết giá
                 </div>
                 <div class="tools">
                     <a href="" class="expand" data-original-title="" title="">
@@ -14,9 +14,35 @@
             <div class="portlet-body form" style="display: none;">
                 <div class="form-body">
                     <div class="row">
+                        <div class="col-md-6">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->kknydkgia->index) && $setting->kknydkgia->index == 1) ? 'checked' : '' }} value="1" name="roles[kknydkgia][index]"/></td>
+                                    <td>Kê khai - niêm yết - đăng ký giá</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"> <input type="checkbox" {{ (isset($setting->kknydkgia->congbo) && $setting->kknydkgia->congbo == 1) ? 'checked' : '' }} value="1" name="roles[kknydkgia][congbo]"/> </td>
+                                    <td>Công bố Kê khai - niêm yết - đăng ký giá</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-3">
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->kkgia->index) && $setting->kkgia->index == 1) ? 'checked' : '' }} value="1" name="roles[kkgia][index]"/></td>
+                                    <td>Kê khai giá</td>
+                                </tr>
                                 <tr>
                                     <td width="2%"> <input type="checkbox" {{ (isset($setting->kkgia->congbo) && $setting->kkgia->congbo == 1) ? 'checked' : '' }} value="1" name="roles[kkgia][congbo]"/> </td>
                                     <td>Công bố kê khai giá</td>

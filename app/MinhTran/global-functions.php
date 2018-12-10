@@ -7,20 +7,23 @@ function getPermissionDefault($level) {
         'bog' => array(
             'index' => 1,
         ),
-        'dmbog'=>array(
+        'bpbog' => array(
+            'index' => 1,
+        ),
+        'dmbpbog'=>array(
             'index'=>1,
             'create'=>1,
             'edit'=>1,
             'delete'=>1,
         ),
-        'kkbog'=>array(
+        'kkbpbog'=>array(
             'index'=>1,
             'create'=>1,
             'edit'=>1,
             'delete'=>1,
         ),
 
-        'thbog'=>array(
+        'thbpbog'=>array(
             'baocao'=>1,
             'congbo'=>1,
             'timkiem'=>1,
@@ -355,6 +358,9 @@ function getPermissionDefault($level) {
         ),
         //End Thẩm định giá
         //Kê khai giá
+        'kknydkgia'=>array(
+            'index'=>1
+        ),
         'kkgia'=>array(
             'index'=>1,
         ),
@@ -425,6 +431,7 @@ function getPermissionDefault($level) {
         //DVVT
         'dvvt'=>array(
             'index'=>1,
+            'xdttdn'=>1
         ),
         'vtxk' => array(
             'index' => 1,
@@ -518,7 +525,6 @@ function getPermissionDefault($level) {
             'timkiem'=>1,
             'xdttdn'=>1,
         ),
-
 
         //End Kê khai giá
         //Văn bản QLNN
@@ -886,6 +892,9 @@ function getPermissionDefault($level) {
         ),
         //End Thẩm định giá
         //Kê khai giá
+        'kknydkgia'=>array(
+            'index'=>1
+        ),
         'kkgia'=>array(
             'index'=>1,
         ),
@@ -956,6 +965,7 @@ function getPermissionDefault($level) {
         //DVVT
         'dvvt'=>array(
             'index'=>1,
+            'xdttdn'=>1,
         ),
         'vtxk' => array(
             'index' => 1,
@@ -1049,8 +1059,6 @@ function getPermissionDefault($level) {
             'timkiem'=>1,
             'xdttdn'=>1,
         ),
-
-
         //End Kê khai giá
         //Văn bản QLNN
         'vbqlnn'=>array(
@@ -1417,6 +1425,9 @@ function getPermissionDefault($level) {
         ),
     //End Thẩm định giá
     //Kê khai giá
+        'kknydkgia'=>array(
+            'index'=>1
+        ),
         'kkgia'=>array(
             'index'=>1,
         ),
@@ -1487,6 +1498,7 @@ function getPermissionDefault($level) {
         //DVVT
         'dvvt'=>array(
             'index'=>1,
+            'xdttdn'=>1,
         ),
         'vtxk' => array(
             'index' => 1,
@@ -1581,7 +1593,6 @@ function getPermissionDefault($level) {
             'xdttdn'=>1,
         ),
 
-
     //End Kê khai giá
     //Văn bản QLNN
         'vbqlnn'=>array(
@@ -1596,6 +1607,9 @@ function getPermissionDefault($level) {
     //End Văn bản QLNN
     );
     $roles['DVLT'] = array(
+        'kknydkgia'=>array(
+            'index'=>1
+        ),
         'kkgia'=>array(
             'index'=>1,
         ),
@@ -1631,6 +1645,9 @@ function getPermissionDefault($level) {
         ),
     );
     $roles['TPCNTE6T'] = array(
+        'kknydkgia'=>array(
+            'index'=>1
+        ),
         'kkgia' => array(
             'index' => 1,
         ),
@@ -1659,6 +1676,9 @@ function getPermissionDefault($level) {
         ),
     );
     $roles['TACN'] = array(
+        'kknydkgia'=>array(
+            'index'=>1
+        ),
         'kkgia'=>array(
             'index'=>1,
         ),
@@ -1687,6 +1707,9 @@ function getPermissionDefault($level) {
         ),
     );
     $roles['DVVT'] = array(
+        'kknydkgia'=>array(
+            'index'=>1
+        ),
         'kkgia'=>array(
             'index'=>1,
         ),
@@ -1792,6 +1815,211 @@ function getPermissionDefault($level) {
             'timkiem'=>1,
             'xdttdn'=>1,
         ),
+    );
+    $roles['DKG'] = array(
+        'bog'=>array(
+            'index'=>1
+        ),
+        'dangkygia'=>array(
+            'index'=>1,
+            'xdttdn'=>0,
+        ),
+        'ttdndkg' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        //Xăng dầu
+
+        'dkgxangdau'=>array(
+            'index'=>1,
+        ),
+        'kkdkgxangdau'=>array(
+            'index'=>1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'thdkgxangdau'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+        //Điện
+        'dkgdien'=>array(
+            'index'=>1,
+        ),
+        'kkdkgdien'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1
+        ),
+        'thdkgdien'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+        //khí dầu
+        'dkgkhidau'=>array(
+            'index'=>1,
+        ),
+        'kkdkgkhidau'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1
+        ),
+        'thdkgkhidau'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+        //phan
+        'dkgphan'=>array(
+            'index'=>1,
+        ),
+        'kkdkgphan'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1
+        ),
+        'thdkgphan'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+        //Thuốc bảo vệ thực vật
+        'dkgthuocbvtv'=>array(
+            'index'=>1,
+        ),
+        'kkdkgthuocbvtv'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1
+        ),
+        'thdkgthuocbvtv'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+        //vac xin
+        'dkgvacxingsgc'=>array(
+            'index'=>1,
+        ),
+        'kkdkgvacxingsgc'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1
+        ),
+        'thdkgvacxingsgc'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+        //Muối
+        'dkgmuoi'=>array(
+            'index'=>1,
+        ),
+        'kkdkgmuoi'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1
+        ),
+        'thdkgmuoi'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+        //Sữa dành cho trẻ em dưới 6 tuôi
+        'dkgsuate6t'=>array(
+            'index'=>1,
+        ),
+        'kkdkgsuate6t'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1
+        ),
+        'thdkgsuate6t'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+        //Đường
+        'dkgduong'=>array(
+            'index'=>1,
+        ),
+        'kkdkgduong'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1
+        ),
+        'thdkgduong'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+        //Thóc gạo
+        'dkgthocgao'=>array(
+            'index'=>1,
+        ),
+        'kkdkgthocgao'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1
+        ),
+        'thdkgthocgao'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+        //Thuốc phòng chữa bệnh
+        'dkgthuocpcb'=>array(
+            'index'=>1,
+        ),
+        'kkdkgthuocpcb'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1
+        ),
+        'thdkgthuocpcb'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+
     );
     $roles['HT'] = array(
         'ngaynghile'=> array(
@@ -1933,6 +2161,19 @@ function canGeneral($module = null, $action =null)
     else {
         $per = '{
                 {"bog":{"index":"1","congbo":"1"},
+                "dangkygia":{"index":"1","congbo":"1"},
+                    "dkgxangdau":{"index":"1","congbo":"1"},
+                    "dkgdien":{"index":"1","congbo":"1"},
+                    "dkgkhidau":{"index":"1","congbo":"1"},
+                    "dkgphan":{"index":"1","congbo":"1"},
+                    "dkgthuocbvtv":{"index":"1","congbo":"1"},
+                    "dkgvacxingsgc":{"index":"1","congbo":"1"},
+                    "dkgmuoi":{"index":"1","congbo":"1"},
+                    "dkgsuate6t":{"index":"1","congbo":"1"},
+                    "dkgduong":{"index":"1","congbo":"1"},
+                    "dkgthocgao":{"index":"1","congbo":"1"},
+                    "dkgthuocpcb":{"index":"1","congbo":"1"},
+
                 "dinhgia":{"index":"1","congbo":"1"},
                     "giacldat":{"index":"1","congbo":"1"},
                     "giadaugiadat":{"index":"1","congbo":"1"},

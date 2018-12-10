@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2018 at 08:31 AM
+-- Generation Time: Dec 10, 2018 at 10:02 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -126,18 +126,18 @@ CREATE TABLE `company` (
   `level` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `avatar` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `pl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `settingdkg` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `loaihinhhd` text COLLATE utf8_unicode_ci,
   `xangdau` double NOT NULL DEFAULT '0',
   `dien` double NOT NULL DEFAULT '0',
-  `khidaumo` double NOT NULL DEFAULT '0',
+  `khidau` double DEFAULT '0',
   `phan` double NOT NULL DEFAULT '0',
   `thuocbvtv` double NOT NULL DEFAULT '0',
-  `vacxingiasuc` double NOT NULL DEFAULT '0',
+  `vacxingsgc` double NOT NULL DEFAULT '0',
   `muoi` double NOT NULL DEFAULT '0',
-  `suate` double NOT NULL DEFAULT '0',
+  `suate6t` double NOT NULL DEFAULT '0',
   `duong` double NOT NULL DEFAULT '0',
   `thocgao` double NOT NULL DEFAULT '0',
-  `thuocpb` double NOT NULL DEFAULT '0',
+  `thuocpcb` double NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -146,12 +146,12 @@ CREATE TABLE `company` (
 -- Dumping data for table `company`
 --
 
-INSERT INTO `company` (`id`, `maxa`, `mahuyen`, `tendn`, `diachi`, `tel`, `fax`, `email`, `diadanh`, `chucdanh`, `nguoiky`, `noidknopthue`, `settingdvvt`, `vtxk`, `vtxb`, `vtxtx`, `vtch`, `ghichu`, `trangthai`, `tailieu`, `giayphepkd`, `level`, `avatar`, `pl`, `settingdkg`, `xangdau`, `dien`, `khidaumo`, `phan`, `thuocbvtv`, `vacxingiasuc`, `muoi`, `suate`, `duong`, `thocgao`, `thuocpb`, `created_at`, `updated_at`) VALUES
+INSERT INTO `company` (`id`, `maxa`, `mahuyen`, `tendn`, `diachi`, `tel`, `fax`, `email`, `diadanh`, `chucdanh`, `nguoiky`, `noidknopthue`, `settingdvvt`, `vtxk`, `vtxb`, `vtxtx`, `vtch`, `ghichu`, `trangthai`, `tailieu`, `giayphepkd`, `level`, `avatar`, `pl`, `loaihinhhd`, `xangdau`, `dien`, `khidau`, `phan`, `thuocbvtv`, `vacxingsgc`, `muoi`, `suate6t`, `duong`, `thocgao`, `thuocpcb`, `created_at`, `updated_at`) VALUES
 (2, '1234567890', 'PTCQHBT', 'Công ty TNHH phát triển phần mềm Cuộc Sống1', 'Quận Hai Bà Trưng - Thành Phố Hà Nội', '0436343965', '87612121', 'minhtranlife@gmail.com', 'TP. Hà Nội', 'Giám đốc', 'Nguyễn Thị Minh Tuyết', 'Chi cục thuế TP Hà Nội', '', 0, 0, 0, 0, NULL, 'CD', 'sđa', '09876543', 'DVLT', 'no-image-available.jpg', '', NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2018-10-15 02:43:46', '2018-10-15 08:01:34'),
 (5, '0987654321', 'PTCQHBT', 'Công ty TNHH thực phẩm chức năng trẻ em ABC', 'Liên Ninh, Thanh Trì, Hà Nội', '09876543', '09876543', 'minhtranlife@gmail.com', 'Hà Nội', 'Giám đốc', 'Trần Đức Minh', 'Chi cục thuế Thanh Trì', '', 0, 0, 0, 0, NULL, 'Chờ duyệt', 'sdsad', '987yt', 'TPCNTE6T', 'no-image-available.jpg', 'SX', NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2018-11-19 07:31:14', '2018-11-19 07:31:14'),
 (6, '123456789', 'PTCQCG', 'Công ty TNHH thức ăn chăn nuôi ABC1', 'Liên Ninh, Thanh Trì, Hà Nội', '834567890', '09876543', 'minhtranlife@gmail.com', 'Hà Nội', 'Giám đốc', 'Trần Đức Minh', 'Chi cục thuế Thanh Trì', '', 0, 0, 0, 0, NULL, 'CD', 'sdsad', '987yt', 'TACN', 'no-image-available.jpg', 'SX', NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2018-11-20 02:35:18', '2018-11-20 02:36:54'),
-(7, '123456789', 'PTCQHBT', 'Doanh nghiệp dịch vụ vận tải', 'Liên Ninh, Thanh Trì, Hà Nội', '09876543', '09876543', 'minhtranlife@gmail.com', 'Hà Nội', 'Giám đốc', 'Trần Đức Minh', 'Chi cục thuế Thanh Trì', '{\"dvvt\":{\"vtxk\":\"1\",\"vtxb\":\"1\",\"vtxtx\":\"1\",\"vtch\":\"1\"}}', 1, 1, 1, 1, NULL, 'Chờ duyệt', 'sdsad', '987yt', 'DVVT', 'no-image-available.jpg', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2018-11-21 07:35:24', '2018-11-21 08:52:57'),
-(8, '123456789', 'PTCQHBT', 'Doanh nghiệp đăng ký giá', 'Liên Ninh, Thanh Trì, Hà Nội', '09876543', '09876543', 'minhtranlife@gmail.com', 'Hà Nội', 'Giám đốc', 'Trần Đức Minh', 'Chi cục thuế Thanh Trì', '{\"dkg\":{\r\n\"xangdau\":\"1\"\r\n,\"dien\":\"1\"\r\n,\"khidaumo\":\"1\"\r\n,\"phan\":\"1\"\r\n,\"thuocbvtv\":\"1\"\r\n,\"vacxingiasuc\":\"1\"\r\n,\"muoi\":\"1\"\r\n,\"suate\":\"1\"\r\n,\"duong\":\"1\"\r\n,\"thocgao\":\"1\"\r\n,\"thuocpb\":\"1\"\r\n}}', 0, 0, 0, 0, NULL, 'Chờ duyệt', 'sdsad', '987yt', 'DKG', 'no-image-available.jpg', NULL, NULL, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2018-11-21 07:35:24', '2018-11-21 08:52:57');
+(7, '123456789', 'PTCQHBT', 'Doanh nghiệp dịch vụ vận tải', 'Liên Ninh, Thanh Trì, Hà Nội', '09876543', '09876543', 'minhtranlife@gmail.com', 'Hà Nội', 'Giám đốc', 'Trần Đức Minh', 'Chi cục thuế Thanh Trì', '{\"dvvt\":{\"vtxk\":\"1\",\"vtxb\":\"1\",\"vtxtx\":\"1\",\"vtch\":\"1\"}}', 1, 1, 1, 1, NULL, 'Chờ duyệt', 'sdsad', '987yt', 'DVVT', 'no-image-available.jpg', NULL, '{\"dvvt\":{\"vtxk\":\"1\",\"vtxb\":\"1\",\"vtxtx\":\"1\",\"vtch\":\"1\"}}', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2018-11-21 07:35:24', '2018-11-21 08:52:57'),
+(9, '0098765432', 'PTCQCG', 'Doanh nghiệp đăng ký giá', 'Liên Ninh, Thanh Trì, Hà Nội', '09876543', '09876543', 'minhtranlife@gmail.com', 'Hà Nội', 'Giám đốc', 'Trần Đức Minh', 'Chi cục thuế Thanh Trì', '{\"dkg\":{\"xangdau\":\"1\",\"dien\":\"1\",\"khidau\":\"1\",\"phan\":\"1\",\"thuocbvtv\":\"1\",\"vacxingsgc\":\"1\",\"muoi\":\"1\",\"suate6t\":\"1\",\"duong\":\"1\",\"thocgao\":\"1\",\"thuocpcb\":\"1\"}}', 0, 0, 0, 0, NULL, 'Chờ duyệt', '98765', '-0987654', 'DKG', 'no-image-available.jpg', '', '{\"dkg\":{\"xangdau\":\"1\",\"dien\":\"1\",\"khidau\":\"1\",\"phan\":\"1\",\"thuocbvtv\":\"1\",\"vacxingsgc\":\"1\",\"muoi\":\"1\",\"suate6t\":\"1\",\"duong\":\"1\",\"thocgao\":\"1\",\"thuocpcb\":\"1\"}}', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2018-12-06 07:39:42', '2018-12-06 07:39:42');
 
 -- --------------------------------------------------------
 
@@ -1468,7 +1468,7 @@ CREATE TABLE `general-configs` (
 --
 
 INSERT INTO `general-configs` (`id`, `tendonvi`, `maqhns`, `diachi`, `tel`, `thutruong`, `ketoan`, `nguoilapbieu`, `diadanh`, `setting`, `thongtinhd`, `thoihanlt`, `thoihanvt`, `thoihangs`, `thoihantacn`, `sodvvt`, `created_at`, `updated_at`) VALUES
-(1, 'Sở Tài Chính tỉnh Cuộc Sống', '09876543', 'Cuộc Sống - Thành Phố Hà Nội', 'Cuộc Sống', 'Nguyễn Thị Minh Tuyết', 'Nguyễn Thị Mỹ Hạnh', 'Nguyễn Thị Mỹ Hường', 'Cuộc Sống', '{\"bog\":{\"index\":\"1\",\"congbo\":\"1\"},\"dinhgia\":{\"index\":\"1\"},\"giacldat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadaugiadat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuedatnuoc\":{\"index\":\"1\",\"congbo\":\"1\"},\"giarung\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuemuanhaxh\":{\"index\":\"1\",\"congbo\":\"1\"},\"gianuocsh\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetscong\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvgddt\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvkcb\":{\"index\":\"1\",\"congbo\":\"1\"},\"giahhdvk\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetn\":{\"index\":\"1\",\"congbo\":\"1\"},\"gialephitruocba\":{\"index\":\"1\",\"congbo\":\"1\"},\"giaphilephi\":{\"index\":\"1\",\"congbo\":\"1\"},\"thamdinhgia\":{\"index\":\"1\",\"congbo\":\"1\"},\"kkgia\":{\"index\":\"1\"},\"dvlt\":{\"index\":\"1\",\"congbo\":\"1\"},\"tpcnte6t\":{\"index\":\"1\",\"congbo\":\"1\"},\"tacn\":{\"index\":\"1\",\"congbo\":\"1\"},\"dvvt\":{\"index\":\"1\"},\"vtxk\":{\"index\":\"1\",\"congbo\":\"1\"},\"vbqlnn\":{\"index\":\"1\"},\"vbgia\":{\"index\":\"1\",\"congbo\":\"1\"}}', '', 0, 0, 0, 0, 0, '2018-11-07 09:17:11', '2018-12-04 06:32:08');
+(1, 'Sở Tài Chính tỉnh Cuộc Sống', '09876543', 'Cuộc Sống - Thành Phố Hà Nội', 'Cuộc Sống', 'Nguyễn Thị Minh Tuyết', 'Nguyễn Thị Mỹ Hạnh', 'Nguyễn Thị Mỹ Hường', 'Cuộc Sống', '{\"bog\":{\"index\":\"1\"},\"bpbog\":{\"index\":\"1\"},\"dangkygia\":{\"index\":\"1\"},\"dkgxangdau\":{\"index\":\"1\"},\"dkgdien\":{\"index\":\"1\"},\"dkgkhidau\":{\"index\":\"1\"},\"dkgphan\":{\"index\":\"1\"},\"dkgthuocbvtv\":{\"index\":\"1\"},\"dkgvacxingsgc\":{\"index\":\"1\"},\"dkgmuoi\":{\"index\":\"1\"},\"dkgduong\":{\"index\":\"1\"},\"dkgthocgao\":{\"index\":\"1\"},\"dinhgia\":{\"index\":\"1\"},\"giacldat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadaugiadat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuedatnuoc\":{\"index\":\"1\",\"congbo\":\"1\"},\"giarung\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuemuanhaxh\":{\"index\":\"1\",\"congbo\":\"1\"},\"gianuocsh\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetscong\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvgddt\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvkcb\":{\"index\":\"1\",\"congbo\":\"1\"},\"giahhdvk\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetn\":{\"index\":\"1\",\"congbo\":\"1\"},\"gialephitruocba\":{\"index\":\"1\",\"congbo\":\"1\"},\"giaphilephi\":{\"index\":\"1\",\"congbo\":\"1\"},\"thamdinhgia\":{\"index\":\"1\",\"congbo\":\"1\"},\"kknydkgia\":{\"index\":\"1\"},\"kkgia\":{\"index\":\"1\"},\"dvlt\":{\"index\":\"1\",\"congbo\":\"1\"},\"tpcnte6t\":{\"index\":\"1\",\"congbo\":\"1\"},\"tacn\":{\"index\":\"1\",\"congbo\":\"1\"},\"dvvt\":{\"index\":\"1\"},\"vtxk\":{\"index\":\"1\",\"congbo\":\"1\"},\"vtxtx\":{\"index\":\"1\"},\"vbqlnn\":{\"index\":\"1\"},\"vbgia\":{\"index\":\"1\",\"congbo\":\"1\"}}', '', 0, 0, 0, 0, 0, '2018-11-07 09:17:11', '2018-12-10 08:42:26');
 
 -- --------------------------------------------------------
 
@@ -1709,6 +1709,65 @@ CREATE TABLE `giahhdvkctdf` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `giahhdvkctdf`
+--
+
+INSERT INTO `giahhdvkctdf` (`id`, `maxa`, `mahuyen`, `district`, `manhom`, `mahhdv`, `tenhhdv`, `dacdiemkt`, `dvt`, `gialk`, `gia`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, 'QCG', '01', '1.001', 'Thóc tẻ thường', 'Khô', 'đ/kg', NULL, NULL, '2018-12-10 08:41:39', '2018-12-10 08:41:39'),
+(2, NULL, NULL, 'QCG', '01', '1.002', 'Gạo tẻ thường', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:39', '2018-12-10 08:41:39'),
+(3, NULL, NULL, 'QCG', '01', '1.003', 'Gạo tám thơm, nàng hương', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:39', '2018-12-10 08:41:39'),
+(4, NULL, NULL, 'QCG', '01', '1.004', 'Thịt lợn thăn', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:39', '2018-12-10 08:41:39'),
+(5, NULL, NULL, 'QCG', '01', '1.005', 'Thịt lợn mông sấn', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:39', '2018-12-10 08:41:39'),
+(6, NULL, NULL, 'QCG', '01', '1.006', 'Thịt bò thăn loại 1', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:39', '2018-12-10 08:41:39'),
+(7, NULL, NULL, 'QCG', '01', '1.007', 'Gà công nghiệp làm sẵn', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:39', '2018-12-10 08:41:39'),
+(8, NULL, NULL, 'QCG', '01', '1.008', 'Gà ta còn sống', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:39', '2018-12-10 08:41:39'),
+(9, NULL, NULL, 'QCG', '01', '1.009', 'Cá quả/lóc', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(10, NULL, NULL, 'QCG', '01', '1.010', 'Cá chép/trắm', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(11, NULL, NULL, 'QCG', '01', '1.011', 'Cá biển loại 4', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(12, NULL, NULL, 'QCG', '01', '1.012', 'Cá thu', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(13, NULL, NULL, 'QCG', '01', '1.013', 'Giò lụa', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(14, NULL, NULL, 'QCG', '01', '1.014', 'Rau bắp cải/cải xanh', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(15, NULL, NULL, 'QCG', '01', '1.015', 'Su hào/bí xanh', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(16, NULL, NULL, 'QCG', '01', '1.016', 'Cà chua', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(17, NULL, NULL, 'QCG', '01', '1.017', 'Dầu ăn thực vật', '', 'đ/lít', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(18, NULL, NULL, 'QCG', '01', '1.018', 'Muối hạt', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(19, NULL, NULL, 'QCG', '01', '1.019', 'Đường RE', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(20, NULL, NULL, 'QCG', '01', '1.020', 'Sữa', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(21, NULL, NULL, 'QCG', '01', '1.021', 'Bia chai HN/SG', '', 'đ/két (24 chai)', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(22, NULL, NULL, 'QCG', '01', '1.022', 'Bia hộp HN/SG', '', 'đ/thùng (24 lon)', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(23, NULL, NULL, 'QCG', '01', '1.023', 'Cocacola chai', '', 'đ/két (24 chai)', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(24, NULL, NULL, 'QCG', '01', '1.024', '7 Up lon', '', 'đ/thùng (24 lon)', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(25, NULL, NULL, 'QCG', '01', '1.025', 'Rượu vang nội chai', '', 'đ/chai 750ml', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(26, NULL, NULL, 'QCG', '01', '1.026', 'Thuốc cảm thông thường', '', 'đ/lọ 100 viên', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(27, NULL, NULL, 'QCG', '01', '1.027', 'Thuốc Ampi nội 250mg', '', 'đ/lọ 100 viên', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(28, NULL, NULL, 'QCG', '01', '1.028', 'Thuốc thú y', '', 'đ/chai', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(29, NULL, NULL, 'QCG', '01', '1.029', 'Thuốc bảo vệ thực vật', '', 'đ/chai', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(30, NULL, NULL, 'QCG', '01', '1.030', 'Thức ăn chăn nuôi sản xuất CN', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(31, NULL, NULL, 'QCG', '01', '1.031', 'Lốp xe máy nội Loại 1', '', 'đ/chiếc', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(32, NULL, NULL, 'QCG', '01', '1.032', 'Tivi 21 inch LG', '', 'đ/chiếc', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(33, NULL, NULL, 'QCG', '01', '1.033', 'Tủ lạnh 150l 2 cửa', '', 'đ/chiếc', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(34, NULL, NULL, 'QCG', '01', '1.034', 'Phao tròn', '', 'đ/chiếc', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(35, NULL, NULL, 'QCG', '01', '1.035', 'Phao U rê', '', 'đ/kg-đ/bao', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(36, NULL, NULL, 'QCG', '01', '1.036', 'Phân Dap', '', 'đ/kg-đ/bao', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(37, NULL, NULL, 'QCG', '01', '1.037', 'Xi măng PCB30', '', 'đ/kg-đ/bao', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(38, NULL, NULL, 'QCG', '01', '1.038', 'Thép XD phi 6-8', '', 'đ/kg', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(39, NULL, NULL, 'QCG', '01', '1.039', 'Ống nhựa phi 90 cấp I', '', 'đ/mét', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(40, NULL, NULL, 'QCG', '01', '1.040', 'Ống nhựa phi 20', '', 'đ/mét', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(41, NULL, NULL, 'QCG', '01', '1.041', 'Xăng 92', '', 'đ/lít', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(42, NULL, NULL, 'QCG', '01', '1.042', 'Dầu hỏa', '', 'đ/lít', NULL, NULL, '2018-12-10 08:41:40', '2018-12-10 08:41:40'),
+(43, NULL, NULL, 'QCG', '01', '1.043', 'Điêden', '', 'đ/lít', NULL, NULL, '2018-12-10 08:41:41', '2018-12-10 08:41:41'),
+(44, NULL, NULL, 'QCG', '01', '1.044', 'Gas Petro (VN, SG)', '', 'đ/b/13kg', NULL, NULL, '2018-12-10 08:41:41', '2018-12-10 08:41:41'),
+(45, NULL, NULL, 'QCG', '01', '1.045', 'Cước ôtô liên tỉnh', '', 'đ/vé', NULL, NULL, '2018-12-10 08:41:41', '2018-12-10 08:41:41'),
+(46, NULL, NULL, 'QCG', '01', '1.046', 'Cước taxi', '', 'đ/km', NULL, NULL, '2018-12-10 08:41:41', '2018-12-10 08:41:41'),
+(47, NULL, NULL, 'QCG', '01', '1.047', 'Cước xe buýt', '', 'đ/vé', NULL, NULL, '2018-12-10 08:41:41', '2018-12-10 08:41:41'),
+(48, NULL, NULL, 'QCG', '01', '1.048', 'Công may quần âu nam/nữ', '', 'đ/chiếc', NULL, NULL, '2018-12-10 08:41:41', '2018-12-10 08:41:41'),
+(49, NULL, NULL, 'QCG', '01', '1.049', 'Trông giữ xe máy', '', 'đ/lần/chiếc', NULL, NULL, '2018-12-10 08:41:41', '2018-12-10 08:41:41'),
+(50, NULL, NULL, 'QCG', '01', '1.050', 'Vàng 99,9% (vàng trang sức)', '', 'triệu đồng/chỉ', NULL, NULL, '2018-12-10 08:41:41', '2018-12-10 08:41:41'),
+(51, NULL, NULL, 'QCG', '01', '1.053', 'Đôla Mỹ (NHTM)', '', 'đ/USD', NULL, NULL, '2018-12-10 08:41:41', '2018-12-10 08:41:41'),
+(52, NULL, NULL, 'QCG', '01', '1.056', 'Euro (NHTM)', '', 'đ/Euro', NULL, NULL, '2018-12-10 08:41:41', '2018-12-10 08:41:41'),
+(53, NULL, NULL, 'QCG', '01', '1.057', 'Nhân dân tệ (NHTM)', '', 'đ/NDT', NULL, NULL, '2018-12-10 08:41:41', '2018-12-10 08:41:41');
 
 -- --------------------------------------------------------
 
@@ -2247,7 +2306,7 @@ CREATE TABLE `giavtxkctdf` (
 --
 
 INSERT INTO `giavtxkctdf` (`id`, `maxa`, `madichvu`, `loaixe`, `diemdau`, `diemcuoi`, `mota`, `qccl`, `dvt`, `sokm`, `sltglk`, `chiphisxkdlk`, `chiphittlk`, `chiphinllk`, `chiphinclk`, `chiphikhlk`, `chiphisxkddtlk`, `chiphiclk`, `chiphisxclk`, `chiphitclk`, `chiphibhlk`, `chiphiqllk`, `tchiphisxkdlk`, `chiphidvklk`, `giathanhtblk`, `giathanhlk`, `sltg`, `chiphisxkd`, `chiphitt`, `chiphinl`, `chiphinc`, `chiphikh`, `chiphisxkddt`, `chiphic`, `chiphisxc`, `chiphitc`, `chiphibh`, `chiphiql`, `tchiphisxkd`, `chiphidvk`, `giathanhtb`, `giathanh`, `giaitrinhctcp`, `giahllk`, `giahl`, `ghichu`, `thuevat`, `created_at`, `updated_at`) VALUES
-(1, '123456789', NULL, 'Xe 4 chỗ', NULL, NULL, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '2018-12-04 02:30:06', '2018-12-04 02:30:06');
+(1, '123456789', NULL, 'Xe 4 chỗ', NULL, NULL, 'Giá mở cửa1', 'Huydai i101', 'km', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '2018-12-04 02:30:06', '2018-12-05 07:50:46');
 
 -- --------------------------------------------------------
 
@@ -2539,9 +2598,17 @@ CREATE TABLE `kkgiavtxtx` (
   `plhs` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `thoihan` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ghichu` text COLLATE utf8_unicode_ci,
+  `dvt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `kkgiavtxtx`
+--
+
+INSERT INTO `kkgiavtxtx` (`id`, `maxa`, `mahuyen`, `mahs`, `ngaynhap`, `ngayhieuluc`, `socv`, `socvlk`, `ngaycvlk`, `ytcauthanhgia`, `thydggadgia`, `ttnguoinop`, `ngaynhan`, `sohsnhan`, `ngaychuyen`, `lydo`, `trangthai`, `plhs`, `thoihan`, `ghichu`, `dvt`, `created_at`, `updated_at`) VALUES
+(1, '123456789', 'PTCQHBT', '1234567891543997979', '2018-12-05', '2018-12-05', '001', '', NULL, '', '', 'Test 1', '2018-12-06', '0', '2018-12-06 09:36:07', 'Test', 'DD', NULL, 'Trước thời hạn', '', NULL, '2018-12-05 08:19:39', '2018-12-06 02:39:25');
 
 -- --------------------------------------------------------
 
@@ -2558,12 +2625,27 @@ CREATE TABLE `kkgiavtxtxct` (
   `qccl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `mota` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `dvtlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sllk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `dongialk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `dvt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `dongia` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `kkgiavtxtxct`
+--
+
+INSERT INTO `kkgiavtxtxct` (`id`, `mahs`, `maxa`, `madichvu`, `loaixe`, `qccl`, `mota`, `dvtlk`, `sllk`, `dongialk`, `dvt`, `sl`, `dongia`, `created_at`, `updated_at`) VALUES
+(1, '1234567891543997979', '123456789', NULL, 'Loại xe khác', 'Huydai i101', 'Giá mở cửa1', 'km', '0.61', '60001', 'km', '0.51', '50001', '2018-12-05 08:19:39', '2018-12-05 08:19:39'),
+(2, '1234567891543997979', '123456789', NULL, 'Xe 4 chỗ', 'Huydai i10', 'Từ 601m đến 21 km ', 'km', '1', '9000', 'km', '1', '10000', '2018-12-05 08:19:39', '2018-12-05 08:19:39'),
+(3, '1234567891543997979', '123456789', NULL, 'Xe 4 chỗ', 'Huydai i10', 'Từ 22km tiếp theo', 'km', '1', '8500', 'km', '1', '8000', '2018-12-05 08:19:39', '2018-12-05 08:19:39'),
+(4, '1234567891543997979', '123456789', NULL, 'Xe 4 chỗ', 'Huydai i10', 'Thời gian chờ', 'giờ', '1', '35000', 'giờ', '1', '36000', '2018-12-05 08:19:39', '2018-12-05 08:19:39'),
+(5, '1234567891543997979', '123456789', NULL, 'Xe 5 chỗ', 'Toyota Vios', 'Giá từ 1.1km-> 20km', 'km', '1', '14500', 'km', '1', '15000', '2018-12-05 08:19:39', '2018-12-05 08:19:39'),
+(6, '1234567891543997979', '123456789', NULL, 'Xe 5 chỗ', 'Toyota Vios', 'Mở cửa', 'km', '1', '11000', 'km', '1', '10500', '2018-12-05 08:19:39', '2018-12-05 08:19:39'),
+(7, '1234567891543997979', '123456789', NULL, 'Xe 5 chỗ', '', 'Giá từ 20.1km  trở lên', 'km', '1', '12000', 'km', '1', '11500', '2018-12-05 08:19:39', '2018-12-05 08:19:39');
 
 -- --------------------------------------------------------
 
@@ -2579,8 +2661,10 @@ CREATE TABLE `kkgiavtxtxctdf` (
   `qccl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `mota` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `dvtlk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sllk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `dongialk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `dvt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `dongia` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -3152,6 +3236,18 @@ CREATE TABLE `register` (
   `lydo` text COLLATE utf8_unicode_ci,
   `ma` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `pl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `loaihinhhd` text COLLATE utf8_unicode_ci,
+  `xangdau` double NOT NULL DEFAULT '0',
+  `dien` double NOT NULL DEFAULT '0',
+  `khidau` double DEFAULT '0',
+  `phan` double NOT NULL DEFAULT '0',
+  `thuocbvtv` double NOT NULL DEFAULT '0',
+  `vacxingsgc` double NOT NULL DEFAULT '0',
+  `muoi` double NOT NULL DEFAULT '0',
+  `suate6t` double NOT NULL DEFAULT '0',
+  `duong` double NOT NULL DEFAULT '0',
+  `thocgao` double NOT NULL DEFAULT '0',
+  `thuocpcb` double NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -3734,7 +3830,8 @@ INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `status`, `m
 (13, 'Công ty TNHH thực phẩm chức năng trẻ em ABC', 'tpcnabc', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', '0987654321', 'PTCQHBT', NULL, NULL, 'TPCNTE6T', NULL, NULL, NULL, NULL, NULL, 'Minh Trần(minhtran) - 19/11/2018 14:31:14', '2018-11-19 07:31:14', '2018-11-19 07:31:14'),
 (14, 'Công ty TNHH thức ăn chăn nuôi ABC', 'tacn', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', '123456789', 'PTCQCG', NULL, NULL, 'TACN', NULL, NULL, NULL, NULL, NULL, 'Minh Trần(minhtran) - 20/11/2018 09:35:18', '2018-11-20 02:35:18', '2018-11-20 02:35:18'),
 (15, 'Doanh nghiệp dịch vụ vận tải', 'dvvt', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', '123456789', 'PTCQHBT', NULL, NULL, 'DVVT', NULL, NULL, NULL, NULL, NULL, 'Minh Trần(minhtran) - 21/11/2018 14:35:24', '2018-11-21 07:35:24', '2018-11-21 07:45:23'),
-(16, 'Quản trị hệ thống', 'sa', 'e10adc3949ba59abbe56e057f20f883e', NULL, 'Kích hoạt', NULL, NULL, NULL, NULL, 'HT', 'sa', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(16, 'Quản trị hệ thống', 'sa', 'e10adc3949ba59abbe56e057f20f883e', NULL, 'Kích hoạt', NULL, NULL, NULL, NULL, 'HT', 'sa', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(17, 'Doanh nghiệp đăng ký giá', 'dndangkygia', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', '0098765432', 'PTCQCG', NULL, NULL, 'DKG', NULL, NULL, NULL, NULL, NULL, 'Minh Trần(minhtran) - 06/12/2018 14:39:42', '2018-12-06 07:39:42', '2018-12-06 07:39:42');
 
 -- --------------------------------------------------------
 
@@ -3903,7 +4000,20 @@ INSERT INTO `viewpage` (`id`, `ip`, `session`, `created_at`, `updated_at`) VALUE
 (109, '::1', '8IJVaGcXIOp4zEOXdl5ZtYbzDjV3V3zZ1quuj19I', '2018-12-02 02:29:51', '2018-12-02 02:29:51'),
 (110, '::1', 'gR24liRXXW3LhzdJpKK2hwhyPntU583qUnDyf2Li', '2018-12-03 02:10:45', '2018-12-03 02:10:45'),
 (111, '::1', 'qNpqpKtEf5ZuPdYUYTrlJsPcKrM3YQazihxfiw11', '2018-12-04 02:09:54', '2018-12-04 02:09:54'),
-(112, '::1', 'nNEhML7R7eGtqHGXpKhXRZginDVzimj6shOa6Zpk', '2018-12-04 02:59:03', '2018-12-04 02:59:03');
+(112, '::1', 'nNEhML7R7eGtqHGXpKhXRZginDVzimj6shOa6Zpk', '2018-12-04 02:59:03', '2018-12-04 02:59:03'),
+(113, '::1', '0sb8dnRLngZOGhyn5XB70y7EVy8mVOQNkVUSqzAi', '2018-12-05 02:41:10', '2018-12-05 02:41:10'),
+(114, '::1', '96xE9d9HxnH1Hl0mSR3LF5PDj26l6QE3fmJbEY4o', '2018-12-05 07:14:02', '2018-12-05 07:14:02'),
+(115, '::1', 'ebNpKtCfmtyxAIdCXh7L5s1vllR4s6SScozl23W9', '2018-12-06 02:10:19', '2018-12-06 02:10:19'),
+(116, '::1', 'dAOFWmU8YkL5xVmVtBNQOItgkMFRAVgrXh1dw7K6', '2018-12-06 03:13:32', '2018-12-06 03:13:32'),
+(117, '::1', 'rA4qAK5s9VmBcEzJJdUXwpM6FdM6mges4cAKJP7T', '2018-12-06 07:03:36', '2018-12-06 07:03:36'),
+(118, '::1', 'CFT40jScHhAup9sKFz40qZWWNvoYm57RlOcn0syt', '2018-12-06 07:12:24', '2018-12-06 07:12:24'),
+(119, '::1', 'iR5nSV1tdhkj3Wkid8tyBp9RkwL3tYvmz99Tp1Ly', '2018-12-07 02:00:45', '2018-12-07 02:00:45'),
+(120, '::1', '7AOXtKM11etfxWT0BWscGs94qIm9lM7U2FFW7boB', '2018-12-07 03:03:30', '2018-12-07 03:03:30'),
+(121, '::1', 'UyNil0fd62XPvqMSvt9OQBFaKLvTLqg8NQv3oYeF', '2018-12-07 06:57:31', '2018-12-07 06:57:31'),
+(122, '::1', 'vTWCLJKF0D0tAe8ALEJ6zCVY01sNnZ6HcgIuypS2', '2018-12-08 07:38:04', '2018-12-08 07:38:04'),
+(123, '::1', 'plfTy9RJo9Qi3szIPzwHSALjpmxrRxaSTL1UOvty', '2018-12-08 08:04:35', '2018-12-08 08:04:35'),
+(124, '::1', 'hWZU54rAuxICt7i027eF8oJnvAXDc2Kb0Oocgi22', '2018-12-10 02:04:38', '2018-12-10 02:04:38'),
+(125, '::1', 'wk7VFyIUsUwGmlN42LMMURzrLBkGFEdoI6iiTzbT', '2018-12-10 04:22:28', '2018-12-10 04:22:28');
 
 --
 -- Indexes for dumped tables
@@ -4455,7 +4565,7 @@ ALTER TABLE `binhongiactdf`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `cskddvlt`
 --
@@ -4590,7 +4700,7 @@ ALTER TABLE `giahhdvkct`
 -- AUTO_INCREMENT for table `giahhdvkctdf`
 --
 ALTER TABLE `giahhdvkctdf`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 --
 -- AUTO_INCREMENT for table `gianuocsh`
 --
@@ -4715,12 +4825,12 @@ ALTER TABLE `kkgiatacnctdf`
 -- AUTO_INCREMENT for table `kkgiavtxtx`
 --
 ALTER TABLE `kkgiavtxtx`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `kkgiavtxtxct`
 --
 ALTER TABLE `kkgiavtxtxct`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `kkgiavtxtxctdf`
 --
@@ -4860,7 +4970,7 @@ ALTER TABLE `ttngaynghile`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `vanbanqlnn`
 --
@@ -4870,7 +4980,7 @@ ALTER TABLE `vanbanqlnn`
 -- AUTO_INCREMENT for table `viewpage`
 --
 ALTER TABLE `viewpage`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;COMMIT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

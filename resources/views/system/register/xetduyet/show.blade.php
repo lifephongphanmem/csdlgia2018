@@ -156,7 +156,7 @@
                             @if($model->level == 'DVVT')
                             <tr>
                                 <td style="width:15%">
-                                    <b>Dịch vụ cung cấp</b>
+                                    <b>Doanh nghiệp đăng ký loại hình</b>
                                 </td>
                                 <td style="width:35%">
                                 <span class="text-muted">
@@ -173,6 +173,88 @@
                                 </span>
                                 </td>
                             </tr>
+                            @elseif($model->level == 'DKG')
+                                <tr>
+                                    <td style="width:15%">
+                                        <b>Doanh nghiệp đăng ký loại hình</b>
+                                    </td>
+                                    <td style="width:35%">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <input type="checkbox" value="1" name="roles[dkg][xangdau]" {{ (isset($loaihinhhd->dkg->xangdau) && $loaihinhhd->dkg->xangdau == 1) ? 'checked' : '' }} class="form-control"> Xăng dầu
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <input type="checkbox" value="1" name="roles[dkg][dien]" {{ (isset($loaihinhhd->dkg->dien) && $loaihinhhd->dkg->dien == 1) ? 'checked' : '' }} class="form-control"> Điện bán lẻ
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <input type="checkbox" value="1" name="roles[dkg][khidau]" {{ (isset($loaihinhhd->dkg->khidau) && $loaihinhhd->dkg->khidau == 1) ? 'checked' : '' }} class="form-control"> Khí dầu mỏ hóa lỏng
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <input type="checkbox" value="1" name="roles[dkg][phan]" {{ (isset($loaihinhhd->dkg->phan) && $loaihinhhd->dkg->phan == 1) ? 'checked' : '' }} class="form-control"> Phân đạm urê; phân NPK
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <input type="checkbox" value="1" name="roles[dkg][thuocbvtv]" {{ (isset($loaihinhhd->dkg->thuocbvtv) && $loaihinhhd->dkg->thuocbvtv == 1) ? 'checked' : '' }}> Thuốc bảo vệ thực vật
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <input type="checkbox" value="1" name="roles[dkg][vacxingsgc]" {{ (isset($loaihinhhd->dkg->vacxingsgc) && $loaihinhhd->dkg->vacxingsgc == 1) ? 'checked' : '' }}> Vắc-xin phòng bệnh gia súc gia cầm
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <input type="checkbox" value="1" name="roles[dkg][muoi]" {{ (isset($loaihinhhd->dkg->muoi) && $loaihinhhd->dkg->muoi == 1) ? 'checked' : '' }}> Muối ăn
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <input type="checkbox" value="1" name="roles[dkg][suate6t]" {{ (isset($loaihinhhd->dkg->suate6t) && $loaihinhhd->dkg->suate6t == 1) ? 'checked' : '' }}> Sữa trẻ em dưới 6 tuổi
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <input type="checkbox" value="1" name="roles[dkg][duong]" {{ (isset($loaihinhhd->dkg->duong) && $loaihinhhd->dkg->duong == 1) ? 'checked' : '' }}> Đường ăn
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <input type="checkbox" value="1" name="roles[dkg][thocgao]" {{ (isset($loaihinhhd->dkg->thocgao) && $loaihinhhd->dkg->thocgao == 1) ? 'checked' : '' }}> Thóc, gạo tẻ thường
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <input type="checkbox" value="1" name="roles[dkg][thuocpcb]" {{ (isset($loaihinhhd->dkg->thuocpcb) && $loaihinhhd->dkg->thuocpcb == 1) ? 'checked' : '' }}> Thuốc phòng, chữa bệnh cho người
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
                             @endif
                             <tr>
                                 <td style="width:15%">
