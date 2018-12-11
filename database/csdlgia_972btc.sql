@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2018 at 10:02 AM
+-- Generation Time: Dec 11, 2018 at 09:50 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -320,6 +320,37 @@ INSERT INTO `district` (`id`, `mahuyen`, `tendv`, `district`, `diachi`, `phanloa
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `dmctthamdinhgiahh`
+--
+
+CREATE TABLE `dmctthamdinhgiahh` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `manhom` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nhomhh` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tenhh` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `qccl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dvt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `theodoi` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `dmctthamdinhgiahh`
+--
+
+INSERT INTO `dmctthamdinhgiahh` (`id`, `manhom`, `nhomhh`, `tenhh`, `qccl`, `dvt`, `theodoi`, `created_at`, `updated_at`) VALUES
+(1, '011', 'Con giống gia súc', 'Lợn nái hậu bị móng cái thuần chủng (trọng lượng từ 8 - 10kg)', 'Xuất xứ: Đông Triều, Quảng Ninh', 'kg', 'TD', '2018-12-11 02:39:59', '2018-12-11 02:50:19'),
+(2, '011', 'Con giống gia súc', 'Lợn nái hậu bị móng cái thuần chủng (trọng lượng dưới 11-15kg)', 'Xuất xứ: Đông Triều, Quảng Ninh', 'kg', 'TD', '2018-12-11 08:45:43', '2018-12-11 08:45:43'),
+(3, '011', 'Con giống gia súc', 'Lợn nái hậu bị móng cái thuần chủng (trọng lượng từ 15,1 - 20kg)', 'Xuất xứ: Đông Triều, Quảng Ninh', 'kg', 'TD', '2018-12-11 08:46:13', '2018-12-11 08:46:13'),
+(4, '011', 'Con giống gia súc', 'Lợn nái hậu bị móng cái thuần chủng (trọng lượng từ 20,1 - 25kg)', 'Xuất xứ: Đông Triều, Quảng Ninh', 'kg', 'TD', '2018-12-11 08:46:48', '2018-12-11 08:46:48'),
+(5, '011', 'Con giống gia súc', 'Con giống lợn thịt lai (siêu Nạc) (Trong lượng 8-10kg/con)', '', 'kg', 'TD', '2018-12-11 08:47:56', '2018-12-11 08:47:56'),
+(6, '011', 'Con giống gia súc', 'Con giống lợn thịt lai (siêu Nạc) (Trong lượng 11-15kg/con)', '', 'kg', 'TD', '2018-12-11 08:48:18', '2018-12-11 08:48:18'),
+(7, '011', 'Con giống gia súc', 'Con giống lợn thịt lai (siêu Nạc) (Trong lượng 15,1-20kg/con)', '', 'kg', 'TD', '2018-12-11 08:48:34', '2018-12-11 08:48:34');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `dmdvkcb`
 --
 
@@ -632,6 +663,28 @@ CREATE TABLE `dmqdgiadat` (
 
 INSERT INTO `dmqdgiadat` (`id`, `soquyetdinh`, `sohieu`, `mota`, `ngayquyetdinh`, `ghichu`, `created_at`, `updated_at`) VALUES
 (2, '001', NULL, 'Quyết định thay đổi giá đất 5 năm 2018-2023', '2018-12-31', '', '2018-10-02 04:02:36', '2018-10-02 04:02:36');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dmthamdinhgiahh`
+--
+
+CREATE TABLE `dmthamdinhgiahh` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `manhom` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `theodoi` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tennhom` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `dmthamdinhgiahh`
+--
+
+INSERT INTO `dmthamdinhgiahh` (`id`, `manhom`, `theodoi`, `tennhom`, `created_at`, `updated_at`) VALUES
+(1, '011', 'TD', 'Loại hàng hóa được tài trợ của chính phủ', '2018-12-10 10:54:56', '2018-12-11 02:51:13');
 
 -- --------------------------------------------------------
 
@@ -1468,7 +1521,7 @@ CREATE TABLE `general-configs` (
 --
 
 INSERT INTO `general-configs` (`id`, `tendonvi`, `maqhns`, `diachi`, `tel`, `thutruong`, `ketoan`, `nguoilapbieu`, `diadanh`, `setting`, `thongtinhd`, `thoihanlt`, `thoihanvt`, `thoihangs`, `thoihantacn`, `sodvvt`, `created_at`, `updated_at`) VALUES
-(1, 'Sở Tài Chính tỉnh Cuộc Sống', '09876543', 'Cuộc Sống - Thành Phố Hà Nội', 'Cuộc Sống', 'Nguyễn Thị Minh Tuyết', 'Nguyễn Thị Mỹ Hạnh', 'Nguyễn Thị Mỹ Hường', 'Cuộc Sống', '{\"bog\":{\"index\":\"1\"},\"bpbog\":{\"index\":\"1\"},\"dangkygia\":{\"index\":\"1\"},\"dkgxangdau\":{\"index\":\"1\"},\"dkgdien\":{\"index\":\"1\"},\"dkgkhidau\":{\"index\":\"1\"},\"dkgphan\":{\"index\":\"1\"},\"dkgthuocbvtv\":{\"index\":\"1\"},\"dkgvacxingsgc\":{\"index\":\"1\"},\"dkgmuoi\":{\"index\":\"1\"},\"dkgduong\":{\"index\":\"1\"},\"dkgthocgao\":{\"index\":\"1\"},\"dinhgia\":{\"index\":\"1\"},\"giacldat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadaugiadat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuedatnuoc\":{\"index\":\"1\",\"congbo\":\"1\"},\"giarung\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuemuanhaxh\":{\"index\":\"1\",\"congbo\":\"1\"},\"gianuocsh\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetscong\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvgddt\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvkcb\":{\"index\":\"1\",\"congbo\":\"1\"},\"giahhdvk\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetn\":{\"index\":\"1\",\"congbo\":\"1\"},\"gialephitruocba\":{\"index\":\"1\",\"congbo\":\"1\"},\"giaphilephi\":{\"index\":\"1\",\"congbo\":\"1\"},\"thamdinhgia\":{\"index\":\"1\",\"congbo\":\"1\"},\"kknydkgia\":{\"index\":\"1\"},\"kkgia\":{\"index\":\"1\"},\"dvlt\":{\"index\":\"1\",\"congbo\":\"1\"},\"tpcnte6t\":{\"index\":\"1\",\"congbo\":\"1\"},\"tacn\":{\"index\":\"1\",\"congbo\":\"1\"},\"dvvt\":{\"index\":\"1\"},\"vtxk\":{\"index\":\"1\",\"congbo\":\"1\"},\"vtxtx\":{\"index\":\"1\"},\"vbqlnn\":{\"index\":\"1\"},\"vbgia\":{\"index\":\"1\",\"congbo\":\"1\"}}', '', 0, 0, 0, 0, 0, '2018-11-07 09:17:11', '2018-12-10 08:42:26');
+(1, 'Sở Tài Chính tỉnh Cuộc Sống', '09876543', 'Cuộc Sống - Thành Phố Hà Nội', 'Cuộc Sống', 'Nguyễn Thị Minh Tuyết', 'Nguyễn Thị Mỹ Hạnh', 'Nguyễn Thị Mỹ Hường', 'Cuộc Sống', '{\"bog\":{\"index\":\"1\"},\"dangkygia\":{\"index\":\"1\"},\"dkgxangdau\":{\"index\":\"1\"},\"dkgdien\":{\"index\":\"1\"},\"dkgkhidau\":{\"index\":\"1\"},\"dkgphan\":{\"index\":\"1\"},\"dkgthuocbvtv\":{\"index\":\"1\"},\"dkgvacxingsgc\":{\"index\":\"1\"},\"dkgmuoi\":{\"index\":\"1\"},\"dkgduong\":{\"index\":\"1\"},\"dkgthocgao\":{\"index\":\"1\"},\"dinhgia\":{\"index\":\"1\"},\"giacldat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadaugiadat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuedatnuoc\":{\"index\":\"1\",\"congbo\":\"1\"},\"giarung\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuemuanhaxh\":{\"index\":\"1\",\"congbo\":\"1\"},\"gianuocsh\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetscong\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvgddt\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvkcb\":{\"index\":\"1\",\"congbo\":\"1\"},\"giahhdvk\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetn\":{\"index\":\"1\",\"congbo\":\"1\"},\"gialephitruocba\":{\"index\":\"1\",\"congbo\":\"1\"},\"giaphilephi\":{\"index\":\"1\",\"congbo\":\"1\"},\"thamdinhgia\":{\"index\":\"1\",\"congbo\":\"1\"},\"kknydkgia\":{\"index\":\"1\"},\"kkgia\":{\"index\":\"1\"},\"dvlt\":{\"index\":\"1\",\"congbo\":\"1\"},\"tpcnte6t\":{\"index\":\"1\",\"congbo\":\"1\"},\"tacn\":{\"index\":\"1\",\"congbo\":\"1\"},\"dvvt\":{\"index\":\"1\"},\"vtxk\":{\"index\":\"1\",\"congbo\":\"1\"},\"vtxtx\":{\"index\":\"1\"},\"vbqlnn\":{\"index\":\"1\"},\"vbgia\":{\"index\":\"1\",\"congbo\":\"1\"}}', '', 0, 0, 0, 0, 0, '2018-11-07 09:17:11', '2018-12-11 02:13:47');
 
 -- --------------------------------------------------------
 
@@ -3014,7 +3067,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (85, '2018_11_29_143107_create_ngaynghile_table', 60),
 (86, '2018_12_04_092145_create_kkgiavtxtx_table', 61),
 (87, '2018_12_04_092935_create_kkgiavtxtxctdf_table', 61),
-(88, '2018_12_04_133347_create_kkgiavtxtxct_table', 62);
+(88, '2018_12_04_133347_create_kkgiavtxtxct_table', 62),
+(89, '2018_12_10_173115_create_dmthamdinhgiahh_table', 63),
+(90, '2018_12_10_173442_create_dmctthamdinhgiahh_table', 63),
+(91, '2018_12_11_095329_create_thamdinhgiahh_table', 64),
+(92, '2018_12_11_095342_create_thamdinhgiahhctdf_table', 64),
+(93, '2018_12_11_095351_create_thamdinhgiahhct_table', 64);
 
 -- --------------------------------------------------------
 
@@ -3051,7 +3109,7 @@ CREATE TABLE `nhomdvkcb` (
 --
 
 INSERT INTO `nhomdvkcb` (`id`, `manhom`, `tennhom`, `theodoi`, `created_at`, `updated_at`) VALUES
-(1, '01', 'Dịch vụ khám bệnh', 'TD', '2018-10-12 02:50:15', '2018-10-12 02:50:15'),
+(1, '011', 'Giá hàng hóa trợ cấp trung ương', 'TD', '2018-10-12 02:50:15', '2018-12-10 11:26:13'),
 (2, '02', 'Dịch vụ ngày giường bệnh', 'TD', '2018-10-12 02:52:56', '2018-10-12 02:52:56'),
 (3, '03', 'Dịch vụ kỹ thuật và xét nghiệm', 'TD', '2018-10-12 02:53:33', '2018-10-12 02:53:33');
 
@@ -3291,9 +3349,10 @@ CREATE TABLE `thamdinhgia` (
 --
 
 INSERT INTO `thamdinhgia` (`id`, `diadiem`, `thoidiem`, `ppthamdinh`, `mucdich`, `dvyeucau`, `thoihan`, `sotbkl`, `hosotdgia`, `nguonvon`, `phanloai`, `trangthai`, `quy`, `mahuyen`, `maxa`, `mahs`, `thuevat`, `songaykq`, `filedk`, `filedk1`, `filedk2`, `filedk3`, `filedk4`, `created_at`, `updated_at`) VALUES
-(1, 'a', '2018-10-06', 'a', 'a', 'a', '2018-11-25', 'ád', 'a', 'Cả hai', NULL, 'CB', NULL, NULL, 'PTCQCG', 'PTCQCG1538813755', 'Giá bao gồm thuế VAT', '50', NULL, NULL, NULL, NULL, NULL, '2018-10-06 08:15:55', '2018-10-08 03:27:45'),
+(1, 'Địa điểm thẩm định', '2018-12-11', 'Phương pháp thẩm định', 'Mục đích thẩm định', 'đơn vị yêu cầu thẩm định', '2018-12-21', 'số tbkl', '001', 'Cả hai', NULL, 'CB', '4', NULL, 'PTCQCG', 'PTCQCG1544513831', 'Giá bao gồm thuế VAT', '10', NULL, NULL, NULL, NULL, NULL, '2018-10-06 08:15:55', '2018-12-11 07:48:49'),
 (5, 'sa', '2018-10-06', 'a', 'a', 'a', '2018-10-16', 'a', 'a', 'Cả hai', NULL, 'HHT', NULL, NULL, 'PTCQCG', 'PTCQCG1538814223', 'Giá bao gồm thuế VAT', '10', NULL, NULL, NULL, NULL, NULL, '2018-10-06 08:23:43', '2018-10-10 04:14:37'),
-(6, 'a', '2018-10-06', 'a', 'a', 'a', '2018-10-16', 'a', 'a', 'Cả hai', NULL, 'HT', '4', NULL, 'PTCQCG', 'PTCQCG1538815994', 'Giá bao gồm thuế VAT', '10', NULL, NULL, NULL, NULL, NULL, '2018-10-06 08:53:14', '2018-11-09 08:51:54');
+(6, 'a', '2018-10-06', 'a', 'a', 'a', '2018-10-16', 'a', 'a', 'Cả hai', NULL, 'HT', '4', NULL, 'PTCQCG', 'PTCQCG1538815994', 'Giá bao gồm thuế VAT', '10', NULL, NULL, NULL, NULL, NULL, '2018-10-06 08:53:14', '2018-11-09 08:51:54'),
+(7, 'Địa điểm thẩm định', '2018-12-11', ' Phương pháp thẩm định', 'Mục đích thẩm định', 'đơn vị yêu cầu thẩm định', '2018-12-21', 'Thông báo kết luận', '0001', 'Cả hai', NULL, 'CHT', '4', NULL, 'PTCQCG', 'PTCQCG1544513446', 'Giá bao gồm thuế VAT', '10', NULL, NULL, NULL, NULL, NULL, '2018-12-11 07:30:47', '2018-12-11 07:30:47');
 
 -- --------------------------------------------------------
 
@@ -3368,6 +3427,108 @@ INSERT INTO `thamdinhgiactdf` (`id`, `tents`, `dacdiempl`, `thongsokt`, `nguongo
 (9, 'Máy tính xách tay', 'Xách tay', 'CoreI5-Ram 2G', '', 'chiếc', 2, 70000, 140000, 750000, 1500000, 140000, 0, '', NULL, NULL, '2018-10-08 01:57:52', '2018-10-08 01:57:52'),
 (10, 'Máy tính xách tay', 'Xách tay', 'CoreI5-Ram 2G', '', 'chiếc', 2, 70000, 140000, 750000, 1500000, 140000, 0, '', NULL, NULL, '2018-10-08 01:57:54', '2018-10-08 01:57:54'),
 (11, 'Máy tính xách tay', 'Xách tay', 'CoreI5-Ram 2G', '', 'chiếc', 2, 70000, 140000, 750000, 1500000, 140000, 0, '', NULL, NULL, '2018-10-08 01:58:16', '2018-10-08 01:58:16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `thamdinhgiahh`
+--
+
+CREATE TABLE `thamdinhgiahh` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `diadiem` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `thoidiem` date DEFAULT NULL,
+  `ppthamdinh` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mucdich` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dvyeucau` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `thoihan` date DEFAULT NULL,
+  `sotbkl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `hosotdgia` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nguonvon` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phanloai` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `trangthai` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `quy` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mahuyen` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `maxa` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mahs` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `thuevat` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `songaykq` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `filedk` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `filedk1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `filedk2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `filedk3` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `filedk4` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `manhom` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `thamdinhgiahh`
+--
+
+INSERT INTO `thamdinhgiahh` (`id`, `diadiem`, `thoidiem`, `ppthamdinh`, `mucdich`, `dvyeucau`, `thoihan`, `sotbkl`, `hosotdgia`, `nguonvon`, `phanloai`, `trangthai`, `quy`, `mahuyen`, `maxa`, `mahs`, `thuevat`, `songaykq`, `filedk`, `filedk1`, `filedk2`, `filedk3`, `filedk4`, `manhom`, `created_at`, `updated_at`) VALUES
+(1, 'Địa điểm thẩm định', '2018-12-11', 'Phương pháp thẩm định', 'Mục đích thẩm định', 'đơn vị yêu cầu thẩm định', '2018-12-21', 'số tbkl', '001', 'Cả hai', NULL, 'CB', '4', NULL, 'PTCQCG', 'PTCQCG1544513831', 'Giá bao gồm thuế VAT', '10', NULL, NULL, NULL, NULL, NULL, '011', '2018-12-11 07:37:11', '2018-12-11 08:19:43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `thamdinhgiahhct`
+--
+
+CREATE TABLE `thamdinhgiahhct` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `manhom` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nhomhh` text COLLATE utf8_unicode_ci,
+  `tenhh` text COLLATE utf8_unicode_ci,
+  `qccl` text COLLATE utf8_unicode_ci,
+  `dvt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sl` double NOT NULL DEFAULT '1',
+  `nguyengiadenghi` double NOT NULL DEFAULT '0',
+  `giadenghi` double NOT NULL DEFAULT '0',
+  `nguyengiathamdinh` double NOT NULL DEFAULT '0',
+  `giatritstd` double NOT NULL DEFAULT '0',
+  `giaththamdinh` double NOT NULL DEFAULT '0',
+  `giakththamdinh` double NOT NULL DEFAULT '0',
+  `gc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mahs` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `thamdinhgiahhct`
+--
+
+INSERT INTO `thamdinhgiahhct` (`id`, `manhom`, `nhomhh`, `tenhh`, `qccl`, `dvt`, `sl`, `nguyengiadenghi`, `giadenghi`, `nguyengiathamdinh`, `giatritstd`, `giaththamdinh`, `giakththamdinh`, `gc`, `mahs`, `created_at`, `updated_at`) VALUES
+(1, '011', 'Con giống gia súc', 'Lợn nái hậu bị móng cái thuần chủng (trọng lượng từ 8 - 10kg)', 'Xuất xứ: Đông Triều, Quảng Ninh', 'kg', 1, 55000, 55000, 65000, 65000, 55000, 0, '', 'PTCQCG1544513831', '2018-12-11 07:37:11', '2018-12-11 07:45:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `thamdinhgiahhctdf`
+--
+
+CREATE TABLE `thamdinhgiahhctdf` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `manhom` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nhomhh` text COLLATE utf8_unicode_ci,
+  `tenhh` text COLLATE utf8_unicode_ci,
+  `qccl` text COLLATE utf8_unicode_ci,
+  `dvt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sl` double NOT NULL DEFAULT '1',
+  `nguyengiadenghi` double NOT NULL DEFAULT '0',
+  `giadenghi` double NOT NULL DEFAULT '0',
+  `nguyengiathamdinh` double NOT NULL DEFAULT '0',
+  `giatritstd` double NOT NULL DEFAULT '0',
+  `giaththamdinh` double NOT NULL DEFAULT '0',
+  `giakththamdinh` double NOT NULL DEFAULT '0',
+  `gc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mahuyen` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `maxa` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -4013,7 +4174,9 @@ INSERT INTO `viewpage` (`id`, `ip`, `session`, `created_at`, `updated_at`) VALUE
 (122, '::1', 'vTWCLJKF0D0tAe8ALEJ6zCVY01sNnZ6HcgIuypS2', '2018-12-08 07:38:04', '2018-12-08 07:38:04'),
 (123, '::1', 'plfTy9RJo9Qi3szIPzwHSALjpmxrRxaSTL1UOvty', '2018-12-08 08:04:35', '2018-12-08 08:04:35'),
 (124, '::1', 'hWZU54rAuxICt7i027eF8oJnvAXDc2Kb0Oocgi22', '2018-12-10 02:04:38', '2018-12-10 02:04:38'),
-(125, '::1', 'wk7VFyIUsUwGmlN42LMMURzrLBkGFEdoI6iiTzbT', '2018-12-10 04:22:28', '2018-12-10 04:22:28');
+(125, '::1', 'wk7VFyIUsUwGmlN42LMMURzrLBkGFEdoI6iiTzbT', '2018-12-10 04:22:28', '2018-12-10 04:22:28'),
+(126, '::1', 'CCGPmKOK1aKeXqbH2wiPzl10ssPPiy9oMhbIToeV', '2018-12-11 02:13:18', '2018-12-11 02:13:18'),
+(127, '::1', 'rC0TxjaPdF1zsRckXto10UXhHmWGy7Qicmwi2YOV', '2018-12-11 07:09:32', '2018-12-11 07:09:32');
 
 --
 -- Indexes for dumped tables
@@ -4080,6 +4243,12 @@ ALTER TABLE `district`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `dmctthamdinhgiahh`
+--
+ALTER TABLE `dmctthamdinhgiahh`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `dmdvkcb`
 --
 ALTER TABLE `dmdvkcb`
@@ -4125,6 +4294,12 @@ ALTER TABLE `dmphilephi`
 -- Indexes for table `dmqdgiadat`
 --
 ALTER TABLE `dmqdgiadat`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dmthamdinhgiahh`
+--
+ALTER TABLE `dmthamdinhgiahh`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -4488,6 +4663,24 @@ ALTER TABLE `thamdinhgiactdf`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `thamdinhgiahh`
+--
+ALTER TABLE `thamdinhgiahh`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `thamdinhgiahhct`
+--
+ALTER TABLE `thamdinhgiahhct`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `thamdinhgiahhctdf`
+--
+ALTER TABLE `thamdinhgiahhctdf`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `thuetainguyen`
 --
 ALTER TABLE `thuetainguyen`
@@ -4597,6 +4790,11 @@ ALTER TABLE `diabanhd`
 ALTER TABLE `district`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT for table `dmctthamdinhgiahh`
+--
+ALTER TABLE `dmctthamdinhgiahh`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
 -- AUTO_INCREMENT for table `dmdvkcb`
 --
 ALTER TABLE `dmdvkcb`
@@ -4636,6 +4834,11 @@ ALTER TABLE `dmphilephi`
 --
 ALTER TABLE `dmqdgiadat`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `dmthamdinhgiahh`
+--
+ALTER TABLE `dmthamdinhgiahh`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `dmthuetn`
 --
@@ -4875,7 +5078,7 @@ ALTER TABLE `loaivbqlnn`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 --
 -- AUTO_INCREMENT for table `ngaynghile`
 --
@@ -4925,7 +5128,7 @@ ALTER TABLE `register`
 -- AUTO_INCREMENT for table `thamdinhgia`
 --
 ALTER TABLE `thamdinhgia`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `thamdinhgiact`
 --
@@ -4936,6 +5139,21 @@ ALTER TABLE `thamdinhgiact`
 --
 ALTER TABLE `thamdinhgiactdf`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `thamdinhgiahh`
+--
+ALTER TABLE `thamdinhgiahh`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `thamdinhgiahhct`
+--
+ALTER TABLE `thamdinhgiahhct`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `thamdinhgiahhctdf`
+--
+ALTER TABLE `thamdinhgiahhctdf`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `thuetainguyen`
 --
@@ -4980,7 +5198,7 @@ ALTER TABLE `vanbanqlnn`
 -- AUTO_INCREMENT for table `viewpage`
 --
 ALTER TABLE `viewpage`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;COMMIT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -22,6 +22,7 @@ include('manage/bog.php');
 include('manage/dangkygia.php');
 include('manage/dinhgia.php');
 include('manage/thamdinhgia.php');
+include('manage/thamdinhgiahh.php');
 include('manage/kekhaigia.php');
 include('manage/vbqlnn.php');
 //End Manage

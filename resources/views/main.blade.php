@@ -296,6 +296,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     @include('includes.main.mainBOG')
                     @include('includes.main.maindinhgia')
                     @include('includes.main.mainthamdinhgia')
+                    @include('includes.main.mainthamdinhgiahh')
                     @include('includes.main.mainkknydkgia')
                     @include('includes.main.mainvbqlnn')
                 @endif
