@@ -46,35 +46,29 @@ class ReportsHhDvKController extends Controller
                 if($modelid != null)
                     $id = $id.$modelid.',';
             }
-            $mahslk = GiaHhDvK::wherein('id',[explode(',',$idlk)])
+            $mahslk = GiaHhDvK::wherein('id',explode(',',$idlk))
                 ->select('mahs')
                 ->get();
 
-            $ttlk = GiaHhDvKCt::wherein('mahs',$mahslk->toArray());
+            $ttlk = GiaHhDvKCt::wherein('mahs',$mahslk->toArray())
+                ->where('gia','<>',0)
+                ->get();
 
-            $mahs = GiaHhDvK::wherein('id',[explode(',',$id)])
+            $mahs = GiaHhDvK::wherein('id',explode(',',$id))
                 ->select('mahs')
                 ->get();
-            $tt  = GiaHhDvKCt::wherein('mahs',$mahs->toArray());
+            $tt  = GiaHhDvKCt::wherein('mahs',$mahs->toArray())
+                ->where('gia','<>',0)
+                ->get();
 
             $modelct = DmHhDvK::where('manhom',$inputs['manhom'])
                 ->where('theodoi','TD')
                 ->geT();
             foreach($modelct as $ct){
-                $ttgialk = $ttlk->where('mahhdv',$ct->mahhdv)->get();
-                $slgialk = count($ttlk);
-                $tonggialk = 0;
-                foreach($ttgialk as $gialk){
-                    $tonggialk = $tonggialk + $gialk->gia;
-                }
-                $ct->giathlk = $slgialk == 0 ? 0 : $tonggialk/$slgialk;
-                $ttgia = $tt->where('mahhdv',$ct->mahhdv)->get();
-                $slgia = count($tt);
-                $tonggia = 0;
-                foreach($ttgia as $gia){
-                    $tonggia = $tonggia + $gia->gia;
-                }
-                $ct->giath = $slgia == 0 ? 0 : $tonggia/$slgialk;
+                $ttgialk = $ttlk->where('mahhdv',$ct->mahhdv)->avg('gia');
+                $ct->giathlk = $ttgialk;
+                $ttgia = $tt->where('mahhdv',$ct->mahhdv)->avg('gia');
+                $ct->giath = $ttgia;
             }
 
             $tennhom = NhomHhDvK::where('manhom',$inputs['manhom'])->first()->tennhom;

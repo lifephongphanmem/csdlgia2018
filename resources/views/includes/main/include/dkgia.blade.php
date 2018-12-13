@@ -20,6 +20,7 @@
                 @endif
                 @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
                     <li><a href="">Thông tin dn đăng ký giá</a></li>
+                    <li><a href="">Thông tin đăng ký giá</a></li>
                     <li><a href="">Xét duyệt đăng ký giá</a></li>
                     <li><a href="">Tìm kiếm thông tin đăng ký giá</a></li>
                     <li><a href="">Báo cáo tổng hợp</a></li>

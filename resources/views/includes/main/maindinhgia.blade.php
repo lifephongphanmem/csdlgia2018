@@ -269,6 +269,11 @@
                         <a href="{{url('timkiemgiahhdvkhac')}}">Tìm kiếm thông tin</a>
                     </li>
                     @endif
+                    @if(session('admin')->level == 'H' || session('admin')->level == 'T')
+                    <li>
+                        <a href="{{url('tonghopgiahhdvk')}}">Tổng hợp giá HH-DV khác</a>
+                    </li>
+                    @endif
                     @if(can('thgiahhdvk','baocao'))
                         <li>
                             <a href="{{url('reportshanghoadichvukhac')}}">Báo cáo tổng hợp</a>
