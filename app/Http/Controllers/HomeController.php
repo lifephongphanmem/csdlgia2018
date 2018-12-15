@@ -120,4 +120,9 @@ License code: PRO4-69G6Q4M-8YGNXX-M2N8-KCHVWYK
         } else
             return view('errors.forgotpass-errors');
     }
+
+    public function coming(){
+        return view('congbo.coming')
+            ->with('pageTitle','Dữ liệu đang cập nhật');
+    }
 }

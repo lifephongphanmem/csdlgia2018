@@ -25,6 +25,7 @@ class Users extends Model
         'emailxt',
         'question',
         'answer',
-        'ttnguoitao'
+        'ttnguoitao',
+        'phanloai'
     ];
 }

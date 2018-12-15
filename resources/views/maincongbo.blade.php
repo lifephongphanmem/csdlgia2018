@@ -187,45 +187,65 @@ License: You must have a valid license purchased only from themeforest(the above
                     </li>
                     <li class="menu-dropdown classic-menu-dropdown ">
                         <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
-                            Mặt hàng BOG<i class="fa fa-angle-down"></i>
+                            Bình ổn giá<i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu pull-left">
-                            <?php $modelmhbinhongia = \App\DmMhBinhOnGia::all()?>
-                            @foreach($modelmhbinhongia as $binhongia)
-                                <li>
-                                    <a href="{{url('binhongia?mamh='.$binhongia->mamh)}}">{{$binhongia->hienthi != '' ? $binhongia->hienthi : $binhongia->tenmh}}</a>
-                                </li>
-                            @endforeach
+                            <li>
+                                <a href="{{url('coming')}}">Biện pháp BOG</a>
+                            </li>
+                            <li>
+                                <a href="{{url('coming')}}">Đăng ký giá</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="menu-dropdown classic-menu-dropdown ">
                         <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
-                            Định giá<i class="fa fa-angle-down"></i>
+                            Giá HH-DV do UBND tỉnh dịnh giá<i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu pull-left">
+                            <li><a href="{{url('coming')}}">Giá các loại đất</a></li>
+                            <li><a href="{{url('coming')}}">Đấu giá đất</a></li>
+                            <li><a href="{{url('coming')}}">Giá thuê mặt đất, mặt nước</a></li>
+                            <li><a href="{{url('coming')}}">Giá rừng</a></li>
+                            <li><a href="{{url('coming')}}">Giá thuê, mua nhà xã hội</a></li>
+                            <li><a href="{{url('coming')}}">Giá nước sạch sinh hoạt</a></li>
+                            <li><a href="{{url('coming')}}">Giá thuê tài sản công</a></li>
+                            <li><a href="{{url('coming')}}">Giá dịch vụ giáo dục đào tạo</a></li>
+                            <li><a href="{{url('coming')}}">Giá dịch vụ khám chữa bệnh</a></li>
+                            <li><a href="{{url('coming')}}">Giá hàng hóa dịch vụ khác</a></li>
+                            <li><a href="{{url('coming')}}">Giá thuế tài nguyên</a></li>
+                            <li><a href="{{url('coming')}}">Giá thuế trước bạ</a></li>
+                            <li><a href="{{url('coming')}}">Giá phí, lệ phí</a></li>
                         </ul>
                     </li>
                     <li class="menu-dropdown classic-menu-dropdown ">
                         <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
-                            Thẩm định giá TSNN<i class="fa fa-angle-down"></i>
+                            Thẩm định giá nhà nước<i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu pull-left">
+                            <li><a href="{{url('coming')}}">Thẩm định giá tài sản</a></li>
+                            <li><a href="{{url('coming')}}">Thẩm định giá hàng hóa, dịch vụ</a></li>
                         </ul>
                     </li>
                     <li class="menu-dropdown classic-menu-dropdown ">
                         <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
-                            Kê khai giá HH-DV<i class="fa fa-angle-down"></i>
+                            Kê khai -niêm yết giá HH-DV<i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu pull-left">
+                            <li><a href="{{url('coming')}}">Dịch vụ lưu trú</a></li>
+                            <li><a href="{{url('coming')}}">Dịch vụ vận tải</a></li>
+                            <li><a href="{{url('coming')}}">Thức ăn chăn nuôi</a></li>
+                            <li><a href="{{url('coming')}}">Thực phẩm chức năng dành cho trẻ em dưới 6 tuổi</a></li>
                         </ul>
                     </li>
-                        <li class="menu-dropdown classic-menu-dropdown ">
-                            <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
-                                Văn bản quản lý giá <i class="fa fa-angle-down"></i>
-                            </a>
-                            <ul class="dropdown-menu pull-left">
-                            </ul>
-                        </li>
+                    <li class="menu-dropdown classic-menu-dropdown ">
+                        <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
+                            Văn bản quản lý giá <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu pull-left">
+                            <li><a href="{{url('coming')}}">Văn bản quản lý nhà nước về giá</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <!-- END MEGA MENU -->

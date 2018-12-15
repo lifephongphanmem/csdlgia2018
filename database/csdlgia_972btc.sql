@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2018 at 10:27 AM
+-- Generation Time: Dec 15, 2018 at 04:24 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -721,6 +721,7 @@ CREATE TABLE `dmmhbinhongia` (
   `mamh` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `tenmh` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `hienthi` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phanloai` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -729,18 +730,18 @@ CREATE TABLE `dmmhbinhongia` (
 -- Dumping data for table `dmmhbinhongia`
 --
 
-INSERT INTO `dmmhbinhongia` (`id`, `mamh`, `tenmh`, `hienthi`, `created_at`, `updated_at`) VALUES
-(1, 'XD', 'Xăng Dầu', NULL, '2018-10-04 04:38:49', '2018-10-04 04:38:49'),
-(2, 'DBL', 'Điện bán lẻ', NULL, '2018-10-04 05:24:25', '2018-10-04 05:27:07'),
-(3, 'KDMHL', 'Khí dầu mỏ hóa lỏng (LPG)', NULL, '2018-10-05 07:56:17', '2018-10-05 07:56:17'),
-(4, 'PDURENPK', ' Phân đạm urê; phân NPK', NULL, '2018-10-05 07:56:42', '2018-10-05 08:01:39'),
-(5, 'TBVTV', 'Thuốc bảo vệ thực vật, bao gồm: thuốc trừ sâu, thuốc trừ bệnh, thuốc trừ cỏ', 'Thuốc bảo vệ thực vật', '2018-10-06 02:29:14', '2018-10-18 07:15:18'),
-(6, 'VXGSGC', 'Vac-xin phòng bệnh cho gia súc, gia cầm', NULL, '2018-10-18 07:07:12', '2018-10-18 07:07:12'),
-(7, 'MA', 'Muối ăn', NULL, '2018-10-18 07:07:29', '2018-10-18 07:07:29'),
-(8, 'STED6T', 'Sữa dành cho trẻ em dưới 06 tuổi', NULL, '2018-10-18 07:07:51', '2018-10-18 07:07:51'),
-(9, 'DADTL', 'Đường ăn, bao gồm đường trắng và đường tinh luyện', 'Đường', '2018-10-18 07:08:08', '2018-10-18 07:17:49'),
-(10, 'TGTT', 'Thóc, gạo tẻ thường', 'Thóc, gạo', '2018-10-18 07:08:28', '2018-10-18 07:18:00'),
-(11, 'TPCB', 'Thuốc phòng bệnh, chữa bệnh cho người thuộc danh mục thuốc chữa bệnh thiết yếu sử dụng tại cơ sở khám bệnh, chữa bệnh.', 'Thuốc phòng chữa bệnh cho người', '2018-10-18 07:08:57', '2018-10-18 07:18:18');
+INSERT INTO `dmmhbinhongia` (`id`, `mamh`, `tenmh`, `hienthi`, `phanloai`, `created_at`, `updated_at`) VALUES
+(1, 'XD', 'Xăng Dầu', 'Xăng, dầu', 'dkgxangdau', '2018-10-04 04:38:49', '2018-10-04 04:38:49'),
+(2, 'DBL', 'Điện bán lẻ', 'Điện bán lẻ', 'dkgdien', '2018-10-04 05:24:25', '2018-10-04 05:27:07'),
+(3, 'KDMHL', 'Khí dầu mỏ hóa lỏng (LPG)', 'Khí dầu hóa lỏng', 'dkgkhidau', '2018-10-05 07:56:17', '2018-10-05 07:56:17'),
+(4, 'PDURENPK', ' Phân đạm urê; phân NPK', 'Phân đạm ure; phân NPK', 'dkgphan', '2018-10-05 07:56:42', '2018-10-05 08:01:39'),
+(5, 'TBVTV', 'Thuốc bảo vệ thực vật, bao gồm: thuốc trừ sâu, thuốc trừ bệnh, thuốc trừ cỏ', 'Thuốc bảo vệ thực vật', 'dkgthuocbvtv', '2018-10-06 02:29:14', '2018-10-18 07:15:18'),
+(6, 'VXGSGC', 'Vac-xin phòng bệnh cho gia súc, gia cầm', 'Vắc xin phòng bệnh gia súc, gia cầm', 'dkgvacxingsgc', '2018-10-18 07:07:12', '2018-10-18 07:07:12'),
+(7, 'MA', 'Muối ăn', 'Muối ăn', 'dkgmuoi', '2018-10-18 07:07:29', '2018-10-18 07:07:29'),
+(8, 'STED6T', 'Sữa dành cho trẻ em dưới 06 tuổi', 'Sữa dành cho TE dưới 6 tuổi', 'dkgsuate6t', '2018-10-18 07:07:51', '2018-10-18 07:07:51'),
+(9, 'DADTL', 'Đường ăn, bao gồm đường trắng và đường tinh luyện', 'Đường ăn', 'dkgduong', '2018-10-18 07:08:08', '2018-10-18 07:17:49'),
+(10, 'TGTT', 'Thóc, gạo tẻ thường', 'Thóc, gạo tẻ thường', 'dkgthocgao', '2018-10-18 07:08:28', '2018-10-18 07:18:00'),
+(11, 'TPCB', 'Thuốc phòng bệnh, chữa bệnh cho người thuộc danh mục thuốc chữa bệnh thiết yếu sử dụng tại cơ sở khám bệnh, chữa bệnh.', 'Thuốc phòng, chữa bệnh', 'dkgthuocpcb', '2018-10-18 07:08:57', '2018-10-18 07:18:18');
 
 -- --------------------------------------------------------
 
@@ -1659,7 +1660,7 @@ CREATE TABLE `general-configs` (
 --
 
 INSERT INTO `general-configs` (`id`, `tendonvi`, `maqhns`, `diachi`, `tel`, `thutruong`, `ketoan`, `nguoilapbieu`, `diadanh`, `setting`, `thongtinhd`, `thoihanlt`, `thoihanvt`, `thoihangs`, `thoihantacn`, `sodvvt`, `created_at`, `updated_at`) VALUES
-(1, 'Sở Tài Chính tỉnh Cuộc Sống', '09876543', 'Cuộc Sống - Thành Phố Hà Nội', 'Cuộc Sống', 'Nguyễn Thị Minh Tuyết', 'Nguyễn Thị Mỹ Hạnh', 'Nguyễn Thị Mỹ Hường', 'Cuộc Sống', '{\"bog\":{\"index\":\"1\"},\"dangkygia\":{\"index\":\"1\"},\"dkgxangdau\":{\"index\":\"1\"},\"dkgdien\":{\"index\":\"1\"},\"dkgkhidau\":{\"index\":\"1\"},\"dkgphan\":{\"index\":\"1\"},\"dkgthuocbvtv\":{\"index\":\"1\"},\"dkgvacxingsgc\":{\"index\":\"1\"},\"dkgmuoi\":{\"index\":\"1\"},\"dkgduong\":{\"index\":\"1\"},\"dkgthocgao\":{\"index\":\"1\"},\"dinhgia\":{\"index\":\"1\"},\"giacldat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadaugiadat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuedatnuoc\":{\"index\":\"1\",\"congbo\":\"1\"},\"giarung\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuemuanhaxh\":{\"index\":\"1\",\"congbo\":\"1\"},\"gianuocsh\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetscong\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvgddt\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvkcb\":{\"index\":\"1\",\"congbo\":\"1\"},\"giahhdvk\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetn\":{\"index\":\"1\",\"congbo\":\"1\"},\"gialephitruocba\":{\"index\":\"1\",\"congbo\":\"1\"},\"giaphilephi\":{\"index\":\"1\",\"congbo\":\"1\"},\"thamdinhgia\":{\"index\":\"1\",\"congbo\":\"1\"},\"kknydkgia\":{\"index\":\"1\"},\"kkgia\":{\"index\":\"1\"},\"dvlt\":{\"index\":\"1\",\"congbo\":\"1\"},\"tpcnte6t\":{\"index\":\"1\",\"congbo\":\"1\"},\"tacn\":{\"index\":\"1\",\"congbo\":\"1\"},\"dvvt\":{\"index\":\"1\"},\"vtxk\":{\"index\":\"1\",\"congbo\":\"1\"},\"vtxtx\":{\"index\":\"1\"},\"vbqlnn\":{\"index\":\"1\"},\"vbgia\":{\"index\":\"1\",\"congbo\":\"1\"}}', '', 0, 0, 0, 0, 0, '2018-11-07 09:17:11', '2018-12-11 02:13:47');
+(1, 'Sở Tài Chính tỉnh Cuộc Sống', '09876543', 'Cuộc Sống - Thành Phố Hà Nội', 'Cuộc Sống', 'Nguyễn Thị Minh Tuyết', 'Nguyễn Thị Mỹ Hạnh', 'Nguyễn Thị Mỹ Hường', 'Cuộc Sống', '{\"bog\":{\"index\":\"1\"},\"bpbog\":{\"index\":\"1\"},\"dangkygia\":{\"index\":\"1\"},\"dkgxangdau\":{\"index\":\"1\"},\"dkgdien\":{\"index\":\"1\"},\"dkgkhidau\":{\"index\":\"1\"},\"dkgphan\":{\"index\":\"1\"},\"dkgthuocbvtv\":{\"index\":\"1\"},\"dkgvacxingsgc\":{\"index\":\"1\"},\"dkgmuoi\":{\"index\":\"1\"},\"dkgsuate6t\":{\"index\":\"1\"},\"dkgduong\":{\"index\":\"1\"},\"dkgthocgao\":{\"index\":\"1\"},\"dkgthuocpcb\":{\"index\":\"1\"},\"dinhgia\":{\"index\":\"1\"},\"giacldat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadaugiadat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuedatnuoc\":{\"index\":\"1\",\"congbo\":\"1\"},\"giarung\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuemuanhaxh\":{\"index\":\"1\",\"congbo\":\"1\"},\"gianuocsh\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetscong\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvgddt\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvkcb\":{\"index\":\"1\",\"congbo\":\"1\"},\"giahhdvk\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetn\":{\"index\":\"1\",\"congbo\":\"1\"},\"gialephitruocba\":{\"index\":\"1\",\"congbo\":\"1\"},\"giaphilephi\":{\"index\":\"1\",\"congbo\":\"1\"},\"thamdinhgia\":{\"index\":\"1\",\"congbo\":\"1\"},\"thamdinhgiahh\":{\"index\":\"1\"},\"kknydkgia\":{\"index\":\"1\"},\"kkgia\":{\"index\":\"1\"},\"dvlt\":{\"index\":\"1\",\"congbo\":\"1\"},\"tpcnte6t\":{\"index\":\"1\",\"congbo\":\"1\"},\"tacn\":{\"index\":\"1\",\"congbo\":\"1\"},\"dvvt\":{\"index\":\"1\"},\"vtxk\":{\"index\":\"1\",\"congbo\":\"1\"},\"vtxtx\":{\"index\":\"1\"},\"vbqlnn\":{\"index\":\"1\"},\"vbgia\":{\"index\":\"1\",\"congbo\":\"1\"}}', '', 0, 0, 0, 0, 0, '2018-11-07 09:17:11', '2018-12-14 08:09:57');
 
 -- --------------------------------------------------------
 
@@ -4720,6 +4721,7 @@ CREATE TABLE `users` (
   `question` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `answer` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ttnguoitao` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phanloai` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -4728,19 +4730,19 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `status`, `maxa`, `mahuyen`, `town`, `district`, `level`, `sadmin`, `permission`, `emailxt`, `question`, `answer`, `ttnguoitao`, `created_at`, `updated_at`) VALUES
-(1, 'Minh Trần', 'minhtran', '107e8cf7f2b4531f6b2ff06dbcf94e10', 'minhtranlife@gmail.com', 'Kích hoạt', NULL, NULL, NULL, NULL, 'T', 'ssa', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'Sở Tài Chính Hà Nội', 'stchanoi', 'e10adc3949ba59abbe56e057f20f883e', NULL, 'Kích hoạt', NULL, 'STCHN', NULL, NULL, 'H', NULL, NULL, NULL, NULL, NULL, NULL, '2018-10-04 01:47:12', '2018-10-04 01:47:12'),
-(6, 'Phòng Tài Chính Quận Cầu Giấy', 'ptcquancaugiay', 'e10adc3949ba59abbe56e057f20f883e', NULL, 'Kích hoạt', 'PTCQCG', 'STCHN', NULL, 'QCG', 'X', NULL, NULL, NULL, NULL, NULL, NULL, '2018-10-04 01:49:30', '2018-10-04 01:49:30'),
-(7, 'Phòng tài chính quận Hai Bà Trưng', 'ptcquanhaibatrung', 'e10adc3949ba59abbe56e057f20f883e', NULL, 'Kích hoạt', 'PTCQHBT', 'STCHN', NULL, 'QHBT', 'X', NULL, '', NULL, NULL, NULL, NULL, '2018-10-04 01:50:27', '2018-11-08 07:44:14'),
-(9, 'Công ty TNHH phát triển phần mềm Cuộc Sống', 'pmcuocsong', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', '1234567890', 'PTCQHBT', NULL, NULL, 'DVLT', NULL, NULL, NULL, NULL, NULL, 'Minh Trần(minhtran) - 15/10/2018 09:43:46', '2018-10-15 02:43:46', '2018-10-15 02:43:46'),
-(10, 'Công ty TNHH Thức ăn chăn nuôi', 'tnhhthucan', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', '1234567890', 'PTCQHBT', NULL, NULL, 'TACN', NULL, NULL, NULL, NULL, NULL, 'Minh Trần(minhtran) - 17/10/2018 14:06:44', '2018-10-17 07:06:44', '2018-10-17 07:06:44'),
-(11, 'Administrator', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', NULL, NULL, NULL, NULL, 'T', 'ssa', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(13, 'Công ty TNHH thực phẩm chức năng trẻ em ABC', 'tpcnabc', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', '0987654321', 'PTCQHBT', NULL, NULL, 'TPCNTE6T', NULL, NULL, NULL, NULL, NULL, 'Minh Trần(minhtran) - 19/11/2018 14:31:14', '2018-11-19 07:31:14', '2018-11-19 07:31:14'),
-(14, 'Công ty TNHH thức ăn chăn nuôi ABC', 'tacn', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', '123456789', 'PTCQCG', NULL, NULL, 'TACN', NULL, NULL, NULL, NULL, NULL, 'Minh Trần(minhtran) - 20/11/2018 09:35:18', '2018-11-20 02:35:18', '2018-11-20 02:35:18'),
-(15, 'Doanh nghiệp dịch vụ vận tải', 'dvvt', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', '123456789', 'PTCQHBT', NULL, NULL, 'DVVT', NULL, NULL, NULL, NULL, NULL, 'Minh Trần(minhtran) - 21/11/2018 14:35:24', '2018-11-21 07:35:24', '2018-11-21 07:45:23'),
-(16, 'Quản trị hệ thống', 'sa', 'e10adc3949ba59abbe56e057f20f883e', NULL, 'Kích hoạt', NULL, NULL, NULL, NULL, 'HT', 'sa', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(17, 'Doanh nghiệp đăng ký giá', 'dndangkygia', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', '0098765432', 'PTCQCG', NULL, NULL, 'DKG', NULL, NULL, NULL, NULL, NULL, 'Minh Trần(minhtran) - 06/12/2018 14:39:42', '2018-12-06 07:39:42', '2018-12-06 07:39:42');
+INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `status`, `maxa`, `mahuyen`, `town`, `district`, `level`, `sadmin`, `permission`, `emailxt`, `question`, `answer`, `ttnguoitao`, `phanloai`, `created_at`, `updated_at`) VALUES
+(1, 'Minh Trần', 'minhtran', '107e8cf7f2b4531f6b2ff06dbcf94e10', 'minhtranlife@gmail.com', 'Kích hoạt', NULL, NULL, NULL, NULL, 'T', 'ssa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'Sở Tài Chính Hà Nội', 'stchanoi', 'e10adc3949ba59abbe56e057f20f883e', NULL, 'Kích hoạt', NULL, 'STCHN', NULL, NULL, 'H', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-10-04 01:47:12', '2018-10-04 01:47:12'),
+(6, 'Phòng Tài Chính Quận Cầu Giấy', 'ptcquancaugiay', 'e10adc3949ba59abbe56e057f20f883e', NULL, 'Kích hoạt', 'PTCQCG', 'STCHN', NULL, 'QCG', 'X', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-10-04 01:49:30', '2018-10-04 01:49:30'),
+(7, 'Phòng tài chính quận Hai Bà Trưng', 'ptcquanhaibatrung', 'e10adc3949ba59abbe56e057f20f883e', NULL, 'Kích hoạt', 'PTCQHBT', 'STCHN', NULL, 'QHBT', 'X', NULL, '', NULL, NULL, NULL, NULL, NULL, '2018-10-04 01:50:27', '2018-11-08 07:44:14'),
+(9, 'Công ty TNHH phát triển phần mềm Cuộc Sống', 'pmcuocsong', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', '1234567890', 'PTCQHBT', NULL, NULL, 'DVLT', NULL, NULL, NULL, NULL, NULL, 'Minh Trần(minhtran) - 15/10/2018 09:43:46', NULL, '2018-10-15 02:43:46', '2018-10-15 02:43:46'),
+(10, 'Công ty TNHH Thức ăn chăn nuôi', 'tnhhthucan', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', '1234567890', 'PTCQHBT', NULL, NULL, 'TACN', NULL, NULL, NULL, NULL, NULL, 'Minh Trần(minhtran) - 17/10/2018 14:06:44', NULL, '2018-10-17 07:06:44', '2018-10-17 07:06:44'),
+(11, 'Administrator', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', NULL, NULL, NULL, NULL, 'T', 'ssa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(13, 'Công ty TNHH thực phẩm chức năng trẻ em ABC', 'tpcnabc', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', '0987654321', 'PTCQHBT', NULL, NULL, 'TPCNTE6T', NULL, NULL, NULL, NULL, NULL, 'Minh Trần(minhtran) - 19/11/2018 14:31:14', NULL, '2018-11-19 07:31:14', '2018-11-19 07:31:14'),
+(14, 'Công ty TNHH thức ăn chăn nuôi ABC', 'tacn', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', '123456789', 'PTCQCG', NULL, NULL, 'TACN', NULL, NULL, NULL, NULL, NULL, 'Minh Trần(minhtran) - 20/11/2018 09:35:18', NULL, '2018-11-20 02:35:18', '2018-11-20 02:35:18'),
+(15, 'Doanh nghiệp dịch vụ vận tải', 'dvvt', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', '123456789', 'PTCQHBT', NULL, NULL, 'DVVT', NULL, NULL, NULL, NULL, NULL, 'Minh Trần(minhtran) - 21/11/2018 14:35:24', NULL, '2018-11-21 07:35:24', '2018-11-21 07:45:23'),
+(16, 'Quản trị hệ thống', 'sa', 'e10adc3949ba59abbe56e057f20f883e', NULL, 'Kích hoạt', NULL, NULL, NULL, NULL, 'HT', 'sa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(17, 'Doanh nghiệp đăng ký giá', 'dndangkygia', 'e10adc3949ba59abbe56e057f20f883e', 'minhtranlife@gmail.com', 'Kích hoạt', '0098765432', 'PTCQCG', NULL, NULL, 'DKG', NULL, NULL, NULL, NULL, NULL, 'Minh Trần(minhtran) - 06/12/2018 14:39:42', NULL, '2018-12-06 07:39:42', '2018-12-06 07:39:42');
 
 -- --------------------------------------------------------
 
@@ -4927,7 +4929,11 @@ INSERT INTO `viewpage` (`id`, `ip`, `session`, `created_at`, `updated_at`) VALUE
 (127, '::1', 'rC0TxjaPdF1zsRckXto10UXhHmWGy7Qicmwi2YOV', '2018-12-11 07:09:32', '2018-12-11 07:09:32'),
 (128, '::1', 'qZlB2jYlsK0BjHCI9QQyXZs2acUNPKitkZAmtEAz', '2018-12-12 01:58:24', '2018-12-12 01:58:24'),
 (129, '::1', 'KFPev5WvL7n5DLqtWzaXleVJxT3n1HFOnxbntj2Q', '2018-12-12 06:45:32', '2018-12-12 06:45:32'),
-(130, '::1', 'GckjcJJaOmuLFKC92e59PY9GyumLkjxaArqkJmmK', '2018-12-13 01:34:01', '2018-12-13 01:34:01');
+(130, '::1', 'GckjcJJaOmuLFKC92e59PY9GyumLkjxaArqkJmmK', '2018-12-13 01:34:01', '2018-12-13 01:34:01'),
+(131, '::1', 'JJpVS3Q9NP3CfdA6VFe05tt3ykVZ2Fp3ZOk9HHvu', '2018-12-14 01:36:34', '2018-12-14 01:36:34'),
+(132, '::1', 'hauvKSL7e0VMDWBeRnsIJ652onKjaJ6Uldl3lAlo', '2018-12-14 07:21:47', '2018-12-14 07:21:47'),
+(133, '::1', 'YEFaoCa9L378JmkNH7VYVR9zDxR8AIocqqvpJr9X', '2018-12-14 07:48:36', '2018-12-14 07:48:36'),
+(134, '::1', 'SfwkOzxA8Uegqdgnq2400Aem8lNt6fievFBLdRXY', '2018-12-15 03:12:30', '2018-12-15 03:12:30');
 
 --
 -- Indexes for dumped tables
@@ -5562,7 +5568,7 @@ ALTER TABLE `district`
 -- AUTO_INCREMENT for table `dmctthamdinhgiahh`
 --
 ALTER TABLE `dmctthamdinhgiahh`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `dmdvkcb`
 --
@@ -5672,7 +5678,7 @@ ALTER TABLE `giahhdvkct`
 -- AUTO_INCREMENT for table `giahhdvkctdf`
 --
 ALTER TABLE `giahhdvkctdf`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=334;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `gianuocsh`
 --
@@ -5982,7 +5988,7 @@ ALTER TABLE `vanbanqlnn`
 -- AUTO_INCREMENT for table `viewpage`
 --
 ALTER TABLE `viewpage`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;COMMIT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
