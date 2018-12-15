@@ -24,6 +24,35 @@ Route::get('/binhongiact/show','BinhOnGiaCtController@show');
 Route::get('/binhongiact/update','BinhOnGiaCtController@update');
 Route::get('/binhongiact/del','BinhOnGiaCtController@destroy');
 
+//Doanh nghiệp
+Route::resource('indexdn','DangKyGiaBOGController@indexdnbog');
+Route::get('createdn/create','DangKyGiaBOGController@creatednbog');
+Route::post('storednbog','DangKyGiaBOGController@storednbog');
+Route::get('editdnbog/{id}/edit','DangKyGiaBOGController@showdnbog');
+Route::post('updatednbog','DangKyGiaBOGController@updatednbog');
+Route::post('deletednbog','DangKyGiaBOGController@destroydnbog');
+//Đăng ký giá
+Route::resource('indexdkg','DangKyGiaBOGController@indexdkgbog');
+Route::get('createdkg/create','DangKyGiaBOGController@createdkgbog');
+Route::post('storedkgbog','DangKyGiaBOGController@storedkgbog');
+Route::get('editdkgbog/{id}/edit','DangKyGiaBOGController@showdkgbog');
+Route::post('updatedkgbog','DangKyGiaBOGController@updatedkgbog');
+Route::post('deletedkgbog','DangKyGiaBOGController@destroydkgbog');
+Route::post('chuyen','DangKyGiaBOGController@chuyen');
 
 
+//Nhập mặt hàng nháp
+Route::get('createdkg/add','DangKyGiaBOGDfController@add');
+Route::get('createdkg/show','DangKyGiaBOGDfController@show');
+Route::get('createdkg/update','DangKyGiaBOGDfController@update');
+Route::get('createdkg/del','DangKyGiaBOGDfController@destroy');
+//Nhập mặt hàng chi tiết
+Route::get('/createdkgct/add','DangKyGiaBOGCtController@store');
+Route::get('/createdkgct/show','DangKyGiaBOGCtController@show');
+Route::get('/createdkgct/update','DangKyGiaBOGCtController@update');
+Route::get('/createdkgct/del','DangKyGiaBOGCtController@destroy');
+//Tìm kiếm
+Route::resource('indexdkgtk','DangKyGiaBOGController@indexdkgtk');
+//Báo cáo
+Route::get('baocao/{id}/Bc1','BaoCaoDkgController@BC1');
 ?>
