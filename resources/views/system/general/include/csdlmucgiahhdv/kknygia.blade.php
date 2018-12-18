@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12 ">
         <!-- BEGIN SAMPLE FORM PORTLET-->
-        <div class="portlet box blue">
+        <div class="portlet box green">
             <div class="portlet-title">
                 <div class="caption">
                      Kê khai - niêm yết giá
@@ -19,7 +19,7 @@
                                 <tbody>
                                 <tr>
                                     <td width="2%"><input type="checkbox" {{ (isset($setting->kknydkgia->index) && $setting->kknydkgia->index == 1) ? 'checked' : '' }} value="1" name="roles[kknydkgia][index]"/></td>
-                                    <td>Kê khai - niêm yết - đăng ký giá</td>
+                                    <td>Kê khai - niêm yết giá</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -29,7 +29,7 @@
                                 <tbody>
                                 <tr>
                                     <td width="2%"> <input type="checkbox" {{ (isset($setting->kknydkgia->congbo) && $setting->kknydkgia->congbo == 1) ? 'checked' : '' }} value="1" name="roles[kknydkgia][congbo]"/> </td>
-                                    <td>Công bố Kê khai - niêm yết - đăng ký giá</td>
+                                    <td>Công bố Kê khai - niêm yết giá</td>
                                 </tr>
                                 </tbody>
                             </table>

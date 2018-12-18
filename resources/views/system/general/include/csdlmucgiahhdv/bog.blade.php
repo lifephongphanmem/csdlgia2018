@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col-md-12 ">
         <!-- BEGIN SAMPLE FORM PORTLET-->
-        <div class="portlet box blue">
+        <div class="portlet box green">
             <div class="portlet-title">
                 <div class="caption">
-                    <input type="checkbox" {{ (isset($setting->bog->index) && $setting->bog->index == 1) ? 'checked' : '' }} value="1" name="roles[bog][index]"/>Bình ổn giá
+                    Bình ổn giá
                 </div>
                 <div class="tools">
                     <a href="" class="expand" data-original-title="" title="">
@@ -18,8 +18,12 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
                                 <tr>
-                                    <td width="2%"><input type="checkbox" {{ (isset($setting->bpbog->index) && $setting->bpbog->index == 1) ? 'checked' : '' }} value="1" name="roles[bpbog][index]"/></td>
-                                    <td>Biện pháp bình ổn giá</td>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->bog->index) && $setting->bog->index == 1) ? 'checked' : '' }} value="1" name="roles[bog][index]"/></td>
+                                    <td>Bình ổn giá</td>
+                                </tr>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->bog->congbo) && $setting->bog->congbo == 1) ? 'checked' : '' }} value="1" name="roles[bog][congbo]"/></td>
+                                    <td>Công bố bình ổn giá</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -27,6 +31,10 @@
                         <div class="col-md-3">
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->bpbog->index) && $setting->bpbog->index == 1) ? 'checked' : '' }} value="1" name="roles[bpbog][index]"/></td>
+                                    <td>Biện pháp bình ổn giá</td>
+                                </tr>
                                 <tr>
                                     <td width="2%"><input type="checkbox" {{ (isset($setting->bpbog->congbo) && $setting->bpbog->congbo == 1) ? 'checked' : '' }} value="1" name="roles[bpbog][congbo]"/></td>
                                     <td>Công bố biện pháp bình ổn giá</td>

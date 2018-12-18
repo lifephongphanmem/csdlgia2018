@@ -4,7 +4,7 @@
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                     Văn bản quản lý nhà nước về giá
+                    &nbsp;CSDL Văn bản quản lý nhà nước về giá
                 </div>
                 <div class="tools">
                     <a href="" class="expand" data-original-title="" title="">
@@ -14,16 +14,22 @@
             <div class="portlet-body form" style="display: none;">
                 <div class="form-body">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
                                 <tr>
-                                    <td width="2%"> <input type="checkbox" {{ (isset($setting->vbqlnn->index) && $setting->vbqlnn->index == 1) ? 'checked' : '' }} value="1" name="roles[vbqlnn][index]"/> </td>
-                                    <td>Văn bản quản lý NN</td>
+                                    <td width="2%">  <input type="checkbox" {{ (isset($setting->csdlvbqlnn->index) && $setting->csdlvbqlnn->index == 1) ? 'checked' : '' }} value="1" name="roles[csdlvbqlnn][index]"/></td>
+                                    <td>CSDL Văn bản quản lý nhà nước về giá</td>
                                 </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
                                 <tr>
-                                    <td width="2%"> <input type="checkbox" {{ (isset($setting->vbqlnn->congbo) && $setting->vbqlnn->congbo == 1) ? 'checked' : '' }} value="1" name="roles[vbqlnn][congbo]"/> </td>
-                                    <td>Công bố văn bản quản lý NN</td>
+                                    <td width="2%"> <input type="checkbox" {{ (isset($setting->csdlvbqlnn->congbo) && $setting->csdlvbqlnn->congbo == 1) ? 'checked' : '' }} value="1" name="roles[csdlvbqlnn][congbo]"/> </td>
+                                    <td>Công bố CSDL Văn bản quản lý nhà nước về giá<</td>
                                 </tr>
                                 </tbody>
                             </table>

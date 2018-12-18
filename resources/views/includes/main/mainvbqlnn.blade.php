@@ -1,4 +1,3 @@
-@if(canGeneral('vbqlnn','index'))
 @if(can('vbqlnn','index'))
 <li class="tooltips" data-container="body" data-placement="right" data-html="true"
     data-original-title="Văn bản quản lý nhà nước về giá, các báo cáo tổng hợp">
@@ -18,5 +17,4 @@
         @endif
     </ul>
 </li>
-@endif
 @endif

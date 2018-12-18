@@ -293,22 +293,30 @@ License: You must have a valid license purchased only from themeforest(the above
                 </li>
                 <!--Manager-->
                 @if(session('admin')->sadmin != 'sa')
-                    <li class="heading">
-                        <h3 class="uppercase">CSDL giá về mức giá HH-DV</h3>
-                    </li>
-                    @include('includes.main.maincsdlmucgiahhdv')
-                    <li class="heading">
-                        <h3 class="uppercase">CSDL giá thẩm định giá</h3>
-                    </li>
-                    @include('includes.main.mainthamdinhgia')
-                    <li class="heading">
-                        <h3 class="uppercase">Văn bản QLNN về giá</h3>
-                    </li>
-                    @include('includes.main.mainvbqlnn')
-                    <li class="heading">
-                        <h3 class="uppercase">TT phục vụ CT QLNN về giá</h3>
-                    </li>
-                    @include('includes.main.mainttpvctqlnn')
+                    @if(canGeneral('csdlmucgiahhdv','index'))
+                        <li class="heading">
+                            <h3 class="uppercase">CSDL về mức giá HH-DV</h3>
+                        </li>
+                        @include('includes.main.maincsdlmucgiahhdv')
+                    @endif
+                    @if(canGeneral('csdlthamdinhgia','index'))
+                        <li class="heading">
+                            <h3 class="uppercase">CSDL thẩm định giá</h3>
+                        </li>
+                        @include('includes.main.mainthamdinhgia')
+                    @endif
+                    @if(canGeneral('csdlvbqlnn','index'))
+                        <li class="heading">
+                            <h3 class="uppercase">Văn bản QLNN về giá</h3>
+                        </li>
+                        @include('includes.main.mainvbqlnn')
+                    @endif
+                    @if(canGeneral('csdlttpvctqlnn','index'))
+                        <li class="heading">
+                            <h3 class="uppercase">TT phục vụ CT QLNN về giá</h3>
+                        </li>
+                        @include('includes.main.mainttpvctqlnn')
+                    @endif
                 @endif
 
                 @if(session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa')

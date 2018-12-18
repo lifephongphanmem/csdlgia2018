@@ -35,12 +35,11 @@
         <!-- BEGIN EXAMPLE TABLE PORTLET-->
         <div class="portlet box">
             <div class="portlet-body">
-                @include('system.general.include.bog')
-                @include('system.general.include.dinhgia')
-                @include('system.general.include.thamdinhgia')
-                @include('system.general.include.thamdinhgiahh')
-                @include('system.general.include.kknydkgia')
-                @include('system.general.include.vbqlnn')
+                @include('system.general.include.csdlmucgiahhdv')
+                @include('system.general.include.csdlthamdinhgia')
+                @include('system.general.include.csdlvbqlnn')
+                @include('system.general.include.csdlttpvctqlnn')
+
             </div>
         </div>
         <div class="col-md-12" style="text-align: center">
