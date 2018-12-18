@@ -1,11 +1,13 @@
+
 @if(canGeneral('kknydkgia','index'))
+    @if($model->level == 'T' || $model->level == 'H' || $model->level == 'X' || $model->level == 'DVLT' || $model->level == 'DVVT' || $model->level == 'TACN' || $model->level == 'TPCNTE6T')
     <div class="row">
         <div class="col-md-12 ">
             <!-- BEGIN SAMPLE FORM PORTLET-->
             <div class="portlet box blue">
                 <div class="portlet-title">
                     <div class="caption">
-                        <input type="checkbox" {{ (isset($permission->kknydkgia->index) && $permission->kknydkgia->index == 1) ? 'checked' : '' }} value="1" name="roles[kknydkgia][index]"/>Kê khai- niêm yết - đăng ký giá hàng hóa- dịch vụ
+                        <input type="checkbox" {{ (isset($permission->kknydkgia->index) && $permission->kknydkgia->index == 1) ? 'checked' : '' }} value="1" name="roles[kknydkgia][index]"/>Kê khai- niêm yết giá hàng hóa- dịch vụ
                     </div>
                     <div class="tools">
                         <a href="" class="expand" data-original-title="" title="">
@@ -52,10 +54,10 @@
                             </div>
                         </div>
                         @include('includes.per.include.kkgia.kknygia')
-                        @include('includes.per.include.dangkygia.dangkygia')
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endif
 @endif

@@ -151,6 +151,23 @@ Route::get('/giahhdvkhacct/update','GiaHhDvKCtController@update');
 
 Route::get('reportshanghoadichvukhac','ReportsHhDvKController@index');
 Route::post('reportshanghoadichvukhac/bc1','ReportsHhDvKController@bc1');
+        //Tổng hợp
+Route::resource('tonghopgiahhdvk','ThGiaHhDvKController');
+Route::post('tonghopgiahhdvk/create','ThGiaHhDvKController@create');
+Route::post('tonghopgiahhdvk/delete','ThGiaHhDvKController@destroy');
+Route::post('tonghopgiahhdvk/hoanthanh','ThGiaHhDvKController@hoanthanh');
+Route::post('tonghopgiahhdvk/huyhoanthanh','ThGiaHhDvKController@huyhoanthanh');
+Route::post('tonghopgiahhdvk/congbo','ThGiaHhDvKController@congbo');
+
+Route::get('thgiahhdvk/{id}/exportXML','ThGiaHhDvKController@exportXML');
+
+
+Route::get('thgiahhdvkctdf/edit','ThGiaHhDvKCtDfController@show');
+Route::get('thgiahhdvkctdf/update','ThGiaHhDvKCtDfController@update');
+
+Route::get('thgiahhdvkct/edit','ThGiaHhDvKCtController@show');
+Route::get('thgiahhdvkct/update','ThGiaHhDvKCtController@update');
+        //End Tổng hợp
 
 //Phí Lệ phí
 Route::resource('nhomphilephi','DmPhiLePhiController');

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGiahhdvkctTable extends Migration
+class CreateThgiahhdvkctTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,14 @@ class CreateGiahhdvkctTable extends Migration
      */
     public function up()
     {
-        Schema::create('giahhdvkct', function (Blueprint $table) {
+        Schema::create('thgiahhdvkct', function (Blueprint $table) {
             $table->increments('id');
             $table->string('mahs')->nullable();
-            $table->string('maxa')->nullable();
-            $table->string('mahuyen')->nullable();
-            $table->string('district')->nullable();
+            $table->date('ngaychotbc')->nullable();
             $table->string('manhom')->nullable();
             $table->string('mahhdv')->nullable();
             $table->string('tenhhdv')->nullable();
-            $table->string('dacdiemkt')->nullable();
             $table->string('dvt')->nullable();
-            $table->string('gialk')->nullable();
             $table->string('gia')->nullable();
             $table->timestamps();
         });
@@ -37,6 +33,6 @@ class CreateGiahhdvkctTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('giahhdvkct');
+        Schema::dropIfExists('thgiahhdvkct');
     }
 }

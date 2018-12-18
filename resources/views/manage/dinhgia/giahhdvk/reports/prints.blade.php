@@ -61,7 +61,7 @@
         <th style="text-align: center" rowspan="2">Đặc điểm kỹ thuật</th>
         <th style="text-align: center" rowspan="2">Đơn vị tính</th>
         <th style="text-align: center" width="10%" rowspan="2">Giá liền kề<br>({{getDayVn($model->ngayapdunglk)}})</th>
-        <th style="text-align: center" width="10%" rowspan="2">Giá<br>({{getDayVn(getDayVn($model->ngayapdung))}})</th>
+        <th style="text-align: center" width="10%" rowspan="2">Giá<br>({{getDayVn($model->ngayapdung)}})</th>
         <th style="text-align: center" width="10%" colspan="2">Tăng, giảm</th>
         <th style="text-align: center" width="10%" rowspan="2">Ghi chú</th>
     </tr>

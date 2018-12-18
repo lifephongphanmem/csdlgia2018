@@ -1,5 +1,4 @@
 @if(canGeneral('kkgia','index'))
-@if($model->level == 'DKG' || $model->level == 'T' || $model->level == 'H' || $model->level == 'X')
 <div class="row">
     <div class="col-md-12 ">
         <!-- BEGIN SAMPLE FORM PORTLET-->
@@ -24,5 +23,4 @@
         </div>
     </div>
 </div>
-@endif
 @endif

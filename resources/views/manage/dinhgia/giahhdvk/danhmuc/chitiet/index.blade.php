@@ -91,7 +91,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Danh mục hàng hóa - dịch vụ {{$modelnhom->tennhom}}<small>&nbsp;chi tiết</small>
+        {{$modelnhom->tennhom}}<small>&nbsp;chi tiết</small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">

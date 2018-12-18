@@ -5,7 +5,7 @@
             <div class="portlet-title">
                 <div class="caption caption-md">
                     <i class="icon-bar-chart theme-font hide"></i>
-                    <span class="caption-subject theme-font bold uppercase">Mặt hàng bình ổn giá</span>
+                    <span class="caption-subject theme-font bold uppercase">Bình ổn giá</span>
                 </div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse" data-original-title="" title="">
@@ -27,15 +27,14 @@
                         <tr>
                             <td align="center">{{$key+1}}</td>
                             <td>{{$binhongia->hienthi != '' ? $binhongia->hienthi : $binhongia->tenmh}}</td>
-                            <td><a href="{{url('')}}">Xem báo cáo</a></td>
+                            <td>
+                                <a href="{{url('coming')}}" class="">Biện bình ổn giá</a><br>
+                                <a href="{{url('coming')}}">Đăng ký giá</a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
-
-                <div class="actions" style="text-align: right">
-                    <a href="{{url('')}}">Xem chi tiết...</a>
-                </div>
             </div>
         </div>
         <!-- END PORTLET-->
