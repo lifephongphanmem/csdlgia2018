@@ -293,15 +293,28 @@ License: You must have a valid license purchased only from themeforest(the above
                 </li>
                 <!--Manager-->
                 @if(session('admin')->sadmin != 'sa')
-                    @include('includes.main.mainBOG')
-                    @include('includes.main.maindinhgia')
+                    <li class="heading">
+                        <h3 class="uppercase">CSDL giá về mức giá HH-DV</h3>
+                    </li>
+                    @include('includes.main.maincsdlmucgiahhdv')
+                    <li class="heading">
+                        <h3 class="uppercase">CSDL giá thẩm định giá</h3>
+                    </li>
                     @include('includes.main.mainthamdinhgia')
-                    @include('includes.main.mainthamdinhgiahh')
-                    @include('includes.main.mainkknydkgia')
+                    <li class="heading">
+                        <h3 class="uppercase">Văn bản QLNN về giá</h3>
+                    </li>
                     @include('includes.main.mainvbqlnn')
+                    <li class="heading">
+                        <h3 class="uppercase">TT phục vụ CT QLNN về giá</h3>
+                    </li>
+                    @include('includes.main.mainttpvctqlnn')
                 @endif
 
                 @if(session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa')
+                <li class="heading">
+                    <h3 class="uppercase">System</h3>
+                </li>
                 <li>
                     <a href="">
                         <i class="icon-settings"></i>

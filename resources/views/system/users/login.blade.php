@@ -125,7 +125,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			</div>
 			<div class="modal-body">
 				<div class="form-horizontal">
-					<div class="form-group">
+					<!--div class="form-group">
 						<div class="row" style="text-align: center">
 							<div class="col-md-12" style="text-align: center">
 								<div class="profile-userbuttons">
@@ -134,7 +134,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								</div>
 							</div>
 						</div>
-					</div>
+					</div-->
 					<div class="form-group">
 						<div class="row" style="text-align: center">
 							<div class="col-md-12" style="text-align: center">

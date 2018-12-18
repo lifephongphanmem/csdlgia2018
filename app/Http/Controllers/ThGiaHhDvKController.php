@@ -249,9 +249,11 @@ class ThGiaHhDvKController extends Controller
         $model = ThGiaHhDvK::findOrFail($id);
         $modelct = ThGiaHhDvKCt::where('mahs',$model->mahs)
             ->geT();
+        $modeldm = NhomHhDvK::where('manhom',$model->manhom)->first();
         //dd($modelct);
         $data = '<?xml version="1.0" encoding="UTF-8"?>';
         $data .= '<title>'.$model->ttbc.',ngày báo cáo: '.getDayVn($model->ngaybc).',ngày chốt báo cáo: '.getDayVn($model->ngaychotbc);
+        $data .= '<name>'.$modeldm->manhom.'. '.$modeldm->tennhom;
         $data .= '<data>';
         foreach($modelct as $ct){
             $data .='<row>';
@@ -262,6 +264,7 @@ class ThGiaHhDvKController extends Controller
             $data .='</row>';
         }
         $data .='</data>';
+        $data .='</name>';
         $data .='</title>';
 
         $fp ='hhdvk'.$model->id.'.xml';
