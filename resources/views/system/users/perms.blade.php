@@ -43,7 +43,11 @@
                     </div>
                 </div>
                 <div class="portlet-body">
-                    @include('includes.per.index')
+                    @include('system.users.include.perms.csdlmucgiahhdv')
+                    @include('system.users.include.perms.csdlthamdinhgia')
+                    @include('system.users.include.perms.csdlvbqlnn')
+                    @include('system.users.include.perms.csdlttpvctqlnn')
+
                 </div>
             </div>
         </div>

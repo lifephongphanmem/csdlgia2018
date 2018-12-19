@@ -47,7 +47,7 @@
                         <a href="{{url('thamdinhgiahanghoa')}}">Hồ sơ thẩm định giá HH</a>
                     </li>
                 @endif
-                @if(can('ththamdinhgiahh','index'))
+                @if(can('ththamdinhgiahh','timkiem'))
                     <li>
                         <a href="{{url('timkiemthamdinhgiahanghoa')}}">Tìm kiếm thông tin</a>
                     </li>

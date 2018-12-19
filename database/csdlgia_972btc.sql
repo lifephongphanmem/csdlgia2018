@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2018 at 04:24 AM
+-- Generation Time: Dec 19, 2018 at 02:23 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -316,6 +316,88 @@ CREATE TABLE `district` (
 
 INSERT INTO `district` (`id`, `mahuyen`, `tendv`, `district`, `diachi`, `phanloaiql`, `ttlienhe`, `emailql`, `emailqt`, `created_at`, `updated_at`) VALUES
 (3, 'STCHN', 'Sở Tài Chính Hà Nội', NULL, 'Thành Phố Hà Nội', NULL, '', 'minhtranlife@gmail.com', 'minhtranlife@gmail.com', '2018-10-04 01:47:12', '2018-10-04 01:47:12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dkgdoanhnghiep`
+--
+
+CREATE TABLE `dkgdoanhnghiep` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `maxa` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mahuyen` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tendn` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `diachi` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tel` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `fax` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ghichu` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giayphepkd` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phanloaidn` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phanloai` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dkghoso`
+--
+
+CREATE TABLE `dkghoso` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `maxa` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mahs` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `socongvan` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ngayquyetdinh` date DEFAULT NULL,
+  `ngaythuchien` date DEFAULT NULL,
+  `trangthai` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phanloai` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phanloaidkg` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ttnguoichuyen` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ngaychuyen` date DEFAULT NULL,
+  `ghichu` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dkghosoct`
+--
+
+CREATE TABLE `dkghosoct` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `mahs` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tenhhdv` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `quycach` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `donvitinh` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mucgiahienhanh` double NOT NULL DEFAULT '0',
+  `mucgiamoi` double NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dkghosoctdf`
+--
+
+CREATE TABLE `dkghosoctdf` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `mahs` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tenhhdv` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `quycach` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `donvitinh` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mucgiahienhanh` double NOT NULL DEFAULT '0',
+  `mucgiamoi` double NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1660,7 +1742,7 @@ CREATE TABLE `general-configs` (
 --
 
 INSERT INTO `general-configs` (`id`, `tendonvi`, `maqhns`, `diachi`, `tel`, `thutruong`, `ketoan`, `nguoilapbieu`, `diadanh`, `setting`, `thongtinhd`, `thoihanlt`, `thoihanvt`, `thoihangs`, `thoihantacn`, `sodvvt`, `created_at`, `updated_at`) VALUES
-(1, 'Sở Tài Chính tỉnh Cuộc Sống', '09876543', 'Cuộc Sống - Thành Phố Hà Nội', 'Cuộc Sống', 'Nguyễn Thị Minh Tuyết', 'Nguyễn Thị Mỹ Hạnh', 'Nguyễn Thị Mỹ Hường', 'Cuộc Sống', '{\"bog\":{\"index\":\"1\"},\"bpbog\":{\"index\":\"1\"},\"dangkygia\":{\"index\":\"1\"},\"dkgxangdau\":{\"index\":\"1\"},\"dkgdien\":{\"index\":\"1\"},\"dkgkhidau\":{\"index\":\"1\"},\"dkgphan\":{\"index\":\"1\"},\"dkgthuocbvtv\":{\"index\":\"1\"},\"dkgvacxingsgc\":{\"index\":\"1\"},\"dkgmuoi\":{\"index\":\"1\"},\"dkgsuate6t\":{\"index\":\"1\"},\"dkgduong\":{\"index\":\"1\"},\"dkgthocgao\":{\"index\":\"1\"},\"dkgthuocpcb\":{\"index\":\"1\"},\"dinhgia\":{\"index\":\"1\"},\"giacldat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadaugiadat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuedatnuoc\":{\"index\":\"1\",\"congbo\":\"1\"},\"giarung\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuemuanhaxh\":{\"index\":\"1\",\"congbo\":\"1\"},\"gianuocsh\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetscong\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvgddt\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvkcb\":{\"index\":\"1\",\"congbo\":\"1\"},\"giahhdvk\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetn\":{\"index\":\"1\",\"congbo\":\"1\"},\"gialephitruocba\":{\"index\":\"1\",\"congbo\":\"1\"},\"giaphilephi\":{\"index\":\"1\",\"congbo\":\"1\"},\"thamdinhgia\":{\"index\":\"1\",\"congbo\":\"1\"},\"thamdinhgiahh\":{\"index\":\"1\"},\"kknydkgia\":{\"index\":\"1\"},\"kkgia\":{\"index\":\"1\"},\"dvlt\":{\"index\":\"1\",\"congbo\":\"1\"},\"tpcnte6t\":{\"index\":\"1\",\"congbo\":\"1\"},\"tacn\":{\"index\":\"1\",\"congbo\":\"1\"},\"dvvt\":{\"index\":\"1\"},\"vtxk\":{\"index\":\"1\",\"congbo\":\"1\"},\"vtxtx\":{\"index\":\"1\"},\"vbqlnn\":{\"index\":\"1\"},\"vbgia\":{\"index\":\"1\",\"congbo\":\"1\"}}', '', 0, 0, 0, 0, 0, '2018-11-07 09:17:11', '2018-12-14 08:09:57');
+(1, 'Sở Tài Chính tỉnh Cuộc Sống', '09876543', 'Cuộc Sống - Thành Phố Hà Nội', 'Cuộc Sống', 'Nguyễn Thị Minh Tuyết', 'Nguyễn Thị Mỹ Hạnh', 'Nguyễn Thị Mỹ Hường', 'Cuộc Sống', '{\"csdlmucgiahhdv\":{\"index\":\"1\"},\"dinhgia\":{\"index\":\"1\"},\"giacldat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadaugiadat\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuedatnuoc\":{\"index\":\"1\",\"congbo\":\"1\"},\"giarung\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuemuanhaxh\":{\"index\":\"1\",\"congbo\":\"1\"},\"gianuocsh\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetscong\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvgddt\":{\"index\":\"1\",\"congbo\":\"1\"},\"giadvkcb\":{\"index\":\"1\",\"congbo\":\"1\"},\"giahhdvk\":{\"index\":\"1\",\"congbo\":\"1\"},\"giathuetn\":{\"index\":\"1\",\"congbo\":\"1\"},\"gialephitruocba\":{\"index\":\"1\",\"congbo\":\"1\"},\"giaphilephi\":{\"index\":\"1\",\"congbo\":\"1\"},\"bog\":{\"index\":\"1\"},\"bpbog\":{\"index\":\"1\"},\"dangkygia\":{\"index\":\"1\"},\"dkgxangdau\":{\"index\":\"1\"},\"dkgdien\":{\"index\":\"1\"},\"dkgkhidau\":{\"index\":\"1\"},\"dkgphan\":{\"index\":\"1\"},\"dkgthuocbvtv\":{\"index\":\"1\"},\"dkgvacxingsgc\":{\"index\":\"1\"},\"dkgmuoi\":{\"index\":\"1\"},\"dkgsuate6t\":{\"index\":\"1\"},\"dkgduong\":{\"index\":\"1\"},\"dkgthocgao\":{\"index\":\"1\"},\"dkgthuocpcb\":{\"index\":\"1\"},\"kknydkgia\":{\"index\":\"1\"},\"kkgia\":{\"index\":\"1\"},\"dvlt\":{\"index\":\"1\",\"congbo\":\"1\"},\"tpcnte6t\":{\"index\":\"1\",\"congbo\":\"1\"},\"tacn\":{\"index\":\"1\",\"congbo\":\"1\"},\"dvvt\":{\"index\":\"1\"},\"vtxk\":{\"index\":\"1\",\"congbo\":\"1\"},\"vtxtx\":{\"index\":\"1\"},\"csdlthamdinhgia\":{\"index\":\"1\"},\"thamdinhgia\":{\"index\":\"1\",\"congbo\":\"1\"},\"thamdinhgiahh\":{\"index\":\"1\"},\"csdlvbqlnn\":{\"index\":\"1\"},\"vbgia\":{\"index\":\"1\",\"congbo\":\"1\"},\"csdlttpvctqlnn\":{\"index\":\"1\"}}', '', 0, 0, 0, 0, 0, '2018-11-07 09:17:11', '2018-12-18 08:14:04');
 
 -- --------------------------------------------------------
 
@@ -3383,7 +3465,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (93, '2018_12_11_095351_create_thamdinhgiahhct_table', 64),
 (94, '2018_12_12_091849_create_thgiahhdvk_table', 65),
 (95, '2018_12_12_091903_create_thgiahhdvkctdf_table', 65),
-(96, '2018_12_12_091910_create_thgiahhdvkct_table', 65);
+(96, '2018_12_12_091910_create_thgiahhdvkct_table', 65),
+(97, '2018_12_13_104322_create_dkgdoanhnghiep_table', 66),
+(98, '2018_12_14_092929_create_dkghoso_table', 66),
+(99, '2018_12_14_093813_create_dkghosoct_table', 66),
+(100, '2018_12_14_152539_create_dkghosoctdf_table', 66);
 
 -- --------------------------------------------------------
 
@@ -4933,7 +5019,10 @@ INSERT INTO `viewpage` (`id`, `ip`, `session`, `created_at`, `updated_at`) VALUE
 (131, '::1', 'JJpVS3Q9NP3CfdA6VFe05tt3ykVZ2Fp3ZOk9HHvu', '2018-12-14 01:36:34', '2018-12-14 01:36:34'),
 (132, '::1', 'hauvKSL7e0VMDWBeRnsIJ652onKjaJ6Uldl3lAlo', '2018-12-14 07:21:47', '2018-12-14 07:21:47'),
 (133, '::1', 'YEFaoCa9L378JmkNH7VYVR9zDxR8AIocqqvpJr9X', '2018-12-14 07:48:36', '2018-12-14 07:48:36'),
-(134, '::1', 'SfwkOzxA8Uegqdgnq2400Aem8lNt6fievFBLdRXY', '2018-12-15 03:12:30', '2018-12-15 03:12:30');
+(134, '::1', 'SfwkOzxA8Uegqdgnq2400Aem8lNt6fievFBLdRXY', '2018-12-15 03:12:30', '2018-12-15 03:12:30'),
+(135, '::1', 'UU5pPShtrnnEp2jAvZXUPdDVZRzs8nhq9lAuf8R2', '2018-12-17 10:58:07', '2018-12-17 10:58:07'),
+(136, '::1', 'Tl31PJY1JrBD6ynPe9LCwUn7PXkKRkSapOOaVV2D', '2018-12-18 01:47:39', '2018-12-18 01:47:39'),
+(137, '::1', 's8GOHgbsmER7bGLliQmG3L7bwKkUi4Q6v7fmvKJr', '2018-12-18 07:16:01', '2018-12-18 07:16:01');
 
 --
 -- Indexes for dumped tables
@@ -4997,6 +5086,30 @@ ALTER TABLE `diabanhd`
 -- Indexes for table `district`
 --
 ALTER TABLE `district`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dkgdoanhnghiep`
+--
+ALTER TABLE `dkgdoanhnghiep`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dkghoso`
+--
+ALTER TABLE `dkghoso`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dkghosoct`
+--
+ALTER TABLE `dkghosoct`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dkghosoctdf`
+--
+ALTER TABLE `dkghosoctdf`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -5565,6 +5678,26 @@ ALTER TABLE `diabanhd`
 ALTER TABLE `district`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT for table `dkgdoanhnghiep`
+--
+ALTER TABLE `dkgdoanhnghiep`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `dkghoso`
+--
+ALTER TABLE `dkghoso`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `dkghosoct`
+--
+ALTER TABLE `dkghosoct`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `dkghosoctdf`
+--
+ALTER TABLE `dkghosoctdf`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `dmctthamdinhgiahh`
 --
 ALTER TABLE `dmctthamdinhgiahh`
@@ -5853,7 +5986,7 @@ ALTER TABLE `loaivbqlnn`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 --
 -- AUTO_INCREMENT for table `ngaynghile`
 --
@@ -5988,7 +6121,7 @@ ALTER TABLE `vanbanqlnn`
 -- AUTO_INCREMENT for table `viewpage`
 --
 ALTER TABLE `viewpage`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;COMMIT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

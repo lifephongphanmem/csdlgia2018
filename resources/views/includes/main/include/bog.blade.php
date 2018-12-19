@@ -8,6 +8,11 @@
         <span class="arrow"></span>
     </a>
     <ul class="sub-menu" style="display: none;">
+        @if(can('dmbog','index'))
+            <li>
+                <a href="{{url('dmmhbinhongia')}}">Danh mục MH BOG</a>
+            </li>
+        @endif
         @if(canGeneral('bpbog','index'))
             @if(can('bpbog','index'))
             <li class="tooltips" data-container="body" data-placement="right" data-html="true"
@@ -17,21 +22,16 @@
                     <span class="arrow"></span>
             </a>
             <ul class="sub-menu" style="display: none;">
-                @if(can('dmbpbog','index'))
-                <li>
-                    <a href="{{url('dmmhbinhongia')}}">Danh mục MH BOG</a>
-                </li>
+                <?php $modelmhbinhongia = \App\DmMhBinhOnGia::all()?>
+                @if(can('kkbpbog','index'))
+                    @foreach($modelmhbinhongia as $binhongia)
+                        <li>
+                            <a href="{{url('binhongia?mamh='.$binhongia->mamh)}}">{{$binhongia->hienthi != '' ? $binhongia->hienthi : $binhongia->tenmh}}</a>
+                        </li>
+                    @endforeach
                 @endif
                 @if(can('thbpbog','timkiem'))
                 <li><a href="{{url('timkiemthongtinbog')}}">Tìm kiếm thông tin BOG</a> </li>
-                @endif
-                <?php $modelmhbinhongia = \App\DmMhBinhOnGia::all()?>
-                @if(can('kkbpbog','index'))
-                @foreach($modelmhbinhongia as $binhongia)
-                <li>
-                    <a href="{{url('binhongia?mamh='.$binhongia->mamh)}}">{{$binhongia->hienthi != '' ? $binhongia->hienthi : $binhongia->tenmh}}</a>
-                </li>
-                @endforeach
                 @endif
             </ul>
             </li>
@@ -45,7 +45,6 @@
                         <span class="title">Đăng ký giá</span>
                         <span class="arrow"></span>
                     </a>
-
                     <ul class="sub-menu" style="display: none;">
                         <?php $modeldm = \App\DmMhBinhOnGia::all()?>
                         @foreach($modeldm as $dm)

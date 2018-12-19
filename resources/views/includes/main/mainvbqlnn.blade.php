@@ -11,7 +11,7 @@
             @if(can('vbgia','index'))
             <li class="tooltips" data-container="body" data-placement="right" data-html="true"
                 data-original-title="Các quyết định, văn bản quản lý, điều hành về giá">
-                <a href="{{url('vanbanqlnnvegia')}}">Văn bản quản lý NN về giá</a>
+                <a href="{{url('vanbanqlnnvegia')}}">Các quyết định, văn bản quản lý, điều hành về giá</a>
             </li>
             @endif
         @endif

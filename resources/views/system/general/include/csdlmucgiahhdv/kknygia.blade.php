@@ -18,7 +18,7 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
                                 <tr>
-                                    <td width="2%"><input type="checkbox" {{ (isset($setting->kknydkgia->index) && $setting->kknydkgia->index == 1) ? 'checked' : '' }} value="1" name="roles[kknydkgia][index]"/></td>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->kknygia->index) && $setting->kknygia->index == 1) ? 'checked' : '' }} value="1" name="roles[kknygia][index]"/></td>
                                     <td>Kê khai - niêm yết giá</td>
                                 </tr>
                                 </tbody>
@@ -28,7 +28,7 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
                                 <tr>
-                                    <td width="2%"> <input type="checkbox" {{ (isset($setting->kknydkgia->congbo) && $setting->kknydkgia->congbo == 1) ? 'checked' : '' }} value="1" name="roles[kknydkgia][congbo]"/> </td>
+                                    <td width="2%"> <input type="checkbox" {{ (isset($setting->kknygia->congbo) && $setting->kknygia->congbo == 1) ? 'checked' : '' }} value="1" name="roles[kknygia][congbo]"/> </td>
                                     <td>Công bố Kê khai - niêm yết giá</td>
                                 </tr>
                                 </tbody>

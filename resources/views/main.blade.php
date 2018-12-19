@@ -294,28 +294,36 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!--Manager-->
                 @if(session('admin')->sadmin != 'sa')
                     @if(canGeneral('csdlmucgiahhdv','index'))
+                        @if(can('csdlmucgiahhdv','index'))
                         <li class="heading">
                             <h3 class="uppercase">CSDL về mức giá HH-DV</h3>
                         </li>
                         @include('includes.main.maincsdlmucgiahhdv')
+                        @endif
                     @endif
                     @if(canGeneral('csdlthamdinhgia','index'))
+                        @if(can('csdlthamdinhgia','index'))
                         <li class="heading">
                             <h3 class="uppercase">CSDL thẩm định giá</h3>
                         </li>
                         @include('includes.main.mainthamdinhgia')
+                        @endif
                     @endif
                     @if(canGeneral('csdlvbqlnn','index'))
+                        @if(can('csdlvbqlnn','index'))
                         <li class="heading">
                             <h3 class="uppercase">Văn bản QLNN về giá</h3>
                         </li>
                         @include('includes.main.mainvbqlnn')
+                        @endif
                     @endif
                     @if(canGeneral('csdlttpvctqlnn','index'))
+                        @if(can('csdlttpvctqlnn','index'))
                         <li class="heading">
                             <h3 class="uppercase">TT phục vụ CT QLNN về giá</h3>
                         </li>
                         @include('includes.main.mainttpvctqlnn')
+                        @endif
                     @endif
                 @endif
 
