@@ -21,7 +21,7 @@
                                     <tbody>
                                     <tr>
                                         <td width="2%"><input type="checkbox" {{ (isset($permission->csdlttpvctqlnn->index) && $permission->csdlttpvctqlnn->index == 1) ? 'checked' : '' }} value="1" name="roles[csdlttpvctqlnn][index]"/></td>
-                                        <td>CSDL văn bản quản lý nhà nước về giá</td>
+                                        <td>CSDL thông tin phục vụ công tác quản lý nhà nước về giá</td>
                                     </tr>
                                     </tbody>
                                 </table>

@@ -59,7 +59,9 @@
                                     </tbody>
                                 </table>
                             </div>
+
                         </div>
+                        @include('system.users.include.perms.csdlvbqlnn.giacpi')
                     </div>
                 </div>
             </div>

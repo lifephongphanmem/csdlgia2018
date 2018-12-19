@@ -504,6 +504,28 @@ function getPermissionDefault($level) {
                 'delete'=>1,
                 'approve'=>1,
             ),
+            'giacpi'=>array(
+                'index'=>1,
+            ),
+                'dmgiacpi'=>array(
+                    'index'=>1,
+                    'create'=>1,
+                    'edit'=>1,
+                    'delete'=>1,
+                    'approve'=>1,
+                ),
+                'kkgiacpi'=>array(
+                    'index'=>1,
+                    'create'=>1,
+                    'edit'=>1,
+                    'delete'=>1,
+                    'approve'=>1,
+                ),
+                'thgiacpi'=>array(
+                    'congbo'=>1,
+                    'baocao'=>1,
+                    'timkiem'=>1,
+                ),
         //End CSDL Văn bản quản lý nhà nước
         //CSDL thông tin phục vụ công tác quản lý nhà nước về giá
         'csdlttpvctqlnn'=>array(
