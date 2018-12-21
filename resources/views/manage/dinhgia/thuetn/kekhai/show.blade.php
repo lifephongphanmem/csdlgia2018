@@ -1,185 +1,78 @@
-@extends('main')
 
-@section('custom-style')
-    <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
-    <link type="text/css" rel="stylesheet" href="{{ url('vendors/bootstrap-datepicker/css/datepicker.css') }}">
-@stop
-
-
-@section('custom-script')
-    <script type="text/javascript" src="{{url('assets/global/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
-    <script type="text/javascript" src="{{url('assets/global/plugins/select2/select2.min.js')}}"></script>
-    <script type="text/javascript" src="{{url('assets/global/plugins/datatables/media/js/jquery.dataTables.min.js')}}"></script>
-    <script type="text/javascript" src="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')}}"></script>
-    <!-- END PAGE LEVEL PLUGINS -->
-    <script src="{{url('assets/admin/pages/scripts/table-managed.js')}}"></script>
-    <script>
-        jQuery(document).ready(function() {
-            TableManaged.init();
-        });
-    </script>
-    <script src="{{url('minhtran/jquery.inputmask.bundle.min.js')}}"></script>
-    <script>
-        $(document).ready(function(){
-            $(":input").inputmask();
-        });
-    </script>
-    <script>
-        function editItem(id) {
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            //alert(id);
-            $.ajax({
-                url: '/thuetainguyenct/edit',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    id: id
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if(data.status == 'success') {
-                        $('#tttsedit').replaceWith(data.message);
-                        InputMask();
-                    }
-                    else
-                        toastr.error("Không thể chỉnh sửa thông tin mặt hàng!", "Lỗi!");
-                }
-            })
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>{{$pageTitle}}</title>
+    <link rel="shortcut icon" href="{{ url('images/LIFESOFT.png')}}" type="image/x-icon">
+    <style type="text/css">
+        body {
+            font: normal 12px/16px time, serif;
         }
 
-        function updatets(){
-            //alert('vcl');
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '/thuetainguyenct/update',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    id: $('input[name="idedit"]').val(),
-                    giatttn: $('input[name="edit_giatttn"]').val(),
-                    mahs: $('input[name="mahs"]').val()
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if(data.status == 'success') {
-                        toastr.success("Chỉnh sửa thông tin mặt hàng thành công", "Thành công!");
-                        $('#dsts').replaceWith(data.message);
-                        jQuery(document).ready(function() {
-                            TableManaged.init();
-                        });
-                        $('#modal-edit').modal("hide");
-
-
-                    }else
-                        toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
-                }
-            })
+        table, p {
+            width: 98%;
+            margin: auto;
         }
-    </script>
-@stop
 
-@section('content')
-    <h3 class="page-title">
-        Hồ sơ thuế tài nguyên<small>chi tiết</small>
-    </h3>
-    <!-- END PAGE HEADER-->
+        table tr td:first-child {
+            text-align: center;
+        }
 
-    <!-- BEGIN DASHBOARD STATS -->
-    <div class="row center">
-        <div class="col-md-12 center">
-            <!-- BEGIN VALIDATION STATES-->
-            {!! Form::model($model, [ 'class'=>'horizontal-form','id'=>'update_thuetainguyen']) !!}
-            <div class="portlet box blue">
-                <div class="portlet-body form">
-                    <!-- BEGIN FORM-->
+        td, th {
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+<table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <td style="text-align: center; text-transform: uppercase;" width="30%">
+            <b></b><br>
+            --------<br>
+        </td>
+        <td style="text-align: left;" width="70%">
 
-                    <div class="form-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Nhóm tài nguyên:</label>
-                                    <label class="control-label" style="color: blue;font-weight: bold">{{$tennhom}}</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Địa bàn quản lý:</label>
-                                    <label class="control-label" style="color: blue;font-weight: bold">{{$diaban}}</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Số quyết định<span class="require">*</span></label>
-                                    {!!Form::text('soqd',null, array('id' => 'soqd','class' => 'form-control required','autofocus'))!!}
-                                </div>
-                            </div>
-                            <!--/span-->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Ngày áp dụng<span class="require">*</span></label>
-                                    {!!Form::text('ngayapdung',date('d/m/Y',  strtotime($model->ngayapdung)), array('id' => 'ngayapdung','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
-                                </div>
-                            </div>
-                            <!--/span-->
-                        </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center; font-size: 16px; text-transform: uppercase;">
+            <b>BÁO CÁO GIÁ THUẾ TÀI NGUYÊN</b>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label">Ghi chú</label>
-                                    {!!Form::text('ghichu',null, array('id' => 'ghichu','class' => 'form-control'))!!}
-                                </div>
-                            </div>
-                        </div>
-                        <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;">Số quyết định: {{$model->soqd}}<br>Ngày áp dung: {{getDayVn($model->ngayapdung)}}
+            <br>Nhóm tài nguyên: {{$tennhom}}
+        <br>Địa bàn: {{$diaban}}</td>
+    </tr>
 
-                        <div class="row" id="dsts">
-                            <div class="col-md-12">
-                                <table class="table table-striped table-bordered table-hover" id="sample_3">
-                                    <thead>
-                                    <tr>
-                                        <th width="2%" style="text-align: center">STT</th>
-                                        <th style="text-align: center">Cấp độ</th>
-                                        <th style="text-align: center">Mã hàng hóa</th>
-                                        <th style="text-align: center">Tên hàng hóa</th>
-                                        <th style="text-align: center">Đơn vị tính</th>
-                                        <th style="text-align: center" width="10%">Giá tính thuế<br> tài nguyên</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="ttts">
-                                    @foreach($modelct as $key=>$tt)
-                                        <tr>
-                                            <td style="text-align: center">{{$key+1}}</td>
-                                            <td style="text-align: center">{{$tt->capdo}}</td>
-                                            <td style="text-align: center">{{$tt->mahh}}</td>
-                                            <td class="active" style="font-weight: bold">{{$tt->tenhh}}</td>
-                                            <td style="text-align: center">{{$tt->dvt}}</td>
-                                            <td style="text-align: right;font-weight: bold">{{$tt->dvt!= '' ? number_format($tt->giatttn) : ''}}</td>
-                                        </tr>
-                                    @endforeach
+</table>
+<table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
+    <tr height="40px">
+        <th width="5%">STT</th>
+        <th>Nhóm, loại tài nguyên</th>
+        <th width="15%">Đơn vị tính</th>
+        <th width="20%">Thuế suất</th>
+    </tr>
 
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+    <tr style="font-style: italic; font-size: 10px; line-height: 15px;">
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+    </tr>
+    @foreach($modelct as $key=>$ct)
+        <tr>
+            <td>{{$key+1}}</td>
+            <td style="text-align: left;font-weight: bold">{{$ct->tenhh}}</td>
+            <td style="text-align: center;font-weight: bold">{{$ct->dvt}}</td>
+            <td style="text-align: right;font-weight: bold">{{$ct->dvt!= '' ? number_format($ct->giatttn) : ''}}</td>
+        </tr>
+        <!--phần chi tiết tạm thời làm 2 vòng foreach => nên nghiên cứu làm hàm đệ quy để cho danh mục có nhiều nhánh-->
 
-                    </div>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12" style="text-align: center">
-                    <a href="{{url('thuetainguyen?&district='.$model->district.'&trangthai='.$model->trangthai)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
-                </div>
-            </div>
-            {!! Form::close() !!}
-            <!-- END FORM-->
-
-            <!-- END VALIDATION STATES-->
-        </div>
-    </div>
-
-@stop
+    @endforeach
+</table>
+</body>
+</html>
