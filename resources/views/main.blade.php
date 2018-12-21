@@ -292,76 +292,90 @@ License: You must have a valid license purchased only from themeforest(the above
                     </a>
                 </li>
                 <!--Manager-->
-                @if(session('admin')->sadmin != 'sa')
-                    @if(canGeneral('csdlmucgiahhdv','index'))
-                        @if(can('csdlmucgiahhdv','index'))
-                        <li class="heading">
-                            <h3 class="uppercase">CSDL về mức giá HH-DV</h3>
-                        </li>
-                        @include('includes.main.maincsdlmucgiahhdv')
-                        @endif
-                    @endif
-                    @if(canGeneral('csdlthamdinhgia','index'))
-                        @if(can('csdlthamdinhgia','index'))
-                        <li class="heading">
-                            <h3 class="uppercase">CSDL thẩm định giá</h3>
-                        </li>
-                        @include('includes.main.mainthamdinhgia')
-                        @endif
-                    @endif
-                    @if(canGeneral('csdlvbqlnn','index'))
-                        @if(can('csdlvbqlnn','index'))
-                        <li class="heading">
-                            <h3 class="uppercase">Văn bản QLNN về giá</h3>
-                        </li>
-                        @include('includes.main.mainvbqlnn')
-                        @endif
-                    @endif
-                    @if(canGeneral('csdlttpvctqlnn','index'))
-                        @if(can('csdlttpvctqlnn','index'))
-                        <li class="heading">
-                            <h3 class="uppercase">TT phục vụ CT QLNN về giá</h3>
-                        </li>
-                        @include('includes.main.mainttpvctqlnn')
-                        @endif
+                @if(canGeneral('csdlmucgiahhdv','index'))
+                    @if(can('csdlmucgiahhdv','index'))
+                    <li class="heading">
+                        <h3 class="uppercase">CSDL về mức giá HH-DV</h3>
+                    </li>
+                    @include('includes.main.maincsdlmucgiahhdv')
                     @endif
                 @endif
-
-                @if(session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa')
-                <li class="heading">
-                    <h3 class="uppercase">System</h3>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="icon-settings"></i>
-                        <span class="title">Quản trị hệ thống</span>
-                        <span class="arrow "></span>
-                    </a>
-                    <ul class="sub-menu">
-                        @if(can('ngaynghile','index'))
-                        <li><a href="{{url('thongtinngaynghile')}}"> Thông tin ngày nghỉ lễ</a></li>
-                        @endif
-                        @if(can('dmdiadanh','index'))
-                        <li><a href="{{url('danhmucdiadanh')}}"> Danh mục địa danh</a></li>
-                        @endif
-                        @if(can('districts','index'))
-                        <li><a href="{{url('district')}}"> Danh sách đơn vị quản lý</a></li>
-                        @endif
-                        @if(can('towns','index'))
-                        <li><a href="{{url('town')}}"> Danh sách đơn vị</a></li>
-                        @endif
-                        @if(can('companys','index'))
-                        <li><a href="{{url('company')}}"> Danh sách doanh nghiệp</a></li>
-                        @endif
-                        @if(can('users','index'))
-                        <li><a href="{{url('users')}}"> Quản lý tài khoản</a></li>
-                        @endif
-                        @if(can('register','index'))
-                        <li><a href="{{url('register')}}"> Tài khoản đăng ký</a></li>
-                        @endif
-                        <li><a href="{{url('general')}}">Cấu hình hệ thống</a></li>
-                    </ul>
-                </li>
+                @if(canGeneral('csdlthamdinhgia','index'))
+                    @if(can('csdlthamdinhgia','index'))
+                    <li class="heading">
+                        <h3 class="uppercase">CSDL thẩm định giá</h3>
+                    </li>
+                    @include('includes.main.mainthamdinhgia')
+                    @endif
+                @endif
+                @if(canGeneral('csdlvbqlnn','index'))
+                    @if(can('csdlvbqlnn','index'))
+                    <li class="heading">
+                        <h3 class="uppercase">Văn bản QLNN về giá</h3>
+                    </li>
+                    @include('includes.main.mainvbqlnn')
+                    @endif
+                @endif
+                @if(canGeneral('csdlttpvctqlnn','index'))
+                    @if(can('csdlttpvctqlnn','index'))
+                    <li class="heading">
+                        <h3 class="uppercase">TT phục vụ CT QLNN về giá</h3>
+                    </li>
+                    @include('includes.main.mainttpvctqlnn')
+                    @endif
+                @endif
+                @if(can('system','index'))
+                    <li class="heading">
+                        <h3 class="uppercase">System</h3>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="icon-settings"></i>
+                            <span class="title">Quản trị hệ thống</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            @if(session('admin')->level == 'T' || session('admin')->level == 'H')
+                                @if(session('admin')->level == 'T')
+                                    @if(can('ngaynghile','index'))
+                                    <li><a href="{{url('thongtinngaynghile')}}"> Thông tin ngày nghỉ lễ</a></li>
+                                    @endif
+                                    @if(can('dmdiadanh','index'))
+                                    <li><a href="{{url('danhmucdiadanh')}}"> Danh mục địa danh</a></li>
+                                    @endif
+                                    @if(can('districts','index'))
+                                    <li><a href="{{url('district')}}"> Danh sách đơn vị quản lý</a></li>
+                                    @endif
+                                @endif
+                                @if(can('towns','index'))
+                                <li><a href="{{url('town')}}"> Danh sách đơn vị</a></li>
+                                @endif
+                            @endif
+                            @if(can('companies','index'))
+                            <li><a href="{{url('company')}}"> Danh sách doanh nghiệp</a></li>
+                            @endif
+                            @if(can('users','index'))
+                                <li>
+                                    <a href="">
+                                        <span class="title">Danh sách tài khoản</span>
+                                        <span class="arrow "></span>
+                                    </a>
+                                    <ul class="sub-menu">
+                                        @if(session('admin')->level == 'T' || session('admin')->level == 'H')
+                                            <li><a href="{{url('users')}}">Tài khoản đơn vị</a></li>
+                                        @endif
+                                        @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
+                                            <li><a href="{{url('userscompany')}}">Tài khoản doanh nghiệp</a></li>
+                                        @endif
+                                    </ul>
+                                </li>
+                            @endif
+                            @if(can('register','index'))
+                            <li><a href="{{url('register')}}"> Tài khoản đăng ký</a></li>
+                            @endif
+                            <li><a href="{{url('general')}}">Cấu hình hệ thống</a></li>
+                        </ul>
+                    </li>
                 @endif
             </ul>
 

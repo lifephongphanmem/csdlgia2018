@@ -15,6 +15,7 @@
             </div>
             <div class="portlet-body form" style="display: none;">
                 <div class="form-body">
+                    @if($model->level == 'T' || $model->level == 'H')
                     <div class="row">
                         <div class="col-md-3">
                             <table class="table table-striped table-bordered table-hover">
@@ -46,6 +47,7 @@
                             </table>
                         </div>
                     </div>
+                    @endif
                     @include('system.users.include.perms.csdlmucgiahhdv.perbog.bpbog')
                     @include('system.users.include.perms.csdlmucgiahhdv.perbog.dkg')
                 </div>

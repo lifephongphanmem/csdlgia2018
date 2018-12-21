@@ -47,11 +47,6 @@ class UsersController extends Controller
                         ->first();
                     $ttuser->dvvtcc = $ttdn->settingdvvt;
                     $ttuser->loaihinhhd = $ttdn->loaihinhhd;
-                }elseif($ttuser->level == 'DKG'){
-                    $ttdn = Company::where('maxa',$ttuser->maxa)
-                        ->where('level','DKG')
-                        ->first();
-                    $ttuser->loaihinhhd = $ttdn->loaihinhhd;
                 }
                 Session::put('admin', $ttuser);
 
@@ -123,25 +118,36 @@ class UsersController extends Controller
     {
         if (Session::has('admin')) {
             if (can('users','index')) {
-                $inputs = $request->all();
-                if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin =='sa')
-                    $inputs['level'] = isset($inputs['level']) ? $inputs['level'] : 'HT';
-                else
+                if(session('admin')->level == 'T' || session('admin')->level == 'H') {
+                    $inputs = $request->all();
                     $inputs['level'] = isset($inputs['level']) ? $inputs['level'] : '';
-                $model = User::where('level',$inputs['level'])
-                    ->orderBy('id', 'desc')
-                    ->get();
-                $index_unset = 0;
-                foreach ($model as $user) {
-                    if ($user->username == 'minhtran') {
-                        unset($model[$index_unset]);
+                    $model = Users::where('level', $inputs['level'])
+                        ->orderBy('id', 'desc');
+                    $districts = District::all();
+                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $districts->first()->mahuyen;
+                    if($inputs['level'] == 'X'){
+                        if(session('admin')->level == 'H')
+                            $inputs['mahuyen'] = session('admin')->mahuyen;
+                        $model = $model->where('mahuyen',$inputs['mahuyen']);
                     }
-                    $index_unset++;
-                }
-                return view('system.users.index')
-                    ->with('model', $model)
-                    ->with('inputs', $inputs)
-                    ->with('pageTitle', 'Danh sách tài khoản');
+
+                    $model = $model->get();
+
+                    $index_unset = 0;
+                    foreach ($model as $user) {
+                        if ($user->username == 'minhtran') {
+                            unset($model[$index_unset]);
+                        }
+                        $index_unset++;
+                    }
+
+                    return view('system.users.index')
+                        ->with('model', $model)
+                        ->with('inputs', $inputs)
+                        ->with('districts',$districts)
+                        ->with('pageTitle', 'Danh sách tài khoản đơn vị');
+                }else
+                    return view('errors.perm');
             }else
                 return view('errors.perm');
         } else
@@ -225,18 +231,17 @@ class UsersController extends Controller
         if (Session::has('admin')) {
             $input = $request->all();
             $model = Users::findOrFail($id);
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'satc'
-                || session('admin')->sadmin == 'savt' || session('admin')->sadmin == 'sa' || session('admin')->sadmin == 'sact') {
+            if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 if ($input['newpass'] != '')
                     $input['password'] = md5($input['newpass']);
                 $model->update($input);
 
-                return redirect('users?&phanloai='.$model->level);
+                return redirect('users?&level='.$model->level);
             }else
                 return view('errors.noperm');
 
         } else {
-            return redirect('');
+            return view('errors.notlogin');
         }
     }
 
@@ -265,7 +270,7 @@ class UsersController extends Controller
                 $setting = $ttdn->settingdvvt;
             } else
                 $setting = '';
-            $permission = !empty($model->permission) ? $model->permission : getPermissionDefault($model->level);
+            $permission = !empty($model->permission) || $model->permission != '' ? $model->permission : getPermissionDefault($model->level);
             //dd(json_decode($permission));
             return view('system.users.perms')
                 ->with('permission', json_decode($permission))
@@ -290,7 +295,7 @@ class UsersController extends Controller
 
                 $model->permission = json_encode($update['roles']);
                 $model->save();
-                return redirect('users?&phanloai='.$model->level);
+                return redirect('users?&level='.$model->level);
 
             } else
                 dd('Tài khoản không tồn tại');

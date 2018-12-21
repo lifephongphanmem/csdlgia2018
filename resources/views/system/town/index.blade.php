@@ -38,7 +38,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Danh sách đơn vị<small>&nbsp;</small>
+        Danh sách đơn vị<small>&nbsp;thuộc quyền quản lý <b style="color: blue">{{$modeldistrict->tendv}}</b></small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -52,6 +52,7 @@
                     </div>
                 </div>
                 <div class="portlet-body">
+                    @if(session('admin')->level == 'T')
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
@@ -64,6 +65,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                     <div class="portlet-body">
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>

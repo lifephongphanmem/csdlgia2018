@@ -15,17 +15,21 @@ class TownController extends Controller
 {
     public function index(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa') {
+            if (session('admin')->level == 'T' || session('admin')->level == 'H') {
                 $district = District::all();
                 if($district->count() > 0) {
                     $inputs = $request->all();
                     $mahuyendf = District::first()->mahuyen;
                     $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $mahuyendf;
+                    if(session('admin')->level == 'H')
+                        $inputs['mahuyen'] = session('admin')->mahuyen;
                     $model = Town::where('mahuyen',$inputs['mahuyen'])->get();
+                    $modeldistrict = District::where('mahuyen',$inputs['mahuyen'])->first();
                     return view('system.town.index')
                         ->with('model', $model)
                         ->with('district',$district)
                         ->with('mahuyen',$inputs['mahuyen'])
+                        ->with('modeldistrict',$modeldistrict)
                         ->with('pageTitle', 'Danh mục đơn vị xã/phường');
                 }else
                     dd('Bạn chưa nhập thông tin đơn vị cấp quận/huyện!!!');
@@ -39,7 +43,7 @@ class TownController extends Controller
 
     public function create(){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa') {
+            if (session('admin')->level == 'T' || session('admin')->level == 'H') {
                 $district = District::all();
                 $dddistricts = DiaBanHd::where('level','H')->get();
                 if($district->count() > 0) {
@@ -59,7 +63,7 @@ class TownController extends Controller
 
     public function store(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa') {
+            if (session('admin')->level == 'T' || session('admin')->level == 'H') {
                 $inputs = $request->all();
                 $checkmaxa= Town::where('mahuyen',$inputs['maxa'])->count();
                 $checkuser = Users::where('username',$inputs['username'])->count();
@@ -93,7 +97,7 @@ class TownController extends Controller
 
     public function edit($id){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa') {
+            if (session('admin')->level == 'T' || session('admin')->level == 'H') {
                 $model = Town::findOrFail($id);
                 $district = District::all();
                 return view('system.town.edit')
@@ -110,7 +114,7 @@ class TownController extends Controller
 
     public function update(Request $request,$id){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa') {
+            if (session('admin')->level == 'T' || session('admin')->level == 'H') {
                 $inputs = $request->all();
                 $model = Town::findOrFail($id);
                 $model->update($inputs);

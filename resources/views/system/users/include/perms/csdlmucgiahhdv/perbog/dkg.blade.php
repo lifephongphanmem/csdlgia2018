@@ -20,6 +20,7 @@
                             ?>
                             @foreach($modelbog as $bog)
                                 @if(canGeneral($bog->phanloai,'index'))
+                                    @if($model->phanloai == $bog->phanloai || $model->level == 'T' || $model->level == 'H' || $model->level == 'X')
                                     <?php $phanloai = $bog->phanloai?>
                                     <div class="row">
                                         <div class="col-md-12 ">
@@ -147,6 +148,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                @endif
                                 @endif
                             @endforeach
                         </div>

@@ -29,7 +29,7 @@
         Quản lý phân quyền chức năng cho<small>&nbsp;tài khoản</small>
     </h3>
     <!-- END PAGE HEADER-->
-    {!! Form::open(['url' => '/users/phan-quyen'])!!}
+    {!! Form::open(['url' => '/userscompany/phan-quyen'])!!}
     <div class="row">
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
@@ -44,23 +44,13 @@
                 </div>
                 <div class="portlet-body">
                         @include('system.users.include.perms.csdlmucgiahhdv')
-                        @include('system.users.include.perms.csdlthamdinhgia')
-                        @include('system.users.include.perms.csdlvbqlnn')
-                        @include('system.users.include.perms.csdlttpvctqlnn')
-                        @include('system.users.include.perms.system')
 
                 </div>
             </div>
         </div>
         <div class="col-md-12" style="text-align: center">
-            <?php
-            if($model->level == 'satc' || $model->level == 'sact' || $model->level == 'sagt' || $model->level == 'sa')
-                $phanloai = 'HT';
-            else
-                $phanloai = $model->level;
-            ?>
 
-            <a href="{{url('users?&level='.$phanloai)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+            <a href="{{url('userscompany?&level='.$model->level.'&maxa='.$model->mahuyen)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
             <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
             <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Cập nhật</button>
         </div>

@@ -208,14 +208,22 @@
                                         <td style="width:35%">
                             <span class="text-muted">
                                 <div class="icheck-inline">
+                                    @if(canGeneral('vtxk','index'))
                                     <label>
                                         <input type="checkbox" disabled value="1" {{ (isset($settingdvvt->dvvt->vtxk) && $settingdvvt->dvvt->vtxk == 1) ? 'checked' : '' }} name="roles[dvvt][vtxk]"> Vận tải xe khách </label>
+                                    @endif
+                                    @if(canGeneral('vtxb','index'))
                                     <label>
                                         <input type="checkbox" disabled value="1" {{(isset($settingdvvt->dvvt->vtxb) && $settingdvvt->dvvt->vtxb == 1) ? 'checked' : '' }} name="roles[dvvt][vtxb]"> Vận tải xe buýt </label>
+                                    @endif
+                                    @if(canGeneral('vtxtx','index'))
                                     <label>
                                         <input type="checkbox" disabled value="1" {{(isset($settingdvvt->dvvt->vtxtx) && $settingdvvt->dvvt->vtxtx == 1) ? 'checked' : '' }} name="roles[dvvt][vtxtx]"> Vận tải xe taxi </label>
+                                    @endif
+                                    @if(canGeneral('vtch','index'))
                                     <label>
                                         <input type="checkbox" disabled value="1" {{(isset($settingdvvt->dvvt->vtch) && $settingdvvt->dvvt->vtch == 1) ? 'checked' : '' }} name="roles[dvvt][vtch]"> Vận tải chở hàng</label>
+                                    @endif
                                 </div>
                             </span>
                                         </td>
@@ -357,14 +365,22 @@
                                 <td style="width:35%">
                                     <span class="text-muted">
                                         <div class="icheck-inline">
+                                            @if(canGeneral('vtxk','index'))
                                             <label>
                                                 <input type="checkbox" disabled value="1" {{ (isset($settingdvvttd->dvvt->vtxk) && $settingdvvttd->dvvt->vtxk == 1) ? 'checked' : '' }} name="roles[dvvt][vtxk]"> Vận tải xe khách </label>
+                                            @endif
+                                            @if(canGeneral('vtxb','index'))
                                             <label>
                                                 <input type="checkbox" disabled value="1" {{(isset($settingdvvttd->dvvt->vtxb) && $settingdvvttd->dvvt->vtxb == 1) ? 'checked' : '' }} name="roles[dvvt][vtxb]"> Vận tải xe buýt </label>
+                                            @endif
+                                            @if(canGeneral('vtxtx','index'))
                                             <label>
                                                 <input type="checkbox" disabled value="1" {{(isset($settingdvvttd->dvvt->vtxtx) && $settingdvvttd->dvvt->vtxtx == 1) ? 'checked' : '' }} name="roles[dvvt][vtxtx]"> Vận tải xe taxi </label>
+                                            @endif
+                                            @if(canGeneral('vtch','index'))
                                             <label>
                                                 <input type="checkbox" disabled value="1" {{(isset($settingdvvttd->dvvt->vtch) && $settingdvvttd->dvvt->vtch == 1) ? 'checked' : '' }} name="roles[dvvt][vtch]"> Vận tải chở hàng</label>
+                                            @endif
                                         </div>
                                     </span>
                                 </td>

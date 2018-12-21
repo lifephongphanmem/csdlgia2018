@@ -16,15 +16,37 @@ class CompanyController extends Controller
 {
     public function index(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa'){
+            if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level =='X') {
 
                 $inputs = $request->all();
-                $inputs['level'] =  isset($inputs['level']) ? $inputs['level'] : 'DVLT';
+                $inputs['level'] =  isset($inputs['level']) ? $inputs['level'] : '';
+                if(session('admin')->level == 'T'){
+                    $towns = Town::all();
+                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $towns->first()->maxa;
+                    $tttown = Town::where('maxa',$inputs['mahuyen'])->first();
+                }elseif(session('admin')->level == 'H'){
+                    $towns = Town::where('mahuyen',session('admin')->mahuyen)->get();
+                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $towns->first()->maxa;
+                    $tttown = Town::where('maxa',$inputs['mahuyen'])->first();
+                }else{
+                    $towns = Town::where('mahuyen',session('admin')->mahuyen)
+                        ->where('maxa',session('admin')->maxa)
+                        ->get();
+                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $towns->first()->maxa;
+                    $tttown = Town::where('maxa',$inputs['mahuyen'])->first();
+                }
 
-                $model = Company::where('level', $inputs['level'])->get();
+
+                $model = Company::where('level', $inputs['level'])
+                    ->where('mahuyen',$inputs['mahuyen'])
+                    ->get();
+
+
                 return view('system.company.index')
                     ->with('model', $model)
-                    ->with('level', $inputs['level'])
+                    ->with('inputs', $inputs)
+                    ->with('towns',$towns)
+                    ->with('tttown',$tttown)
                     ->with('pageTitle', 'Danh mục doanh nghiệp cung cấp dịch vụ');
             }else
                 return view('errors.perm');
@@ -34,7 +56,7 @@ class CompanyController extends Controller
 
     public function edit($id){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa'){
+            if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level =='X') {
                 $model = Company::findOrFail($id);
                 $district = Town::all();
                 $settingdvvt = !empty($model->settingdvvt) ? json_decode($model->settingdvvt) : '';
@@ -53,7 +75,7 @@ class CompanyController extends Controller
 
     public function update(Request $request,$id){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa'){
+            if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level =='X') {
                 $inputs = $request->all();
                 $model = Company::findOrFail($id);
                 $inputs['settingdvvt'] = isset($inputs['roles']) ? json_encode($inputs['roles']) : '';
@@ -88,12 +110,10 @@ class CompanyController extends Controller
                     ->where('maxa',session('admin')->maxa)
                     ->first();
                 $settingdvvt = !empty($model->settingdvvt) ? json_decode($model->settingdvvt) : '';
-                $loaihinhhd = !empty($model->loaihinhhd) ? json_decode($model->$loaihinhhd) : '';
                 $modeltttd = TtDnTd::where('maxa', session('admin')->maxa)
                     ->where('level',$inputs['level'])
                     ->first();
                 $settingdvvttd = !empty($modeltttd->settingdvvt) ? json_decode($modeltttd->settingdvvt) : '';
-                $loaihinhhdtd = !empty($modeltttd->loaihinhhd) ? json_decode($modeltttd->$loaihinhhd) : '';
                 $model_cqcq = Town::where('maxa', session('admin')->mahuyen)->first();
                 if(count($model_cqcq)>0){
                     $model->tencqcq=$model_cqcq->tendv;
@@ -104,10 +124,7 @@ class CompanyController extends Controller
                     ->with('model', $model)
                     ->with('modeltttd', $modeltttd)
                     ->with('settingdvvt',$settingdvvt)
-                    ->with('loaihinhhd',$loaihinhhd)
                     ->with('settingdvvttd',$settingdvvttd)
-                    ->with('loaihinhhdtd',$loaihinhhdtd)
-
                     ->with('pageTitle', 'Thông tin doanh nghiệp');
         }else
             return view('errors.notlogin');

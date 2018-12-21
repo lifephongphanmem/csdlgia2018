@@ -50,6 +50,8 @@
                         @foreach($modeldm as $dm)
                             @if(canGeneral($dm->phanloai,'index'))
                                 @if(can($dm->phanloai,'index'))
+                                        @if(session('admin')->phanloai == $dm->phanloai ||
+                                        session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
                                     <li>
                                         <a href="">
                                             <span class="title">{{$dm->hienthi}}</span>
@@ -68,6 +70,7 @@
                                             @endif
                                         </ul>
                                     </li>
+                                    @endif
                                 @endif
                             @endif
                         @endforeach

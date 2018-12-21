@@ -61,9 +61,17 @@
         }
         $(function(){
             $('#level').change(function() {
-                var current_path_url = '/users?';
+                var current_path_url = '/userscompany?';
                 var level = '&level='+$('#level').val();
-                var url = current_path_url + level;
+                var maxa = '&maxa='+$('#maxa').val();
+                var url = current_path_url + level + maxa;
+                window.location.href = url;
+            });
+            $('#maxa').change(function() {
+                var current_path_url = '/userscompany?';
+                var level = '&level='+$('#level').val();
+                var maxa = '&maxa='+$('#maxa').val();
+                var url = current_path_url + level + maxa;
                 window.location.href = url;
             });
         })
@@ -75,7 +83,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Quản lý thông tin<small>&nbsp;tài khoản đơn vị truy cập</small>
+        Quản lý thông tin<small>&nbsp;tài khoản truy cập thuộc quản lý của <b style="color: blue">{{$ttdv->tendv}}</b></small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -98,27 +106,32 @@
                                 <label>Phân loại tài khoản</label>
                                 <select class="form-control" name="level" id="level">
                                     <option value="">--Chọn phân loại tài khoản--</option>
-                                    @if(session('admin')->level == 'T')
-                                        <option value="T" {{($inputs['level'] == "T") ? 'selected' : ''}}>Tổng hợp</option>
-                                        @if(can('districts','index'))
-                                        <option value="H" {{($inputs['level'] == "H") ? 'selected' : ''}}>Đơn vị quản lý</option>
-                                        @endif
+                                    @if(can('dvlt','index'))
+                                    <option value="DVLT" {{($inputs['level'] == "DVLT") ? 'selected' : ''}}>Dịch vụ lưu trú</option>
                                     @endif
-                                    @if(session('admin')->level == 'T' || session('admin')->level =='H' || session('admin')->level == 'X')
-                                        @if(can('towns','index'))
-                                        <option value="X" {{($inputs['level'] == "X") ? 'selected' : ''}}>Đơn vị</option>
-                                        @endif
+                                    @if(can('dvvt','index'))
+                                    <option value="DVVT" {{($inputs['level'] == "DVVT") ? 'selected' : ''}}>Dịch vụ vận tải</option>
                                     @endif
+                                    @if(can('tpcnte6t','index'))
+                                    <option value="TPCNTE6T" {{($inputs['level'] == "TPCNTE6T") ? 'selected' : ''}}>TPCN dành cho TE dưới 6 tuổi</option>
+                                    @endif
+                                    @if(can('tacn','index'))
+                                    <option value="TACN" {{($inputs['level'] == "TACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
+                                    @endif
+                                    @if(can('dangkygia','index'))
+                                    <option value="DKG" {{($inputs['level'] == "DKG") ? 'selected' : ''}}>Đăng ký giá</option>
+                                    @endif
+
                                 </select>
                             </div>
                         </div>
-                        @if(session('admin')->level == 'T' && $inputs['level'] == 'X')
+                        @if(session('admin')->level == 'T' || session('admin')->level == 'H')
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label>Đơn vị quản lý</label>
-                                <select class="form-control" name="mahuyen" id="mahuyen">
-                                    @foreach($districts as $district)
-                                        <option value="{{$district->mahuyen}}" {{$district->mahuyen == $inputs['mahuyen'] ? 'selected' : ''}}>{{$district->tendv}}</option>
+                                <label>Đơn vị</label>
+                                <select class="form-control" name="maxa" id="maxa">
+                                    @foreach($towns as $town)
+                                        <option value="{{$town->maxa}}" {{$town->maxa == $inputs['maxa'] ? 'selected' : ''}}>{{$town->tendv}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -153,14 +166,16 @@
                                 @endif
                             </td>
                             <td>
-                                @if(can('users','edit'))
-                                <a href="{{url('users/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                @if(can('users','create'))
+                                <a href="{{url('userscompany/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                 @endif
                                 @if(can('users','per'))
-                                <a href="{{url('users/'.$tt->id.'/phan-quyen')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-cogs"></i>&nbsp;Phân quyền</a>
+                                <a href="{{url('userscompany/'.$tt->id.'/permission')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-cogs"></i>&nbsp;Phân quyền</a>
                                 @endif
-                                @if(can('users','create'))
-                                    <a href="{{url('users/'.$tt->id.'/copy')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-copy"></i>&nbsp;Copy</a>
+                                @if($tt->level == 'T' || $tt->level == 'X' || $tt->level == 'H')
+                                    @if(session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa')
+                                    <a href="{{url('userscompany/'.$tt->id.'/copy')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-copy"></i>&nbsp;Copy</a>
+                                    @endif
                                 @endif
                                 @if(session('admin')->sadmin == 'ssa')
                                     <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
@@ -183,7 +198,7 @@
     <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['url'=>'users/delete','id' => 'frm_delete'])!!}
+                {!! Form::open(['url'=>'userscompany/delete','id' => 'frm_delete'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title">Đồng ý xóa?</h4>

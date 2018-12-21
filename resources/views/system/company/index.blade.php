@@ -29,7 +29,15 @@
             $('#level').change(function() {
                 var current_path_url = '/company?';
                 var pl = '&level='+$('#level').val();
-                var url = current_path_url+pl;
+                var mahuyen = '&mahuyen='+$('#mahuyen').val();
+                var url = current_path_url+pl+ mahuyen;
+                window.location.href = url;
+            });
+            $('#mahuyen').change(function() {
+                var current_path_url = '/company?';
+                var pl = '&level='+$('#level').val();
+                var mahuyen = '&mahuyen='+$('#mahuyen').val();
+                var url = current_path_url+pl+ mahuyen;
                 window.location.href = url;
             });
         })
@@ -39,7 +47,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Danh sách doanh nghiệp<small>&nbsp;cung cấp hàng hoá,dịch vụ</small>
+        Danh sách doanh nghiệp<small>&nbsp;cung cấp hàng hoá,dịch vụ thuộc thẩm quyền quản lý của <b style="color: blue">{{$tttown->tendv}}</b></small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -58,14 +66,34 @@
                             <div class="form-group">
                                 <label>Dịch vụ cung cấp</label>
                                 <select class="form-control" name="level" id="level">
-                                    <option value="DVLT" {{($level == "DVLT") ? 'selected' : ''}}>Dịch vụ lưu trú</option>
-                                    <option value="DVVT" {{($level == "DVVT") ? 'selected' : ''}}>Dịch vụ vận tải</option>
-                                    <option value="TPCNTE6T" {{($level == "TPCNTE6T") ? 'selected' : ''}}>Thực phẩm chức năng cho trẻ em dưới 6 tuổi</option>
-                                    <option value="TACN" {{($level == "TACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
-                                    <option value="DKG" {{($level == "DKG") ? 'selected' : ''}}>Đăng ký giá</option>
+                                    <option value="">--Chọn dịch vụ cung cấp--</option>
+                                    @if(can('thdvlt','xdttdn'))
+                                    <option value="DVLT" {{($inputs['level'] == "DVLT") ? 'selected' : ''}}>Dịch vụ lưu trú</option>
+                                    @endif
+                                    @if(can('dvvt','xdttdn'))
+                                    <option value="DVVT" {{($inputs['level'] == "DVVT") ? 'selected' : ''}}>Dịch vụ vận tải</option>
+                                    @endif
+                                    @if(can('thtpcnte6t','xdttdn'))
+                                    <option value="TPCNTE6T" {{($inputs['level'] == "TPCNTE6T") ? 'selected' : ''}}>Thực phẩm chức năng cho trẻ em dưới 6 tuổi</option>
+                                    @endif
+                                    @if(can('thtacn','xdttdn'))
+                                    <option value="TACN" {{($inputs['level'] == "TACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
+                                    @endif
                                 </select>
                             </div>
                         </div>
+                        @if(session('admin')->level == 'T' || session('admin')->level == 'H')
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Đơn vị quản lý</label>
+                                <select class="form-control" name="mahuyen" id="mahuyen">
+                                    @foreach($towns as $town)
+                                        <option value="{{$town->maxa}}" {{$town->maxa == $inputs['mahuyen'] ? 'selected' : ''}}>{{$town->tendv}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        @endif
                     </div>
                     <div class="portlet-body">
                     <table class="table table-striped table-bordered table-hover" id="sample_3">

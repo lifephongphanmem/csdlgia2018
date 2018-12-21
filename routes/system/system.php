@@ -43,5 +43,8 @@ Route::get('xetduyettdttdn/{id}/duyet','TdTtDnController@duyet');
 
 Route::resource('thongtinngaynghile','NgayNghiLeController');
 Route::post('thongtinngaynghile/delete','NgayNghiLeController@destroy');
+
+Route::resource('userscompany','UsersCompanyController');
+Route::get('userscompany/{id}/permission','UsersCompanyController@permission')
 //EndUsers
 ?>
