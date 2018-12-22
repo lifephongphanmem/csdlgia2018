@@ -61,4 +61,18 @@ function a_getelement($array, $indexs, $justvals = false){
     }
     return $newarray;
 }
+
+function unset_key ($data, $array_key){
+    $a_kq = array();
+    foreach($data as $dt){
+        foreach($array_key as $value){
+            if(array_key_exists($value,$dt)){
+                unset($dt[$value]);
+            }
+        }
+        $a_kq[]=$dt;
+    }
+
+    return $a_kq;
+}
 ?>
