@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DiaBanHd;
 use App\District;
+use App\dmhanghoa_cpi;
 use App\hsgia_cpi;
 use App\hsgia_cpi_chitiet;
 use App\hstonghop_cpi;
@@ -341,8 +342,135 @@ class hstonghop_cpiController extends Controller
                 ->with('model', $a_data)
                 ->with('a_trangthai', $a_trangthai)
                 ->with('a_diaban', array_column($model_diaban->toArray(),'diaban','district'))
-                ->with('pageTitle', 'Danh sách tổng hợp lương tại đơn vị');
+                ->with('pageTitle', 'Danh sách tổng hợp chỉ số giá');
         } else
             return view('errors.notlogin');
     }
+
+
+    function baocao(Request $requests)
+    {
+        if (Session::has('admin')) {
+
+            $model_diaban = DiaBanHd::all();
+            //dd($a_data);
+            return view('manage.vanbanqlnn.giatieudung.baocao.index')
+                //->with('furl', '/chuc_nang/tong_hop_luong/don_vi/')
+                ->with('a_diaban', array_column($model_diaban->toArray(),'diaban','district'))
+                ->with('pageTitle', 'Báo cáo chỉ số giá tiêu dùng');
+        } else
+            return view('errors.notlogin');
+    }
+
+    public function bctonghop(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $model_hs = hstonghop_cpi::where('thang',$inputs['thang'])
+                ->where('nam',$inputs['nam'])
+                //->where("trangthai" , "DAGUI")
+                ->get();
+
+            $model_ct = hstonghop_cpi_chitiet::wherein('mahs',array_column($model_hs->toarray(),'mahs'))
+                ->get();
+
+            $model = dmhanghoa_cpi::where('capdo','<=',$inputs['capdo'])->get();
+            foreach($model as $ct) {
+                $chiso = $i = 0;
+                $chitiet = $model_ct->where('mahh', $ct->mahh);
+                foreach ($chitiet as $gia) {
+                    $chiso += $gia->chiso;
+                    $i++;
+                }
+                $ct->chiso = $i > 0 ? round($chiso / $i, 2) : 0;
+            }
+
+            return view('manage.vanbanqlnn.giatieudung.baocao.tonghop')
+                //->with('thongtin',$thongtin)
+                ->with('model',$model)
+                ->with('inputs',$inputs)
+                ->with('pageTitle','Phụ lục 1');
+        }else
+            return view('errors.notlogin');
+    }
+
+    /*
+     *
+     public function PL1_th(Request $request){
+        if (Session::has('admin')) {
+            $inputs=$request->all();
+
+            $model_hs = HsGiaHhTt::select('mahs','mahuyen','tgnhap')
+                ->wherebetween('tgnhap',[$inputs['ngaytu'],$inputs['ngayden']])
+
+                ->where('thitruong',$inputs['thitruong'])
+                ->where("trangthai" , "Hoàn tất")
+                ->where('phanloai' , 'CHITIET')
+                ->get();
+
+            $model_max = HsGiaHhTt::select('mahuyen',DB::raw('Max(tgnhap) as tgnhap') )
+                ->where('thitruong',$inputs['thitruong'])
+                ->wherebetween('tgnhap',[$inputs['ngaytu'],$inputs['ngayden']])
+                ->where("trangthai" , "Hoàn tất")
+                ->where('phanloai' , 'CHITIET')
+                ->groupby('mahuyen')->get();;
+            $a_hoso = array();
+            $a_huyen = array();
+            foreach($model_max as $ct){
+                //dd($model->where('mahuyen',$ct->mahuyen)->where('tgnhap',$ct->tgnhap)->first()->mahs);
+                $hoso = $model_hs->where('mahuyen',$ct->mahuyen)
+                    ->where('tgnhap',$ct->tgnhap)
+                    ->first();
+                $ct->mahs= $hoso->mahs;
+                $a_hoso[] = $hoso->mahs;
+                $a_huyen[] = $hoso->mahuyen;
+            }
+            $model_ct = GiaHhTt::select('mahh','giatu','giaden','giatulk','giadenlk','mahs')->wherein('mahs',$a_hoso)->get();
+            $model = DmHhTn55::select('mahh','tenhh','dvt')->get();
+            $sodv = count($model_max) == 0? 1: count($model_max);
+            foreach ($model as $ct) {
+                $hh = $model_ct->where('mahh', $ct->mahh);
+                foreach ($model_max as $huyen) {
+                    $mahuyen = $huyen->mahuyen;
+                    $hh_huyen = $hh->where('mahs', $huyen->mahs);
+                    $ct->$mahuyen = ($hh_huyen->avg('giatu') + $hh_huyen->avg('giaden')) / 2;
+                    //dùng đc hàm avg vì 1 huyện chỉ có 1 báo cáo
+                }
+                $ct->giahh = ($hh->sum('giatu') + $hh->sum('giaden')) / (2 * $sodv);
+                //$ct->giahhlk = ($hh->avg('giatulk') + $hh->avg('giadenlk')) / 2;
+            }
+            //dd($model);
+            //$model=$this->getDataPL1($inputs);
+            //dd($model->toarray());
+            $thongtin=array('thitruong'=>$inputs['thitruong'],
+                'nam'=>'Từ ngày '.getDayVn($inputs['ngaytu']).' đến ngày '.getDayVn($inputs['ngayden']));
+            $model_pb = District::wherein('mahuyen',$a_huyen)->get();
+
+            return view('reports.hhdv.TT55-2011-BTC.PL1')
+                ->with('thongtin',$thongtin)
+                ->with('model',$model)
+                ->with('model_pb',$model_pb)
+                ->with('pageTitle','Phụ lục 1');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function index()
+    {
+        if (Session::has('admin')) {
+            $donvi = District::wherein('mahuyen',function($query){
+                $query->select('mahuyen')->from('HsGiaHhTt')
+                    ->where("trangthai" , "Hoàn tất")->distinct()->get();
+            })->get();
+            //dd($donvi);
+            $thitruong=DmThiTruong::all();
+            $thoidiem=DmThoiDiem::where('plbc','Hàng hóa thị trường')->get();
+            return view('reports.hhdv.TT55-2011-BTC.index')
+                ->with('thitruong',$thitruong)
+                ->with('thoidiem',$thoidiem)
+                ->with('donvi',$donvi)
+                ->with('pageTitle','Thông tư 55/2011-TT-BTC');
+        }else
+            return view('errors.notlogin');
+    }
+    */
 }
