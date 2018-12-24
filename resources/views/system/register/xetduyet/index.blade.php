@@ -55,15 +55,18 @@
         }
         
         $(function(){
-
             $('#level').change(function() {
-                var pl = $('#level').val();
-                var url = 'register?&level='+pl;
+                var pl = '&level='+ $('#level').val();
+                var mahuyen = '&mahuyen='+$('#mahuyen').val();
+                var url = 'register?'+pl+mahuyen;
                 window.location.href = url;
             });
-
-
-
+            $('#mahuyen').change(function() {
+                var pl = '&level='+ $('#level').val();
+                var mahuyen = '&mahuyen='+$('#mahuyen').val();
+                var url = 'register?'+pl+mahuyen;
+                window.location.href = url;
+            });
         })
         function ClickDelete(){
             $('#frm_delete').submit();
@@ -87,15 +90,39 @@
                                 <div class="form-group">
                                     <label>Doanh nghiệp cung cấp</label>
                                     <select class="form-control" name="level" id="level">
-                                        <option value="DVLT" {{($level == "DVLT") ? 'selected' : ''}}>Dịch vụ lưu trú</option>
-                                        <option value="DVVT" {{($level == "DVVT") ? 'selected' : ''}}>Dịch vụ vận tải</option>
-                                        <option value="TPCNTE6T" {{($level == "TPCNTE6T") ? 'selected' : ''}}>TPCN cho TE dưới 6 tuổi</option>
-                                        <option value="TACN" {{($level == "TACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
-                                        <option value="DKG" {{($level == "DKG") ? 'selected' : ''}}>Đăng ký giá</option>
+                                        <option value="">--Chọn phân loại tài khoản--</option>
+                                        @if(can('dvlt','index'))
+                                            <option value="DVLT" {{($inputs['level'] == "DVLT") ? 'selected' : ''}}>Dịch vụ lưu trú</option>
+                                        @endif
+                                        @if(can('dvvt','index'))
+                                            <option value="DVVT" {{($inputs['level'] == "DVVT") ? 'selected' : ''}}>Dịch vụ vận tải</option>
+                                        @endif
+                                        @if(can('tpcnte6t','index'))
+                                            <option value="TPCNTE6T" {{($inputs['level'] == "TPCNTE6T") ? 'selected' : ''}}>TPCN dành cho TE dưới 6 tuổi</option>
+                                        @endif
+                                        @if(can('tacn','index'))
+                                            <option value="TACN" {{($inputs['level'] == "TACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
+                                        @endif
+                                        @if(can('dangkygia','index'))
+                                            <option value="DKG" {{($inputs['level'] == "DKG") ? 'selected' : ''}}>Đăng ký giá</option>
+                                        @endif
                                     </select>
                                 </div>
                             </div>
+                            @if(session('admin')->level == 'T' || session('admin')->level == 'H')
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>Đơn vị</label>
+                                        <select class="form-control" name="mahuyen" id="mahuyen">
+                                            @foreach($towns as $town)
+                                                <option value="{{$town->maxa}}" {{$town->maxa == $inputs['mahuyen'] ? 'selected' : ''}}>{{$town->tendv}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
+
                         <div class="table-toolbar">
                         </div>
                     <table class="table table-striped table-bordered table-hover" id="sample_3">

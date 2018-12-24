@@ -16,15 +16,32 @@ class RegisterController extends Controller
 {
     public function index(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa'){
+            if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X'){
                 $inputs = $request->all();
-                $inputs['level'] = isset($inputs['level']) ? $inputs['level'] : 'DVLT';
+                $inputs['level'] = isset($inputs['level']) ? $inputs['level'] : '';
                 //Check quyền
+
+                if(session('admin')->level == 'T') {
+                    $towns = Town::all();
+                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $towns->first()->maxa;
+                }elseif(session('admin')->level == 'H') {
+                    $towns = Town::where('mahuyen',session('admin')->mahuyen)->get();
+                    $inputs['mahuyen'] =  isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $towns->first()->maxa;
+                }else{
+                    $towns = Town::where('mahuyen',session('admin')->mahuyen)
+                        ->where('maxa',session('admin')->maxa)
+                        ->get();
+                    $inputs['mahuyen'] =  session('admin')->maxa;
+                }
                 $model = Register::where('level', $inputs['level'])
+                    ->where('mahuyen',$inputs['mahuyen'])
                     ->get();
+                $ttdv = Town::where('maxa',$inputs['mahuyen'])->first();
                 return view('system.register.xetduyet.index')
                     ->with('model', $model)
-                    ->with('level', $inputs['level'])
+                    ->with('inputs', $inputs)
+                    ->with('towns',$towns)
+                    ->with('ttdv',$ttdv)
                     ->with('pageTitle', 'Xét duyệt tài khoản đăng ký');
 
             }else
@@ -35,7 +52,7 @@ class RegisterController extends Controller
 
     public function edit($id){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa'){
+            if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X'){
                 $model = Register::findOrFail($id);
                 $cqcq = Town::all();
                 $settingdvvt = !empty($model->settingdvvt) ? json_decode($model->settingdvvt) : '';
@@ -52,12 +69,12 @@ class RegisterController extends Controller
 
     public function update(Request $request,$id){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa'){
+            if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X'){
                 $inputs = $request->all();
                 $model = Register::findOrFail($id);
                 $inputs['settingdvvt'] = isset($inputs['roles']) ? json_encode($inputs['roles']) : '';
                 $model->update($inputs);
-                return redirect('register?&level='.$model->level);
+                return redirect('register?&level='.$model->level.'&mahuyen='.$model->mahuyen);
             }else
                 return view('errors.noperm');
         }else
@@ -66,7 +83,7 @@ class RegisterController extends Controller
 
     public function show($id){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa'){
+            if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X'){
                 $model = Register::findOrFail($id);
                 $dvcq = Town::where('maxa', $model->mahuyen)->first()->tendv;
                 $settingdvvt = !empty($model->settingdvvt) ? json_decode($model->settingdvvt) : '';
@@ -85,7 +102,7 @@ class RegisterController extends Controller
 
     public function tralai(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa'){
+            if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X'){
                 $inputs = $request->all();
                 $id = $inputs['idhs'];
                 $model = Register::findOrFail($id);
@@ -108,7 +125,7 @@ class RegisterController extends Controller
                         $message->from('csdlgia@gmail.com','Phần mềm CSDL giá');
                     });
                 }
-                return redirect('register?&level='.$model->level);
+                return redirect('register?&level='.$model->level.'&mahuyen='.$model->mahuyen);
             }else
                 return view('errors.noperm');
         }else
