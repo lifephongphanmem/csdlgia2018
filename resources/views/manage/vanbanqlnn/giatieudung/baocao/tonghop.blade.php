@@ -74,8 +74,8 @@
             <th>{{$i++}}</th>
             <th style="text-align: left">{{$cap1->mahh}}</th>
             <th style="text-align: left">{{$cap1->tenhh}}</th>
-            <th style="text-align: left">{{$cap1->quyenso}}</th>
-            <th style="text-align: left">{{$cap1->chiso}}</th>
+            <th style="text-align: right">{{dinhdangso($cap1->quyenso, 2)}}</th>
+            <th style="text-align: right">{{dinhdangso($cap1->chiso, 2)}}</th>
             <th style="text-align: left"></th>
         </tr>
         <?php $model_cap2 = $model->where('capdo',2)->where('magoc',$cap1->mahh); ?>
@@ -84,8 +84,8 @@
                 <th>-</th>
                 <th style="text-align: left">{{$cap2->mahh}}</th>
                 <th style="text-align: left">{{$cap2->tenhh}}</th>
-                <th style="text-align: left">{{$cap2->quyenso}}</th>
-                <th style="text-align: left">{{$cap2->chiso}}</th>
+                <th style="text-align: right">{{dinhdangso($cap2->quyenso, 2)}}</th>
+                <th style="text-align: right">{{dinhdangso($cap2->chiso, 2)}}</th>
                 <th style="text-align: left"></th>
             </tr>
             <?php $model_cap3 = $model->where('capdo',3)->where('magoc',$cap2->mahh); ?>
@@ -94,8 +94,8 @@
                     <th>-</th>
                     <th style="text-align: left">{{$cap3->mahh}}</th>
                     <th style="text-align: left">{{$cap3->tenhh}}</th>
-                    <th style="text-align: left">{{$cap3->quyenso}}</th>
-                    <th style="text-align: left">{{$cap3->chiso}}</th>
+                    <th style="text-align: right">{{dinhdangso($cap3->quyenso, 2)}}</th>
+                    <th style="text-align: right">{{dinhdangso($cap3->chiso, 2)}}</th>
                     <th style="text-align: left"></th>
                 </tr>
                 <?php $model_cap4 = $model->where('capdo',4)->where('magoc',$cap3->mahh); ?>
@@ -104,8 +104,8 @@
                         <th>-</th>
                         <th style="text-align: left">{{$cap4->mahh}}</th>
                         <th style="text-align: left">{{$cap4->tenhh}}</th>
-                        <th style="text-align: left">{{$cap4->quyenso}}</th>
-                        <th style="text-align: left">{{$cap4->chiso}}</th>
+                        <th style="text-align: right">{{dinhdangso($cap4->quyenso, 2)}}</th>
+                        <th style="text-align: right">{{dinhdangso($cap4->chiso, 2)}}</th>
                         <th style="text-align: left"></th>
                     </tr>
                 @endforeach
