@@ -112,19 +112,24 @@
 
                                 <td>
                                     @if($ct['trangthai'] != 'CHUAHS')
-                                        <a href="{{url('/hstonghopcpi/show?hoso='.$ct['mahs'])}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chi tiết</a>
-                                        @if($ct['trangthai'] == 'CHOCHUYEN')
-                                            <button type="button" onclick="confirmChuyen('{{$ct['mahs']}}')" class="btn btn-default btn-xs mbs" data-target="#chuyen-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
-                                                Chuyển</button>
+                                        @if($ct['trangthai'] != 'CHUATH')
+                                            <a href="{{url('/hstonghopcpi/show?hoso='.$ct['mahs'])}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chi tiết</a>
+                                            @if($ct['trangthai'] == 'CHOCHUYEN')
+                                                <button type="button" onclick="confirmChuyen('{{$ct['mahs']}}')" class="btn btn-default btn-xs mbs" data-target="#chuyen-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
+                                                    Chuyển</button>
+                                            @endif
+
+                                            @if($ct['trangthai'] == 'TRALAI')
+                                                <button type="button" class="btn btn-default btn-sm" onclick="getLyDo('{{$ct['mahs']}}')" data-target="#tralai-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
+                                                    Lý do trả lại</button>
+                                            @endif
+                                            @if($ct['trangthai'] != 'DACHUYEN')
+                                                <button type="button" onclick="confirmDelete('')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                            @endif
+                                        @else
+                                            <a href="{{url('/hstonghopcpi/tonghop?thang='.$ct['thang'].'&nam='.$nam)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Tổng hợp</a>
                                         @endif
 
-                                        @if($ct['trangthai'] == 'TRALAI')
-                                            <button type="button" class="btn btn-default btn-sm" onclick="getLyDo('{{$ct['mahs']}}')" data-target="#tralai-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
-                                                Lý do trả lại</button>
-                                        @endif
-                                        @if($ct['trangthai'] != 'DACHUYEN')
-                                            <button type="button" onclick="confirmDelete('')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
-                                        @endif
                                     @endif
                                 </td>
                             </tr>
