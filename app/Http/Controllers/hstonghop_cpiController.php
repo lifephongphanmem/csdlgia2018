@@ -34,7 +34,7 @@ class hstonghop_cpiController extends Controller
                 array('thang' => '12', 'mahs' => null, 'trangthai'=> 'CHUAHS'),
             );
             $a_trangthai=array('CHUAHS'=>'Chưa tạo hồ sơ','CHUATH'=>'Chưa tổng hợp dữ liệu'
-                ,'CHOCHUYEN'=>'Chưa chuyển dữ liệu','DACHUYEN'=>'Đã chuyển dữ liệu','TRALAI'=>'Trả lại dữ liệu');
+                ,'CHOCHUYEN'=>'Chưa chuyển dữ liệu','DACHUYEN'=>'Đã chuyển dữ liệu','TRALAI'=>'Trả lại dữ liệu','DANHAN'=>'Đã nhận hồ sơ');
 
             $inputs = $requests->all();
             $model_hs = hsgia_cpi::where('maxa', session('admin')->maxa)->where('nam', $inputs['nam'])->get();
@@ -214,6 +214,16 @@ class hstonghop_cpiController extends Controller
             return view('errors.notlogin');
     }
 
+    function destroy(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $model = hstonghop_cpi::where('mahs',$inputs['mahs_delete'])->first();
+            $model->delete();
+            return redirect('hstonghopcpi/danhsach?nam='.$model->nam);
+        }else
+            return view('errors.notlogin');
+    }
+
     function view(Request $requests)
     {
         if (Session::has('admin')) {
@@ -231,7 +241,8 @@ class hstonghop_cpiController extends Controller
                 array('thang' => '12', 'mahs' => null, 'trangthai'=> 'CHUAHS'),
             );
             $a_trangthai=array('CHUAHS'=>'Chưa tạo hồ sơ','CHUATH'=>'Chưa tổng hợp dữ liệu'
-            ,'CHOCHUYEN'=>'Chưa chuyển dữ liệu','DACHUYEN'=>'Đã chuyển dữ liệu','TRALAI'=>'Trả lại dữ liệu');
+            ,'CHOCHUYEN'=>'Chưa chuyển dữ liệu','DACHUYEN'=>'Đã chuyển dữ liệu','TRALAI'=>'Trả lại dữ liệu','DANHAN'=>'Đã nhận hồ sơ');
+
 
             $inputs = $requests->all();
             $model_diaban = DiaBanHd::all();
@@ -305,7 +316,8 @@ class hstonghop_cpiController extends Controller
                 array('thang' => '12', 'mahs' => null, 'trangthai'=> 'CHUAHS'),
             );
             $a_trangthai=array('CHUAHS'=>'Chưa tạo hồ sơ','CHUATH'=>'Chưa tổng hợp dữ liệu'
-            ,'CHOCHUYEN'=>'Chưa chuyển dữ liệu','DACHUYEN'=>'Đã chuyển dữ liệu','TRALAI'=>'Trả lại dữ liệu');
+            ,'CHOCHUYEN'=>'Chưa chuyển dữ liệu','DACHUYEN'=>'Đã chuyển dữ liệu','TRALAI'=>'Trả lại dữ liệu','DANHAN'=>'Đã nhận hồ sơ');
+
 
             $inputs = $requests->all();
             $model_diaban = DiaBanHd::all();
@@ -347,7 +359,6 @@ class hstonghop_cpiController extends Controller
             return view('errors.notlogin');
     }
 
-
     function baocao(Request $requests)
     {
         if (Session::has('admin')) {
@@ -360,6 +371,65 @@ class hstonghop_cpiController extends Controller
                 ->with('pageTitle', 'Báo cáo chỉ số giá tiêu dùng');
         } else
             return view('errors.notlogin');
+    }
+
+    function nhanhs(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            //dd($inputs);
+            $model = hstonghop_cpi::where('mahs',$inputs['mahs_nhan'])->first();
+            $model->trangthai = 'DANHAN';
+            $model->ngaynhan = date('Y-m-d');
+            //$model->mahuyen = session('admin')->mahuyen;
+            //$model->ttnguoinop = $inputs['ttnguoinop_chuyen'];
+            $model->save();
+            /*Lịch sử
+            if($model->save()){
+                $modelh = new ThamDinhGiaH();
+                $modelh->mahs = $model->mahs;
+                $modelh->thaotac = 'Hoàn tất hồ sơ';
+                $modelh->name = session('admin')->name;
+                $modelh->username = session('admin')->username;
+                $modelh->save();
+            }
+            */
+            return redirect('xetduyetcpi/danhsach?nam='.$model->nam);
+        }else
+            return view('errors.notlogin');
+    }
+
+    function tralai(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            //dd($inputs);
+            $model = hstonghop_cpi::where('mahs',$inputs['mahs_tralai'])->first();
+            $model->trangthai = 'TRALAI';
+            //$model->ngaynhan = date('Y-m-d');
+            $model->lydo = $inputs['lydo'];
+            //$model->mahuyen = session('admin')->mahuyen;
+            //$model->ttnguoinop = $inputs['ttnguoinop_chuyen'];
+            $model->save();
+            /*Lịch sử
+            if($model->save()){
+                $modelh = new ThamDinhGiaH();
+                $modelh->mahs = $model->mahs;
+                $modelh->thaotac = 'Hoàn tất hồ sơ';
+                $modelh->name = session('admin')->name;
+                $modelh->username = session('admin')->username;
+                $modelh->save();
+            }
+            */
+            return redirect('xetduyetcpi/danhsach?nam='.$model->nam);
+        }else
+            return view('errors.notlogin');
+    }
+
+    function get_lydo(Request $request)
+    {
+        $inputs = $request->all();
+        $model = hstonghop_cpi::where('mahs',$inputs['mahs'])->first();
+        die(json_encode($model));
+
     }
 
     public function bctonghop(Request $request){

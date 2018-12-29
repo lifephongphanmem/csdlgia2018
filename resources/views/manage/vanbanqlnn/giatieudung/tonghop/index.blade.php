@@ -35,8 +35,8 @@
             });
 
         });
-        function confirmDelete(id) {
-            document.getElementById("iddelete").value=id;
+        function confirmDelete(mahs) {
+            document.getElementById("mahs_delete").value=mahs;
         }
         function confirmHoanthanh(id) {
             document.getElementById("idhoanthanh").value=id;
@@ -120,11 +120,11 @@
                                             @endif
 
                                             @if($ct['trangthai'] == 'TRALAI')
-                                                <button type="button" class="btn btn-default btn-sm" onclick="getLyDo('{{$ct['mahs']}}')" data-target="#tralai-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
+                                                <button type="button" class="btn btn-default btn-sm" onclick="viewLyDo('{{$ct['mahs']}}')" data-target="#lydo-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
                                                     Lý do trả lại</button>
                                             @endif
                                             @if($ct['trangthai'] != 'DACHUYEN')
-                                                <button type="button" onclick="confirmDelete('')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                <button type="button" onclick="confirmDelete('{{$ct['mahs']}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                             @endif
                                         @else
                                             <a href="{{url('/hstonghopcpi/tonghop?thang='.$ct['thang'].'&nam='.$nam)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Tổng hợp</a>
@@ -177,7 +177,6 @@
         <!-- /.modal-dialog -->
     </div>
 
-
     <!--Modal Delete-->
     <div id="delete-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
         {!! Form::open(['url'=>'/hstonghopcpi/delete','id' => 'frm_delete'])!!}
@@ -187,7 +186,7 @@
                     <button type="button" data-dismiss="modal" aria-hidden="true"
                             class="close">&times;</button>
                     <h4 id="modal-header-primary-label" class="modal-title">Đồng ý xoá?</h4>
-                    <input type="hidden" name="iddelete" id="iddelete">
+                    <input type="hidden" name="mahs_delete" id="mahs_delete">
 
                 </div>
                 <div class="modal-footer">
@@ -199,6 +198,28 @@
         {!! Form::close() !!}
     </div>
 
+    <!--Modal lydo-->
+    <div class="modal fade" id="lydo-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title"><b>Lý do trả lại hồ sơ?</b></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <textarea id="lydo" class="form-control" name="lydo" cols="30" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
     <script>
         function clickdelete(){
             $('#frm_delete').submit();
@@ -206,6 +227,23 @@
 
         function confirmChuyen(mahs){
             $('#mahs_chuyen').val(mahs);
+        }
+
+        function viewLyDo(mahs) {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            //alert(id);
+            $.ajax({
+                url: '/hstonghopcpi/lydo',
+                type: 'GET',
+                data: {
+                    _token: CSRF_TOKEN,
+                    mahs: mahs
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    $('#lydo').val(data.lydo);
+                }
+            })
         }
     </script>
 
