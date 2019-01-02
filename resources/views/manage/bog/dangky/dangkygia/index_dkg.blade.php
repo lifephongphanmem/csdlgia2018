@@ -35,7 +35,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Danh sách doanh nghiệp {{$tenmh}}<small>&nbsp;đăng ký giá</small>
+        Danh sách hồ sơ {{$tenmh}}<small>&nbsp;đăng ký giá</small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -44,44 +44,47 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
-
+                        <a href="{{url('createdkg/create?ma='.$ma)}}" class="btn btn-default btn-sm">
+                            <i class="fa fa-plus"></i> Thêm mới </a>
                     </div>
                 </div>
-                @if(session('admin')->level == 'T' || session('admin')->level == 'H')
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            <label>Đơn vị</label>
-                            <select name="maxa" id="maxa" class="form-control">
-                                @foreach($m_dv as $dv)
-                                    <option value="{{$dv->maxa}}" {{$dv->maxa == $inputs['maxa']  ? 'selected' : ''}}>{{$dv->tendv}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                @endif
                 <div class="portlet-body">
                     <div class="portlet-body">
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>
                         <tr>
                             <th style="text-align: center" width="2%">STT</th>
-                            <th style="text-align: center" width="30%">Tên doanh nghiệp</th>
-                            <th style="text-align: center">Mã số thuế</th>
-                            <th style="text-align: center" width="20%">Địa chỉ</th>
+                            <th style="text-align: center" width="30%">Số quyết định</th>
+                            <th style="text-align: center">Ngày quyết định</th>
+                            <th style="text-align: center" width="20%">Phân loại đăng ký</th>
+                            <th style="text-align: center" width="20%">Trạng thái</th>
                             <th style="text-align: center" width="10%">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($model as $key=>$tt)
-                            <tr class="odd gradeX">
-                                <td style="text-align: center">{{$key + 1}}</td>
-                                <td class="active" >{{$tt->tendn}}</td>
-                                <td>{{$tt->maxa}}</td>
-                                <td style="text-align: center">{{$tt->diachi}}</td>
-                                <td>
-                                    <a href="{{url('dsdangkygia?ma='.$tt->id)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Nhập mới</a>
-                                </td>
-                            </tr>
+                        <tr class="odd gradeX">
+                            <td style="text-align: center">{{$key + 1}}</td>
+                            <td class="active" >{{$tt->socongvan}}</td>
+                            <td>{{$tt->ngayquyetdinh}}</td>
+                            <td style="text-align: center">{{$tt->phanloaidkg}}</td>
+
+                            @if($tt->trangthai == "CC")
+                                <td align="center"><span class="badge badge-warning">Chờ chuyển</span></td>
+                            @elseif($tt->trangthai == 'DC')
+                                <td align="center"><span class="badge badge-blue">Đã chuyển</span></td>
+                            @endif
+                            <td>
+                                <a href="{{url('baocao/'.$tt->id.'/Bc1')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;In</a>
+                                @if($tt->trangthai == 'CC')
+                                <a href="{{url('editdkgbog/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                    <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                        Xóa</button>
+                                    <button type="button" onclick="confirmChuyen('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyen-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
+                                        Chuyển</button>
+                                @endif
+                            </td>
+                        </tr>
                         @endforeach
                         </tbody>
                     </table>

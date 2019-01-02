@@ -181,22 +181,18 @@
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
                         <div class="form-body">
-
-                            @if(session('admin')->level == 'T')
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Doanh nghiệp<span class="require">*</span></label>
-                                        <select class="form-control" name="madn" id="madn" required>
-                                            <option value="">--Chọn doanh nghiệp nhập--</option>
-                                            @foreach($m_dn as $tt)
-                                                <option @if($model->maxa == $tt->maxa) selected @endif value="{{$tt->maxa}}">{{$tt->tendn}}</option>
+                                        <label class="control-label">Theo quyết định<span class="require">*</span></label>
+                                        <select name="maxa" id="maxa" class="form-control">
+                                            @foreach($m_qd as $qd)
+                                                <option value="{{$qd->soqd}} {{$qd->soqd == $model->soqd  ? 'selected' : ''}}">{{$qd->soqd}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                            @endif
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -287,7 +283,7 @@
 
             </div>
             <div style="text-align: center">
-                <a href="{{url('indexdkg?ma='.$ma)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('dsdangkygia?ma='.$m_dn->id)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
             </div>

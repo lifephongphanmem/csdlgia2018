@@ -17,6 +17,7 @@ class CreateDkghosoTable extends Migration
             $table->increments('id');
             $table->string('maxa',30)->nullable();
             $table->string('mahs')->nullable();
+            $table->string('soqd')->nullable();
             $table->string('socongvan')->nullable();
             $table->date('ngayquyetdinh')->nullable();
             $table->date('ngaythuchien')->nullable();
