@@ -110,13 +110,13 @@
                                 <td>
                                     @if($ct['trangthai'] != 'CHUAHS')
                                         <a href="{{url('/chisocpi/chitiet?hoso='.$ct['mahs'])}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chi tiết</a>
+                                        @if($ct['trangthai'] != 'DANHAN')
+                                            <button type="button" onclick="ClickTraLai({{$ct['mahs']}})" class="btn btn-default btn-xs mbs" data-target="#tralai-modal" data-toggle="modal"><i class="fa fa-reply"></i>&nbsp;
+                                                Trả lại</button>
+                                            <button type="button" onclick="confirmNhanHs({{$ct['mahs']}})" class="btn btn-default btn-xs mbs" data-target="#nhanhs-modal" data-toggle="modal"><i class="fa fa-share"></i>&nbsp;
+                                                Nhận hồ sơ</button>
 
-                                        <button type="button" onclick="ClickTraLai({{$ct['mahs']}})" class="btn btn-default btn-xs mbs" data-target="#tralai-modal" data-toggle="modal"><i class="fa fa-reply"></i>&nbsp;
-                                            Trả lại</button>
-                                        <button type="button" onclick="confirmNhanHs({{$ct['mahs']}})" class="btn btn-default btn-xs mbs" data-target="#nhanhs-modal" data-toggle="modal"><i class="fa fa-share"></i>&nbsp;
-                                            Nhận hồ sơ</button>
-
-
+                                        @endif
                                     @endif
                                 </td>
                             </tr>
@@ -140,7 +140,7 @@
     <div class="modal fade" id="tralai-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['url'=>'xetduyetkkgiadvlt/tralai','id' => 'frm_tralai'])!!}
+                {!! Form::open(['url'=>'xetduyetcpi/tralai','id' => 'frm_tralai'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title">Đồng ý trả lại hồ sơ?</h4>
@@ -152,7 +152,7 @@
                         <label><b>Lý do trả lại</b></label>
                         <textarea id="lydo" class="form-control" name="lydo" cols="30" rows="8"></textarea>
                     </div>
-                    <input type="hidden" name="idtralai" id="idtralai">
+                    <input type="hidden" id="mahs_tralai" name="mahs_tralai" >
                 </div>
 
                 <div class="modal-footer">
@@ -171,14 +171,15 @@
     <div class="modal fade" id="nhanhs-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['url'=>'xetduyetkkgiadvlt/nhanhs','id' => 'frm_nhanhs'])!!}
+                {!! Form::open(['url'=>'xetduyetcpi/nhanhs','id' => 'frm_nhanhs'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title">Đồng ý nhận hồ sơ?</h4>
                 </div>
                 <div class="modal-body" id="ttnhanhs">
-                </div>
 
+                </div>
+                <input type="hidden" id="mahs_nhan" name="mahs_nhan" >
                 <div class="modal-footer">
                     <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
                     <button type="submit" class="btn blue" onclick="ClickNhanHs()">Đồng ý</button>
@@ -197,6 +198,18 @@
 
         function confirmChuyen(mahs){
             $('#mahs_chuyen').val(mahs);
+        }
+
+        function ClickNhanHs(){
+            $('#frm_nhanhs').submit();
+        }
+
+        function confirmNhanHs(mahs){
+            $('#mahs_nhan').val(mahs);
+        }
+
+        function ClickTraLai(mahs){
+            $('#mahs_tralai').val(mahs);
         }
     </script>
 

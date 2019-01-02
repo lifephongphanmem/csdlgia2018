@@ -19,11 +19,14 @@
             TableManaged.init();
         });
         $(function(){
-            $('#nam').change(function() {
-                var namhs = '&nam=' + $('#nam').val();
-                var url = '/thuetainguyen?'+namhs;
-                window.location.href = url;
+            $('#namct').change(function() {
+                window.location.href = '/hsgiacpi/danhsach?thang='+$('#thangct').val() + '&nam=' +  $('#namct').val();
             });
+
+            $('#thangct').change(function() {
+                window.location.href = '/hsgiacpi/danhsach?thang='+$('#thangct').val() + '&nam=' +  $('#namct').val();
+            });
+
             $('#trangthai').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
                 var trangthai = '&trangthai=' + $('#trangthai').val();
