@@ -18,6 +18,7 @@ class GiaHhDvKCt extends Model
         'tenhhdv',
         'dacdiemkt',
         'dvt',
+        'xuatxu',
         'gialk',
         'gia',
     ];

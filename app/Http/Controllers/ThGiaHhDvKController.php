@@ -16,6 +16,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Response;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ThGiaHhDvKController extends Controller
 {
@@ -271,5 +272,32 @@ class ThGiaHhDvKController extends Controller
 
         File::put(public_path('/xml/'.$fp),$data);
         return Response::download(public_path('/xml/'.$fp));
+    }
+
+    function exportEx($id){
+        if (Session::has('admin')) {
+            $model = ThGiaHhDvK::findOrFail($id);
+            $modelct = ThGiaHhDvKCt::where('mahs',$model->mahs)
+                ->get();
+            $modelnhom = NhomHhDvK::where('manhom',$model->manhom)->first();
+
+            Excel::create('THHANGHOA',function($excel) use($model,$modelct,$modelnhom){
+                $excel->sheet('THHANGHOA', function($sheet) use($model,$modelct,$modelnhom){
+                    $sheet->loadView('manage.dinhgia.giahhdvk.tonghop.show_excel')
+                        ->with('modelct',$modelct)
+                        ->with('modelnhom',$modelnhom)
+                        ->with('model',$model)
+                        ->with('pageTitle','Danh mục hàng hóa');
+                    //$sheet->setPageMargin(0.25);
+                    $sheet->setAutoSize(false);
+                    $sheet->setFontFamily('Tahoma');
+                    $sheet->setFontBold(false);
+
+                    //$sheet->setColumnFormat(array('D' => '#,##0.00'));
+                });
+            })->download('xls');
+
+        } else
+            return view('errors.notlogin');
     }
 }

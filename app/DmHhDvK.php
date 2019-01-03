@@ -14,6 +14,7 @@ class DmHhDvK extends Model
         'tenhhdv',
         'dacdiemkt',
         'dvt',
+        'xuatxu',
         'theodoi'
     ];
 }

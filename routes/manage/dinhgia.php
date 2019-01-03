@@ -135,6 +135,7 @@ Route::resource('dmhanghoadichvu','DmHhDvKController');
 Route::get('dmhanghoadichvu/show','DmHhDvKController@show');
 Route::post('dmhanghoadichvu/update','DmHhDvKController@update');
 
+Route::get('giahhdvkhac/danhmucmau','GiaHhDvKController@filemau');
 Route::resource('giahhdvkhac','GiaHhDvKController');
 Route::post('giahhdvkhac/create','GiaHhDvKController@create');
 Route::post('giahhdvkhac/delete','GiaHhDvKController@destroy');
@@ -160,6 +161,7 @@ Route::post('tonghopgiahhdvk/huyhoanthanh','ThGiaHhDvKController@huyhoanthanh');
 Route::post('tonghopgiahhdvk/congbo','ThGiaHhDvKController@congbo');
 
 Route::get('thgiahhdvk/{id}/exportXML','ThGiaHhDvKController@exportXML');
+Route::get('thgiahhdvk/{id}/exportEx','ThGiaHhDvKController@exportEx');
 
 
 Route::get('thgiahhdvkctdf/edit','ThGiaHhDvKCtDfController@show');

@@ -25,13 +25,13 @@
         $(function(){
             $('#nam').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
-                var url = '/giahhdvkhac?'+namhs;
+                var url = '/tonghopgiahhdvk?'+namhs;
                 window.location.href = url;
             });
             $('#trangthai').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
                 var trangthai = '&trangthai=' + $('#trangthai').val();
-                var url = '/giahhdvkhac?'+namhs + trangthai;
+                var url = '/tonghopgiahhdvk?'+namhs + trangthai;
                 window.location.href = url;
             });
 
@@ -171,6 +171,7 @@
                                             <button type="button" onclick="confirmHHT('{{$ct->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
                                                 Hủy hoàn thành</button>
                                             <a href="{{url('thgiahhdvk/'.$ct->id.'/exportXML')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-file-code-o"></i>&nbsp;Xuất file XML</a>
+                                                <a href="{{url('thgiahhdvk/'.$ct->id.'/exportEx')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-file-code-o"></i>&nbsp;Xuất file Excel</a>
                                         @endif
                                     @endif
                                 </td>

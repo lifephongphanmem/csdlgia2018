@@ -19,6 +19,7 @@ class CreateDmhhdvkTable extends Migration
             $table->string('mahhdv')->nullable();
             $table->string('tenhhdv')->nullable();
             $table->string('dacdiemkt')->nullable();
+            $table->string('xuatxu')->nullable();
             $table->string('dvt')->nullable();
             $table->string('theodoi')->nullable();
             $table->timestamps();

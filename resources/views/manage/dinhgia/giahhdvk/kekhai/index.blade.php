@@ -83,7 +83,7 @@
                                 </a>
                                 <ul class="dropdown-menu pull-right">
                                     <li>
-                                        <a href="">File dữ liệu mẫu</a>
+                                        <a href="{{url('/giahhdvkhac/danhmucmau')}}" target="_blank">File dữ liệu mẫu</a>
                                     </li>
                                     <li>
                                         <a href="">Nhận dữ liệu</a>

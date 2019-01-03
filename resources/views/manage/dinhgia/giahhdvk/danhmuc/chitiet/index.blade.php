@@ -176,29 +176,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Đơn vị tính<span class="require">*</span></label>
-                                <select name="dvt" id="dvt" class="form-control" style="text-align: center">
-                                    <option value="">--Chọn đơn vị tính--</option>
-                                    <option value="lần">Lần</option>
-                                    <option value="ngày">Ngày</option>
-                                    <option value="đ/kg">đ/kg</option>
-                                    <option value="đ/lít">đ/lít</option>
-                                    <option value="đ/két (24 chai)">đ/két (24 chai)</option>
-                                    <option value="đ/thùng (24 lon)">đ/thùng (24 lon)</option>
-                                    <option value="đ/chai 750ml">đ/chai 750ml</option>
-                                    <option value="đ/lọ 100 viên">đ/lọ 100 viên</option>
-                                    <option value="đ/chai">đ/chai</option>
-                                    <option value="đ/chiếc">đ/chiếc</option>
-                                    <option value="đ/kg-đ/bao">đ/kg-đ/bao</option>
-                                    <option value="đ/mét">đ/mét</option>
-                                    <option value="đ/b/13kg">đ/b/13kg</option>
-                                    <option value="đ/vé">đ/vé</option>
-                                    <option value="đ/km">đ/km</option>
-                                    <option value="đ/lần/chiếc">đ/lần/chiếc</option>
-                                    <option value="triệu đồng/chỉ">triệu đồng/chỉ</option>
-                                    <option value="đ/USD">đ/USD</option>
-                                    <option value="đ/Euro">đ/Euro</option>
-                                    <option value="đ/NDT">đ/NDT</option>
-                                </select>
+                                <input type="text" name="dvt" id="dvt" class="form-control require">
                             </div>
                         </div>
                     </div>
@@ -206,15 +184,24 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="control-label">Tên hàng hóa dịch vụ<span class="require">*</span></label>
-                                <input type="text" name="tenhhdv" id="tenhhdv" class="form-control">
+                                <input type="text" name="tenhhdv" id="tenhhdv" class="form-control require">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="control-label">Đặc điểm kỹ thuật<span class="require">*</span></label>
+                                <label class="control-label">Đặc điểm kỹ thuật</label>
                                 <input type="text" name="dacdiemkt" id="dacdiemkt" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">Nguồn gốc / Xuất xứ</label>
+                                <input type="text" name="xuatxu" id="xuatxu" class="form-control">
                             </div>
                         </div>
                     </div>
