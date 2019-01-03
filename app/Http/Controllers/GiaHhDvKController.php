@@ -31,7 +31,8 @@ class GiaHhDvKController extends Controller
 
             $model = GiaHhDvK::join('nhomhhdvk','nhomhhdvk.manhom','=','giahhdvk.manhom')
                 ->select('giahhdvk.*', 'nhomhhdvk.tennhom')
-                ->where('giahhdvk.district', $inputs['district']);
+                ->where('giahhdvk.district', $inputs['district'])
+                ->whereYear('giahhdvk.ngayapdung',$inputs['nam']);
             if ($inputs['trangthai'] != '')
                 $model = $model->where('trangthai', $inputs['trangthai']);
 
