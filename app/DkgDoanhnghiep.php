@@ -20,5 +20,6 @@ class DkgDoanhnghiep extends Model
         'giayphepkd',
         'phanloai',
         'phanloaidn',
+        'username',
     ];
 }

@@ -65,16 +65,52 @@
         <th>(6)</th>
     </tr>
     <!-- chua lọc theo thứ tự -->
-    <?php $i= 0; ?>
-    @foreach($model as $key=>$ts)
+    <?php
+        $i= 1;
+        $model_cap1 = $model->where('capdo',1);
+    ?>
+    @foreach($model_cap1 as $cap1)
         <tr>
             <th>{{$i++}}</th>
-            <th style="text-align: left">{{$ts->mahh}}</th>
-            <th style="text-align: left">{{$ts->tenhh}}</th>
-            <th style="text-align: left">{{$ts->quyenso}}</th>
-            <th style="text-align: left">{{$ts->chiso}}</th>
+            <th style="text-align: left">{{$cap1->mahh}}</th>
+            <th style="text-align: left">{{$cap1->tenhh}}</th>
+            <th style="text-align: right">{{dinhdangso($cap1->quyenso, 2)}}</th>
+            <th style="text-align: right">{{dinhdangso($cap1->chiso, 2)}}</th>
             <th style="text-align: left"></th>
         </tr>
+        <?php $model_cap2 = $model->where('capdo',2)->where('magoc',$cap1->mahh); ?>
+        @foreach($model_cap2 as $cap2)
+            <tr>
+                <th>-</th>
+                <th style="text-align: left">{{$cap2->mahh}}</th>
+                <th style="text-align: left">{{$cap2->tenhh}}</th>
+                <th style="text-align: right">{{dinhdangso($cap2->quyenso, 2)}}</th>
+                <th style="text-align: right">{{dinhdangso($cap2->chiso, 2)}}</th>
+                <th style="text-align: left"></th>
+            </tr>
+            <?php $model_cap3 = $model->where('capdo',3)->where('magoc',$cap2->mahh); ?>
+            @foreach($model_cap3 as $cap3)
+                <tr>
+                    <th>-</th>
+                    <th style="text-align: left">{{$cap3->mahh}}</th>
+                    <th style="text-align: left">{{$cap3->tenhh}}</th>
+                    <th style="text-align: right">{{dinhdangso($cap3->quyenso, 2)}}</th>
+                    <th style="text-align: right">{{dinhdangso($cap3->chiso, 2)}}</th>
+                    <th style="text-align: left"></th>
+                </tr>
+                <?php $model_cap4 = $model->where('capdo',4)->where('magoc',$cap3->mahh); ?>
+                @foreach($model_cap4 as $cap4)
+                    <tr>
+                        <th>-</th>
+                        <th style="text-align: left">{{$cap4->mahh}}</th>
+                        <th style="text-align: left">{{$cap4->tenhh}}</th>
+                        <th style="text-align: right">{{dinhdangso($cap4->quyenso, 2)}}</th>
+                        <th style="text-align: right">{{dinhdangso($cap4->chiso, 2)}}</th>
+                        <th style="text-align: left"></th>
+                    </tr>
+                @endforeach
+            @endforeach
+        @endforeach
     @endforeach
 
 

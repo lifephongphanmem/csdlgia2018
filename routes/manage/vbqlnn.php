@@ -23,6 +23,7 @@ Route::get('hstonghopcpi/tonghop','hstonghop_cpiController@tonghop');
 Route::get('hstonghopcpi/show','hstonghop_cpiController@show');
 Route::post('hstonghopcpi/chuyen','hstonghop_cpiController@chuyen');
 Route::post('hstonghopcpi/delete','hstonghop_cpiController@destroy');
+Route::get('hstonghopcpi/lydo','hstonghop_cpiController@get_lydo');
 
 Route::get('chisocpi/danhsach','hstonghop_cpiController@view');
 Route::get('chisocpi/chitiet','hstonghop_cpiController@detail');
@@ -31,7 +32,7 @@ Route::get('chisocpi/baocao','hstonghop_cpiController@baocao');
 Route::post('chisocpi/baocao/tonghop','hstonghop_cpiController@bctonghop');
 
 Route::get('xetduyetcpi/danhsach','hstonghop_cpiController@xetduyet');
-Route::get('xetduyetcpi/tralai','hstonghop_cpiController@tralai');
-Route::get('xetduyetcpi/nhanhs','hstonghop_cpiController@nhanhs');
+Route::post('xetduyetcpi/tralai','hstonghop_cpiController@tralai');
+Route::post('xetduyetcpi/nhanhs','hstonghop_cpiController@nhanhs');
 
 ?>

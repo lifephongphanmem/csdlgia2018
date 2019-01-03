@@ -11,6 +11,7 @@ class dkghoso extends Model
         'id',
         'maxa',
         'mahs',
+        'soqd',
         'socongvan',
         'ngayquyetdinh',
         'ngaythuchien',

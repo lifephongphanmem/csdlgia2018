@@ -25,14 +25,18 @@ Route::get('/binhongiact/update','BinhOnGiaCtController@update');
 Route::get('/binhongiact/del','BinhOnGiaCtController@destroy');
 
 //Doanh nghiệp
-Route::resource('indexdn','DangKyGiaBOGController@indexdnbog');
+Route::resource('dsthongtindn','DangKyGiaBOGController@indexdnbog');
 Route::get('createdn/create','DangKyGiaBOGController@creatednbog');
 Route::post('storednbog','DangKyGiaBOGController@storednbog');
 Route::get('editdnbog/{id}/edit','DangKyGiaBOGController@showdnbog');
 Route::post('updatednbog','DangKyGiaBOGController@updatednbog');
 Route::post('deletednbog','DangKyGiaBOGController@destroydnbog');
+Route::get('adduser','DangKyGiaBOGController@createuser');
+Route::post('storeuser','DangKyGiaBOGController@storeuser');
+
 //Đăng ký giá
-Route::resource('indexdkg','DangKyGiaBOGController@indexdkgbog');
+Route::resource('dangkygia','DangKyGiaBOGController@indexdkbog');
+Route::resource('dsdangkygia','DangKyGiaBOGController@indexdkgbog');
 Route::get('createdkg/create','DangKyGiaBOGController@createdkgbog');
 Route::post('storedkgbog','DangKyGiaBOGController@storedkgbog');
 Route::get('editdkgbog/{id}/edit','DangKyGiaBOGController@showdkgbog');
@@ -52,7 +56,7 @@ Route::get('/createdkgct/show','DangKyGiaBOGCtController@show');
 Route::get('/createdkgct/update','DangKyGiaBOGCtController@update');
 Route::get('/createdkgct/del','DangKyGiaBOGCtController@destroy');
 //Tìm kiếm
-Route::resource('indexdkgtk','DangKyGiaBOGController@indexdkgtk');
+Route::resource('timkiem','DangKyGiaBOGController@indexdkgtk');
 //Báo cáo
 Route::get('baocao/{id}/Bc1','BaoCaoDkgController@BC1');
 ?>

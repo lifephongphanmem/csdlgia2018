@@ -26,6 +26,7 @@ class CreateDkgdoanhnghiepTable extends Migration
             $table->string('giayphepkd')->nullable();
             $table->string('phanloaidn')->nullable();
             $table->string('phanloai')->nullable();
+            $table->string('username')->nullable();
             $table->timestamps();
         });
     }
