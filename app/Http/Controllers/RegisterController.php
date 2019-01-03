@@ -369,7 +369,7 @@ class RegisterController extends Controller
             $inputs = $model->toArray();
             $inputs['avatar'] = 'no-image-available.jpg';
             unset($inputs['id']);
-            if(session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa' ) {
+            if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $check = Company::where('maxa',$model->maxa)
                     ->where('level',$model->level)
                     ->first();
@@ -423,7 +423,7 @@ class RegisterController extends Controller
 
     public function delete(Request $request){
         if (Session::has('admin')) {
-            if(session('admin')->sadmin == 'ssa' || session('admin') == 'sa'){
+            if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X'){
                 $inputs = $request->all();
                 $model = Register::where('id',$inputs['iddelete'])
                     ->first();

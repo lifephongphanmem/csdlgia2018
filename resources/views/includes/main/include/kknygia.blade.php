@@ -17,23 +17,28 @@
                         <li><a href="{{url('xetduyettdttdn')}}"> Xét duyệt thay đổi thông tin doanh nghiệp</a></li>
                     @endif
                 @endif
-                <!--li>
-                    <a href="">
-                        <span class="title">Vật liệu xây dựng</span>
-                        <span class="arrow"></span>
-                    </a>
-                    <ul class="sub-menu" style="display: none;">
-                        @if(session('admin')->level == 'VLXD')
-                            <li><a href="{{url('thongtinkekhaigiavatlieuxaydung')}}">Kê khai giá VLXD</a> </li>
-                        @endif
-                        @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
-                            <li><a href="{{url('thongtindnkkgiavlxd')}}">Kê khai giá VLXD</a></li>
-                            <li><a href="{{url('xetduyetkkgiavlxd')}}">Thông tin hồ sơ xét duyệt</a></li>
-                            <li><a href="{{url('timkiemkkgiavlxd')}}">Tìm kiếm thông tin</a> </li>
-                            <li><a href="{{url('baocaokekhaigiavlxd')}}">Báo cáo thống kê</a></li>
-                        @endif
-                    </ul>
-                </li-->
+                @if(canGeneral('vlxd','index'))
+                    @if(can('vlxd','index'))
+                    <li>
+                        <a href="">
+                            <span class="title">Vật liệu xây dựng</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu" style="display: none;">
+                            @if(session('admin')->level == 'VLXD')
+                                <li><a href="{{url('thongtinkekhaigiavatlieuxaydung')}}">Kê khai giá VLXD</a> </li>
+                            @endif
+                            @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
+                                <!--li><a href="{{url('danhmucvatlieuxaydung')}}">Danh mục VLXD</a></li-->
+                                <li><a href="{{url('thongtindnkkgiavlxd')}}">Kê khai giá VLXD</a></li>
+                                <li><a href="{{url('xetduyetkkgiavlxd')}}">Thông tin hồ sơ xét duyệt</a></li>
+                                <li><a href="{{url('timkiemkkgiavlxd')}}">Tìm kiếm thông tin</a> </li>
+                                <li><a href="{{url('baocaokekhaigiavlxd')}}">Báo cáo thống kê</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                    @endif
+                @endif
                 <!--li>
                     <a href="javascript:;">
                         <span class="title">Than</span>

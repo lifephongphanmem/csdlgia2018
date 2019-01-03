@@ -671,6 +671,28 @@ function getPermissionDefault($level) {
                         'congbo'=>1,
                         'xdttdn'=>1,
                     ),
+                'vlxd'=>array(
+                    'index'=>1,
+                ),
+                    'dmvlxd'=>array(
+                        'index'=>1,
+                        'create'=>1,
+                        'edit'=>1,
+                        'delete'=>1,
+                    ),
+                    'kkvlxd'=>array(
+                        'index'=>1,
+                        'create'=>1,
+                        'edit'=>1,
+                        'delete'=>1,
+                        'approve'=>1,
+                    ),
+                    'thvlxd'=>array(
+                        'baocao'=>1,
+                        'congbo'=>1,
+                        'timkiem'=>1,
+                        'xdttdn'=>1,
+                    ),
         //End CSDL mức giá hàng hóa dịch vụ
         //CSDL thẩm định giá
         'csdlthamdinhgia'=>array(
@@ -1488,6 +1510,28 @@ function getPermissionDefault($level) {
             'congbo'=>1,
             'xdttdn'=>1,
         ),
+        'vlxd'=>array(
+            'index'=>1,
+        ),
+        'dmvlxd'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+        ),
+        'kkvlxd'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thvlxd'=>array(
+            'baocao'=>1,
+            'congbo'=>1,
+            'timkiem'=>1,
+            'xdttdn'=>1,
+        ),
         //End CSDL mức giá hàng hóa dịch vụ
         //CSDL thẩm định giá
         'csdlthamdinhgia'=>array(
@@ -2220,6 +2264,28 @@ function getPermissionDefault($level) {
             'congbo'=>1,
             'xdttdn'=>1,
         ),
+        'vlxd'=>array(
+            'index'=>1,
+        ),
+        'dmvlxd'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+        ),
+        'kkvlxd'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thvlxd'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
         //End CSDL mức giá hàng hóa dịch vụ
         //CSDL thẩm định giá
         'csdlthamdinhgia'=>array(
@@ -2828,6 +2894,46 @@ function getPermissionDefault($level) {
 
     );
 //End DKG
+//VLXD
+    $roles['VLXD'] = array(
+        'csdlmucgiahhdv'=>array(
+            'index'=>1,
+        ),
+        'kknygia'=>array(
+            'index'=>1
+        ),
+        'ttdn'=> array(
+            'index'=>1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'vlxd'=>array(
+            'index'=>1,
+        ),
+        'dmvlxd'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+        ),
+        'kkvlxd'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thvlxd'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+    );
+
+//End TACN
     return json_encode($roles[$level]);
 }
 

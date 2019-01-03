@@ -89,7 +89,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				@if(canGeneral('tacn','index'))
 				<option value="DVTACN">Dịch vụ thức ăn chăn nuôi</option>
 				@endif
-				<option value="DKG">Đăng ký giá</option>
+				<option value="VLXD">Vật liệu xây dựng</option>
 			</select>
 		</div>
 	</div>

@@ -64,6 +64,8 @@ class GiaHhDvKController extends Controller
                        ->first();
                     $modelctlk = GiaHhDvKCt::where('mahs',$modellk->mahs)
                         ->get();
+                    $modeldel = GiaHhDvKCtDf::where('district',$inputs['getdistrict'])
+                        ->where('manhom',$inputs['manhom'])->delete();
                     foreach ($modelctlk as $ct) {
                         $modelctnew = new GiaHhDvKCtDf();
                         $modelctnew->district = $inputs['getdistrict'];

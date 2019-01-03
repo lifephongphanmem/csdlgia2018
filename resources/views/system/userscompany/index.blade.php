@@ -121,6 +121,7 @@
                                     @if(can('dangkygia','index'))
                                     <option value="DKG" {{($inputs['level'] == "DKG") ? 'selected' : ''}}>Đăng ký giá</option>
                                     @endif
+                                    <option value="VLXD" {{$inputs['level'] == 'VLXD' ? 'selected' :''}}>Vật liệu xây dựng</option>
 
                                 </select>
                             </div>
