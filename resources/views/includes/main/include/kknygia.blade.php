@@ -272,7 +272,7 @@
                                 @endif
                                 @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
                                     @if(can('kktpcnte6t','index'))
-                                        <li><a href="{{url('thongtindntpcn6t')}}">Kê khai giá TPCN cho TE duosi 6 tuổi</a></li>
+                                        <li><a href="{{url('thongtindntpcn6t')}}">Kê khai giá TPCN cho TE dưới 6 tuổi</a></li>
                                         <li><a href="{{url('xdkekhaigiatpcnte6t')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     @endif
                                     @if(can('tpcnte6t','timkiem'))
