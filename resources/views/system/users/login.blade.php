@@ -139,9 +139,9 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div class="row" style="text-align: center">
 							<div class="col-md-12" style="text-align: center">
 								<div class="profile-userbuttons">
-									<a href="{{url('dangkytaikhoan?&level=DVLT')}}" class="btn btn-circle green-haze btn-sm">
+									<a href="{{url('dangkytaikhoan?&level=DVLT')}}" class="btn default red-stripe">
 										Doanh nghiệp cung cấp dịch vụ lưu trú </a>&nbsp;
-									<a class="btn btn-circle green-haze btn-sm" href="{{url('dangkytaikhoan?&level=DVVT')}}">
+									<a class="btn default red-stripe" href="{{url('dangkytaikhoan?&level=DVVT')}}">
 										Doanh nghiệp cung cấp dịch vụ vận tải </a>
 								</div>
 							</div>
@@ -151,8 +151,17 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div class="row">
 							<div class="col-md-12" style="text-align: center">
 								<div class="profile-userbuttons">
-									<a class="btn btn-circle btn-danger btn-sm" href="{{url('dangkytaikhoan?&level=TPCNTE6T')}}"> Doanh nghiêp TPCN cho TE dưới 6 tuổi</a>&nbsp;
-									<a class="btn btn-circle btn-danger btn-sm" href="{{url('dangkytaikhoan?&level=TACN')}}">Doanh nghiệp Thức ăn chăn nuôi</a>
+									<a class="btn default blue-stripe" href="{{url('dangkytaikhoan?&level=TPCNTE6T')}}"> Doanh nghiêp TPCN cho TE dưới 6 tuổi</a>&nbsp;
+									<a class="btn default blue-stripe" href="{{url('dangkytaikhoan?&level=TACN')}}">Doanh nghiệp Thức ăn chăn nuôi</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-12" style="text-align: center">
+								<div class="profile-userbuttons">
+									<a class="btn default green-stripe" href="{{url('dangkytaikhoan?&level=VLXD')}}"> Doanh nghiêp cung cấp vật liệu xây dựng</a>&nbsp;
 								</div>
 							</div>
 						</div>

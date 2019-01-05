@@ -18,6 +18,7 @@ class GiaHhDvKCtDf extends Model
         'dacdiemkt',
         'dvt',
         'gialk',
+        'xuatxu',
         'gia',
     ];
 }

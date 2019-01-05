@@ -28,11 +28,10 @@
         function ClickCreate(){
             var valid=true;
             var message='';
-            var mahhdv = $('#mahhdv').val();
-            var tenhhdv = $('#tendichvu').val();
+            var tennhom = $('#tennhom').val();
 
 
-            if(mahhdv == '' || tenhhdv == ''){
+            if(tennhom == ''){
                 valid=false;
                 message +='Các thông tin nhập không được bỏ trống \n';
             }
@@ -48,11 +47,9 @@
         function ClickUpdate(){
             var valid=true;
             var message='';
-            var mahhdv = $('#edit_mahhdv').val();
-            var tenhhdv = $('#edit_tendichvu').val();
+            var tennhom = $('#edit_tennhom').val();
 
-
-            if(mahhdv == '' || tenhhdv == ''){
+            if(tennhom == '' ){
                 valid=false;
                 message +='Các thông tin nhập không được bỏ trống \n';
             }
@@ -68,7 +65,7 @@
         function ClickEdit(id){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: 'dmhanghoadichvu/show',
+                url: 'danhmucvatlieuxaydung/show',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -91,7 +88,7 @@
 @section('content')
 
     <h3 class="page-title">
-        {{$modelnhom->tennhom}}<small>&nbsp;chi tiết</small>
+        Danh mục <small>&nbsp;vật liệu xây dựng</small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -100,10 +97,9 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
-                        @if(can('dmgiahhdvk','create'))
+                        @if(can('dmvlxd','create'))
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#modal-create" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm mới</button>
                         @endif
-                        <a href="{{url('nhomhanghoadichvu')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                     </div>
                 </div>
                 <div class="portlet-body">
@@ -113,12 +109,8 @@
                         <tr>
                             <th style="text-align: center" width="2%">STT</th>
                             <th style="text-align: center">Tên nhóm</th>
-                            <th style="text-align: center">Mã hàng hóa<br>dịch vụ</th>
-                            <th style="text-align: center">Tên hàng hóa dịch vụ</th>
-                            <th style="text-align: center">Đặc điểm kỹ thuật</th>
-                            <th style="text-align: center">Đơn vị<br>tính</th>
-                            <th style="text-align: center">Theo dõi</th>
-                            <th style="text-align: center" width="15%">Thao tác</th>
+                            <th style="text-align: center" width="10%">Theo dõi</th>
+                            <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -126,10 +118,6 @@
                         <tr class="odd gradeX">
                             <td style="text-align: center">{{$key + 1}}</td>
                             <td class="active" >{{$tt->tennhom}}</td>
-                            <td style="text-align: center">{{$tt->mahhdv}}</td>
-                            <td class="success" style="font-weight: bold">{{$tt->tenhhdv}}</td>
-                            <td>{{$tt->dacdiemkt}}</td>
-                            <td style="text-align: center">{{$tt->dvt}}</td>
                             <td style="text-align: center">
                                 @if($tt->theodoi == 'KTD')
                                     <span class="badge badge-active">Không theo dõi</span>
@@ -138,7 +126,7 @@
                                 @endif
                             </td>
                             <td>
-                                @if(can('dmgiahhdvk','edit'))
+                                @if(can('dmvlxd','edit'))
                                 <button type="button" onclick="ClickEdit('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
                                 @endif
                             </td>
@@ -160,53 +148,23 @@
     <div class="modal fade" id="modal-create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['url'=>'dmhanghoadichvu','id' => 'frm_create'])!!}
+                {!! Form::open(['url'=>'danhmucvatlieuxaydung','id' => 'frm_create'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Thêm mới hàng hóa dịch vụ ?</h4>
+                    <h4 class="modal-title">Thêm mới nhóm vật liệu xây dựng?</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Mã hàng hóa dịch vụ<span class="require">*</span></label>
-                                <input type="text" name="mahhdv" id="mahhdv" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Đơn vị tính<span class="require">*</span></label>
-                                <input type="text" name="dvt" id="dvt" class="form-control require">
-                            </div>
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="control-label">Tên hàng hóa dịch vụ<span class="require">*</span></label>
-                                <input type="text" name="tenhhdv" id="tenhhdv" class="form-control require">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label">Đặc điểm kỹ thuật</label>
-                                <input type="text" name="dacdiemkt" id="dacdiemkt" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label">Nguồn gốc / Xuất xứ</label>
-                                <input type="text" name="xuatxu" id="xuatxu" class="form-control">
+                                <label class="control-label">Tên nhóm<span class="require">*</span></label>
+                                <input type="text" name="tennhom" id="tennhom" class="form-control">
                             </div>
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="manhom" id="manhom" value="{{$manhom}}">
                 <div class="modal-footer">
                     <button type="submit" class="btn blue" onclick="ClickCreate()">Đồng ý</button>
                     <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
@@ -223,9 +181,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Chỉnh sửa hàng hóa dịch vụ?</h4>
+                    <h4 class="modal-title">Chỉnh sửa nhóm phí lệ phí</h4>
                 </div>
-                {!! Form::open(['url'=>'dmhanghoadichvu/update','id' => 'frm_update'])!!}
+                {!! Form::open(['url'=>'danhmucvatlieuxaydung/update','id' => 'frm_update'])!!}
                 <div class="modal-body" id="edit-tt">
                 </div>
                 <div class="modal-footer">
@@ -234,6 +192,25 @@
                 </div>
                 {!! Form::close() !!}
 
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                {!! Form::open(['url'=>'danhmucvatlieuxaydung/delete','id' => 'frm_delete'])!!}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Đồng ý xóa?</h4>
+                </div>
+                <input type="hidden" name="iddelete" id="iddelete">
+                <div class="modal-footer">
+                    <button type="submit" class="btn blue" onclick="ClickDelete()">Đồng ý</button>
+                    <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
+                </div>
+                {!! Form::close() !!}
             </div>
             <!-- /.modal-content -->
         </div>

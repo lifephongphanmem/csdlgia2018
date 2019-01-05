@@ -7,12 +7,13 @@ use App\DmHhDvK;
 use App\GiaHhDvK;
 use App\GiaHhDvKCt;
 use App\GiaHhDvKCtDf;
-use App\GiaRungCt;
-use App\GiaRungCtDf;
+//use App\GiaRungCt;
+//use App\GiaRungCtDf;
 use App\NhomHhDvK;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
 
 class GiaHhDvKController extends Controller
 {
@@ -31,7 +32,8 @@ class GiaHhDvKController extends Controller
 
             $model = GiaHhDvK::join('nhomhhdvk','nhomhhdvk.manhom','=','giahhdvk.manhom')
                 ->select('giahhdvk.*', 'nhomhhdvk.tennhom')
-                ->where('giahhdvk.district', $inputs['district']);
+                ->where('giahhdvk.district', $inputs['district'])
+                ->whereYear('giahhdvk.ngayapdung',$inputs['nam']);
             if ($inputs['trangthai'] != '')
                 $model = $model->where('trangthai', $inputs['trangthai']);
 
@@ -64,6 +66,8 @@ class GiaHhDvKController extends Controller
                        ->first();
                     $modelctlk = GiaHhDvKCt::where('mahs',$modellk->mahs)
                         ->get();
+                    $modeldel = GiaHhDvKCtDf::where('district',$inputs['getdistrict'])
+                        ->where('manhom',$inputs['manhom'])->delete();
                     foreach ($modelctlk as $ct) {
                         $modelctnew = new GiaHhDvKCtDf();
                         $modelctnew->district = $inputs['getdistrict'];
@@ -282,6 +286,29 @@ class GiaHhDvKController extends Controller
             $model->save();
             return redirect('giahhdvkhac?&trangthai=CB&district='.$model->district);
         }else
+            return view('errors.notlogin');
+    }
+
+    function filemau(){
+        if (Session::has('admin')) {
+            $model_nhom = NhomHhDvK::all();
+            $model = DmHhDvK::all();
+            Excel::create('DMHANGHOA',function($excel) use($model_nhom,$model){
+                $excel->sheet('DMHANGHOA', function($sheet) use($model_nhom,$model){
+                    $sheet->loadView('manage.dinhgia.giahhdvk.excel.danhmuc')
+                        ->with('model_nhom',$model_nhom->sortBy('manhom'))
+                        ->with('model',$model)
+                        ->with('pageTitle','Danh mục hàng hóa');
+                    //$sheet->setPageMargin(0.25);
+                    $sheet->setAutoSize(false);
+                    $sheet->setFontFamily('Tahoma');
+                    $sheet->setFontBold(false);
+
+                    //$sheet->setColumnFormat(array('D' => '#,##0.00'));
+                });
+            })->download('xls');
+
+        } else
             return view('errors.notlogin');
     }
 }

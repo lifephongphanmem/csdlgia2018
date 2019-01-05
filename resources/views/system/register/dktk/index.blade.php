@@ -159,7 +159,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="col-md-6">
                     <div class="form-group">
                         <select class="form-control" name="mahuyen" id="mahuyen" required>
-                            <option value="">--Chọn đơn vị quản lý--</option>
+                            <option value="">--Chọn đơn vị nhận hồ sơ--</option>
                             @foreach($model as $tt)
                                 <option value="{{$tt->maxa}}">{{$tt->tendv}}</option>
                             @endforeach

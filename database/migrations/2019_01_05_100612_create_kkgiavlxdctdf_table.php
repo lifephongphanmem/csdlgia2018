@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDmhhdvkTable extends Migration
+class CreateKkgiavlxdctdfTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateDmhhdvkTable extends Migration
      */
     public function up()
     {
-        Schema::create('dmhhdvk', function (Blueprint $table) {
+        Schema::create('kkgiavlxdctdf', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('manhom')->nullable();
-            $table->string('mahhdv')->nullable();
-            $table->string('tenhhdv')->nullable();
-            $table->string('dacdiemkt')->nullable();
-            $table->string('xuatxu')->nullable();
+            $table->string('maxa')->nullable();
+            $table->string('mahuyen')->nullable();
+            $table->string('tennhom')->nullable();
+            $table->string('ten')->nullable();
             $table->string('dvt')->nullable();
-            $table->string('theodoi')->nullable();
+            $table->string('gialk')->nullable();
+            $table->string('gia')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateDmhhdvkTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dmhhdvk');
+        Schema::dropIfExists('kkgiavlxdctdf');
     }
 }

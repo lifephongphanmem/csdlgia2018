@@ -162,6 +162,20 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->vlxd->index) && $setting->vlxd->index == 1) ? 'checked' : '' }} value="1" name="roles[vlxd][index]"/></td>
+                                    <td>Vật liệu xây dựng</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->vlxd->congbo) && $setting->vlxd->congbo == 1) ? 'checked' : '' }} value="1" name="roles[vlxd][congbo]"/></td>
+                                    <td>Công bố giá vật liệu xây dựng</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

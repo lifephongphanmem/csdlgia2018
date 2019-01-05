@@ -7,6 +7,7 @@ use App\KkGiaDvLt;
 use App\Company;
 use App\KkGiaDvLtCt;
 use App\KkGiaDvLtCtDf;
+use App\NgayNghiLe;
 use App\Town;
 use App\TtNgayNghiLe;
 use Carbon\Carbon;
@@ -253,8 +254,8 @@ class KkGiaDvLtController extends Controller
             $ngayduyet = $model->ngayhieuluc;
             $ngaylv = 0;
             while (strtotime($ngaychuyen) <= strtotime($ngayduyet)) {
-                $checkngay = TtNgayNghiLe::where('ngaytu', '<=', $ngaychuyen)
-                    ->where('ngayden', '>=', $ngaychuyen)->first();
+                $checkngay = NgayNghiLe::where('tungay', '<=', $ngaychuyen)
+                    ->where('denngay', '>=', $ngaychuyen)->first();
                 if (count($checkngay) > 0)
                     $ngaylv = $ngaylv;
                 elseif (date('D', strtotime($ngaychuyen)) == 'Sat')

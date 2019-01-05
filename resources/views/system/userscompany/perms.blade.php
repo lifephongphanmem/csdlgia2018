@@ -43,8 +43,7 @@
                     </div>
                 </div>
                 <div class="portlet-body">
-                        @include('system.users.include.perms.csdlmucgiahhdv')
-
+                    @include('system.users.include.perms.csdlmucgiahhdv')
                 </div>
             </div>
         </div>
