@@ -3409,7 +3409,7 @@ function getThXdHsDvLt($ngaychuyen,$ngayduyet){
     }*/
     $ngaylv = 0;
     while (strtotime($ngaychuyen) <= strtotime($ngayduyet)) {
-        $checkngay = \App\TtNgayNghiLe::where('ngaytu', '<=', $ngaychuyen)
+        $checkngay = \App\NgayNghiLe::where('ngaytu', '<=', $ngaychuyen)
             ->where('ngayden', '>=', $ngaychuyen)->first();
         if (count($checkngay) > 0)
             $ngaylv = $ngaylv;
