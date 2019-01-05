@@ -269,7 +269,7 @@
                             <!--/span-->
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Phương pháp thẩm định thẩm định</label>
+                                    <label class="control-label">Phương pháp thẩm định</label>
                                     {!!Form::text('ppthamdinh',null, array('id' => 'ppthamdinh','class' => 'form-control required'))!!}
                                 </div>
                             </div>

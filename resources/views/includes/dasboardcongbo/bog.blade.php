@@ -28,7 +28,7 @@
                             <td align="center">{{$key+1}}</td>
                             <td>{{$binhongia->hienthi != '' ? $binhongia->hienthi : $binhongia->tenmh}}</td>
                             <td>
-                                <a href="{{url('coming')}}" class="">Biện bình ổn giá</a><br>
+                                <a href="{{url('coming')}}" class="">Biện pháp bình ổn giá</a><br>
                                 <a href="{{url('coming')}}">Đăng ký giá</a>
                             </td>
                         </tr>
