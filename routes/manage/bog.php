@@ -58,5 +58,6 @@ Route::get('/createdkgct/del','DangKyGiaBOGCtController@destroy');
 //Tìm kiếm
 Route::resource('timkiem','DangKyGiaBOGController@indexdkgtk');
 //Báo cáo
+Route::resource('baocaodkg','BaoCaoDkgController@index');
 Route::get('baocao/{id}/Bc1','BaoCaoDkgController@BC1');
 ?>

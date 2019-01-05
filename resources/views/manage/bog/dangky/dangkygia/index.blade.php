@@ -19,6 +19,15 @@
         jQuery(document).ready(function() {
             TableManaged.init();
         });
+        $(function(){
+
+            $('#mahuyen').change(function() {
+                var mahuyen = $('#mahuyen').val();
+                var ma = $('#ma').val();
+                var url = '/dangkygia?&ma='+ma+'&mahuyen='+mahuyen;
+                window.location.href = url;
+            });
+        });
         function getId(id){
             document.getElementById("iddelete").value=id;
         }
@@ -28,6 +37,7 @@
         function confirmChuyen(id) {
             document.getElementById("idchuyen").value =id;
         }
+
     </script>
 
 @stop
@@ -51,13 +61,14 @@
                     <div class="col-md-5">
                         <div class="form-group">
                             <label>Đơn vị</label>
-                            <select name="maxa" id="maxa" class="form-control">
+                            <select name="mahuyen" id="mahuyen" class="form-control">
                                 @foreach($m_dv as $dv)
-                                    <option value="{{$dv->maxa}}" {{$dv->maxa == $inputs['maxa']  ? 'selected' : ''}}>{{$dv->tendv}}</option>
+                                    <option value="{{$dv->maxa}}" {{$dv->maxa == $inputs['mahuyen']  ? 'selected' : ''}}>{{$dv->tendv}}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
+                    <input type="hidden" name="ma" id="ma" value="{{$ma}}">
                 @endif
                 <div class="portlet-body">
                     <div class="portlet-body">
