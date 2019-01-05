@@ -16,15 +16,16 @@ class BaoCaoDkgController extends Controller
     public function index(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
+            $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
             $m_dv = DkgDoanhnghiep::where('phanloai',$inputs['ma'])->get();
             $maxa = $m_dv->first()->maxa;
             $tenhh = DmMhBinhOnGia::where('phanloai',$inputs['ma'])->first()->hienthi;
             return view('manage.bog.dangky.reports.index')
                 ->with('m_dv',$m_dv)
                 ->with('maxa',$maxa)
+                ->with('nam', $inputs['nam'])
                 ->with('tenhh',$tenhh)
                 ->with('pageTitle', 'Báo cáo tổng hợp tài sản thẩm định giá');
-
         }else
             return view('errors.notlogin');
     }

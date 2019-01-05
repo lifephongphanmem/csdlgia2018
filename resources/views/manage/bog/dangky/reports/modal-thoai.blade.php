@@ -19,14 +19,14 @@
                 <div class="form-horizontal">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <label><b>Từ ngày</b></label>
-                            <input type="date" id="ngaytu" name="ngaytu" class="form-control" value="{{intval(date('Y')).'-01-01'}}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label><b>Đến ngày</b></label>
-                            <input type="date" id="ngayden" name="ngayden" class="form-control" value="{{intval(date('Y')).'-12-31'}}">
+                            <label><b>Năm</b></label>
+                            <select name="namhs" id="namhs" class="form-control">
+                                @if ($nam_start = intval(date('Y')) - 5 ) @endif
+                                @if ($nam_stop = intval(date('Y')) + 1 ) @endif
+                                @for($i = $nam_start; $i <= $nam_stop; $i++)
+                                    <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>Năm {{$i}}</option>
+                                @endfor
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">

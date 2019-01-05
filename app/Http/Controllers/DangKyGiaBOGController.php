@@ -167,14 +167,26 @@ class DangKyGiaBOGController extends Controller
                 $m_dv = Town::where('maxa',session('admin')->maxa)->get();
                 $inputs['maxa'] = session('admin')->maxa;
             }else{
-                $mahuyen = session('admin')->mahuyen;
+                //$mahuyen = session('admin')->mahuyen;
                 if(session('admin')->level == 'T')
+                {
                     $m_dv = Town::all();
+                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $m_dv->first()->maxa;
+                    $model = DkgDoanhnghiep::where('phanloai',$inputs['ma'])
+                        ->where('mahuyen',$inputs['mahuyen'])
+                        ->get();
+                }
                 else
-                    $m_dv = Town::where('mahuyen',$mahuyen)->get();
-                $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $m_dv->first()->maxa;
+                {
+                    $m_dv = Town::where('mahuyen',session('admin')->mahuyen)->get();
+                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $m_dv->first()->maxa;
+                    $model = DkgDoanhnghiep::where('phanloai',$inputs['ma'])
+                        ->where('mahuyen',$inputs['mahuyen'])
+                        ->get();
+                }
             }
-            $model = DkgDoanhnghiep::where('phanloai',$inputs['ma'])->get();
+            //dd($m_dv->toArray());
+            //dd($inputs);
             $tenmh = DmMhBinhOnGia::where('phanloai',$inputs['ma'])->first()->hienthi;
             return view('manage.bog.dangky.dangkygia.index')
                 ->with('m_dv', $m_dv)

@@ -25,4 +25,6 @@ include('kkgia/vtxtx.php');
 //VLXD
 include('kkgia/vlxd.php');
 
+//Đăng ký giá
+include('kkgia/dkg.php');
 ?>
