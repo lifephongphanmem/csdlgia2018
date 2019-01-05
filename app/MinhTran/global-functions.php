@@ -3409,8 +3409,8 @@ function getThXdHsDvLt($ngaychuyen,$ngayduyet){
     }*/
     $ngaylv = 0;
     while (strtotime($ngaychuyen) <= strtotime($ngayduyet)) {
-        $checkngay = \App\NgayNghiLe::where('ngaytu', '<=', $ngaychuyen)
-            ->where('ngayden', '>=', $ngaychuyen)->first();
+        $checkngay = \App\NgayNghiLe::where('tungay', '<=', $ngaychuyen)
+            ->where('denngay', '>=', $ngaychuyen)->first();
         if (count($checkngay) > 0)
             $ngaylv = $ngaylv;
         elseif (date('D', strtotime($ngaychuyen)) == 'Sat')
