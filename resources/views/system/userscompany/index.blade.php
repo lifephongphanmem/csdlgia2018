@@ -122,6 +122,7 @@
                                     <option value="DKG" {{($inputs['level'] == "DKG") ? 'selected' : ''}}>Đăng ký giá</option>
                                     @endif
                                     <option value="VLXD" {{$inputs['level'] == 'VLXD' ? 'selected' :''}}>Vật liệu xây dựng</option>
+                                    <option value="XMTXD" {{$inputs['level'] == 'XMTXD' ? 'selected' :''}}>Xi măng, thép xây dựng</option>
 
                                 </select>
                             </div>

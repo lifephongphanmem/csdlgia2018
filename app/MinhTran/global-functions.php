@@ -2894,6 +2894,7 @@ function getPermissionDefault($level) {
 
     );
 //End DKG
+
 //VLXD
     $roles['VLXD'] = array(
         'csdlmucgiahhdv'=>array(
@@ -2926,6 +2927,39 @@ function getPermissionDefault($level) {
             'approve'=>1,
         ),
         'thvlxd'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+    );
+
+//XMTXD
+    $roles['XMTXD'] = array(
+        'csdlmucgiahhdv'=>array(
+            'index'=>1,
+        ),
+        'kknygia'=>array(
+            'index'=>1
+        ),
+        'ttdn'=> array(
+            'index'=>1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'xmtxd'=>array(
+            'index'=>1,
+        ),
+        'kkxmtxd'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thxmtxd'=>array(
             'baocao'=>0,
             'congbo'=>0,
             'timkiem'=>0,

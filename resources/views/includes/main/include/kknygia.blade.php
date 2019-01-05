@@ -39,6 +39,27 @@
                     </li>
                     @endif
                 @endif
+                @if(canGeneral('xmtxd','index'))
+                    @if(can('xmtxd','index'))
+                        <li>
+                            <a href="">
+                                <span class="title">Xi măng, thép xây dựng</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu" style="display: none;">
+                                @if(session('admin')->level == 'XMTXD')
+                                    <li><a href="{{url('thongtinkekhaiximangthepxaydung')}}">Kê khai giá xi măng, thép xây dựng</a> </li>
+                                @endif
+                                @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
+                                    <li><a href="{{url('thongtindnkkgiaxmtxd')}}">Kê khai giá xi măng, thép xây dựng</a></li>
+                                    <li><a href="{{url('xetduyetkkgiaxmtxd')}}">Thông tin hồ sơ xét duyệt</a></li>
+                                    <li><a href="{{url('timkiemgiaxmtxd')}}">Tìm kiếm thông tin</a> </li>
+                                    <li><a href="{{url('baocaokekhaigiaxmtxd')}}">Báo cáo thống kê</a></li>
+                                @endif
+                            </ul>
+                        </li>
+                        @endif
+                    @endif
                 <!--li>
                     <a href="javascript:;">
                         <span class="title">Than</span>

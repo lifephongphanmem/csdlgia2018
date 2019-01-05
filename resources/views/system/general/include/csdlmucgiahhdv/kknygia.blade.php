@@ -176,6 +176,20 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->xmtxd->index) && $setting->xmtxd->index == 1) ? 'checked' : '' }} value="1" name="roles[xmtxd][index]"/></td>
+                                    <td>Xi măng, thép xây dựng</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->xmtxd->congbo) && $setting->xmtxd->congbo == 1) ? 'checked' : '' }} value="1" name="roles[xmtxd][congbo]"/></td>
+                                    <td>Công bố giá xi măng, thép xây dựng</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

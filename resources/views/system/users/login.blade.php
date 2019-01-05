@@ -161,7 +161,8 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div class="row">
 							<div class="col-md-12" style="text-align: center">
 								<div class="profile-userbuttons">
-									<a class="btn default green-stripe" href="{{url('dangkytaikhoan?&level=VLXD')}}"> Doanh nghiêp cung cấp vật liệu xây dựng</a>&nbsp;
+									<a class="btn default green-stripe" href="{{url('dangkytaikhoan?&level=VLXD')}}"> Doanh nghiêp cung cấp <br>vật liệu xây dựng</a>&nbsp;
+									<a class="btn default green-stripe" href="{{url('dangkytaikhoan?&level=XMTXD')}}"> Doanh nghiêp cung cấp<br> xi măng, thép xây dựng</a>&nbsp;
 								</div>
 							</div>
 						</div>

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\DmVlXd;
-use App\KkGiaVlXd;
-use App\KkGiaVlXdCt;
-use App\KkGiaVlXdCtDf;
+use App\KkGiaVtXtx;
+use App\KkGiaXmTxd;
+use App\KkGiaXmTxdCt;
+use App\KkGiaXmTxdCtDf;
 use App\Town;
 use App\Company;
 use Carbon\Carbon;
@@ -14,7 +14,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
-class KkGiaVlXdController extends Controller
+class KkGiaXmTxdController extends Controller
 {
     public function ttdn(Request $request){
         if (Session::has('admin')) {
@@ -35,14 +35,14 @@ class KkGiaVlXdController extends Controller
 
                 $model = Company::join('town','town.maxa','=','company.mahuyen')
                     ->select('company.*','town.tendv')
-                    ->where('company.level','VLXD')
+                    ->where('company.level','XMTXD')
                     ->where('company.mahuyen',$inputs['maxa'])
                     ->get();
-                return view('manage.kkgia.vlxd.kkgia.kkgiadv.ttdn')
+                return view('manage.kkgia.xmtxd.kkgia.kkgiadv.ttdn')
                     ->with('model', $model)
                     ->with('modeldv',$modeldv)
                     ->with('inputs',$inputs)
-                    ->with('pageTitle', 'Danh sách doanh nghiệp kê khai giá vật liệu xây dựng');
+                    ->with('pageTitle', 'Danh sách doanh nghiệp kê khai giá xi măng, thép xây dựng');
             } else {
                 return view('errors.perm');
             }
@@ -52,7 +52,7 @@ class KkGiaVlXdController extends Controller
 
     public function index(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'VLXD' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+            if (session('admin')->level == 'XMTXD' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
                     $inputs['masothue'] = isset($inputs['masothue']) ? $inputs['masothue'] : '';
@@ -61,20 +61,20 @@ class KkGiaVlXdController extends Controller
                 $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CC';
 
-                $model = KkGiaVlXd::where('maxa', $inputs['masothue'])
+                $model = KkGiaXmTxd::where('maxa', $inputs['masothue'])
                     ->whereYear('ngaynhap', $inputs['nam'])
                     ->where('trangthai', $inputs['trangthai'])
                     ->orderBy('id', 'desc')
                     ->get();
                 $modeldn = Company::where('maxa', $inputs['masothue'])
-                    ->where('level', 'VLXD')->first();
+                    ->where('level', 'XMTXD')->first();
                 $modeldv = Town::where('maxa',$modeldn->mahuyen)->first();
-                return view('manage.kkgia.vlxd.kkgia.kkgiadv.index')
+                return view('manage.kkgia.xmtxd.kkgia.kkgiadv.index')
                     ->with('model', $model)
                     ->with('modeldn', $modeldn)
                     ->with('modeldv',$modeldv)
                     ->with('inputs', $inputs)
-                    ->with('pageTitle', 'Danh sách hồ sơ kê khai giá vật liệu xây dựng');
+                    ->with('pageTitle', 'Danh sách hồ sơ kê khai giá xi măng, thép xây dựng');
             } else {
                 return view('errors.perm');
             }
@@ -84,24 +84,22 @@ class KkGiaVlXdController extends Controller
 
     public function create(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'VLXD' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+            if (session('admin')->level == 'XMTXD' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
                     $inputs['masothue'] = isset($inputs['masothue']) ? $inputs['masothue'] : '';
                 else
                     $inputs['masothue'] = session('admin')->maxa;
                 $modeldn = Company::where('maxa',$inputs['masothue'])
-                    ->where('level','VLXD')
+                    ->where('level','XMTXD')
                     ->firsT();
-                $modelct = KkGiaVlXdCtDf::where('maxa',$inputs['masothue'])
+                $modelct = KkGiaXmTxdCtDf::where('maxa',$inputs['masothue'])
                     ->get();
-                $modeldm = DmVlXd::where('theodoi','TD')->get();
-                return view('manage.kkgia.vlxd.kkgia.kkgiadv.create')
+                return view('manage.kkgia.xmtxd.kkgia.kkgiadv.create')
                     ->with('modeldn', $modeldn)
                     ->with('modelct',$modelct)
-                    ->with('modeldm',$modeldm)
                     ->with('inputs', $inputs)
-                    ->with('pageTitle', 'Kê khai giá vật liệu xây dựng thêm mới');
+                    ->with('pageTitle', 'Kê khai giá xi măng, thép xây dựng thêm mới');
             } else {
                 return view('errors.perm');
             }
@@ -111,9 +109,9 @@ class KkGiaVlXdController extends Controller
 
     public function store(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'VLXD' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+            if (session('admin')->level == 'XMTXD' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
-                $model = new KkGiaVlXd();
+                $model = new KkGiaXmTxd();
                 $inputs['mahs'] = $inputs['maxa'].getdate()[0];
                 $inputs['ngaynhap'] = getDateToDb($inputs['ngaynhap']);
                 $inputs['ngayhieuluc'] = getDateToDb($inputs['ngayhieuluc']);
@@ -123,10 +121,10 @@ class KkGiaVlXdController extends Controller
                     unset($inputs['ngaycvlk']);
                 $inputs['trangthai'] = 'CC';
                 if($model->create($inputs)){
-                    $modelctdf = KkGiaVlXdCtDf::where('maxa',$inputs['maxa']);
+                    $modelctdf = KkGiaXmTxdCtDf::where('maxa',$inputs['maxa']);
 
                     foreach($modelctdf->geT() as $ctdf) {
-                        $modelct = new KkGiaVlXdCt();
+                        $modelct = new KkGiaXmTxdCt();
                         $arrays = $ctdf->toArray();
                         unset($arrays['id']);
                         $arrays['mahs'] = $inputs['mahs'];
@@ -134,7 +132,7 @@ class KkGiaVlXdController extends Controller
                     }
                     $modelctdf->delete();
                 }
-                return redirect('thongtinkekhaigiavatlieuxaydung?&masothue='.$inputs['maxa']);
+                return redirect('thongtinkekhaiximangthepxaydung?&masothue='.$inputs['maxa']);
             } else {
                 return view('errors.perm');
             }
@@ -146,20 +144,20 @@ class KkGiaVlXdController extends Controller
         if (Session::has('admin')) {
             $input = $request->all();
             $mahs = $input['mahs'];
-            $modelkk = KkGiaVlXd::where('mahs',$mahs)->first();
+            $modelkk = KkGiaXmTxd::where('mahs',$mahs)->first();
             $modeldn = Company::where('maxa',$modelkk->maxa)
-                ->where('level','VLXD')
+                ->where('level','XMTXD')
                 ->first();
-            $modelkkct = KkGiaVlXdCt::where('mahs',$modelkk->mahs)
+            $modelkkct = KkGiaXmTxdCt::where('mahs',$modelkk->mahs)
                 ->get();
             $modelcqcq = Town::where('maxa',$modeldn->mahuyen)
                 ->first();
-            return view('manage.kkgia.vlxd.reports.print')
+            return view('manage.kkgia.xmtxd.reports.print')
                 ->with('modelkk',$modelkk)
                 ->with('modeldn',$modeldn)
                 ->with('modelkkct',$modelkkct)
                 ->with('modelcqcq',$modelcqcq)
-                ->with('pageTitle','Kê khai giá vật liệu xây dựng');
+                ->with('pageTitle','Kê khai giá xi măng thép xây dựng');
 
         }else
             return view('errors.notlogin');
@@ -167,21 +165,19 @@ class KkGiaVlXdController extends Controller
 
     public function edit($id){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'VLXD' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+            if (session('admin')->level == 'XMTXD' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
 
-                $model = KkGiaVlXd::findOrFail($id);
-                $modelct = KkGiaVlXdCt::where('mahs',$model->mahs)
+                $model = KkGiaXmTxd::findOrFail($id);
+                $modelct = KkGiaXmTxdCt::where('mahs',$model->mahs)
                     ->get();
-                $modeldm = DmVlXd::where('theodoi','TD')->get();
                 $modeldn = Company::where('maxa',$model->maxa)
-                    ->where('level','VLXD')
+                    ->where('level','XMTXD')
                     ->firsT();
-                return view('manage.kkgia.vlxd.kkgia.kkgiadv.edit')
+                return view('manage.kkgia.xmtxd.kkgia.kkgiadv.edit')
                     ->with('modeldn', $modeldn)
                     ->with('model',$model)
                     ->with('modelct',$modelct)
-                    ->with('modeldm',$modeldm)
-                    ->with('pageTitle', 'Kê khai giá vật liệu xây dựng chỉnh sửa');
+                    ->with('pageTitle', 'Kê khai giá xi măng, thép xây dựng chỉnh sửa');
             } else {
                 return view('errors.perm');
             }
@@ -191,9 +187,9 @@ class KkGiaVlXdController extends Controller
 
     public function update(Request $request,$id){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'VLXD' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+            if (session('admin')->level == 'XMTXD' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
-                $model = KkGiaVlXd::findOrFail($id);
+                $model = KkGiaXmTxd::findOrFail($id);
                 $inputs['ngaynhap'] = getDateToDb($inputs['ngaynhap']);
                 $inputs['ngayhieuluc'] = getDateToDb($inputs['ngayhieuluc']);
                 if($inputs['ngaycvlk'] != '')
@@ -201,7 +197,7 @@ class KkGiaVlXdController extends Controller
                 else
                     unset($inputs['ngaycvlk']);
                 $model->update($inputs);
-                return redirect('thongtinkekhaigiavatlieuxaydung?&masothue='.$model->maxa);
+                return redirect('thongtinkekhaiximangthepxaydung?&masothue='.$model->maxa);
             } else {
                 return view('errors.perm');
             }
@@ -211,13 +207,13 @@ class KkGiaVlXdController extends Controller
 
     public function delete(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'VLXD' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+            if (session('admin')->level == 'XMTXD' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $id = $inputs['iddelete'];
-                $model = KkGiaVlXd::findOrFail($id);
-                $modelct = KkGiaVlXdCt::where('mahs',$model->mahs)->delete();
+                $model = KkGiaXmTxd::findOrFail($id);
+                $modelct = KkGiaXmTxdCt::where('mahs',$model->mahs)->delete();
                 $model->delete();
-                return redirect('thongtinkekhaigiavatlieuxaydung?&masothue='.$model->maxa);
+                return redirect('thongtinkekhaiximangthepxaydung?&masothue='.$model->maxa);
             } else {
                 return view('errors.perm');
             }
@@ -241,7 +237,7 @@ class KkGiaVlXdController extends Controller
         $inputs = $request->all();
 
         if(isset($inputs['id'])){
-            $model = KkGiaVlXd::where('id',$inputs['id'])
+            $model = KkGiaXmTxd::where('id',$inputs['id'])
                 ->first();
 
             $result['message'] = '<div class="form-group" id="tthschuyen">';
@@ -254,16 +250,16 @@ class KkGiaVlXdController extends Controller
 
     public function chuyen(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'VLXD' || session('admin')->level == 'T' || session('admin')->level == 'H') {
+            if (session('admin')->level == 'XMTXD' || session('admin')->level == 'T' || session('admin')->level == 'H') {
                 $inputs = $request->all();
-                $model = KkGiaVlXd::where('id',$inputs['idchuyen'])
+                $model = KkGiaXmTxd::where('id',$inputs['idchuyen'])
                     ->first();
                 $inputs['trangthai'] = 'CD';
                 $inputs['ngaychuyen'] = Carbon::now()->toDateTimeString();
                 if($model->update($inputs)){
                     $tencqcq = Town::where('maxa',$model->mahuyen)->first();
                     $dn = Company::where('maxa',$model->maxa)
-                        ->where('level','VLXD')
+                        ->where('level','XMTXD')
                         ->first();
                     $data=[];
                     $data['tendn'] = $dn->tendn;
@@ -283,7 +279,7 @@ class KkGiaVlXdController extends Controller
                         $message->from('phanmemcsdlgia@gmail.com','Phần mềm CSDL giá');
                     });
                 }
-                return redirect('thongtinkekhaigiavatlieuxaydung?&masothue='.$model->maxa.'&trangthai=CD');
+                return redirect('thongtinkekhaiximangthepxaydung?&masothue='.$model->maxa.'&trangthai=CD');
             }else
                 return view('errors.perm');
         }else
@@ -306,7 +302,7 @@ class KkGiaVlXdController extends Controller
         $inputs = $request->all();
 
         if(isset($inputs['id'])){
-            $model = KkGiaVlXd::where('id',$inputs['id'])
+            $model = KkGiaXmTxd::where('id',$inputs['id'])
                 ->first();
 
             $result['message'] = '<div class="form-group" id="showlydo">';

@@ -1,6 +1,6 @@
 @if(canGeneral('kknygia','index'))
     @if($model->level == 'T' || $model->level == 'H' || $model->level == 'X' || $model->level == 'DVLT'
-    || $model->level == 'DVVT' || $model->level == 'TACN' || $model->level == 'TPCNTE6T' || $model->level == 'VLXD')
+    || $model->level == 'DVVT' || $model->level == 'TACN' || $model->level == 'TPCNTE6T' || $model->level == 'VLXD' || $model->level == 'XMTXD')
     <div class="row">
         <div class="col-md-12 ">
             <!-- BEGIN SAMPLE FORM PORTLET-->
@@ -58,6 +58,7 @@
                         @include('system.users.include.perms.csdlmucgiahhdv.kknygia.kkgiatacn')
                         @include('system.users.include.perms.csdlmucgiahhdv.kknygia.kkgiatpcnted6t')
                         @include('system.users.include.perms.csdlmucgiahhdv.kknygia.kkgiavlxd')
+                        @include('system.users.include.perms.csdlmucgiahhdv.kknygia.kkgiaxmtxd')
                     </div>
                 </div>
             </div>

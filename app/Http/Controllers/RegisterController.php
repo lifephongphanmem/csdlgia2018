@@ -60,7 +60,7 @@ class RegisterController extends Controller
                     ->with('model', $model)
                     ->with('cqcq', $cqcq)
                     ->with('settingdvvt', $settingdvvt)
-                    ->with('pageTitle', 'Chỉnh sửa thông tin đăng ký tài khoản dịch vụ lưu trú');
+                    ->with('pageTitle', 'Chỉnh sửa thông tin đăng ký tài khoản dịch vụ');
             }else
                 return view('errors.noperm');
         }else

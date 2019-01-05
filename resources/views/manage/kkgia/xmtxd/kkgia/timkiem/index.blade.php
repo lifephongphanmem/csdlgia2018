@@ -23,13 +23,13 @@
         $(function(){
             $('#nam').change(function() {
                 var namhs = $('#nam').val();
-                var url = '/timkiemkkgiavlxd?'+namhs;
+                var url = '/timkiemgiaxmtxd?'+namhs;
                 window.location.href = url;
             });
             $('#ten').change(function() {
                 var namhs = '&nam='+ $('#nam').val();
                 var ten = '&ten=' + $('#ten').val();
-                var url = '/timkiemkkgiavlxd?'+namhs + ten;
+                var url = '/timkiemgiaxmtxd?'+namhs + ten;
                 window.location.href = url;
             });
 
@@ -57,7 +57,7 @@
         </div>
         <div class="col-md-5">
             <div class="form-group">
-                <label>Tên vật liệu xây dựng</label>
+                <label>Tên xi măng, thép xây dựng</label>
                 <input type="text" class="form-control" id="ten" name="ten" value="{{$inputs['ten']}}">
             </div>
         </div>
@@ -78,8 +78,8 @@
                             <th style="text-align: center ; margin: auto" width="2%">STT</th>
                             <th style="text-align: center" width="20%">Doanh nghiệp</th>
                             <th style="text-align: center">Ngày thực hiện<br>mức giá</th>
-                            <th style="text-align: center">Nhóm <br>vật liệu xây dựng</th>
-                            <th style="text-align: center" >Tên <br>vật liệu xây dựng</th>
+                            <th style="text-align: center">Tên xi măng, thép xây dựng</th>
+                            <th style="text-align: center" >Quy cách chất lượng</th>
                             <th style="text-align: center" >Đơn vị tính</th>
                             <th style="text-align: center" >Mức giá kê khai</th>
 
@@ -92,8 +92,8 @@
                                 <td class="active"><b>Tên DN: </b> {{$tt->tendn}}
                                     <br><b>Mã số thuế:</b> {{$tt->maxa}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->ngayhieuluc)}}</td>
-                                <td style="text-align: left">{{$tt->tennhom}}</td>
                                 <td style="text-align: left">{{$tt->ten}}</td>
+                                <td style="text-align: left">{{$tt->qccl}}</td>
                                 <td style="text-align: left">{{$tt->dvt}}</td>
                                 <td style="text-align: right;font-weight: bold">{{number_format($tt->gia)}}</td>
 
