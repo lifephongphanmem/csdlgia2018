@@ -29,7 +29,7 @@
                                 <li><a href="{{url('thongtinkekhaigiavatlieuxaydung')}}">Kê khai giá VLXD</a> </li>
                             @endif
                             @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
-                                <!--li><a href="{{url('danhmucvatlieuxaydung')}}">Danh mục VLXD</a></li-->
+                                <li><a href="{{url('danhmucvatlieuxaydung')}}">Danh mục VLXD</a></li>
                                 <li><a href="{{url('thongtindnkkgiavlxd')}}">Kê khai giá VLXD</a></li>
                                 <li><a href="{{url('xetduyetkkgiavlxd')}}">Thông tin hồ sơ xét duyệt</a></li>
                                 <li><a href="{{url('timkiemkkgiavlxd')}}">Tìm kiếm thông tin</a> </li>

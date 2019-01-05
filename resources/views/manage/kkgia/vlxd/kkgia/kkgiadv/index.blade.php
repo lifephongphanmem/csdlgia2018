@@ -53,7 +53,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/kktacn/kiemtra',
+                url: '/kkvlxd/kiemtra',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -98,7 +98,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/kktacn/showlydo',
+                url: '/kkvlxd/showlydo',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,

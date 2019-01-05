@@ -23,13 +23,13 @@
         $(function(){
             $('#nam').change(function() {
                 var namhs = $('#nam').val();
-                var url = '/timkiemkekhaigiatacn?'+namhs;
+                var url = '/timkiemkkgiavlxd?'+namhs;
                 window.location.href = url;
             });
-            $('#tenhh').change(function() {
+            $('#ten').change(function() {
                 var namhs = '&nam='+ $('#nam').val();
-                var tenhh = '&tenhh=' + $('#tenhh').val();
-                var url = '/timkiemkekhaigiatacn?'+namhs + tenhh;
+                var ten = '&ten=' + $('#ten').val();
+                var url = '/timkiemkkgiavlxd?'+namhs + tenhh;
                 window.location.href = url;
             });
 
@@ -40,13 +40,12 @@
 @section('content')
 
     <h3 class="page-title">
-        Tìm kiếm thông tin kê khai giá<br><small>&nbsp;Thức ăn chăn nuôi cho gia súc, gia cầm và thủy sản; thuốc thủ y để
-            tiêu độc, sát trùng, tay trùng, trị bệnh cho gia súc, gia cầm và thủy sản theo quy
-            định của Bộ Nông nghiệp và Phát trỉến nông thôn</small>
+        Tìm kiếm thông tin kê khai giá<small>&nbsp;vật liệu xây dựng</small>
     </h3>
     <div class="row">
         <div class="col-md-2">
             <div class="form-group">
+                <label>Năm hồ sơ</label>
                 <select name="nam" id="nam" class="form-control">
                     @if ($nam_start = intval(date('Y')) - 5 ) @endif
                     @if ($nam_stop = intval(date('Y')) + 1 ) @endif
@@ -58,7 +57,8 @@
         </div>
         <div class="col-md-5">
             <div class="form-group">
-                <input type="text" class="form-control" id="tenhh" name="tenhh" value="{{$inputs['tenhh']}}">
+                <label>Tên vật liệu xây dựng</label>
+                <input type="text" class="form-control" id="ten" name="ten" value="{{$inputs['ten']}}">
             </div>
         </div>
 
@@ -77,9 +77,9 @@
                         <tr>
                             <th style="text-align: center ; margin: auto" width="2%">STT</th>
                             <th style="text-align: center" width="20%">Doanh nghiệp</th>
-                            <th style="text-align: center" width="8%">Ngày thực hiện<br>mức giá</th>
-                            <th style="text-align: center" >Tên hàng hóa dịch vụ</th>
-                            <th style="text-align: center" >Quy cách chất lượng</th>
+                            <th style="text-align: center">Ngày thực hiện<br>mức giá</th>
+                            <th style="text-align: center">Nhóm <br>vật liệu xây dựng</th>
+                            <th style="text-align: center" >Tên <br>vật liệu xây dựng</th>
                             <th style="text-align: center" >Đơn vị tính</th>
                             <th style="text-align: center" >Mức giá kê khai</th>
 
@@ -92,10 +92,10 @@
                                 <td class="active"><b>Tên DN: </b> {{$tt->tendn}}
                                     <br><b>Mã số thuế:</b> {{$tt->maxa}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->ngayhieuluc)}}</td>
-                                <td style="text-align: left">{{$tt->tenhh}}</td>
-                                <td style="text-align: left">{{$tt->qccl}}</td>
+                                <td style="text-align: left">{{$tt->tennhom}}</td>
+                                <td style="text-align: left">{{$tt->ten}}</td>
                                 <td style="text-align: left">{{$tt->dvt}}</td>
-                                <td style="text-align: right;font-weight: bold">{{number_format($tt->gbdct)}}</td>
+                                <td style="text-align: right;font-weight: bold">{{number_format($tt->gia)}}</td>
 
                             </tr>
                         @endforeach
