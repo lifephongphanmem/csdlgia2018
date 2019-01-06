@@ -52,15 +52,17 @@
         </td>
     </tr>
     <tr>
-        <td>Số: {{$modelkk->socv}}<br>V/v thông báo giá</td>
+        <td>Số: {{$modelkk->socv}}<br>V/v kê khai giá</td>
         <td>
             <i>{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i>
         </td>
     </tr>
 </table>
 <p style="text-align: center; font-weight: bold; font-size: 16px;"><i><u>Kính gửi</u></i>: {{$modelcqcq->tendv}}</p>
+<br><br>
+<p>Thực hiện Thông tư số 56/2014/TT-BTC ngày 28/4/2014 của Bộ Tài chính hướng dẫn thực hiện Nghị định 177/2013/NĐ-CP ngày 14 tháng 11 năm 2013 của Chính phủ quy định chi tiết và hướng dẫn thi hành một số điều của Luật Giá và Thông tư số 233/2016/TT-BTC ngày 11/11/2016 của Bộ Tài chính sửa đổi, bổ sung một số điều của Thông tư số 56/2014/TT-BTC</p>
 
-<p>{!! nl2br(e($modelkk->thqd)) !!}.<b>{{$modeldn->tendn}}</b> gửi Bảng thông báo giá hàng hoá, dịch vụ (đính kèm).</p>
+<p><b>{{$modeldn->tendn}}</b> gửi Bảng thông báo giá hàng hoá, dịch vụ (đính kèm).</p>
 
 <p>Mức giá kê khai này thực hiện từ ngày {{getDayVn($modelkk->ngayhieuluc)}}</p>
 
@@ -115,9 +117,9 @@
         </td>
     </tr>
 </table>
-<p style="text-align: center; font-weight: bold; font-size: 16px;">BẢNG THÔNG BÁO GIÁ CỤ THỂ</p>
+<p style="text-align: center; font-weight: bold; font-size: 16px;">BẢNG KÊ KHAI MỨC GIÁ</p>
 <p style="text-align: center;">(Kèm theo công văn số {{$modelkk->socv}}  ngày {{ date("d",strtotime($modelkk->ngaynhap))}} tháng {{ date("m",strtotime($modelkk->ngaynhap))}} năm {{ date("Y",strtotime($modelkk->ngaynhap))}} của {{$modeldn->tendn}})</p>
-<p style="text-align: left; font-size: 16px;">I. Mức thông báo</p>
+<p style="text-align: left; font-size: 16px;">I. Mức giá kê khai</p>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <tr>
         <th width="2%">STT</th>
@@ -126,6 +128,8 @@
         <th>Đơn vị<br>tính</th>
         <th width="10%">Mức giá kê<br>khai hiện<br>hành</th>
         <th width="10%">Mức giá kê<br>khai mới</th>
+        <th>Mức<br> tăng<br>/ giảm</th>
+        <th>Tỷ lệ<br> tăng<br>/ giảm</th>
         <th>Ghi chú</th>
     </tr>
     @foreach($modelkkct as $key=>$tt)
@@ -136,6 +140,8 @@
         <td style="text-align: center">{{$tt->dvt}}</td>
         <td style="text-align: right">{{number_format($tt->giaZdvlk)}}</td>
         <td style="text-align: right">{{number_format($tt->giaZdv)}}</td>
+        <td></td>
+        <td></td>
         <td>{{$tt->ghichu}}</td>
     </tr>
     @endforeach

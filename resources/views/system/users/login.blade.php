@@ -167,6 +167,15 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 						</div>
 					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-12" style="text-align: center">
+								<div class="profile-userbuttons">
+									<a class="btn default pink-stripe" href="{{url('dangkytaikhoan?&level=DVHDTM')}}"> Doanh nghiêp cung cấp <br>dịch vụ hỗ trợ hoạt động thương mại</a>&nbsp;
+								</div>
+							</div>
+						</div>
+					</div>
 
 				</div>
 			</div>

@@ -29,5 +29,8 @@ include('kkgia/vlxd.php');
 include('kkgia/dkg.php');
 
 //XMTXD
-include('kkgia/xmtxd.php')
+include('kkgia/xmtxd.php');
+
+//dvhdtm
+include('kkgia/dvhdtm.php');
 ?>

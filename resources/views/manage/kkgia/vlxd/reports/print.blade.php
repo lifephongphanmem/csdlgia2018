@@ -52,19 +52,21 @@
         </td>
     </tr>
     <tr>
-        <td>Số: {{$modelkk->socv}}<br>V/v thông báo giá</td>
+        <td>Số: {{$modelkk->socv}}<br>V/v kê khai giá</td>
         <td>
             <i>{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i>
         </td>
     </tr>
 </table>
 <p style="text-align: center; font-weight: bold; font-size: 16px;"><i><u>Kính gửi</u></i>: {{$modelcqcq->tendv}}</p>
+<br><br>
+<p>Thực hiện Thông tư số 56/2014/TT-BTC ngày 28/4/2014 của Bộ Tài chính hướng dẫn thực hiện Nghị định 177/2013/NĐ-CP ngày 14 tháng 11 năm 2013 của Chính phủ quy định chi tiết và hướng dẫn thi hành một số điều của Luật Giá và Thông tư số 233/2016/TT-BTC ngày 11/11/2016 của Bộ Tài chính sửa đổi, bổ sung một số điều của Thông tư số 56/2014/TT-BTC </p>
 
-<p>{!! nl2br(e($modelkk->thqd)) !!}.<b>{{$modeldn->tendn}}</b> gửi Bảng thông báo giá hàng hoá, dịch vụ (đính kèm).</p>
+<p><b>{{$modeldn->tendn}}</b> gửi Bảng kê khai mức giá hàng hoá, dịch vụ (đính kèm).</p>
 
 <p>Mức giá kê khai này thực hiện từ ngày {{getDayVn($modelkk->ngayhieuluc)}}</p>
 
-<p><b>{{$modeldn->tendn}}</b> xin chịu trách nhiệm trước pháp luật về tính đúng đắn của mức giá mà chúng tôi đã kê khai./.</p>
+<p><b>{{$modeldn->tendn}}</b> xin chịu trách nhiệm trước pháp luật về tính chính xác của mức giá mà chúng tôi đã kê khai./.</p>
 
 <table width="96%" border="0" cellspacing="0" cellpadding="0" style="margin:10px auto;">
     <tr>
@@ -126,13 +128,14 @@
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <tr>
         <th width="2%">STT</th>
-        <th>Tên nhóm <br>vật liệu xây dựng</th>
-        <th>Tên <br>vật liệu xây dựng</th>
+        <th>Tên nhóm <br>hàng hóa, dịch vụ</th>
+        <th>Tên <br>hàng hóa dịch vụ</th>
         <th>Đơn vị<br>tính</th>
         <th width="10%">Mức giá <br>đăng ký hiện<br>hành</th>
         <th width="10%">Mức giá <br>đăng ký mới</th>
         <th>Mức tăng giảm</th>
         <th>Tỷ lệ % tăng giảm</th>
+        <th>Ghi chú</th>
     </tr>
     @foreach($modelkkct as $key=>$tt)
     <tr>
@@ -142,6 +145,7 @@
         <td style="text-align: center">{{$tt->dvt}}</td>
         <td style="text-align: right">{{number_format($tt->gialk)}}</td>
         <td style="text-align: right">{{number_format($tt->gia)}}</td>
+        <td></td>
         <td></td>
         <td></td>
     </tr>

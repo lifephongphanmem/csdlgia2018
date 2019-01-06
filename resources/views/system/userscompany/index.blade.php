@@ -101,7 +101,7 @@
                 @endif
                 <div class="portlet-body">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 <label>Phân loại tài khoản</label>
                                 <select class="form-control" name="level" id="level">
@@ -123,6 +123,7 @@
                                     @endif
                                     <option value="VLXD" {{$inputs['level'] == 'VLXD' ? 'selected' :''}}>Vật liệu xây dựng</option>
                                     <option value="XMTXD" {{$inputs['level'] == 'XMTXD' ? 'selected' :''}}>Xi măng, thép xây dựng</option>
+                                    <option value="DVHDTM" {{$inputs['level'] == 'DVHDTM' ? 'selected' :''}}>Dịch vụ hỗ trợ hoạt động thương mại</option>
 
                                 </select>
                             </div>

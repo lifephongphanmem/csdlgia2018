@@ -66,6 +66,13 @@
                 var url = current_path_url + level;
                 window.location.href = url;
             });
+            $('#mahuyen').change(function() {
+                var current_path_url = '/users?';
+                var level = '&level='+$('#level').val();
+                var mahuyen = '&mahuyen='+$('#mahuyen').val();
+                var url = current_path_url + level + mahuyen;
+                window.location.href = url;
+            });
         })
         function ClickDelete(){
             $('#frm_delete').submit();
@@ -91,6 +98,20 @@
                         </div>
                     </div-->
                 @endif
+                    <div class="portlet-title">
+                        <div class="caption"></div>
+                        <div class="actions">
+                            @if($inputs['level'] == 'X')
+                                <a href="{{url('users/print?&level='.$inputs['level'].'&mahuyen='.$inputs['mahuyen'])}}" class="btn btn-default btn-sm" target="_blank">
+                                <i class="fa fa-print"></i> Print</a>
+                            @else
+                                @if($inputs['level'] != '')
+                                <a href="{{url('users/print?&level='.$inputs['level'])}}" class="btn btn-default btn-sm" target="_blank">
+                                    <i class="fa fa-print"></i> Print</a>
+                                @endif
+                            @endif
+                        </div>
+                    </div>
                 <div class="portlet-body">
                     <div class="row">
                         <div class="col-md-3">

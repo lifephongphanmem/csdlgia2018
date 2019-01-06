@@ -373,7 +373,9 @@ License: You must have a valid license purchased only from themeforest(the above
                             @if(can('register','index'))
                             <li><a href="{{url('register')}}"> Tài khoản đăng ký</a></li>
                             @endif
+                            @if(session('admin')->sadmin == 'ssa')
                             <li><a href="{{url('general')}}">Cấu hình hệ thống</a></li>
+                            @endif
                         </ul>
                     </li>
                 @endif

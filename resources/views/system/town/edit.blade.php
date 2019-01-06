@@ -85,13 +85,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Email quản lý<span class="require">*</span></label>
-                                        <input type="text" class="form-control required" name="emailql" id="emailql" value="{{$model->emailql}}">
+                                        <input type="text" class="form-control" name="emailql" id="emailql" value="{{$model->emailql}}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Email quản trị<span class="require">*</span></label>
-                                        <input type="text" class="form-control required" name="emailqt" id="emailqt" value="{{$model->emailqt}}">
+                                        <input type="text" class="form-control" name="emailqt" id="emailqt" value="{{$model->emailqt}}">
                                     </div>
                                 </div>
                             </div>

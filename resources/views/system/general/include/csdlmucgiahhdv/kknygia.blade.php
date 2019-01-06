@@ -190,6 +190,20 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->dvhdtm->index) && $setting->dvhdtm->index == 1) ? 'checked' : '' }} value="1" name="roles[dvhdtm][index]"/></td>
+                                    <td>Dịch vụ hỗ trợ hoạt động thương mại</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->dvhdtm->congbo) && $setting->dvhdtm->congbo == 1) ? 'checked' : '' }} value="1" name="roles[dvhdtm][congbo]"/></td>
+                                    <td>Công bố giá Dịch vụ hỗ trợ hoạt động thương mại</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

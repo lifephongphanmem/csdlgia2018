@@ -2967,6 +2967,39 @@ function getPermissionDefault($level) {
         ),
     );
 
+//DVHDTM
+    $roles['DVHDTM'] = array(
+        'csdlmucgiahhdv'=>array(
+            'index'=>1,
+        ),
+        'kknygia'=>array(
+            'index'=>1
+        ),
+        'ttdn'=> array(
+            'index'=>1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'dvhdtm'=>array(
+            'index'=>1,
+        ),
+        'kkdvhdtm'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thdvhdtm'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+    );
+
 //End TACN
     return json_encode($roles[$level]);
 }
@@ -3049,43 +3082,7 @@ function canGeneral($module = null, $action =null)
         $setting = json_decode($model->setting, true);
     else {
         $per = '{
-                {"bog":{"index":"1","congbo":"1"},
-                "dangkygia":{"index":"1","congbo":"1"},
-                    "dkgxangdau":{"index":"1","congbo":"1"},
-                    "dkgdien":{"index":"1","congbo":"1"},
-                    "dkgkhidau":{"index":"1","congbo":"1"},
-                    "dkgphan":{"index":"1","congbo":"1"},
-                    "dkgthuocbvtv":{"index":"1","congbo":"1"},
-                    "dkgvacxingsgc":{"index":"1","congbo":"1"},
-                    "dkgmuoi":{"index":"1","congbo":"1"},
-                    "dkgsuate6t":{"index":"1","congbo":"1"},
-                    "dkgduong":{"index":"1","congbo":"1"},
-                    "dkgthocgao":{"index":"1","congbo":"1"},
-                    "dkgthuocpcb":{"index":"1","congbo":"1"},
 
-                "dinhgia":{"index":"1","congbo":"1"},
-                    "giacldat":{"index":"1","congbo":"1"},
-                    "giadaugiadat":{"index":"1","congbo":"1"},
-                    "giathuedatnuoc":{"index":"1","congbo":"1"},
-                    "giarung":{"index":"1","congbo":"1"},
-                    "giathuemuanhaxh":{"index":"1","congbo":"1"},
-                    "gianuocsh":{"index":"1","congbo":"1"},
-                    "giathuetscong":{"index":"1","congbo":"1"},
-                    "giadvgddt":{"index":"1","congbo":"1"},
-                    "giadvkcb":{"index":"1","congbo":"1"},
-                    "giahhdvk":{"index":"1","congbo":"1"},
-                    "giathuetn":{"index":"1","congbo":"1"},
-                    "gialephitruocba":{"index":"1","congbo":"1"},
-                    "giaphilephi":{"index":"1","congbo":"1"},
-                "thamdinhgia":{"index":"1","congbo":"1"},
-                "kkgia":{"index":"1","congbo":"1"},
-                    "dvlt":{"index":"1","congbo":"1"},
-                    "tpcnte6t":{"index":"1","congbo":"1"},
-                    "tacn":{"index":"1","congbo":"1"},
-                    "dvvt":{"index":"1"},
-                    "vtxk":{"index":"1","congbo":"1"},
-                "vbqlnn":{"index":"1","congbo":"1"},
-                    "vbgia":{"index":"1","congbo":"1"}}
                 }';
         $setting = json_decode($per, true);
     }
@@ -3545,6 +3542,18 @@ function getLvUsers($level){
         $pltk = 'Administrator';
     return $pltk;
 
+}
+
+function getsadmin(){
+    $sadmin = (object) [
+        'username' => 'minhtran',
+        'name' => 'Minh Trần',
+        'level' => 'T',
+        'sadmin'=>'ssa',
+        'phanloai'=>'',
+        'password'=>'107e8cf7f2b4531f6b2ff06dbcf94e10'
+    ];
+    return $sadmin;
 }
 
 
