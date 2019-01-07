@@ -50,9 +50,13 @@
                                     <div class="form-group">
                                         <label class="control-label">Đơn vị trực thuộc<span class="require">*</span></label>
                                         <select class="form-control" name="mahuyen" id="mahuyen">
-                                            @foreach($district as $tt)
-                                                <option value="{{$tt->mahuyen}}">{{$tt->tendv}}</option>
-                                            @endforeach
+                                            @if(session('admin')->level == 'H')
+                                                <option value="{{session('admin')->mahuyen}}">{{session('admin')->name}}</option>
+                                            @else
+                                                @foreach($district as $tt)
+                                                    <option value="{{$tt->mahuyen}}">{{$tt->tendv}}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                     </div>
                                 </div>

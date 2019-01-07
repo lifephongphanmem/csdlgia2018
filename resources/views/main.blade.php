@@ -365,7 +365,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <li><a href="{{url('users')}}">Tài khoản đơn vị</a></li>
                                         @endif
                                         @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
+                                            @if(can('companies','index'))
                                             <li><a href="{{url('userscompany')}}">Tài khoản doanh nghiệp</a></li>
+                                            @endif
                                         @endif
                                     </ul>
                                 </li>
