@@ -1,52 +1,39 @@
 <?php
-Route::get('ttdnkkdkg','KkDkgController@ttdn');
-Route::resource('kekhaithucphamchucnangchote6t','KkGsController');
-Route::post('kekhaithucphamchucnangchote6t/chuyen','KkGsController@chuyen');
-Route::get('/kkgs/showlydo','KkGsController@showlydo');
-Route::post('kekhaithucphamchucnangchote6t/delete','KkGsController@delete');
-Route::get('kekhaithucphamchucnangchote6t/prints','KkGsController@prints');
-
-
+Route::get('thongtindnkkgdk','KkDkgController@ttdn');
+Route::resource('kkdkg','KkDkgController');
+Route::post('storekkdkg','KkDkgController@store');
+Route::post('kkdkg/delete','KkDkgController@delete');
+Route::post('kkdkg/chuyen','KkDkgController@chuyen');
+Route::get('kkdkg/prints','KkDkgController@prints');
+Route::get('kkdkg/lydo','KkDkgController@lydo');
 //Ajax chuyen
-Route::get('/kktpcn6t/kiemtra','KkGsController@kiemtra');
+Route::get('/kkdg/kiemtra','KkDkgController@kiemtra');
 //End Ajax chuyển
 
 //Ajax create
-Route::get('/kkgdvgs/storett','KkGsCtDfController@store');
-Route::get('/kkgdvgs/edittt','KkGsCtDfController@edit');
-Route::get('/kkgdvgs/updatett','KkGsCtDfController@update');
-Route::get('/kkgdvgs/deletett','KkGsCtDfController@delete');
-Route::get('/kkgdvgs/kkgiahh','KkGsCtDfController@kkgia');
-Route::get('/kkgdvgs/upkkgia','KkGsCtDfController@upkkgia');
-
-Route::get('/kkgdvgs/kkgiahhlk','KkGsCtDfController@kkgialk');
-Route::get('/kkgdvgs/upkkgialk','KkGsCtDfController@upkkgialk');
+Route::get('kkkgctdf/add','KkDkgCtDfController@add');
+Route::get('kkkgctdf/show','KkDkgCtDfController@show');
+Route::get('kkkgctdf/update','KkDkgCtDfController@update');
+Route::get('kkkgctdf/del','KkDkgCtDfController@destroy');
 //End Ajax create
 
 //Ajax edit
-Route::get('/kkgdvgs/boxungtt','KkGsCtController@store');
-Route::get('/kkgdvgs/chinhsuatt','KkGsCtController@edit');
-Route::get('/kkgdvgs/capnhattt','KkGsCtController@update');
-Route::get('/kkgdvgs/xoatt','KkGsCtController@delete');
-Route::get('/kkgdvgs/kkgiahhedit','KkGsCtController@kkgia');
-Route::get('/kkgdvgs/upkkgiaedit','KkGsCtController@upkkgia');
-Route::get('/kkgdvgs/kkgiahhlkedit','KkGsCtController@kkgialk');
-Route::get('/kkgdvgs/upkkgialkedit','KkGsCtController@upkkgialk');
+Route::get('kkkgct/add','KkDkgCtController@add');
+Route::get('kkkgct/show','KkDkgCtController@show');
+Route::get('kkkgct/update','KkDkgCtController@update');
+Route::get('kkkgct/del','KkDkgCtController@destroy');
 //End Ajax edit
 
-//Xét duyệt kk giá sữa
-Route::get('xdkekhaigiatpcnte6t','KkGsXdController@index');
-Route::post('xdkekhaigiatpcnte6t/tralai','KkGsXdController@tralai');
-Route::get('xdkekhaigiatpcnte6t/ttnhanhs','KkGsXdController@ttnhanhs');
-Route::post('xdkekhaigiatpcnte6t/nhanhs','KkGsXdController@nhanhs');
+//Xét duyệt kê khai giá
+Route::get('xetduyetkkdkg','KkDkgXdController@index');
+Route::post('xetduyetkkdkg/tralai','KkDkgXdController@tralai');
+Route::get('xetduyetkkdkg/ttnhanhs','KkDkgXdController@ttnhanhs');
+Route::post('xetduyetkkdkg/nhanhs','KkDkgXdController@nhanhs');
+
 //End xét duyệt kk giá sữa
-Route::get('timkiemkekhaigiatpcnte6t','KkGsXdController@search');
+Route::get('timkiemkkdkg','KkDkgController@search');
 
-//Ajax
-Route::get('/ttdnkkdvgs','KkGsXdController@ttdnkkdvgs');
-
-Route::get('baocaokekhaigiatpcnte6t','ReportsKkGsController@index');
-Route::post('reports/kekhaigiasua/BC5','ReportsKkGsController@dvltbc5');
-Route::post('reports/kekhaigiasua/BC6','ReportsKkGsController@dvltbc6');
+//Ajax nhận trả
+Route::get('/ttdnkkdkg','KkDkgXdController@ttdnkkdkg');
 
 ?>

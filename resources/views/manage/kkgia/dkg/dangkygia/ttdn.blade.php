@@ -35,7 +35,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin doanh nghiệp kê khai <small>{{$inputs['mh']}}</small>
+        Thông tin doanh nghiệp kê khai <small>&nbsp;{{$inputs['mh']}}</small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
