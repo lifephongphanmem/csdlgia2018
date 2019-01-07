@@ -37,6 +37,8 @@ Route::get('users/create','UsersController@create');
 Route::post('users','UsersController@store');
 Route::get('users/{id}/copy','UsersController@copy');
 
+Route::get('users/print','UsersController@prints');
+
 Route::resource('xetduyettdttdn','TdTtDnController');
 Route::post('xetduyettdttdn/tralai','TdTtDnController@tralai');
 Route::get('xetduyettdttdn/{id}/duyet','TdTtDnController@duyet');

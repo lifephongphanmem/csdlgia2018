@@ -311,14 +311,14 @@ License: You must have a valid license purchased only from themeforest(the above
                             <li><a href="{{url('coming')}}"><i class="icon-folder"></i> &nbsp;Văn bản QLNN về giá</a></li>
                         </ul>
                     </li>
-                    <li class="menu-dropdown classic-menu-dropdown ">
+                    <!--li class="menu-dropdown classic-menu-dropdown ">
                         <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
                             TT phục vụ công tác QLNN về giá <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu pull-left">
                             <li><a href="{{url('coming')}}"><i class="icon-folder"></i> &nbsp;CPI</a></li>
                         </ul>
-                    </li>
+                    </li-->
                 </ul>
             </div>
             <!-- END MEGA MENU -->

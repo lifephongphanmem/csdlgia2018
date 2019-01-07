@@ -50,9 +50,13 @@
                                     <div class="form-group">
                                         <label class="control-label">Đơn vị trực thuộc<span class="require">*</span></label>
                                         <select class="form-control" name="mahuyen" id="mahuyen">
-                                            @foreach($district as $tt)
-                                                <option value="{{$tt->mahuyen}}">{{$tt->tendv}}</option>
-                                            @endforeach
+                                            @if(session('admin')->level == 'H')
+                                                <option value="{{session('admin')->mahuyen}}">{{session('admin')->name}}</option>
+                                            @else
+                                                @foreach($district as $tt)
+                                                    <option value="{{$tt->mahuyen}}">{{$tt->tendv}}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
@@ -67,7 +71,7 @@
                                <div class="col-md-6">
                                    <div class="form-group">
                                        <label class="control-label">Địa bàn quản lý<span class="require">*</span></label>
-                                       {!! Form::select('district', getDiaDanhH(),null, array('id'=>'district','class'=>'form-control'))!!}
+                                       {!! Form::select('district', getDiaDanhH(),null, array('id'=>'district','class'=>'form-control required'))!!}
                                    </div>
                                </div>
                            </div>
@@ -98,13 +102,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Email quản lý<span class="require">*</span></label>
-                                        <input type="text" class="form-control required" name="emailql" id="emailql">
+                                        <input type="text" class="form-control" name="emailql" id="emailql">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Email quản trị<span class="require">*</span></label>
-                                        <input type="text" class="form-control required" name="emailqt" id="emailqt">
+                                        <input type="text" class="form-control" name="emailqt" id="emailqt">
                                     </div>
                                 </div>
                             </div>

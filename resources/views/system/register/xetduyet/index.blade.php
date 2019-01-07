@@ -86,7 +86,7 @@
                 <div class="portlet-body">
                     <div class="portlet-body">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-5">
                                 <div class="form-group">
                                     <label>Doanh nghiệp cung cấp</label>
                                     <select class="form-control" name="level" id="level">
@@ -111,6 +111,9 @@
                                         @endif
                                         @if(can('xmtxd','index'))
                                             <option value="XMTXD" {{$inputs['level'] == 'XMTXD' ? 'selected' : ''}}>Xi măng, thép xây dựng</option>
+                                        @endif
+                                        @if(can('dvhdtm','index'))
+                                            <option value="DVHDTM" {{$inputs['level'] == 'DVHDTM' ? 'selected' : ''}}>Dịch vụ hỗ trợ hoạt động thương mại</option>
                                         @endif
                                     </select>
                                 </div>

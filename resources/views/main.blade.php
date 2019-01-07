@@ -365,7 +365,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <li><a href="{{url('users')}}">Tài khoản đơn vị</a></li>
                                         @endif
                                         @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
+                                            @if(can('companies','index'))
                                             <li><a href="{{url('userscompany')}}">Tài khoản doanh nghiệp</a></li>
+                                            @endif
                                         @endif
                                     </ul>
                                 </li>
@@ -373,7 +375,9 @@ License: You must have a valid license purchased only from themeforest(the above
                             @if(can('register','index'))
                             <li><a href="{{url('register')}}"> Tài khoản đăng ký</a></li>
                             @endif
+                            @if(session('admin')->sadmin == 'ssa')
                             <li><a href="{{url('general')}}">Cấu hình hệ thống</a></li>
+                            @endif
                         </ul>
                     </li>
                 @endif

@@ -58,8 +58,31 @@
                                 @endif
                             </ul>
                         </li>
+                    @endif
+                @endif
+                @if(canGeneral('dvhdtm','index'))
+                    @if(can('dvhdtm','index'))
+                        <li class="tooltips" data-container="body" data-placement="right" data-html="true"
+                            data-original-title="Giá dịch vụ hỗ trợ hoạt động thương mại tại cửa khẩu (kho,bến, bãi, bốc xếp hàng hóa tại cửa khẩu, dịch vụ khác">
+                            <a href="">
+                                <span class="title">Dịch vụ hỗ trợ hoạt động thương mại</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu" style="display: none;">
+                                @if(session('admin')->level == 'DVHDTM')
+                                    <li><a href="{{url('thongtinkkdvhoatdongthuongmai')}}">Kê khai giá dịch vụ</a> </li>
+                                @endif
+                                @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
+                                    <li><a href="{{url('thongtindnkkgiadvhdtm')}}">Kê khai giá dịch vụ</a></li>
+                                    <li><a href="{{url('xetduyetkkgiadvhdtm')}}">Thông tin hồ sơ xét duyệt</a></li>
+                                    <li><a href="{{url('timkiemgiadvhdtm')}}">Tìm kiếm thông tin</a> </li>
+                                    <li><a href="{{url('baocaokkgiadvhdtm')}}">Báo cáo thống kê</a></li>
+                                @endif
+                            </ul>
+                        </li>
                         @endif
                     @endif
+
                 <!--li>
                     <a href="javascript:;">
                         <span class="title">Than</span>

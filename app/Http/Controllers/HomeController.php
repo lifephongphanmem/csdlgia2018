@@ -84,7 +84,7 @@ License code: PRO4-69G6Q4M-8YGNXX-M2N8-KCHVWYK
         $viewpage = ViewPage::count();
         return view('dashboardcb')
             ->with('viewpage', $viewpage)
-            ->with('pageTitle', 'Giá hàng hóa - dịch vụ');
+            ->with('pageTitle', 'Cơ sở dữ liệu về giá');
     }
 
     public function forgotpassword(){

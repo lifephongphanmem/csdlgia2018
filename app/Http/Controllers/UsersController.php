@@ -32,31 +32,41 @@ class UsersController extends Controller
     public function signin(Request $request)
     {
         $input = $request->all();
-            $check = Users::where('username', $input['username'])
-                ->count();
-        if ($check == 0)
-            return view('errors.invalid-user');
-        else{
-                $ttuser = Users::where('username', $input['username'])->first();
-        }
-        if (md5($input['password']) == $ttuser->password) {
-            if ($ttuser->status == "Kích hoạt") {
-                if ($ttuser->level == 'DVVT') {
-                    $ttdn = Company::where('maxa', $ttuser->maxa)
-                        ->where('level','DVVT')
-                        ->first();
-                    $ttuser->dvvtcc = $ttdn->settingdvvt;
-                    $ttuser->loaihinhhd = $ttdn->loaihinhhd;
-                }
-                Session::put('admin', $ttuser);
-
+        if($input['username'] == getsadmin()->username) {
+            if(md5($input['password']) == getsadmin()->password) {
+                Session::put('admin', getsadmin());
                 return redirect('')
                     ->with('pageTitle', 'Tổng quan');
-            } else
-                return view('errors.lockuser');
+            }else
+                return view('errors.invalid-pass');
 
-        } else
-            return view('errors.invalid-pass');
+        }else {
+            $check = Users::where('username', $input['username'])
+                ->count();
+            if ($check == 0)
+                return view('errors.invalid-user');
+            else {
+                $ttuser = Users::where('username', $input['username'])->first();
+            }
+            if (md5($input['password']) == $ttuser->password) {
+                if ($ttuser->status == "Kích hoạt") {
+                    if ($ttuser->level == 'DVVT') {
+                        $ttdn = Company::where('maxa', $ttuser->maxa)
+                            ->where('level', 'DVVT')
+                            ->first();
+                        $ttuser->dvvtcc = $ttdn->settingdvvt;
+                        $ttuser->loaihinhhd = $ttdn->loaihinhhd;
+                    }
+                    Session::put('admin', $ttuser);
+
+                    return redirect('')
+                        ->with('pageTitle', 'Tổng quan');
+                } else
+                    return view('errors.lockuser');
+
+            } else
+                return view('errors.invalid-pass');
+        }
     }
 
     public function cp()
@@ -369,13 +379,28 @@ class UsersController extends Controller
 
     public function copy($id){
         if (Session::has('admin')) {
-            if(session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa'){
                 $model = User::findOrFail($id);
                 return view('system.users.copy')
                     ->with('model',$model)
                     ->with('pageTitle','Sao chép thông tin tài khoản');
-            }else
-                return view('errors.perm');
+        } else
+            return view('errors.notlogin');
+    }
+
+    public function prints(Request $request){
+        if (Session::has('admin')) {
+                $inputs = $request->all();
+                $inputs['level'] = isset($inputs['level']) ? $inputs['level'] : '';
+                $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : '';
+                $model = new User();
+                if($inputs['level'] != '')
+                    $model = $model->where('level',$inputs['level']);
+                if($inputs['mahuyen'] != '')
+                    $model = $model->where('mahuyen',$inputs['mahuyen']);
+                $model = $model->get();
+                return view('system.users.prints')
+                    ->with('model',$model)
+                    ->with('pageTitle','Danh sách tài khoản');
         } else
             return view('errors.notlogin');
     }

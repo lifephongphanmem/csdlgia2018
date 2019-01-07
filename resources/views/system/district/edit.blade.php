@@ -76,13 +76,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Email quản lý<span class="require">*</span></label>
-                                        {!!Form::text('emailql', null, array('id' => 'emailql','class' => 'form-control required'))!!}
+                                        {!!Form::text('emailql', null, array('id' => 'emailql','class' => 'form-control'))!!}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Email quản trị<span class="require">*</span></label>
-                                        {!!Form::text('emailqt', null, array('id' => 'emailqt','class' => 'form-control required'))!!}
+                                        {!!Form::text('emailqt', null, array('id' => 'emailqt','class' => 'form-control'))!!}
                                     </div>
                                 </div>
                             </div>
