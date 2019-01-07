@@ -224,6 +224,12 @@ License: You must have a valid license purchased only from themeforest(the above
                             <a href="{{url('user_setting')}}">
                                 <i class="icon-settings"></i> Thông tin tài khoản</a>
                         </li>
+                        @if(session('admin')->level == 'H' || session('admin')->level =='X')
+                        <li>
+                            <a href="{{url('thongtindonvi')}}">
+                                <i class="icon-settings"></i> Thông tin đơn vị</a>
+                        </li>
+                        @endif
                         <li>
                             <a href="{{url('change-password')}}">
                                 <i class="icon-lock"></i> Đổi mật khẩu</a>

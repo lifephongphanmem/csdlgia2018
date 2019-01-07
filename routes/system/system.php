@@ -47,6 +47,7 @@ Route::resource('thongtinngaynghile','NgayNghiLeController');
 Route::post('thongtinngaynghile/delete','NgayNghiLeController@destroy');
 
 Route::resource('userscompany','UsersCompanyController');
-Route::get('userscompany/{id}/permission','UsersCompanyController@permission')
+Route::get('userscompany/{id}/permission','UsersCompanyController@permission');
 //EndUsers
+Route::resource('thongtindonvi','ThongTinDonViController');
 ?>
