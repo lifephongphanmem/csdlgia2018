@@ -10,8 +10,6 @@
 @stop
 
 @section('content')
-
-
     <h3 class="page-title">
         Thông tin <small>đơn vị</small>
     </h3>

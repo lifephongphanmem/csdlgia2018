@@ -220,20 +220,24 @@ License: You must have a valid license purchased only from themeforest(the above
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-default">
+                        @if(session('admin')->sadmin != 'ssa')
                         <li>
                             <a href="{{url('user_setting')}}">
                                 <i class="icon-settings"></i> Thông tin tài khoản</a>
                         </li>
+                        @endif
                         @if(session('admin')->level == 'H' || session('admin')->level =='X')
                         <li>
                             <a href="{{url('thongtindonvi')}}">
                                 <i class="icon-settings"></i> Thông tin đơn vị</a>
                         </li>
                         @endif
+                        @if(session('admin')->sadmin != 'ssa')
                         <li>
                             <a href="{{url('change-password')}}">
                                 <i class="icon-lock"></i> Đổi mật khẩu</a>
                         </li>
+                        @endif
                         <li>
                             <a href="{{url('logout')}}">
                                 <i class="icon-key"></i> Đăng xuất </a>
