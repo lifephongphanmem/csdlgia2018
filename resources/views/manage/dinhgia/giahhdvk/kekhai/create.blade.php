@@ -95,8 +95,8 @@
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-
                     <div class="form-body">
+                        <h3>Thông tin hồ sơ</h3>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -152,8 +152,9 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" name="district" id="maxa" value="{{$district}}">
+                        <input type="hidden" name="district" id="district" value="{{$district}}">
                         <input type="hidden" name="manhom" id="manhom" value="{{$manhom}}">
+                        <h3>Thông tin chi tiết</h3>
 
                         <div class="row" id="dsts">
                             <div class="col-md-12">
@@ -211,7 +212,6 @@
 
     <script type="text/javascript">
         function validateForm(){
-
             var validator = $("#create_giahhdvkhac").validate({
                 rules: {
                     ten :"required"
@@ -222,8 +222,6 @@
             });
         }
     </script>
-
-
 
     <!--Modal Edit-->
     <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-hidden="true">
@@ -246,4 +244,31 @@
     </div>
     @include('includes.script.inputmask-ajax-scripts')
     @include('includes.script.create-header-scripts')
+
+
+
+    <script>
+    //ajax
+    $(document).on("click", ".agent-add", function () {
+
+    var agent_id = $(this).data('id');
+
+        $("#example-form").submit(function(){
+            var formData = new FormData($(this)[0]);
+
+            $.ajax({
+                url: '/giahhdvkhac/nhanfilechitietdf1',
+                type: 'POST',
+                data: formData,
+                success: function (data) {
+                    alert(data)
+                },
+                cache: false,
+                processData: false
+            });
+
+            return false;
+        });
+    });
+    </script>
 @stop

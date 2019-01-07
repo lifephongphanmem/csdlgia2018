@@ -45,6 +45,7 @@ class hsgia_cpiController extends Controller
             $model->nam = $inputs['nam'];
             $model->maxa = session('admin')->maxa;
             $model->district = session('admin')->district;
+            $model->phanloai = 'CHITIET';
             $model->mahs = $mahs;
             $model->save();
             //chỉ nhập giá hàng hóa cấp 4
@@ -61,6 +62,30 @@ class hsgia_cpiController extends Controller
             return view('errors.notlogin');
     }
 
+    function create_dk(Request $request)
+    {
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            //$thang = $date['mon'];
+            $mahs = getdate()[0];
+            //$maxa = session('admin')->maxa;
+            $model = new hsgia_cpi();
+            $model->tgnhap = date('Y-m-d');
+            $model->trangthai = 'Đang làm';
+            $model->thang = $inputs['thang'];
+            $model->nam = $inputs['nam'];
+            $model->maxa = session('admin')->maxa;
+            $model->district = session('admin')->district;
+            $model->mahs = $mahs;
+            $model->phanloai = 'DK';
+            $model->save();
+            //chỉ nhập giá hàng hóa cấp 4
+
+            return redirect(url('/hsgiacpi/edit_dk?mahs='.$mahs));
+        }else
+            return view('errors.notlogin');
+    }
+
     function edit(Request $request)
     {
         if(Session::has('admin')){
@@ -70,6 +95,20 @@ class hsgia_cpiController extends Controller
             return view('manage.vanbanqlnn.giatieudung.hoso.edit')
                 ->with('model',$model)
                 ->with('model_hh',$model_hh)
+                ->with('pageTitle','Thông tin hồ sơ giá hàng hóa tiêu dùng');
+        }else
+            return view('errors.notlogin');
+    }
+
+    function edit_dk(Request $request)
+    {
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $model = hsgia_cpi::where('mahs',$inputs['mahs'])->first();
+            //$model_hh = hsgia_cpi_chitiet::where('mahs',$model->mahs)->where('capdo',4)->get();
+            return view('manage.vanbanqlnn.giatieudung.hoso.edit_dk')
+                ->with('model',$model)
+                //->with('model_hh',$model_hh)
                 ->with('pageTitle','Thông tin hồ sơ giá hàng hóa tiêu dùng');
         }else
             return view('errors.notlogin');
@@ -90,6 +129,53 @@ class hsgia_cpiController extends Controller
         }else
             return view('errors.notlogin');
     }
+
+    function update_dk(Request $request)
+    {
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            //file dk
+            if(isset($inputs['ipf1']) && $inputs['ipf1'] !='' ) {
+                $ipf1 = $request->file('ipf1');
+                $inputs['ipt1'] = $inputs['mahs'] .'&1.'.$ipf1->getClientOriginalExtension();
+                $ipf1->move(public_path() . '/data/vbqlnnvegia/', $inputs['ipt1']);
+                $inputs['ipf1']= $inputs['ipt1'];
+            }
+            if(isset($inputs['ipf2']) && $inputs['ipf2'] !='' ) {
+                $ipf2 = $request->file('ipf2');
+
+                $inputs['ipt2'] = $inputs['mahs'] .'&2.'.$ipf2->getClientOriginalExtension();
+                $ipf2->move(public_path() . '/data/vbqlnnvegia/', $inputs['ipt2']);
+                $inputs['ipf2']= $inputs['ipt2'];
+            }
+            if(isset($inputs['ipf3']) && $inputs['ipf3'] !='' ) {
+                $ipf3 = $request->file('ipf3');
+                $inputs['ipt3'] = $inputs['mahs'] .'&3.'.$ipf3->getClientOriginalExtension();
+                $ipf3->move(public_path() . '/data/vbqlnnvegia/', $inputs['ipt3']);
+                $inputs['ipf3']= $inputs['ipt3'];
+            }
+            if(isset($inputs['ipf4']) && $inputs['ipf4'] !='' ) {
+                $ipf4 = $request->file('ipf4');
+                $inputs['ipt4'] = $inputs['mahs'] .'&4.'.$ipf4->getClientOriginalExtension();
+                $ipf4->move(public_path() . '/data/vbqlnnvegia/', $inputs['ipt4']);
+                $inputs['ipf4']= $inputs['ipt4'];
+            }
+            if(isset($inputs['ipf5']) && $inputs['ipf5'] !='' ) {
+                $ipf5 = $request->file('ipf5');
+                $inputs['ipt5'] = $inputs['mahs'] .'&5.'.$ipf5->getClientOriginalExtension();
+                $ipf5->move(public_path() . '/data/vbqlnnvegia/', $inputs['ipt5']);
+                $inputs['ipf5']= $inputs['ipt5'];
+            }
+
+            $model = hsgia_cpi::where('mahs',$inputs['mahs'])->first();
+            $inputs['tgnhap'] = getDateToDb($inputs['tgnhap']);
+            $model->update($inputs);
+            return redirect('/hsgiacpi/danhsach?thang='.date('m').'&nam='.date('Y'));
+
+        }else
+            return view('errors.notlogin');
+    }
+
 
     function update_chitiet(Request $request)
     {

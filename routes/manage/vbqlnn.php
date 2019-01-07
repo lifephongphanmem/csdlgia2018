@@ -15,6 +15,10 @@ Route::get('hsgiacpi/show','hsgia_cpiController@show');
 Route::post('hsgiacpi/delete','hsgia_cpiController@destroy');
 Route::get('hsgiacpi/store','hsgia_cpiController@store');
 Route::post('hsgiacpi/update','hsgia_cpiController@update');
+Route::get('hsgiacpi/create_dk','hsgia_cpiController@create_dk');
+Route::post('hsgiacpi/update_dk','hsgia_cpiController@update_dk');
+Route::get('hsgiacpi/edit_dk','hsgia_cpiController@edit_dk');
+
 Route::get('hsgiacpi/get_chitiet','hsgia_cpiController@get_chitiet');
 Route::get('hsgiacpi/update_chitiet','hsgia_cpiController@update_chitiet');
 

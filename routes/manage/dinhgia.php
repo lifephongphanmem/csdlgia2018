@@ -135,7 +135,15 @@ Route::resource('dmhanghoadichvu','DmHhDvKController');
 Route::get('dmhanghoadichvu/show','DmHhDvKController@show');
 Route::post('dmhanghoadichvu/update','DmHhDvKController@update');
 
-Route::get('giahhdvkhac/danhmucmau','GiaHhDvKController@filemau');
+//Route::post('/ajax_upload/action', 'GiaHhDvKController@nhanfilechitietdf')->name('ajaxupload.action');
+//Route::post('add-catagory',['as'=>'catagory_add','uses'=>'GiaHhDvKController@nhanfilechitietdf']);
+//Route::get('giahhdvkhac/danhmucchitietdf','GiaHhDvKController@filechitietdf');
+//Route::post('giahhdvkhac/nhanfilechitietdf','GiaHhDvKController@nhanfilechitietdf');
+
+Route::post('giahhdvkhac/danhmucmau','GiaHhDvKController@filemau');
+Route::get('giahhdvkhac/nhanexcel','GiaHhDvKController@nhanexcel');
+Route::post('giahhdvkhac/import_excel','GiaHhDvKController@import_excel');
+
 Route::resource('giahhdvkhac','GiaHhDvKController');
 Route::post('giahhdvkhac/create','GiaHhDvKController@create');
 Route::post('giahhdvkhac/delete','GiaHhDvKController@destroy');

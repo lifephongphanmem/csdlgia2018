@@ -56,6 +56,9 @@
         function clickcreate(){
             $('#frm_create').submit();
         }
+        function clickfilemau(){
+            $('#frm_filemau').submit();
+        }
     </script>
 @stop
 
@@ -83,10 +86,12 @@
                                 </a>
                                 <ul class="dropdown-menu pull-right">
                                     <li>
-                                        <a href="{{url('/giahhdvkhac/danhmucmau')}}" target="_blank">File dữ liệu mẫu</a>
+                                        <button type="button" style="border-width: 0px; padding-left: 13px;" class="btn btn-default btn-xs mbs" data-toggle="modal" data-target="#modal-filemau">
+                                            &nbsp;File dữ liệu mẫu</button>
                                     </li>
+
                                     <li>
-                                        <a href="">Nhận dữ liệu</a>
+                                        <a href="{{url('/giahhdvkhac/nhanexcel')}}">Nhận dữ liệu</a>
                                     </li>
                                 </ul>
                             </div>
@@ -138,11 +143,11 @@
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Số quyết định</th>
-                            <th style="text-align: center">Ngày áp dụng</th>
-                            <th style="text-align: center">Số quyết định liền kề</th>
-                            <th style="text-align: center">Ngày áp dụng liền kế</th>
-                            <th style="text-align: center">Nhóm hàng hóa dịch vụ</th>
+                            <th style="text-align: center">Số quyết</br>định</th>
+                            <th style="text-align: center">Ngày áp</br>dụng</th>
+                            <th style="text-align: center">Số</br>quyết định</br>liền kề</th>
+                            <th style="text-align: center">Ngày áp</br>dụng liền</br>kế</th>
+                            <th style="text-align: center">Nhóm hàng</br>hóa dịch vụ</th>
                             <th style="text-align: center">Ghi chú</th>
                             <th style="text-align: center" width="10%">Trạng thái</th>
                             <th style="text-align: center" width="20%">Thao tác</th>
@@ -233,11 +238,7 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <label>Phân loại nhóm hàng hóa dịch vụ</label>
-                                <select name="manhom" id="manhom" class="form-control">
-                                    @foreach($m_nhom as $ct)
-                                        <option value="{{$ct->manhom}}">{{$ct->tennhom}}</option>
-                                    @endforeach
-                                </select>
+                                {!!Form::select('manhom', $a_nhom, null, array('id' => 'manhom','class' => 'form-control select2me'))!!}
                             </div>
                             <input type="hidden" name="getdistrict" id="getdistrict" value="{{$inputs['district']}}">
                         </div>
@@ -252,6 +253,57 @@
         </div>
         {!! Form::close() !!}
     </div>
+
+    <!--Modal File mẫu-->
+    <div id="modal-filemau" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade bs-modal-lg">
+        {!! Form::open(['url'=>'/giahhdvkhac/danhmucmau','id' => 'frm_filemau','method'=>'post'])!!}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Thêm mới kê khai giá hàng hóa dịch vụ</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Lấy danh mục hàng hóa từ</label>
+                                    <div class="radio-list">
+                                        <label>
+                                            <span><input type="radio" name="phanloai" value="DM"></span>Danh mục hàng hóa
+                                        </label>
+                                        <label>
+                                            <span><input type="radio" name="phanloai" value="HS" checked=""></span>Hồ sơ đang công bố
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>Phân loại nhóm hàng hóa dịch vụ</label>
+                                {!!Form::select('manhom', $a_nhom, null, array('id' => 'manhom','class' => 'form-control select2me'))!!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickfilemau()">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+        {!! Form::close() !!}
+    </div>
+
     <!--Modal Delete-->
     <div id="delete-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
         {!! Form::open(['url'=>'giahhdvkhac/delete','id' => 'frm_delete'])!!}

@@ -79,6 +79,7 @@
                     <div class="actions">
 
                         <a href="{{url('/hsgiacpi/create?thang='.$inputs['thang'].'&nam='.$inputs['nam'])}}" class="btn btn-default btn-sm"><i class="fa fa-plus"></i>&nbsp;Thêm mới</a>
+                        <a href="{{url('/hsgiacpi/create_dk?thang='.$inputs['thang'].'&nam='.$inputs['nam'])}}" class="btn btn-default btn-sm"><i class="fa fa-plus"></i>&nbsp;Thêm mới (đính kèm)</a>
                         <!--div class="btn-group">
                             <a class="btn btn-default btn-sm" href="" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="fa fa-file-excel-o"></i>&nbsp;Nhận dữ liệu <i class="fa fa-angle-down"></i>
@@ -117,7 +118,7 @@
                             <th width="5%" style="text-align: center">STT</th>
                             <th width="15%" style="text-align: center">Thời gian nhập</th>
                             <th style="text-align: center">Nội dung</th>
-                            <th style="text-align: center" width="10%">Trạng thái</th>
+
                             <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
                         </thead>
@@ -127,22 +128,16 @@
                                 <td style="text-align: center">{{$key + 1}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->tgnhap)}}</td>
                                 <td>{{$tt->noidung}}</td>
-                                <td style="text-align: center">
-                                    @if($tt->trangthai != 'TONGHOP')
-                                        <span class="badge badge-warning">Chưa tổng hợp</span>
-                                    @else
-                                        <span class="badge badge-success">Đã tổng hợp</span>
-                                    @endif
-                                </td>
 
                                 <td>
-                                    @if($tt->trangthai != 'TONGHOP')
-                                        <a href="{{url('/hsgiacpi/edit?mahs='.$tt->mahs.'')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                    @if($tt->phanloai == 'DK')
+                                        <a href="{{url('/hsgiacpi/edit_dk?mahs='.$tt->mahs.'')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chi tiết</a>
+                                    @else
+                                        <a href="{{url('/hsgiacpi/edit?mahs='.$tt->mahs.'')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chi tiết</a>
+                                    @endif
                                         <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
 
-                                    @else
-                                        <a href="{{url('/hsgiacpi/edit?mahs='.$tt->mahs.'')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Xem chi tiết</a>
-                                    @endif
+
                                 </td>
                             </tr>
                         @endforeach

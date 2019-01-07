@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\File;
 
 class GiaHhDvKController extends Controller
 {
@@ -38,13 +39,14 @@ class GiaHhDvKController extends Controller
                 $model = $model->where('trangthai', $inputs['trangthai']);
 
             $model = $model->get();
-            $m_nhom = NhomHhDvK::where('theodoi', 'TD')
-                ->get();
+            $m_nhom =array_column(NhomHhDvK::where('theodoi', 'TD')
+                ->get()->toarray(), 'tennhom','manhom');
             return view('manage.dinhgia.giahhdvk.kekhai.index')
                 ->with('model', $model)
                 ->with('modeldb', $modeldb)
                 ->with('inputs',$inputs)
-                ->with('m_nhom', $m_nhom)
+                ->with('a_nhom', $m_nhom)
+                //->with('a_nhom',array_merge(array('ALL'=>'Tất cả hàng hóa'), $m_nhom))
                 ->with('pageTitle', 'Thông tin hồ sơ giá hàng hóa dịch vụ');
 
         } else
@@ -289,26 +291,136 @@ class GiaHhDvKController extends Controller
             return view('errors.notlogin');
     }
 
-    function filemau(){
+    function filemau(Request $request){
         if (Session::has('admin')) {
-            $model_nhom = NhomHhDvK::all();
-            $model = DmHhDvK::all();
-            Excel::create('DMHANGHOA',function($excel) use($model_nhom,$model){
-                $excel->sheet('DMHANGHOA', function($sheet) use($model_nhom,$model){
-                    $sheet->loadView('manage.dinhgia.giahhdvk.excel.danhmuc')
-                        ->with('model_nhom',$model_nhom->sortBy('manhom'))
-                        ->with('model',$model)
-                        ->with('pageTitle','Danh mục hàng hóa');
-                    //$sheet->setPageMargin(0.25);
-                    $sheet->setAutoSize(false);
-                    $sheet->setFontFamily('Tahoma');
-                    $sheet->setFontBold(false);
+            $inputs = $request->all();
+            //dd($inputs);
+            if($inputs['phanloai'] == 'HS'){
+                $model_nhom = NhomHhDvK::where('manhom', $inputs['manhom'])->get();
+                $inputs['district'] = session('admin')->district;
+                //$diaban = DiaBanHd::where('district', $inputs['getdistrict'])->where('level', 'H')->first()->diaban;
+                $modelidlk = GiaHhDvK::where('trangthai','CB')
+                    ->where('manhom',$inputs['manhom'])
+                    ->where('district',$inputs['district'])
+                    ->max('id');
+                if($modelidlk != null){
+                    $modellk = GiaHhDvK::where('id',$modelidlk)->first();
+                    $model = GiaHhDvKCt::where('mahs',$modellk->mahs)->get();
+                    foreach ($model as $ct) {
+                        $ct->gialk = $ct->gia;
+                    }
+                    Excel::create('DMHANGHOA',function($excel) use($model_nhom,$model){
+                        $excel->sheet('DMHANGHOA', function($sheet) use($model_nhom,$model){
+                            $sheet->loadView('manage.dinhgia.giahhdvk.excel.danhmuc')
+                                ->with('model_nhom',$model_nhom->sortBy('manhom'))
+                                ->with('model',$model)
+                                ->with('pageTitle','Danh mục hàng hóa');
+                            //$sheet->setPageMargin(0.25);
+                            $sheet->setAutoSize(false);
+                            $sheet->setFontFamily('Tahoma');
+                            $sheet->setFontBold(false);
 
-                    //$sheet->setColumnFormat(array('D' => '#,##0.00'));
-                });
-            })->download('xls');
+                            //$sheet->setColumnFormat(array('D' => '#,##0.00'));
+                        });
+                    })->download('xls');
+                }else{
+                    goto danhmuc;
+                }
+
+            }else{
+                danhmuc:
+                $model_nhom = NhomHhDvK::all();
+                $model = DmHhDvK::all();
+                foreach ($model as $ct) {
+                    $ct->gia = 0;
+                    $ct->gialk = 0;
+                }
+                Excel::create('DMHANGHOA',function($excel) use($model_nhom,$model){
+                    $excel->sheet('DMHANGHOA', function($sheet) use($model_nhom,$model){
+                        $sheet->loadView('manage.dinhgia.giahhdvk.excel.danhmuc')
+                            ->with('model_nhom',$model_nhom->sortBy('manhom'))
+                            ->with('model',$model)
+                            ->with('pageTitle','Danh mục hàng hóa');
+                        //$sheet->setPageMargin(0.25);
+                        $sheet->setAutoSize(false);
+                        $sheet->setFontFamily('Tahoma');
+                        $sheet->setFontBold(false);
+
+                        //$sheet->setColumnFormat(array('D' => '#,##0.00'));
+                    });
+                })->download('xls');
+            }
 
         } else
+            return view('errors.notlogin');
+    }
+
+    public function nhanexcel(){
+        if(Session::has('admin')){
+            $m_nhom =array_column(NhomHhDvK::where('theodoi', 'TD')
+                ->get()->toarray(), 'tennhom','manhom');
+            return view('manage.dinhgia.giahhdvk.excel.information')
+                ->with('a_nhom', $m_nhom)
+                ->with('pageTitle', 'Kê khai giá hàng hóa dịch vụ chi tiết');
+        }else
+            return view('errors.notlogin');
+    }
+
+    function import_excel(Request $request){
+        if(Session::has('admin')){
+            $inputs=$request->all();
+            $filename = session('admin')->maxa.'_'. getdate()[0];
+            $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
+            $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
+            $data = [];
+
+            Excel::load($path, function($reader) use (&$data, $inputs) {
+                $obj = $reader->getExcel();
+                $sheet = $obj->getSheet(0);
+                $data = $sheet->toArray(null,true,true,true);// giữ lại tiêu đề A=>'val';
+            });
+            //dd($data);
+            $modeldel = GiaHhDvKCtDf::where('district',session('admin')->district)->where('manhom',$inputs['manhom'])->delete();
+
+            for($i=$inputs['tudong'];$i < ($inputs['tudong'] + $inputs['sodong']); $i++){
+                //dd($data[$i]);
+                if (!isset($data[$i][$inputs['mahhdv']]) || $data[$i][$inputs['tenhhdv']] == '') {
+                    continue;//Tên cán bộ rỗng => thoát
+                }
+                $modelctnew = new GiaHhDvKCtDf();
+                $modelctnew->district = session('admin')->district;
+                $modelctnew->manhom = $inputs['manhom'];
+                $modelctnew->mahhdv = $data[$i][$inputs['mahhdv']];
+                $modelctnew->tenhhdv = $data[$i][$inputs['tenhhdv']];
+                $modelctnew->dacdiemkt = $data[$i][$inputs['dacdiemkt']];
+                $modelctnew->dvt = $data[$i][$inputs['dvt']];
+                $modelctnew->gia = $data[$i][$inputs['gia']];
+                $modelctnew->gialk = $data[$i][$inputs['gialk']];
+                $modelctnew->save();
+            }
+            File::Delete($path);
+            $tennhom = NhomHhDvK::where('manhom', $inputs['manhom'])->first()->tennhom;
+            $diaban = DiaBanHd::where('district', session('admin')->district)->where('level', 'H')->first()->diaban;
+            $modelidlk = GiaHhDvK::where('trangthai','CB')
+                ->where('manhom',$inputs['manhom'])
+                ->where('district',session('admin')->district)
+                ->max('id');
+            if($modelidlk != null) {
+                $modellk = GiaHhDvK::where('id', $modelidlk)->first();
+            }else{
+                $modellk = null;
+            }
+            $modelct = GiaHhDvKCtDf::where('district',session('admin')->district)
+                ->where('manhom',$inputs['manhom'])->get();
+            return view('manage.dinhgia.giahhdvk.kekhai.create')
+                ->with('district', session('admin')->district)
+                ->with('diaban', $diaban)
+                ->with('manhom', $inputs['manhom'])
+                ->with('tennhom', $tennhom)
+                ->with('modelct',$modelct)
+                ->with('modellk',$modellk)
+                ->with('pageTitle', 'Kê khai giá hàng hóa dịch vụ thêm mới');
+        }else
             return view('errors.notlogin');
     }
 }

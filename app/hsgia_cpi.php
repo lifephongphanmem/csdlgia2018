@@ -18,6 +18,17 @@ class hsgia_cpi extends Model
         'maxa',
         'mahuyen',
         'district',
-        'trangthai'
+        'trangthai',
+        'phanloai',
+        'ipt1',
+        'ipf1',
+        'ipt2',
+        'ipf2',
+        'ipt3',
+        'ipf3',
+        'ipt4',
+        'ipf4',
+        'ipt5',
+        'ipf5',
     ];
 }

@@ -19,7 +19,7 @@
 <body>
     <table>
         <tr>
-            <th colspan="7" style="text-align: center; font-weight: bold; font-size: 20px;">
+            <th colspan="8" style="text-align: center; font-weight: bold; font-size: 20px;">
                 DANH MỤC HÀNG HÓA, DỊCH VỤ
             </th>
         </tr>
@@ -33,18 +33,14 @@
             <td>Đơn vị tính</td>
             <td>Đặc điểm kỹ thuật</td>
             <td>Xuất xứ</td>
-            <td>Đơn giá</td>
+            <td>Giá liền kề</td>
+            <td>Giá hàng hóa</td>
         </tr>
 
-        <?php $i=1; ?>
+        <?php $stt=1; ?>
         @foreach($model_nhom as $nhom)
             <?php $model_hh = $model->where('manhom',$nhom->manhom)?>
             @if(count($model_hh)> 0)
-                <?php $stt=1; ?>
-                <tr style="font-weight: bold;">
-                    <td>{{IntToRoman($i++)}}</td>
-                    <td style="text-align: left;" colspan="6">{{$nhom->tennhom}}</td>
-                </tr>
                 @foreach($model_hh as $ct)
                     <tr>
                         <td>{{$stt++}}</td>
@@ -53,10 +49,10 @@
                         <td>{{$ct->dvt}}</td>
                         <td>{{$ct->dacdiemkt}}</td>
                         <td>{{$ct->xuatxu}}</td>
-                        <td></td>
+                        <td>{{$ct->gialk}}</td>
+                        <td>{{$ct->gia}}</td>
                     </tr>
                 @endforeach
-
             @endif
         @endforeach
     </table>

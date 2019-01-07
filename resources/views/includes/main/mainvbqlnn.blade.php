@@ -20,6 +20,13 @@
                 data-original-title="Giá CPI">
                 <a href="{{url('')}}">Giá CPI</a>
                 <ul class="sub-menu" style="display: none;">
+                    <li>
+                        <a href="{{url('/dmhanghoacpi/danhsach')}}">Danh mục hàng hóa</a>
+                    </li>
+                    <li>
+                        <a href="{{url('/hsgiacpi/danhsach?thang='.date('m').'&nam='.date('Y'))}}">Hồ sơ giá hàng hóa</a>
+                    </li>
+                    <!--
                     @if(session('admin')->level == "H" || session('admin')->level == "T")
                         <li>
                             <a href="{{url('/dmhanghoacpi/danhsach')}}">Danh mục hàng hóa</a>
@@ -44,6 +51,7 @@
                         <li>
                             <a href="{{url('/chisocpi/baocao')}}">Báo cáo chỉ số CPI</a>
                         </li>
+                        -->
                 </ul>
             </li>
     </ul>
