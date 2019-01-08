@@ -59,5 +59,6 @@ Route::get('/createdkgct/del','DangKyGiaBOGCtController@destroy');
 Route::resource('timkiem','DangKyGiaBOGController@indexdkgtk');
 //Báo cáo
 Route::resource('baocaodkg','BaoCaoDkgController@index');
+Route::resource('baocaodkg/BcMhBog','BaoCaoDkgController@BcMhBog');
 Route::get('baocao/{id}/Bc1','BaoCaoDkgController@BC1');
 ?>

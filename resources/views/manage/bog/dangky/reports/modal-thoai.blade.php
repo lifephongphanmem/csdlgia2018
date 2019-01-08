@@ -8,7 +8,7 @@
 <!--Modal Thoại PL5-->
 <div id="pl5-thoai-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
     <div class="modal-dialog">
-        {!! Form::open(['url'=>'baocaodkg/BC1','target'=>'_blank' , 'id' => 'frm_Bc1', 'class'=>'form-horizontal form-validate']) !!}
+        {!! Form::open(['url'=>'baocaodkg/BcMhBog','target'=>'_blank' , 'id' => 'frm_Bc1', 'class'=>'form-horizontal form-validate']) !!}
         <div class="modal-content">
             <div class="modal-header modal-header-primary">
                 <button type="button" data-dismiss="modal" aria-hidden="true"
@@ -42,6 +42,7 @@
                     </div>
                 </div>
             </div>
+            <input type="" name="phanloai" id="phanloai" value="{{$phanloai}}">
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
                 <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickBc1()" >Đồng ý</button>

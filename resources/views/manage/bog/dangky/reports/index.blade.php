@@ -26,7 +26,7 @@
                     <div class="row">
 
                         <div class="col-lg-12">
-                            <label>Thông tư 56/2014/TT-BTC</label>
+
                             <ol>
                                 <li><a data-target="#pl5-thoai-confirm" data-toggle="modal" data-href="{{url('reports/TT142/PL5')}}">Báo cáo mặt hàng đăng ký giá</a> </li>
                             </ol>
