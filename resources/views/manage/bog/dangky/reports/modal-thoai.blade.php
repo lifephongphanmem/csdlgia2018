@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <input type="" name="phanloai" id="phanloai" value="{{$phanloai}}">
+            <input type="hidden" name="phanloai" id="phanloai" value="{{$phanloai}}">
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
                 <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickBc1()" >Đồng ý</button>

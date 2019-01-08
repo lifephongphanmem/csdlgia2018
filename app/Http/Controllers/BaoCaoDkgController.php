@@ -66,52 +66,50 @@ class BaoCaoDkgController extends Controller
                     ->select('ngaythuchien')
                     ->where('maxa', $inputs['maxa'])
                     ->whereMonth('ngaythuchien', '1')->distinct()->get()->toarray(), 'ngaythuchien');
-                $a_t2 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')                     ->where('maxa', $inputs['maxa'])
-                    ->whereMonth('ngaythuchien', '2')->get()->toarray(), 'ngaythuchien');
-                $a_t3 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')                     ->where('maxa', $inputs['maxa'])
-                    ->whereMonth('ngaythuchien', '3')->get()->toarray(), 'ngaythuchien');
-                $a_t4 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')                     ->where('maxa', $inputs['maxa'])
-                    ->whereMonth('ngaythuchien', '4')->get()->toarray(), 'ngaythuchien');
-                $a_t5 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')                     ->where('maxa', $inputs['maxa'])
-                    ->whereMonth('ngaythuchien', '5')->get()->toarray(), 'ngaythuchien');
-                $a_t6 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')                     ->where('maxa', $inputs['maxa'])
-                    ->whereMonth('ngaythuchien', '6')->get()->toarray(), 'ngaythuchien');
-                $a_t7 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')                     ->where('maxa', $inputs['maxa'])
-                    ->whereMonth('ngaythuchien', '7')->get()->toarray(), 'ngaythuchien');
-                $a_t8 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')                     ->where('maxa', $inputs['maxa'])
-                    ->whereMonth('ngaythuchien', '8')->get()->toarray(), 'ngaythuchien');
-                $a_t9 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')                     ->where('maxa', $inputs['maxa'])
-                    ->whereMonth('ngaythuchien', '9')->get()->toarray(), 'ngaythuchien');
-                $a_t10 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')                     ->where('maxa', $inputs['maxa'])
-                    ->whereMonth('ngaythuchien', '10')->get()->toarray(), 'ngaythuchien');
-                $a_t11 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')                     ->where('maxa', $inputs['maxa'])
-                    ->whereMonth('ngaythuchien', '11')->get()->toarray(), 'ngaythuchien');
-                $a_t12 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')                     ->where('maxa', $inputs['maxa'])
-                    ->whereMonth('ngaythuchien', '12')->get()->toarray(), 'ngaythuchien');
-                    $t1 = count($a_t1);
-                    $t2 = count($a_t2);
-
-
-                    $t3 = count($a_t3);
-
-                    $t4 = count($a_t4);
-
-                    $t5 = count($a_t5);
-
-                    $t6 = count($a_t6);
-
-                    $t7 = count($a_t7);
-
-                    $t8 = count($a_t8);
-
-                    $t9 = count($a_t9);
-
-                    $t10 = count($a_t10);
-
-                    $t11 = count($a_t11);
-
-                    $t12 = count($a_t12);
-
+                $a_t2 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')
+                    ->select('ngaythuchien')
+                    ->where('maxa', $inputs['maxa'])
+                    ->whereMonth('ngaythuchien', '2')->distinct()->get()->toarray(), 'ngaythuchien');
+                $a_t3 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')
+                    ->select('ngaythuchien')
+                    ->where('maxa', $inputs['maxa'])
+                    ->whereMonth('ngaythuchien', '3')->distinct()->get()->toarray(), 'ngaythuchien');
+                $a_t4 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')
+                    ->select('ngaythuchien')
+                    ->where('maxa', $inputs['maxa'])
+                    ->whereMonth('ngaythuchien', '4')->distinct()->get()->toarray(), 'ngaythuchien');
+                $a_t5 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')
+                    ->select('ngaythuchien')
+                    ->where('maxa', $inputs['maxa'])
+                    ->whereMonth('ngaythuchien', '5')->distinct()->get()->toarray(), 'ngaythuchien');
+                $a_t6 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')
+                    ->select('ngaythuchien')
+                    ->where('maxa', $inputs['maxa'])
+                    ->whereMonth('ngaythuchien', '6')->distinct()->get()->toarray(), 'ngaythuchien');
+                $a_t7 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')
+                    ->select('ngaythuchien')
+                    ->where('maxa', $inputs['maxa'])
+                    ->whereMonth('ngaythuchien', '7')->distinct()->get()->toarray(), 'ngaythuchien');
+                $a_t8 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')
+                    ->select('ngaythuchien')
+                    ->where('maxa', $inputs['maxa'])
+                    ->whereMonth('ngaythuchien', '8')->distinct()->get()->toarray(), 'ngaythuchien');
+                $a_t9 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')
+                    ->select('ngaythuchien')
+                    ->where('maxa', $inputs['maxa'])
+                    ->whereMonth('ngaythuchien', '9')->distinct()->get()->toarray(), 'ngaythuchien');
+                $a_t10 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')
+                    ->select('ngaythuchien')
+                    ->where('maxa', $inputs['maxa'])
+                    ->whereMonth('ngaythuchien', '10')->distinct()->get()->toarray(), 'ngaythuchien');
+                $a_t11 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')
+                    ->select('ngaythuchien')
+                    ->where('maxa', $inputs['maxa'])
+                    ->whereMonth('ngaythuchien', '11')->distinct()->get()->toarray(), 'ngaythuchien');
+                $a_t12 = array_column(dkghoso::join('dkghosoct','dkghoso.mahs','dkghosoct.mahs')
+                    ->select('ngaythuchien')
+                    ->where('maxa', $inputs['maxa'])
+                    ->whereMonth('ngaythuchien', '12')->distinct()->get()->toarray(), 'ngaythuchien');
                 $mh = DmMhBinhOnGia::where('phanloai', $inputs['phanloai'])->first()->hienthi;
                 //dd($model->toarray());
                 //dd($t11);
@@ -133,18 +131,6 @@ class BaoCaoDkgController extends Controller
                     ->with('a_t9', $a_t9)
                     ->with('a_t10', $a_t10)
                     ->with('a_t11', $a_t11)
-                    ->with('t1', $t1)
-                    ->with('t2', $t2)
-                    ->with('t3', $t3)
-                    ->with('t4', $t4)
-                    ->with('t5', $t5)
-                    ->with('t6', $t6)
-                    ->with('t7', $t7)
-                    ->with('t8', $t8)
-                    ->with('t9', $t9)
-                    ->with('t10', $t10)
-                    ->with('t11', $t11)
-                    ->with('t12', $t12)
                     ->with('pageTitle', 'BẢNG ĐĂNG KÝ MỨC GIÁ BÁN CỤ THỂ');
             }
             else
