@@ -76,7 +76,6 @@
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box">
-                @if(can('ttqd','create'))
                     <div class="portlet-title">
                         <div class="caption">
                         </div>
@@ -90,7 +89,6 @@
                                 <i class="fa fa-print"></i> Print </a-->
                         </div>
                     </div>
-                @endif
                 <div class="portlet-body">
                     <div class="row">
                         <div class="col-md-2">
