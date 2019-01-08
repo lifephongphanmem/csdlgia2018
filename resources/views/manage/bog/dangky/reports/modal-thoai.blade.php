@@ -35,7 +35,7 @@
                             <select name="maxa" id="maxa" class="form-control">
                                 <option value="">--Chọn đơn vị báo cáo--</option>
                                 @foreach($m_dv as $db)
-                                    <option value="{{$db->maxa}}" {{$db->maxa == $maxa ? 'selected' : ''}}>{{$db->tendn}}</option>
+                                    <option value="{{$db->maxa}}">{{$db->tendn}}</option>
                                 @endforeach
                             </select>
                         </div>

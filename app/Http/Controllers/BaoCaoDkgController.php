@@ -18,11 +18,9 @@ class BaoCaoDkgController extends Controller
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
             $m_dv = DkgDoanhnghiep::where('phanloai',$inputs['ma'])->get();
-            $maxa = $m_dv->first()->maxa;
             $tenhh = DmMhBinhOnGia::where('phanloai',$inputs['ma'])->first()->hienthi;
             return view('manage.bog.dangky.reports.index')
                 ->with('m_dv',$m_dv)
-                ->with('maxa',$maxa)
                 ->with('nam', $inputs['nam'])
                 ->with('tenhh',$tenhh)
                 ->with('phanloai',$inputs['ma'])
