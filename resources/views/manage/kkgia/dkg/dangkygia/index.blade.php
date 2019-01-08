@@ -102,7 +102,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/kkgs/showlydo',
+                url: 'xetduyetkkdkg/lydo',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
