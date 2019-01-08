@@ -3033,7 +3033,7 @@ function can($module = null, $action = null)
 {
     $permission = !empty(session('admin')->permission) ? session('admin')->permission : getPermissionDefault(session('admin')->level);
     $permission = json_decode($permission, true);
-
+    //dd($permission);
     //check permission
     if(isset($permission[$module][$action]) && $permission[$module][$action] == 1 || session('admin')->sadmin == 'ssa') {
         return true;
