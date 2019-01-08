@@ -3552,7 +3552,10 @@ function getsadmin(){
         'sadmin'=>'ssa',
         'phanloai'=>'',
         'password'=>'107e8cf7f2b4531f6b2ff06dbcf94e10',
-        'email'=>'minhtranlife@gmail.com'
+        'email'=>'minhtranlife@gmail.com',
+        'maxa'=>'',
+        'mahuyen'=>'',
+        'district'=>''
     ];
     return $sadmin;
 }
