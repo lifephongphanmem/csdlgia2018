@@ -10,6 +10,7 @@ class dkghoso extends Model
     protected $fillable = [
         'id',
         'maxa',
+        'mahuyen',
         'mahs',
         'soqd',
         'socongvan',

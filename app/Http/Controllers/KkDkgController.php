@@ -96,7 +96,10 @@ class KkDkgController extends Controller
                         ->get();
                     $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : session('admin')->maxa;
                 }
-                $model = $this->checktt($inputs['ma']);
+                //$model = $this->checktt($inputs['ma']); Viết khó hiểu vcl
+                $model = Company::join('town','town.maxa','=','company.mahuyen')
+                    ->select('company.*','town.tendv')
+                    ->where('company.pl',$inputs['ma']);
                 $model= $model->where('company.mahuyen',$inputs['maxa'])->get();
 
                 return view('manage.kkgia.dkg.dangkygia.ttdn')
@@ -126,7 +129,10 @@ class KkDkgController extends Controller
                 ->where('trangthai', $inputs['trangthai'])
                 ->orderBy('id', 'desc')
                 ->get();
-            $modeldn = $this->checktt($inputs['ma']);
+            $modeldn = Company::where('level','DKG')
+                ->where('pl',$inputs['ma'])
+                ->where('maxa',$inputs['masothue'])
+                ->first();
             $modeldn= $modeldn->where('company.maxa', $inputs['masothue'])->first();
             return view('manage.kkgia.dkg.dangkygia.index')
                 ->with('model', $model)
@@ -135,7 +141,7 @@ class KkDkgController extends Controller
                 ->with('trangthai', $inputs['trangthai'])
                 ->with('masothue', $inputs['masothue'])
                 ->with('inputs',$inputs)
-                ->with('pageTitle', 'Danh sách hồ sơ kê khai đăng ký giá');
+                ->with('pageTitle', 'Danh sách hồ sơ kê khai mặt hàng BOG');
 
         }else
             return view('errors.notlogin');
@@ -145,8 +151,12 @@ class KkDkgController extends Controller
             $inputs = $request->all();
             $modelct = kkdkgctdf::where('maxa',$inputs['masothue'])->get();
 
-            $modeldn = $this->checktt($inputs['ma']);
-            $modeldn= $modeldn->where('company.maxa', $inputs['masothue'])->first();
+            //$modeldn = $this->checktt($inputs['ma']);
+            //$modeldn= $modeldn->where('company.maxa', $inputs['masothue'])->first();
+            $modeldn = Company::where('level','DKG')
+                ->where('pl',$inputs['ma'])
+                ->where('maxa',$inputs['masothue'])
+                ->first();
             $datenow = date('Y-m-d');
             $ngayhieuluc = date('d/m/Y', strtotime(getNgayHieuLuc($datenow,'TPCNTE6T')));
             $ngaynhap = date('d/m/Y', strtotime($datenow));
@@ -158,7 +168,7 @@ class KkDkgController extends Controller
                 ->with('ngaynhap', $ngaynhap)
                 ->with('ngayhieuluc', $ngayhieuluc)
                 ->with('modelct',$modelct)
-                ->with('pageTitle', 'Kê khai giá mặt hàng đăng ký giá');
+                ->with('pageTitle', 'Kê khai giá mặt hàng BOG');
 
 
         }else
@@ -209,8 +219,12 @@ class KkDkgController extends Controller
             //Kiểm tra có thuộc sự quản lý hay k
 
             $model = kkdkg::findOrFail($id);
-            $modeldn = $this->checktt($model->phanloai);
-            $modeldn= $modeldn->where('company.maxa', $model->maxa)->first();
+            //$modeldn = $this->checktt($model->phanloai);
+            //$modeldn= $modeldn->where('company.maxa', $model->maxa)->first();
+            $modeldn = Company::where('level','DKG')
+                ->where('pl',$model->phanloai)
+                ->where('maxa',$model->maxa)
+                ->first();
             $modelct = kkdkgct::where('mahs',$model->mahs)
                 ->get();
 
@@ -218,7 +232,7 @@ class KkDkgController extends Controller
                 ->with('modeldn', $modeldn)
                 ->with('model',$model)
                 ->with('modelct',$modelct)
-                ->with('pageTitle', 'Chỉnh sửa hồ sơ kê khai giá mật hàng sữa');
+                ->with('pageTitle', 'Chỉnh sửa hồ sơ kê khai giá mật hàng BOG');
         }else
             return view('errors.notlogin');
     }
@@ -287,8 +301,12 @@ class KkDkgController extends Controller
         if (Session::has('admin')) {
             $inputs = $request->all();
             $modelkk = kkdkg::where('mahs',$inputs['mahs'])->first();
-            $modeldn = $this->checktt($modelkk->phanloai);
-            $modeldn= $modeldn->where('company.maxa', $modelkk->maxa)->first();
+            //$modeldn = $this->checktt($modelkk->phanloai);
+            //$modeldn= $modeldn->where('company.maxa', $modelkk->maxa)->first();
+            $modeldn = Company::where('level','DKG')
+                ->where('pl',$modelkk->phanloai)
+                ->where('maxa',$modelkk->maxa)
+                ->first();
             $modelkkct = kkdkgct::where('mahs',$modelkk->mahs)
                 ->get();
             $modelcqcq = Town::where('maxa',$modeldn->mahuyen)
@@ -298,7 +316,7 @@ class KkDkgController extends Controller
                 ->with('modeldn',$modeldn)
                 ->with('modelkkct',$modelkkct)
                 ->with('modelcqcq',$modelcqcq)
-                ->with('pageTitle','Hồ sơ kê khai giá;');
+                ->with('pageTitle','Hồ sơ kê khai giá');
 
         }else
             return view('errors.notlogin');

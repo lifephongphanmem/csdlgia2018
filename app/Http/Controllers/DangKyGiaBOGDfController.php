@@ -23,7 +23,6 @@ class DangKyGiaBOGDfController extends Controller
         }
         $inputs = $request->all();
         if(isset($inputs['tenhhdv'])){
-            $inputs['mahs'] = '123456';
             $inputs['mucgiahienhanh'] = getDouble($inputs['mucgiahienhanh']);
             $inputs['mucgiamoi'] = getDouble($inputs['mucgiamoi']);
             $modeladd = new dkghosoctdf();
@@ -127,7 +126,7 @@ class DangKyGiaBOGDfController extends Controller
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-12">';
             $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Đơn vị tính</b><span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" id="donvitinhedit" class="form-control" name="donvitinhedit" >'.$model->donvitinh.'</div>';
+            $result['message'] .= '<div><input type="text" id="donvitinhedit" class="form-control" name="donvitinhedit" value="'.$model->donvitinh.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
@@ -155,7 +154,6 @@ class DangKyGiaBOGDfController extends Controller
         //dd($request);
         $inputs = $request->all();
         if(isset($inputs['id'])){
-            $inputs['mahs'] = '123456' ;
             $inputs['mucgiahienhanh'] = getDouble($inputs['mucgiahienhanh']);
             $inputs['mucgiamoi'] = getDouble($inputs['mucgiamoi']);
             $modeladd = dkghosoctdf::where('id',$inputs['id'])->first();
@@ -223,7 +221,6 @@ class DangKyGiaBOGDfController extends Controller
         //dd($request);
         $inputs = $request->all();
         if(isset($inputs['id'])){
-            $inputs['mahs'] = '123456';
             $modeladd = dkghosoctdf::where('id',$inputs['id'])->delete();
 
             $model = dkghosoctdf::where('mahs',$inputs['mahs'])

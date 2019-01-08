@@ -57,6 +57,7 @@
 
                     </div>
                 </div>
+                <input type="hidden" id="ma" name="ma" value="{{$inputs['ma']}}">
                 @if(session('admin')->level == 'T' || session('admin')->level == 'H')
                     <div class="col-md-5">
                         <div class="form-group">
@@ -68,7 +69,6 @@
                             </select>
                         </div>
                     </div>
-                    <input type="hidden" name="ma" id="ma" value="{{$ma}}">
                 @endif
                 <div class="portlet-body">
                     <div class="portlet-body">
@@ -90,7 +90,8 @@
                                 <td>{{$tt->maxa}}</td>
                                 <td style="text-align: center">{{$tt->diachi}}</td>
                                 <td>
-                                    <a href="{{url('dsdangkygia?ma='.$tt->id)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Nhập mới</a>
+                                    <a href="{{url('dsdangkygia?ma='.$inputs['ma'].'&masothue='.$tt->maxa)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Đăng ký giá</a>
+                                    <!--Vãi cả truyền id -->
                                 </td>
                             </tr>
                         @endforeach

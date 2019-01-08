@@ -35,7 +35,8 @@
 @section('content')
 
     <h3 class="page-title">
-        Danh sách hồ sơ {{$tenmh}}<small>&nbsp;đăng ký giá</small>
+        Danh sách hồ sơ {{$modeldm->hienthi}}<small>&nbsp;đăng ký giá</small>
+        <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -44,7 +45,7 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
-                        <a href="{{url('createdkg/create?ma='.$ma)}}" class="btn btn-default btn-sm">
+                        <a href="{{url('createdkg/create?ma='.$inputs['ma'].'&masothue='.$inputs['masothue'])}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
                     </div>
                 </div>
@@ -66,7 +67,7 @@
                         <tr class="odd gradeX">
                             <td style="text-align: center">{{$key + 1}}</td>
                             <td class="active" >{{$tt->socongvan}}</td>
-                            <td>{{$tt->ngayquyetdinh}}</td>
+                            <td>{{getDayVn($tt->ngayquyetdinh)}}</td>
                             <td style="text-align: center">{{$tt->phanloaidkg}}</td>
 
                             @if($tt->trangthai == "CC")

@@ -29,7 +29,7 @@
 <table cellspacing="0" cellpadding="0" border="0">
     <tr>
         <td style="text-align: center; text-transform: uppercase;" width="30%">
-            <b>{{$tendn}}</b><br>
+            <b>{{$modeldn->tendn}}</b><br>
             --------<br>
         </td>
         <td style="text-align: left;" width="70%">
@@ -60,7 +60,7 @@
     </tr>
     <tr>
         <td colspan="2" style="text-align: left; font-size: 14px;">
-            Doanh nghiệp là đơn vị (sản xuất hay dịch vụ) {{$phanloaidn}}
+            Doanh nghiệp là đơn vị (sản xuất hay dịch vụ)
         </td>
     </tr>
     <tr>

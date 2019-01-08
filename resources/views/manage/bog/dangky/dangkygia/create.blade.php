@@ -59,6 +59,7 @@
                     mucgiahienhanh: $('#mucgiahienhanh').val(),
                     mucgiamoi: $('#mucgiamoi').val(),
                     donvitinh: $('#donvitinh').val(),
+                    mahs: $('#maxa').val()
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -109,6 +110,7 @@
                     mucgiamoi: $('#mucgiamoiedit').val(),
                     donvitinh: $('#donvitinhedit').val(),
                     id:$('#idedit').val(),
+                    mahs: $('#maxa').val(),
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -136,7 +138,8 @@
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
-                    id: $('input[name="iddelete"]').val()
+                    id: $('input[name="iddelete"]').val(),
+                    mahs: $('#maxa').val(),
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -161,7 +164,8 @@
 
 
     <h3 class="page-title">
-        {{$tendn}} đăng ký giá<small> thêm mới</small>
+        Đăng ký giá<small> thêm mới</small>
+        <p><h5 style="color: blue">{{$m_dv->tendn}}&nbsp;- Mã số thuế: {{$m_dv->maxa}}</h5></p>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -182,7 +186,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Theo quyết định<span class="require">*</span></label>
-                                        <select name="maxa" id="maxa" class="form-control">
+                                        <!--select name="maxa" id="maxa" class="form-control"-->
+                                        <select name="soqd" id="soqd" class="form-control">
                                             @foreach($m_qd as $qd)
                                                 <option value="{{$qd->soqd}}">{{$qd->soqd}}</option>
                                             @endforeach
@@ -226,8 +231,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="hidden" name="phanloai" id="phanloai" value="{{$ma}}">
-                            <input type="hidden" name="madn" id="madn" value="{{$madn}}">
+                            <input type="hidden" name="phanloai" id="phanloai" value="{{$inputs['ma']}}">
+                            <input type="hidden" name="maxa" id="maxa" value="{{$inputs['masothue']}}">
+                            <input type="hidden" name="mahuyen" id="mahuyen" value="{{$m_dv->mahuyen}}">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -253,6 +259,20 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        @foreach($m_hosoct as $key=>$ct)
+                                            <tr>
+                                                <td style="text-align: center">{{$key+1}}</td>
+                                                <td>{{$ct->tenhhdv}}</td>
+                                                <td>{{$ct->quycach}}</td>
+                                                <td>{{$ct->donvitinh}}</td>
+                                                <td style="text-align: right">{{number_format($ct->mucgiahienhanh)}}</td>
+                                                <td style="text-align: right">{{number_format($ct->mucgiamoi)}}</td>
+                                                <td>
+                                                <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editmhbog({{$ct->id}});"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>
+                                                <button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid({{$ct->id}});" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -260,11 +280,9 @@
                         </div>
                     <!-- END FORM-->
                 </div>
-
-
             </div>
             <div style="text-align: center">
-                <a href="{{url('dsdangkygia?ma='.$madn)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('dsdangkygia?ma='.$inputs['ma'].'&masothue='.$inputs['masothue'])}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
             </div>
@@ -275,7 +293,7 @@
     <script type="text/javascript">
         function validateForm(){
 
-            var validator = $("#create_binhongia").validate({
+            var validator = $("#create_dkgbog").validate({
                 rules: {
                     ten :"required"
                 },

@@ -24,7 +24,7 @@
             $('#maxa').change(function() {
                 var maxa = '&maxa=' + $('#maxa').val();
                 var ma = '&ma=' + $('#ma').val();
-                var url = '/ttdnkkdkg?'+ma + maxa;
+                var url = '/thongtindnkkgdk?'+ma + maxa;
                 window.location.href = url;
             });
 

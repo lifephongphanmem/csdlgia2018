@@ -24,14 +24,14 @@
             $('#nam').change(function() {
                 var  ma = 'ma='+ $('#phanloai').val()
                 var namhs = '&nam='+ $('#nam').val();
-                var url = '/indexdkgtk?'+ma+namhs;
+                var url = '/timkiem?'+ma+namhs;
                 window.location.href = url;
             });
             $('#madn').change(function() {
                 var  ma = 'ma='+ $('#phanloai').val()
                 var namhs = '&nam='+ $('#nam').val();
                 var madn = '&madn=' + $('#madn').val();
-                var url = '/indexdkgtk?'+ ma + namhs + madn;
+                var url = '/timkiem?'+ ma + namhs + madn;
                 window.location.href = url;
             });
 
@@ -59,10 +59,10 @@
         </div>
         <div class="col-md-5">
             <div class="form-group">
-                <select class="form-control" name="madn" id="madn" required>
+                <select class="form-control" name="madn" id="madn">
                     <option value="">--Chọn doanh nghiệp--</option>
                     @foreach($m_dn as $tt)
-                        <option value="{{$tt->maxa}}">{{$tt->tendn}}</option>
+                        <option value="{{$tt->maxa}}" {{$tt->maxa == $inputs['madn'] ? 'selected' : ''}}>{{$tt->tendn}}</option>
                     @endforeach
                 </select>
             </div>
@@ -83,8 +83,12 @@
                         <tr>
                             <th style="text-align: center ; margin: auto" width="2%">STT</th>
                             <th style="text-align: center" width="20%">Doanh nghiệp</th>
-                            <th style="text-align: center">Ngày quyết định</th>
-                            <th style="text-align: center" width="20%">Phân loại đăng ký</th>
+                            <th style="text-align: center">Ngày thực hiện</th>
+                            <th style="text-align: center">Phân loại đăng ký</th>
+                            <th style="text-align: center">Tên hàng hóa dịch vụ</th>
+                            <th style="text-align: center">Quy cách chất lượng</th>
+                            <th style="text-align: center">Đơn vị tính</th>
+                            <th style="text-align: center">Đơn giá</th>
 
                         </tr>
                         </thead>
@@ -94,8 +98,12 @@
                                 <td style="text-align: center">{{$key+1}}</td>
                                 <td class="active"><b>Tên DN: </b> {{$tt->tendn}}
                                     <br><b>Mã số thuế:</b> {{$tt->maxa}}</td>
-                                <td style="text-align: center">{{getDayVn($tt->ngayquyetdinh)}}</td>
+                                <td style="text-align: center">{{getDayVn($tt->ngaythuchien)}}</td>
                                 <td style="text-align: left">{{$tt->phanloaidkg}}</td>
+                                <td style="text-align: left">{{$tt->tenhhdv}}</td>
+                                <td style="text-align: left">{{$tt->quycach}}</td>
+                                <td style="text-align: left">{{$tt->donvitinh}}</td>
+                                <td style="text-align: right">{{number_format($tt->mucgiamoi)}}</td>
 
                             </tr>
                         @endforeach

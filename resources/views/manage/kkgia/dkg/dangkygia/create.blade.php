@@ -109,7 +109,8 @@
                     gialk: $('#gialkedit').val(),
                     giakk: $('#giakkedit').val(),
                     dvt: $('#dvtedit').val(),
-                    maxa: $('#maxa').val(),
+                    id: $('#idedit').val(),
+                    maxa: $('#maxa').val()
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -179,7 +180,7 @@
                     {!! Form::open(['url'=>'storekkdkg', 'files'=>true, 'id' => 'create_kkdkg', 'class'=>'horizontal-form']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-                    <div class="portlet-body">
+                    <div class="form-body">
                         <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
                         <div class="row">
                             <div class="col-md-12">
@@ -306,8 +307,6 @@
                     </div>
                     <!-- END FORM-->
                 </div>
-
-
             </div>
             <div style="text-align: center">
                 <a href="{{url('kkdkg?&ma='.$ma.'&masothue='.$maxa)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
@@ -352,11 +351,13 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
-
+                        <div class="col-md-6">
+                            <div class="form-group"><label for="selGender" class="control-label"><b>đơn vị tính</b><span class="require">*</span></label>
+                                <div><input type="text" name="dvt" id="dvt" class="form-control" ></div>
+                            </div>
+                        </div>
                     </div>
-
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group"><label for="selGender" class="control-label"><b>Giá liền kề</b><span class="require">*</span></label>
@@ -369,15 +370,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group"><label for="selGender" class="control-label"><b>đơn vị tính</b><span class="require">*</span></label>
-                                <div><input type="text" name="dvt" id="dvt" class="form-control" ></div>
-                            </div>
-                        </div>
-                    </div>
-                    <input type="hidden" name="maxa" id="maxa" value="{{$maxa}}" class="form-control" >
 
                 </div>
                 <div class="modal-footer">

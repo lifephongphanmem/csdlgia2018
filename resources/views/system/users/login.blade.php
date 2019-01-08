@@ -125,16 +125,16 @@ License: You must have a valid license purchased only from themeforest(the above
 			</div>
 			<div class="modal-body">
 				<div class="form-horizontal">
-					<!--div class="form-group">
+					<div class="form-group">
 						<div class="row" style="text-align: center">
 							<div class="col-md-12" style="text-align: center">
 								<div class="profile-userbuttons">
 									<a href="{{url('dangkytaikhoan?&level=DKG')}}" class="btn blue btn-sm">
-										Doanh nghiệp đăng ký giá</a>&nbsp;
+										Doanh nghiệp cung cấp mặt hàng <br>trong danh mục bình ổn giá</a>&nbsp;
 								</div>
 							</div>
 						</div>
-					</div-->
+					</div>
 					<div class="form-group">
 						<div class="row" style="text-align: center">
 							<div class="col-md-12" style="text-align: center">

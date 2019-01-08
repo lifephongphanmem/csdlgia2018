@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\DmMhBinhOnGia;
 use App\Register;
 use App\Town;
 use App\Users;
@@ -88,11 +89,13 @@ class RegisterController extends Controller
                 $dvcq = Town::where('maxa', $model->mahuyen)->first()->tendv;
                 $settingdvvt = !empty($model->settingdvvt) ? json_decode($model->settingdvvt) : '';
                 $loaihinhhd = !empty($model->loaihinhhd) ? json_decode($model->loaihinhhd) : '';
+                $dmbog = DmMhBinhOnGia::all();
                 return view('system.register.xetduyet.show')
                     ->with('model', $model)
                     ->with('dvcq', $dvcq)
                     ->with('settingdvvt', $settingdvvt)
                     ->with('loaihinhhd',$loaihinhhd)
+                    ->with('dmbog',$dmbog)
                     ->with('pageTitle', 'Thông tin doanh nghiệp đăng ký tài khoản');
             }else
                 return view('errors.noperm');
@@ -191,10 +194,12 @@ class RegisterController extends Controller
     public function dangkytaikhoan(Request $request){
         $inputs = $request->all();
         $model = Town::all();
+        $modelbog = DmMhBinhOnGia::all();
 
         return view('system.register.dktk.index')
             ->with('model',$model)
             ->with('level',$inputs['level'])
+            ->with('modelbog',$modelbog)
             ->with('pageTitle','Đăng ký thông tin tài khoản doanh nghiệp');
     }
 
@@ -366,7 +371,9 @@ class RegisterController extends Controller
             $input = $request->all();
             $id = $input['idregister'];
             $model = Register::findOrFail($id);
+
             $inputs = $model->toArray();
+            $input['pl'] = $model->phanloai;
             $inputs['avatar'] = 'no-image-available.jpg';
             unset($inputs['id']);
             if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
@@ -389,6 +396,7 @@ class RegisterController extends Controller
                         $modeluser->level = $model->level;
                         $modeluser->maxa = $model->maxa;
                         $modeluser->ttnguoitao = session('admin')->name.'('.session('admin')->username.') - '. getDateTime(Carbon::now()->toDateTimeString());
+                        $modeluser->phanloai = $model->pl;
                         $modeluser->save();
                     }
                     $tencqcq = Town::where('maxa', $model->mahuyen)->first();

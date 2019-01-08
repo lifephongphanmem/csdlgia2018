@@ -7,6 +7,7 @@ use App\dkghoso;
 use App\dkghosoct;
 use App\DmMhBinhOnGia;
 use App\Town;
+use App\Company;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -32,14 +33,15 @@ class BaoCaoDkgController extends Controller
     public function Bc1($id){
         if (Session::has('admin')) {
             $model = dkghoso::where('id',$id)->first();
-            $phanloaidn = DkgDoanhnghiep::where('maxa',$model->maxa)->first()->phanloaidn;
-            $tendn = DkgDoanhnghiep::where('maxa',$model->maxa)->first()->tendn;
+            $modeldn = Company::where('maxa',$model->maxa)
+                ->where('pl',$model->phanloai)
+                ->where('level','DKG')
+                ->first();
             $modelct = dkghosoct::where('mahs',$model->mahs)->get();
             return view('manage.bog.dangky.reports.BC1')
                 ->with('model',$model)
                 ->with('modelct',$modelct)
-                ->with('phanloaidn',$phanloaidn)
-                ->with('tendn',$tendn)
+                ->with('modeldn',$modeldn)
                 ->with('pageTitle', 'BẢNG ĐĂNG KÝ MỨC GIÁ BÁN CỤ THỂ');
 
         }else

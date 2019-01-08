@@ -16,6 +16,7 @@ class CreateDkghosoTable extends Migration
         Schema::create('dkghoso', function (Blueprint $table) {
             $table->increments('id');
             $table->string('maxa',30)->nullable();
+            $table->string('mahuyen',30)->nullable();
             $table->string('mahs')->nullable();
             $table->string('soqd')->nullable();
             $table->string('socongvan')->nullable();

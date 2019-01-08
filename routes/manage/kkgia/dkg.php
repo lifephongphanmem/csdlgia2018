@@ -39,4 +39,5 @@ Route::get('timkiemkkdkg','KkDkgController@search');
 //Ajax nhận trả
 Route::get('/ttdnkkdkg','KkDkgXdController@ttdnkkdkg');
 
+
 ?>

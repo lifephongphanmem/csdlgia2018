@@ -263,75 +263,16 @@ License: You must have a valid license purchased only from themeforest(the above
             @elseif($level == 'DKG')
                 <p>Doanh nghiệp đăng ký loại hình</p>
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="col-md-4">
+                    <div class="col-md-6">
+                        <div class="form-group">
                             <div class="form-group">
-                                <input type="checkbox" value="1" name="roles[dkg][xangdau]" class="form-control"> Xăng dầu
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="checkbox" value="1" name="roles[dkg][dien]" class="form-control"> Điện bán lẻ
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="checkbox" value="1" name="roles[dkg][khidau]" class="form-control"> Khí dầu mỏ hóa lỏng
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="checkbox" value="1" name="roles[dkg][phan]" class="form-control"> Phân đạm urê; phân NPK
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="checkbox" value="1" name="roles[dkg][thuocbvtv]"> Thuốc bảo vệ thực vật
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="checkbox" value="1" name="roles[dkg][vacxingsgc]"> Vắc-xin phòng bệnh gia súc gia cầm
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="checkbox" value="1" name="roles[dkg][muoi]"> Muối ăn
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="checkbox" value="1" name="roles[dkg][suate6t]"> Sữa trẻ em dưới 6 tuổi
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="checkbox" value="1" name="roles[dkg][duong]"> Đường ăn
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="checkbox" value="1" name="roles[dkg][thocgao]"> Thóc, gạo tẻ thường
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="checkbox" value="1" name="roles[dkg][thuocpcb]"> Thuốc phòng, chữa bệnh cho người
+                                <div class="input-icon">
+                                    <select name="pl" id="pl" class="form-control">
+                                        @foreach($modelbog as $dmbog)
+                                            <option value="{{$dmbog->phanloai}}">{{$dmbog->hienthi}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>

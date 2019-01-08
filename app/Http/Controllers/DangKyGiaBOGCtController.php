@@ -127,7 +127,7 @@ class DangKyGiaBOGCtController extends Controller
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-12">';
             $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Đơn vị tính</b><span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" id="donvitinhedit" class="form-control" name="donvitinhedit" >'.$model->donvitinh.'</div>';
+            $result['message'] .= '<div><input type="text" id="donvitinhedit" class="form-control" name="donvitinhedit" value="'.$model->donvitinh.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';

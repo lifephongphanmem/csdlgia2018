@@ -24,11 +24,9 @@ class KkDkgCtDfController extends Controller
         $inputs = $request->all();
         //dd($inputs);
         if(isset($inputs['tenhh'])){
-            $inputs['mahs'] = '123456';
             $inputs['gialk'] = getDouble($inputs['gialk']);
             $inputs['giakk'] = getDouble($inputs['giakk']);
             $modeladd = new kkdkgctdf();
-
             $modeladd->create($inputs);
             //dd($inputs);
             $model = kkdkgctdf::where('maxa',$inputs['maxa'])
@@ -113,6 +111,14 @@ class KkDkgCtDfController extends Controller
             $result['message'] .= '</div>';
 
             $result['message'] .= '<div class="row">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Đơn vị tính</b><span class="require">*</span></label>';
+            $result['message'] .= '<div><input type="text" id="dvtedit" class="form-control" name="dvtedit" value="'.$model->dvt.'" ></div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+
+            $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-6">';
             $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Giá hiện hành</b><span class="require">*</span></label>';
             $result['message'] .= '<div><input type="text" style="text-align: right" id="gialkedit" name="gialkedit" class="form-control" data-mask="fdecimal" value="'.$model->gialk.'"></div>';
@@ -125,13 +131,7 @@ class KkDkgCtDfController extends Controller
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
 
-            $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Đơn vị tính</b><span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" id="dvtedit" class="form-control" name="dvtedit" >'.$model->dvt.'</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
+
 
             $result['message'] .= '<input type="hidden" id="idedit" name="idedit" value="'.$model->id.'">';
             $result['message'] .= '<input type="hidden" id="maxa" name="maxa" value="'.$model->maxa.'">';
@@ -157,7 +157,6 @@ class KkDkgCtDfController extends Controller
         //dd($request);
         $inputs = $request->all();
         if(isset($inputs['id'])){
-            $inputs['mahs'] = '123456' ;
             $inputs['gialk'] = getDouble($inputs['gialk']);
             $inputs['giakk'] = getDouble($inputs['giakk']);
             $modeladd = kkdkgctdf::where('id',$inputs['id'])->first();
@@ -225,7 +224,6 @@ class KkDkgCtDfController extends Controller
         //dd($request);
         $inputs = $request->all();
         if(isset($inputs['id'])){
-            $inputs['mahs'] = '123456';
             $modeladd = kkdkgctdf::where('id',$inputs['id'])->delete();
 
             $model = kkdkgctdf::where('maxa',$inputs['maxa'])

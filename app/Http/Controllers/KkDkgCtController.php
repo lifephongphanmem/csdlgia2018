@@ -30,7 +30,7 @@ class KkDkgCtController extends Controller
 
             $modeladd->create($inputs);
             //dd($inputs);
-            $model = kkdkgct::where('maxa',$inputs['maxa'])
+            $model = kkdkgct::where('mahs',$inputs['mahs'])
                 ->get();
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
@@ -112,6 +112,14 @@ class KkDkgCtController extends Controller
             $result['message'] .= '</div>';
 
             $result['message'] .= '<div class="row">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Đơn vị tính</b><span class="require">*</span></label>';
+            $result['message'] .= '<div><input type="text" id="dvtedit" class="form-control" name="dvtedit" value='.$model->dvt.'></div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+
+            $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-6">';
             $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Giá liền kề</b><span class="require">*</span></label>';
             $result['message'] .= '<div><input type="text" style="text-align: right" id="gialkedit" name="gialkedit" class="form-control" data-mask="fdecimal" value="'.$model->gialk.'"></div>';
@@ -124,13 +132,7 @@ class KkDkgCtController extends Controller
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
 
-            $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Đơn vị tính</b><span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" id="dvtedit" class="form-control" name="dvtedit" value='.$model->dvt.'></div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
+
 
             $result['message'] .= '<input type="hidden" id="idedit" name="idedit" value="'.$model->id.'">';
             $result['message'] .= '</div>';
@@ -161,7 +163,7 @@ class KkDkgCtController extends Controller
             unset($inputs['id']);
             $modeladd->update($inputs);
 
-            $model = kkdkgct::where('maxa',$inputs['maxa'])
+            $model = kkdkgct::where('mahs',$inputs['mahs'])
                 ->get();
 
             $result['message'] = '<div class="row" id="dsts">';
@@ -224,7 +226,7 @@ class KkDkgCtController extends Controller
         if(isset($inputs['id'])){
             $modeladd = kkdkgct::where('id',$inputs['id'])->delete();
 
-            $model = kkdkgct::where('maxa',$inputs['maxa'])
+            $model = kkdkgct::where('mahs',$inputs['mahs'])
                 ->get();
 
             $result['message'] = '<div class="row" id="dsts">';

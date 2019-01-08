@@ -1,7 +1,7 @@
 @if(canGeneral('bog','index'))
     @if(can('bog','index'))
-<li class="tooltips" data-container="body" data-placement="right" data-html="true"
-    data-original-title="Hàng hóa, dịch vụ thực hiện bình ổn giá">
+    <li class="tooltips" data-container="body" data-placement="right" data-html="true"
+        data-original-title="Hàng hóa, dịch vụ thực hiện bình ổn giá">
         @if(canGeneral('dangkygia','index'))
             @if(can('dangkygia','index'))
                 <li class="tooltips" data-container="body" data-placement="right" data-html="true"
@@ -15,8 +15,8 @@
                         @foreach($modeldm as $dm)
                             @if(canGeneral($dm->phanloai,'index'))
                                 @if(can($dm->phanloai,'index'))
-                                        @if(session('admin')->phanloai == $dm->phanloai ||
-                                        session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
+                                    @if(session('admin')->phanloai == $dm->phanloai ||
+                                    session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
                                     <li>
                                         <a href="">
                                             <span class="title">Kê khai giá {{$dm->hienthi}}</span>
@@ -42,7 +42,7 @@
                 </li>
             @endif
         @endif
-</li>
+    </li>
    @endif
 @endif
 

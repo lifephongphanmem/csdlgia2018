@@ -104,7 +104,7 @@
                                             <option value="TACN" {{($inputs['level'] == "TACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
                                         @endif
                                         @if(can('dangkygia','index'))
-                                            <option value="DKG" {{($inputs['level'] == "DKG") ? 'selected' : ''}}>Đăng ký giá</option>
+                                            <option value="DKG" {{($inputs['level'] == "DKG") ? 'selected' : ''}}>Cung cấp mặt hàng trong DM BOG</option>
                                         @endif
                                         @if(can('vlxd','index'))
                                             <option value="VLXD" {{$inputs['level'] == 'VLXD' ? 'selected' : ''}}>Vật liệu xây dựng</option>

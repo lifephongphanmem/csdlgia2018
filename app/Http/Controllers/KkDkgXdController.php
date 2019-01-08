@@ -117,7 +117,10 @@ class KkDkgXdController extends Controller
             $modelhs = kkdkg::where('id',$inputs['id'])
                 ->first();
 
-            $modeldn = $this->ttdn($modelhs->phanloai)->where('maxa',$modelhs->maxa)->first();
+            $modeldn = Company::where('level','DKG')
+                ->where('pl',$modelhs->phanloai)
+                ->where('maxa',$modelhs->maxa)
+                ->first();
 
             $result['message'] = '<div class="form-group" id="ttdnkkdkg"> ';
             $result['message'] .= '<label style="color: blue"><b>'.$modeldn->tendn.'</b> Kê khai giá số công văn <b>'.$modelhs->socv.'</b> ngày áp dụng <b>'.getDayVn($modelhs->ngayhieuluc).'</b></b></label>';
@@ -186,7 +189,11 @@ class KkDkgXdController extends Controller
                 ->first();
             $model = Town::where('maxa',$modelhs->mahuyen)
                 ->first();
-            $modeldn = $this->ttdn($modelhs->phanloai)->where('maxa',$modelhs->maxa)
+            //$modeldn = $this->ttdn($modelhs->phanloai)->where('maxa',$modelhs->maxa)
+                //->first();
+            $modeldn = Company::where('level','DKG')
+                ->where('pl',$modelhs->phanloai)
+                ->where('maxa',$modelhs->maxa)
                 ->first();
 
             $ngay = Carbon::now()->toDateString();

@@ -59,7 +59,7 @@
                     gialk: $('#gialk').val(),
                     giakk: $('#giakk').val(),
                     dvt: $('#dvt').val(),
-                    maxa: $('#maxa').val(),
+                    mahs: $('#mahs').val()
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -110,7 +110,7 @@
                     gialk: $('#gialkedit').val(),
                     giakk: $('#giakkedit').val(),
                     dvt: $('#dvtedit').val(),
-                    maxa: $('#maxa').val(),
+                    mahs: $('#mahs').val(),
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -139,7 +139,7 @@
                 data: {
                     _token: CSRF_TOKEN,
                     id: $('input[name="iddelete"]').val(),
-                    maxa: $('input[name="maxa"]').val(),
+                    mahs: $('input[name="mahs"]').val(),
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -180,7 +180,7 @@
                     {!! Form::model($model, ['method' => 'PATCH', 'url'=>'kkdkg/'. $model->id, 'class'=>'horizontal-form','id'=>'update_kkdkg', 'files'=>true]) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-                    <div class="portlet-body">
+                    <div class="form-body">
                         <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
                         <div class="row">
                             <div class="col-md-12">
@@ -308,7 +308,7 @@
             <div style="text-align: center">
                 <a href="{{url('kkdkg?&ma='.$model->phanloai.'&masothue='.$model->maxa)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
-                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
+                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
             </div>
             {!! Form::close() !!}
             <!-- END VALIDATION STATES-->
@@ -348,11 +348,13 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
-
+                        <div class="col-md-6">
+                            <div class="form-group"><label for="selGender" class="control-label"><b>Đơn vị tính</b><span class="require">*</span></label>
+                                <div><input type="text" name="dvt" id="dvt" class="form-control" ></div>
+                            </div>
+                        </div>
                     </div>
-
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group"><label for="selGender" class="control-label"><b>Giá liền kề</b><span class="require">*</span></label>
@@ -365,16 +367,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group"><label for="selGender" class="control-label"><b>đơn vị tính</b><span class="require">*</span></label>
-                                <div><input type="text" name="dvt" id="dvt" class="form-control" ></div>
-                            </div>
-                        </div>
-                    </div>
-                    <input type="hidden" name="maxa" id="maxa" value="{{$model->maxa}}" class="form-control" >
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
