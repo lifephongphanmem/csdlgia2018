@@ -3033,7 +3033,7 @@ function can($module = null, $action = null)
 {
     $permission = !empty(session('admin')->permission) ? session('admin')->permission : getPermissionDefault(session('admin')->level);
     $permission = json_decode($permission, true);
-
+    //dd($permission);
     //check permission
     if(isset($permission[$module][$action]) && $permission[$module][$action] == 1 || session('admin')->sadmin == 'ssa') {
         return true;
@@ -3552,10 +3552,7 @@ function getsadmin(){
         'sadmin'=>'ssa',
         'phanloai'=>'',
         'password'=>'107e8cf7f2b4531f6b2ff06dbcf94e10',
-        'email'=>'minhtranlife@gmail.com',
-        'maxa'=>'',
-        'mahuyen'=>'',
-        'district'=>''
+        'email'=>'minhtranlife@gmail.com'
     ];
     return $sadmin;
 }

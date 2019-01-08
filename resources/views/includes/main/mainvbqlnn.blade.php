@@ -17,7 +17,7 @@
             @endif
         @endif
 
-        @if(canGeneral('giacpi','index'))
+        @if(can('giacpi','index'))
             <li class="tooltips" data-container="body" data-placement="right" data-html="true"
                 data-original-title="Giá CPI">
                 <a href="{{url('')}}">Giá CPI</a>
