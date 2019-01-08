@@ -176,7 +176,7 @@
                 </div-->
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    {!! Form::open(['url'=>'storekkdkg', 'id' => 'create_kkdkg', 'class'=>'horizontal-form']) !!}
+                    {!! Form::open(['url'=>'storekkdkg', 'files'=>true, 'id' => 'create_kkdkg', 'class'=>'horizontal-form']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
                     <div class="portlet-body">
@@ -243,6 +243,14 @@
                                         <textarea id="ghichu" class="form-control" name="ghichu" cols="30" rows="5"
                                         >{{isset($modelcb) ? $modelcb->ghichu : '' }}</textarea>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">File đính kèm</label>
+                                    <input name="ipf1" id="ipf1" type="file">
                                 </div>
                             </div>
                         </div>

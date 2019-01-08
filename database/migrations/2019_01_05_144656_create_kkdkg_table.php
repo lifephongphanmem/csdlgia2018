@@ -34,6 +34,21 @@ class CreateKkdkgTable extends Migration
             $table->string('thoihan')->nullable();
             $table->string('phanloai')->nullable();
             $table->text('ghichu')->nullable();
+            // file đính kèm
+            $table->string('ipt1')->nullable();
+            $table->string('ipf1')->nullable();
+
+            $table->string('ipt2')->nullable();
+            $table->string('ipf2')->nullable();
+
+            $table->string('ipt3')->nullable();
+            $table->string('ipf3')->nullable();
+
+            $table->string('ipt4')->nullable();
+            $table->string('ipf4')->nullable();
+
+            $table->string('ipt5')->nullable();
+            $table->string('ipf5')->nullable();
             $table->timestamps();
         });
     }

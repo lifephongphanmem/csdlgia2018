@@ -1,11 +1,12 @@
 <?php
-Route::get('thongtindnkkgdk','KkDkgController@ttdn');
 Route::resource('kkdkg','KkDkgController');
+Route::get('thongtindnkkgdk','KkDkgController@ttdn');
 Route::post('storekkdkg','KkDkgController@store');
 Route::post('kkdkg/delete','KkDkgController@delete');
 Route::post('kkdkg/chuyen','KkDkgController@chuyen');
 Route::get('kkdkg/prints','KkDkgController@prints');
-Route::get('kkdkg/lydo','KkDkgController@lydo');
+
+
 //Ajax chuyen
 Route::get('/kkdg/kiemtra','KkDkgController@kiemtra');
 //End Ajax chuyển
@@ -29,6 +30,8 @@ Route::get('xetduyetkkdkg','KkDkgXdController@index');
 Route::post('xetduyetkkdkg/tralai','KkDkgXdController@tralai');
 Route::get('xetduyetkkdkg/ttnhanhs','KkDkgXdController@ttnhanhs');
 Route::post('xetduyetkkdkg/nhanhs','KkDkgXdController@nhanhs');
+Route::get('xetduyetkkdkg/lydo','KkDkgXdController@lydo');
+Route::get('xetduyetkkdkg/download','KkDkgXdController@download');
 
 //End xét duyệt kk giá sữa
 Route::get('timkiemkkdkg','KkDkgController@search');

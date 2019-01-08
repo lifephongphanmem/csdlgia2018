@@ -175,6 +175,12 @@ class KkDkgController extends Controller
             else
                 unset($inputs['ngaycvlk']);
             $inputs['trangthai'] = 'CC';
+            if(isset($inputs['ipf1']) && $inputs['ipf1'] !='' ) {
+                $ipf1 = $request->file('ipf1');
+                $inputs['ipt1'] = $inputs['mahs'] .'1.'.$ipf1->getClientOriginalExtension();
+                $ipf1->move(public_path() . '/data/kkdkg/', $inputs['ipt1']);
+                $inputs['ipf1']= $inputs['ipt1'];
+            }
             $model = new kkdkg();
             if($model->create($inputs)){
                 $modelctdf = kkdkgctdf::where('maxa',$inputs['maxa']);
@@ -224,6 +230,12 @@ class KkDkgController extends Controller
                 $inputs['ngaycvlk']= getDateToDb($inputs['ngaycvlk']);
             else
                 unset($inputs['ngaycvlk']);
+            if(isset($inputs['ipf1']) && $inputs['ipf1'] !='' ) {
+                $ipf1 = $request->file('ipf1');
+                $inputs['ipt1'] = $inputs['mahs'] .'&1.'.$ipf1->getClientOriginalExtension();
+                $ipf1->move(public_path() . '/data/kkdkg/', $inputs['ipt1']);
+                $inputs['ipf1']= $inputs['ipt1'];
+            }
             $model = kkdkg::findOrFail($id);
             $model->update($inputs);
             return redirect('kkdkg/?&ma='.$inputs['ma'].'&masothue='.$inputs['maxa']);
@@ -330,33 +342,7 @@ class KkDkgController extends Controller
         }else
             return view('errors.notlogin');
     }
-    public function lydo(Request $request){
-        $result = array(
-            'status' => 'fail',
-            'message' => 'error',
-        );
-        if(!Session::has('admin')) {
-            $result = array(
-                'status' => 'fail',
-                'message' => 'permission denied',
-            );
-            die(json_encode($result));
-        }
-        //dd($request);
-        $inputs = $request->all();
 
-        if(isset($inputs['id'])){
-            $model = kkdkg::where('id',$inputs['id'])
-                ->first();
-
-            $result['message'] = '<div class="form-group" id="lydo">';
-            $result['message'] = '<label>'.$model->lydo.'</lable>';
-            $result['message'] .= '</div>';
-            $result['status'] = 'success';
-
-        }
-        die(json_encode($result));
-    }
     public function search(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
@@ -380,4 +366,5 @@ class KkDkgController extends Controller
         }else
             return view('errors.notlogin');
     }
+
 }

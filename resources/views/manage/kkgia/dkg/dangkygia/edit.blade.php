@@ -177,7 +177,7 @@
                 </div-->
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    {!! Form::model($model, ['method' => 'PATCH', 'url'=>'kkdkg/'. $model->id, 'class'=>'horizontal-form','id'=>'update_kkdkg']) !!}
+                    {!! Form::model($model, ['method' => 'PATCH', 'url'=>'kkdkg/'. $model->id, 'class'=>'horizontal-form','id'=>'update_kkdkg', 'files'=>true]) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
                     <div class="portlet-body">
@@ -235,6 +235,17 @@
                                     <textarea id="ghichu" class="form-control" name="ghichu" cols="30" rows="5"
                                               placeholder="-Phụ thu, Thuế VAT">{{$model->ghichu}}</textarea>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">File đính kèm 1</label>
+                                    @if(isset($model->ipf1))
+                                        <p><a href="{{url('/xetduyetkkdkg/download?&id=/data/kkdkg/'.$model->ipf1)}}" target="_blank">{{$model->ipt1}}</a></p>
+                                    @endif
+                                    <input name="ipf1" id="ipf1" type="file">
                                 </div>
                             </div>
                         </div>

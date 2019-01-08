@@ -272,4 +272,46 @@ class KkDkgXdController extends Controller
         }else
             return view('errors.notlogin');
     }
+    public function lydo(Request $request){
+        $result = array(
+            'status' => 'fail',
+            'message' => 'error',
+        );
+        if(!Session::has('admin')) {
+            $result = array(
+                'status' => 'fail',
+                'message' => 'permission denied',
+            );
+            die(json_encode($result));
+        }
+        //dd($request);
+        $inputs = $request->all();
+
+        if(isset($inputs['id'])){
+            $model = kkdkg::where('id',$inputs['id'])
+                ->first();
+
+            $result['message'] = '<div class="form-group" id="lydo">';
+            $result['message'] = '<label>'.$model->lydo.'</lable>';
+            $result['message'] .= '</div>';
+            $result['status'] = 'success';
+
+        }
+        die(json_encode($result));
+    }
+    public function download(Request $request)
+    {
+        $inputs = $request->all();
+        $key= $inputs['id'];
+        if ( !is_file($_SERVER['DOCUMENT_ROOT'].$key) || !is_readable($_SERVER['DOCUMENT_ROOT'].$key) ) {
+            echo "Loi: file khong ton tai!";
+            exit(-1);
+        }
+        $fp = fopen($_SERVER['DOCUMENT_ROOT'].$key, "rb");
+        header('Content-type: application/octet-stream');
+        header('Content-disposition: attachment; filename="'.$_SERVER['DOCUMENT_ROOT'].$key.'"');
+        header('Content-length: ' . filesize($_SERVER['DOCUMENT_ROOT'].$key));
+        fpassthru($fp);
+        fclose($fp);
+    }
 }
