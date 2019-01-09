@@ -33,7 +33,7 @@
                                 <li><a href="{{url('thongtindnkkgiavlxd')}}">Kê khai giá VLXD</a></li>
                                 <li><a href="{{url('xetduyetkkgiavlxd')}}">Thông tin hồ sơ xét duyệt</a></li>
                                 <li><a href="{{url('timkiemkkgiavlxd')}}">Tìm kiếm thông tin</a> </li>
-                                <li><a href="{{url('baocaokekhaigiavlxd')}}">Báo cáo thống kê</a></li>
+                                <!--li><a href="{{url('baocaokekhaigiavlxd')}}">Báo cáo thống kê</a></li-->
                             @endif
                         </ul>
                     </li>
@@ -54,7 +54,7 @@
                                     <li><a href="{{url('thongtindnkkgiaxmtxd')}}">Kê khai giá xi măng, thép xây dựng</a></li>
                                     <li><a href="{{url('xetduyetkkgiaxmtxd')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiaxmtxd')}}">Tìm kiếm thông tin</a> </li>
-                                    <li><a href="{{url('baocaokekhaigiaxmtxd')}}">Báo cáo thống kê</a></li>
+                                    <!--li><a href="{{url('baocaokekhaigiaxmtxd')}}">Báo cáo thống kê</a></li-->
                                 @endif
                             </ul>
                         </li>
@@ -76,7 +76,7 @@
                                     <li><a href="{{url('thongtindnkkgiadvhdtm')}}">Kê khai giá dịch vụ</a></li>
                                     <li><a href="{{url('xetduyetkkgiadvhdtm')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiadvhdtm')}}">Tìm kiếm thông tin</a> </li>
-                                    <li><a href="{{url('baocaokkgiadvhdtm')}}">Báo cáo thống kê</a></li>
+                                    <!--li><a href="{{url('baocaokkgiadvhdtm')}}">Báo cáo thống kê</a></li-->
                                 @endif
                             </ul>
                         </li>
@@ -116,7 +116,7 @@
                                         <li><a href="{{url('timkiemkekhaigiatacn')}}">Tìm kiếm thông tin</a> </li>
                                     @endif
                                     @if(can('thtacn','baocao'))
-                                        <li><a href="{{url('baocaokekhaitacn')}}">Báo cáo thống kê</a></li>
+                                        <!--li><a href="{{url('baocaokekhaitacn')}}">Báo cáo thống kê</a></li-->
                                     @endif
                                 @endif
                             </ul>
@@ -217,7 +217,7 @@
                                                             <li><a href="{{url('timkiemgiavantaixekhach')}}">Tìm kiếm hồ sơ kê khai</a></li>
                                                         @endif
                                                         @if(can('thvtxk','baocao'))
-                                                            <li><a href="">Báo cáo</a></li>
+                                                            <!--li><a href="">Báo cáo</a></li-->
                                                         @endif
                                                     @endif
                                                 </ul>
@@ -270,7 +270,7 @@
                                                             <li><a href="{{url('timkiemgiavantaixetaxi')}}">Tìm kiếm hồ sơ kê khai</a></li>
                                                         @endif
                                                         @if(can('thvtxtx','baocao'))
-                                                            <li><a href="">Báo cáo</a></li>
+                                                            <!--li><a href="">Báo cáo</a></li-->
                                                         @endif
                                                     @endif
                                                 </ul>
@@ -291,7 +291,7 @@
                                                     <li><a href="">Kê khai giá</a></li>
                                                     <li><a href="">Xét duyệt hồ sơ kê khai</a></li>
                                                     <li><a href="">Tìm kiếm hồ sơ kê khai</a></li>
-                                                    <li><a href="">Báo cáo</a></li>
+                                                    <!--li><a href="">Báo cáo</a></li-->
                                                 </ul>
                                             </li>
                                         @endif
@@ -323,7 +323,7 @@
                                         <li><a href="{{url('timkiemkekhaigiatpcnte6t')}}">Tìm kiếm thông tin</a> </li>
                                     @endif
                                     @if(can('tpcnte6t','baocao'))
-                                        <li><a href="{{url('baocaokekhaigiatpcnte6t')}}">Báo cáo thống kê</a></li>
+                                        <!--li><a href="{{url('baocaokekhaigiatpcnte6t')}}">Báo cáo thống kê</a></li-->
                                     @endif
                                 @endif
                             </ul>
