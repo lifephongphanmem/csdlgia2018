@@ -93,6 +93,20 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->thanhlytaisan->index) && $setting->thanhlytaisan->index == 1) ? 'checked' : '' }} value="1" name="roles[thanhlytaisan][index]"/></td>
+                                    <td>Thanh lý tài sản</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->thanhlytaisan->congbo) && $setting->thanhlytaisan->congbo == 1) ? 'checked' : '' }} value="1" name="roles[thanhlytaisan][congbo]"/></td>
+                                    <td>Công bố giá thanh lý tài sản</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     @include('system.general.include.csdlmucgiahhdv.bog')
                     @include('system.general.include.csdlmucgiahhdv.kknygia')

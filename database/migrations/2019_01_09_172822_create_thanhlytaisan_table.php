@@ -20,7 +20,7 @@ class CreateThanhlytaisanTable extends Migration
             $table->string('soqd')->nullable();
             $table->date('ngayqd')->nullable();
             $table->string('tents')->nullable();
-            $table->string('thongsoqd')->nullable();
+            $table->string('thongsokt')->nullable();
             $table->string('nhanhieu')->nullable();
             $table->string('sokhung')->nullable();
             $table->string('somay')->nullable();

@@ -14,7 +14,7 @@ class ThanhLyTaiSan extends Model
         'soqd',
         'ngayqd',
         'tents',
-        'thongsoqd',
+        'thongsokt',
         'nhanhieu',
         'sokhung',
         'somay',

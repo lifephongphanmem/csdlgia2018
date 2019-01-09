@@ -3576,6 +3576,7 @@ function getvbpl($str){
     $str = str_replace('.','',$str);
     $str = str_replace('/','',$str);
     $str = str_replace(' ','',$str);
+    $str = chuyenkhongdau($str);
     return $str;
 }
 

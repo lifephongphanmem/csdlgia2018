@@ -26,127 +26,113 @@
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    {!! Form::model($model, ['method' => 'PATCH', 'url'=>'vanbanqlnnvegia/'. $model->id, 'class'=>'horizontal-form','id'=>'update_ttttqd','files'=>true,'enctype'=>'multipart/form-data']) !!}
-                        <meta name="csrf-token" content="{{ csrf_token() }}" />
-                        <div class="form-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Ký hiệu văn bản<span class="require">*</span></label>
-                                        {!!Form::text('kyhieuvb',null, array('id' => 'kyhieuvb','class' => 'form-control required'))!!}
-                                    </div>
-                                </div>
-                                <!--/span-->
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Đơn vị ban hành<span class="require">*</span></label>
-                                        {!!Form::text('dvbanhanh',null, array('id' => 'dvbanhanh','class' => 'form-control required'))!!}
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Loại văn bản<span class="require">*</span></label>
-                                        {!! Form::select('loaivb',getLoaiVbQlNn(),null, ['id' => 'loaivb','class' => 'form-control required']) !!}
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Ngày ban hành</label>
-                                        {!!Form::text('ngaybanhanh',date('d/m/Y',  strtotime($model->ngaybanhanh)), array('id' => 'ngaybanhanh','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
-
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Ngày áp dụng</label>
-                                        {!!Form::text('ngayapdung',date('d/m/Y',  strtotime($model->ngayapdung)), array('id' => 'ngayapdung','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Tiêu đề</label>
-                                        {!!Form::text('tieude',null, array('id' => 'tieude','class' => 'form-control required'))!!}
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Ghi chú<span class="require">*</span></label>
-                                        {!!Form::text('ghichu',null, array('id' => 'ghichu','class' => 'form-control required'))!!}
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            {!!Form::hidden('phanloai',null, array('id' => 'phanloai','class' => 'form-control'))!!}
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">File đính kèm 1</label>
-                                        @if(isset($model->ipf1))
-                                            <p><a href="{{url('/data/vbqlnnvegia'.$model->ipf1)}}" target="_blank">{{$model->ipt1}}</a></p>
-                                        @endif
-                                        <input name="ipf1" id="ipf1" type="file">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">File đính kèm 2</label>
-                                        @if(isset($model->ipf2))
-                                            <p><a href="{{url('/data/vbqlnnvegia'.$model->ipf2)}}" target="_blank">{{$model->ipt2}}</a></p>
-                                        @endif
-                                        <input name="ipf2" id="ipf2" type="file">
-                                    </div>
+                    {!! Form::model($model, ['method' => 'PATCH', 'url'=>'thongtinthanhlytaisan/'. $model->id, 'files'=>true,'class'=>'horizontal-form','id'=>'update_tlts']) !!}
+                    <meta name="csrf-token" content="{{ csrf_token() }}" />
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Số quyết định<span class="require">*</span></label>
+                                    {!!Form::text('soqd',null, array('id' => 'soqd','class' => 'form-control required'))!!}
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">File đính kèm 3</label>
-                                        @if(isset($model->ipf3))
-                                            <p><a href="{{url('/data/vbqlnnvegia'.$model->ipf3)}}" target="_blank">{{$model->ipt3}}</a></p>
-                                        @endif
-                                        <input name="ipf3" id="ipf3" type="file">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">File đính kèm 4</label>
-                                        @if(isset($model->ipf4))
-                                            <p><a href="{{url('/data/vbqlnnvegia'.$model->ipf4)}}" target="_blank">{{$model->ipt4}}</a></p>
-                                        @endif
-                                        <input name="ipf4" id="ipf4" type="file">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">File đính kèm 5</label>
-                                        @if(isset($model->ipf5))
-                                            <p><a href="{{url('/data/vbqlnnvegia'.$model->ipf5)}}" target="_blank">{{$model->ipt5}}</a></p>
-                                        @endif
-                                        <input name="ipf5" id="ipf5" type="file">
-                                    </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Ngày quyết định<span class="require">*</span></label>
+                                    {!!Form::text('ngayqd',date('d/m/Y',  strtotime($model->ngayqd)), array('id' => 'ngayqd','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Tên tài sản</label>
+                                    {!!Form::text('tents',null, array('id' => 'tents','class' => 'form-control required'))!!}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Nhãn hiệu</label>
+                                    {!!Form::text('nhanhieu',null, array('id' => 'nhanhieu','class' => 'form-control required'))!!}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Thông số kỹ thuật<span class="require">*</span></label>
+                                    {!!Form::text('thongsokt',null, array('id' => 'thongsokt','class' => 'form-control required'))!!}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Số khung<span class="require">*</span></label>
+                                    {!!Form::text('sokhung',null, array('id' => 'ghichu','class' => 'form-control required'))!!}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Số máy<span class="require">*</span></label>
+                                    {!!Form::text('somay',null, array('id' => 'somay','class' => 'form-control required'))!!}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Năm sản xuất<span class="require">*</span></label>
+                                    <select name="namsx" id="namsx" class="form-control">
+                                        @if ($nam_start = intval(date('Y')) - 15 ) @endif
+                                        @if ($nam_stop = intval(date('Y')) + 1) @endif
+                                        @for($i = $nam_start; $i <= $nam_stop; $i++)
+                                            <option value="{{$i}}" {{$i == $model->nam ? 'selected' : ''}}>Năm {{$i}}</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Nguyên giá<span class="require">*</span></label>
+                                    <input type="text" name="nguyengia" id="nguyengia" class="form-control"  data-mask="fdecimal" style="text-align: right;font-weight: bold" value="{{$model->nguyengia}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Hao mòn tính đến thời điểm<span class="require">*</span></label>
+                                    {!!Form::text('thoidiemhm',date('d/m/Y',  strtotime($model->thoidiemhm)), array('id' => 'thoidiemhm','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Phần trăm hao mòn<span class="require">*</span></label>
+                                    <input type="text" name="phantramhm" id="phantramhm" class="form-control"  data-mask="fdecimal" value="{{$model->phantramhm}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">File đính kèm</label>
+                                    @if(isset($model->ipf1))
+                                        <p><a href="{{url('/data/thanhlytaisan/'.$model->ipf1)}}" target="_blank">{{$model->ipt1}}</a></p>
+                                    @endif
+                                    <input name="ipf1" id="ipf1" type="file">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- END FORM-->
                 </div>
             </div>
             <div class="col-md-12" style="text-align: center">
-                <a href="{{url('vanbanqlnnvegia')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('thongtinthanhlytaisan?&maxa='.$model->maxa)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhập</button>
             </div>
@@ -157,7 +143,7 @@
     <script type="text/javascript">
         function validateForm(){
 
-            var validator = $("#update_ttttqd").validate({
+            var validator = $("#update_tlts").validate({
                 rules: {
                     ten :"required"
                 },
@@ -191,4 +177,5 @@
             })
         }(jQuery));
     </script>
+    @include('includes.script.create-header-scripts')
 @stop

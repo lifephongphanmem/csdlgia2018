@@ -130,6 +130,8 @@
         </li>
     @endif
 @endif
+@if(canGeneral('thanhlytaisan','index'))
+    @if(can('thanhlytaisan','index'))
 <li class="">
     <a href="">
         <i class="icon-folder"></i>
@@ -137,17 +139,19 @@
         <span class="arrow"></span>
     </a>
     <ul class="sub-menu">
-        @if(can('thanhlytaisan','index'))
+        @if(can('kkthanhlytaisan','index'))
             <li>
-                <a href="{{url('philephi')}}">Thông tin thanh lý tài sản</a>
+                <a href="{{url('thongtinthanhlytaisan')}}">Thông tin thanh lý tài sản</a>
             </li>
         @endif
-        @if(can('thanhlytaisan','timkiem'))
+        @if(can('ththanhlytaisan','timkiem'))
             <li>
-                <a href="{{url('timkiemthongtinphilephi')}}">Tìm kiếm thông tin</a>
+                <a href="{{url('timkiemthongtinthanhly')}}">Tìm kiếm thông tin</a>
             </li>
         @endif
     </ul>
 </li>
+@endif
+@endif
 @include('includes.main.include.bog')
 @include('includes.main.include.kknygia')

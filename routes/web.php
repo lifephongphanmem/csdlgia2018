@@ -25,6 +25,8 @@ include('manage/thamdinhgia.php');
 include('manage/thamdinhgiahh.php');
 include('manage/kekhaigia.php');
 include('manage/vbqlnn.php');
+include('manage/thanhlytaisan.php');
+
 //End Manage
 
 //View
