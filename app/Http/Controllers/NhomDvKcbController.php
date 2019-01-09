@@ -25,7 +25,7 @@ class NhomDvKcbController extends Controller
             $inputs['theodoi'] = 'TD';
             $model = new NhomDvKcb();
             $model->create($inputs);
-            return redirect('nhomdvkcb');
+            return redirect('nhomdichvukcb');
         }else
             return view('errors.notlogin');
     }
@@ -99,7 +99,7 @@ class NhomDvKcbController extends Controller
             $inputs['theodoi'] = $inputs['edit_theodoi'];
             $model = NhomDvKcb::findOrFail($id);
             $model->update($inputs);
-            return redirect('nhomdvkcb');
+            return redirect('nhomdichvukcb');
         }else
             return view('errors.notlogin');
     }
