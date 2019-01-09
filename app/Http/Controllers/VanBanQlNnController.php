@@ -15,8 +15,7 @@ class VanBanQlNnController extends Controller
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
             $inputs['phanloai'] = isset($inputs['phanloai']) ? $inputs['phanloai'] : 'tw';
             $inputs['loaivb'] = isset($inputs['loaivb']) ? $inputs['loaivb'] : '';
-            $model = VanBanQlNn::whereYear('ngaybanhanh', $inputs['nam'])
-                ->where('phanloai',$inputs['phanloai']);
+            $model = VanBanQlNn::where('phanloai',$inputs['phanloai']);
             if($inputs['loaivb'] != '')
                 $model = $model->where('loaivb',$inputs['loaivb']);
             $model = $model->get();

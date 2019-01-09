@@ -87,6 +87,7 @@ function getLoaiVbQlNn(){
             'luat' => 'Luật',
             'quyetdinh'=>'Quyết định',
             'nghidinh' => 'Nghị định',
+            'nghiquyet' => 'Nghị quyết',
             'thongtu' => 'Thông tư',
             'thongtulientich' => 'Thông tư liên tịch',
             'huongdan' => 'Hướng dẫn',

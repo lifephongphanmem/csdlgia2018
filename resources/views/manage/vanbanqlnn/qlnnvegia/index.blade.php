@@ -26,16 +26,15 @@
                 window.location.href = url;
             });
             $('#phanloai').change(function() {
-                var nam = '&nam=' +$('#nam').val();
+                //var nam = '&nam=' +$('#nam').val();
                 var phanloai = '&phanloai=' +$('#phanloai').val();
-                var url = 'vanbanqlnnvegia?' + nam + phanloai;
+                var url = 'vanbanqlnnvegia?'  + phanloai;
                 window.location.href = url;
             });
             $('#loaivb').change(function() {
-                var nam = '&nam=' +$('#nam').val();
                 var phanloai = '&phanloai=' +$('#phanloai').val();
                 var loaivb = '&loaivb=' +$('#loaivb').val();
-                var url = 'vanbanqlnnvegia?' + nam + phanloai + loaivb;
+                var url = 'vanbanqlnnvegia?'  + phanloai + loaivb;
                 window.location.href = url;
             });
         })
@@ -91,7 +90,7 @@
                     </div>
                 <div class="portlet-body">
                     <div class="row">
-                        <div class="col-md-2">
+                        <!--div class="col-md-2">
                             <div class="form-group">
                                 <label>Năm</label>
                                 <select name="nam" id="nam" class="form-control">
@@ -102,7 +101,7 @@
                                     @endfor
                                 </select>
                             </div>
-                        </div>
+                        </div-->
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Phân loại</label>

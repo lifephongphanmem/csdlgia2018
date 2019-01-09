@@ -130,5 +130,24 @@
         </li>
     @endif
 @endif
+<li class="">
+    <a href="">
+        <i class="icon-folder"></i>
+        <span class="title">Thanh lý tài sản</span>
+        <span class="arrow"></span>
+    </a>
+    <ul class="sub-menu">
+        @if(can('thanhlytaisan','index'))
+            <li>
+                <a href="{{url('philephi')}}">Thông tin thanh lý tài sản</a>
+            </li>
+        @endif
+        @if(can('thanhlytaisan','timkiem'))
+            <li>
+                <a href="{{url('timkiemthongtinphilephi')}}">Tìm kiếm thông tin</a>
+            </li>
+        @endif
+    </ul>
+</li>
 @include('includes.main.include.bog')
 @include('includes.main.include.kknygia')
