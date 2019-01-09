@@ -29,14 +29,14 @@
             $('#level').change(function() {
                 var current_path_url = '/company?';
                 var pl = '&level='+$('#level').val();
-                var mahuyen = '&mahuyen='+$('#mahuyen').val();
+                var mahuyen = '&mahuyen='+$('#mahuyenview').val();
                 var url = current_path_url+pl+ mahuyen;
                 window.location.href = url;
             });
             $('#mahuyen').change(function() {
                 var current_path_url = '/company?';
                 var pl = '&level='+$('#level').val();
-                var mahuyen = '&mahuyen='+$('#mahuyen').val();
+                var mahuyen = '&mahuyen='+$('#mahuyenview').val();
                 var url = current_path_url+pl+ mahuyen;
                 window.location.href = url;
             });
@@ -106,6 +106,7 @@
                             </div>
                         </div>
                         @endif
+                        <input type="hidden" name="mahuyenview" id="mahuyenview" value="{{$inputs['mahuyen']}}">
                     </div>
                     <div class="portlet-body">
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
