@@ -29,7 +29,10 @@ class CreateThanhlytaisanTable extends Migration
             $table->string('nguyengia')->nullable();
             $table->date('thoidiemhm')->nullable();
             $table->string('phantramhm')->nullable();
-
+            $table->string('ipt1')->nullable();
+            $table->string('ipf1')->nullable();
+            $table->string('trangthai')->nullable();
+            $table->string('lydo')->nullable();
             $table->timestamps();
         });
     }
