@@ -59,7 +59,7 @@
                                         </a>
                                         <ul class="sub-menu" style="display: none;">
                                             @if(session('admin')->level == 'DKG')
-                                                <li><a href="{{url('indexdkg?ma='.$dm->phanloai)}}">Đăng ký giá</a></li>
+                                                <li><a href="{{url('dsdangkygia?ma='.$dm->phanloai)}}">Đăng ký giá</a></li>
                                             @endif
                                             @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
                                                 <!--li><a href="{{url('dsthongtindn?ma='.$dm->phanloai)}}">Thông tin dn đăng ký giá</a></li-->

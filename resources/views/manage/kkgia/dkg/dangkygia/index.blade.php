@@ -134,10 +134,8 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
-                        @if(can('bog','create'))
                                 <a href="{{url('kkdkg/create?&ma='.$inputs['ma'].'&masothue='.$masothue)}}" class="btn btn-default btn-sm">
                                     <i class="fa fa-plus"></i> Kê khai mới </a>
-                        @endif
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
                             <a href="{{url('ttdnkkdkg?ma='.$inputs['ma'])}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-reply"></i> Quay lại </a>

@@ -2891,6 +2891,16 @@ function getPermissionDefault($level) {
             'delete'=>1,
             'approve'=>1,
         ),
+        'kknygia'=>array(
+            'index'=>1
+        ),
+        'ttdn'=> array(
+            'index'=>1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
 
     );
 //End DKG

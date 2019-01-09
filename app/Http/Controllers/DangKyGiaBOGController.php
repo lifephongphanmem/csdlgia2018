@@ -139,6 +139,8 @@ class DangKyGiaBOGController extends Controller
                     ->where('dkghoso.phanloai',$m_dv['phanloai'])
                     ->where('dkghoso.maxa',$m_dv['maxa'])
                     ->get();*/
+            if(session('admin')->level == 'DKG')
+                $inputs['masothue'] = session('admin')->maxa;
             $model = dkghoso::where('maxa',$inputs['masothue'])
                 ->where('phanloai',$inputs['ma'])
                 ->get();
