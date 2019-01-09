@@ -118,7 +118,7 @@
                                     @if(can('tacn','index') && can('thtacn','xdttdn'))
                                         <option value="TACN" {{($inputs['level'] == "TACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
                                     @endif
-                                    @if(can('dkg','index') && can('thdkg','xdttdn'))
+                                    @if(can('dkg','index'))
                                         <option value="DKG" {{($inputs['level'] == 'DKG') ? 'selected' : ''}}>Đăng ký giá</option>
                                     @endif
                                     @if(can('vlxd','index') && can('thvlxd','xdttdn'))
