@@ -85,6 +85,7 @@ function getLoaiVbQlNn(){
         $vbqlnn = array(
             '' => '--Loại văn bản--',
             'luat' => 'Luật',
+            'quyetdinh'=>'Quyết định',
             'nghidinh' => 'Nghị định',
             'thongtu' => 'Thông tư',
             'thongtulientich' => 'Thông tư liên tịch',
