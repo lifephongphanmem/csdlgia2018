@@ -68,20 +68,29 @@
                                 <label>Doanh nghiệp</label>
                                 <select class="form-control" name="level" id="level">
                                     <option value="">--Chọn doanh nghiệp cung cấp loại dịch vụ</option>
-                                    @if(can('thdvlt','xdttdn'))
-                                        <option value="DVLT" {{($inputs['level'] == "DVLT") ? 'selected' : ''}}>Doanh nghiệp dịch vụ lưu trú</option>
+                                    @if(can('dvlt','index') && can('thdvlt','xdttdn'))
+                                        <option value="DVLT" {{($inputs['level'] == "DVLT") ? 'selected' : ''}}>Dịch vụ lưu trú</option>
                                     @endif
-                                    @if(can('thtpcnte6t','xdttdn'))
-                                        <option value="TPCNTE6T" {{($inputs['level'] == "TPCNTE6T") ? 'selected' : ''}}>Doanh nghiệp TPCN cho TE dưới 6 tuổi</option>
+                                    @if(can('dvvt','index') && can('dvvt','xdttdn'))
+                                        <option value="DVVT" {{($inputs['level'] == "DVVT") ? 'selected' : ''}}>Dịch vụ vận tải</option>
                                     @endif
-                                    @if(can('thtacn','xdttdn'))
-                                        <option value="TACN" {{($inputs['level'] == "TACN") ? 'selected' : ''}}>Doanh nghiệp TACN</option>
+                                    @if( can('tpcnte6t','index') && can('thtpcnte6t','xdttdn'))
+                                        <option value="TPCNTE6T" {{($inputs['level'] == "TPCNTE6T") ? 'selected' : ''}}>Thực phẩm chức năng cho trẻ em dưới 6 tuổi</option>
                                     @endif
-                                    @if(can('dvvt','xdttdn'))
-                                        <option value="DVVT" {{($inputs['level'] == "DVVT") ? 'selected' : ''}}>Doanh nghiệp dịch vụ vận tải</option>
+                                    @if(can('tacn','index') && can('thtacn','xdttdn'))
+                                        <option value="TACN" {{($inputs['level'] == "TACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
                                     @endif
-                                    @if(can('dangkygia','xdttdn'))
-                                        <option value="DKG" {{($inputs['level'] == "DKG") ? 'selected' : ''}}>Doanh nghiệp đăng ký giá</option>
+                                    @if(can('dangkygia','index'))
+                                        <option value="DKG" {{($inputs['level'] == 'DKG') ? 'selected' : ''}}>Mặt hàng BOG</option>
+                                    @endif
+                                    @if(can('vlxd','index') && can('thvlxd','xdttdn'))
+                                        <option value="VLXD" {{$inputs['level'] == 'VLXD' ? 'selected' :''}}>Vật liệu xây dựng</option>
+                                    @endif
+                                    @if(can('xmtxd','index') && can('thxmtxd','xdttdn'))
+                                        <option value="XMTXD" {{$inputs['level'] == 'XMTXD' ? 'selected' :''}}>Xi măng, thép xây dựng</option>
+                                    @endif
+                                    @if(can('dvhdtm','index') && can('thdvhdtm','xdttdn'))
+                                        <option value="DVHDTM" {{$inputs['level'] == 'DVHDTM' ? 'selected' :''}}>Dịch vụ hỗ trợ hoạt động thương mại</option>
                                     @endif
 
                                 </select>
