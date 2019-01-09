@@ -137,7 +137,7 @@
                                 <a href="{{url('kkdkg/create?&ma='.$inputs['ma'].'&masothue='.$masothue)}}" class="btn btn-default btn-sm">
                                     <i class="fa fa-plus"></i> Kê khai mới </a>
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
-                            <a href="{{url('ttdnkkdkg?ma='.$inputs['ma'])}}" class="btn btn-default btn-sm">
+                            <a href="{{url('thongtindnkkgdk?ma='.$inputs['ma'].'&maxa='.$modeldn->mahuyen)}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-reply"></i> Quay lại </a>
                         @endif
                     </div>

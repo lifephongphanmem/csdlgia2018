@@ -47,6 +47,10 @@
                     <div class="actions">
                         <a href="{{url('createdkg/create?ma='.$inputs['ma'].'&masothue='.$inputs['masothue'])}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
+                        @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
+                            <a href="{{url('dangkygia?ma='.$inputs['ma']).'&mahuyen='.$modeldn->mahuyen}}" class="btn btn-default btn-sm">
+                                <i class="fa fa-reply"></i> Quay lại </a>
+                        @endif
                     </div>
                 </div>
                 <div class="portlet-body">
