@@ -22,6 +22,36 @@
                                 <tr>
                                     <th class="table-checkbox" width="2%">
                                     </th>
+                                    <th>Danh mục giá DV KCB</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><input type="checkbox" {{ (isset($permission->dmgiadvkcb->index) && $permission->dmgiadvkcb->index == 1) ? 'checked' : '' }} value="1" name="roles[dmgiadvkcb][index]"/></td>
+                                    <td>Xem</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" {{ (isset($permission->dmgiadvkcb->create) && $permission->dmgiadvkcb->create == 1) ? 'checked' : '' }} value="1" name="roles[dmgiadvkcb][create]"/></td>
+                                    <td>Thêm mới</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" {{ (isset($permission->dmgiadvkcb->edit) && $permission->dmgiadvkcb->edit == 1) ? 'checked' : '' }} value="1" name="roles[dmgiadvkcb][edit]"/></td>
+                                    <td>Chỉnh sửa</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" {{ (isset($permission->dmgiadvkcb->delete) && $permission->dmgiadvkcb->delete == 1) ? 'checked' : '' }} value="1" name="roles[dmgiadvkcb][delete]"/></td>
+                                    <td>Xóa</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead class="action">
+                                <tr>
+                                    <th class="table-checkbox" width="2%">
+                                    </th>
                                     <th>Kê khai giá DV KCB</th>
 
                                 </tr>
