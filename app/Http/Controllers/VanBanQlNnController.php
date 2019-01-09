@@ -45,31 +45,31 @@ class VanBanQlNnController extends Controller
             $inputs['ngaybanhanh'] = getDateToDb($inputs['ngaybanhanh']);
             if(isset($inputs['ipf1'])){
                 $ipf1 = $request->file('ipf1');
-                $inputs['ipt1'] = $inputs['kyhieuvb'] .'&1.'.$ipf1->getClientOriginalExtension();
+                $inputs['ipt1'] = getvbpl($inputs['kyhieuvb']) .'&1.'.$ipf1->getClientOriginalExtension();
                 $ipf1->move(public_path() . '/data/vbqlnnvegia/', $inputs['ipt1']);
                 $inputs['ipf1']= $inputs['ipt1'];
             }
             if(isset($inputs['ipf2'])){
                 $ipf2 = $request->file('ipf2');
-                $inputs['ipt2'] = $inputs['kyhieuvb'] .'&2.'.$ipf2->getClientOriginalExtension();
+                $inputs['ipt2'] = getvbpl($inputs['kyhieuvb']) .'&2.'.$ipf2->getClientOriginalExtension();
                 $ipf2->move(public_path() . '/data/vbqlnnvegia/', $inputs['ipt2']);
                 $inputs['ipf2']= $inputs['ipt2'];
             }
             if(isset($inputs['ipf3'])){
                 $ipf3 = $request->file('ipf3');
-                $inputs['ipt3'] = $inputs['kyhieuvb'] .'&3.'.$ipf3->getClientOriginalExtension();
+                $inputs['ipt3'] = getvbpl($inputs['kyhieuvb']) .'&3.'.$ipf3->getClientOriginalExtension();
                 $ipf3->move(public_path() . '/data/vbqlnnvegia/', $inputs['ipt3']);
                 $inputs['ipf3']= $inputs['ipt3'];
             }
             if(isset($inputs['ipf4'])){
                 $ipf4 = $request->file('ipf4');
-                $inputs['ipt4'] = $inputs['kyhieuvb'] .'&4.'.$ipf4->getClientOriginalExtension();
+                $inputs['ipt4'] = getvbpl($inputs['kyhieuvb']).'&4.'.$ipf4->getClientOriginalExtension();
                 $ipf4->move(public_path() . '/data/vbqlnnvegia/', $inputs['ipt4']);
                 $inputs['ipf4']= $inputs['ipt4'];
             }
             if(isset($inputs['ipf5'])){
                 $ipf5 = $request->file('ipf5');
-                $inputs['ipt5'] = $inputs['kyhieuvb'] .'&5.'.$ipf5->getClientOriginalExtension();
+                $inputs['ipt5'] = getvbpl($inputs['kyhieuvb']) .'&5.'.$ipf5->getClientOriginalExtension();
                 $ipf5->move(public_path() . '/data/vbqlnnvegia/', $inputs['ipt5']);
                 $inputs['ipf5']= $inputs['ipt5'];
             }
@@ -154,32 +154,32 @@ class VanBanQlNnController extends Controller
             $inputs['ngaybanhanh'] = getDateToDb($inputs['ngaybanhanh']);
             if(isset($inputs['ipf1']) && $inputs['ipf1'] !='' ) {
                 $ipf1 = $request->file('ipf1');
-                $inputs['ipt1'] = $inputs['kyhieuvb'] .'&1.'.$ipf1->getClientOriginalExtension();
+                $inputs['ipt1'] = getvbpl($inputs['kyhieuvb']) .'&1.'.$ipf1->getClientOriginalExtension();
                 $ipf1->move(public_path() . '/data/vbqlnnvegia/', $inputs['ipt1']);
                 $inputs['ipf1']= $inputs['ipt1'];
             }
             if(isset($inputs['ipf2']) && $inputs['ipf2'] !='' ) {
                 $ipf2 = $request->file('ipf2');
 
-                $inputs['ipt2'] = $inputs['kyhieuvb'] .'&2.'.$ipf2->getClientOriginalExtension();
+                $inputs['ipt2'] = getvbpl($inputs['kyhieuvb']) .'&2.'.$ipf2->getClientOriginalExtension();
                 $ipf2->move(public_path() . '/data/vbqlnnvegia/', $inputs['ipt2']);
                 $inputs['ipf2']= $inputs['ipt2'];
             }
             if(isset($inputs['ipf3']) && $inputs['ipf3'] !='' ) {
                 $ipf3 = $request->file('ipf3');
-                $inputs['ipt3'] = $inputs['kyhieuvb'] .'&3.'.$ipf3->getClientOriginalExtension();
+                $inputs['ipt3'] = getvbpl($inputs['kyhieuvb']) .'&3.'.$ipf3->getClientOriginalExtension();
                 $ipf3->move(public_path() . '/data/vbqlnnvegia/', $inputs['ipt3']);
                 $inputs['ipf3']= $inputs['ipt3'];
             }
             if(isset($inputs['ipf4']) && $inputs['ipf4'] !='' ) {
                 $ipf4 = $request->file('ipf4');
-                $inputs['ipt4'] = $inputs['kyhieuvb'] .'&4.'.$ipf4->getClientOriginalExtension();
+                $inputs['ipt4'] = getvbpl($inputs['kyhieuvb']) .'&4.'.$ipf4->getClientOriginalExtension();
                 $ipf4->move(public_path() . '/data/vbqlnnvegia/', $inputs['ipt4']);
                 $inputs['ipf4']= $inputs['ipt4'];
             }
             if(isset($inputs['ipf5']) && $inputs['ipf5'] !='' ) {
                 $ipf5 = $request->file('ipf5');
-                $inputs['ipt5'] = $inputs['kyhieuvb'] .'&5.'.$ipf5->getClientOriginalExtension();
+                $inputs['ipt5'] = getvbpl($inputs['kyhieuvb']) .'&5.'.$ipf5->getClientOriginalExtension();
                 $ipf5->move(public_path() . '/data/vbqlnnvegia/', $inputs['ipt5']);
                 $inputs['ipf5']= $inputs['ipt5'];
             }
