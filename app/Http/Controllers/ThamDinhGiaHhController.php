@@ -27,7 +27,7 @@ class ThamDinhGiaHhController extends Controller
                 if(session('admin')->level == 'T')
                     $modeldv = Town::all();
                 else
-                    $modeldv = Town::where('mahuyen',$mahuyen)->get();
+                    $modeldv = Town::where('mahuyen',session('admin')->mahuyen)->get();
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
                 $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
             }
