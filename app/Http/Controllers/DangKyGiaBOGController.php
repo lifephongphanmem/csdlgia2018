@@ -204,7 +204,7 @@ class DangKyGiaBOGController extends Controller
                 {
                     $m_dv = Town::where('mahuyen',session('admin')->mahuyen)->get();
                     $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $m_dv->first()->maxa;
-                    $model = Company::where('phanloai',$inputs['ma'])
+                    $model = Company::where('pl',$inputs['ma'])
                         ->where('mahuyen',$inputs['mahuyen'])
                         ->where('level','DKG')
                         ->get();
