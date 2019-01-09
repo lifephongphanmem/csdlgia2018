@@ -120,7 +120,7 @@
                             </th-->
                             <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center">Địa bàn</th>
-                            <th style="text-align: center" >Số quyết định</th>
+                            <th style="text-align: center" >Số báo cáo</th>
                             <th style="text-align: center">Ngày áp dụng</th>
                             <th style="text-align: center">Tên hàng hóa dịch vụ</th>
                             <th style="text-align: center">Đặc điểm kỹ thuật</th>

@@ -114,7 +114,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Số quyết định<span class="require">*</span></label>
+                                    <label class="control-label">Số báo cáo<span class="require">*</span></label>
                                     {!!Form::text('soqd',null, array('id' => 'soqd','class' => 'form-control required','autofocus'))!!}
                                 </div>
                             </div>
@@ -130,7 +130,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Số quyết định liền kề<span class="require">*</span></label>
+                                    <label class="control-label">Số báo cáo liền kề<span class="require">*</span></label>
                                     {!!Form::text('soqdlk',($modellk != '' ? $modellk->soqd : ''), array('id' => 'soqdlk','class' => 'form-control'))!!}
                                 </div>
                             </div>
