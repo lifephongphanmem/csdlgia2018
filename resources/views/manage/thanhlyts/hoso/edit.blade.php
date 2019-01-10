@@ -105,7 +105,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Hao mòn tính đến thời điểm<span class="require">*</span></label>
-                                    {!!Form::text('thoidiemhm',date('d/m/Y',  strtotime($model->thoidiemhm)), array('id' => 'thoidiemhm','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
+                                    {!!Form::text('thoidiemhm',$model->thoidiemhm != '' ? date('d/m/Y',  strtotime($model->thoidiemhm)) : '', array('id' => 'thoidiemhm','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                                 </div>
                             </div>
                             <div class="col-md-6">

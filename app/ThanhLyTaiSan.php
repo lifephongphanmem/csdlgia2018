@@ -27,5 +27,6 @@ class ThanhLyTaiSan extends Model
         'ipf1',
         'trangthai',
         'lydo',
+        'level',
     ];
 }

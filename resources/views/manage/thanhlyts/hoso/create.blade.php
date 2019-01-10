@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Nhãn hiệu</label>
+                                        <label class="control-label">Xuất xứ</label>
                                         {!!Form::text('nhanhieu',null, array('id' => 'nhanhieu','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label">Thông số kỹ thuật<span class="require">*</span></label>
-                                        {!!Form::text('ghichu',null, array('id' => 'ghichu','class' => 'form-control required'))!!}
+                                        {!!Form::text('thongsokt',null, array('id' => 'thongsokt','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
 
@@ -94,20 +94,20 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Nguyên giá<span class="require">*</span></label>
-                                        <input type="text" name="nguyengia" id="nguyengia" class="form-control"  data-mask="fdecimal" style="text-align: right;font-weight: bold">
+                                        <input type="text" name="nguyengia" id="nguyengia" class="form-control required"  data-mask="fdecimal" style="text-align: right;font-weight: bold">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Hao mòn tính đến thời điểm<span class="require">*</span></label>
-                                        {!!Form::text('thoidiemhm',null, array('id' => 'thoidiemhm','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
+                                        <label class="control-label">Hao mòn tính đến thời điểm</label>
+                                        {!!Form::text('thoidiemhm',null, array('id' => 'thoidiemhm','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Phần trăm hao mòn<span class="require">*</span></label>
+                                        <label class="control-label">Phần trăm hao mòn</label>
                                         <input type="text" name="phantramhm" id="phantramhm" class="form-control"  data-mask="fdecimal">
                                     </div>
                                 </div>
@@ -120,15 +120,13 @@
                                     </div>
                                 </div>
                             </div>
-                            {!!Form::hidden('maxa',$inputs['maxa'], array('id' => 'maxa','class' => 'form-control'))!!}
-                            {!!Form::hidden('mahuyen',$modeldv->mahuyen, array('id' => 'mahuyen','class' => 'form-control'))!!}
                         </div>
 
                     <!-- END FORM-->
                 </div>
             </div>
             <div class="col-md-12" style="text-align: center">
-                <a href="{{url('thongtinthanhlytaisan?&maxa='.$inputs['maxa'])}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('thongtinthanhlytaisan')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn default"> Hủy</button>
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Thêm mới</button>
             </div>

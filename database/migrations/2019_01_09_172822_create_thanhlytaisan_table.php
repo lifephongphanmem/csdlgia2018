@@ -33,6 +33,7 @@ class CreateThanhlytaisanTable extends Migration
             $table->string('ipf1')->nullable();
             $table->string('trangthai')->nullable();
             $table->string('lydo')->nullable();
+            $table->string('level')->nullable();
             $table->timestamps();
         });
     }

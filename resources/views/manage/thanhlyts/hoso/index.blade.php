@@ -63,7 +63,7 @@
                         </div>
                         <div class="actions">
                             @if(can('kkthanhlytaisan','create'))
-                            <a href="{{url('thongtinthanhlytaisan/create?&maxa='.$inputs['maxa'])}}" class="btn btn-default btn-sm">
+                            <a href="{{url('thongtinthanhlytaisan/create')}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-plus"></i> Thêm mới </a>
                             @endif
                         </div>
@@ -82,25 +82,13 @@
                                 </select>
                             </div>
                         </div>
-                        @if(session('admin')->level == 'T' || session('admin')->level == 'H')
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label>Đơn vị thẩm định</label>
-                                    <select name="maxa" id="maxa" class="form-control">
-                                        @foreach($modeldv as $dv)
-                                            <option value="{{$dv->maxa}}" {{$dv->maxa == $inputs['maxa'] ? 'selected' : ''}}>{{$dv->tendv}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        @endif
                     </div>
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center" width="10%">Số quyết định</th>
-                            <th style="text-align: center" width="5%">Ngày quyết định</th>
+                            <th style="text-align: center" width="10%">Đơn vị</th>
+                            <th style="text-align: center" width="5%">Số quyết định/<br>Ngày quyết định</th>
                             <th style="text-align: center">Tên tài sản</th>
                             <th style="text-align: center">Thông số kỹ thuật</th>
                             <th style="text-align: center">Nhãn hiệu</th>
@@ -113,8 +101,8 @@
                         @foreach($model as $key=>$ct)
                             <tr>
                                 <td style="text-align: center">{{$key+1}}</td>
-                                <td style="text-align: center">{{$ct->soqd}}</td>
-                                <td style="text-align: center">{{getDayVn($ct->ngayqd)}}</td>
+                                <td style="text-align: center"></td>
+                                <td style="text-align: center">{{$ct->soqd}}<br>{{getDayVn($ct->ngayqd)}}</td>
                                 <td style="text-align: left">{{$ct->tents}}</td>
                                 <td style="text-align: left">{{$ct->thongsokt}}</td>
                                 <td style="text-align: left">{{$ct->nhanhieu}}</td>
