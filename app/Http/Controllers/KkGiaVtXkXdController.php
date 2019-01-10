@@ -182,7 +182,7 @@ class KkGiaVtXkXdController extends Controller
             if (count($model) == 0) {
                 $stt = 1;
             } else {
-                $modelshs = GiaVtXk::where('id',$model)->first()
+                $modelshs = GiaVtXk::where('id',$model)->first();
                 $stt = $modelshs->sohsnhan + 1;
             }
         }
