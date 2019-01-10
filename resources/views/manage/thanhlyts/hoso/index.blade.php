@@ -50,7 +50,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin thanh lý <small>&nbsp;tài sản</small>
+        Thông tin đấu giá  <small>&nbsp;tài sản</small>
     </h3>
 
     <!-- END PAGE HEADER-->

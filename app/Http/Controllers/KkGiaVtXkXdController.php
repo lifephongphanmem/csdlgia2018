@@ -181,8 +181,10 @@ class KkGiaVtXkXdController extends Controller
                 ->max('id');
             if (count($model) == 0) {
                 $stt = 1;
-            } else
-                $stt = $model->sohsnhan + 1;
+            } else {
+                $modelshs = GiaVtXk::where('id',$model)->first()
+                $stt = $modelshs->sohsnhan + 1;
+            }
         }
         return $stt;
     }

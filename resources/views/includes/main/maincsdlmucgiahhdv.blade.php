@@ -135,13 +135,13 @@
 <li class="">
     <a href="">
         <i class="icon-folder"></i>
-        <span class="title">Thanh lý tài sản</span>
+        <span class="title">Đấu giá tài sản</span>
         <span class="arrow"></span>
     </a>
     <ul class="sub-menu">
         @if(can('kkthanhlytaisan','index'))
             <li>
-                <a href="{{url('thongtinthanhlytaisan')}}">Thông tin thanh lý tài sản</a>
+                <a href="{{url('thongtinthanhlytaisan')}}">Thông tin đấu giá tài sản</a>
             </li>
         @endif
         @if(can('ththanhlytaisan','timkiem'))
