@@ -7,7 +7,7 @@
         <div class="portlet box green">
             <div class="portlet-title">
                 <div class="caption">
-                    <input type="checkbox" {{ (isset($permission->thanhlytaisan->index) && $permission->thanhlytaisan->index == 1) ? 'checked' : '' }} value="1" name="roles[thanhlytaisan][index]"/>Giá phí lệ phí
+                    <input type="checkbox" {{ (isset($permission->thanhlytaisan->index) && $permission->thanhlytaisan->index == 1) ? 'checked' : '' }} value="1" name="roles[thanhlytaisan][index]"/>Thanh lý tài sản
                 </div>
                 <div class="tools">
                     <a href="" class="expand" data-original-title="" title="">
