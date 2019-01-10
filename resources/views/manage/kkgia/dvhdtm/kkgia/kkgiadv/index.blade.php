@@ -131,7 +131,7 @@
                 <div class="portlet-title">
                     <div class="actions">
                         @if(can('kkdvhdtm','create'))
-                                <a href="{{url('thongtinkekhaidichvuhoatdongthuongmai/create?&masothue='.$inputs['masothue'])}}" class="btn btn-default btn-sm">
+                                <a href="{{url('thongtinkkdvhoatdongthuongmai/create?&masothue='.$inputs['masothue'])}}" class="btn btn-default btn-sm">
                                     <i class="fa fa-plus"></i> Kê khai mới </a>
                         @endif
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
