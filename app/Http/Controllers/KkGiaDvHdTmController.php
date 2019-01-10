@@ -249,7 +249,7 @@ class KkGiaDvHdTmController extends Controller
 
     public function chuyen(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'XMTXD' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+            if (session('admin')->level == 'DVHDTM' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $model = KkGiaDvHdTm::where('id',$inputs['idchuyen'])
                     ->first();
