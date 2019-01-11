@@ -15,6 +15,7 @@ class CreateVanbanqlnnTable extends Migration
     {
         Schema::create('vanbanqlnn', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('mahs')->nullable();
             $table->string('kyhieuvb')->nullable();
             $table->string('dvbanhanh')->nullable();
             $table->string('loaivb')->nullable();

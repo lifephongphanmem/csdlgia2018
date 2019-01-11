@@ -74,26 +74,14 @@ function getDvtDvLt(){
 }
 
 function getLoaiVbQlNn(){
-    $model = \App\LoaiVbQlNn::all();
-    if(count($model)>0){
-        $vbqlnn = array();
-        $vbqlnn[''] = '--Loại văn bản--';
-        foreach ($model as $tt) {
-            $options[$tt->maloaivb] = $tt->tenvb;
-        }
-    }else {
-        $vbqlnn = array(
-            '' => '--Loại văn bản--',
-            'luat' => 'Luật',
-            'quyetdinh'=>'Quyết định',
-            'nghidinh' => 'Nghị định',
-            'nghiquyet' => 'Nghị quyết',
-            'thongtu' => 'Thông tư',
-            'thongtulientich' => 'Thông tư liên tịch',
-            'huongdan' => 'Hướng dẫn',
-            'thongbao' => 'Thông báo',
-        );
-    }
+    $vbqlnn = array(
+        '' => '--Loại văn bản--',
+        'luat' => 'Luật',
+        'nghidinh'=>'Nghị định',
+        'thongtu' => 'Thông tư',
+        'quyetdinh' => 'Quyết định',
+        'vbhd' => 'Văn bản hướng dẫn',
+    );
     return $vbqlnn;
 }
 

@@ -9,6 +9,7 @@ class VanBanQlNn extends Model
     protected $table = 'vanbanqlnn';
     protected $fillable = [
         'id',
+        'mahs',
         'kyhieuvb',
         'dvbanhanh',
         'loaivb',

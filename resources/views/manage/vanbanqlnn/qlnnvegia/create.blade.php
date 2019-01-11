@@ -29,21 +29,34 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Ký hiệu văn bản<span class="require">*</span></label>
-                                        {!!Form::text('kyhieuvb',null, array('id' => 'kyhieuvb','class' => 'form-control required'))!!}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Đơn vị ban hành<span class="require">*</span></label>
-                                        {!!Form::text('dvbanhanh',null, array('id' => 'dvbanhanh','class' => 'form-control required'))!!}
+                                        {!! Form::select(
+                                        'phanloai',
+                                        array(
+                                        'gia'=>'Văn bản về giá',
+                                        'philephi'=>'Văn bản phí, lệ phí')
+                                        ,null,
+                                        array('id' => 'phanloai', 'class' => 'form-control'))
+                                        !!}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Loại văn bản<span class="require">*</span></label>
                                         {!! Form::select('loaivb',getLoaiVbQlNn(),null, ['id' => 'loaivb','class' => 'form-control required']) !!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Ký hiệu văn bản<span class="require">*</span></label>
+                                        {!!Form::text('kyhieuvb',null, array('id' => 'kyhieuvb','class' => 'form-control required'))!!}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Đơn vị ban hành<span class="require">*</span></label>
+                                        {!!Form::text('dvbanhanh',null, array('id' => 'dvbanhanh','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +89,6 @@
                                     </div>
                                 </div>
                             </div>
-                            {!!Form::hidden('phanloai',$inputs['phanloai'], array('id' => 'phanloai','class' => 'form-control'))!!}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">

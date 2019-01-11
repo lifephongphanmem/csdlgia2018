@@ -20,13 +20,7 @@
         });
         $(function(){
 
-            $('#nam').change(function() {
-                var nam = '&nam=' +$('#nam').val();
-                var url = 'vanbanqlnnvegia?' + nam;
-                window.location.href = url;
-            });
             $('#phanloai').change(function() {
-                //var nam = '&nam=' +$('#nam').val();
                 var phanloai = '&phanloai=' +$('#phanloai').val();
                 var url = 'vanbanqlnnvegia?'  + phanloai;
                 window.location.href = url;
@@ -80,7 +74,7 @@
                         </div>
                         <div class="actions">
                             @if(can('vbgia','create'))
-                            <a href="{{url('vanbanqlnnvegia/create?&phanloai='.$inputs['phanloai'])}}" class="btn btn-default btn-sm">
+                            <a href="{{url('vanbanqlnnvegia/create')}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-plus"></i> Thêm mới </a>
                             @endif
 
@@ -90,24 +84,12 @@
                     </div>
                 <div class="portlet-body">
                     <div class="row">
-                        <!--div class="col-md-2">
-                            <div class="form-group">
-                                <label>Năm</label>
-                                <select name="nam" id="nam" class="form-control">
-                                    @if ($nam_start = intval(date('Y')) - 5 ) @endif
-                                    @if ($nam_stop = intval(date('Y'))) @endif
-                                    @for($i = $nam_start; $i <= $nam_stop; $i++)
-                                        <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
-                                    @endfor
-                                </select>
-                            </div>
-                        </div-->
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Phân loại</label>
                                 <select class="form-control" name="phanloai" id="phanloai">
-                                    <option value="tw" {{$inputs['phanloai'] == 'tw' ? 'selected' : ''}}>Trung ương</option>
-                                    <option value="dp"{{$inputs['phanloai'] == 'dp' ? 'selected' : ''}}>Địa phương</option>
+                                    <option value="gia" {{$inputs['phanloai'] == 'gia' ? 'selected' : ''}}>Văn bản về Giá</option>
+                                    <option value="philephi"{{$inputs['phanloai'] == 'philephi' ? 'selected' : ''}}>Văn bản Phí lệ phí</option>
                                 </select>
                             </div>
                         </div>
@@ -122,12 +104,12 @@
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Đơn vị</br>ban hành</th>
-                            <th style="text-align: center">Loại văn</br>bản</th>
-                            <th style="text-align: center">Ngày ban hành/<br>Ngày áp dụng</th>
-                            <th style="text-align: center">Số hiệu văn bản</th>
+                            <th style="text-align: center" width="20%">Đơn vị ban hành</th>
+                            <th style="text-align: center" width="10%">Ngày ban hành</th>
+                            <th style="text-align: center" width="10%">Ngày áp dụng</th>
+                            <th style="text-align: center" width="10%">Số hiệu văn bản</th>
                             <th style="text-align: center">Nội dung</th>
-                            <th style="text-align: center" width="15%">Thao tác</th>
+                            <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -135,8 +117,8 @@
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
                                 <td class="active">{{$tt->dvbanhanh}}</td>
-                                <td style="text-align: center">{{$tt->loaivb}}</td>
-                                <td style="text-align: center">{{getDayVn($tt->ngaybanhanh)}} <br>|| {{getDayVn($tt->ngayapdung)}}</td>
+                                <td style="text-align: center">{{getDayVn($tt->ngaybanhanh)}}</td>
+                                <td>{{getDayVn($tt->ngayapdung)}}</td>
                                 <td class="success">{{$tt->kyhieuvb}}</td>
                                 <td>{{$tt->tieude}}</td>
                                 <td>
