@@ -144,11 +144,10 @@
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center">Số quyết</br>định</th>
-                            <th style="text-align: center">Ngày áp</br>dụng</th>
-                            <th style="text-align: center">Số</br>quyết định</br>liền kề</th>
-                            <th style="text-align: center">Ngày áp</br>dụng liền</br>kế</th>
-                            <th style="text-align: center">Nhóm hàng</br>hóa dịch vụ</th>
-                            <th style="text-align: center">Ghi chú</th>
+                            <th style="text-align: center">Ngày</br>áp dụng</th>
+                            <th style="text-align: center">SốQĐ</br>liền kề</th>
+                            <th style="text-align: center">Ngày </br>ápdụng </br>liền kế</th>
+                            <th style="text-align: center">Nhóm hàng hóa dịch vụ</th>
                             <th style="text-align: center" width="10%">Trạng thái</th>
                             <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
@@ -162,7 +161,6 @@
                                 <td style="font-weight: bold">{{$tt->soqdlk}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->ngayapdunglk)}}</td>
                                 <td class="success" style="font-weight: bold">{{$tt->tennhom}}</td>
-                                <td>{{$tt->ghichu}}</td>
                                 <td style="text-align: center">
                                     @if($tt->trangthai == 'HT')
                                         <span class="badge badge-warning">Hoàn thành</span>
