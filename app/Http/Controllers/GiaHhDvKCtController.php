@@ -108,7 +108,7 @@ class GiaHhDvKCtController extends Controller
                     $result['message'] .= '<td style="text-align: right;font-weight: bold">'. number_format($tents->gialk).'</td>';
                     $result['message'] .= '<td style="text-align: right;font-weight: bold">'. number_format($tents->gia).'</td>';
                     $result['message'] .= '<td>';
-                    $result['message'] .= '<button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('.$tents->id.');"><i class="fa fa-edit"></i>&nbsp;Kê khai</button>';
+                    $result['message'] .= '<button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('.$tents->id.');"><i class="fa fa-edit"></i>&nbsp;Nhập giá</button>';
                     $result['message'] .= '</td>';
                     $result['message'] .= '</tr>';
                 }

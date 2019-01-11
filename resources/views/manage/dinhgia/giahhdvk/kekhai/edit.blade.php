@@ -179,7 +179,7 @@
                                             <td style="text-align: right;font-weight: bold">{{number_format($tt->gialk)}}</td>
                                             <td style="text-align: right;font-weight: bold">{{number_format($tt->gia)}}</td>
                                             <td>
-                                                <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem({{$tt->id}})"><i class="fa fa-edit"></i>&nbsp;Kê khai</button>
+                                                <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem({{$tt->id}})"><i class="fa fa-edit"></i>&nbsp;Nhập giá</button>
                                             </td>
                                         </tr>
                                     @endforeach

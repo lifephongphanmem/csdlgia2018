@@ -59,7 +59,7 @@ class GiaHhDvKController extends Controller
             if(isset($inputs['manhom']) && isset($inputs['getdistrict'])) {
                 $tennhom = NhomHhDvK::where('manhom', $inputs['manhom'])->first()->tennhom;
                 $diaban = DiaBanHd::where('district', $inputs['getdistrict'])->where('level', 'H')->first()->diaban;
-                $modelidlk = GiaHhDvK::where('trangthai','CB')
+                $modelidlk = GiaHhDvK::wherein('trangthai',['HT','CB'])
                     ->where('manhom',$inputs['manhom'])
                     ->where('district',$inputs['getdistrict'])
                     ->max('id');
