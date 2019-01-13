@@ -100,7 +100,7 @@
                                     <div class="form-group">
                                         <label class="control-label">File đính kèm 1</label>
                                         @if(isset($model->ipf1))
-                                            <p><a href="{{url('/data/vbqlnnvegia'.$model->ipf1)}}" target="_blank">{{$model->ipt1}}</a></p>
+                                            <a href="{{url('/data/vbqlnnvegia/'.$model->ipf1)}}" target="_blank">{{$model->ipt1}}</a>
                                         @endif
                                         <input name="ipf1" id="ipf1" type="file">
                                     </div>
@@ -109,7 +109,7 @@
                                     <div class="form-group">
                                         <label class="control-label">File đính kèm 2</label>
                                         @if(isset($model->ipf2))
-                                            <p><a href="{{url('/data/vbqlnnvegia'.$model->ipf2)}}" target="_blank">{{$model->ipt2}}</a></p>
+                                            <a href="{{url('/data/vbqlnnvegia/'.$model->ipf2)}}" target="_blank">{{$model->ipt2}}</a>
                                         @endif
                                         <input name="ipf2" id="ipf2" type="file">
                                     </div>
@@ -120,7 +120,7 @@
                                     <div class="form-group">
                                         <label class="control-label">File đính kèm 3</label>
                                         @if(isset($model->ipf3))
-                                            <p><a href="{{url('/data/vbqlnnvegia'.$model->ipf3)}}" target="_blank">{{$model->ipt3}}</a></p>
+                                            <a href="{{url('/data/vbqlnnvegia/'.$model->ipf3)}}" target="_blank">{{$model->ipt3}}</a>
                                         @endif
                                         <input name="ipf3" id="ipf3" type="file">
                                     </div>
@@ -129,7 +129,7 @@
                                     <div class="form-group">
                                         <label class="control-label">File đính kèm 4</label>
                                         @if(isset($model->ipf4))
-                                            <p><a href="{{url('/data/vbqlnnvegia'.$model->ipf4)}}" target="_blank">{{$model->ipt4}}</a></p>
+                                            <a href="{{url('/data/vbqlnnvegia/'.$model->ipf4)}}" target="_blank">{{$model->ipt4}}</a>
                                         @endif
                                         <input name="ipf4" id="ipf4" type="file">
                                     </div>
@@ -140,7 +140,7 @@
                                     <div class="form-group">
                                         <label class="control-label">File đính kèm 5</label>
                                         @if(isset($model->ipf5))
-                                            <p><a href="{{url('/data/vbqlnnvegia'.$model->ipf5)}}" target="_blank">{{$model->ipt5}}</a></p>
+                                            <a href="{{url('/data/vbqlnnvegia/'.$model->ipf5)}}" target="_blank">{{$model->ipt5}}</a>
                                         @endif
                                         <input name="ipf5" id="ipf5" type="file">
                                     </div>

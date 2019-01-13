@@ -1,8 +1,9 @@
 <?php
-Route::resource('thongtinthanhlytaisan','ThanhLyTaiSanController');
-Route::post('thongtinthanhlytaisan/hoanthanh','ThanhLyTaiSanController@hoanthanh');
-Route::post('thongtinthanhlytaisan/huyhoanthanh','ThanhLyTaiSanController@huyhoanthanh');
-Route::post('thongtinthanhlytaisan/congbo','ThanhLyTaiSanController@congbo');
+Route::resource('thongtingiabantaisan','ThanhLyTaiSanController');
+Route::post('thongtingiabantaisan/hoanthanh','ThanhLyTaiSanController@hoanthanh');
+Route::post('thongtingiabantaisan/huyhoanthanh','ThanhLyTaiSanController@huyhoanthanh');
+Route::post('thongtingiabantaisan/congbo','ThanhLyTaiSanController@congbo');
+Route::get('giabantaisan/dinhkem','ThanhLyTaiSanController@show');
 
-Route::geT('timkiemthongtinthanhly','ThanhLyTaiSanController@search');
+Route::geT('timkiemttgiabantaisan','ThanhLyTaiSanController@search');
 ?>

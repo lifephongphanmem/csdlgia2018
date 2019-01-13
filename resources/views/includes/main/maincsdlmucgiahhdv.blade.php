@@ -135,18 +135,18 @@
 <li class="">
     <a href="">
         <i class="icon-folder"></i>
-        <span class="title">Đấu giá tài sản</span>
+        <span class="title">Giá đấu thầu bán TS</span>
         <span class="arrow"></span>
     </a>
     <ul class="sub-menu">
         @if(can('kkthanhlytaisan','index'))
             <li>
-                <a href="{{url('thongtinthanhlytaisan')}}">Thông tin đấu giá tài sản</a>
+                <a href="{{url('thongtingiabantaisan')}}">Thông tin đấu thầu bán TS</a>
             </li>
         @endif
         @if(can('ththanhlytaisan','timkiem'))
             <li>
-                <a href="{{url('timkiemthongtinthanhly')}}">Tìm kiếm thông tin</a>
+                <a href="{{url('timkiemttgiabantaisan')}}">Tìm kiếm thông tin</a>
             </li>
         @endif
     </ul>
