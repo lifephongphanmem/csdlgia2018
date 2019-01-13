@@ -14,7 +14,7 @@ class DistrictController extends Controller
 {
     public function index(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa') {
+            if (session('admin')->level == 'T') {
                 $model = District::all();
                 /*$a_phanloai = NhomQuanLy();
                 foreach($model as $ct) {
@@ -38,7 +38,7 @@ class DistrictController extends Controller
 
     public function create(){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa') {
+            if (session('admin')->level == 'T') {
                 $check = DiaBanHd::where('level','H')->count();
                 if($check > 0)
                     return view('system.district.create')
@@ -56,7 +56,7 @@ class DistrictController extends Controller
 
     public function store(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa') {
+            if (session('admin')->level == 'T') {
                 $inputs = $request->all();
                 $checkmahuyen = District::where('mahuyen',$inputs['mahuyen'])->count();
                 $checkuser = Users::where('username',$inputs['username'])->count();
@@ -91,7 +91,7 @@ class DistrictController extends Controller
 
     public function edit($id){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa') {
+            if (session('admin')->level == 'T') {
                 $model = District::findOrFail($id);
                 return view('system.district.edit')
                     ->with('model',$model)
@@ -106,7 +106,7 @@ class DistrictController extends Controller
 
     public function update(Request $request,$id){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa') {
+            if (session('admin')->level == 'T') {
                 $inputs = $request->all();
                 $model = District::findOrFail($id);
                 $model->update($inputs);

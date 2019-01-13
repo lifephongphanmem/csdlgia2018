@@ -11,7 +11,7 @@ class DiaBanHdController extends Controller
 {
     public function index(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa') {
+            if (session('admin')->level == 'T') {
                 $inputs = $request->all();
                 $inputs['level'] = isset($inputs['level']) ? $inputs['level'] : 'H';
                 $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : 'all';
@@ -38,7 +38,7 @@ class DiaBanHdController extends Controller
 
     public function create(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa') {
+            if (session('admin')->level == 'T') {
                 $inputs = $request->all();
                 $inputs['level'] = isset($inputs['level']) ? $inputs['level'] : 'H';
                 $districts = DiaBanHd::where('level','H')
@@ -63,7 +63,7 @@ class DiaBanHdController extends Controller
 
     public function store(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa') {
+            if (session('admin')->level == 'T') {
                 $inputs = $request->all();
                 $model = new DiaBanHd();
                 $model->create($inputs);
@@ -76,7 +76,7 @@ class DiaBanHdController extends Controller
 
     public function edit($id){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa') {
+            if (session('admin')->level == 'T') {
                 $model = DiaBanHd::findOrFail($id);
                 $districts = DiaBanHd::where('level','H')
                     ->get();
@@ -92,7 +92,7 @@ class DiaBanHdController extends Controller
 
     public function update(Request $request,$id){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa') {
+            if (session('admin')->level == 'T') {
                 $model = DiaBanHd::findOrFail($id);
                 $inputs = $request->all();
                 $model->update($inputs);
@@ -105,7 +105,7 @@ class DiaBanHdController extends Controller
 
     public function destroy(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa') {
+            if (session('admin')->level == 'T') {
                 $inputs = $request->all();
                 $id = $inputs['iddelete'];
                 $model = DiaBanHd::findOrFail($id);
