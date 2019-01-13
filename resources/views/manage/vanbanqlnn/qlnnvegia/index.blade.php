@@ -104,11 +104,11 @@
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center" width="20%">Đơn vị ban hành</th>
-                            <th style="text-align: center" width="10%">Ngày ban hành</th>
-                            <th style="text-align: center" width="10%">Ngày áp dụng</th>
+                            <th style="text-align: center" width="15%">Đơn vị ban hành</th>
                             <th style="text-align: center" width="10%">Số hiệu văn bản</th>
                             <th style="text-align: center">Nội dung</th>
+                            <th style="text-align: center" width="10%">Ngày ban hành</th>
+                            <th style="text-align: center" width="10%">Ngày áp dụng</th>
                             <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
                         </thead>
@@ -117,10 +117,10 @@
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
                                 <td class="active">{{$tt->dvbanhanh}}</td>
-                                <td style="text-align: center">{{getDayVn($tt->ngaybanhanh)}}</td>
-                                <td>{{getDayVn($tt->ngayapdung)}}</td>
                                 <td class="success">{{$tt->kyhieuvb}}</td>
                                 <td>{{$tt->tieude}}</td>
+                                <td style="text-align: center">{{getDayVn($tt->ngaybanhanh)}}</td>
+                                <td style="text-align: center">{{getDayVn($tt->ngayapdung)}}</td>
                                 <td>
                                     @if(can('vbgia','edit'))
                                     <a href="{{url('vanbanqlnnvegia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
