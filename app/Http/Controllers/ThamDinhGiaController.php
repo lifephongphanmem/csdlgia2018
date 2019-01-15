@@ -146,9 +146,11 @@ class ThamDinhGiaController extends Controller
         if(Session::has('admin')){
             $model = ThamDinhGia::findOrFail($id);
             $modelct = ThamDinhGiaCt::where('mahs',$model->mahs)->get();
+            $modeldv = Town::where('maxa',$model->maxa)->first();
             return view('manage.thamdinhgia.show')
                 ->with('model',$model)
                 ->with('modelct',$modelct)
+                ->with('modeldv',$modeldv)
                 ->with('pageTitle','Thông tin hồ sơ thẩm định giá chi tiết');
         }else
             return view('errors.notlogin');

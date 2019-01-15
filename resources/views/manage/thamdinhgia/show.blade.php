@@ -21,6 +21,7 @@
         }
         p{
             padding: 5px;
+            font-size: 16px;
         }
         span {
             text-transform: uppercase;
@@ -51,21 +52,74 @@
             <b><i><u>Độc lập - Tự do - Hạnh phúc</u></i></b><br>
         </td>
     </tr>
+    <tr>
+        <td>Số: {{$model->sotbkl}}<br>V/v thông báo kết quả thẩm định giá .....</td>
+        <td>,ngày .....tháng .....năm </td>
+    </tr>
 </table>
-<p style="text-align: center;font-weight: bold;font-size: 20px;text-transform: uppercase;">Thông tin thẩm định giá</p>
-<p>Số hồ sơ thẩm định: {{$model->hosotdgia}}</p>
-<p>Thời điểm thẩm định: {{getDayVn($model->thoidiem)}}</p>
-<p>Địa điểm thẩm định: {{$model->diadiem}}</p>
-<p>Phương pháp thẩm định: {{$model->ppthamdinh}}</p>
-<p>Mục đích thẩm định: {{$model->mucdich}}</p>
-<p>Đơn vị yêu cầu:{{$model->dvyeucau}}</p>
-<p>Nguồn vốn: {{$model->nguonvon}}</p>
-<p>Số thông báo kết luận: {{$model->sotbkl}}</p>
-<p>Thời hạn sử dụng kết quả: {{getDayVn($model->thoihan)}}</p>
+<p style="text-align: center;font-size: 20px;">Kính gửi: {{$model->dvyeucau}}</p>
+<p>Căn cứ Luật giá số 11/2012/QH13 ngày 20/6/2012;</p>
+<p>Căn cứ Nghị định số 89/2013/NĐ-CP ngày 6/8/2013 của Chính Phủ quy định chi tiết thi hành một số điều của Luật giá và thẩm định giá;</p>
+<p>Căn cứ Thông tư số 38/2014/TT-BTC ngày 28/3/2014 của Bộ Tài chính hướng dẫn một số điều của Nghị định số 89/2013/NĐ-CP ngày 6/8/2013 của Chính
+    phủ quy định chi tiết thi hành một số điều của Luật giá về thẩm định giá;</p>
+<p>Căn cứ Quyết định số 21/2018/QĐ-UBND ngày 20/6/2018 của UBND tỉnh
+    Cao Bằng về việc ban hành quy định quản lý Nhà nước về giá trên địa bàn tỉnh
+    Cao Bằng;</p>
+<p>Theo đề nghị của {{$model->dvyeucau}} tại Tờ trình... về việc đề nghị thẩm định giá....;</p>
+<p>{{$modeldv->tendv}} thông báo kết quả thẩm định giá như sau:</p>
+<p><b>1.Mục đích thẩm định giá</b></p>
+<p>{{$model->mucdich}}</p>
+<p><b>2. Thời điểm thẩm định giá</b></p>
+<p>Tại thời điểm: {{getDayVn($model->thoidiem)}}</p>
+<p><b>3. Nguyên tắc, cơ sở thẩm định giá</b></p>
+<p>Căn cứ hồ sơ do đơn vị cung cấp;<br>
+Căn cứ vào kết quả khảo sát thông tin liên quan đến giá trị vật tư cùng loại;</p>
+<p><b>4. Phương pháp thẩm định giá</b></p>
+<p>{{$model->ppthamdinh}}</p>
+<p><b>5. Kết quả thẩm định giá</b></p>
+<p>Trên cơ sở các tài liệu do đơn vị cung cấp, qua khảo sát thực tế tại thị trường
+    .... với phương pháp thẩm định giá trên được áp dụng trong tính
+    toán, {{$modeldv->tendv}} thông báo kết quả thẩm định giá tại thời điểm {{getDayVn($model->thoidiem)}}.</p>
+<p>Tổng giá trị sau thẩm định: <b>{{number_format($modelct->sum('giatritstd'))}}</b> VNĐ</p>
+<p><i>(Tổng số tiền sau thẩm định bằng chữ: {{VndText($modelct->sum('giatritstd'))}})</i></p>
+<p><i>(Chi tiết phụ lục đính kèm)</i></p>
+<p><b>6. Điều kiện, giới hạn kèm theo kết quả thẩm định giá</b></p>
+<p>- Kết quả thẩm định giá chỉ được sử dụng cho một “Mục đích thẩm định giá” duy nhất theo yêu cầu của đơn vị đã được ghi tại phần đầu của Công văn thông báo kết quả thẩm định giá. Đơn vị phải hoàn toàn chịu trách nhiệm khi sử dụng sai mục đích đã yêu cầu.</p>
+<p>- Kết quả thẩm định giá chỉ được tính cho {{$model->dvyeucau}} đã nêu ở trên. Việc sử dụng kết quả thẩm định giá này áp dụng cho sản phẩm khác dưới bất kỳ hình thức nào không có giá trị.</p>
+<p>- Mức giá {{$modeldv->tendv}} thông báo nêu trên là mức giá trần, được đưa ra tư vấn trong điều kiện không được trực quan tiếp cận {{$model->dvyeucau}} cũng như đàm phán về điều kiện kỹ thụât, thương mại…. chỉ dựa trên thông tin về sản phẩm do đơn vị cung cấp. Chủ đầu tư có trách nhịêm quyết định mức giá {{$model->dvyeucau}} trong giao dịch cụ thể, đảm bảo tính hịêu quả cao nhất có thể.</p>
+<p>- Mức giá của {{$model->dvyeucau}} sẽ không được xác nhận trong trường hợp sản phẩm không đầy đủ về cơ sở pháp lý cũng như thay đổi đặc tính kỹ thuật như: chất liệu, quy cách, thành phần…. hay thay đổi về đặc tính kinh tế như: xuất xứ, hãng sản xuất, chất lượng….</p>
+<p>- Chỉ bản chính và bản sao Công văn thẩm định giá có đóng dấu đỏ do {{$modeldv->tendv}} cấp ra mới có giá trị. Mọi hành vi sử dụng bản sao kết quả thẩm định giá mà không có xác nhận của {{$modeldv->tendv}} đều vi phạm pháp lụât và không có giá trị.</p>
+<p><b>7.Thời hạn sử dụng kết quả thẩm định giá: </b>có hiệu lực trong vòng {{$model->songaykq}} ngày kể từ ngày ký.</p>
+<p>{{$modeldv->tendv}} thông báo để đơn vị triển khai thực hiện theo quy định của pháp luật hiện hành./.</p>
+<table width="96%" border="0" cellspacing="0" cellpadding="0" style="margin:10px auto;">
+    <tr>
+        <td style="text-align: left" width="40%">
+            <b style="padding-top:0px;"><i>Nơi nhận:</i></b><br>
+            - Như trên:<br>
+            - Lưu: VT,QLG
+        </td>
+
+        <td style="text-align: center; text-transform: uppercase;" width="60%">
+            <b></b>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <b style="text-transform: uppercase;"></b>
+        </td>
+    </tr>
+</table>
+<p style="page-break-before: always">
+<p style="text-align: center;font-weight:bold;font-size: 20px;text-transform: uppercase;">PHỤ LỤC</p>
+<p style="text-align: center;font-size: 16px;"><i>(Kèm theo Công văn số: {{$model->sotbkl}}</i></p>
+<p style="text-align: center;font-size: 16px;"><i>Ngày ..... tháng ..... năm ..... của {{$modeldv->tendv}})</i></p>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <tr>
         <th width="2%" style="text-align: center" rowspan="2">STT</th>
-        <th style="text-align: center" rowspan="2">Loại hàng hóa - Quy cách</th>
+        <th style="text-align: center" rowspan="2">Tên vật tư - Quy cách</th>
+        <th style="text-align: center" rowspan="2">Thông số kỹ thuật</th>
         <th style="text-align: center" rowspan="2">Đơn<br>vị<br>tính</th>
         <th style="text-align: center" rowspan="2">Số<br>lượng</th>
         <th style="text-align: center" colspan="2">Giá đề nghị<br>({{$model->thuevat}})</th>
@@ -77,43 +131,29 @@
         <th style="text-align: center">Đơn giá</th>
         <th style="text-align: center">Thành tiền</th>
     </tr>
-    <tr>
-        <th style="text-align: center">0</th>
-        <th style="text-align: center">1</th>
-        <th style="text-align: center">2</th>
-        <th style="text-align: center">3</th>
-        <th style="text-align: center">4</th>
-        <th style="text-align: center">5</th>
-        <th style="text-align: center">6</th>
-        <th style="text-align: center">7</th>
-    </tr>
     @foreach($modelct as $key=>$tt)
         <tr>
             <td style="text-align: center">{{($key +1)}}</td>
-            <td class="active">{{$tt->tents}}-{{$tt->thongsokt}}</td>
+            <td class="active">{{$tt->tents}}-{{$tt->dacdiempl}}</td>
+            <td style="text-align: left">{{$tt->thongsokt}}</td>
             <td style="text-align: center">{{$tt->dvt}}</td>
             <td style="text-align: center">{{number_format($tt->sl)}}</td>
-            <td style="text-align: right;font-weight: bold">{{number_format($tt->nguyengiadenghi)}}</td>
-            <td style="text-align: right;font-weight: bold">{{number_format($tt->giadenghi)}}</td>
-            <td style="text-align: right;font-weight: bold">{{number_format($tt->nguyengiathamdinh)}}</td>
-            <td style="text-align: right;font-weight: bold">{{number_format($tt->giatritstd)}}</td>
+            <td style="text-align: right;">{{number_format($tt->nguyengiadenghi)}}</td>
+            <td style="text-align: right;">{{number_format($tt->giadenghi)}}</td>
+            <td style="text-align: right;">{{number_format($tt->nguyengiathamdinh)}}</td>
+            <td style="text-align: right;">{{number_format($tt->giatritstd)}}</td>
         </tr>
     @endforeach
-</table>
-</table>
-<table width="96%" border="0" cellspacing="0" cellpadding="0" style="margin:10px auto; text-align: center;">
     <tr>
         <td></td>
-        <td style="text-align: center;text-transform: uppercase; " width="60%">
-            <b></b><br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <b style="text-transform: uppercase;"></b>
-        </td>
+        <td style="text-align: center;font-weight: bold">Tổng cộng</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="text-align: right;font-weight: bold">{{number_format($modelct->sum('giadenghi'))}}</td>
+        <td></td>
+        <td style="text-align: right;font-weight: bold">{{number_format($modelct->sum('giatritstd'))}}</td>
     </tr>
 </table>
+<p style="text-align: center;font-weight: bold"><i>(Tổng giá trị sau thẩm định: <b>{{number_format($modelct->sum('giatritstd'))}}</b> VNĐ)</i></p>
