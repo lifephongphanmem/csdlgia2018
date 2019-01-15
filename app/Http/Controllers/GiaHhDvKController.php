@@ -374,6 +374,7 @@ class GiaHhDvKController extends Controller
                 ->get()->toarray(), 'tennhom','manhom');
             if(session('admin')->level == 'X')
                 $inputs['district'] = session('admin')->district;
+
             return view('manage.dinhgia.giahhdvk.excel.information')
                 ->with('a_nhom', $m_nhom)
                 ->with('inputs',$inputs)
@@ -385,6 +386,12 @@ class GiaHhDvKController extends Controller
     function import_excel(Request $request){
         if(Session::has('admin')){
             $inputs=$request->all();
+            $inputs['phanloaibc'] = $inputs['phanloai'];
+            $inputs['thangbc'] = $inputs['thang'];
+            $inputs['nambc'] = $inputs['nam'];
+            $inputs['districtbc'] = $inputs['district'];
+            $inputs['manhombc'] = $inputs['manhom'];
+            //dd($inputs);
             $modelkt = GiaHhDvK::where('manhom',$inputs['manhom'])
                 ->where('thang',$inputs['thang'])
                 ->where('nam',$inputs['nam'])
@@ -438,12 +445,11 @@ class GiaHhDvKController extends Controller
                 $modelct = GiaHhDvKCtDf::where('district', $inputs['district'])
                     ->where('manhom', $inputs['manhom'])->get();
                 return view('manage.dinhgia.giahhdvk.kekhai.create')
-                    ->with('district', $inputs['district'])
                     ->with('diaban', $diaban)
-                    ->with('manhom', $inputs['manhom'])
                     ->with('tennhom', $tennhom)
                     ->with('modelct', $modelct)
                     ->with('modellk', $modellk)
+                    ->with('inputs',$inputs)
                     ->with('pageTitle', 'Kê khai giá hàng hóa dịch vụ thêm mới');
             }
         }else
