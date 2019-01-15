@@ -16,6 +16,8 @@ class District extends Model
         'phanloaiql',
         'ttlienhe',
         'emailql',
-        'emailqt'
+        'emailqt',
+        'tendvhienthi',
+        'tendvcqhienthi',
     ];
 }

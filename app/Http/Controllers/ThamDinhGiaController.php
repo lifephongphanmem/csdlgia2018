@@ -160,8 +160,9 @@ class ThamDinhGiaController extends Controller
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
             $inputs['tents'] = isset($inputs['tents']) ? $inputs['tents'] : '';
             $model = ThamDinhGiaCt::join('thamdinhgia','thamdinhgiact.mahs','=','thamdinhgia.mahs')
+                ->join('town','thamdinhgia.maxa','=','town.maxa')
                 ->select('thamdinhgiact.*','thamdinhgia.thoidiem','thamdinhgia.thuevat','thamdinhgia.sotbkl',
-                'thamdinhgia.thoihan','thamdinhgia.ppthamdinh')
+                'thamdinhgia.thoihan','thamdinhgia.ppthamdinh','town.tendv')
                 ->whereYear('thamdinhgia.thoidiem',$inputs['nam'])
                 ->whereIn('thamdinhgia.trangthai',['HT','CB']);
             if($inputs['tents'] != '')

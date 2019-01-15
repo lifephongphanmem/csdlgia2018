@@ -18,6 +18,8 @@ class Town extends Model
         'ttlienhe',
         'emailql',
         'emailqt',
-        'songaylv'
+        'songaylv',
+        'tendvhienthi',
+        'tendvcqhienthi',
     ];
 }

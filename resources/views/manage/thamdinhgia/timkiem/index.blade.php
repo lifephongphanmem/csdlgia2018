@@ -108,7 +108,7 @@
                                 <input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/>
                             </th-->
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center" >Thời gian thẩm định</th>
+                            <th style="text-align: center" >Đơn vị thẩm định</th>
                             <th style="text-align: center">Thời hạn thẩm định</th>
                             <th style="text-align: center">Tên tài sản-<br>Thông số kỹ thuật</th>
                             <th style="text-align: center">Số lương-<br>Đơn vị tính</th>
@@ -123,6 +123,7 @@
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
+                                <td>{{$tt->tendv}}</td>
                                 <td>{{getDayVn($tt->thoidiem)}}</td>
                                 <td>{{getDayVn($tt->thoihan)}}</td>
                                 <td class="success">{{$tt->tents}}-{{$tt->thongsokt}}</td>
