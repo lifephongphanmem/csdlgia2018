@@ -72,8 +72,8 @@
 <p><b>2. Thời điểm thẩm định giá</b></p>
 <p>Tại thời điểm: {{getDayVn($model->thoidiem)}}</p>
 <p><b>3. Nguyên tắc, cơ sở thẩm định giá</b></p>
-<p>Căn cứ hồ sơ do đơn vị cung cấp;<br>
-Căn cứ vào kết quả khảo sát thông tin liên quan đến giá trị vật tư cùng loại;</p>
+<p>Căn cứ hồ sơ do đơn vị cung cấp;</p>
+<p>Căn cứ vào kết quả khảo sát thông tin liên quan đến giá trị vật tư cùng loại;</p>
 <p><b>4. Phương pháp thẩm định giá</b></p>
 <p>{{$model->ppthamdinh}}</p>
 <p><b>5. Kết quả thẩm định giá</b></p>
