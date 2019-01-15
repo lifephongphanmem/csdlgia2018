@@ -155,7 +155,7 @@ class GiaHhDvKController extends Controller
                 }
                 $modelctdf->delete();
             }
-            return redirect('giahhdvkhac?&district='.$inputs['district'].'&trangthai='.$inputs['trangthai']);
+            return redirect('giahhdvkhac?&district='.$inputs['district'].'&thang='.$inputs['thang'].'&nam='.$inputs['nam']);
 
         }else
             return view('errors.notlogin');
@@ -207,7 +207,7 @@ class GiaHhDvKController extends Controller
                 unset($inputs['ngayapdunglk']);
             $model = GiaHhDvK::findOrFail($id);
             $model->update($inputs);
-            return redirect('giahhdvkhac?&district='.$model->district.'&trangthai='.$model->trangthai);
+            return redirect('giahhdvkhac?&district='.$model->district.'&thang='.$model->thang.'&nam='.$model->nam);
 
         }else
             return view('errors.notlogin');
@@ -221,7 +221,7 @@ class GiaHhDvKController extends Controller
             $district = $model->district;
             $modelct = GiaHhDvKCt::where('mahs',$model->mahs)->delete();
             $model->delete();
-            return redirect('giahhdvkhac?&district='.$district.'&trangthai=CHT');
+            return redirect('giahhdvkhac?&district='.$model->district.'&thang='.$model->thang.'&nam='.$model->nam);
         }else
             return view('errors.notlogin');
     }
@@ -271,7 +271,7 @@ class GiaHhDvKController extends Controller
             $model = GiaHhDvK::findOrFail($id);
             $model->trangthai = 'HT';
             $model->save();
-            return redirect('giahhdvkhac?&district='.$model->district);
+            return redirect('giahhdvkhac?&district='.$model->district.'&thang='.$model->thang.'&nam='.$model->nam);
         }else
             return view('errors.notlogin');
     }
@@ -283,7 +283,7 @@ class GiaHhDvKController extends Controller
             $model = GiaHhDvK::findOrFail($id);
             $model->trangthai = 'HHT';
             $model->save();
-            return redirect('giahhdvkhac?&district='.$model->district);
+            return redirect('giahhdvkhac?&district='.$model->district.'&thang='.$model->thang.'&nam='.$model->nam);
         }else
             return view('errors.notlogin');
     }
@@ -295,7 +295,7 @@ class GiaHhDvKController extends Controller
             $model = GiaHhDvK::findOrFail($id);
             $model->congbo = 'CB';
             $model->save();
-            return redirect('giahhdvkhac?&district='.$model->district);
+            return redirect('giahhdvkhac?&district='.$model->district.'&thang='.$model->thang.'&nam='.$model->nam);
         }else
             return view('errors.notlogin');
     }

@@ -152,7 +152,7 @@ class ThGiaHhDvKController extends Controller
                         $modelct->save();
                     }
                 }
-                return redirect('tonghopgiahhdvk?&manhom='.$inputs['manhom'].'&thang='.$inputs['thang'].'&nam='.$inputs['nam']);
+                return redirect('tonghopgiahhdvk?&manhom='.$inputs['manhom'].'&thang='.$inputs['thang'].'&nam='.$inputs['nam'].'&phanloai='.$inputs['phanloai']);
             }else
                 return view('errors.perm');
         }else
@@ -199,7 +199,7 @@ class ThGiaHhDvKController extends Controller
                 $inputs['ngaybc'] = getDateToDb($inputs['ngaybc']);
                 $model = ThGiaHhDvK::findOrFail($id);
                 $model->update($inputs);
-                return redirect('tonghopgiahhdvk?&manhom='.$inputs['manhom'].'&thang='.$inputs['thang'].'&nam='.$inputs['nam']);
+                return redirect('tonghopgiahhdvk?&manhom='.$model->manhom.'&thang='.$model->thang.'&nam='.$model->nam.'&phanloai='.$model->phanloai);
 
             }else
                 return view('errors.perm');
@@ -231,7 +231,7 @@ class ThGiaHhDvKController extends Controller
             $model = ThGiaHhDvK::findOrFail($id);
             $model->trangthai = 'HT';
             $model->save();
-            return redirect('tonghopgiahhdvk?&manhom='.$model->manhom.'&thang='.$model->thang.'&nam='.$model->nam);
+            return redirect('tonghopgiahhdvk?&manhom='.$model->manhom.'&thang='.$model->thang.'&nam='.$model->nam.'&phanloai='.$model->phanloai);
         }else
             return view('errors.notlogin');
     }
@@ -243,7 +243,7 @@ class ThGiaHhDvKController extends Controller
             $model = ThGiaHhDvK::findOrFail($id);
             $model->trangthai = 'HHT';
             $model->save();
-            return redirect('tonghopgiahhdvk?&manhom='.$model->manhom.'&thang='.$model->thang.'&nam='.$model->nam);
+            return redirect('tonghopgiahhdvk?&manhom='.$model->manhom.'&thang='.$model->thang.'&nam='.$model->nam.'&phanloai='.$model->phanloai);
         }else
             return view('errors.notlogin');
     }
@@ -255,7 +255,7 @@ class ThGiaHhDvKController extends Controller
             $model = ThGiaHhDvK::findOrFail($id);
             $model->congbo = 'CB';
             $model->save();
-            return redirect('tonghopgiahhdvk?&manhom='.$model->manhom.'&thang='.$model->thang.'&nam='.$model->nam);
+            return redirect('tonghopgiahhdvk?&manhom='.$model->manhom.'&thang='.$model->thang.'&nam='.$model->nam.'&phanloai='.$model->phanloai);
         }else
             return view('errors.notlogin');
     }
