@@ -79,7 +79,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin thẩm định giá<small>&nbsp; tài sản NN </small>
+        Thông tin hồ sơ <small>&nbsp;thẩm định giá</small>
     </h3>
 
     <!-- END PAGE HEADER-->

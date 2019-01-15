@@ -27,6 +27,9 @@ class CreateTownTable extends Migration
             $table->string('songaylv')->nullable();
             $table->string('tendvhienthi')->nullable();
             $table->string('tendvcqhienthi')->nullable();
+            $table->string('chucvuky')->nullable();
+            $table->string('chucvukythay')->nullable();
+            $table->string('nguoiky')->nullable();
             $table->timestamps();
         });
     }

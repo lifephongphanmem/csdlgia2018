@@ -21,5 +21,8 @@ class Town extends Model
         'songaylv',
         'tendvhienthi',
         'tendvcqhienthi',
+        'chucvuky',
+        'chucvukythay',
+        'nguoiky',
     ];
 }

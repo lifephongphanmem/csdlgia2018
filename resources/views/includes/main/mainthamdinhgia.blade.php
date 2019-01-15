@@ -3,7 +3,7 @@
 <li class="">
     <a href="">
         <i class="icon-folder"></i>
-        <span class="title">Thẩm định giá TSNN</span>
+        <span class="title">Thẩm định giá</span>
         <span class="arrow"></span>
     </a>
     <ul class="sub-menu" style="display: none;">
@@ -33,18 +33,18 @@
             và thông tin, tài liệu liên quan đến kết quả thẩm định giá của Hội đồng Thẩm định giá">
             <a href="">
                 <i class="icon-folder"></i>
-                <span class="title">Thẩm định giá hàng hóa</span>
+                <span class="title">Giá hàng hóa</span>
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu" style="display: none;">
                 @if(can('dmthamdinhgiahh','index'))
                     <li>
-                        <a href="{{url('dmthamdinhgiahh')}}">DM thẩm định giá HH</a>
+                        <a href="{{url('dmthamdinhgiahh')}}">DM hàng hóa</a>
                     </li>
                 @endif
                 @if(can('kkthamdinhgiahh','index'))
                     <li>
-                        <a href="{{url('thamdinhgiahanghoa')}}">Hồ sơ thẩm định giá HH</a>
+                        <a href="{{url('thamdinhgiahanghoa')}}">Giá hàng hóa</a>
                     </li>
                 @endif
                 @if(can('ththamdinhgiahh','timkiem'))
