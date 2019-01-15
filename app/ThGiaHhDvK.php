@@ -14,6 +14,12 @@ class ThGiaHhDvK extends Model
         'ttbc',
         'manhom',
         'mahs',
+        'thang',
+        'nam',
+        'phanloai',
+        'ghichu',
+        'congbo',
         'trangthai',
+
     ];
 }

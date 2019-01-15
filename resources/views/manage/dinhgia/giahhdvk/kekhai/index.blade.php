@@ -19,23 +19,26 @@
             TableManaged.init();
         });
         $(function(){
-            $('#nam').change(function() {
+            $('#thang').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
-                var url = '/giahhdvkhac?'+namhs;
+                var thang = '&thang=' + $('#thang').val();
+                var district = '&district='+ $('#district').val();
+                var url = '/giahhdvkhac?'+ thang + namhs + district;
                 window.location.href = url;
             });
-            $('#trangthai').change(function() {
+            $('#nam').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
-                var trangthai = '&trangthai=' + $('#trangthai').val();
-                var url = '/giahhdvkhac?'+namhs + trangthai;
+                var thang = '&thang=' + $('#thang').val();
+                var district = '&district='+ $('#district').val();
+                var url = '/giahhdvkhac?'+ thang + namhs + district;
                 window.location.href = url;
             });
 
             $('#district').change(function() {
-                var nam = '&nam='+ $('#nam').val();
-                var trangthai = '&trangthai=' + $('#trangthai').val();
+                var namhs = '&nam='+ $('#nam').val();
+                var thang = '&thang=' + $('#thang').val();
                 var district = '&district='+ $('#district').val();
-                var url = '/giahhdvkhac?' + nam +trangthai + district;
+                var url = '/giahhdvkhac?'+ thang + namhs + district;
 
                 window.location.href = url;
             });
@@ -65,7 +68,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin hồ sơ <small>&nbsp;giá hàng hóa dịch vụ khác</small>
+        Thông tin báo cáo giá hàng hóa dịch vụ khác<small style="color: blue;font-weight: bold">&nbsp;- Địa bàn quản lý {{$diaban->diaban}}</small>
     </h3>
 
     <!-- END PAGE HEADER-->
@@ -80,21 +83,9 @@
                         @if(can('kkgiahhdvk','create'))
                             <button type="button" class="btn btn-default btn-sm" data-target="#create-modal-confirm" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;
                                 Thêm mới</button>
-                            <div class="btn-group">
-                                <a class="btn btn-default btn-sm" href="" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <i class="fa fa-file-excel-o"></i>&nbsp;Nhận dữ liệu <i class="fa fa-angle-down"></i>
-                                </a>
-                                <ul class="dropdown-menu pull-right">
-                                    <li>
-                                        <button type="button" style="border-width: 0px; padding-left: 13px;" class="btn btn-default btn-xs mbs" data-toggle="modal" data-target="#modal-filemau">
-                                            &nbsp;File dữ liệu mẫu</button>
-                                    </li>
-
-                                    <li>
-                                        <a href="{{url('/giahhdvkhac/nhanexcel')}}">Nhận dữ liệu</a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-filemau"><i class="fa fa-cloud-download"></i>
+                                &nbsp;Xuất dữ liệu</button>
+                            <a href="{{url('/giahhdvkhac/nhanexcel?&district='. $inputs['district'])}}" class="btn btn-default btn-sm"><i class="fa fa-file-excel-o"></i>&nbsp;Nhận dữ liệu</a>
                         @endif
                     </div>
 
@@ -103,7 +94,18 @@
                     <div class="row">
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label>Năm hồ sơ</label>
+                                <label>Tháng báo cáo</label>
+                                {!! Form::select(
+                                'thang',
+                                getThang()
+                                ,$inputs['thang'],
+                                array('id' => 'thang', 'class' => 'form-control'))
+                                !!}
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Năm báo cáo</label>
                                 <select name="nam" id="nam" class="form-control">
                                     @if ($nam_start = intval(date('Y')) - 5 ) @endif
                                     @if ($nam_stop = intval(date('Y')) + 1) @endif
@@ -113,21 +115,9 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Trạng thái hồ sơ</label>
-                                <select name="trangthai" id="trangthai" class="form-control">
-                                    @if(can('kkgiahhdvk','create'))
-                                    <option value="CHT" {{$inputs['trangthai'] == 'CHT' ? 'selected' : ''}}>Chưa hoàn thành</option>
-                                    @endif
-                                    <option value="HT" {{$inputs['trangthai'] == 'HT' ? 'selected' : ''}}>Hoàn thành</option>
-                                    <option value="HHT" {{$inputs['trangthai'] == 'HHT' ? 'selected' : ''}}>Hủy hoàn thành</option>
-                                    <option value="CB" {{$inputs['trangthai'] == 'CB' ? 'selected' : ''}}>Công bố</option>
-                                </select>
-                            </div>
-                        </div>
+
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H')
-                            <div class="col-md-5">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Địa bàn</label>
                                     <select name="district" id="district" class="form-control">
@@ -143,11 +133,10 @@
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Số quyết</br>định</th>
-                            <th style="text-align: center">Ngày</br>áp dụng</th>
-                            <th style="text-align: center">SốQĐ</br>liền kề</th>
-                            <th style="text-align: center">Ngày </br>ápdụng </br>liền kế</th>
+                            <th style="text-align: center">Phân loại báo cáo</th>
                             <th style="text-align: center">Nhóm hàng hóa dịch vụ</th>
+                            <th style="text-align: center" width="20%">Số quyết định <br>Ngày áp dụng</th>
+                            <th style="text-align: center" width="20%">Số QĐ liền kề<br>Ngày áp dụng liền kề</th>
                             <th style="text-align: center" width="10%">Trạng thái</th>
                             <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
@@ -156,11 +145,12 @@
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
-                                <td class="active"  style="font-weight: bold">{{$tt->soqd}}</td>
-                                <td style="text-align: center">{{getDayVn($tt->ngayapdung)}}</td>
-                                <td style="font-weight: bold">{{$tt->soqdlk}}</td>
-                                <td style="text-align: center">{{getDayVn($tt->ngayapdunglk)}}</td>
-                                <td class="success" style="font-weight: bold">{{$tt->tennhom}}</td>
+                                <td>@if($tt->phanloai == '15ngaydau') <b>15 ngày đầu tháng</b>
+                                    @else <b>15 ngày cuối tháng</b>
+                                    @endif<br>Tháng {{$tt->thang}}/{{$tt->nam}}</td>
+                                <td class="active" style="font-weight: bold">{{$tt->tennhom}}</td>
+                                <td>Số: {{$tt->soqd}}<br>Ngày áp dụng: {{getDayVn($tt->ngayapdung)}}</td>
+                                <td>Số: {{$tt->soqdlk}}<br>Ngày áp dụng: {{getDayVn($tt->ngayapdunglk)}}</td>
                                 <td style="text-align: center">
                                     @if($tt->trangthai == 'HT')
                                         <span class="badge badge-warning">Hoàn thành</span>
@@ -168,8 +158,6 @@
                                         <span class="badge badge-danger">Chưa hoàn thành</span>
                                     @elseif($tt->trangthai == 'HHT')
                                         <span class="badge badge-danger">Hủy hoàn thành</span>
-                                    @else
-                                        <span class="badge badge-success">Công bố</span>
                                     @endif
                                 </td>
                                 <td>
@@ -228,18 +216,60 @@
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
                     <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-                    <h4 id="modal-header-primary-label" class="modal-title">Thêm mới kê khai giá hàng hóa dịch vụ</h4>
+                    <h4 id="modal-header-primary-label" class="modal-title">Thêm mới báo cáo giá hàng hóa dịch vụ</h4>
                 </div>
 
                 <div class="modal-body">
-                    <div class="row">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>Địa bàn quản lý: <b style="color: blue">{{$diaban->diaban}}</b></label>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-12">
                                 <label>Phân loại nhóm hàng hóa dịch vụ</label>
-                                {!!Form::select('manhom', $a_nhom, null, array('id' => 'manhom','class' => 'form-control select2me'))!!}
+                                {!!Form::select('manhombc', $a_nhom, null, array('id' => 'manhombc','class' => 'form-control select2me'))!!}
                             </div>
-                            <input type="hidden" name="getdistrict" id="getdistrict" value="{{$inputs['district']}}">
                         </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>Phân loại báo cáo</label>
+                                {!! Form::select(
+                                'phanloaibc',
+                                array(
+                                '15ngaydau'=>'15 ngày đầu tháng',
+                                '15ngaycuoi'=>'15 ngày cuối tháng',
+                                )
+                                ,null,
+                                array('id' => 'phanloaibc', 'class' => 'form-control'))
+                                !!}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>Tháng</label>
+                                {!! Form::select(
+                                'thangbc',
+                                getThang()
+                                ,date('m'),
+                                array('id' => 'thangbc', 'class' => 'form-control'))
+                                !!}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>Năm</label>
+                                <select name="nambc" id="nambc" class="form-control">
+                                    @if ($nam_start = intval(date('Y')) - 5 ) @endif
+                                    @if ($nam_stop = intval(date('Y')) + 1) @endif
+                                    @for($i = $nam_start; $i <= $nam_stop; $i++)
+                                        <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                        </div>
+                        <input type="text" id="districtbc" name="districtbc" value="{{$inputs['district']}}">
                     </div>
                 </div>
 
@@ -267,21 +297,28 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label>Địa bàn quản lý: <b style="color: blue">{{$diaban->diaban}}</b></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label>Lấy danh mục hàng hóa từ</label>
                                     <div class="radio-list">
                                         <label>
                                             <span><input type="radio" name="phanloai" value="DM"></span>Danh mục hàng hóa
                                         </label>
                                         <label>
-                                            <span><input type="radio" name="phanloai" value="HS" checked=""></span>Hồ sơ đang công bố
+                                            <span><input type="radio" name="phanloai" value="HS" checked=""></span>Hồ sơ đã hoàn thành gần nhất
                                         </label>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-12">
@@ -290,6 +327,7 @@
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" id="diaban" name="diaban" value="{{$inputs['district']}}">
                 </div>
 
 

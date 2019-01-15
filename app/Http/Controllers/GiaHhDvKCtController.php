@@ -41,7 +41,7 @@ class GiaHhDvKCtController extends Controller
             $result['message'] .= '</div>';
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Giá tối đa<span class="require">*</span></label>';
+            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Giá<span class="require">*</span></label>';
             $result['message'] .= '<div><input type="text" name="edit_gia" id="edit_gia" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold" value="'.$model->gia.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';

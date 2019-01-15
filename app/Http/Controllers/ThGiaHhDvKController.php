@@ -25,16 +25,19 @@ class ThGiaHhDvKController extends Controller
             if (session('admin')->level == 'T' || session('admin')->level == 'H') {
                 $inputs = $request->all();
                 $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-                $inputs['manhom'] = isset($inputs['manhom']) ? $inputs['manhom'] : '';
-                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CHT';
+                $inputs['phanloai'] = isset($inputs['phanloai']) ? $inputs['phanloai'] : '15ngaydau';
+                $m_nhom = NhomHhDvK::where('theodoi','TD')
+                    ->get();
+                $inputs['manhom'] = isset($inputs['manhom']) ? $inputs['manhom'] : $m_nhom->first()->manhom;
                 $model = ThGiaHhDvK::join('nhomhhdvk','nhomhhdvk.manhom','=','thgiahhdvk.manhom')
                     ->select('thgiahhdvk.*','nhomhhdvk.tennhom')
                     ->whereYear('ngaybc',$inputs['nam']);
                 if($inputs['manhom'] != '')
                     $model = $model->where('thgiahhdvk.manhom',$inputs['manhom']);
+                if($inputs['phanloai']!= '')
+                    $model = $model->where('thgiahhdvk.phanloai',$inputs['phanloai']);
                 $model = $model->get();
-                $m_nhom = NhomHhDvK::where('theodoi','TD')
-                    ->get();
+
                 return view('manage.dinhgia.giahhdvk.tonghop.index')
                     ->with('model',$model)
                     ->with('m_nhom',$m_nhom)
@@ -51,64 +54,74 @@ class ThGiaHhDvKController extends Controller
             if (session('admin')->level == 'T' || session('admin')->level == 'H') {
                 $inputs = $request->all();
                 $inputs['ngaychotbc'] = getDateToDb($inputs['ngaychotbc']);
-                //dd($inputs);
-                $checkdf = ThGiaHhDvKCtDf::where('manhom',$inputs['manhom'])
-                    ->where('ngaychotbc',$inputs['ngaychotbc'])
-                    ->delete();
+                $modelcheck = ThGiaHhDvK::where('manhom',$inputs['manhombc'])
+                    ->where('thang',$inputs['thangbc'])
+                    ->where('nam',$inputs['nambc'])
+                    ->where('phanloai',$inputs['phanloaibc'])
+                    ->count();
+                if($modelcheck>0){
+                    dd('Đã có báo cáo, bạn cần kiểm tra lại! Nếu số liệu không đúng bạn cần xóa báo cáo trước để tạo báo cáo mới');
+                }else {
+                    $checkdf = ThGiaHhDvKCtDf::where('manhom', $inputs['manhombc'])
+                        //->where('ngaychotbc', $inputs['ngaychotbc'])
+                        ->delete();
 
-                $modeldiaban = DiaBanHd::where('level','H')
-                    ->get();
-                $id='';
-                foreach($modeldiaban as $diaban){
-                    $modelid = GiaHhDvK::where('manhom',$inputs['manhom'])
-                        ->where('district',$diaban->district)
-                        ->where('ngayapdung','<=',getDateToDb($inputs['ngaychotbc']))
-                        ->where('trangthai','CB')
-                        ->max('id');
-                    if($modelid != null)
-                        $id = $id.$modelid.',';
+                    $modeldiaban = DiaBanHd::where('level', 'H')
+                        ->get();
+                    $id = '';
+                    foreach ($modeldiaban as $diaban) {
+                        $modelid = GiaHhDvK::where('manhom', $inputs['manhombc'])
+                            ->where('district', $diaban->district)
+                            ->where('thang', $inputs['thangbc'])
+                            ->where('nam', $inputs['nambc'])
+                            ->where('phanloai',$inputs['phanloaibc'])
+                            ->where('trangthai', 'HT')
+                            ->first();
+                        if ($modelid != null)
+                            $id = $id . $modelid->id . ',';
+                    }
+                    //Lấy ra mahs kê khai
+                    $modelhskk = GiaHhDvK::wherein('id', explode(',', $id))
+                        ->select('mahs')
+                        ->get();
+                    //Lấy ra chi tiết các hồ sơ kê khai
+                    $modelcthskk = GiaHhDvKCt::wherein('mahs', $modelhskk->toArray())
+                        ->where('gia', '<>', 0)
+                        ->get();
+                    //dd($modelcthskk->select('mahhdv','tenhhdv','gia')->get()->toArray());
+
+
+                    $modeldm = DmHhDvK::where('theodoi', 'TD')
+                        ->where('manhom', $inputs['manhombc'])
+                        ->select('mahhdv', 'tenhhdv', 'dvt')
+                        ->get();
+                    //dd($modeldm);
+
+                    foreach ($modeldm as $dm) {
+
+                        $ttgia = $modelcthskk->where('mahhdv', $dm->mahhdv)->avg('gia');
+                        $modelct = new ThGiaHhDvKCtDf();
+                        $modelct->manhom = $inputs['manhombc'];
+                        $modelct->ngaychotbc = $inputs['ngaychotbc'];
+                        $modelct->mahhdv = $dm->mahhdv;
+                        $modelct->tenhhdv = $dm->tenhhdv;
+                        $modelct->dvt = $dm->dvt;
+                        $modelct->gia = $ttgia;
+                        $modelct->save();
+
+                    }
+                    $modelct = ThGiaHhDvKCtDf::where('manhom', $inputs['manhombc'])
+                        ->where('ngaychotbc', $inputs['ngaychotbc'])
+                        ->get();
+
+                    //dd($modelct);
+                    $modelnhom = NhomHhDvK::where('manhom', $inputs['manhombc'])->first();
+                    return view('manage.dinhgia.giahhdvk.tonghop.create')
+                        ->with('modelct', $modelct)
+                        ->with('modelnhom', $modelnhom)
+                        ->with('inputs', $inputs)
+                        ->with('pageTitle', 'Tổng hợp giá hàng hóa dịch vụ khác');
                 }
-                //Lấy ra mahs kê khai
-                $modelhskk = GiaHhDvK::wherein('id',explode(',',$id))
-                    ->select('mahs')
-                    ->get();
-                //Lấy ra chi tiết các hồ sơ kê khai
-                $modelcthskk  = GiaHhDvKCt::wherein('mahs',$modelhskk->toArray())
-                    ->where('gia','<>',0)
-                    ->get();
-                //dd($modelcthskk->select('mahhdv','tenhhdv','gia')->get()->toArray());
-
-
-                $modeldm = DmHhDvK::where('theodoi','TD')
-                    ->where('manhom',$inputs['manhom'])
-                    ->select('mahhdv','tenhhdv','dvt')
-                    ->get();
-                //dd($modeldm);
-
-                foreach($modeldm as $dm){
-
-                    $ttgia = $modelcthskk->where('mahhdv',$dm->mahhdv)->avg('gia');
-                    $modelct = new ThGiaHhDvKCtDf();
-                    $modelct->manhom = $inputs['manhom'];
-                    $modelct->ngaychotbc = $inputs['ngaychotbc'];
-                    $modelct->mahhdv = $dm->mahhdv;
-                    $modelct->tenhhdv = $dm->tenhhdv;
-                    $modelct->dvt = $dm->dvt;
-                    $modelct->gia = $ttgia;
-                    $modelct->save();
-
-                }
-                $modelct = ThGiaHhDvKCtDf::where('manhom',$inputs['manhom'])
-                    ->where('ngaychotbc',$inputs['ngaychotbc'])
-                    ->get();
-
-                //dd($modelct);
-                $modelnhom = NhomHhDvK::where('manhom',$inputs['manhom'])->first();
-                return view('manage.dinhgia.giahhdvk.tonghop.create')
-                    ->with('modelct',$modelct)
-                    ->with('modelnhom',$modelnhom)
-                    ->with('inputs',$inputs)
-                    ->with('pageTitle','Tổng hợp giá hàng hóa dịch vụ khác');
             }else
                 return view('errors.perm');
         }else
@@ -139,7 +152,7 @@ class ThGiaHhDvKController extends Controller
                         $modelct->save();
                     }
                 }
-                return redirect('tonghopgiahhdvk');
+                return redirect('tonghopgiahhdvk?&manhom='.$inputs['manhom'].'&thang='.$inputs['thang'].'&nam='.$inputs['nam']);
             }else
                 return view('errors.perm');
         }else
@@ -186,7 +199,7 @@ class ThGiaHhDvKController extends Controller
                 $inputs['ngaybc'] = getDateToDb($inputs['ngaybc']);
                 $model = ThGiaHhDvK::findOrFail($id);
                 $model->update($inputs);
-                return redirect('tonghopgiahhdvk?&trangthai='.$model->trangthai);
+                return redirect('tonghopgiahhdvk?&manhom='.$inputs['manhom'].'&thang='.$inputs['thang'].'&nam='.$inputs['nam']);
 
             }else
                 return view('errors.perm');
@@ -202,7 +215,8 @@ class ThGiaHhDvKController extends Controller
                     ->first();
                 $modelct = ThGiaHhDvKCt::where('mahs',$model->mahs)->delete();
                 $model->delete();
-                return redirect('tonghopgiahhdvk?&trangthai=CHT');
+
+                return redirect('tonghopgiahhdvk');
 
             }else
                 return view('errors.perm');
@@ -217,7 +231,7 @@ class ThGiaHhDvKController extends Controller
             $model = ThGiaHhDvK::findOrFail($id);
             $model->trangthai = 'HT';
             $model->save();
-            return redirect('tonghopgiahhdvk?&trangthai=HT');
+            return redirect('tonghopgiahhdvk?&manhom='.$model->manhom.'&thang='.$model->thang.'&nam='.$model->nam);
         }else
             return view('errors.notlogin');
     }
@@ -229,7 +243,7 @@ class ThGiaHhDvKController extends Controller
             $model = ThGiaHhDvK::findOrFail($id);
             $model->trangthai = 'HHT';
             $model->save();
-            return redirect('tonghopgiahhdvk?&trangthai=HHT');
+            return redirect('tonghopgiahhdvk?&manhom='.$model->manhom.'&thang='.$model->thang.'&nam='.$model->nam);
         }else
             return view('errors.notlogin');
     }
@@ -239,9 +253,9 @@ class ThGiaHhDvKController extends Controller
             $inputs = $request->all();
             $id = $inputs['idcongbo'];
             $model = ThGiaHhDvK::findOrFail($id);
-            $model->trangthai = 'CB';
+            $model->congbo = 'CB';
             $model->save();
-            return redirect('tonghopgiahhdvk?&trangthai=CB');
+            return redirect('tonghopgiahhdvk?&manhom='.$model->manhom.'&thang='.$model->thang.'&nam='.$model->nam);
         }else
             return view('errors.notlogin');
     }
@@ -298,6 +312,77 @@ class ThGiaHhDvKController extends Controller
             })->download('xls');
 
         } else
+            return view('errors.notlogin');
+    }
+
+    public function createthang(Request $request){
+        if (Session::has('admin')) {
+            if (session('admin')->level == 'T' || session('admin')->level == 'H') {
+                $inputs = $request->all();
+                $inputs['ngaychotbct'] = getDateToDb($inputs['ngaychotbct']);
+                $modelcheck = ThGiaHhDvK::where('manhom',$inputs['manhombct'])
+                    ->where('thang',$inputs['thangbct'])
+                    ->where('nam',$inputs['nambct'])
+                    ->where('phanloai',$inputs['phanloaibct'])
+                    ->count();
+                if($modelcheck>0){
+                    dd('Đã có báo cáo, bạn cần kiểm tra lại! Nếu số liệu không đúng bạn cần xóa báo cáo trước để tạo báo cáo mới');
+                }else {
+                    $checkdf = ThGiaHhDvKCtDf::where('manhom', $inputs['manhombct'])
+                        //->where('ngaychotbc', $inputs['ngaychotbc'])
+                        ->delete();
+
+                    $modelid = ThGiaHhDvK::where('manhom', $inputs['manhombct'])
+                        ->where('thang', $inputs['thangbct'])
+                        ->where('nam', $inputs['nambct'])
+                        ->where('trangthai', 'HT')
+                        ->select('mahs')
+                        ->get();
+                    //Ra 2 hồ sơ nưa đầu và nửa cuối tháng
+
+
+
+                    //Lấy ra mahs kê khai
+                    //Lấy ra chi tiết các hồ sơ kê khai
+                    $modelcthskk = ThGiaHhDvKCt::wherein('mahs', $modelid->toArray())
+                        ->where('gia', '<>', 0)
+                        ->get();
+                    //dd($modelcthskk->select('mahhdv','tenhhdv','gia')->get()->toArray());
+
+                    $modeldm = DmHhDvK::where('theodoi', 'TD')
+                        ->where('manhom', $inputs['manhombct'])
+                        ->select('mahhdv', 'tenhhdv', 'dvt')
+                        ->get();
+                    //dd($modeldm);
+
+                    foreach ($modeldm as $dm) {
+
+                        $ttgia = $modelcthskk->where('mahhdv', $dm->mahhdv)->avg('gia');
+                        $modelct = new ThGiaHhDvKCtDf();
+                        $modelct->manhom = $inputs['manhombct'];
+                        $modelct->ngaychotbc = $inputs['ngaychotbct'];
+                        $modelct->mahhdv = $dm->mahhdv;
+                        $modelct->tenhhdv = $dm->tenhhdv;
+                        $modelct->dvt = $dm->dvt;
+                        $modelct->gia = $ttgia;
+                        $modelct->save();
+
+                    }
+                    $modelct = ThGiaHhDvKCtDf::where('manhom', $inputs['manhombct'])
+                        ->where('ngaychotbc', $inputs['ngaychotbct'])
+                        ->get();
+
+                    //dd($modelct);
+                    $modelnhom = NhomHhDvK::where('manhom', $inputs['manhombct'])->first();
+                    return view('manage.dinhgia.giahhdvk.tonghop.createthang')
+                        ->with('modelct', $modelct)
+                        ->with('modelnhom', $modelnhom)
+                        ->with('inputs', $inputs)
+                        ->with('pageTitle', 'Tổng hợp giá hàng hóa dịch vụ khác');
+                }
+            }else
+                return view('errors.perm');
+        }else
             return view('errors.notlogin');
     }
 }

@@ -83,7 +83,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Hồ sơ giá hàng hóa dịch vụ<small> thêm mới</small>
+        Báo cáo giá hàng hóa dịch vụ<small> thêm mới</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -96,7 +96,7 @@
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
                     <div class="form-body">
-                        <h3>Thông tin hồ sơ</h3>
+                        <h4 style="color: blue">Thông tin hồ sơ</h4>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -108,6 +108,28 @@
                                 <div class="form-group">
                                     <label class="control-label">Đia bàn:</label>
                                     <label class="control-label" style="color: blue;font-weight: bold">{{$diaban}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label">Phân loại báo cáo: </label>
+                                    <label class="control-label" style="color: blue;font-weight: bold"> @if($inputs['phanloaibc'] == '15ngaydau') 15 ngày đầu tháng
+                                        @elseif($inputs['phanloaibc'] == '15ngaycuoi') 15 ngày cuối tháng
+                                        @endif</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label">Tháng báo cáo: </label>
+                                    <label class="control-label" style="color: blue;font-weight: bold">{{$inputs['thangbc']}}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label">Năm báo cáo: </label>
+                                    <label class="control-label" style="color: blue;font-weight: bold">{{$inputs['nambc']}}</label>
                                 </div>
                             </div>
                         </div>
@@ -152,9 +174,12 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" name="district" id="district" value="{{$district}}">
-                        <input type="hidden" name="manhom" id="manhom" value="{{$manhom}}">
-                        <h3>Thông tin chi tiết</h3>
+                        <input type="hidden" name="district" id="district" value="{{$inputs['districtbc']}}">
+                        <input type="hidden" name="manhom" id="manhom" value="{{$inputs['manhombc']}}">
+                        <input type="hidden" name="phanloai" id="phanloai" value="{{$inputs['phanloaibc']}}">
+                        <input type="hidden" name="thang" id="thang" value="{{$inputs['thangbc']}}">
+                        <input type="hidden" name="nam" id="nam" value="{{$inputs['nambc']}}">
+                        <h4 style="color: blue">Thông tin chi tiết</h4>
 
                         <div class="row" id="dsts">
                             <div class="col-md-12">
@@ -198,7 +223,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12" style="text-align: center">
-                    <a href="{{url('giahhdvkhac?&district='.$district)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                    <a href="{{url('giahhdvkhac?&district='.$inputs['districtbc'])}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                     <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                     <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
                 </div>

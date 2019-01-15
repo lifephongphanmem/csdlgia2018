@@ -28,19 +28,14 @@
 
 @section('content')
 
-    <h3 class="page-title"> </h3>
+    <h3 class="page-title">Nhận dữ liệu hàng hóa dịch vụ<small> từ file Excel</small> </h3>
     <!-- END PAGE HEADER-->
 
     <!-- BEGIN DASHBOARD STATS -->
     <div class="row center">
         <div class="col-md-12 center">
             <!-- BEGIN VALIDATION STATES-->
-            <div class="portlet light bordered">
-                <div class="portlet-title">
-                    <div class="caption">
-                        Thông tin nhận danh sách hàng hóa<small> từ file Excel</small>
-                    </div>
-                </div>
+            <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM -->
                     {!! Form::open(['url'=>'/giahhdvkhac/import_excel', 'method'=>'post' , 'files'=>true, 'id' => 'create_hscb','enctype'=>'multipart/form-data']) !!}
@@ -50,18 +45,47 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <!-- BEGIN PORTLET-->
-                                    <div class="portlet box blue">
-                                        <div class="portlet-title">
-                                            <div class="caption">
-                                                Thông tin chung
-                                            </div>
-                                            <div class="tools">
-                                                <a href="javascript:;" class="collapse" data-original-title="" title=""></a>
-                                            </div>
-                                        </div>
                                         <div class="portlet-body" style="display: block;">
-
                                             <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>Phân loại báo cáo</label>
+                                                        {!! Form::select(
+                                                        'phanloai',
+                                                        array(
+                                                        '15ngaydau'=>'15 ngày đầu tháng',
+                                                        '15ngaycuoi'=>'15 ngày cuối tháng',
+                                                        )
+                                                        ,null,
+                                                        array('id' => 'phanloai', 'class' => 'form-control'))
+                                                        !!}
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Tháng báo cáo<span class="require">*</span></label>
+                                                            {!! Form::select(
+                                                            'thang',
+                                                            getThang()
+                                                            ,date('m'),
+                                                            array('id' => 'thang', 'class' => 'form-control'))
+                                                            !!}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Năm báo cáo<span class="require">*</span></label>
+                                                            <select name="nam" id="nam" class="form-control">
+                                                                @if ($nam_start = intval(date('Y')) - 5 ) @endif
+                                                                @if ($nam_stop = intval(date('Y')) + 1) @endif
+                                                                @for($i = $nam_start; $i <= $nam_stop; $i++)
+                                                                    <option value="{{$i}}" {{$i == date('Y') ? 'selected' : ''}}>Năm {{$i}}</option>
+                                                                @endfor
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label>Phân loại nhóm hàng hóa dịch vụ</label>
@@ -71,14 +95,14 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Mã hàng hóa<span class="require">*</span></label>
-                                                            {!!Form::text('mahhdv', 'B', array('id' => 'mahhdv','class' => 'form-control required'))!!}
+                                                            {!!Form::text('mahhdv', 'A', array('id' => 'mahhdv','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Tên hàng hóa<span class="require">*</span></label>
-                                                            {!!Form::text('tenhhdv', 'C', array('id' => 'tenhhdv','class' => 'form-control required'))!!}
+                                                            {!!Form::text('tenhhdv', 'B', array('id' => 'tenhhdv','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -87,28 +111,28 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Đơn vị tính<span class="require">*</span></label>
-                                                            {!!Form::text('dvt', 'D', array('id' => 'dvt','class' => 'form-control required'))!!}
+                                                            {!!Form::text('dvt', 'C', array('id' => 'dvt','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Đặc điểm kỹ thuật<span class="require">*</span></label>
-                                                            {!!Form::text('dacdiemkt', 'E', array('id' => 'dacdiemkt','class' => 'form-control required'))!!}
+                                                            {!!Form::text('dacdiemkt', 'H', array('id' => 'dacdiemkt','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Nguồn gốc / Xuất xứ<span class="require">*</span></label>
-                                                            {!!Form::text('xuatxu', 'F', array('id' => 'xuatxu','class' => 'form-control required'))!!}
+                                                            {!!Form::text('xuatxu', 'J', array('id' => 'xuatxu','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Giá liền kề<span class="require">*</span></label>
-                                                            {!!Form::text('gialk', 'G', array('id' => 'gialk','class' => 'form-control required'))!!}
+                                                            {!!Form::text('gialk', 'D', array('id' => 'gialk','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -117,56 +141,58 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Giá hàng hóa<span class="require">*</span></label>
-                                                            {!!Form::text('gia', 'H', array('id' => 'gia','class' => 'form-control required'))!!}
+                                                            {!!Form::text('gia', 'E', array('id' => 'gia','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Nhận từ dòng<span class="require">*</span></label>
-                                                            {!!Form::text('tudong', '4', array('id' => 'tudong','class' => 'form-control required','data-mask'=>'fdecimal'))!!}
+                                                            {!!Form::text('tudong', '6', array('id' => 'tudong','class' => 'form-control required','data-mask'=>'fdecimal'))!!}
                                                         </div>
                                                     </div>
                                                     <!--/span-->
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Số lượng cán bộ</label>
-                                                            {!!Form::text('sodong', '100', array('id' => 'sodong','class' => 'form-control','data-mask'=>'fdecimal'))!!}
+                                                            <label class="control-label">Nhận đến dòng</label>
+                                                            {!!Form::text('sodong', '165', array('id' => 'sodong','class' => 'form-control','data-mask'=>'fdecimal'))!!}
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="row">
                                                     <!--/span-->
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label class="control-label">File thông tin<span class="require">*</span></label>
-                                                            <input id="fexcel" name="fexcel" type="file" class="form-control required" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                            <label class="control-label">File dữ liệu<span class="require">*</span></label>
+                                                            <input id="fexcel" name="fexcel" type="file"  accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <input type="hidden" id="district" name="district" value="{{$inputs['district']}}">
                                             </div>
+
                                         </div>
-                                    </div>
                                     <!-- END PORTLET-->
                                 </div>
                             </div>
                         </div>
-                        <div class="form-actions text-center">
-                            <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Nhận dữ liệu</button>
-                            <button type="reset" class="btn btn-warning"><i class="fa fa-refresh"></i> Tải lại</button>
-                        </div>
-                    {!! Form::close() !!}
+
+
                     <!-- END FORM-->
                 </div>
             </div>
+            <div class="col-md-12" style="text-align: center">
+                <a href="{{url('giahhdvkhac')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <button type="reset" class="btn default"><i class="fa fa-refresh"></i> Tải lại</button>
+                <button type="submit" class="btn green" onclick="ClickCreate()"><i class="fa fa-plus"></i> Nhận dữ liệu</button>
+            </div>
+            {!! Form::close() !!}
             <!-- END VALIDATION STATES-->
         </div>
     </div>
 
     <script>
-    $(function() {
-        $('#create_hscb :submit').click(function () {
+        function ClickCreate(){
             var str = '';
             var ok = true;
 
@@ -231,7 +257,8 @@
             }
 
             if (ok == false) {
-                alert('Các trường: \n' + str + 'Không được để trống');
+                //alert('Các trường: \n' + str + 'Không được để trống');
+                toastr.error('Thông tin: \n' + str + 'Không được để trống','Lỗi!.');
                 $("form").submit(function (e) {
                     e.preventDefault();
                 });
@@ -239,7 +266,7 @@
             else {
                 $("form").unbind('submit').submit();
             }
-        });
-    });
+        }
+
     </script>
 @stop

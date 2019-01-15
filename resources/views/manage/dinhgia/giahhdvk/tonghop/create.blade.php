@@ -82,7 +82,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Hồ sơ giá hàng hóa dịch vụ<small> chỉnh sửa</small>
+        Tổng hợp hồ sơ giá hàng hóa dịch vụ<small> thêm mới</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -105,12 +105,35 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="control-label">Ngày chốt báo cáo</label>
+                                    <label class="control-label">Phân loại báo cáo:</label>
+                                    <label class="control-label" style="color: blue;font-weight: bold">
+                                        @if($inputs['phanloaibc'] == '15ngaydau') 15 ngày đầu tháng
+                                        @elseif($inputs['phanloaibc'] == '15ngaycuoi') 15 ngày cuối tháng
+                                        @else Tháng
+                                        @endif</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label">Tháng báo cáo:</label>
+                                    <label class="control-label" style="color: blue;font-weight: bold">{{$inputs['thangbc']}}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label">Năm báo cáo:</label>
+                                    <label class="control-label" style="color: blue;font-weight: bold">{{$inputs['nambc']}}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label">Ngày chốt báo cáo:</label>
                                     <label class="control-label" style="color: blue;font-weight: bold">{{getDayVn($inputs['ngaychotbc'])}}</label>
                                 </div>
                             </div>
+
                         </div>
                         <div class="row">
                             <div class="col-md-12">
@@ -131,8 +154,11 @@
                             <!--/span-->
                         </div>
 
-                        <input type="hidden" name="manhom" id="manhom" value="{{$inputs['manhom']}}">
+                        <input type="hidden" name="manhom" id="manhom" value="{{$inputs['manhombc']}}">
                         <input type="hidden" name="ngaychotbc" id="manhom" value="{{$inputs['ngaychotbc']}}">
+                        <input type="hidden" name="phanloai" id="manhom" value="{{$inputs['phanloaibc']}}">
+                        <input type="hidden" name="thang" id="thang" value="{{$inputs['thangbc']}}">
+                        <input type="hidden" name="nam" id="nam" value="{{$inputs['nambc']}}">
 
 
                         <div class="row" id="dsts">
@@ -171,7 +197,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12" style="text-align: center">
-                    <a href="{{url('tonghopgiahhdvk')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                    <a href="{{url('tonghopgiahhdvk?&manhom='.$inputs['manhombc'].'&phanloai='.$inputs['phanloaibc'])}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                     <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                     <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
                 </div>

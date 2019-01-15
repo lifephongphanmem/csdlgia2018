@@ -19,6 +19,10 @@ class GiaHhDvK extends Model
         'ghichu',
         'trangthai',
         'soqdlk',
-        'ngayapdunglk'
+        'ngayapdunglk',
+        'phanloai',
+        'thang',
+        'nam',
+        'congbo'
     ];
 }

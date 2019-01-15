@@ -18,40 +18,18 @@
 <body style="font:normal 14px Times, serif;">
 
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
-    <tr>
-        <th> '---- </th>
-        <th colspan="3"><b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b></th>
-    </tr>
-
-    <tr>
-        <th></th>
-        <th colspan="3"> <b><i><u>Độc lập - Tự do - Hạnh phúc</u></i></b></th>
-    </tr>
-
-    <tr>
-        <th></th>
-        <th colspan="3"><i> Ngày {{date('d',strtotime($model->ngaybc))}} tháng {{date('m',strtotime($model->ngaybc))}}  năm {{date('Y',strtotime($model->ngaybc))}}</i></th>
-    </tr>
 
     <tr>
         <th colspan="4">{{$model->ttbc}}</th>
-    </tr>
-
-    <tr>
-        <th colspan="4">Ngày chốt báo cáo: {{getDayVn($model->ngaychotbc)}}</th>
-    </tr>
-
-    <tr>
-        <th colspan="4">{{$modelnhom->manhom}}. {{$modelnhom->tennhom}}</th>
     </tr>
 </table>
 
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <tr>
-        <td>STT</th>
-        <td>Tên hàng hóa, dịch vụ</td>
+        <td>Mã số</th>
+        <td>Mặt hàng</td>
         <td>Đơn vị tính</td>
-        <td>Đơn giá</td>
+        <td>Giá kỳ này</td>
     </tr>
     @foreach($modelct as $tt)
         <tr>

@@ -25,13 +25,23 @@
         $(function(){
             $('#nam').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
-                var url = '/tonghopgiahhdvk?'+namhs;
+                var manhom = '&manhom=' + $('#manhom').val();
+                var phanloai = '&phanloai=' + $('#phanloai').val();
+                var url = '/tonghopgiahhdvk?'+namhs + manhom + phanloai;
                 window.location.href = url;
             });
-            $('#trangthai').change(function() {
+            $('#manhom').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
-                var trangthai = '&trangthai=' + $('#trangthai').val();
-                var url = '/tonghopgiahhdvk?'+namhs + trangthai;
+                var manhom = '&manhom=' + $('#manhom').val();
+                var phanloai = '&phanloai=' + $('#phanloai').val();
+                var url = '/tonghopgiahhdvk?'+namhs + manhom + phanloai;
+                window.location.href = url;
+            });
+            $('#phanloai').change(function() {
+                var namhs = '&nam=' + $('#nam').val();
+                var manhom = '&manhom=' + $('#manhom').val();
+                var phanloai = '&phanloai=' + $('#phanloai').val();
+                var url = '/tonghopgiahhdvk?'+namhs + manhom + phanloai;
                 window.location.href = url;
             });
 
@@ -51,6 +61,9 @@
         }
         function clickcreate(){
             $('#frm_create').submit();
+        }
+        function clickcreatethang(){
+            $('#frm_createthang').submit();
         }
     </script>
     <script src="{{url('minhtran/jquery.inputmask.bundle.min.js')}}"></script>
@@ -76,8 +89,13 @@
                     <div class="caption">
                     </div>
                     <div class="actions">
+                        @if($inputs['phanloai'] == 'thang')
+                            <button type="button" class="btn btn-default btn-sm" data-target="#createthang-modal-confirm" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;
+                                Tổng hợp tháng</button>
+                        @else
                             <button type="button" class="btn btn-default btn-sm" data-target="#create-modal-confirm" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;
                                 Tổng hợp</button>
+                        @endif
                             <!--div class="btn-group">
                                 <a class="btn btn-default btn-sm" href="" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                     <i class="fa fa-file-excel-o"></i>&nbsp;Nhận dữ liệu <i class="fa fa-angle-down"></i>
@@ -109,26 +127,36 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label>Trạng thái hồ sơ</label>
-                                <select name="trangthai" id="trangthai" class="form-control">
-                                    @if(can('kkgiahhdvk','create'))
-                                    <option value="CHT" {{$inputs['trangthai'] == 'CHT' ? 'selected' : ''}}>Chưa hoàn thành</option>
-                                    @endif
-                                    <option value="HT" {{$inputs['trangthai'] == 'HT' ? 'selected' : ''}}>Hoàn thành</option>
-                                    <option value="HHT" {{$inputs['trangthai'] == 'HHT' ? 'selected' : ''}}>Hủy hoàn thành</option>
-                                    <option value="CB" {{$inputs['trangthai'] == 'CB' ? 'selected' : ''}}>Công bố</option>
+                                <label>Phân loại</label>
+                                <select name="phanloai" id="phanloai" class="form-control">
+                                    <option value="15ngaydau" {{$inputs['phanloai'] == '15ngaydau' ? 'selected' : ''}}>15 ngày đầu tháng</option>
+                                    <option value="15ngaycuoi" {{$inputs['phanloai'] == '15ngaycuoi' ? 'selected' : ''}}>15 ngày cuối tháng</option>
+                                    <option value="thang" {{$inputs['phanloai'] == 'thang' ? 'selected' : ''}}>Tháng</option>
                                 </select>
                             </div>
                         </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label>Nhóm hàng hóa</label>
+                                <select name="manhom" id="manhom" class="form-control">
+                                    @foreach($m_nhom as $nhom)
+                                    <option value="{{$nhom->manhom}}" {{$inputs['manhom'] == $nhom->manhom ? 'selected' : ''}}>{{$nhom->tennhom}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                     </div>
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Nhóm hàng hóa dịch vụ</th>
+                            <th style="text-align: center" width="10%">Phân loại</th>
+                            <th style="text-align: center">Nhóm hàng hóa</th>
+                            <th style="text-align: center" width="10%">Tháng<br>Năm</th>
                             <th style="text-align: center">Thông tin báo cáo</th>
-                            <th style="text-align: center">Ngày báo cáo</th>
-                            <th style="text-align: center">Ngày chốt báo cáo</th>
+                            <th style="text-align: center" width="10%">Ngày báo cáo</th>
+                            <th style="text-align: center" width="10%">Ngày chốt<br> báo cáo</th>
                             <th style="text-align: center" width="10%">Trạng thái</th>
                             <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
@@ -137,7 +165,9 @@
                         @foreach($model as $key=>$ct)
                             <tr>
                                 <td style="text-align: center">{{$key+1}}</td>
-                                <td style="font-weight: bold" width="20%">{{$ct->tennhom}}</td>
+                                <td style="font-weight: bold" width="10%">{{$ct->phanloai}}</td>
+                                <td style="font-weight: bold">{{$ct->tennhom}}</td>
+                                <td style="font-weight: bold">Tháng {{$ct->thang}} Năm {{$ct->nam}}</td>
                                 <td>{{$ct->ttbc}}</td>
                                 <td style="text-align: center">{{getDayVn($ct->ngaybc)}}</td>
                                 <td style="text-align: center">{{getDayVn($ct->ngaychotbc)}}</td>
@@ -197,17 +227,44 @@
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
                     <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-                    <h4 id="modal-header-primary-label" class="modal-title">Tổng hợp giá hàng hóa dịch vụ</h4>
+                    <h4 id="modal-header-primary-label" class="modal-title">Tổng hợp giá hàng hóa dịch vụ
+                        @if($inputs['phanloai'] == '15ngaydau') <b>15 ngày đầu tháng</b>
+                        @else <b>15 ngày cuối tháng</b>
+                        @endif
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
                         <div class="form-group">
                             <div class="col-md-12">
                                 <label>Phân loại nhóm hàng hóa dịch vụ</label>
-                                <select name="manhom" id="manhom" class="form-control">
+                                <select name="manhombc" id="manhombc" class="form-control">
                                     @foreach($m_nhom as $ct)
                                         <option value="{{$ct->manhom}}">{{$ct->tennhom}}</option>
                                     @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>Tháng</label>
+                                {!! Form::select(
+                                'thangbc',
+                                getThang()
+                                ,date('m'),
+                                array('id' => 'thangbc', 'class' => 'form-control'))
+                                !!}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>Năm</label>
+                                <select name="nambc" id="nambc" class="form-control">
+                                    @if ($nam_start = intval(date('Y')) - 5 ) @endif
+                                    @if ($nam_stop = intval(date('Y')) + 1) @endif
+                                    @for($i = $nam_start; $i <= $nam_stop; $i++)
+                                        <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
+                                    @endfor
                                 </select>
                             </div>
                         </div>
@@ -217,6 +274,7 @@
                                 {!!Form::text('ngaychotbc','31/12/'.date('Y'), array('id' => 'ngaychotbc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
                             </div>
                         </div>
+                        <input type="hidden" id="phanloaibc" name="phanloaibc" value="{{$inputs['phanloai']}}">
                     </div>
                 </div>
 
@@ -320,6 +378,68 @@
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
                     <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickcongbo()">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+        {!! Form::close() !!}
+    </div>
+    <div id="createthang-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade bs-modal-lg">
+        {!! Form::open(['url'=>'/tonghopgiahhdvkthang/create','id' => 'frm_createthang','method'=>'post'])!!}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Tổng hợp giá hàng hóa dịch vụ tháng
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>Phân loại nhóm hàng hóa dịch vụ</label>
+                                <select name="manhombct" id="manhombct" class="form-control">
+                                    @foreach($m_nhom as $ct)
+                                        <option value="{{$ct->manhom}}">{{$ct->tennhom}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>Tháng</label>
+                                {!! Form::select(
+                                'thangbct',
+                                getThang()
+                                ,date('m'),
+                                array('id' => 'thangbct', 'class' => 'form-control'))
+                                !!}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>Năm</label>
+                                <select name="nambct" id="nambct" class="form-control">
+                                    @if ($nam_start = intval(date('Y')) - 5 ) @endif
+                                    @if ($nam_stop = intval(date('Y')) + 1) @endif
+                                    @for($i = $nam_start; $i <= $nam_stop; $i++)
+                                        <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>Ngày chốt báo cáo</label>
+                                {!!Form::text('ngaychotbct','31/12/'.date('Y'), array('id' => 'ngaychotbct','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
+                            </div>
+                        </div>
+                        <input type="hidden" id="phanloaibct" name="phanloaibct" value="{{$inputs['phanloai']}}">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickcreatethang()">Đồng ý</button>
                 </div>
             </div>
         </div>

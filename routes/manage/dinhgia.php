@@ -167,6 +167,7 @@ Route::post('tonghopgiahhdvk/delete','ThGiaHhDvKController@destroy');
 Route::post('tonghopgiahhdvk/hoanthanh','ThGiaHhDvKController@hoanthanh');
 Route::post('tonghopgiahhdvk/huyhoanthanh','ThGiaHhDvKController@huyhoanthanh');
 Route::post('tonghopgiahhdvk/congbo','ThGiaHhDvKController@congbo');
+Route::post('tonghopgiahhdvkthang/create','ThGiaHhDvKController@createthang');
 
 Route::get('thgiahhdvk/{id}/exportXML','ThGiaHhDvKController@exportXML');
 Route::get('thgiahhdvk/{id}/exportEx','ThGiaHhDvKController@exportEx');

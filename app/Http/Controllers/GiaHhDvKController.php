@@ -21,33 +21,33 @@ class GiaHhDvKController extends Controller
     public function index(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
+            $inputs['thang'] = isset($inputs['thang']) ? $inputs['thang'] : date('m');
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
             $modeldb = DiaBanHd::where('level','H')->get();
             if(session('admin')->level == 'X') {
                 $inputs['district'] = session('admin')->district;
-                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CHT';
             }else {
                 $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : $modeldb->first()->district;
-                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
             }
 
             $model = GiaHhDvK::join('nhomhhdvk','nhomhhdvk.manhom','=','giahhdvk.manhom')
                 ->select('giahhdvk.*', 'nhomhhdvk.tennhom')
                 ->where('giahhdvk.district', $inputs['district'])
-                ->whereYear('giahhdvk.ngayapdung',$inputs['nam']);
-            if ($inputs['trangthai'] != '')
-                $model = $model->where('trangthai', $inputs['trangthai']);
+                ->where('giahhdvk.nam',$inputs['nam'])
+                ->where('giahhdvk.thang',$inputs['thang']);
 
             $model = $model->get();
             $m_nhom =array_column(NhomHhDvK::where('theodoi', 'TD')
                 ->get()->toarray(), 'tennhom','manhom');
+            $diaban = DiaBanHd::where('district',$inputs['district'])->first();
             return view('manage.dinhgia.giahhdvk.kekhai.index')
                 ->with('model', $model)
                 ->with('modeldb', $modeldb)
                 ->with('inputs',$inputs)
                 ->with('a_nhom', $m_nhom)
+                ->with('diaban',$diaban)
                 //->with('a_nhom',array_merge(array('ALL'=>'Tất cả hàng hóa'), $m_nhom))
-                ->with('pageTitle', 'Thông tin hồ sơ giá hàng hóa dịch vụ');
+                ->with('pageTitle', 'Thông tin báo cáo giá hàng hóa dịch vụ');
 
         } else
             return view('errors.notlogin');
@@ -56,60 +56,69 @@ class GiaHhDvKController extends Controller
     public function create(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
-            if(isset($inputs['manhom']) && isset($inputs['getdistrict'])) {
-                $tennhom = NhomHhDvK::where('manhom', $inputs['manhom'])->first()->tennhom;
-                $diaban = DiaBanHd::where('district', $inputs['getdistrict'])->where('level', 'H')->first()->diaban;
-                $modelidlk = GiaHhDvK::wherein('trangthai',['HT','CB'])
-                    ->where('manhom',$inputs['manhom'])
-                    ->where('district',$inputs['getdistrict'])
-                    ->max('id');
-                if($modelidlk != null){
-                    $modellk = GiaHhDvK::where('id',$modelidlk)
-                       ->first();
-                    $modelctlk = GiaHhDvKCt::where('mahs',$modellk->mahs)
-                        ->get();
-                    $modeldel = GiaHhDvKCtDf::where('district',$inputs['getdistrict'])
-                        ->where('manhom',$inputs['manhom'])->delete();
-                    foreach ($modelctlk as $ct) {
-                        $modelctnew = new GiaHhDvKCtDf();
-                        $modelctnew->district = $inputs['getdistrict'];
-                        $modelctnew->manhom = $ct->manhom;
-                        $modelctnew->mahhdv = $ct->mahhdv;
-                        $modelctnew->tenhhdv = $ct->tenhhdv;
-                        $modelctnew->dacdiemkt = $ct->dacdiemkt;
-                        $modelctnew->dvt = $ct->dvt;
-                        $modelctnew->gialk = $ct->gia;
-                        $modelctnew->save();
-                    }
-                }else{
-                    $modellk = '';
-                    $checkct = GiaHhDvKCtDf::where('district',$inputs['getdistrict'])
-                        ->where('manhom',$inputs['manhom'])->count();
-                    if($checkct == 0){
-                        $modeldm = DmHhDvK::where('manhom', $inputs['manhom'])->get();
-                        foreach ($modeldm as $dm) {
+            if(isset($inputs['manhombc']) && isset($inputs['districtbc'])) {
+                $modelkt = GiaHhDvK::where('manhom',$inputs['manhombc'])
+                    ->where('thang',$inputs['thangbc'])
+                    ->where('nam',$inputs['nambc'])
+                    ->where('phanloai',$inputs['phanloaibc'])
+                    ->where('district',$inputs['districtbc'])
+                    ->count();
+                if($modelkt > 0){
+                    dd('Bạn đã tạo báo cáo!Nếu thay đổi số liệu bạn cần xóa báo cáo của thời điểm đó rồi tạo lại báo cáo');
+                }else {
+                    $tennhom = NhomHhDvK::where('manhom', $inputs['manhombc'])->first()->tennhom;
+                    $diaban = DiaBanHd::where('district', $inputs['districtbc'])->where('level', 'H')->first()->diaban;
+                    $modelidlk = GiaHhDvK::where('trangthai', 'HT')
+                        ->where('manhom', $inputs['manhombc'])
+                        ->where('district', $inputs['districtbc'])
+                        ->max('id');
+                    if ($modelidlk != null) {
+                        $modellk = GiaHhDvK::where('id', $modelidlk)
+                            ->first();
+                        $modelctlk = GiaHhDvKCt::where('mahs', $modellk->mahs)
+                            ->get();
+                        $modeldel = GiaHhDvKCtDf::where('district', $inputs['districtbc'])
+                            ->where('manhom', $inputs['manhombc'])->delete();
+                        foreach ($modelctlk as $ct) {
                             $modelctnew = new GiaHhDvKCtDf();
-                            $modelctnew->district = $inputs['getdistrict'];
-                            $modelctnew->manhom = $dm->manhom;
-                            $modelctnew->mahhdv = $dm->mahhdv;
-                            $modelctnew->tenhhdv = $dm->tenhhdv;
-                            $modelctnew->dacdiemkt = $dm->dacdiemkt;
-                            $modelctnew->dvt = $dm->dvt;
+                            $modelctnew->district = $inputs['districtbc'];
+                            $modelctnew->manhom = $ct->manhom;
+                            $modelctnew->mahhdv = $ct->mahhdv;
+                            $modelctnew->tenhhdv = $ct->tenhhdv;
+                            $modelctnew->dacdiemkt = $ct->dacdiemkt;
+                            $modelctnew->dvt = $ct->dvt;
+                            $modelctnew->gialk = $ct->gia;
                             $modelctnew->save();
+                        }
+                    } else {
+                        $modellk = '';
+                        $checkct = GiaHhDvKCtDf::where('district', $inputs['districtbc'])
+                            ->where('manhom', $inputs['manhombc'])->count();
+                        if ($checkct == 0) {
+                            $modeldm = DmHhDvK::where('manhom', $inputs['manhombc'])->get();
+                            foreach ($modeldm as $dm) {
+                                $modelctnew = new GiaHhDvKCtDf();
+                                $modelctnew->district = $inputs['districtbc'];
+                                $modelctnew->manhom = $dm->manhom;
+                                $modelctnew->mahhdv = $dm->mahhdv;
+                                $modelctnew->tenhhdv = $dm->tenhhdv;
+                                $modelctnew->dacdiemkt = $dm->dacdiemkt;
+                                $modelctnew->dvt = $dm->dvt;
+                                $modelctnew->save();
+                            }
                         }
                     }
                 }
 
-                $modelct = GiaHhDvKCtDf::where('district',$inputs['getdistrict'])
-                    ->where('manhom',$inputs['manhom'])->get();
+                $modelct = GiaHhDvKCtDf::where('district',$inputs['districtbc'])
+                    ->where('manhom',$inputs['manhombc'])->get();
                 return view('manage.dinhgia.giahhdvk.kekhai.create')
-                    ->with('district', $inputs['getdistrict'])
                     ->with('diaban', $diaban)
-                    ->with('manhom', $inputs['manhom'])
                     ->with('tennhom', $tennhom)
                     ->with('modelct',$modelct)
                     ->with('modellk',$modellk)
-                    ->with('pageTitle', 'Kê khai giá hàng hóa dịch vụ thêm mới');
+                    ->with('inputs',$inputs)
+                    ->with('pageTitle', 'Báo cáo giá hàng hóa dịch vụ thêm mới');
             }else
                 dd('Lỗi!Bạn cần xem lại thao tác!');
 
@@ -262,7 +271,7 @@ class GiaHhDvKController extends Controller
             $model = GiaHhDvK::findOrFail($id);
             $model->trangthai = 'HT';
             $model->save();
-            return redirect('giahhdvkhac?&trangthai=HT&district='.$model->district);
+            return redirect('giahhdvkhac?&district='.$model->district);
         }else
             return view('errors.notlogin');
     }
@@ -274,7 +283,7 @@ class GiaHhDvKController extends Controller
             $model = GiaHhDvK::findOrFail($id);
             $model->trangthai = 'HHT';
             $model->save();
-            return redirect('giahhdvkhac?&trangthai=HHT&district='.$model->district);
+            return redirect('giahhdvkhac?&district='.$model->district);
         }else
             return view('errors.notlogin');
     }
@@ -284,37 +293,65 @@ class GiaHhDvKController extends Controller
             $inputs = $request->all();
             $id = $inputs['idcongbo'];
             $model = GiaHhDvK::findOrFail($id);
-            $model->trangthai = 'CB';
+            $model->congbo = 'CB';
             $model->save();
-            return redirect('giahhdvkhac?&trangthai=CB&district='.$model->district);
+            return redirect('giahhdvkhac?&district='.$model->district);
         }else
             return view('errors.notlogin');
     }
 
     function filemau(Request $request){
         if (Session::has('admin')) {
-            $inputs = $request->all();
-            //dd($inputs);
-            if($inputs['phanloai'] == 'HS'){
-                $model_nhom = NhomHhDvK::where('manhom', $inputs['manhom'])->get();
-                $inputs['district'] = session('admin')->district;
-                //$diaban = DiaBanHd::where('district', $inputs['getdistrict'])->where('level', 'H')->first()->diaban;
-                $modelidlk = GiaHhDvK::where('trangthai','CB')
-                    ->where('manhom',$inputs['manhom'])
-                    ->where('district',$inputs['district'])
-                    ->max('id');
-                if($modelidlk != null){
-                    $modellk = GiaHhDvK::where('id',$modelidlk)->first();
-                    $model = GiaHhDvKCt::where('mahs',$modellk->mahs)->get();
+            if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+                $inputs = $request->all();
+                //dd($inputs);
+                if ($inputs['phanloai'] == 'HS') {
+                    $model_nhom = NhomHhDvK::where('manhom', $inputs['manhom'])->get();
+                    if (session('admin')->level == 'T' || session('admin')->level == 'H')
+                        $inputs['district'] = $inputs['diaban'];
+                    else
+                        $inputs['district'] = session('admin')->district;
+                    //$diaban = DiaBanHd::where('district', $inputs['getdistrict'])->where('level', 'H')->first()->diaban;
+                    $modelidlk = GiaHhDvK::where('trangthai', 'HT')
+                        ->where('manhom', $inputs['manhom'])
+                        ->where('district', $inputs['district'])
+                        ->max('id');
+                    if ($modelidlk != null) {
+                        $modellk = GiaHhDvK::where('id', $modelidlk)->first();
+                        $model = GiaHhDvKCt::where('mahs', $modellk->mahs)->get();
+                        foreach ($model as $ct) {
+                            $ct->gialk = $ct->gia;
+                        }
+                        Excel::create('DMHANGHOA', function ($excel) use ($model_nhom, $model) {
+                            $excel->sheet('DMHANGHOA', function ($sheet) use ($model_nhom, $model) {
+                                $sheet->loadView('manage.dinhgia.giahhdvk.excel.danhmuc')
+                                    ->with('model_nhom', $model_nhom->sortBy('manhom'))
+                                    ->with('model', $model)
+                                    ->with('pageTitle', 'Danh mục hàng hóa');
+                                //$sheet->setPageMargin(0.25);
+                                $sheet->setAutoSize(false);
+                                $sheet->setFontFamily('Tahoma');
+                                $sheet->setFontBold(false);
+
+                                //$sheet->setColumnFormat(array('D' => '#,##0.00'));
+                            });
+                        })->download('xls');
+                    } else
+                        goto danhmuc;
+                } else {
+                    danhmuc:
+                    $model_nhom = NhomHhDvK::all();
+                    $model = DmHhDvK::all();
                     foreach ($model as $ct) {
-                        $ct->gialk = $ct->gia;
+                        $ct->gia = 0;
+                        $ct->gialk = 0;
                     }
-                    Excel::create('DMHANGHOA',function($excel) use($model_nhom,$model){
-                        $excel->sheet('DMHANGHOA', function($sheet) use($model_nhom,$model){
+                    Excel::create('DMHANGHOA', function ($excel) use ($model_nhom, $model) {
+                        $excel->sheet('DMHANGHOA', function ($sheet) use ($model_nhom, $model) {
                             $sheet->loadView('manage.dinhgia.giahhdvk.excel.danhmuc')
-                                ->with('model_nhom',$model_nhom->sortBy('manhom'))
-                                ->with('model',$model)
-                                ->with('pageTitle','Danh mục hàng hóa');
+                                ->with('model_nhom', $model_nhom->sortBy('manhom'))
+                                ->with('model', $model)
+                                ->with('pageTitle', 'Danh mục hàng hóa');
                             //$sheet->setPageMargin(0.25);
                             $sheet->setAutoSize(false);
                             $sheet->setFontFamily('Tahoma');
@@ -323,45 +360,24 @@ class GiaHhDvKController extends Controller
                             //$sheet->setColumnFormat(array('D' => '#,##0.00'));
                         });
                     })->download('xls');
-                }else{
-                    goto danhmuc;
                 }
-
-            }else{
-                danhmuc:
-                $model_nhom = NhomHhDvK::all();
-                $model = DmHhDvK::all();
-                foreach ($model as $ct) {
-                    $ct->gia = 0;
-                    $ct->gialk = 0;
-                }
-                Excel::create('DMHANGHOA',function($excel) use($model_nhom,$model){
-                    $excel->sheet('DMHANGHOA', function($sheet) use($model_nhom,$model){
-                        $sheet->loadView('manage.dinhgia.giahhdvk.excel.danhmuc')
-                            ->with('model_nhom',$model_nhom->sortBy('manhom'))
-                            ->with('model',$model)
-                            ->with('pageTitle','Danh mục hàng hóa');
-                        //$sheet->setPageMargin(0.25);
-                        $sheet->setAutoSize(false);
-                        $sheet->setFontFamily('Tahoma');
-                        $sheet->setFontBold(false);
-
-                        //$sheet->setColumnFormat(array('D' => '#,##0.00'));
-                    });
-                })->download('xls');
-            }
-
+            }else
+                return view('errors.perm');
         } else
             return view('errors.notlogin');
     }
 
-    public function nhanexcel(){
+    public function nhanexcel(Request $request){
         if(Session::has('admin')){
+            $inputs = $request->all();
             $m_nhom =array_column(NhomHhDvK::where('theodoi', 'TD')
                 ->get()->toarray(), 'tennhom','manhom');
+            if(session('admin')->level == 'X')
+                $inputs['district'] = session('admin')->district;
             return view('manage.dinhgia.giahhdvk.excel.information')
                 ->with('a_nhom', $m_nhom)
-                ->with('pageTitle', 'Kê khai giá hàng hóa dịch vụ chi tiết');
+                ->with('inputs',$inputs)
+                ->with('pageTitle', 'Nhận dữ liệu hàng hóa từ file Excel');
         }else
             return view('errors.notlogin');
     }
@@ -369,57 +385,67 @@ class GiaHhDvKController extends Controller
     function import_excel(Request $request){
         if(Session::has('admin')){
             $inputs=$request->all();
-            $filename = session('admin')->maxa.'_'. getdate()[0];
-            $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
-            $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
-            $data = [];
+            $modelkt = GiaHhDvK::where('manhom',$inputs['manhom'])
+                ->where('thang',$inputs['thang'])
+                ->where('nam',$inputs['nam'])
+                ->where('district',$inputs['district'])
+                ->where('phanloai',$inputs['phanloai'])
+                ->count();
+            if($modelkt > 0)
+                dd('Báo cáo đã tồn tại, bạn cần kiểm tra lại! Nếu thay đổi thông tin bạn cần xóa báo cáo và nhận lại file');
+            else {
+                $filename = $inputs['district'] . '_' . getdate()[0];
+                $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
+                $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
+                $data = [];
 
-            Excel::load($path, function($reader) use (&$data, $inputs) {
-                $obj = $reader->getExcel();
-                $sheet = $obj->getSheet(0);
-                $data = $sheet->toArray(null,true,true,true);// giữ lại tiêu đề A=>'val';
-            });
-            //dd($data);
-            $modeldel = GiaHhDvKCtDf::where('district',session('admin')->district)->where('manhom',$inputs['manhom'])->delete();
+                Excel::load($path, function ($reader) use (&$data, $inputs) {
+                    $obj = $reader->getExcel();
+                    $sheet = $obj->getSheet(0);
+                    $data = $sheet->toArray(null, true, true, true);// giữ lại tiêu đề A=>'val';
+                });
+                //dd($data);
+                $modeldel = GiaHhDvKCtDf::where('district', $inputs['district'])->where('manhom', $inputs['manhom'])->delete();
 
-            for($i=$inputs['tudong'];$i < ($inputs['tudong'] + $inputs['sodong']); $i++){
-                //dd($data[$i]);
-                if (!isset($data[$i][$inputs['mahhdv']]) || $data[$i][$inputs['tenhhdv']] == '') {
-                    continue;//Tên cán bộ rỗng => thoát
+                for ($i = $inputs['tudong']; $i < ($inputs['tudong'] + $inputs['sodong']); $i++) {
+                    //dd($data[$i]);
+                    if (!isset($data[$i][$inputs['mahhdv']]) || $data[$i][$inputs['tenhhdv']] == '') {
+                        continue;//Tên cán bộ rỗng => thoát
+                    }
+                    $modelctnew = new GiaHhDvKCtDf();
+                    $modelctnew->district = $inputs['district'];
+                    $modelctnew->manhom = $inputs['manhom'];
+                    $modelctnew->mahhdv = $data[$i][$inputs['mahhdv']];
+                    $modelctnew->tenhhdv = $data[$i][$inputs['tenhhdv']];
+                    $modelctnew->dacdiemkt = $data[$i][$inputs['dacdiemkt']];
+                    $modelctnew->dvt = $data[$i][$inputs['dvt']];
+                    $modelctnew->gia = $data[$i][$inputs['gia']];
+                    $modelctnew->gialk = $data[$i][$inputs['gialk']];
+                    $modelctnew->save();
                 }
-                $modelctnew = new GiaHhDvKCtDf();
-                $modelctnew->district = session('admin')->district;
-                $modelctnew->manhom = $inputs['manhom'];
-                $modelctnew->mahhdv = $data[$i][$inputs['mahhdv']];
-                $modelctnew->tenhhdv = $data[$i][$inputs['tenhhdv']];
-                $modelctnew->dacdiemkt = $data[$i][$inputs['dacdiemkt']];
-                $modelctnew->dvt = $data[$i][$inputs['dvt']];
-                $modelctnew->gia = $data[$i][$inputs['gia']];
-                $modelctnew->gialk = $data[$i][$inputs['gialk']];
-                $modelctnew->save();
+                File::Delete($path);
+                $tennhom = NhomHhDvK::where('manhom', $inputs['manhom'])->first()->tennhom;
+                $diaban = DiaBanHd::where('district', $inputs['district'])->where('level', 'H')->first()->diaban;
+                $modelidlk = GiaHhDvK::where('trangthai', 'CB')
+                    ->where('manhom', $inputs['manhom'])
+                    ->where('district', $inputs['district'])
+                    ->max('id');
+                if ($modelidlk != null) {
+                    $modellk = GiaHhDvK::where('id', $modelidlk)->first();
+                } else {
+                    $modellk = null;
+                }
+                $modelct = GiaHhDvKCtDf::where('district', $inputs['district'])
+                    ->where('manhom', $inputs['manhom'])->get();
+                return view('manage.dinhgia.giahhdvk.kekhai.create')
+                    ->with('district', $inputs['district'])
+                    ->with('diaban', $diaban)
+                    ->with('manhom', $inputs['manhom'])
+                    ->with('tennhom', $tennhom)
+                    ->with('modelct', $modelct)
+                    ->with('modellk', $modellk)
+                    ->with('pageTitle', 'Kê khai giá hàng hóa dịch vụ thêm mới');
             }
-            File::Delete($path);
-            $tennhom = NhomHhDvK::where('manhom', $inputs['manhom'])->first()->tennhom;
-            $diaban = DiaBanHd::where('district', session('admin')->district)->where('level', 'H')->first()->diaban;
-            $modelidlk = GiaHhDvK::where('trangthai','CB')
-                ->where('manhom',$inputs['manhom'])
-                ->where('district',session('admin')->district)
-                ->max('id');
-            if($modelidlk != null) {
-                $modellk = GiaHhDvK::where('id', $modelidlk)->first();
-            }else{
-                $modellk = null;
-            }
-            $modelct = GiaHhDvKCtDf::where('district',session('admin')->district)
-                ->where('manhom',$inputs['manhom'])->get();
-            return view('manage.dinhgia.giahhdvk.kekhai.create')
-                ->with('district', session('admin')->district)
-                ->with('diaban', $diaban)
-                ->with('manhom', $inputs['manhom'])
-                ->with('tennhom', $tennhom)
-                ->with('modelct',$modelct)
-                ->with('modellk',$modellk)
-                ->with('pageTitle', 'Kê khai giá hàng hóa dịch vụ thêm mới');
         }else
             return view('errors.notlogin');
     }
