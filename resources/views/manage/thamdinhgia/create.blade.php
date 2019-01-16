@@ -246,6 +246,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label class="control-label">Đơn vị thẩm định giá: <b style="color: blue">{{$modeldv->tendv}}</b></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label class="control-label">Thông tin tờ trình<span class="require">*</span></label>
                                     {!!Form::text('hosotdgia',null, array('id' => 'hosotdgia','class' => 'form-control required','autofocus'))!!}
                                 </div>

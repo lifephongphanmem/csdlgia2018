@@ -58,7 +58,10 @@ class ThamDinhGiaController extends Controller
                 $inputs['maxa'] = session('admin')->maxa;
             $modelct = ThamDinhGiaCtDf::where('maxa',$inputs['maxa'])
                 ->get();
+            $modeldv = Town::where('maxa',$inputs['maxa'])
+                ->first();
             return view('manage.thamdinhgia.create')
+                ->with('modeldv',$modeldv)
                 ->with('maxa',$inputs['maxa'])
                 ->with('modelct',$modelct)
                 ->with('pageTitle','Thêm mới hồ sơ thẩm định giá');
@@ -138,8 +141,11 @@ class ThamDinhGiaController extends Controller
         if(Session::has('admin')){
             $model = ThamDinhGia::findOrFail($id);
             $modelct = ThamDinhGiaCt::where('mahs',$model->mahs)->get();
+            $modeldv = Town::where('maxa',$model->maxa)
+                ->first();
             return view('manage.thamdinhgia.edit')
                 ->with('model',$model)
+                ->with('modeldv',$modeldv)
                 ->with('modelct',$modelct)
                 ->with('pageTitle','Chỉnh sửa thông tin hồ sơ thẩm định giá');
         }else
