@@ -113,6 +113,8 @@
             <br>
             <br>
             <br>
+            <br>
+            <br>
             <b style="text-transform: uppercase;">{{$modeldv->nguoiky}}</b>
         </td>
     </tr>
