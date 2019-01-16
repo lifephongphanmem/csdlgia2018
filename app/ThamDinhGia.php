@@ -28,10 +28,23 @@ class ThamDinhGia extends Model
         'phanloai',
         'thuevat',
         'songaykq',
-        'filedk',
-        'filedk1',
-        'filedk2',
-        'filedk3',
-        'filedk4'
+        'tttstd',
+        'ghichu',
+        'congbo',
+
+        'ipt1',
+        'ipf1',
+
+        'ipt2',
+        'ipf2',
+
+        'ipt3',
+        'ipf3',
+
+        'ipt4',
+        'ipf4',
+
+        'ipt5',
+        'ipf5',
     ];
 }

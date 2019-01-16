@@ -41,10 +41,11 @@
 
 <body style="font:normal 14px Times, serif;">
 
-<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
+<table width="96%" border="0" cellspacing="0" cellpadding="0" style="margin:0 auto 20px; text-align: center;">
     <tr>
         <td width="40%" style="text-transform: uppercase;">
-            <b></b><br>
+            {{$modeldv->tendvcqhienthi}}<br>
+            <b>{{$modeldv->tendvhienthi}}</b><br>
             --------<br>
         </td>
         <td>
@@ -53,8 +54,8 @@
         </td>
     </tr>
     <tr>
-        <td>Số: {{$model->sotbkl}}<br>V/v thông báo kết quả thẩm định giá .....</td>
-        <td>,ngày .....tháng .....năm </td>
+        <td>Số: {{$model->sotbkl}}<br>V/v thông báo kết quả thẩm định giá {{$model->tttstd}}</td>
+        <td><i>{{$modeldv->diadanh}} ,ngày .....tháng .....năm ..... </i> </td>
     </tr>
 </table>
 <p style="text-align: center;font-size: 20px;">Kính gửi: {{$model->dvyeucau}}</p>
@@ -65,7 +66,7 @@
 <p>Căn cứ Quyết định số 21/2018/QĐ-UBND ngày 20/6/2018 của UBND tỉnh
     Cao Bằng về việc ban hành quy định quản lý Nhà nước về giá trên địa bàn tỉnh
     Cao Bằng;</p>
-<p>Theo đề nghị của {{$model->dvyeucau}} tại Tờ trình... về việc đề nghị thẩm định giá....;</p>
+<p>Theo đề nghị của {{$model->dvyeucau}} tại Tờ trình {{$model->hosotdgia}} về việc đề nghị thẩm định giá {{$model->tttstd}};</p>
 <p>{{$modeldv->tendv}} thông báo kết quả thẩm định giá như sau:</p>
 <p><b>1.Mục đích thẩm định giá</b></p>
 <p>{{$model->mucdich}}</p>
@@ -78,7 +79,7 @@
 <p>{{$model->ppthamdinh}}</p>
 <p><b>5. Kết quả thẩm định giá</b></p>
 <p>Trên cơ sở các tài liệu do đơn vị cung cấp, qua khảo sát thực tế tại thị trường
-    .... với phương pháp thẩm định giá trên được áp dụng trong tính
+    {{$model->diadiem}} với phương pháp thẩm định giá trên được áp dụng trong tính
     toán, {{$modeldv->tendv}} thông báo kết quả thẩm định giá tại thời điểm {{getDayVn($model->thoidiem)}}.</p>
 <p>Tổng giá trị sau thẩm định: <b>{{number_format($modelct->sum('giatritstd'))}}</b> VNĐ</p>
 <p><i>(Tổng số tiền sau thẩm định bằng chữ: {{VndText($modelct->sum('giatritstd'))}})</i></p>
@@ -99,15 +100,20 @@
             - Lưu: VT,QLG
         </td>
 
-        <td style="text-align: center; text-transform: uppercase;" width="60%">
-            <b></b>
+        <td style="text-align: center; text-transform: uppercase;font-size: 16px" width="60%">
+            <b>@if($modeldv->chucvukythay != '')
+                   KT. {{$modeldv->chucvuky}}<br> {{$modeldv->chucvukythay}}
+               @else
+                    {{$modeldv->chucvuky}}
+               @endif
+            </b>
             <br>
             <br>
             <br>
             <br>
             <br>
             <br>
-            <b style="text-transform: uppercase;"></b>
+            <b style="text-transform: uppercase;">{{$modeldv->nguoiky}}</b>
         </td>
     </tr>
 </table>
@@ -157,3 +163,5 @@
     </tr>
 </table>
 <p style="text-align: center;font-weight: bold"><i>(Tổng giá trị sau thẩm định: <b>{{number_format($modelct->sum('giatritstd'))}}</b> VNĐ)</i></p>
+<p><u>Ghi chú:</u></p>
+<p>{!! nl2br(e($model->ghichu)) !!}</p>

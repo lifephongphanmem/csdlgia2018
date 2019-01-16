@@ -127,6 +127,48 @@
                                         ),2, array('id'=>'district','class'=>'form-control'))!!}
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Địa danh<span class="require">*</span></label>
+                                        {!!Form::text('diadanh', null, array('id' => 'didanh','class' => 'form-control required'))!!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Tên đơn vị hiển thị báo cáo<span class="require">*</span></label>
+                                        {!!Form::text('tendvhienthi', null, array('id' => 'tendvhienthi','class' => 'form-control required'))!!}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Tên đơn vị cấp trên hiển thị báo cáo<span class="require">*</span></label>
+                                        {!!Form::text('tendvcqhienthi', null, array('id' => 'tendvcqhienthi','class' => 'form-control required'))!!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Chức vụ người ký<span class="require">*</span></label>
+                                        {!!Form::text('chucvuky', null, array('id' => 'chucvuky','class' => 'form-control required'))!!}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Chức vụ người ký thay</label>
+                                        {!!Form::text('chucvukythay', null, array('id' => 'chucvukythay','class' => 'form-control'))!!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Họ và tên người ký<span class="require">*</span></label>
+                                        {!!Form::text('nguoiky', null, array('id' => 'nguoiky','class' => 'form-control required'))!!}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     <!-- END FORM-->

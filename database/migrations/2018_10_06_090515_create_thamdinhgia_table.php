@@ -32,11 +32,24 @@ class CreateThamdinhgiaTable extends Migration
             $table->string('mahs')->nullable();
             $table->string('thuevat')->nullable();
             $table->string('songaykq')->nullable();
-            $table->string('filedk')->nullable();
-            $table->string('filedk1')->nullable();
-            $table->string('filedk2')->nullable();
-            $table->string('filedk3')->nullable();
-            $table->string('filedk4')->nullable();
+            $table->string('tttstd')->nullable();
+            $table->text('ghichu')->nullable();
+            $table->string('congbo')->nullable();
+
+            $table->string('ipt1')->nullable();
+            $table->string('ipf1')->nullable();
+
+            $table->string('ipt2')->nullable();
+            $table->string('ipf2')->nullable();
+
+            $table->string('ipt3')->nullable();
+            $table->string('ipf3')->nullable();
+
+            $table->string('ipt4')->nullable();
+            $table->string('ipf4')->nullable();
+
+            $table->string('ipt5')->nullable();
+            $table->string('ipf5')->nullable();
             $table->timestamps();
         });
     }

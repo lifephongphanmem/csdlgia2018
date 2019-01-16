@@ -119,7 +119,6 @@
                                     <option value="CHT" {{$trangthai == 'CHT' ? 'selected' : ''}}>Chưa hoàn thành</option>
                                     <option value="HT" {{$trangthai == 'HT' ? 'selected' : ''}}>Hoàn thành</option>
                                     <option value="HHT" {{$trangthai == 'HHT' ? 'selected' : ''}}>Hủy hoàn thành</option>
-                                    <option value="CB" {{$trangthai == 'CB' ? 'selected' : ''}}>Công bố</option>
                                 </select>
                             </div>
                         </div>

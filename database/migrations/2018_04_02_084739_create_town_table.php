@@ -30,6 +30,7 @@ class CreateTownTable extends Migration
             $table->string('chucvuky')->nullable();
             $table->string('chucvukythay')->nullable();
             $table->string('nguoiky')->nullable();
+            $table->string('diadanh')->nullable();
             $table->timestamps();
         });
     }

@@ -246,8 +246,30 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Số hồ sơ thẩm định<span class="require">*</span></label>
+                                    <label class="control-label">Thông tin tờ trình<span class="require">*</span></label>
                                     {!!Form::text('hosotdgia',null, array('id' => 'hosotdgia','class' => 'form-control required','autofocus'))!!}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Đơn vị yêu cầu thẩm định<span class="require">*</span></label>
+                                    {!!Form::text('dvyeucau',null, array('id' => 'dvyeucau','class' => 'form-control required'))!!}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Thông tin tài sản thẩm định<span class="require">*</span></label>
+                                    {!!Form::text('tttstd',null, array('id' => 'tttstd','class' => 'form-control required','autofocus'))!!}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Mục đích thẩm định<span class="require">*</span></label>
+                                    {!!Form::text('mucdich',null, array('id' => 'mucdich','class' => 'form-control required'))!!}
                                 </div>
                             </div>
                             <!--/span-->
@@ -257,7 +279,6 @@
                                     {!!Form::text('thoidiem',null, array('id' => 'thoidiem','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                                 </div>
                             </div>
-                            <!--/span-->
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -266,30 +287,12 @@
                                     {!!Form::text('diadiem',null, array('id' => 'diadiem','class' => 'form-control required'))!!}
                                 </div>
                             </div>
-                            <!--/span-->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Phương pháp thẩm định</label>
                                     {!!Form::text('ppthamdinh',null, array('id' => 'ppthamdinh','class' => 'form-control required'))!!}
                                 </div>
                             </div>
-                            <!--/span-->
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Mục đích thẩm định<span class="require">*</span></label>
-                                    {!!Form::text('mucdich',null, array('id' => 'mucdich','class' => 'form-control required'))!!}
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Đơn vị yêu cầu thẩm định<span class="require">*</span></label>
-                                    {!!Form::text('dvyeucau',null, array('id' => 'dvyeucau','class' => 'form-control required'))!!}
-                                </div>
-                            </div>
-                            <!--/span-->
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -332,6 +335,16 @@
                                 <div class="form-group">
                                     <label class="control-label">Thời hạn sử dụng kết quả thẩm định</label>
                                     {!!Form::text('thoihan',null, array('id' => 'thoihan','class' => 'form-control','readonly'))!!}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group"><label for="selGender" class="control-label">Ghi chú</label>
+                                    <div>
+                                        <textarea id="ghichu" class="form-control" name="ghichu" cols="30" rows="5"
+                                                ></textarea>
+                                    </div>
                                 </div>
                             </div>
                         </div>

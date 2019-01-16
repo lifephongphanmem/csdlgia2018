@@ -24,5 +24,6 @@ class Town extends Model
         'chucvuky',
         'chucvukythay',
         'nguoiky',
+        'diadanh',
     ];
 }
