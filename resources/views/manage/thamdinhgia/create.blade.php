@@ -237,7 +237,7 @@
     <div class="row center">
         <div class="col-md-12 center">
             <!-- BEGIN VALIDATION STATES-->
-            {!! Form::open(['url'=>'thamdinhgia', 'id' => 'create_thamdinhgia', 'class'=>'horizontal-form']) !!}
+            {!! Form::open(['url'=>'thamdinhgia', 'id' => 'create_thamdinhgia', 'files'=>true, 'class'=>'horizontal-form']) !!}
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
@@ -345,6 +345,44 @@
                                         <textarea id="ghichu" class="form-control" name="ghichu" cols="30" rows="5"
                                                 ></textarea>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">File đính kèm 1</label>
+                                    <input name="ipf1" id="ipf1" type="file">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">File đính kèm 2</label>
+                                    <input name="ipf2" id="ipf2" type="file">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">File đính kèm 3</label>
+                                    <input name="ipf3" id="ipf3" type="file">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">File đính kèm 4</label>
+                                    <input name="ipf4" id="ipf4" type="file">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">File đính kèm 5</label>
+                                    <input name="ipf5" id="ipf5" type="file">
                                 </div>
                             </div>
                         </div>

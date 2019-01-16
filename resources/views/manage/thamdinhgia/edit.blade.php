@@ -237,7 +237,7 @@
     <div class="row center">
         <div class="col-md-12 center">
             <!-- BEGIN VALIDATION STATES-->
-            {!! Form::model($model, ['method' => 'PATCH', 'url'=>'thamdinhgia/'. $model->id, 'class'=>'horizontal-form','id'=>'update_thamdinhgia']) !!}
+            {!! Form::model($model, ['method' => 'PATCH', 'url'=>'thamdinhgia/'. $model->id, 'files'=>true,'class'=>'horizontal-form','id'=>'update_thamdinhgia']) !!}
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
@@ -351,6 +351,57 @@
                                     <div>
                                         <textarea id="ghichu" class="form-control" name="ghichu" cols="30" rows="5">{{$model->ghichu}}</textarea>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">File đính kèm 1</label>
+                                    @if(isset($model->ipf1))
+                                        <a href="{{url('/data/vbqlnnvegia/'.$model->ipf1)}}" target="_blank">{{$model->ipt1}}</a>
+                                    @endif
+                                    <input name="ipf1" id="ipf1" type="file">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">File đính kèm 2</label>
+                                    @if(isset($model->ipf2))
+                                        <a href="{{url('/data/thamdinhgia/'.$model->ipf2)}}" target="_blank">{{$model->ipt2}}</a>
+                                    @endif
+                                    <input name="ipf2" id="ipf2" type="file">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">File đính kèm 3</label>
+                                    @if(isset($model->ipf3))
+                                        <a href="{{url('/data/thamdinhgia/'.$model->ipf3)}}" target="_blank">{{$model->ipt3}}</a>
+                                    @endif
+                                    <input name="ipf3" id="ipf3" type="file">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">File đính kèm 4</label>
+                                    @if(isset($model->ipf4))
+                                        <a href="{{url('/data/thamdinhgia/'.$model->ipf4)}}" target="_blank">{{$model->ipt4}}</a>
+                                    @endif
+                                    <input name="ipf4" id="ipf4" type="file">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">File đính kèm 5</label>
+                                    @if(isset($model->ipf5))
+                                        <a href="{{url('/data/thamdinhgia/'.$model->ipf5)}}" target="_blank">{{$model->ipt5}}</a>
+                                    @endif
+                                    <input name="ipf5" id="ipf5" type="file">
                                 </div>
                             </div>
                         </div>

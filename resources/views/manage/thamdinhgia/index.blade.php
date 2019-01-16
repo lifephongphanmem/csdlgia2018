@@ -56,7 +56,7 @@
         function get_attack(id){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/hoso-thamdinhgia-dk/dinhkem',
+                url: '/filethamdinhgia/dinhkem',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -73,6 +73,7 @@
                 }
             });
         }
+
     </script>
 @stop
 
@@ -140,11 +141,13 @@
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center">Thời điểm <br>thẩm định</th>
-                            <th style="text-align: center">Số hồ sơ</th>
+                            <th style="text-align: center">Thông tin tờ trình</th>
                             <th style="text-align: center">Số thông báo<br>kết luận</th>
+                            <th style="text-align: center">Thông tin tài sản thẩm định</th>
+                            <th style="text-align: center">Đơn vị yêu cầu thẩm định</th>
                             <th style="text-align: center" with="3%">Thời hạn <br>thẩm định</th>
                             <th style="text-align: center">Trạng thái</th>
-                            <th style="text-align: center" width="33%">Thao tác</th>
+                            <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -152,9 +155,10 @@
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->thoidiem)}}</td>
-                                <td style="text-align: center">{{$tt->hosotdgia}}</td>
+                                <td style="text-align: left">{{$tt->hosotdgia}}</td>
                                 <td style="text-align: center">{{$tt->sotbkl}}</td>
-
+                                <td>{{$tt->tttstd}}</td>
+                                <td>{{$tt->dvyeucau}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->thoihan)}}</td>
                                 <td style="text-align: center">
                                     @if($tt->trangthai == 'HT')
@@ -169,6 +173,7 @@
                                 </td>
                                 <td>
                                     <a href="{{url('thamdinhgia/'.$tt->id)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                    <button type="button" onclick="get_attack('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#dinhkem-modal-confirm" data-toggle="modal"><i class="fa fa-cloud-download"></i>&nbsp;File đính kèm</button>
                                     @if($tt->trangthai == 'CHT' || $tt->trangthai == 'HHT')
                                         @if(can('kkthamdinhgia','edit'))
                                         <a href="{{url('thamdinhgia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
@@ -324,5 +329,5 @@
             $('#frm_huyhoanthanh').submit();
         }
     </script>
-
+    @include('includes.e.modal-attackfile')
 @stop

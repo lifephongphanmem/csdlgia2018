@@ -3,6 +3,7 @@ Route::resource('thamdinhgia','ThamDinhGiaController');
 Route::post('thamdinhgia/delete','ThamDinhGiaController@destroy');
 Route::get('timkiemthamdinhgia','ThamDinhGiaController@search');
 Route::get('timkiemthamdinhgia/xemtttk','ThamDinhGiaController@xemtttk');
+Route::get('filethamdinhgia/dinhkem','ThamDinhGiaController@filedk');
 
 Route::post('thamdinhgia/hoanthanh','ThamDinhGiaController@hoanthanh');
 Route::post('thamdinhgia/huyhoanthanh','ThamDinhGiaController@huyhoanthanh');
