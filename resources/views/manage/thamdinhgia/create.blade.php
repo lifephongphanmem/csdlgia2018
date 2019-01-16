@@ -271,21 +271,22 @@
                                     {!!Form::text('tttstd',null, array('id' => 'tttstd','class' => 'form-control required','autofocus'))!!}
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Mục đích thẩm định<span class="require">*</span></label>
-                                    {!!Form::text('mucdich',null, array('id' => 'mucdich','class' => 'form-control required'))!!}
-                                </div>
-                            </div>
-                            <!--/span-->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Thời điểm thẩm định<span class="require">*</span></label>
                                     {!!Form::text('thoidiem',null, array('id' => 'thoidiem','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Mục đích thẩm định<span class="require">*</span></label>
+                                    {!!Form::text('mucdich',null, array('id' => 'mucdich','class' => 'form-control required'))!!}
+                                </div>
+                            </div>
+                            <!--/span-->
+
                         </div>
                         <div class="row">
                             <div class="col-md-6">
