@@ -78,3 +78,22 @@
             </li>
     </ul>
 </li>
+<li class="tooltips" data-container="body" data-placement="right" data-html="true"
+    data-original-title="">
+    <a href="">
+        <i class="icon-folder"></i>
+        <span class="title">Giá hàng hóa cung ứng</span>
+        <span class="arrow"></span>
+    </a>
+    <ul class="sub-menu" style="display: none;">
+        <li>
+            <a href="{{url('dmnhomhanghoa')}}">Danh mục hàng hóa</a>
+        </li>
+        <li>
+            <a href="">Hồ sơ cung cấp giá</a>
+        </li>
+        <li>
+            <a href="">Tìm kiếm thông tin</a>
+        </li>
+    </ul>
+</li>

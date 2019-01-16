@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\DmHangHoa;
+use App\DmNhomHangHoa;
 use App\ThamDinhGia;
 use App\ThamDinhGiaCt;
 use App\ThamDinhGiaCtDf;
@@ -60,10 +62,14 @@ class ThamDinhGiaController extends Controller
                 ->get();
             $modeldv = Town::where('maxa',$inputs['maxa'])
                 ->first();
+            $modelhh = DmHangHoa::where('theodoi','TD')
+                ->select('mahanghoa','tenhanghoa')
+                ->get()->toArray();
             return view('manage.thamdinhgia.create')
                 ->with('modeldv',$modeldv)
                 ->with('maxa',$inputs['maxa'])
                 ->with('modelct',$modelct)
+                ->with('modelhh',$modelhh)
                 ->with('pageTitle','Thêm mới hồ sơ thẩm định giá');
 
         }else
@@ -467,5 +473,19 @@ class ThamDinhGiaController extends Controller
         $result['status'] = 'success';
 
         die(json_encode($result));
+    }
+
+    function gettthanghoa(Request $request){
+        if(!Session::has('admin')) {
+            $result = array(
+                'status' => 'fail',
+                'message' => 'permission denied',
+            );
+            die(json_encode($result));
+        }
+
+        $inputs = $request->all();
+        $model = DmHangHoa::where('mahanghoa',$inputs['mahanghoa'])->first();
+        die($model);
     }
 }

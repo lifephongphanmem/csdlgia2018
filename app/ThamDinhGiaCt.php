@@ -9,6 +9,7 @@ class ThamDinhGiaCt extends Model
     protected $table = 'thamdinhgiact';
     protected $fillable = [
         'id',
+        'mats',
         'tents',
         'dacdiempl',
         'thongsokt',

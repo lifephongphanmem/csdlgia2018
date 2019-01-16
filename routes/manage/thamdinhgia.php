@@ -22,4 +22,7 @@ Route::get('thamdinhgiact/del','ThamDinhGiaCtController@destroy');
 
 Route::get('baocaoththamdinhgia','ReportsThamDinhGiaController@index');
 Route::post('baocaoththamdinhgia/BC1','ReportsThamDinhGiaController@Bc1');
+
+Route::get('addtthanghoa','ThamDinhGiaController@gettthanghoa');
+Route::get('addtthanghoaedit','ThamDinhGiaController@gettthanghoa');
 ?>

@@ -3644,5 +3644,4 @@ function VndText($amount)
     return ucfirst($textnumber." đồng chẵn.");
 }
 
-
 ?>

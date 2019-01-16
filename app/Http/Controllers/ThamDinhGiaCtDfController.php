@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DmHangHoa;
 use App\ThamDinhGiaCtDf;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -110,8 +111,22 @@ class ThamDinhGiaCtDfController extends Controller
             $model = ThamDinhGiaCtDf::where('id',$inputs['id'])
                 ->first();
             //dd($model);
+            $modelhh = DmHangHoa::where('theodoi','TD')->get();
             $result['message'] = '<div class="modal-body" id="tttsedit">';
 
+            $result['message'] .= '<div class="row">';
+            $result['message'] .= '<div class="col-md-6">';
+            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Nhập thông tin tài sản<span class="require">*</span></label>';
+            $result['message'] .= '<div><select class="form-control select2me" id="matsedit" name="matsedit">';
+            $result['message'] .= '<option value="">-- Nhập tên tài sản--</option>';
+            foreach($modelhh as $tt){
+                $result['message'] .= '<option value="'.$tt->mahanghoa.'"'.(($tt->mahanghoa  == $model->mats) ? 'selected' : '').'>'.$tt->mahanghoa.' - '.$tt->tenhanghoa.'</option>';
+            }
+
+            $result['message'] .= '</select></div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
 
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-6">';

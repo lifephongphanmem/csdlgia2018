@@ -15,6 +15,7 @@ class CreateThamdinhgiactdfTable extends Migration
     {
         Schema::create('thamdinhgiactdf', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('mats')->nullable();
             $table->text('tents')->nullable();
             $table->text('dacdiempl')->nullable();
             $table->text('thongsokt')->nullable();
