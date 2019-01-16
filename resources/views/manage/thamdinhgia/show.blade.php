@@ -67,7 +67,7 @@
     Cao Bằng về việc ban hành quy định quản lý Nhà nước về giá trên địa bàn tỉnh
     Cao Bằng;</p>
 <p>Theo đề nghị của {{$model->dvyeucau}} tại Tờ trình {{$model->hosotdgia}} về việc đề nghị thẩm định giá {{$model->tttstd}};</p>
-<p>{{$modeldv->tendv}} thông báo kết quả thẩm định giá như sau:</p>
+<p>{{$modeldv->tendvhienthi}} thông báo kết quả thẩm định giá như sau:</p>
 <p><b>1.Mục đích thẩm định giá</b></p>
 <p>{{$model->mucdich}}</p>
 <p><b>2. Thời điểm thẩm định giá</b></p>
@@ -80,18 +80,18 @@
 <p><b>5. Kết quả thẩm định giá</b></p>
 <p>Trên cơ sở các tài liệu do đơn vị cung cấp, qua khảo sát thực tế tại thị trường
     {{$model->diadiem}} với phương pháp thẩm định giá trên được áp dụng trong tính
-    toán, {{$modeldv->tendv}} thông báo kết quả thẩm định giá tại thời điểm {{getDayVn($model->thoidiem)}}.</p>
+    toán, {{$modeldv->tendvhienthi}} thông báo kết quả thẩm định giá tại thời điểm {{getDayVn($model->thoidiem)}}.</p>
 <p>Tổng giá trị sau thẩm định: <b>{{number_format($modelct->sum('giatritstd'))}}</b> VNĐ</p>
 <p><i>(Tổng số tiền sau thẩm định bằng chữ: {{VndText($modelct->sum('giatritstd'))}})</i></p>
 <p><i>(Chi tiết phụ lục đính kèm)</i></p>
 <p><b>6. Điều kiện, giới hạn kèm theo kết quả thẩm định giá</b></p>
 <p>- Kết quả thẩm định giá chỉ được sử dụng cho một “Mục đích thẩm định giá” duy nhất theo yêu cầu của đơn vị đã được ghi tại phần đầu của Công văn thông báo kết quả thẩm định giá. Đơn vị phải hoàn toàn chịu trách nhiệm khi sử dụng sai mục đích đã yêu cầu.</p>
 <p>- Kết quả thẩm định giá chỉ được tính cho {{$model->dvyeucau}} đã nêu ở trên. Việc sử dụng kết quả thẩm định giá này áp dụng cho sản phẩm khác dưới bất kỳ hình thức nào không có giá trị.</p>
-<p>- Mức giá {{$modeldv->tendv}} thông báo nêu trên là mức giá trần, được đưa ra tư vấn trong điều kiện không được trực quan tiếp cận {{$model->dvyeucau}} cũng như đàm phán về điều kiện kỹ thụât, thương mại…. chỉ dựa trên thông tin về sản phẩm do đơn vị cung cấp. Chủ đầu tư có trách nhịêm quyết định mức giá {{$model->dvyeucau}} trong giao dịch cụ thể, đảm bảo tính hịêu quả cao nhất có thể.</p>
+<p>- Mức giá {{$modeldv->tendvhienthi}} thông báo nêu trên là mức giá trần, được đưa ra tư vấn trong điều kiện không được trực quan tiếp cận {{$model->dvyeucau}} cũng như đàm phán về điều kiện kỹ thụât, thương mại…. chỉ dựa trên thông tin về sản phẩm do đơn vị cung cấp. Chủ đầu tư có trách nhịêm quyết định mức giá {{$model->dvyeucau}} trong giao dịch cụ thể, đảm bảo tính hịêu quả cao nhất có thể.</p>
 <p>- Mức giá của {{$model->dvyeucau}} sẽ không được xác nhận trong trường hợp sản phẩm không đầy đủ về cơ sở pháp lý cũng như thay đổi đặc tính kỹ thuật như: chất liệu, quy cách, thành phần…. hay thay đổi về đặc tính kinh tế như: xuất xứ, hãng sản xuất, chất lượng….</p>
-<p>- Chỉ bản chính và bản sao Công văn thẩm định giá có đóng dấu đỏ do {{$modeldv->tendv}} cấp ra mới có giá trị. Mọi hành vi sử dụng bản sao kết quả thẩm định giá mà không có xác nhận của {{$modeldv->tendv}} đều vi phạm pháp lụât và không có giá trị.</p>
+<p>- Chỉ bản chính và bản sao Công văn thẩm định giá có đóng dấu đỏ do {{$modeldv->tendvhienthi}} cấp ra mới có giá trị. Mọi hành vi sử dụng bản sao kết quả thẩm định giá mà không có xác nhận của {{$modeldv->tendvhienthi}} đều vi phạm pháp lụât và không có giá trị.</p>
 <p><b>7.Thời hạn sử dụng kết quả thẩm định giá: </b>có hiệu lực trong vòng {{$model->songaykq}} ngày kể từ ngày ký.</p>
-<p>{{$modeldv->tendv}} thông báo để đơn vị triển khai thực hiện theo quy định của pháp luật hiện hành./.</p>
+<p>{{$modeldv->tendvhienthi}} thông báo để đơn vị triển khai thực hiện theo quy định của pháp luật hiện hành./.</p>
 <table width="96%" border="0" cellspacing="0" cellpadding="0" style="margin:10px auto;">
     <tr>
         <td style="text-align: left" width="40%">
@@ -120,7 +120,7 @@
 <p style="page-break-before: always">
 <p style="text-align: center;font-weight:bold;font-size: 20px;text-transform: uppercase;">PHỤ LỤC</p>
 <p style="text-align: center;font-size: 16px;"><i>(Kèm theo Công văn số: {{$model->sotbkl}}</i></p>
-<p style="text-align: center;font-size: 16px;"><i>Ngày ..... tháng ..... năm ..... của {{$modeldv->tendv}})</i></p>
+<p style="text-align: center;font-size: 16px;"><i>Ngày ..... tháng ..... năm ..... của {{$modeldv->tendvhienthi}})</i></p>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <tr>
         <th width="2%" style="text-align: center" rowspan="2">STT</th>
