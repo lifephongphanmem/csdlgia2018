@@ -53,31 +53,31 @@
             });
             $('#mats').change(function () {
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                if( $('#mats').val() == ''){
-                    $('#tents').val('');
-                    $('#thongsokt').val('');
-                    $('#nguongoc').val('');
-                    $('#dvt').val('');
-                }else {
-                    $.ajax({
-                        url: '/addtthanghoa',
-                        type: 'GET',
-                        data: {
-                            _token: CSRF_TOKEN,
-                            mahanghoa: $('#mats').val()
-                        },
-                        dataType: 'JSON',
-                        success: function (data) {
+
+                $.ajax({
+                    url: '/addtthanghoa',
+                    type: 'GET',
+                    data: {
+                        _token: CSRF_TOKEN,
+                        mahanghoa: $('#mats').val()
+                    },
+                    dataType: 'JSON',
+                    success: function (data) {
+                        if(data.status == 'success') {
+                            toastr.success("Đã tìm thấy thông tin tài sản!", "Thành công!");
                             $('#tents').val(data.tenhanghoa);
                             $('#thongsokt').val(data.thongsokt);
                             $('#nguongoc').val(data.xuatxu);
                             $('#dvt').val(data.dvt);
-                        },
-                        error: function (message) {
-                            alert(message);
+                        }else {
+                            toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
+                            $('#tents').val('');
+                            $('#thongsokt').val('');
+                            $('#nguongoc').val('');
+                            $('#dvt').val('');
                         }
-                    })
-                }
+                    }
+                })
             });
         });
 
@@ -168,7 +168,7 @@
                 data: {
                     _token: CSRF_TOKEN,
                     id: $('input[name="idedit"]').val(),
-                    mats: $('#mats').val(),
+                    mats: $('#matsedit').val(),
                     tents: $('input[name="tentsedit"]').val(),
                     dacdiempl: $('input[name="dacdiempledit"]').val(),
                     thongsokt: $('input[name="thongsoktedit"]').val(),
@@ -187,6 +187,11 @@
                     //$('#modal-wide-width').dialog('close');
                     if(data.status == 'success') {
                         toastr.success("Chỉnh sửa thông tin tài sản thành công", "Thành công!");
+                        $('#dsts').replaceWith(data.message);
+                        jQuery(document).ready(function() {
+                            TableManaged.init();
+                        });
+                        $('#modal-edit').modal("hide");
 
                     }else
                         toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
@@ -246,33 +251,31 @@
             });
             $('#matsedit').change(function () {
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                if( $('#matsedit').val() == ''){
-                    $('#tents').val('');
-                    $('#thongsokt').val('');
-                    $('#nguongoc').val('');
-                    $('#dvt').val('');
-                }else {
-                    $.ajax({
-                        url: '/addtthanghoaedit',
-                        type: 'GET',
-                        data: {
-                            _token: CSRF_TOKEN,
-                            mahanghoa: $('#matsedit').val()
-                        },
-                        dataType: 'JSON',
-                        success: function (data) {
+                $.ajax({
+                    url: '/addtthanghoaedit',
+                    type: 'GET',
+                    data: {
+                        _token: CSRF_TOKEN,
+                        mahanghoa: $('#matsedit').val()
+                    },
+                    dataType: 'JSON',
+                    success: function (data) {
+                        if (data.status == 'success') {
+                            toastr.success("Đã tìm thấy thông tin tài sản!", "Thành công!");
                             $('#tentsedit').val(data.tenhanghoa);
                             $('#thongsoktedit').val(data.thongsokt);
                             $('#nguongocedit').val(data.xuatxu);
                             $('#dvtedit').val(data.dvt);
-                        },
-                        error: function (message) {
-                            alert(message);
+                        } else {
+                            toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
+                            $('#tentsedit').val('');
+                            $('#thongsoktedit').val('');
+                            $('#nguongocedit').val('');
+                            $('#dvtedit').val('');
                         }
-                    })
-                }
+                    }
+                })
             });
-
         }
 
         function addngay(){
@@ -458,7 +461,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <button type="button" data-target="#modal-create" data-toggle="modal" class="btn btn-success btn-xs" onclick="clearForm()"><i class="fa fa-plus"></i>&nbsp;Thêm mới thông tin tài sản</button>
+                                    <button type="button" data-target="#modal-create" data-toggle="modal" class="btn btn-success btn-xs" onclick="clearForm()"><i class="fa fa-plus"></i>&nbsp;Thêm mới thông tin hàng hóa</button>
                                     &nbsp;
                                 </div>
                             </div>
@@ -469,7 +472,10 @@
                                     <thead>
                                     <tr>
                                         <th width="2%" style="text-align: center">STT</th>
-                                        <th style="text-align: center">Tên tài sản-<br>Thông số kỹ thuật</th>
+                                        <th style="text-align: center">Mã hàng hóa</th>
+                                        <th style="text-align: center">Tên hàng hóa-Quy cách</th>
+                                        <th style="text-align: center">Thông số kỹ thuật</th>
+                                        <th style="text-align: center">Xuất xứ</th>
                                         <th style="text-align: center">Đơn vị</br>tính</th>
                                         <th style="text-align: center">Số <br>lượng</th>
                                         <th style="text-align: center">Đơn giá</br>đề nghị</th>
@@ -483,7 +489,10 @@
                                     @foreach($modelct as $key=>$tt)
                                         <tr id={{$tt->id}}>
                                             <td style="text-align: center">{{($key +1)}}</td>
-                                            <td class="active">{{$tt->tents}}-{{$tt->thongsokt}}</td>
+                                            <td style="text-align: center">{{$tt->mats}}</td>
+                                            <td class="active">{{$tt->tents}}-{{$tt->dacdiempl}}</td>
+                                            <td style="text-align: left">{{$tt->thongsokt}}</td>
+                                            <td style="text-align: left">{{$tt->nguongoc}}</td>
                                             <td style="text-align: center">{{$tt->dvt}}</td>
                                             <td style="text-align: center">{{number_format($tt->sl)}}</td>
                                             <td style="text-align: right;font-weight: bold">{{number_format($tt->nguyengiadenghi)}}</td>
@@ -542,7 +551,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Chỉnh sửa thông tin tài sản</h4>
+                    <h4 class="modal-title">Chỉnh sửa thông tin hàng hóa</h4>
                 </div>
                 <div class="modal-body" id="tttsedit">
                 </div>
@@ -561,33 +570,28 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Thêm mới thông tin tài sản</h4>
+                    <h4 class="modal-title">Thêm mới thông tin hàng hóa</h4>
                 </div>
                 <div class="modal-body" id="ttmhbog">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">Nhập thông tin tài sản<span class="require">*</span></label>
-                                <select class="form-control select2me" id="mats" name="mats">
-                                    <option value="">-- Nhập tên tài sản--</option>
-                                    @foreach($modelhh as $tt)
-                                        <option value="{{$tt['mahanghoa']}}">{{$tt['mahanghoa']}} - {{$tt['tenhanghoa']}}</option>
-                                    @endforeach
-                                </select>
+                                <label class="control-label">Mã hàng hóa<span class="require">*</span></label>
+                                <input type="text" id="mats" name="mats" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">Tên tài sản<span class="require">*</span></label>
+                                <label class="control-label">Tên hàng hóa<span class="require">*</span></label>
                                 <input type="text" id="tents" name="tents" class="form-control">
                             </div>
                         </div>
                         <!--/span-->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">Đặc điểm pháp lý</label>
+                                <label class="control-label">Quy cách chất lượng</label>
                                 <input type="text" id="dacdiempl" name="dacdiempl" class="form-control">
                             </div>
                         </div>
@@ -602,7 +606,7 @@
                         <!--/span-->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">Nguồn gốc</label>
+                                <label class="control-label">Xuất xứ</label>
                                 <input type="text" name="nguongoc" id="nguongoc" class="form-control">
                             </div>
                         </div>
@@ -626,14 +630,14 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Đơn giá đề nghị<span class="require">*</span></label>
-                                <input type="text" name="nguyengiadenghi" id="nguyengiadenghi" class="form-control" data-mask="fdecimal" value="0">
+                                <input type="text" name="nguyengiadenghi" id="nguyengiadenghi" class="form-control" data-mask="fdecimal" value="0" style="text-align: right;font-weight: bold">
                             </div>
                         </div>
                         <!--/span-->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Giá trị đề nghị<span class="require">*</span></label>
-                                <input type="text" name="giadenghi" id="giadenghi" class="form-control" data-mask="fdecimal" value="0">
+                                <input type="text" name="giadenghi" id="giadenghi" class="form-control" data-mask="fdecimal" value="0" style="text-align: right;font-weight: bold">
                             </div>
                         </div>
                     </div>
@@ -641,14 +645,14 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Đơn giá thẩm định<span class="require">*</span></label>
-                                <input type="text" name="nguyengiathamdinh" id="nguyengiathamdinh" class="form-control" data-mask="fdecimal" value="0">
+                                <input type="text" name="nguyengiathamdinh" id="nguyengiathamdinh" class="form-control" data-mask="fdecimal" value="0" style="text-align: right;font-weight: bold">
                             </div>
                         </div>
                         <!--/span-->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Giá trị tài sản thẩm định<span class="require">*</span></label>
-                                <input type="text" name="giatritstd" id="giatritstd" class="form-control" data-mask="fdecimal" value="0">
+                                <input type="text" name="giatritstd" id="giatritstd" class="form-control" data-mask="fdecimal" value="0" style="text-align: right;font-weight: bold">
                             </div>
                         </div>
                         <!--/span-->

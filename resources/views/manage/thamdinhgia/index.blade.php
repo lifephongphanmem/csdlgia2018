@@ -95,6 +95,7 @@
                         @if(can('kkthamdinhgia','create'))
                         <a href="{{url('thamdinhgia/create?&maxa='.$maxa)}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
+                        <a href="{{url('thamdinhgia/nhanexcel?&maxa='. $maxa)}}" class="btn btn-default btn-sm"><i class="fa fa-file-excel-o"></i>&nbsp;Nhận dữ liệu</a>
                         @endif
                     </div>
 

@@ -51,10 +51,39 @@
             $('#thoidiem').change(function(){
                 addngay();
             });
+            $('#mats').change(function () {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+                $.ajax({
+                    url: '/addtthanghoa',
+                    type: 'GET',
+                    data: {
+                        _token: CSRF_TOKEN,
+                        mahanghoa: $('#mats').val()
+                    },
+                    dataType: 'JSON',
+                    success: function (data) {
+                        if(data.status == 'success') {
+                            toastr.success("Đã tìm thấy thông tin tài sản!", "Thành công!");
+                            $('#tents').val(data.tenhanghoa);
+                            $('#thongsokt').val(data.thongsokt);
+                            $('#nguongoc').val(data.xuatxu);
+                            $('#dvt').val(data.dvt);
+                        }else {
+                            toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
+                            $('#tents').val('');
+                            $('#thongsokt').val('');
+                            $('#nguongoc').val('');
+                            $('#dvt').val('');
+                        }
+                    }
+                })
+            });
         });
     </script>
     <script>
         function clearForm(){
+            $('#mats').val('');
             $('#tents').val('');
             $('#dacdiempl').val('');
             $('#thongsokt').val('');
@@ -74,6 +103,7 @@
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
+                    mats: $('input[name="mats"]').val(),
                     tents: $('input[name="tents"]').val(),
                     dacdiempl: $('input[name="dacdiempl"]').val(),
                     thongsokt: $('input[name="thongsokt"]').val(),
@@ -135,6 +165,7 @@
                 data: {
                     _token: CSRF_TOKEN,
                     id: $('input[name="idedit"]').val(),
+                    mats: $('input[name="matsedit"]').val(),
                     tents: $('input[name="tentsedit"]').val(),
                     dacdiempl: $('input[name="dacdiempledit"]').val(),
                     thongsokt: $('input[name="thongsoktedit"]').val(),
@@ -215,6 +246,33 @@
                 var tt = sl * nguyengiatd;
                 //alert(nguyengiatd);
                 $('#giatritstdedit').val(tt);
+            });
+            $('#matsedit').change(function () {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '/addtthanghoaedit',
+                    type: 'GET',
+                    data: {
+                        _token: CSRF_TOKEN,
+                        mahanghoa: $('#matsedit').val()
+                    },
+                    dataType: 'JSON',
+                    success: function (data) {
+                        if (data.status == 'success') {
+                            toastr.success("Đã tìm thấy thông tin tài sản!", "Thành công!");
+                            $('#tentsedit').val(data.tenhanghoa);
+                            $('#thongsoktedit').val(data.thongsokt);
+                            $('#nguongocedit').val(data.xuatxu);
+                            $('#dvtedit').val(data.dvt);
+                        } else {
+                            toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
+                            $('#tentsedit').val('');
+                            $('#thongsoktedit').val('');
+                            $('#nguongocedit').val('');
+                            $('#dvtedit').val('');
+                        }
+                    }
+                })
             });
         }
 
@@ -366,7 +424,7 @@
                                 <div class="form-group">
                                     <label class="control-label">File đính kèm 1</label>
                                     @if(isset($model->ipf1))
-                                        <a href="{{url('/data/vbqlnnvegia/'.$model->ipf1)}}" target="_blank">{{$model->ipt1}}</a>
+                                        <a href="{{url('/data/thamdinhgia/'.$model->ipf1)}}" target="_blank">{{$model->ipt1}}</a>
                                     @endif
                                     <input name="ipf1" id="ipf1" type="file">
                                 </div>
@@ -418,7 +476,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <button type="button" data-target="#modal-create" data-toggle="modal" class="btn btn-success btn-xs" onclick="clearForm()"><i class="fa fa-plus"></i>&nbsp;Thêm mới thông tin tài sản</button>
+                                    <button type="button" data-target="#modal-create" data-toggle="modal" class="btn btn-success btn-xs" onclick="clearForm()"><i class="fa fa-plus"></i>&nbsp;Thêm mới thông tin hàng hóa</button>
                                     &nbsp;
                                 </div>
                             </div>
@@ -429,7 +487,10 @@
                                     <thead>
                                     <tr>
                                         <th width="2%" style="text-align: center">STT</th>
-                                        <th style="text-align: center">Tên tài sản-<br>Thông số kỹ thuật</th>
+                                        <th style="text-align: center">Mã hàng hóa</th>
+                                        <th style="text-align: center">Tên hàng hóa-Quy cách</th>
+                                        <th style="text-align: center">Thông số kỹ thuật</th>
+                                        <th style="text-align: center">Xuất xứ</th>
                                         <th style="text-align: center">Đơn vị</br>tính</th>
                                         <th style="text-align: center">Số <br>lượng</th>
                                         <th style="text-align: center">Đơn giá</br>đề nghị</th>
@@ -443,7 +504,10 @@
                                     @foreach($modelct as $key=>$tt)
                                         <tr id={{$tt->id}}>
                                             <td style="text-align: center">{{($key +1)}}</td>
-                                            <td class="active">{{$tt->tents}}-{{$tt->thongsokt}}</td>
+                                            <td style="text-align: center">{{$tt->mats}}</td>
+                                            <td class="active">{{$tt->tents}}-{{$tt->dacdiempl}}</td>
+                                            <td style="text-align: left">{{$tt->thongsokt}}</td>
+                                            <td style="text-align: left">{{$tt->nguongoc}}</td>
                                             <td style="text-align: center">{{$tt->dvt}}</td>
                                             <td style="text-align: center">{{number_format($tt->sl)}}</td>
                                             <td style="text-align: right;font-weight: bold">{{number_format($tt->nguyengiadenghi)}}</td>
@@ -456,7 +520,6 @@
                                             </td>
                                         </tr>
                                     @endforeach
-
                                     </tbody>
                                 </table>
                             </div>
@@ -470,7 +533,7 @@
                 <div class="col-md-12" style="text-align: center">
                     <a href="{{url('thamdinhgia?&trangthai='.$model->trangthai.'&maxa='.$model->maxa)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                     <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
-                    <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
+                    <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
                 </div>
             </div>
             {!! Form::close() !!}
@@ -518,20 +581,28 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Thêm mới thông tin tài sản</h4>
+                    <h4 class="modal-title">Thêm mới thông tin hàng hóa</h4>
                 </div>
                 <div class="modal-body" id="ttmhbog">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">Tên tài sản<span class="require">*</span></label>
+                                <label class="control-label">Mã hàng hóa<span class="require">*</span></label>
+                                <input type="text" id="mats" name="mats" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Tên hàng hóa<span class="require">*</span></label>
                                 <input type="text" id="tents" name="tents" class="form-control">
                             </div>
                         </div>
                         <!--/span-->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">Đặc điểm pháp lý</label>
+                                <label class="control-label">Quy cách chất lượng</label>
                                 <input type="text" id="dacdiempl" name="dacdiempl" class="form-control">
                             </div>
                         </div>
@@ -546,7 +617,7 @@
                         <!--/span-->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">Nguồn gốc</label>
+                                <label class="control-label">Xuất xứ</label>
                                 <input type="text" name="nguongoc" id="nguongoc" class="form-control">
                             </div>
                         </div>
@@ -562,7 +633,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Số lượng<span class="require">*</span></label>
-                                <input type="text" name="sl" id="sl" class="form-control" data-mask="fdecimal" value="1" style="text-align: right;font-weight: bold">
+                                <input type="text" name="sl" id="sl" class="form-control" data-mask="fdecimal" value="1">
                             </div>
                         </div>
                     </div>

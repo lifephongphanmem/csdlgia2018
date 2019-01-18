@@ -12,6 +12,8 @@ use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\File;
 
 class ThamDinhGiaController extends Controller
 {
@@ -62,14 +64,10 @@ class ThamDinhGiaController extends Controller
                 ->get();
             $modeldv = Town::where('maxa',$inputs['maxa'])
                 ->first();
-            $modelhh = DmHangHoa::where('theodoi','TD')
-                ->select('mahanghoa','tenhanghoa')
-                ->get()->toArray();
             return view('manage.thamdinhgia.create')
                 ->with('modeldv',$modeldv)
                 ->with('maxa',$inputs['maxa'])
                 ->with('modelct',$modelct)
-                ->with('modelhh',$modelhh)
                 ->with('pageTitle','Thêm mới hồ sơ thẩm định giá');
 
         }else
@@ -119,6 +117,7 @@ class ThamDinhGiaController extends Controller
                 $modelctdf = ThamDinhGiaCtDf::where('maxa',$inputs['maxa']);
                 foreach($modelctdf->get() as $ctdf){
                     $modelct = new ThamDinhGiaCt();
+                    $modelct->mats = $ctdf->mats;
                     $modelct->tents = $ctdf->tents;
                     $modelct->dacdiempl= $ctdf->dacdiempl;
                     $modelct->thongsokt = $ctdf->thongsokt;
@@ -483,9 +482,85 @@ class ThamDinhGiaController extends Controller
             );
             die(json_encode($result));
         }
-
         $inputs = $request->all();
         $model = DmHangHoa::where('mahanghoa',$inputs['mahanghoa'])->first();
-        die($model);
+        if(count($model) == 0){
+            $result['status'] = 'fail';
+        }else{
+            $result['status'] = 'success';
+            $result['tenhanghoa'] = $model->tenhanghoa;
+            $result['thongsokt'] = $model->thongsokt;
+            $result['xuatxu'] = $model->xuatxu;
+            $result['dvt'] = $model->dvt;
+
+        }
+        die(json_encode($result));
+    }
+
+    public function nhanexcel(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            if(session('admin')->level == 'X')
+                $inputs['maxa'] = session('admin')->maxa;
+            $modeldv = Town::where('maxa',$inputs['maxa'])
+                ->first();
+
+            return view('manage.thamdinhgia.excel.information')
+                ->with('inputs',$inputs)
+                ->with('modeldv',$modeldv)
+                ->with('pageTitle', 'Nhận dữ liệu thẩm định giá từ file Excel');
+        }else
+            return view('errors.notlogin');
+    }
+
+    function import_excel(Request $request){
+        if(Session::has('admin')){
+            $inputs=$request->all();
+            $filename = $inputs['maxa'] . '_' . getdate()[0];
+            $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
+            $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
+            $data = [];
+
+            Excel::load($path, function ($reader) use (&$data, $inputs) {
+                $obj = $reader->getExcel();
+                $sheet = $obj->getSheet(0);
+                $data = $sheet->toArray(null, true, true, true);// giữ lại tiêu đề A=>'val';
+            });
+            //dd($data);
+            $modeldel = ThamDinhGiaCtDf::where('maxa', $inputs['maxa'])->delete();
+
+            for ($i = $inputs['tudong']; $i < ($inputs['tudong'] + $inputs['sodong']); $i++) {
+                //dd($data[$i]);
+                if (!isset($data[$i][$inputs['mats']]) || $data[$i][$inputs['tents']] == '') {
+                    continue;//Tên cán bộ rỗng => thoát
+                }
+                $modelctnew = new ThamDinhGiaCtDf();
+                $modelctnew->maxa = $inputs['maxa'];
+                $modelctnew->mats = $data[$i][$inputs['mats']];
+                $modelctnew->tents = $data[$i][$inputs['tents']];
+                $modelctnew->dacdiempl = $data[$i][$inputs['dacdiempl']];
+                $modelctnew->thongsokt = $data[$i][$inputs['thongsokt']];
+                $modelctnew->nguongoc = $data[$i][$inputs['nguongoc']];
+                $modelctnew->dvt = $data[$i][$inputs['dvt']];
+                $modelctnew->sl = $data[$i][$inputs['sl']];
+                $modelctnew->nguyengiadenghi = $data[$i][$inputs['nguyengiadenghi']];
+                $modelctnew->giadenghi = $data[$i][$inputs['giadenghi']];
+                $modelctnew->nguyengiathamdinh = $data[$i][$inputs['nguyengiathamdinh']];
+                $modelctnew->giatritstd = $data[$i][$inputs['giatritstd']];
+                $modelctnew->save();
+            }
+            File::Delete($path);
+            $modelct = ThamDinhGiaCtDf::where('maxa',$inputs['maxa'])
+                ->get();
+            $modeldv = Town::where('maxa',$inputs['maxa'])
+                ->first();
+            return view('manage.thamdinhgia.create')
+                ->with('modeldv',$modeldv)
+                ->with('maxa',$inputs['maxa'])
+                ->with('modelct',$modelct)
+                ->with('pageTitle','Thêm mới hồ sơ thẩm định giá');
+
+        }else
+            return view('errors.notlogin');
     }
 }

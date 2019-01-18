@@ -7,8 +7,6 @@ use App\DmHhDvK;
 use App\GiaHhDvK;
 use App\GiaHhDvKCt;
 use App\GiaHhDvKCtDf;
-//use App\GiaRungCt;
-//use App\GiaRungCtDf;
 use App\NhomHhDvK;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

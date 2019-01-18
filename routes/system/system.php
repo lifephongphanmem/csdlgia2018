@@ -7,9 +7,9 @@ Route::resource('district','DistrictController');
 Route::resource('town','TownController');
 Route::resource('company','CompanyController');
 
-Route::resource('xetduyet_thaydoi_ttdoanhnghiep','XdTdTtDnController');
-Route::post('xetduyet_thaydoi_ttdoanhnghiep/tralai','XdTdTtDnController@tralai');
-Route::get('xetduyet_thaydoi_ttdoanhnghiep/{id}/duyet','XdTdTtDnController@duyet');
+//Route::resource('xetduyet_thaydoi_ttdoanhnghiep','XdTdTtDnController');
+//Route::post('xetduyet_thaydoi_ttdoanhnghiep/tralai','XdTdTtDnController@tralai');
+//Route::get('xetduyet_thaydoi_ttdoanhnghiep/{id}/duyet','XdTdTtDnController@duyet');
 
 Route::resource('danhmucdiadanh','DiaBanHdController');
 Route::post('danhmucdiadanh/delete','DiaBanHdController@destroy');

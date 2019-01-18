@@ -51,9 +51,12 @@ class ThamDinhGiaCtDfController extends Controller
             $result['message'] .= '<thead>';
             $result['message'] .= '<tr>';
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
-            $result['message'] .= '<th style="text-align: center">Tên tài sản-<br>Thông số kỹ thuật</th>';
+            $result['message'] .= '<th style="text-align: center">Mã hàng hóa</th>';
+            $result['message'] .= '<th style="text-align: center">Tên hàng hóa-Quy cách</th>';
+            $result['message'] .= '<th style="text-align: center">Thông số kỹ thuật</th>';
+            $result['message'] .= '<th style="text-align: center">Xuất xứ</th>';
             $result['message'] .= '<th style="text-align: center">Đơn vị</br>tính</th>';
-            $result['message'] .= '<th style="text-align: center">Số lượng</th>';
+            $result['message'] .= '<th style="text-align: center">Số <br>lượng</th>';
             $result['message'] .= '<th style="text-align: center">Đơn giá</br>đề nghị</th>';
             $result['message'] .= '<th style="text-align: center">Giá trị</br>đề nghị</th>';
             $result['message'] .= '<th style="text-align: center">Đơn giá</br>thẩm định</th>';
@@ -66,7 +69,10 @@ class ThamDinhGiaCtDfController extends Controller
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
-                    $result['message'] .= '<td class="active">'.$tents->tents.'-'.$tents->thongsokt.'</td>';
+                    $result['message'] .= '<td style="text-align: center">'.$tents->mats.'</td>';
+                    $result['message'] .= '<td class="active">'.$tents->tents.'-'.$tents->dacdiempl.'</td>';
+                    $result['message'] .= '<td style="text-align: left">'.$tents->thongsokt.'</td>';
+                    $result['message'] .= '<td style="text-align: left">'.$tents->nguongoc.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.$tents->dvt.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.number_format($tents->sl).'</td>';
                     $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->nguyengiadenghi).'</td>';
@@ -111,31 +117,25 @@ class ThamDinhGiaCtDfController extends Controller
             $model = ThamDinhGiaCtDf::where('id',$inputs['id'])
                 ->first();
             //dd($model);
-            $modelhh = DmHangHoa::where('theodoi','TD')->get();
+            //$modelhh = DmHangHoa::where('theodoi','TD')->get();
             $result['message'] = '<div class="modal-body" id="tttsedit">';
 
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-6">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Nhập thông tin tài sản<span class="require">*</span></label>';
-            $result['message'] .= '<div><select class="form-control select2me" id="matsedit" name="matsedit">';
-            $result['message'] .= '<option value="">-- Nhập tên tài sản--</option>';
-            foreach($modelhh as $tt){
-                $result['message'] .= '<option value="'.$tt->mahanghoa.'"'.(($tt->mahanghoa  == $model->mats) ? 'selected' : '').'>'.$tt->mahanghoa.' - '.$tt->tenhanghoa.'</option>';
-            }
-
-            $result['message'] .= '</select></div>';
+            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Mã hàng hóa<span class="require">*</span></label>';
+            $result['message'] .= '<div><input type="text" name="matsedit" id="matsedit" class="form-control" value="'.$model->mats.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
 
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-6">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Tên tài sản<span class="require">*</span></label>';
+            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Tên hàng hóa<span class="require">*</span></label>';
             $result['message'] .= '<div><input type="text" name="tentsedit" id="tentsedit" class="form-control" value="'.$model->tents.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '<div class="col-md-6">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Đặc điểm pháp lý<span class="require">*</span></label>';
+            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Quy cách<span class="require">*</span></label>';
             $result['message'] .= '<div><input type="text" name="dacdiempledit" id="dacdiempledit" class="form-control" value="'.$model->dacdiempl.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
@@ -148,7 +148,7 @@ class ThamDinhGiaCtDfController extends Controller
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '<div class="col-md-6">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Nguồn gốc<span class="require">*</span></label>';
+            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Xuất xứ<span class="require">*</span></label>';
             $result['message'] .= '<div><input type="text" name="nguongocedit" id="nguongocedit" class="form-control" value="'.$model->nguongoc.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
@@ -250,9 +250,12 @@ class ThamDinhGiaCtDfController extends Controller
             $result['message'] .= '<thead>';
             $result['message'] .= '<tr>';
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
-            $result['message'] .= '<th style="text-align: center">Tên tài sản-<br>Thông số kỹ thuật</th>';
+            $result['message'] .= '<th style="text-align: center">Mã hàng hóa</th>';
+            $result['message'] .= '<th style="text-align: center">Tên hàng hóa-Quy cách</th>';
+            $result['message'] .= '<th style="text-align: center">Thông số kỹ thuật</th>';
+            $result['message'] .= '<th style="text-align: center">Xuất xứ</th>';
             $result['message'] .= '<th style="text-align: center">Đơn vị</br>tính</th>';
-            $result['message'] .= '<th style="text-align: center">Số lượng</th>';
+            $result['message'] .= '<th style="text-align: center">Số <br>lượng</th>';
             $result['message'] .= '<th style="text-align: center">Đơn giá</br>đề nghị</th>';
             $result['message'] .= '<th style="text-align: center">Giá trị</br>đề nghị</th>';
             $result['message'] .= '<th style="text-align: center">Đơn giá</br>thẩm định</th>';
@@ -265,7 +268,10 @@ class ThamDinhGiaCtDfController extends Controller
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
-                    $result['message'] .= '<td class="active">'.$tents->tents.'-'.$tents->thongsokt.'</td>';
+                    $result['message'] .= '<td style="text-align: center">'.$tents->mats.'</td>';
+                    $result['message'] .= '<td class="active">'.$tents->tents.'-'.$tents->dacdiempl.'</td>';
+                    $result['message'] .= '<td style="text-align: left">'.$tents->thongsokt.'</td>';
+                    $result['message'] .= '<td style="text-align: left">'.$tents->nguongoc.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.$tents->dvt.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.number_format($tents->sl).'</td>';
                     $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->nguyengiadenghi).'</td>';
@@ -319,9 +325,12 @@ class ThamDinhGiaCtDfController extends Controller
             $result['message'] .= '<thead>';
             $result['message'] .= '<tr>';
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
-            $result['message'] .= '<th style="text-align: center">Tên tài sản-<br>Thông số kỹ thuật</th>';
+            $result['message'] .= '<th style="text-align: center">Mã hàng hóa</th>';
+            $result['message'] .= '<th style="text-align: center">Tên hàng hóa-Quy cách</th>';
+            $result['message'] .= '<th style="text-align: center">Thông số kỹ thuật</th>';
+            $result['message'] .= '<th style="text-align: center">Xuất xứ</th>';
             $result['message'] .= '<th style="text-align: center">Đơn vị</br>tính</th>';
-            $result['message'] .= '<th style="text-align: center">Số lượng</th>';
+            $result['message'] .= '<th style="text-align: center">Số <br>lượng</th>';
             $result['message'] .= '<th style="text-align: center">Đơn giá</br>đề nghị</th>';
             $result['message'] .= '<th style="text-align: center">Giá trị</br>đề nghị</th>';
             $result['message'] .= '<th style="text-align: center">Đơn giá</br>thẩm định</th>';
@@ -334,7 +343,10 @@ class ThamDinhGiaCtDfController extends Controller
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
-                    $result['message'] .= '<td class="active">'.$tents->tents.'-'.$tents->thongsokt.'</td>';
+                    $result['message'] .= '<td style="text-align: center">'.$tents->mats.'</td>';
+                    $result['message'] .= '<td class="active">'.$tents->tents.'-'.$tents->dacdiempl.'</td>';
+                    $result['message'] .= '<td style="text-align: left">'.$tents->thongsokt.'</td>';
+                    $result['message'] .= '<td style="text-align: left">'.$tents->nguongoc.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.$tents->dvt.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.number_format($tents->sl).'</td>';
                     $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->nguyengiadenghi).'</td>';

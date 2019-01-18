@@ -1,4 +1,8 @@
 @if(canGeneral('thamdinhgia','index'))
+    <li><a href="{{url('dmnhomhanghoa')}}">
+            <i class="icon-folder"></i>
+            <span class="title">Danh mục hàng hóa</span></a>
+    </li>
 @if(can('thamdinhgia','index'))
 <li class="">
     <a href="">
@@ -28,7 +32,7 @@
 @endif
 @if(canGeneral('thamdinhgiahh','index'))
     @if(can('thamdinhgiahh','index'))
-        <li class="tooltips" data-container="body" data-placement="right" data-html="true"
+        <!--i class="tooltips" data-container="body" data-placement="right" data-html="true"
             data-original-title="Giá trị tài sản được thẩm định giá(đất đai, nhà công trình xây dựng, máy thiết bị, phương tiện vận tải, dây truyền công nghệ, tài sản khác)
             và thông tin, tài liệu liên quan đến kết quả thẩm định giá của Hội đồng Thẩm định giá">
             <a href="">
@@ -54,9 +58,9 @@
                     @endif
                             <!--li>
             <a href="{{url('baocaoththamdinhgiahanghoa')}}">Báo cáo tổng hợp</a>
-        </li-->
+        </li
             </ul>
-        </li>
+        </li-->
     @endif
 @endif
 <li class="tooltips" data-container="body" data-placement="right" data-html="true"
@@ -76,24 +80,5 @@
             <li>
                 <a href="">Tìm kiếm thông tin</a>
             </li>
-    </ul>
-</li>
-<li class="tooltips" data-container="body" data-placement="right" data-html="true"
-    data-original-title="">
-    <a href="">
-        <i class="icon-folder"></i>
-        <span class="title">Giá hàng hóa cung ứng</span>
-        <span class="arrow"></span>
-    </a>
-    <ul class="sub-menu" style="display: none;">
-        <li>
-            <a href="{{url('dmnhomhanghoa')}}">Danh mục hàng hóa</a>
-        </li>
-        <li>
-            <a href="">Hồ sơ cung cấp giá</a>
-        </li>
-        <li>
-            <a href="">Tìm kiếm thông tin</a>
-        </li>
     </ul>
 </li>
