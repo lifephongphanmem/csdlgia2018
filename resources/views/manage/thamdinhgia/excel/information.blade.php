@@ -54,7 +54,7 @@
                                         <div class="portlet-body" style="display: block;">
                                             <div class="form-body">
                                                 <div class="row">
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label">Đơn vị thẩm định giá: <b style="font-weight: bold; color: blue">{{$modeldv->tendv}}</b></label>
                                                         </div>
@@ -173,7 +173,7 @@
                 </div>
             </div>
             <div class="col-md-12" style="text-align: center">
-                <a href="{{url('giahhdvkhac')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('thamdinhgia?&maxa='.$inputs['maxa'])}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn default"><i class="fa fa-refresh"></i> Tải lại</button>
                 <button type="submit" class="btn green" onclick="ClickCreate()"><i class="fa fa-plus"></i> Nhận dữ liệu</button>
             </div>
@@ -189,13 +189,13 @@
 
             if (!$('#mahhdv').val()) {
                 str += '  - Mã hàng hóa \n';
-                $('#mahhdv').parent().addClass('has-error');
+                $('#mats').parent().addClass('has-error');
                 ok = false;
             }
 
             if (!$('#tenhhdv').val()) {
                 str += '  - Tên hàng hóa \n';
-                $('#tenhhdv').parent().addClass('has-error');
+                $('#tents').parent().addClass('has-error');
                 ok = false;
             }
 
@@ -211,21 +211,9 @@
                 ok = false;
             }
 
-            if (!$('#xuatxu').val()) {
+            if (!$('#nguongoc').val()) {
                 str += '  - Nguồn gốc / Xuất xứ \n';
                 $('#xuatxu').parent().addClass('has-error');
-                ok = false;
-            }
-
-            if (!$('#gialk').val()) {
-                str += '  - Giá liền kề \n';
-                $('#gialk').parent().addClass('has-error');
-                ok = false;
-            }
-
-            if (!$('#gialk').val()) {
-                str += '  - Giá hàng hóa \n';
-                $('#gialk').parent().addClass('has-error');
                 ok = false;
             }
 
