@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGiahanghoaTable extends Migration
+class CreateCungcapgiaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,17 @@ class CreateGiahanghoaTable extends Migration
      */
     public function up()
     {
-        Schema::create('giahanghoa', function (Blueprint $table) {
+        Schema::create('cungcapgia', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('ngaynhap')->nullable();
+            $table->string('mahs')->nullable();
             $table->string('maxa')->nullable();
             $table->string('mahuyen')->nullable();
-            $table->string('mahs')->nullable();
-            $table->string('manhom')->nullable();
+            $table->date('ngaynhap')->nullable();
+            $table->date('ngayapdung')->nullable();
+            $table->text('ghichu')->nullable();
             $table->string('trangthai')->nullable();
             $table->string('congbo')->nullable();
-            $table->text('ghichu')->nullable();
+            $table->string('lydo')->nullable();
             $table->string('ipt1')->nullable();
             $table->string('ipf1')->nullable();
             $table->string('ipt2')->nullable();
@@ -44,6 +45,6 @@ class CreateGiahanghoaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('giahanghoa');
+        Schema::dropIfExists('cungcapgia');
     }
 }

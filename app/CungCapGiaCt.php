@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class GiaHangHoaCtDf extends Model
+class CungCapGiaCt extends Model
 {
-    protected $table = 'giahanghoactdf';
+    protected $table = 'cungcapgiact';
     protected $fillable = [
         'id',
+        'mahs',
         'maxa',
         'mahuyen',
         'mahanghoa',
@@ -17,5 +18,6 @@ class GiaHangHoaCtDf extends Model
         'xuatxu',
         'dvt',
         'gia',
+        'ghichu',
     ];
 }

@@ -1,8 +1,10 @@
 @if(canGeneral('thamdinhgia','index'))
+    @if(session('admin')->level == "H" || session('admin')->level == 'T')
     <li><a href="{{url('dmnhomhanghoa')}}">
             <i class="icon-folder"></i>
             <span class="title">Danh mục hàng hóa</span></a>
     </li>
+    @endif
 @if(can('thamdinhgia','index'))
 <li class="">
     <a href="">
@@ -71,14 +73,22 @@
         <span class="arrow"></span>
     </a>
     <ul class="sub-menu" style="display: none;">
-            <li>
-                <a href="">DS doanh nghiệp cung cấp giá</a>
-            </li>
-            <li>
-                <a href="">Hồ sơ cung cấp giá</a>
-            </li>
-            <li>
-                <a href="">Tìm kiếm thông tin</a>
-            </li>
+            @if(session('admin')->level == 'CCG')
+                <li>
+                    <a href="{{url('hosocungcapgia')}}">Hồ sơ cung cấp giá</a>
+                </li>
+            @endif
+            @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
+                    <li>
+                        <a href="{{url('dsdncungcapgia')}}">Thông tin DN cung cấp giá</a>
+                    </li>
+                    <li>
+                        <a href="{{url('thongtingiahanghoa')}}">Thông tin hồ sơ giá hàng hóa</a>
+                    </li>
+                    <li>
+                        <a href="{{url('timkiemgiahanghoacungcap')}}">Tìm kiếm thông tin</a>
+                    </li>
+            @endif
+
     </ul>
 </li>
