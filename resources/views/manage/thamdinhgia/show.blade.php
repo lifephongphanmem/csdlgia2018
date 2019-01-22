@@ -59,39 +59,43 @@
     </tr>
 </table>
 <p style="text-align: center;font-size: 20px;">Kính gửi: {{$model->dvyeucau}}</p>
-<p>Căn cứ Luật giá số 11/2012/QH13 ngày 20/6/2012;</p>
-<p>Căn cứ Nghị định số 89/2013/NĐ-CP ngày 6/8/2013 của Chính Phủ quy định chi tiết thi hành một số điều của Luật giá và thẩm định giá;</p>
-<p>Căn cứ Thông tư số 38/2014/TT-BTC ngày 28/3/2014 của Bộ Tài chính hướng dẫn một số điều của Nghị định số 89/2013/NĐ-CP ngày 6/8/2013 của Chính
+<p>&emsp;&emsp;Căn cứ Luật giá số 11/2012/QH13 ngày 20/6/2012;</p>
+<p>&emsp;&emsp;Căn cứ Nghị định số 89/2013/NĐ-CP ngày 6/8/2013 của Chính Phủ quy định chi tiết thi hành một số điều của Luật giá và thẩm định giá;</p>
+<p>&emsp;&emsp;Căn cứ Thông tư số 38/2014/TT-BTC ngày 28/3/2014 của Bộ Tài chính hướng dẫn một số điều của Nghị định số 89/2013/NĐ-CP ngày 6/8/2013 của Chính
     phủ quy định chi tiết thi hành một số điều của Luật giá về thẩm định giá;</p>
-<p>Căn cứ Quyết định số 21/2018/QĐ-UBND ngày 20/6/2018 của UBND tỉnh
+<p>&emsp;&emsp;Căn cứ Quyết định số 21/2018/QĐ-UBND ngày 20/6/2018 của UBND tỉnh
     Cao Bằng về việc ban hành quy định quản lý Nhà nước về giá trên địa bàn tỉnh
     Cao Bằng;</p>
-<p>Theo đề nghị của {{$model->dvyeucau}} tại Tờ trình {{$model->hosotdgia}} về việc đề nghị thẩm định giá {{$model->tttstd}};</p>
-<p>{{$modeldv->tendvhienthi}} thông báo kết quả thẩm định giá như sau:</p>
-<p><b>1.Mục đích thẩm định giá</b></p>
-<p>{{$model->mucdich}}</p>
-<p><b>2. Thời điểm thẩm định giá</b></p>
-<p>Tại thời điểm: {{getDayVn($model->thoidiem)}}</p>
-<p><b>3. Nguyên tắc, cơ sở thẩm định giá</b></p>
-<p>Căn cứ hồ sơ do đơn vị cung cấp;</p>
-<p>Căn cứ vào kết quả khảo sát thông tin liên quan đến giá trị vật tư cùng loại;</p>
-<p><b>4. Phương pháp thẩm định giá</b></p>
-<p>{{$model->ppthamdinh}}</p>
-<p><b>5. Kết quả thẩm định giá</b></p>
-<p>Trên cơ sở các tài liệu do đơn vị cung cấp, qua khảo sát thực tế tại thị trường
+<p>&emsp;&emsp;Theo đề nghị của {{$model->dvyeucau}} tại Tờ trình {{$model->hosotdgia}} về việc đề nghị thẩm định giá {{$model->tttstd}};</p>
+<p>&emsp;&emsp;{{$modeldv->tendvhienthi}} thông báo kết quả thẩm định giá như sau:</p>
+<p>&emsp;&emsp;<b>1.Mục đích thẩm định giá</b></p>
+<!--p>{{$model->mucdich}}</p-->
+<p>&emsp;&emsp;Làm cơ sở để đơn vị tham khảo trong việc mua {{$model->tttstd}} phục vụ
+    công tác theo quy định hiện hành.</p>
+<p>&emsp;&emsp;<b>2. Thời điểm thẩm định giá</b></p>
+<!--p>Tại thời điểm: {{getDayVn($model->thoidiem)}}</p-->
+<p>&emsp;&emsp;Tại thời điểm: Tháng {{ date("m",strtotime($model->thoidiem))}}/{{ date("Y",strtotime($model->thoidiem))}}</p>
+<p>&emsp;&emsp;<b>3. Nguyên tắc, cơ sở thẩm định giá</b></p>
+<p>&emsp;&emsp;Căn cứ hồ sơ do đơn vị cung cấp;</p>
+<p>&emsp;&emsp;Căn cứ vào kết quả khảo sát thông tin liên quan đến giá trị vật tư cùng loại;</p>
+<p>&emsp;&emsp;<b>4. Phương pháp thẩm định giá</b></p>
+<!--p>{{$model->ppthamdinh}}</p-->
+<p>&emsp;&emsp;Áp dụng phương pháp so sánh, tiếp cận thông tin thị trường.</p>
+<p>&emsp;&emsp;<b>5. Kết quả thẩm định giá</b></p>
+<p>&emsp;&emsp;Trên cơ sở các tài liệu do đơn vị cung cấp, qua khảo sát thực tế tại thị trường
     {{$model->diadiem}} với phương pháp thẩm định giá trên được áp dụng trong tính
-    toán, {{$modeldv->tendvhienthi}} thông báo kết quả thẩm định giá tại thời điểm {{getDayVn($model->thoidiem)}}.</p>
-<p>Tổng giá trị sau thẩm định: <b>{{number_format($modelct->sum('giatritstd'))}}</b> VNĐ</p>
-<p><i>(Tổng số tiền sau thẩm định bằng chữ: {{VndText($modelct->sum('giatritstd'))}})</i></p>
-<p><i>(Chi tiết phụ lục đính kèm)</i></p>
-<p><b>6. Điều kiện, giới hạn kèm theo kết quả thẩm định giá</b></p>
-<p>- Kết quả thẩm định giá chỉ được sử dụng cho một “Mục đích thẩm định giá” duy nhất theo yêu cầu của đơn vị đã được ghi tại phần đầu của Công văn thông báo kết quả thẩm định giá. Đơn vị phải hoàn toàn chịu trách nhiệm khi sử dụng sai mục đích đã yêu cầu.</p>
-<p>- Kết quả thẩm định giá chỉ được tính cho {{$model->tttstd}} đã nêu ở trên. Việc sử dụng kết quả thẩm định giá này áp dụng cho sản phẩm khác dưới bất kỳ hình thức nào không có giá trị.</p>
-<p>- Mức giá {{$model->tttstd}} thông báo nêu trên là mức giá trần, được đưa ra tư vấn trong điều kiện không được trực quan tiếp cận {{$model->tttstd}} cũng như đàm phán về điều kiện kỹ thụât, thương mại…. chỉ dựa trên thông tin về sản phẩm do đơn vị cung cấp. Chủ đầu tư có trách nhịêm quyết định mức giá {{$model->tttstd}} trong giao dịch cụ thể, đảm bảo tính hịêu quả cao nhất có thể.</p>
-<p>- Mức giá của {{$model->tttstd}} sẽ không được xác nhận trong trường hợp sản phẩm không đầy đủ về cơ sở pháp lý cũng như thay đổi đặc tính kỹ thuật như: chất liệu, quy cách, thành phần…. hay thay đổi về đặc tính kinh tế như: xuất xứ, hãng sản xuất, chất lượng….</p>
-<p>- Chỉ bản chính và bản sao Công văn thẩm định giá có đóng dấu đỏ do {{$modeldv->tendvhienthi}} cấp ra mới có giá trị. Mọi hành vi sử dụng bản sao kết quả thẩm định giá mà không có xác nhận của {{$modeldv->tendvhienthi}} đều vi phạm pháp lụât và không có giá trị.</p>
-<p><b>7.Thời hạn sử dụng kết quả thẩm định giá: </b>có hiệu lực trong vòng {{$model->songaykq}} ngày kể từ ngày ký.</p>
-<p>{{$modeldv->tendvhienthi}} thông báo để đơn vị triển khai thực hiện theo quy định của pháp luật hiện hành./.</p>
+    toán, {{$modeldv->tendvhienthi}} thông báo kết quả thẩm định giá tại thời điểm Tháng {{ date("m",strtotime($model->thoidiem))}}/{{ date("Y",strtotime($model->thoidiem))}}.</p>
+<p>&emsp;&emsp;Tổng giá trị sau thẩm định: <b>{{number_format($modelct->sum('giatritstd'))}}</b> VNĐ</p>
+<p>&emsp;&emsp;<i>(Tổng số tiền sau thẩm định bằng chữ: {{VndText($modelct->sum('giatritstd'))}})</i></p>
+<p>&emsp;&emsp;<i>(Chi tiết phụ lục đính kèm)</i></p>
+<p>&emsp;&emsp;<b>6. Điều kiện, giới hạn kèm theo kết quả thẩm định giá</b></p>
+<p>&emsp;&emsp;- Kết quả thẩm định giá chỉ được sử dụng cho một “Mục đích thẩm định giá” duy nhất theo yêu cầu của đơn vị đã được ghi tại phần đầu của Công văn thông báo kết quả thẩm định giá. Đơn vị phải hoàn toàn chịu trách nhiệm khi sử dụng sai mục đích đã yêu cầu.</p>
+<p>&emsp;&emsp;- Kết quả thẩm định giá chỉ được tính cho {{$model->tttstd}} đã nêu ở trên. Việc sử dụng kết quả thẩm định giá này áp dụng cho sản phẩm khác dưới bất kỳ hình thức nào không có giá trị.</p>
+<p>&emsp;&emsp;- Mức giá {{$model->tttstd}} thông báo nêu trên là mức giá trần, được đưa ra tư vấn trong điều kiện không được trực quan tiếp cận {{$model->tttstd}} cũng như đàm phán về điều kiện kỹ thụât, thương mại…. chỉ dựa trên thông tin về sản phẩm do đơn vị cung cấp. Chủ đầu tư có trách nhịêm quyết định mức giá {{$model->tttstd}} trong giao dịch cụ thể, đảm bảo tính hịêu quả cao nhất có thể.</p>
+<p>&emsp;&emsp;- Mức giá của {{$model->tttstd}} sẽ không được xác nhận trong trường hợp sản phẩm không đầy đủ về cơ sở pháp lý cũng như thay đổi đặc tính kỹ thuật như: chất liệu, quy cách, thành phần…. hay thay đổi về đặc tính kinh tế như: xuất xứ, hãng sản xuất, chất lượng….</p>
+<p>&emsp;&emsp;- Chỉ bản chính và bản sao Công văn thẩm định giá có đóng dấu đỏ do {{$modeldv->tendvhienthi}} cấp ra mới có giá trị. Mọi hành vi sử dụng bản sao kết quả thẩm định giá mà không có xác nhận của {{$modeldv->tendvhienthi}} đều vi phạm pháp lụât và không có giá trị.</p>
+<p>&emsp;&emsp;<b>7.Thời hạn sử dụng kết quả thẩm định giá: </b>có hiệu lực trong vòng {{$model->songaykq}} ngày kể từ ngày ký.</p>
+<p>&emsp;&emsp;{{$modeldv->tendvhienthi}} thông báo để đơn vị triển khai thực hiện theo quy định của pháp luật hiện hành./.</p>
 <table width="96%" border="0" cellspacing="0" cellpadding="0" style="margin:10px auto;">
     <tr>
         <td style="text-align: left" width="40%">

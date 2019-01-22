@@ -56,7 +56,7 @@ class CungCapGiaXdController extends Controller
                 $model->trangthai = 'HHT';
                 $model->congbo = 'DCB';
                 $model->save();
-                return redirect('thongtingiahanghoa?&maxa='.$model->mahuyen);
+                return redirect('thongtingiahanghoa?&maxa='.$model->mahuyen.'&trangthai=HHT');
             }else
                 return view('errors.perm');
         }else

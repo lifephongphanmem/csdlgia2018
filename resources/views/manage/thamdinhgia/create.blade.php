@@ -340,7 +340,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <!--div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="control-label">Mục đích thẩm định<span class="require">*</span></label>
@@ -349,30 +349,12 @@
                             </div>
                             <!--/span-->
 
-                        </div>
+                        </div-->
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Địa điểm thẩm định<span class="require">*</span></label>
                                     {!!Form::text('diadiem',null, array('id' => 'diadiem','class' => 'form-control required'))!!}
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Phương pháp thẩm định</label>
-                                    {!!Form::text('ppthamdinh',null, array('id' => 'ppthamdinh','class' => 'form-control required'))!!}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Nguồn vốn<span class="require">*</span></label>
-                                    <select class="form-control" name="nguonvon" id="nguonvon">
-                                        <option value="Cả hai">Cả hai (Nguồn vốn thường xuyên và Nguồn vốn đầu tư)</option>
-                                        <option value="Thường xuyên">Nguồn vốn thường xuyên</option>
-                                        <option value="Đầu tư">Nguồn vốn đầu tư</option>
-                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -384,7 +366,27 @@
                                     </select>
                                 </div>
                             </div>
+
                         </div>
+                        <!--div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Phương pháp thẩm định</label>
+                                    {!!Form::text('ppthamdinh',null, array('id' => 'ppthamdinh','class' => 'form-control required'))!!}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Nguồn vốn<span class="require">*</span></label>
+                                    <select class="form-control" name="nguonvon" id="nguonvon">
+                                        <option value="Cả hai">Cả hai (Nguồn vốn thường xuyên và Nguồn vốn đầu tư)</option>
+                                        <option value="Thường xuyên">Nguồn vốn thường xuyên</option>
+                                        <option value="Đầu tư">Nguồn vốn đầu tư</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div-->
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
