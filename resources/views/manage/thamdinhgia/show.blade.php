@@ -54,7 +54,7 @@
         </td>
     </tr>
     <tr>
-        <td>Số: {{$model->sotbkl}}<br>V/v thông báo kết quả thẩm định giá {{$model->tttstd}}</td>
+        <td>Số: {{$model->sotbkl}}<br>V/v thông báo kết quả thẩm định giá<br> {{$model->tttstd}}</td>
         <td><i>{{$modeldv->diadanh}} ,ngày .....tháng .....năm ..... </i> </td>
     </tr>
 </table>
