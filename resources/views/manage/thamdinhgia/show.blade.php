@@ -68,7 +68,7 @@
     Cao Bằng;</p>
 <p>&emsp;&emsp;Theo đề nghị của {{$model->dvyeucau}} tại Tờ trình {{$model->hosotdgia}} về việc đề nghị thẩm định giá {{$model->tttstd}};</p>
 <p>&emsp;&emsp;{{$modeldv->tendvhienthi}} thông báo kết quả thẩm định giá như sau:</p>
-<p>&emsp;&emsp;<b>1.Mục đích thẩm định giá</b></p>
+<p>&emsp;&emsp;<b>1. Mục đích thẩm định giá</b></p>
 <!--p>{{$model->mucdich}}</p-->
 <p>&emsp;&emsp;Làm cơ sở để đơn vị tham khảo trong việc mua {{$model->tttstd}} phục vụ
     công tác theo quy định hiện hành.</p>
