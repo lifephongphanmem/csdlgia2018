@@ -55,10 +55,6 @@
                                     <td><input type="checkbox" {{ (isset($permission->dmhhthamdinhgia->delete) && $permission->dmhhthamdinhgia->delete == 1) ? 'checked' : '' }} value="1" name="roles[dmhhthamdinhgia][delete]"/></td>
                                     <td>Xóa</td>
                                 </tr>
-                                <tr>
-                                    <td><input type="checkbox" {{ (isset($permission->dmhhthamdinhgia->approve) && $permission->dmhhthamdinhgia->approve == 1) ? 'checked' : '' }} value="1" name="roles[dmhhthamdinhgia][approve]"/></td>
-                                    <td>Xét duyệt</td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>
