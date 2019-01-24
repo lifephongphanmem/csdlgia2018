@@ -134,8 +134,8 @@
         <th style="text-align: center" rowspan="2">Thông số kỹ thuật</th>
         <th style="text-align: center" rowspan="2">Đơn<br>vị<br>tính</th>
         <th style="text-align: center" rowspan="2">Số<br>lượng</th>
-        <th style="text-align: center" colspan="2">Giá đề nghị<br>({{$model->thuevat}})</th>
-        <th style="text-align: center" colspan="2">Giá thẩm định<br>({{$model->thuevat}})</th>
+        <th style="text-align: center" colspan="2">Giá đề nghị</th>
+        <th style="text-align: center" colspan="2">Giá thẩm định</th>
     </tr>
     <tr>
         <th style="text-align: center">Đơn giá</th>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DiaBanHd;
 use App\DmHangHoa;
 use App\DmNhomHangHoa;
 use App\ThamDinhGia;
@@ -64,10 +65,14 @@ class ThamDinhGiaController extends Controller
                 ->get();
             $modeldv = Town::where('maxa',$inputs['maxa'])
                 ->first();
+            $modeldb = DiaBanHd::where('district',$modeldv->district)
+                ->where('level','H')
+                ->first();
             return view('manage.thamdinhgia.create')
                 ->with('modeldv',$modeldv)
                 ->with('maxa',$inputs['maxa'])
                 ->with('modelct',$modelct)
+                ->with('modeldb',$modeldb)
                 ->with('pageTitle','Thêm mới hồ sơ thẩm định giá');
 
         }else
