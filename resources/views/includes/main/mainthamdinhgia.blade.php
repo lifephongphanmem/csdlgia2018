@@ -1,9 +1,11 @@
 @if(canGeneral('thamdinhgia','index'))
-    @if(session('admin')->level == "H" || session('admin')->level == 'T')
-    <li><a href="{{url('dmnhomhanghoa')}}">
-            <i class="icon-folder"></i>
-            <span class="title">Danh mục hàng hóa</span></a>
-    </li>
+    @if(canGeneral('dmhhthamdinhgia','index'))
+        @if(can('dmhhthamdinhgia','index'))
+        <li><a href="{{url('dmnhomhanghoa')}}">
+                <i class="icon-folder"></i>
+                <span class="title">Danh mục hàng hóa</span></a>
+        </li>
+        @endif
     @endif
 @if(can('thamdinhgia','index'))
 <li class="">
@@ -65,6 +67,8 @@
         </li-->
     @endif
 @endif
+@if(canGeneral('cungcapgia','index'))
+    @if(can('cungcapgia','index'))
 <li class="tooltips" data-container="body" data-placement="right" data-html="true"
     data-original-title="">
     <a href="">
@@ -73,22 +77,37 @@
         <span class="arrow"></span>
     </a>
     <ul class="sub-menu" style="display: none;">
-            @if(session('admin')->level == 'CCG')
-                <li>
-                    <a href="{{url('hosocungcapgia')}}">Hồ sơ cung cấp giá</a>
-                </li>
+        @if(session('admin')->level == 'CCG')
+            @if(can('kkcungcapgia','index'))
+            <li>
+                <a href="{{url('hosocungcapgia')}}">Hồ sơ cung cấp giá</a>
+            </li>
             @endif
-            @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
-                    <li>
-                        <a href="{{url('dsdncungcapgia')}}">Thông tin DN cung cấp giá</a>
-                    </li>
-                    <li>
-                        <a href="{{url('thongtingiahanghoa')}}">Thông tin hồ sơ giá hàng hóa</a>
-                    </li>
-                    <li>
-                        <a href="{{url('timkiemgiahanghoacungcap')}}">Tìm kiếm thông tin</a>
-                    </li>
+        @endif
+        @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
+            @if(can('kkcungcapgia','index'))
+            <li>
+                <a href="{{url('dsdncungcapgia')}}">Thông tin DN cung cấp giá</a>
+            </li>
             @endif
+            @if(can('kkcungcapgia','approve'))
+            <li>
+                <a href="{{url('thongtingiahanghoa')}}">Thông tin hồ sơ giá hàng hóa</a>
+            </li>
+            @endif
+            @if(can('thcungcapgia','timkiem'))
+            <li>
+                <a href="{{url('timkiemgiahanghoacungcap')}}">Tìm kiếm thông tin</a>
+            </li>
+            @endif
+            @if(can('thcungcapgia','baocao'))
+            <li>
+                <a href="">Báo cáo tổng hợp</a>
+            </li>
+            @endif
+        @endif
 
     </ul>
 </li>
+    @endif
+@endif

@@ -94,7 +94,6 @@
                     </div>
                     <div class="actions">
                     </div>
-
                 </div>
                 <div class="portlet-body">
                     <div class="row">

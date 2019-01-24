@@ -77,9 +77,11 @@
                     <div class="caption">
                     </div>
                     <div class="actions">
+                        @if(can('kkcungcapgia','create'))
                         <a href="{{url('hosocungcapgia/create?&masothue='.$inputs['masothue'])}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
                         <a href="{{url('hosocungcapgia/nhanexcel?&masothue='. $inputs['masothue'])}}" class="btn btn-default btn-sm"><i class="fa fa-file-excel-o"></i>&nbsp;Nhận dữ liệu</a>
+                        @endif
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
                             <a href="{{url('dsdncungcapgia')}}" class="btn btn-default btn-sm"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                         @endif

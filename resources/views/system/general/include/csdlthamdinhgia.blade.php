@@ -41,6 +41,20 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
                                 <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->dmhhthamdinhgia->index) && $setting->dmhhthamdinhgia->index == 1) ? 'checked' : '' }} value="1" name="roles[dmhhthamdinhgia][index]"/></td>
+                                    <td>DM hàng hóa thẩm định giá</td>
+                                </tr>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->dmhhthamdinhgia->congbo) && $setting->dmhhthamdinhgia->congbo == 1) ? 'checked' : '' }} value="1" name="roles[dmhhthamdinhgia][congbo]"/></td>
+                                    <td>Công bố DM hàng hóa thẩm định giá</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
                                     <td width="2%"><input type="checkbox" {{ (isset($setting->thamdinhgia->index) && $setting->thamdinhgia->index == 1) ? 'checked' : '' }} value="1" name="roles[thamdinhgia][index]"/></td>
                                     <td>Thẩm định giá</td>
                                 </tr>
@@ -55,6 +69,20 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
                                 <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->cungcapgia->index) && $setting->cungcapgia->index == 1) ? 'checked' : '' }} value="1" name="roles[cungcapgia][index]"/></td>
+                                    <td>Cung cấp giá</td>
+                                </tr>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->cungcapgia->congbo) && $setting->cungcapgia->congbo == 1) ? 'checked' : '' }} value="1" name="roles[cungcapgia][congbo]"/></td>
+                                    <td>Công bố cung cấp giá</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
                                     <td width="2%"><input type="checkbox" {{ (isset($setting->thamdinhgiahh->index) && $setting->thamdinhgiahh->index == 1) ? 'checked' : '' }} value="1" name="roles[thamdinhgiahh][index]"/></td>
                                     <td>Thẩm định giá</td>
                                 </tr>
@@ -64,7 +92,7 @@
                                 </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        </div-->
                     </div>
                 </div>
             </div>

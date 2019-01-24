@@ -39,7 +39,6 @@
                 @include('system.general.include.csdlthamdinhgia')
                 @include('system.general.include.csdlvbqlnn')
                 @include('system.general.include.csdlttpvctqlnn')
-
             </div>
         </div>
         <div class="col-md-12" style="text-align: center">

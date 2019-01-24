@@ -78,6 +78,7 @@ function getLoaiVbQlNn(){
         '' => '--Loại văn bản--',
         'luat' => 'Luật',
         'nghidinh'=>'Nghị định',
+        'nghiquyet'=> 'Nghị quyết',
         'thongtu' => 'Thông tư',
         'quyetdinh' => 'Quyết định',
         'vbhd' => 'Văn bản hướng dẫn',

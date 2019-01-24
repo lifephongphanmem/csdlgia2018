@@ -48,8 +48,10 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
+                        @if(can('dncungcapgia','create'))
                         <a href="{{url('dsdncungcapgia/create?&mahuyen='.$inputs['mahuyen'])}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
+                        @endif
                     </div>
                 </div>
                 <div class="portlet-body">
@@ -86,7 +88,9 @@
                             <td>{{$tt->maxa}}</td>
                             <td style="text-align: center">{{$tt->diachi}}</td>
                             <td>
+                                @if(can('dncungcapgia','edit'))
                                 <a href="{{url('dsdncungcapgia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                @endif
                                 <a href="{{url('hosocungcapgia?&masothue='.$tt->maxa)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-plus"></i>&nbsp;Cung cấp giá</a>
                                 <!--button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                     Xóa</button-->

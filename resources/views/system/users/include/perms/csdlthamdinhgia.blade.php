@@ -26,7 +26,45 @@
                             </table>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead class="action">
+                                <tr>
+                                    <th class="table-checkbox" width="5%">
+                                        <!--input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/-->
+                                    </th>
+                                    <th>Danh mục hàng hóa thẩm định giá</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><input type="checkbox" {{ (isset($permission->dmhhthamdinhgia->index) && $permission->dmhhthamdinhgia->index == 1) ? 'checked' : '' }} value="1" name="roles[dmhhthamdinhgia][index]"/></td>
+                                    <td>Xem</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" {{ (isset($permission->dmhhthamdinhgia->create) && $permission->dmhhthamdinhgia->create == 1) ? 'checked' : '' }} value="1" name="roles[dmhhthamdinhgia][create]"/></td>
+                                    <td>Thêm mới</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" {{ (isset($permission->dmhhthamdinhgia->edit) && $permission->dmhhthamdinhgia->edit == 1) ? 'checked' : '' }} value="1" name="roles[dmhhthamdinhgia][edit]"/></td>
+                                    <td>Chỉnh sửa</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" {{ (isset($permission->dmhhthamdinhgia->delete) && $permission->dmhhthamdinhgia->delete == 1) ? 'checked' : '' }} value="1" name="roles[dmhhthamdinhgia][delete]"/></td>
+                                    <td>Xóa</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" {{ (isset($permission->dmhhthamdinhgia->approve) && $permission->dmhhthamdinhgia->approve == 1) ? 'checked' : '' }} value="1" name="roles[dmhhthamdinhgia][approve]"/></td>
+                                    <td>Xét duyệt</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     @include('system.users.include.perms.csdlthamdinhgia.thamdinhgia')
+                    @include('system.users.include.perms.csdlthamdinhgia.cungcapgia')
                     @include('system.users.include.perms.csdlthamdinhgia.thamdinhgiahh')
                 </div>
             </div>

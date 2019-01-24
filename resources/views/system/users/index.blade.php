@@ -177,7 +177,7 @@
                                 @if(can('users','edit'))
                                 <a href="{{url('users/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                 @endif
-                                @if(can('users','per'))
+                                @if(can('users','per') && session('admin')->level == 'T')
                                 <a href="{{url('users/'.$tt->id.'/phan-quyen')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-cogs"></i>&nbsp;Phân quyền</a>
                                 @endif
                                 @if(can('users','create'))
