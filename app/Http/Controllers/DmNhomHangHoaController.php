@@ -12,7 +12,7 @@ class DmNhomHangHoaController extends Controller
     public function index(){
         if(Session::has('admin')){
             $model = DmNhomHangHoa::all();
-            return view('manage.giahanghoa.danhmuc.nhom.index')
+            return view('manage.thamdinhgia.danhmuc.nhom.index')
                 ->with('model',$model)
                 ->with('pageTitle','Danh mục nhóm hàng hóa');
         }else

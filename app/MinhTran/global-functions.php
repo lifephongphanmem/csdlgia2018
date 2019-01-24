@@ -3011,7 +3011,27 @@ function getPermissionDefault($level) {
     );
 
 //End TACN
+    $roles['CCG'] = array(
+        'csdlthamdinhgia'=>array(
+            'index'=>1,
+        ),
+        'dmhhthamdinhgia'=>array(
+            'index'=>1
+        ),
+        'cungcapgia'=>array(
+            'index'=>1
+        ),
+        'kkcungcapgia'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+    );
+
     return json_encode($roles[$level]);
+
 }
 
 function getDayVn($date) {

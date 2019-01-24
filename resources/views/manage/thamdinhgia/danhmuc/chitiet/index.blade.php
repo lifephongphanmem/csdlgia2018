@@ -28,11 +28,11 @@
         function ClickCreate(){
             var valid=true;
             var message='';
-            var tennhom = $('#tennhom').val();
-            var manhom = $('#manhom').val();
+            var nhomhh = $('#nhomhh').val();
+            var tenhh = $('#tenhh').val();
 
 
-            if(tennhom == '' || manhom == ''){
+            if(nhomhh == '' || tenhh == ''){
                 valid=false;
                 message +='Các thông tin nhập không được bỏ trống \n';
             }
@@ -48,9 +48,11 @@
         function ClickUpdate(){
             var valid=true;
             var message='';
-            var tennhom = $('#edit_tennhom').val();
+            var nhomhh = $('#edit_nhomhh').val();
+            var tenhh = $('#edit_tenhh').val();
 
-            if(tennhom == '' ){
+
+            if(nhomhh == '' || tenhh == ''){
                 valid=false;
                 message +='Các thông tin nhập không được bỏ trống \n';
             }
@@ -66,7 +68,7 @@
         function ClickEdit(id){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: 'dmnhomhanghoa/show',
+                url: 'dmhanghoa/show',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -87,8 +89,9 @@
 @stop
 
 @section('content')
+
     <h3 class="page-title">
-        Danh mục nhóm  <small>&nbsp;hàng hóa</small>
+        Danh mục hàng hóa <b style="color: blue">{{$modelnhom->tennhom}}</b><small>&nbsp;chi tiết</small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -97,7 +100,11 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
+                        @if(can('dmhhthamdinhgia','create'))
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#modal-create" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm mới</button>
+                        @endif
+                        <a href="{{url('dmnhomhanghoa')}}" class="btn btn-default btn-sm">
+                            <i class="fa fa-reply"></i> Quay lại </a>
                     </div>
                 </div>
                 <div class="portlet-body">
@@ -106,18 +113,24 @@
                         <thead>
                         <tr>
                             <th style="text-align: center" width="2%">STT</th>
-                            <th style="text-align: center">Mã nhóm</th>
-                            <th style="text-align: center">Tên nhóm</th>
+                            <th style="text-align: center">Mã hàng hóa</th>
+                            <th style="text-align: center">Tên hàng hóa</th>
+                            <th style="text-align: center">Thông số kỹ thuật</th>
+                            <th style="text-align: center">Xuất xứ</th>
+                            <th style="text-align: center">Đơn vị<br>tính</th>
                             <th style="text-align: center">Theo dõi</th>
-                            <th style="text-align: center" width="20%">Thao tác</th>
+                            <th style="text-align: center" width="15%">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($model as $key=>$tt)
                         <tr class="odd gradeX">
-                            <td style="text-align: center">{{$key + 1}}</td>
-                            <td>{{$tt->manhom}}</td>
-                            <td class="active" >{{$tt->tennhom}}</td>
+                            <td style="text-align: center;">{{$key + 1}}</td>
+                            <td class="active" >{{$tt->mahanghoa}}</td>
+                            <td class="success" style="font-weight: bold">{{$tt->tenhanghoa}}</td>
+                            <td>{{$tt->thongsokt}}</td>
+                            <td>{{$tt->xuatxu}}</td>
+                            <td style="text-align: center">{{$tt->dvt}}</td>
                             <td style="text-align: center">
                                 @if($tt->theodoi == 'KTD')
                                     <span class="badge badge-active">Không theo dõi</span>
@@ -126,9 +139,8 @@
                                 @endif
                             </td>
                             <td>
+                                @if(can('dmhhthamdinhgia','edit'))
                                 <button type="button" onclick="ClickEdit('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
-                                @if($tt->theodoi == 'TD')
-                                <a href="{{url('dmhanghoa?&manhom='.$tt->manhom)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                 @endif
                             </td>
                         </tr>
@@ -149,29 +161,60 @@
     <div class="modal fade" id="modal-create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['url'=>'dmnhomhanghoa','id' => 'frm_create'])!!}
+                {!! Form::open(['url'=>'dmhanghoa','id' => 'frm_create'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Thêm mới nhóm  hàng hóa?</h4>
+                    <h4 class="modal-title">Thêm mới thông tin hàng hóa!</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="control-label">Mã nhóm<span class="require">*</span></label>
-                                <input type="text" name="manhom" id="manhom" class="form-control">
+                                <label class="control-label">Nhóm hàng hóa: <b style="color: blue"> {{$modelnhom->tennhom}}</b> </label>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="control-label">Tên nhóm<span class="require">*</span></label>
-                                <input type="text" name="tennhom" id="tennhom" class="form-control">
+                                <label class="control-label">Mã hàng hóa<span class="require">*</span></label>
+                                <input type="text" name="mahanghoa" id="mahanghoa" class="form-control">
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">Tên hàng hóa<span class="require">*</span></label>
+                                <input type="text" name="tenhanghoa" id="tenhanghoa" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">Thông số kỹ thuật<span class="require">*</span></label>
+                                <input type="text" name="thongsokt" id="thongsokt" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Xuất xứ<span class="require">*</span></label>
+                                <input type="text" name="xuatxu" id="xuatxu" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Đơn vị tính<span class="require">*</span></label>
+                                <input type="text" name="dvt" id="dvt" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+                <input type="hidden" name="manhom" id="manhom" value="{{$inputs['manhom']}}">
                 <div class="modal-footer">
                     <button type="submit" class="btn blue" onclick="ClickCreate()">Đồng ý</button>
                     <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
@@ -188,9 +231,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Chỉnh sửa nhóm thẩm định giá hàng hóa?</h4>
+                    <h4 class="modal-title">Chỉnh sửa thông tin hàng hóa!</h4>
                 </div>
-                {!! Form::open(['url'=>'dmnhomhanghoa/update','id' => 'frm_update'])!!}
+                {!! Form::open(['url'=>'dmhanghoa/update','id' => 'frm_update'])!!}
                 <div class="modal-body" id="edit-tt">
                 </div>
                 <div class="modal-footer">
@@ -204,5 +247,7 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+
+
 
 @stop

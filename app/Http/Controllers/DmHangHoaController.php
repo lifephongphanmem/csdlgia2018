@@ -17,7 +17,7 @@ class DmHangHoaController extends Controller
                 ->get();
             $modelnhom = DmNhomHangHoa::where('manhom',$inputs['manhom'])
                 ->first();
-            return view('manage.giahanghoa.danhmuc.chitiet.index')
+            return view('manage.thamdinhgia.danhmuc.chitiet.index')
                 ->with('model',$model)
                 ->with('modelnhom',$modelnhom)
                 ->with('inputs',$inputs)
