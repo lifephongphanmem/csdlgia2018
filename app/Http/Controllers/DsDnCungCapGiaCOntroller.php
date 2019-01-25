@@ -84,6 +84,7 @@ class DsDnCungCapGiaCOntroller extends Controller
                         $modeluser->email = $inputs['email'];
                         $modeluser->mahuyen = $inputs['mahuyen'];
                         $modeluser->maxa = $inputs['maxa'];
+                        $modeluser->status = 'Kích hoạt';
                         $modeluser->save();
                     }
                     return redirect('dsdncungcapgia');
