@@ -41,7 +41,7 @@
         function get_attack(id){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/filethamdinhgia/dinhkem',
+                url: '/filecungcapgia/dinhkem',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,

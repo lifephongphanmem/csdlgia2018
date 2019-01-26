@@ -286,4 +286,52 @@ class CungCapGiaController extends Controller
         }else
             return view('errors.notlogin');
     }
+
+    public function dinhkem(Request $request)
+    {
+        $result = array(
+            'status' => 'fail',
+            'message' => 'error',
+        );
+
+        $inputs = $request->all();
+
+        $model = CungCapGia::find($inputs['id']);
+
+        $result['message'] ='<div class="modal-body" id = "dinh_kem" >';
+        if (isset($model->ipt1)) {
+            $result['message'] .= '<div class="row" ><div class="col-md-6" ><div class="form-group" >';
+            $result['message'] .= '<label class="control-label" > File đính kèm 1 </label >';
+            $result['message'] .= '<p ><a target = "_blank" href = "' . url('/data/cungcapgia/' . $model->ipf1) . '">' . $model->ipt1 . '</a ></p >';
+            $result['message'] .= '</div ></div ></div >';
+        }
+        if (isset($model->ipt2)) {
+            $result['message'] .= '<div class="row" ><div class="col-md-6" ><div class="form-group" >';
+            $result['message'] .= '<label class="control-label" > File đính kèm 2 </label >';
+            $result['message'] .= '<p ><a target = "_blank" href = "' . url('/data/cungcapgia/' . $model->ipf2) . '">' . $model->ipt2 . '</a ></p >';
+            $result['message'] .= '</div ></div ></div >';
+        }
+        if (isset($model->ipt3)) {
+            $result['message'] .= '<div class="row" ><div class="col-md-6" ><div class="form-group" >';
+            $result['message'] .= '<label class="control-label" > File đính kèm 3 </label >';
+            $result['message'] .= '<p ><a target = "_blank" href = "' . url('/data/cungcapgia/' . $model->ipf3) . '">' . $model->ipt3 . '</a ></p >';
+            $result['message'] .= '</div ></div ></div >';
+        }
+        if (isset($model->ipt4)) {
+            $result['message'] .= '<div class="row" ><div class="col-md-6" ><div class="form-group" >';
+            $result['message'] .= '<label class="control-label" > File đính kèm 4 </label >';
+            $result['message'] .= '<p ><a target = "_blank" href = "' . url('/data/cungcapgia/' . $model->ipf4) . '">' . $model->ipt4 . '</a ></p >';
+            $result['message'] .= '</div ></div ></div >';
+        }
+        if (isset($model->ipt5)) {
+            $result['message'] .= '<div class="row" ><div class="col-md-6" ><div class="form-group" >';
+            $result['message'] .= '<label class="control-label" > File đính kèm 5 </label >';
+            $result['message'] .= '<p ><a target = "_blank" href = "' . url('/data/cungcapgia/' . $model->ipf5) . '">' . $model->ipt5 . '</a ></p >';
+            $result['message'] .= '</div ></div ></div >';
+        }
+
+        $result['status'] = 'success';
+
+        die(json_encode($result));
+    }
 }

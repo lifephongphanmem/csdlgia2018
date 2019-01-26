@@ -9,6 +9,7 @@ Route::resource('dsdncungcapgia','DsDnCungCapGiaController');
 
 Route::get('hosocungcapgia/nhanexcel','CungCapGiaController@nhanexcel');
 Route::post('hosocungcapgia/import_excel','CungCapGiaController@import_excel');
+Route::get('filecungcapgia/dinhkem','CungCapGiaController@dinhkem');
 
 Route::resource('hosocungcapgia','CungCapGiaController');
 Route::post('hosocungcapgia/hoanthanh','CungCapGiaController@hoanthanh');
