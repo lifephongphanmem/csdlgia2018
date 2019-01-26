@@ -105,8 +105,8 @@
                                         <input class="form-control required" type="text" placeholder="Mật khẩu" name="password" id="password">
                                     </div>
                                 </div>
-                                <input type="text" id="level" name="level" value="CCG">
-                                <input type="text" id="mahuyen" name="mahuyen" value="{{$inputs['mahuyen']}}">
+                                <input type="hidden" id="level" name="level" value="CCG">
+                                <input type="hidden" id="mahuyen" name="mahuyen" value="{{$inputs['mahuyen']}}">
                                 <!--/span-->
                             </div>
                         </div>
@@ -115,7 +115,7 @@
             </div>
 
             <div style="text-align: center">
-                <a href="{{url('town')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('dsdncungcapgia')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
             </div>
