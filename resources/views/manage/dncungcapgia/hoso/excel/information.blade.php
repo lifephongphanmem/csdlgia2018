@@ -99,11 +99,17 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label class="control-label">Mức giá <span class="require">*</span></label>
-                                                            {!!Form::text('gia', 'H', array('id' => 'gia','class' => 'form-control required'))!!}
+                                                            {!!Form::text('gia', 'F', array('id' => 'gia','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Ghi chú<span class="require">*</span></label>
+                                                            {!!Form::text('ghichu', 'G', array('id' => 'ghichu','class' => 'form-control required'))!!}
+                                                        </div>
+                                                    </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label class="control-label">Nhận từ dòng<span class="require">*</span></label>
