@@ -304,5 +304,4 @@ Route::get('thongtingiathuemuanhaxhct/show','GiaThueMuaNhaXhCtController@show');
 Route::get('thongtingiathuemuanhaxhct/update','GiaThueMuaNhaXhCtController@update');
 Route::get('thongtingiathuemuanhaxhct/del','GiaThueMuaNhaXhCtController@destroy');
 
-
 ?>

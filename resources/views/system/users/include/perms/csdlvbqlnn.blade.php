@@ -35,7 +35,7 @@
                                         <th class="table-checkbox" width="5%">
                                             <input type="checkbox" {{ (isset($permission->vbqlnn->index) && $permission->vbqlnn->index == 1) ? 'checked' : '' }} value="1" name="roles[vbqlnn][index]"/>
                                         </th>
-                                        <th>Các quyết định, văn bản quản lý, điều hành về giá</th>
+                                        <th>Các QĐ, VBQL, điều hành về giá</th>
 
                                     </tr>
                                     </thead>
@@ -59,9 +59,38 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="col-md-3">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead class="action">
+                                    <tr>
+                                        <th class="table-checkbox" width="5%">
+                                            <input type="checkbox" {{ (isset($permission->chisogiatieudung->index) && $permission->chisogiatieudung->index == 1) ? 'checked' : '' }} value="1" name="roles[chisogiatieudung][index]"/>
+                                        </th>
+                                        <th>Chỉ số giá tiêu dùng (CPI)</th>
 
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($permission->chisogiatieudung->index) && $permission->chisogiatieudung->index == 1) ? 'checked' : '' }} value="1" name="roles[chisogiatieudung][index]"/></td>
+                                        <td>Xem</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($permission->chisogiatieudung->create) && $permission->chisogiatieudung->create == 1) ? 'checked' : '' }} value="1" name="roles[chisogiatieudung][create]"/></td>
+                                        <td>Thêm mới</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($permission->chisogiatieudung->edit) && $permission->chisogiatieudung->edit == 1) ? 'checked' : '' }} value="1" name="roles[chisogiatieudung][edit]"/></td>
+                                        <td>Chỉnh sửa</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($permission->chisogiatieudung->delete) && $permission->chisogiatieudung->delete == 1) ? 'checked' : '' }} value="1" name="roles[chisogiatieudung][delete]"/></td>
+                                        <td>Xóa</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        @include('system.users.include.perms.csdlvbqlnn.giacpi')
                     </div>
                 </div>
             </div>

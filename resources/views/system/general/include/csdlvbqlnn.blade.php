@@ -29,7 +29,7 @@
                                 <tbody>
                                 <tr>
                                     <td width="2%"> <input type="checkbox" {{ (isset($setting->csdlvbqlnn->congbo) && $setting->csdlvbqlnn->congbo == 1) ? 'checked' : '' }} value="1" name="roles[csdlvbqlnn][congbo]"/> </td>
-                                    <td>Công bố CSDL Văn bản quản lý nhà nước về giá<</td>
+                                    <td>Công bố CSDL Văn bản quản lý nhà nước về giá</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -58,6 +58,20 @@
                                 <tr>
                                     <td width="2"><input type="checkbox" {{ (isset($setting->giacpi->congbo) && $setting->giacpi->congbo == 1) ? 'checked' : '' }} value="1" name="roles[giacpi][congbo]"/></td>
                                     <td>Công bố giá CPI</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->chisogiatieudung->index) && $setting->chisogiatieudung->index == 1) ? 'checked' : '' }} value="1" name="roles[chisogiatieudung][index]"/></td>
+                                    <td>Chỉ số giá tiêu dùng</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->chisogiatieudung->congbo) && $setting->chisogiatieudung->congbo == 1) ? 'checked' : '' }} value="1" name="roles[chisogiatieudung][congbo]"/></td>
+                                    <td>Công bố chỉ số giá tiêu dùng</td>
                                 </tr>
                                 </tbody>
                             </table>

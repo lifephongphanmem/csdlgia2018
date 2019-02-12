@@ -185,7 +185,7 @@
                     <div class="form-body">
                         <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Thời gian nhập<span class="require">*</span></label>
                                     {!!Form::text('tgnhap',date('d/m/Y',  strtotime($model->tgnhap)), array('id' => 'tgnhap','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
@@ -193,7 +193,7 @@
                             </div>
                             <!--/span-->
 
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Số quyết định<span class="require">*</span></label>
                                     {!!Form::text('soqd',null, array('id' => 'soqd','class' => 'form-control required'))!!}
@@ -201,7 +201,6 @@
                             </div>
                         </div>
                         <div class="row">
-
                             <!--/span-->
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -274,9 +273,9 @@
             </div>
             <div class="row">
                 <div style="text-align: center">
-                    <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
-                    <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                     <a href="{{url('hsgiacpi/danhsach?thang='.$model->thang.'&nam='.date('Y'))}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                    <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
+                    <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
                 </div>
             </div>
             </form>

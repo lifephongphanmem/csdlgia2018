@@ -132,26 +132,46 @@
 @endif
 @if(canGeneral('thanhlytaisan','index'))
     @if(can('thanhlytaisan','index'))
+    <li class="">
+        <a href="">
+            <i class="icon-folder"></i>
+            <span class="title">Giá đấu thầu bán TS</span>
+            <span class="arrow"></span>
+        </a>
+        <ul class="sub-menu">
+            @if(can('kkthanhlytaisan','index'))
+                <li>
+                    <a href="{{url('thongtingiabantaisan')}}">Thông tin đấu thầu bán TS</a>
+                </li>
+            @endif
+            @if(can('ththanhlytaisan','timkiem'))
+                <li>
+                    <a href="{{url('timkiemttgiabantaisan')}}">Tìm kiếm thông tin</a>
+                </li>
+            @endif
+        </ul>
+    </li>
+    @endif
+@endif
 <li class="">
     <a href="">
         <i class="icon-folder"></i>
-        <span class="title">Giá đấu thầu bán TS</span>
+        <span class="title">Giá đấu thầu mua TS</span>
         <span class="arrow"></span>
     </a>
     <ul class="sub-menu">
-        @if(can('kkthanhlytaisan','index'))
+        @if(can('kkmuataisan','index'))
             <li>
-                <a href="{{url('thongtingiabantaisan')}}">Thông tin đấu thầu bán TS</a>
+                <a href="{{url('thongtinmuataisan')}}">Thông tin đấu thầu mua TS</a>
             </li>
         @endif
-        @if(can('ththanhlytaisan','timkiem'))
+        @if(can('thmuataisan','timkiem'))
             <li>
-                <a href="{{url('timkiemttgiabantaisan')}}">Tìm kiếm thông tin</a>
+                <a href="{{url('timkiemmuataisan')}}">Tìm kiếm thông tin</a>
             </li>
         @endif
     </ul>
 </li>
-@endif
-@endif
+
 @include('includes.main.include.bog')
 @include('includes.main.include.kknygia')

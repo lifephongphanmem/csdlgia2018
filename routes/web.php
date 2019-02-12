@@ -27,6 +27,8 @@ include('manage/kekhaigia.php');
 include('manage/vbqlnn.php');
 include('manage/thanhlytaisan.php');
 include('manage/cungcapgiahh.php');
+include('manage/muataisan.php');
+include('manage/chisogiatieudung.php');
 
 //End Manage
 

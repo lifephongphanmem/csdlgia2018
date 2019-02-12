@@ -78,8 +78,8 @@
                     </div>
                     <div class="actions">
 
-                        <a href="{{url('/hsgiacpi/create?thang='.$inputs['thang'].'&nam='.$inputs['nam'])}}" class="btn btn-default btn-sm"><i class="fa fa-plus"></i>&nbsp;Thêm mới</a>
-                        <a href="{{url('/hsgiacpi/create_dk?thang='.$inputs['thang'].'&nam='.$inputs['nam'])}}" class="btn btn-default btn-sm"><i class="fa fa-plus"></i>&nbsp;Thêm mới (đính kèm)</a>
+                        <!--a href="{{url('/hsgiacpi/create?thang='.$inputs['thang'].'&nam='.$inputs['nam'])}}" class="btn btn-default btn-sm"><i class="fa fa-plus"></i>&nbsp;Thêm mới</a-->
+                        <a href="{{url('/hsgiacpi/create_dk?thang='.$inputs['thang'].'&nam='.$inputs['nam'])}}" class="btn btn-default btn-sm"><i class="fa fa-plus"></i>&nbsp;Thêm mới</a>
                         <!--div class="btn-group">
                             <a class="btn btn-default btn-sm" href="" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="fa fa-file-excel-o"></i>&nbsp;Nhận dữ liệu <i class="fa fa-angle-down"></i>
@@ -99,14 +99,17 @@
                 </div>
                 <div class="portlet-body">
                     <div class="row">
-                        <div class="form-group">
-                            <label class="control-label col-md-offset-2 col-md-1" style="text-align: right">Tháng </label>
                             <div class="col-md-2">
+                                <div class="form-group">
+                                <label>Tháng </label>
                                 {!! Form::select('thangct',getThang(),$inputs['thang'],array('id' => 'thangct', 'class' => 'form-control'))!!}
+                                </div>
                             </div>
-                            <label class="control-label col-md-1" style="text-align: right">Năm </label>
                             <div class="col-md-2">
+                                <div class="form-group">
+                                <label>Năm </label>
                                 {!! Form::select('namct',getNam(),$inputs['nam'], array('id' => 'namct', 'class' => 'form-control'))!!}
+                                </div>
                             </div>
                         </div>
                     </div>
