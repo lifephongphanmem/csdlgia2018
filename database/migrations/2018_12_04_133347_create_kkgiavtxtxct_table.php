@@ -19,6 +19,7 @@ class CreateKkgiavtxtxctTable extends Migration
             $table->string('maxa')->nullable();
             $table->string('madichvu')->nullable();
             $table->string('loaixe')->nullable();
+            $table->text('mota')->nullable();
             $table->string('qccl')->nullable();
             $table->string('dongialk')->nullable();
             $table->string('sllk')->nullable();

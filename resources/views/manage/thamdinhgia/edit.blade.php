@@ -594,6 +594,11 @@
                                 <input type="text" id="mats" name="mats" class="form-control">
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <a href="{{url('dmnhomhanghoa')}}" target="_blank">Bổ xung thông tin hàng hóa</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">

@@ -3664,4 +3664,14 @@ function VndText($amount)
     return ucfirst($textnumber." đồng chẵn.");
 }
 
+function getNgayLamViec($maxa){
+    $model = \App\Town::where('maxa',$maxa)
+        ->first();
+    if(isset($model)){
+        $songaylv = $model->songaylv != 0 ? $model->songaylv : 2;
+    }else
+        $songaylv = 2;
+    return $songaylv;
+}
+
 ?>

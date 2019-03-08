@@ -133,9 +133,10 @@
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Số quyết định</th>
-                            <th style="text-align: center">Đơn vị đấu giá</th>
-                            <th style="text-align: center">Địa chỉ tổ chức đấu giá</th>
+                            <th style="text-align: center">Mô tả khu đất</th>
+                            <th style="text-align: center">Tờ trình</th>
+                            <th style="text-align: center">Thông tin quyết định</th>
+                            <th style="text-align: center">Ngày đấu giá</th>
                             <th style="text-align: center">Trạng thái</th>
                             <th style="text-align: center" width="33%">Thao tác</th>
                         </tr>
@@ -144,9 +145,10 @@
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
-                                <td style="text-align: center">{{$tt->soqd}}</td>
-                                <td style="text-align: center">{{$tt->donvi}}</td>
-                                <td>{{$tt->diadiem}}</td>
+                                <td style="text-align: center">{{$tt->mota}}</td>
+                                <td style="text-align: center">{{$tt->totrinh}}</td>
+                                <td style="text-align: center">{{$tt->ttqd}}</td>
+                                <td style="text-align: center">{{getDayVn($tt->ngaydaugia)}}</td>
                                 <td style="text-align: center">
                                     @if($tt->trangthai == 'HT')
                                         <span class="badge badge-warning">Hoàn thành</span>

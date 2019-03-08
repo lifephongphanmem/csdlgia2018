@@ -65,7 +65,7 @@
                         <li class="tooltips" data-container="body" data-placement="right" data-html="true"
                             data-original-title="Giá dịch vụ hỗ trợ hoạt động thương mại tại cửa khẩu (kho,bến, bãi, bốc xếp hàng hóa tại cửa khẩu, dịch vụ khác">
                             <a href="">
-                                <span class="title">Dịch vụ hỗ trợ hoạt động thương mại</span>
+                                <span class="title">Giá dịch vụ hỗ trợ hoạt động thương mại tại cửa khẩu</span>
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu" style="display: none;">

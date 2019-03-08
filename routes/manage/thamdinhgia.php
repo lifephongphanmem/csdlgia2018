@@ -19,6 +19,7 @@ Route::get('thamdinhgiactdf/store','ThamDinhGiaCtDfController@store');
 Route::get('thamdinhgiactdf/edit','ThamDinhGiaCtDfController@edit');
 Route::get('thamdinhgiactdf/update','ThamDinhGiaCtDfController@update');
 Route::get('thamdinhgiactdf/del','ThamDinhGiaCtDfController@destroy');
+Route::get('thamdinhgiactdf/search','ThamDinhGiaCtDfController@search');
 
 Route::get('thamdinhgiact/store','ThamDinhGiaCtController@store');
 Route::get('thamdinhgiact/edit','ThamDinhGiaCtController@edit');

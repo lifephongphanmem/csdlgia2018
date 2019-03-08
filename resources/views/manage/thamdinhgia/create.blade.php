@@ -284,6 +284,27 @@
             $('#thoihan').val(add_date(thoidiem,songay));
         }
 
+        function searchgiaHH(){
+            //alert('vcl');
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '/thamdinhgiactdf/search',
+                type: 'GET',
+                data: {
+                    _token: CSRF_TOKEN,
+                    mats: $('#mats').val(),
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    //$('#modal-wide-width').dialog('close');
+                    if(data.status == 'success') {
+                        $('#ttgiats').replaceWith(data.message);
+                    }else
+                        toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
+                }
+            })
+        }
+
     </script>
 @stop
 
@@ -580,7 +601,17 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Mã hàng hóa<span class="require">*</span></label>
-                                <input type="text" id="mats" name="mats" class="form-control">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="mats" name="mats">
+                                    <span class="input-group-btn">
+                                    <button class="btn blue" type="button" data-target="#modal-search" data-toggle="modal" onclick="searchgiaHH()">Seach!</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <a href="{{url('dmnhomhanghoa')}}" target="_blank">Bổ xung thông tin hàng hóa</a>
                             </div>
                         </div>
                     </div>
@@ -672,6 +703,23 @@
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
                     <button type="button" class="btn btn-primary" onclick="capnhatts()">Thêm mới</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade bs-modal-lg" id="modal-search" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Tìm kiếm đơn giá thẩm định</h4>
+                </div>
+                <div class="modal-body" id="ttgiats">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
                 </div>
             </div>
             <!-- /.modal-content -->

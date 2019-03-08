@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DmHangHoa;
+use App\ThamDinhGiaCt;
 use App\ThamDinhGiaCtDf;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -366,6 +367,100 @@ class ThamDinhGiaCtDfController extends Controller
                 $result['message'] .= '</div>';
                 $result['status'] = 'success';
             }
+        }
+        die(json_encode($result));
+    }
+
+    public function search(Request $request){
+        $result = array(
+            'status' => 'fail',
+            'message' => 'error',
+        );
+        if(!Session::has('admin')) {
+            $result = array(
+                'status' => 'fail',
+                'message' => 'permission denied',
+            );
+            die(json_encode($result));
+        }
+        //dd($request);
+        $inputs = $request->all();
+
+        if(isset($inputs['mats']) || $inputs['mats'] !=''){
+            $model = ThamDinhGiaCt::where('mats',$inputs['mats'])
+                ->orderBy('id', 'desc')
+                ->limit('3')
+                ->get();
+
+            if(count($model)>0){
+                $result['message'] = '<div class="modal-body" id="ttgiats">';
+                $result['message'] = '<div class="row">';
+                $result['message'] .= '<div class="col-md-12">';
+                $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
+                $result['message'] .= '<thead>';
+                $result['message'] .= '<tr>';
+                $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
+                $result['message'] .= '<th style="text-align: center">Mã hàng hóa</th>';
+                $result['message'] .= '<th style="text-align: center">Tên hàng hóa-Quy cách</th>';
+                $result['message'] .= '<th style="text-align: center">Thông số kỹ thuật</th>';
+                $result['message'] .= '<th style="text-align: center">Xuất xứ</th>';
+                $result['message'] .= '<th style="text-align: center">Đơn vị</br>tính</th>';
+                $result['message'] .= '<th style="text-align: center">Số <br>lượng</th>';
+                $result['message'] .= '<th style="text-align: center">Đơn giá</br>đề nghị</th>';
+                $result['message'] .= '<th style="text-align: center">Giá trị</br>đề nghị</th>';
+                $result['message'] .= '<th style="text-align: center">Đơn giá</br>thẩm định</th>';
+                $result['message'] .= '<th style="text-align: center">Giá trị</br>thẩm định</th>';
+                $result['message'] .= '</tr>';
+                $result['message'] .= '</thead>';
+                $result['message'] .= '<tbody id="ttts">';
+                if(count($model) > 0){
+                    foreach($model as $key=>$tents){
+                        $result['message'] .= '<tr id="'.$tents->id.'">';
+                        $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
+                        $result['message'] .= '<td style="text-align: center">'.$tents->mats.'</td>';
+                        $result['message'] .= '<td class="active">'.$tents->tents.'-'.$tents->dacdiempl.'</td>';
+                        $result['message'] .= '<td style="text-align: left">'.$tents->thongsokt.'</td>';
+                        $result['message'] .= '<td style="text-align: left">'.$tents->nguongoc.'</td>';
+                        $result['message'] .= '<td style="text-align: center">'.$tents->dvt.'</td>';
+                        $result['message'] .= '<td style="text-align: center">'.number_format($tents->sl).'</td>';
+                        $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->nguyengiadenghi).'</td>';
+                        $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->giadenghi).'</td>';
+                        $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->nguyengiathamdinh).'</td>';
+                        $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->giatritstd).'</td>';
+                    }
+                    $result['message'] .= '</tbody>';
+                    $result['message'] .= '</table>';
+                    $result['message'] .= '</div>';
+                    $result['message'] .= '</div>';
+                    $result['message'] .= '</div>';
+
+                }
+            }else{
+                $result['message'] = '<div class="modal-body" id="ttgiats">';
+                $result['message'] = '<div class="row">';
+                $result['message'] .= '<div class="col-md-12">';
+                $result['message'] .= '<div class="form-group">
+                                <label class="control-label">Không tìm thấy thông tin thẩm định theo mã hàng hóa</label>
+                            </div>';
+                $result['message'] .= '</div>';
+                $result['message'] .= '</div>';
+                $result['message'] .= '</div>';
+            }
+
+                $result['status'] = 'success';
+
+        }
+        else{
+            $result['message'] = '<div class="modal-body" id="ttgiats">';
+            $result['message'] = '<div class="row">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="form-group">
+                                <label class="control-label">Không tìm thấy thông tin thẩm định theo mã hàng hóa</label>
+                            </div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+
         }
         die(json_encode($result));
     }

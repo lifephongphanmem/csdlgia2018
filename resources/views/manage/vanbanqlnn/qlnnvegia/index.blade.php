@@ -61,7 +61,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Văn bản quản lý nhà nước<small>&nbsp;về giá</small>
+        Văn bản quản lý nhà nước<small>&nbsp;về giá, phí lệ phí</small>
     </h3>
 
     <!-- END PAGE HEADER-->

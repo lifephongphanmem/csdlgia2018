@@ -146,7 +146,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Hồ sơ đấu giá đất<small> thêm mới</small>
+        Hồ sơ đấu giá đất<small> chỉnh sửa</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -161,18 +161,26 @@
 
                     <div class="form-body">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Số quyết định<span class="require">*</span></label>
-                                    {!!Form::text('soqd',null, array('id' => 'soqd','class' => 'form-control required','autofocus'))!!}
+                                    <label class="control-label">Địa bàn:<span class="require">*</span></label>
+                                    <label style="color: blue;font-weight: bold">{{$modeldb->diaban}}</label>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="control-label">Địa điểm đấu giá<span class="require">*</span></label>
-                                    {!!Form::text('diadiem',null, array('id' => 'diadiem','class' => 'form-control required'))!!}
+                                    <label class="control-label">Mô tả<span class="require">*</span></label>
+                                    {!!Form::text('mota',null, array('id' => 'mota','class' => 'form-control required','autofocus'))!!}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Tờ trình<span class="require">*</span></label>
+                                    {!!Form::text('totrinh',null, array('id' => 'totrinh','class' => 'form-control required'))!!}
                                 </div>
                             </div>
                             <!--/span-->
@@ -180,53 +188,38 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Đơn vị đấu giá<span class="require">*</span></label>
-                                    {!!Form::text('donvi',null, array('id' => 'donvi','class' => 'form-control required','autofocus'))!!}
+                                    <label class="control-label">Thông tin quyết định<span class="require">*</span></label>
+                                    {!!Form::text('ttqd',null, array('id' => 'ttqd','class' => 'form-control required','autofocus'))!!}
                                 </div>
                             </div>
                             <!--/span-->
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Thời gian đấu giá<span class="require">*</span></label>
-                                    {!!Form::text('tgdaugia',null, array('id' => 'tgdaugia','class' => 'form-control required'))!!}
+                                    <label class="control-label">Ngày đấu giá<span class="require">*</span></label>
+                                    {!!Form::text('ngaydaugia',date('d/m/Y',  strtotime($model->ngaydaugia)), array('id' => 'ngaydaugia','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                                 </div>
                             </div>
                             <!--/span-->
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Thời gian địa điểm bán hồ sơ đấu giá<span class="require">*</span></label>
-                                    {!!Form::text('tgddbanhsdaugia',null, array('id' => 'tgddbanhsdaugia','class' => 'form-control required','autofocus'))!!}
+                                    <label class="control-label">Giá đấu giá<span class="require">*</span></label>
+                                    {!!Form::text('giadau',null, array('id' => 'giadau','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Chênh lệch<span class="require">*</span></label>
+                                    {!!Form::text('chenhlech',null, array('id' => 'chenhlech','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="control-label">Điều kiện đấu giá<span class="require">*</span></label>
-                                    {!!Form::text('dkdaugia',null, array('id' => 'dkdaugia','class' => 'form-control required','autofocus'))!!}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Hình thức đấu giá<span class="require">*</span></label>
-                                    {!! Form::select(
-                                    'htdaugia',
-                                    array(
-                                    'Bỏ phiếu gián tiếp' => 'Bỏ phiếu gián tiếp',
-                                    'Phương thức trả giá lên' => 'Phương thức trả giá lên',
-                                    ),null,
-                                    array('id' => 'htdaugia', 'class' => 'form-control','onchange'=>"clearngay()"))
-                                    !!}
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Thời hạn đấu giá<span class="require">*</span></label>
-                                    {!!Form::text('thdaugia',null, array('id' => 'thdaugia','class' => 'form-control required','autofocus'))!!}
+                                    <label class="control-label">Thông tin khách hàng trúng<span class="require">*</span></label>
+                                    {!!Form::text('ttkhtrung',null, array('id' => 'ttkhtrung','class' => 'form-control required'))!!}
                                 </div>
                             </div>
                         </div>
@@ -239,7 +232,7 @@
                             </div>
                         </div>
                         <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}">
-                        <div class="row">
+                        <!--div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <button type="button" data-target="#modal-create" data-toggle="modal" class="btn btn-success btn-xs" onclick="clearForm()"><i class="fa fa-plus"></i>&nbsp;Thêm mới vị trí</button>
@@ -261,24 +254,11 @@
                                     </tr>
                                     </thead>
                                     <tbody id="ttts">
-                                    @foreach($modelct as $key=>$tt)
-                                        <tr id={{$tt->id}}>
-                                            <td style="text-align: center">{{($key +1)}}</td>
-                                            <td class="active">{{$tt->vitridiadiem}}</td>
-                                            <td style="text-align: center;font-weight: bold" >{{number_format($tt->mucgiasan)}}</td>
-                                            <td style="text-align: right;font-weight: bold">{{number_format($tt->mucgiadaugia)}}</td>
-                                            <td style="text-align: right;font-weight: bold">{{$tt->donvidaugia}}</td>
-                                            <td>
-                                                <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem({{$tt->id}})"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>
-                                                <button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid({{$tt->id}})" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
-                                            </td>
-                                        </tr>
-                                    @endforeach
 
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </div-->
 
                     </div>
 

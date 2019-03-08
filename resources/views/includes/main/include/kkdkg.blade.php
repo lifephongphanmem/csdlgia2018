@@ -4,13 +4,13 @@
         data-original-title="Hàng hóa, dịch vụ thực hiện bình ổn giá">
         @if(canGeneral('dangkygia','index'))
             @if(can('dangkygia','index'))
-                <li class="tooltips" data-container="body" data-placement="right" data-html="true"
+                <!--li class="tooltips" data-container="body" data-placement="right" data-html="true"
                     data-original-title="Tổ chức, cá nhận đăng ký giá theo yêu cầu của Sở Tài chính, sở quản lý ngành">
                     <a href="">
                         <span class="title">Mặt hàng bình ổn giá</span>
                         <span class="arrow"></span>
                     </a>
-                    <ul class="sub-menu" style="display: none;">
+                    <ul class="sub-menu" style="display: none;"-->
                         <?php $modeldm = \App\DmMhBinhOnGia::all()?>
                         @foreach($modeldm as $dm)
                             @if(canGeneral($dm->phanloai,'index'))
@@ -38,8 +38,8 @@
                                 @endif
                             @endif
                         @endforeach
-                    </ul>
-                </li>
+                    <!--/ul>
+                </li-->
             @endif
         @endif
     </li>

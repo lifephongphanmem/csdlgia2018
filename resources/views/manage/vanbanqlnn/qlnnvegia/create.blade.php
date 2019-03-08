@@ -12,7 +12,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Văn bản quản lý nhà nước về giá<small> thêm mới</small>
+        Văn bản quản lý nhà nước về giá, phí lệ phí<small> thêm mới</small>
     </h3>
     <!-- END PAGE HEADER-->
     <!-- BEGIN DASHBOARD STATS -->
