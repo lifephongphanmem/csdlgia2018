@@ -387,8 +387,10 @@ class ThamDinhGiaCtDfController extends Controller
 
 
         if(isset($inputs['mats']) || $inputs['mats'] !=''){
-            $model = ThamDinhGiaCt::where('mats',$inputs['mats'])
-                ->orderBy('id', 'desc')
+            $model = ThamDinhGiaCt::join('thamdinhgia','thamdinhgia.mahs','=','thamdinhgiact.mahs')
+                ->select('thamdinhgiact.*','thamdinhgia.thoidiem')
+                ->where('thamdinhgiact.mats',$inputs['mats'])
+                ->orderBy('thamdinhgia.thoidiem', 'desc')
                 ->limit('3')
                 ->get();
             //dd($model);
@@ -400,6 +402,7 @@ class ThamDinhGiaCtDfController extends Controller
                 $result['message'] .= '<thead>';
                 $result['message'] .= '<tr>';
                 $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
+                $result['message'] .= '<th style="text-align: center">Thời điểm</th>';
                 $result['message'] .= '<th style="text-align: center">Mã hàng hóa</th>';
                 $result['message'] .= '<th style="text-align: center">Tên hàng hóa-Quy cách</th>';
                 $result['message'] .= '<th style="text-align: center">Thông số kỹ thuật</th>';
@@ -417,6 +420,7 @@ class ThamDinhGiaCtDfController extends Controller
                     foreach($model as $key=>$tents){
                         $result['message'] .= '<tr id="'.$tents->id.'">';
                         $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
+                        $result['message'] .= '<td style="text-align: center">'.getDayVn($tents->thoidiem).'</td>';
                         $result['message'] .= '<td style="text-align: center">'.$tents->mats.'</td>';
                         $result['message'] .= '<td class="active">'.$tents->tents.'-'.$tents->dacdiempl.'</td>';
                         $result['message'] .= '<td style="text-align: left">'.$tents->thongsokt.'</td>';
