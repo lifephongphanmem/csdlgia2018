@@ -243,8 +243,7 @@ class ThamDinhGiaController extends Controller
                 ->join('town','thamdinhgia.maxa','=','town.maxa')
                 ->select('thamdinhgiact.*','thamdinhgia.thoidiem','thamdinhgia.thuevat','thamdinhgia.sotbkl',
                 'thamdinhgia.thoihan','thamdinhgia.ppthamdinh','town.tendv')
-                ->whereYear('thamdinhgia.thoidiem',$inputs['nam'])
-                ->whereIn('thamdinhgia.trangthai',['HT','CB']);
+                ->whereYear('thamdinhgia.thoidiem',$inputs['nam']);
             if($inputs['tents'] != '')
                 $model = $model->where('thamdinhgiact.tents','like','%'.$inputs['tents'].'%');
             $model = $model->get();
