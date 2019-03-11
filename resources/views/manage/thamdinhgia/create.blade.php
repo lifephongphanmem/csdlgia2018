@@ -285,14 +285,14 @@
         }
 
         function searchgiaHH(){
-            //alert('vcl');
+            //alert($('#mats').val());
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
                 url: '/thamdinhgiactdf/search',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
-                    mats: $('#mats').val(),
+                    mats: $('#mats').val()
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -716,7 +716,9 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title">Tìm kiếm đơn giá thẩm định</h4>
                 </div>
-                <div class="modal-body" id="ttgiats">
+                <div class="modal-body">
+                    <div class="row" id="ttgiats">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>

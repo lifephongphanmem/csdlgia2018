@@ -383,18 +383,18 @@ class ThamDinhGiaCtDfController extends Controller
             );
             die(json_encode($result));
         }
-        //dd($request);
         $inputs = $request->all();
+
 
         if(isset($inputs['mats']) || $inputs['mats'] !=''){
             $model = ThamDinhGiaCt::where('mats',$inputs['mats'])
                 ->orderBy('id', 'desc')
                 ->limit('3')
                 ->get();
+            //dd($model);
 
             if(count($model)>0){
-                $result['message'] = '<div class="modal-body" id="ttgiats">';
-                $result['message'] = '<div class="row">';
+                $result['message'] = '<div class="row" id="ttgiats">';
                 $result['message'] .= '<div class="col-md-12">';
                 $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
                 $result['message'] .= '<thead>';
@@ -436,8 +436,7 @@ class ThamDinhGiaCtDfController extends Controller
 
                 }
             }else{
-                $result['message'] = '<div class="modal-body" id="ttgiats">';
-                $result['message'] = '<div class="row">';
+                $result['message'] = '<div class="row" id="ttgiats">';
                 $result['message'] .= '<div class="col-md-12">';
                 $result['message'] .= '<div class="form-group">
                                 <label class="control-label">Không tìm thấy thông tin thẩm định theo mã hàng hóa</label>
@@ -451,8 +450,7 @@ class ThamDinhGiaCtDfController extends Controller
 
         }
         else{
-            $result['message'] = '<div class="modal-body" id="ttgiats">';
-            $result['message'] = '<div class="row">';
+            $result['message'] = '<div class="row" id="ttgiats">';
             $result['message'] .= '<div class="col-md-12">';
             $result['message'] .= '<div class="form-group">
                                 <label class="control-label">Không tìm thấy thông tin thẩm định theo mã hàng hóa</label>
@@ -460,6 +458,7 @@ class ThamDinhGiaCtDfController extends Controller
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
+            $result['status'] = 'success';
 
         }
         die(json_encode($result));
