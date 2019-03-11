@@ -181,8 +181,12 @@ class KkGiaTaCnXdController extends Controller
                 ->max('id');
             if (count($model) == 0) {
                 $stt = 1;
-            } else
-                $stt = $model->sohsnhan + 1;
+            } else{
+                $modelmax = KkGiaTaCn::where('id',$model)->first();
+                $stt = $modelmax->sohsnhan + 1;
+            }
+
+
         }
         return $stt;
     }
