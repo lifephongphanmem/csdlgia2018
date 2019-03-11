@@ -21,21 +21,22 @@
         $(function(){
             $('#nam').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
-                var url = '/thamdinhgia?'+namhs;
+                var maxa = '&maxa='+ $('#maxa').val();
+                var url = '/thamdinhgia?' + namhs  + maxa;
                 window.location.href = url;
             });
-            $('#trangthai').change(function() {
+            /*$('#trangthai').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
                 var trangthai = '&trangthai=' + $('#trangthai').val();
                 var url = '/thamdinhgia?'+namhs + trangthai;
                 window.location.href = url;
-            });
+            });*/
 
             $('#maxa').change(function() {
                 var nam = '&nam='+ $('#nam').val();
-                var trangthai = '&trangthai=' + $('#trangthai').val();
+                //var trangthai = '&trangthai=' + $('#trangthai').val();
                 var maxa = '&maxa='+ $('#maxa').val();
-                var url = '/thamdinhgia?' + nam +trangthai + maxa;
+                var url = '/thamdinhgia?' + nam  + maxa;
 
                 window.location.href = url;
             });
@@ -114,16 +115,6 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Trạng thái hồ sơ</label>
-                                <select name="trangthai" id="trangthai" class="form-control">
-                                    <option value="CHT" {{$trangthai == 'CHT' ? 'selected' : ''}}>Chưa hoàn thành</option>
-                                    <option value="HT" {{$trangthai == 'HT' ? 'selected' : ''}}>Hoàn thành</option>
-                                    <option value="HHT" {{$trangthai == 'HHT' ? 'selected' : ''}}>Hủy hoàn thành</option>
-                                </select>
-                            </div>
-                        </div>
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H')
                             <div class="col-md-5">
                                 <div class="form-group">
@@ -162,47 +153,39 @@
                                 <td>{{$tt->dvyeucau}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->thoihan)}}</td>
                                 <td style="text-align: center">
-                                    @if($tt->trangthai == 'HT')
-                                        <span class="badge badge-warning">Hoàn thành</span>
-                                    @elseif($tt->trangthai == 'CHT')
-                                        <span class="badge badge-danger">Chưa hoàn thành</span>
-                                    @elseif($tt->trangthai == 'HHT')
-                                        <span class="badge badge-danger">Hủy hoàn thành</span>
-                                    @else
+                                    @if($tt->congbo == 'congbo')
                                         <span class="badge badge-success">Công bố</span>
+                                    @else
+                                        <span class="badge badge-warning">Chưa công bô</span>
                                     @endif
                                 </td>
                                 <td>
                                     <a href="{{url('thamdinhgia/'.$tt->id)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                     <button type="button" onclick="get_attack('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#dinhkem-modal-confirm" data-toggle="modal"><i class="fa fa-cloud-download"></i>&nbsp;File đính kèm</button>
-                                    @if($tt->trangthai == 'CHT' || $tt->trangthai == 'HHT')
-                                        @if(can('kkthamdinhgia','edit'))
-                                        <a href="{{url('thamdinhgia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
-                                        @endif
-                                        @if(can('kkthamdinhgia','approve'))
-                                        <button type="button" onclick="confirmHoanthanh('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn thành</button>
-                                        @endif
-                                        @if($tt->trangthai == 'CHT')
-                                            @if(can('kkthamdinhgia','delete'))
-                                            <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
-                                            Xóa</button>
-                                            @endif
-                                        @endif
-                                    @endif
-                                    @if($tt->trangthai == 'HT' || $tt->trangthai == 'CB')
+
+
                                         @if(session('admin')->level == 'T' || session('admin')->level == 'H')
-                                            @if($tt->trangthai == 'HT')
+
+                                            @if($tt->congbo == 'congbo')
                                                 @if(can('ththamdinhgia','congbo'))
-                                                <button type="button" onclick="confirmCB('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal-confirm" data-toggle="modal"><i class="fa fa-send"></i>&nbsp;
-                                                    Công bố</button>
+                                                <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
+                                                    Hủy công bố</button>
+                                                @else
+                                                    @if(can('kkthamdinhgia','edit'))
+                                                        <a href="{{url('thamdinhgia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                                    @endif
+                                                    @if(can('kkthamdinhgia','delete'))
+                                                        <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                                            Xóa</button>
+                                                    @endif
+                                                    @if(can('ththamdinhgia','congbo'))
+                                                        <button type="button" onclick="confirmCB('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal-confirm" data-toggle="modal"><i class="fa fa-send"></i>&nbsp;
+                                                            Công bố</button>
+                                                    @endif
+
                                                 @endif
                                             @endif
-                                            @if(can('kkthamdinhgia','approve'))
-                                            <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
-                                                Hủy hoàn thành</button>
-                                            @endif
                                         @endif
-                                    @endif
 
                                     <!--a href="{{url('hoso-thamdinhgia/'.$tt->mahs.'/history')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Lịch sử</a-->
                                 </td>

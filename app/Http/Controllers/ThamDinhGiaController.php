@@ -39,8 +39,8 @@ class ThamDinhGiaController extends Controller
 
             $model = ThamDinhGia::whereYear('thoidiem',$inputs['nam'])
                 ->where('maxa',$inputs['maxa']);
-            if($inputs['trangthai'] != '')
-                $model = $model->where('trangthai',$inputs['trangthai']);
+            /*if($inputs['trangthai'] != '')
+                $model = $model->where('trangthai',$inputs['trangthai']);*/
 
             $model=$model->get();
             return view('manage.thamdinhgia.index')
@@ -48,7 +48,7 @@ class ThamDinhGiaController extends Controller
                 ->with('modeldv',$modeldv)
                 ->with('nam',$inputs['nam'])
                 ->with('maxa',$inputs['maxa'])
-                ->with('trangthai',$inputs['trangthai'])
+                //->with('trangthai',$inputs['trangthai'])
                 ->with('pageTitle','Thông tin hồ sơ thẩm định giá');
 
         }else
@@ -87,6 +87,7 @@ class ThamDinhGiaController extends Controller
             $inputs['quy'] = Thang2Quy(getMonth($inputs['thoidiem']));
             $inputs['mahs'] = $inputs['maxa'].getdate()[0];
             $inputs['trangthai'] = 'CHT';
+            $inputs['congbo'] = 'chuacongbo';
             if(isset($inputs['ipf1'])){
                 $ipf1 = $request->file('ipf1');
                 $inputs['ipt1'] = $inputs['mahs'] .'&1.'.$ipf1->getClientOriginalExtension();
@@ -141,7 +142,7 @@ class ThamDinhGiaController extends Controller
                 }
                 $modelctdf->delete();
             }
-            return redirect('thamdinhgia?&maxa='.$inputs['maxa'].'&trangthai='.$inputs['trangthai']);
+            return redirect('thamdinhgia?&maxa='.$inputs['maxa']);
 
         }else
             return view('errors.notlogin');
@@ -200,7 +201,7 @@ class ThamDinhGiaController extends Controller
                 $inputs['ipf5']= $inputs['ipt5'];
             }
             $model->update($inputs);
-            return redirect('thamdinhgia?&maxa='.$inputs['maxa'].'&trangthai='.$model->trangthai);
+            return redirect('thamdinhgia?&maxa='.$inputs['maxa']);
 
         }else
             return view('errors.notlogin');
@@ -214,7 +215,7 @@ class ThamDinhGiaController extends Controller
             $maxa = $model->maxa;
             $modelct = ThamDinhGiaCt::where('mahs',$model->mahs)->delete();
             $model->delete();
-            return redirect('thamdinhgia?&maxa='.$maxa.'&trangthai=CHT');
+            return redirect('thamdinhgia?&maxa='.$maxa);
         }else
             return view('errors.notlogin');
     }
@@ -401,7 +402,7 @@ class ThamDinhGiaController extends Controller
             $inputs = $request->all();
             $id = $inputs['idhoanthanh'];
             $model = ThamDinhGia::findOrFail($id);
-            $model->trangthai = 'HT';
+            $model->congbo = 'chuacongbo';
             $model->save();
             return redirect('thamdinhgia?&trangthai=HT&maxa='.$model->maxa);
         }else
@@ -415,7 +416,7 @@ class ThamDinhGiaController extends Controller
             $model = ThamDinhGia::findOrFail($id);
             $model->trangthai = 'HHT';
             $model->save();
-            return redirect('thamdinhgia?&trangthai=HHT&maxa='.$model->maxa);
+            return redirect('thamdinhgia?&maxa='.$model->maxa);
         }else
             return view('errors.notlogin');
     }
@@ -425,9 +426,9 @@ class ThamDinhGiaController extends Controller
             $inputs = $request->all();
             $id = $inputs['idcongbo'];
             $model = ThamDinhGia::findOrFail($id);
-            $model->trangthai = 'CB';
+            $model->congbo = 'congbo';
             $model->save();
-            return redirect('thamdinhgia?&trangthai=CB&maxa='.$model->maxa);
+            return redirect('thamdinhgia?&maxa='.$model->maxa);
         }else
             return view('errors.notlogin');
     }

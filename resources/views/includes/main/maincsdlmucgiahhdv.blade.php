@@ -153,7 +153,7 @@
     </li>
     @endif
 @endif
-<li class="">
+<!--li class="">
     <a href="">
         <i class="icon-folder"></i>
         <span class="title">Giá đấu thầu mua TS</span>
@@ -171,7 +171,7 @@
             </li>
         @endif
     </ul>
-</li>
+</li-->
 
 @include('includes.main.include.bog')
 @include('includes.main.include.kknygia')
