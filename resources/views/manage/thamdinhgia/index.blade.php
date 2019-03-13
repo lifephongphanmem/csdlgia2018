@@ -22,7 +22,8 @@
             $('#nam').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
                 var maxa = '&maxa='+ $('#maxa').val();
-                var url = '/thamdinhgia?' + namhs  + maxa;
+                var mahuyen = '&mahuyen='+ $('#mahuyen').val();
+                var url = '/thamdinhgia?' + namhs  + mahuyen + maxa;
                 window.location.href = url;
             });
             /*$('#trangthai').change(function() {
@@ -33,10 +34,17 @@
             });*/
 
             $('#maxa').change(function() {
-                var nam = '&nam='+ $('#nam').val();
-                //var trangthai = '&trangthai=' + $('#trangthai').val();
+                var namhs = '&nam=' + $('#nam').val();
                 var maxa = '&maxa='+ $('#maxa').val();
-                var url = '/thamdinhgia?' + nam  + maxa;
+                var mahuyen = '&mahuyen='+ $('#mahuyen').val();
+                var url = '/thamdinhgia?' + namhs  + mahuyen + maxa;
+
+                window.location.href = url;
+            });
+            $('#mahuyen').change(function() {
+                var namhs = '&nam=' + $('#nam').val();
+                var mahuyen = '&mahuyen='+ $('#mahuyen').val();
+                var url = '/thamdinhgia?' + namhs  + mahuyen;
 
                 window.location.href = url;
             });
@@ -94,9 +102,11 @@
                     </div>
                     <div class="actions">
                         @if(can('kkthamdinhgia','create'))
-                        <a href="{{url('thamdinhgia/create?&maxa='.$maxa)}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-plus"></i> Thêm mới </a>
-                        <a href="{{url('thamdinhgia/nhanexcel?&maxa='. $maxa)}}" class="btn btn-default btn-sm"><i class="fa fa-file-excel-o"></i>&nbsp;Nhận dữ liệu</a>
+                            @if($inputs['maxa'] != '')
+                                <a href="{{url('thamdinhgia/create?&maxa='.$inputs['maxa'])}}" class="btn btn-default btn-sm">
+                                    <i class="fa fa-plus"></i> Thêm mới </a>
+                                <a href="{{url('thamdinhgia/nhanexcel?&maxa='. $inputs['maxa'])}}" class="btn btn-default btn-sm"><i class="fa fa-file-excel-o"></i>&nbsp;Nhận dữ liệu</a>
+                            @endif
                         @endif
                     </div>
 
@@ -105,23 +115,37 @@
                     <div class="row">
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label>Năm thẩm định</label>
+                                <label style="font-weight: bold">Năm thẩm định</label>
                                 <select name="nam" id="nam" class="form-control">
                                     @if ($nam_start = intval(date('Y')) - 5 ) @endif
                                     @if ($nam_stop = intval(date('Y')) + 1) @endif
                                     @for($i = $nam_start; $i <= $nam_stop; $i++)
-                                        <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>Năm {{$i}}</option>
+                                        <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
                                     @endfor
                                 </select>
                             </div>
                         </div>
+                        @if(session('admin')->level == 'T')
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label style="font-weight: bold">Đơn vị quản lý</label>
+                                    <select name="mahuyen" id="mahuyen" class="form-control">
+                                        @foreach($modeldvql as $dvql)
+                                            <option value="{{$dvql->mahuyen}}" {{$dvql->mahuyen == $inputs['mahuyen'] ? 'selected' : ''}}>{{$dvql->tendv}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        @else
+                            <input type="hidden" name="mahuyen" id="mahuyen" value="{{$inputs['mahuyen']}}">
+                        @endif
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H')
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label>Đơn vị thẩm định</label>
+                                    <label style="font-weight: bold">Đơn vị thẩm định</label>
                                     <select name="maxa" id="maxa" class="form-control">
                                         @foreach($modeldv as $dv)
-                                            <option value="{{$dv->maxa}}" {{$dv->maxa == $maxa ? 'selected' : ''}}>{{$dv->tendv}}</option>
+                                            <option value="{{$dv->maxa}}" {{$dv->maxa == $inputs['maxa'] ? 'selected' : ''}}>{{$dv->tendv}}</option>
                                         @endforeach
                                     </select>
                                 </div>

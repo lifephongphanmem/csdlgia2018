@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DiaBanHd;
+use App\District;
 use App\DmHangHoa;
 use App\DmNhomHangHoa;
 use App\ThamDinhGia;
@@ -22,20 +23,21 @@ class ThamDinhGiaController extends Controller
         if(Session::has('admin')){
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-
+            $modeldvql = District::all();
             if(session('admin')->level == 'X') {
                 $modeldv = Town::where('maxa',session('admin')->maxa)->get();
-                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CHT';
                 $inputs['maxa'] = session('admin')->maxa;
+                $inputs['mahuyen'] = session('admin')->mahuyen;
             }else {
-                if(session('admin')->level == 'T')
-                    $modeldv = Town::all();
-                else
-                    $modeldv = Town::where('mahuyen',session('admin')->mahuyen)->get();
-                $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
-                $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
+                if(session('admin')->level == 'T') {
+                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldvql->first()->mahuyen;
+                    $modeldv = Town::where('mahuyen',$inputs['mahuyen'])->get();
+                }else {
+                    $inputs['mahuyen'] = session('admin')->mahuyen;
+                    $modeldv = Town::where('mahuyen', session('admin')->mahuyen)->get();
+                }
+                $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : (count($modeldv)> 0 ? $modeldv->first()->maxa : '');
             }
-
 
             $model = ThamDinhGia::whereYear('thoidiem',$inputs['nam'])
                 ->where('maxa',$inputs['maxa']);
@@ -45,9 +47,10 @@ class ThamDinhGiaController extends Controller
             $model=$model->get();
             return view('manage.thamdinhgia.index')
                 ->with('model',$model)
+                ->with('modeldvql',$modeldvql)
                 ->with('modeldv',$modeldv)
-                ->with('nam',$inputs['nam'])
-                ->with('maxa',$inputs['maxa'])
+                ->with('inputs',$inputs)
+                //->with('maxa',$inputs['maxa'])
                 //->with('trangthai',$inputs['trangthai'])
                 ->with('pageTitle','Thông tin hồ sơ thẩm định giá');
 
