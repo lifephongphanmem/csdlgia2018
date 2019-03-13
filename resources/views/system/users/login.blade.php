@@ -135,20 +135,23 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 						</div>
 					</div>
-					@if(canGeneral('dvlt','index'))
+
 					<div class="form-group">
 						<div class="row" style="text-align: center">
 							<div class="col-md-12" style="text-align: center">
 								<div class="profile-userbuttons">
+									@if(canGeneral('dvlt','index'))
 									<a href="{{url('dangkytaikhoan?&level=DVLT')}}" class="btn default red-stripe">
 										Doanh nghiệp cung cấp dịch vụ lưu trú </a>&nbsp;
+									@endif
 									<a class="btn default red-stripe" href="{{url('dangkytaikhoan?&level=DVVT')}}">
 										Doanh nghiệp cung cấp dịch vụ vận tải </a>
+
 								</div>
 							</div>
 						</div>
 					</div>
-					@endif
+
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-12" style="text-align: center">
