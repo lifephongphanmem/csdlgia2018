@@ -12,6 +12,7 @@ class DmMhBinhOnGia extends Model
         'mamh',
         'tenmh',
         'hienthi',
-        'phanloai'
+        'phanloai',
+        'dangkykekhai'
     ];
 }

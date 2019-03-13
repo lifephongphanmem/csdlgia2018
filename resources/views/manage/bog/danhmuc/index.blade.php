@@ -125,6 +125,7 @@
                             <th style="text-align: center" width="10%">Mã<br> mặt hàng</th>
                             <th style="text-align: center">Tên mặt hàng</th>
                             <th style="text-align: center">Hiển thị</th>
+                            <th style="text-align: center">Đăng ký/ Kê khai</th>
                             <th style="text-align: center" width="10%">Thao tác</th>
                         </tr>
                         </thead>
@@ -135,6 +136,17 @@
                             <td>{{$tt->mamh}}</td>
                             <td class="active">{{$tt->tenmh}}</td>
                             <td class="success">{{$tt->hienthi}}</td>
+                            @if($tt->dangkykekhai == 'dangky')
+                                <td style="text-align: center">
+									<span class="label label-sm label-success">
+									Đăng ký</span>
+                                </td>
+                            @else
+                                <td style="text-align: center">
+									<span class="label label-sm label-warning">
+									Kê khai</span>
+                                </td>
+                            @endif
                             <td>
                                 @if(can('dmbog','edit'))
                                 <button type="button" onclick="ClickEdit('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
@@ -185,6 +197,17 @@
                             <div class="form-group">
                                 <label class="control-label">Hiển thị<span class="require">*</span></label>
                                 <input type="text" name="hienthi" id="hienthi" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">Đăng ký/ Kê khai<span class="require">*</span></label>
+                                <select class="form-control" id="dangkykekhai" name="dangkykekhai">
+                                    <option value="dangky">Đăng ký</option>
+                                    <option value="kekhai">Kê khai</option>
+                                </select>
                             </div>
                         </div>
                     </div>

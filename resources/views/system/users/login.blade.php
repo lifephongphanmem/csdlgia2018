@@ -135,6 +135,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 						</div>
 					</div>
+					@if(canGeneral('dvlt','index'))
 					<div class="form-group">
 						<div class="row" style="text-align: center">
 							<div class="col-md-12" style="text-align: center">
@@ -147,6 +148,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 						</div>
 					</div>
+					@endif
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-12" style="text-align: center">

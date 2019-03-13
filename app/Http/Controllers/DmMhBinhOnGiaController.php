@@ -70,6 +70,21 @@ class DmMhBinhOnGiaController extends Controller
         $result['message'] .= '<input type="text" name="edit_hienthi" id="edit_hienthi" class="form-control" value="'.$model->hienthi.'"/>';
         $result['message'] .= '</div></div>';
         $result['message'] .= '</div>';
+        $result['message'] .= '<div class="row">';
+        $result['message'] .= '<div class="col-md-12">';
+        $result['message'] .= '<div class="form-group">';
+        $result['message'] .= '<label class="control-label">Đăng ký/Kê khai<span class="require">*</span></label>';
+        $result['message'] .= '<select class="form-control" id="edit_dangkykekhai" name="edit_dangkykekhai">';
+        if($model->dangkykekhai == 'dangky') {
+            $result['message'] .= '<option value="dangky" selected>Đăng ký</option>';
+            $result['message'] .= '<option value="kekhai">Kê khai</option>';
+        }else {
+            $result['message'] .= '<option value="dangky">Đăng ký</option>';
+            $result['message'] .= '<option value="kekhai" selected>Kê khai</option>';
+        }
+        $result['message'] .= '</select';
+        $result['message'] .= '</div></div>';
+        $result['message'] .= '</div>';
         $result['message'] .= '<input type="hidden" name="edit_id" id="edit_id" class="form-control" value="'.$model->id.'"/>';
 
         $result['message'] .= '</div>';
@@ -87,6 +102,7 @@ class DmMhBinhOnGiaController extends Controller
             $model->mamh = $inputs['edit_mamh'];
             $model->tenmh = $inputs['edit_tenmh'];
             $model->hienthi = $inputs['edit_hienthi'];
+            $model->dangkykekhai = $inputs['edit_dangkykekhai'];
             $model->save();
             return redirect('dmmhbinhongia');
         }else

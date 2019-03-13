@@ -18,7 +18,8 @@ class CreateDmmhbinhongiaTable extends Migration
             $table->string('mamh')->nullable();
             $table->string('tenmh')->nullable();
             $table->string('hienthi')->nullable();
-            $table->string('phanloai');
+            $table->string('phanloai')->nullable();
+            $table->string('dangkykekhai')->nullable();
             $table->timestamps();
         });
     }

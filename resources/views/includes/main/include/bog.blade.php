@@ -22,7 +22,7 @@
                     <span class="arrow"></span>
             </a>
             <ul class="sub-menu" style="display: none;">
-                <?php $modelmhbinhongia = \App\DmMhBinhOnGia::all()?>
+                <?php $modelmhbinhongia = \App\DmMhBinhOnGia::all();?>
                 @if(can('kkbpbog','index'))
                     @foreach($modelmhbinhongia as $binhongia)
                         <li>
@@ -46,7 +46,7 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub-menu" style="display: none;">
-                        <?php $modeldm = \App\DmMhBinhOnGia::all()?>
+                        <?php $modeldm = \App\DmMhBinhOnGia::where('dangkykekhai','dangky')->get();?>
                         @foreach($modeldm as $dm)
                             @if(canGeneral($dm->phanloai,'index'))
                                 @if(can($dm->phanloai,'index'))

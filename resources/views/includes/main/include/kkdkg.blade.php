@@ -11,7 +11,7 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub-menu" style="display: none;"-->
-                        <?php $modeldm = \App\DmMhBinhOnGia::all()?>
+                        <?php $modeldm = \App\DmMhBinhOnGia::where('dangkykekhai','kekhai')->get();?>
                         @foreach($modeldm as $dm)
                             @if(canGeneral($dm->phanloai,'index'))
                                 @if(can($dm->phanloai,'index'))
@@ -19,7 +19,7 @@
                                     session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
                                     <li>
                                         <a href="">
-                                            <span class="title">Kê khai giá {{$dm->hienthi}}</span>
+                                            <span class="title">{{$dm->hienthi}}</span>
                                             <span class="arrow"></span>
                                         </a>
                                         <ul class="sub-menu" style="display: none;">
