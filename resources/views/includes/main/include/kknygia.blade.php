@@ -234,11 +234,23 @@
                                                     <span class="arrow"></span>
                                                 </a>
                                                 <ul class="sub-menu" style="display: none;">
-                                                    <li><a href="">Danh mục dịch vụ</a> </li>
-                                                    <li><a href="">Kê khai giá</a></li>
-                                                    <li><a href="">Xét duyệt hồ sơ kê khai</a></li>
-                                                    <li><a href="">Tìm kiếm hồ sơ kê khai</a></li>
-                                                    <li><a href="">Báo cáo</a></li>
+                                                    @if(session('admin')->level == 'DVVT')
+                                                        @if(can('kkvtxb','index'))
+                                                            <li><a href="{{url('kekhaivantaixebuyt')}}">Kê khai giá</a></li>
+                                                        @endif
+                                                    @endif
+                                                    @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
+                                                        @if(can('kkvtxb','index'))
+                                                            <li><a href="{{url('thongtindnvtxb')}}">Kê khai giá vận tải xe buýt</a></li>
+                                                            <li><a href="{{url('xetduyetkekhaigiavtxb')}}">Xét duyệt hồ sơ kê khai</a></li>
+                                                        @endif
+                                                        @if(can('thvtxb','timkiem'))
+                                                            <li><a href="{{url('timkiemgiavantaixebuyt')}}">Tìm kiếm hồ sơ kê khai</a></li>
+                                                        @endif
+                                                        @if(can('thvtxb','baocao'))
+                                                            <!--li><a href="">Báo cáo</a></li-->
+                                                        @endif
+                                                    @endif
                                                 </ul>
                                             </li>
                                         @endif

@@ -36,7 +36,7 @@
             $('#mahuyen').change(function() {
                 var current_path_url = '/company?';
                 var pl = '&level='+$('#level').val();
-                var mahuyen = '&mahuyen='+$('#mahuyenview').val();
+                var mahuyen = '&mahuyen='+$('#mahuyen').val();
                 var url = current_path_url+pl+ mahuyen;
                 window.location.href = url;
             });

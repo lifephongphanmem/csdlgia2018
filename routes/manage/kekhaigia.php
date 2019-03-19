@@ -22,6 +22,9 @@ include('kkgia/vtxk.php');
 //VTXTX
 include('kkgia/vtxtx.php');
 
+//VTXB
+include('kkgia/vtxb.php');
+
 //VLXD
 include('kkgia/vlxd.php');
 
@@ -33,4 +36,6 @@ include('kkgia/xmtxd.php');
 
 //dvhdtm
 include('kkgia/dvhdtm.php');
+
+//
 ?>

@@ -146,7 +146,6 @@ License: You must have a valid license purchased only from themeforest(the above
 									@endif
 									<a class="btn default red-stripe" href="{{url('dangkytaikhoan?&level=DVVT')}}">
 										Doanh nghiệp cung cấp dịch vụ vận tải </a>
-
 								</div>
 							</div>
 						</div>
