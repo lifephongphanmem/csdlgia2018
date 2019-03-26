@@ -50,7 +50,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Mã số thuế</label>
-                                        <input class="form-control required" type="text" placeholder="Mã số thuế" name="maxa" id="maxa" required value="{{$model->maxa}}">
+                                        <p>{{$model->maxa}}</p>
                                     </div>
                                 </div>
                                 <!--/span-->

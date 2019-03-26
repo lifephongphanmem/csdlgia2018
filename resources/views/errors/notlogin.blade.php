@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ url('css/themes/style1/zvinhtq.css') }}">
     <link rel="stylesheet" href="{{ url('css/style-responsive.css') }}">
 </head>
-<body id="error-page" class="animated bounceInLeft">
+<body id="error-page" class="animated bounceInLeft" style="width: 100%">
 <div id="error-page-content"><h1>Lỗi!</h1><h2>Bạn chưa đăng nhập hoặc không có quyền thực hiện chức năng này!</h2>
     <p><a href='{{ url('/login') }}'>Bấm vào đây</a> để đăng nhập vào hệ thống.</p>
     <p><a href='{{ url('/logout') }}'>Bấm vào đây</a> để đăng nhập với tài khoản khác.</p>

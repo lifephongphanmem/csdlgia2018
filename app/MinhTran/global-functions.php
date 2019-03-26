@@ -3674,4 +3674,31 @@ function getNgayLamViec($maxa){
     return $songaylv;
 }
 
+function SelectedQuy($quy){
+    if(date('m') == 1 || date('m') == 2 || date('m') == 3 )
+        $value = 1;
+    elseif(date('m') == 4 || date('m') == 5 || date('m') == 6 )
+        $value = 2;
+    elseif(date('m') == 7 || date('m') == 8 || date('m') == 9 )
+        $value = 3;
+    else
+        $value = 4;
+    if($quy == $value)
+        return 'selected';
+    else
+        return '';
+}
+
+function quy(){
+    if(date('m') == 1 || date('m') == 2 || date('m') == 3 )
+        $value = 1;
+    elseif(date('m') == 4 || date('m') == 5 || date('m') == 6 )
+        $value = 2;
+    elseif(date('m') == 7 || date('m') == 8 || date('m') == 9 )
+        $value = 3;
+    else
+        $value = 4;
+    return $value;
+}
+
 ?>
