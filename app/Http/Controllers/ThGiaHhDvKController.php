@@ -435,6 +435,7 @@ class ThGiaHhDvKController extends Controller
                     //dd($modeldm);
                     $idlk = ThGiaHhDvK::where('manhom',$inputs['manhombct'])
                         ->where('trangthai','HT')
+                        ->where('phanloai','thang')
                         ->max('id');
                     $mahslk = ThGiaHhDvK::where('id',$idlk)->first()->mahs;
                     foreach ($modeldm as $dm) {
