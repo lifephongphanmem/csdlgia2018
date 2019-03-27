@@ -48,20 +48,7 @@
                                         <div class="portlet-body" style="display: block;">
                                             <div class="form-body">
                                                 <div class="row">
-                                                    <div class="col-md-4">
-                                                        <label>Phân loại báo cáo</label>
-                                                        {!! Form::select(
-                                                        'phanloai',
-                                                        array(
-                                                        '15ngaydau'=>'15 ngày đầu tháng',
-                                                        '15ngaycuoi'=>'15 ngày cuối tháng',
-                                                        )
-                                                        ,null,
-                                                        array('id' => 'phanloai', 'class' => 'form-control'))
-                                                        !!}
-                                                    </div>
-
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label">Tháng báo cáo<span class="require">*</span></label>
                                                             {!! Form::select(
@@ -73,7 +60,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label">Năm báo cáo<span class="require">*</span></label>
                                                             <select name="nam" id="nam" class="form-control">

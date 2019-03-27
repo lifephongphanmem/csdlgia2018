@@ -111,21 +111,13 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label class="control-label">Phân loại báo cáo: </label>
-                                    <label class="control-label" style="color: blue;font-weight: bold"> @if($model->phanloai == '15ngaydau') 15 ngày đầu tháng
-                                        @elseif($model->phanloai == '15ngaycuoi') 15 ngày cuối tháng
-                                        @endif</label>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Tháng báo cáo: </label>
                                     <label class="control-label" style="color: blue;font-weight: bold">{{$model->thang}}</label>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Năm báo cáo: </label>
                                     <label class="control-label" style="color: blue;font-weight: bold">{{$model->nam}}</label>

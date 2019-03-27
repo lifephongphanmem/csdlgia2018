@@ -19,8 +19,12 @@ class CreateThgiahhdvkctdfTable extends Migration
             $table->string('manhom')->nullable();
             $table->string('mahhdv')->nullable();
             $table->string('tenhhdv')->nullable();
+            $table->string('dacdiemkt')->nullable();
+            $table->string('xuatxu')->nullable();
             $table->string('dvt')->nullable();
+            $table->string('gialk')->nullable();
             $table->string('gia')->nullable();
+            $table->string('dvt')->nullable();
             $table->timestamps();
         });
     }

@@ -125,7 +125,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <!--div class="col-md-3">
                             <div class="form-group">
                                 <label>Phân loại</label>
                                 <select name="phanloai" id="phanloai" class="form-control">
@@ -134,7 +134,7 @@
                                     <option value="thang" {{$inputs['phanloai'] == 'thang' ? 'selected' : ''}}>Tháng</option>
                                 </select>
                             </div>
-                        </div>
+                        </div-->
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label>Nhóm hàng hóa</label>
@@ -151,9 +151,8 @@
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center" width="10%">Phân loại</th>
                             <th style="text-align: center">Nhóm hàng hóa</th>
-                            <th style="text-align: center" width="10%">Tháng<br>Năm</th>
+                            <th style="text-align: center" width="10%">Thời điểm báo cáo</th>
                             <th style="text-align: center">Thông tin báo cáo</th>
                             <th style="text-align: center" width="10%">Ngày báo cáo</th>
                             <th style="text-align: center" width="10%">Ngày chốt<br> báo cáo</th>
@@ -165,9 +164,8 @@
                         @foreach($model as $key=>$ct)
                             <tr>
                                 <td style="text-align: center">{{$key+1}}</td>
-                                <td style="font-weight: bold" width="10%">{{$ct->phanloai}}</td>
                                 <td style="font-weight: bold">{{$ct->tennhom}}</td>
-                                <td style="font-weight: bold">Tháng {{$ct->thang}} Năm {{$ct->nam}}</td>
+                                <td style="font-weight: bold">Tháng {{$ct->thang}} /Năm {{$ct->nam}}</td>
                                 <td>{{$ct->ttbc}}</td>
                                 <td style="text-align: center">{{getDayVn($ct->ngaybc)}}</td>
                                 <td style="text-align: center">{{getDayVn($ct->ngaychotbc)}}</td>
@@ -425,12 +423,6 @@
                                         <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
                                     @endfor
                                 </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <label>Ngày chốt báo cáo</label>
-                                {!!Form::text('ngaychotbct','31/12/'.date('Y'), array('id' => 'ngaychotbct','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
                             </div>
                         </div>
                         <input type="hidden" id="phanloaibct" name="phanloaibct" value="{{$inputs['phanloai']}}">

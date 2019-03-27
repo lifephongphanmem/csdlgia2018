@@ -25,7 +25,8 @@ class ThGiaHhDvKController extends Controller
             if (session('admin')->level == 'T' || session('admin')->level == 'H') {
                 $inputs = $request->all();
                 $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-                $inputs['phanloai'] = isset($inputs['phanloai']) ? $inputs['phanloai'] : '15ngaydau';
+                //$inputs['phanloai'] = isset($inputs['phanloai']) ? $inputs['phanloai'] : 'thang';
+                $inputs['phanloai'] = 'thang';
                 $m_nhom = NhomHhDvK::where('theodoi','TD')
                     ->get();
                 $inputs['manhom'] = isset($inputs['manhom']) ? $inputs['manhom'] : $m_nhom->first()->manhom;
@@ -59,6 +60,7 @@ class ThGiaHhDvKController extends Controller
                     ->where('nam',$inputs['nambc'])
                     ->where('phanloai',$inputs['phanloaibc'])
                     ->count();
+                //dd($inputs['phanloaibc']);
                 if($modelcheck>0){
                     dd('Đã có báo cáo, bạn cần kiểm tra lại! Nếu số liệu không đúng bạn cần xóa báo cáo trước để tạo báo cáo mới');
                 }else {
@@ -74,7 +76,7 @@ class ThGiaHhDvKController extends Controller
                             ->where('district', $diaban->district)
                             ->where('thang', $inputs['thangbc'])
                             ->where('nam', $inputs['nambc'])
-                            ->where('phanloai',$inputs['phanloaibc'])
+                            //->where('phanloai',$inputs['phanloaibc'])
                             ->where('trangthai', 'HT')
                             ->first();
                         if ($modelid != null)
@@ -267,15 +269,23 @@ class ThGiaHhDvKController extends Controller
         $modeldm = NhomHhDvK::where('manhom',$model->manhom)->first();
         //dd($modelct);
         $data = '<?xml version="1.0" encoding="UTF-8"?>';
-        $data .= '<title>'.$model->ttbc.',ngày báo cáo: '.getDayVn($model->ngaybc).',ngày chốt báo cáo: '.getDayVn($model->ngaychotbc);
+        $data .= '<title>'.$model->ttbc.',ngày báo cáo: '.getDayVn($model->ngaybc);
         $data .= '<name>'.$modeldm->manhom.'. '.$modeldm->tennhom;
         $data .= '<data>';
         foreach($modelct as $ct){
             $data .='<row>';
             $data .='<stt>'.$ct->mahhdv.'</stt>';
             $data .='<tenhhdv>'.$ct->tenhhdv.'</tenhhdv>';
+            $data .='<dacdiemkt>'.$ct->dacdiemkt.'</dacdiemkt>';
             $data .='<dvt>'.$ct->dvt.'</dvt>';
+            $data .='<loaigia></loaigia>';
+            $data .='<dongialk>'.$ct->gialk.'</dongialk>';
             $data .='<dongia>'.$ct->gia.'</dongia>';
+            $data .='<muctg>'.(($ct->gia)-($ct->gialk)).'</muctg>';
+            $data .='<tyle>'.(number_format($ct->gialk) == 0 ? number_format($ct->gia) == 0 ? 0 : 100
+                : round(number_format($ct->gia)/number_format($ct->gialk),2)).'</tyle>';
+            $data .='<nguontin>'.$ct->nguontin.'</nguontin>';
+            $data .='<ghichu>'.$ct->ghichu.'</ghichu>';
             $data .='</row>';
         }
         $data .='</data>';
@@ -319,8 +329,8 @@ class ThGiaHhDvKController extends Controller
         if (Session::has('admin')) {
             if (session('admin')->level == 'T' || session('admin')->level == 'H') {
                 $inputs = $request->all();
-                $inputs['ngaychotbct'] = getDateToDb($inputs['ngaychotbct']);
-                $modelcheck = ThGiaHhDvK::where('manhom',$inputs['manhombct'])
+                //$inputs['ngaychotbct'] = getDateToDb($inputs['ngaychotbct']);//dd($inputs['phanloaibct']);
+                /*$modelcheck = ThGiaHhDvK::where('manhom',$inputs['manhombct'])
                     ->where('thang',$inputs['thangbct'])
                     ->where('nam',$inputs['nambct'])
                     ->where('phanloai',$inputs['phanloaibct'])
@@ -370,6 +380,83 @@ class ThGiaHhDvKController extends Controller
                     }
                     $modelct = ThGiaHhDvKCtDf::where('manhom', $inputs['manhombct'])
                         ->where('ngaychotbc', $inputs['ngaychotbct'])
+                        ->get();
+
+                    //dd($modelct);
+                    $modelnhom = NhomHhDvK::where('manhom', $inputs['manhombct'])->first();
+                    return view('manage.dinhgia.giahhdvk.tonghop.createthang')
+                        ->with('modelct', $modelct)
+                        ->with('modelnhom', $modelnhom)
+                        ->with('inputs', $inputs)
+                        ->with('pageTitle', 'Tổng hợp giá hàng hóa dịch vụ khác');
+                }*/
+                $modelcheck = ThGiaHhDvK::where('manhom',$inputs['manhombct'])
+                    ->where('thang',$inputs['thangbct'])
+                    ->where('nam',$inputs['nambct'])
+                    ->where('phanloai',$inputs['phanloaibct'])
+                    ->count();
+                //dd($inputs['phanloaibc']);
+                if($modelcheck>0){
+                    dd('Đã có báo cáo, bạn cần kiểm tra lại! Nếu số liệu không đúng bạn cần xóa báo cáo trước để tạo báo cáo mới');
+                }else {
+                    $checkdf = ThGiaHhDvKCtDf::where('manhom', $inputs['manhombct'])
+                        //->where('ngaychotbc', $inputs['ngaychotbc'])
+                        ->delete();
+
+                    $modeldiaban = DiaBanHd::where('level', 'H')
+                        ->get();
+                    $id = '';
+                    foreach ($modeldiaban as $diaban) {
+                        $modelid = GiaHhDvK::where('manhom', $inputs['manhombct'])
+                            ->where('district', $diaban->district)
+                            ->where('thang', $inputs['thangbct'])
+                            ->where('nam', $inputs['nambct'])
+                            //->where('phanloai',$inputs['phanloaibc'])
+                            ->where('trangthai', 'HT')
+                            ->first();
+                        if ($modelid != null)
+                            $id = $id . $modelid->id . ',';
+                    }
+                    //Lấy ra mahs kê khai
+                    $modelhskk = GiaHhDvK::wherein('id', explode(',', $id))
+                        ->select('mahs')
+                        ->get();
+                    //Lấy ra chi tiết các hồ sơ kê khai
+                    $modelcthskk = GiaHhDvKCt::wherein('mahs', $modelhskk->toArray())
+                        ->where('gia', '<>', 0)
+                        ->get();
+                    //dd($modelcthskk->select('mahhdv','tenhhdv','gia')->get()->toArray());
+
+
+                    $modeldm = DmHhDvK::where('theodoi', 'TD')
+                        ->where('manhom', $inputs['manhombct'])
+                        ->select('mahhdv', 'tenhhdv', 'dvt')
+                        ->get();
+                    //dd($modeldm);
+                    $idlk = ThGiaHhDvK::where('manhom',$inputs['manhombct'])
+                        ->where('trangthai','HT')
+                        ->max('id');
+                    $mahslk = ThGiaHhDvK::where('id',$idlk)->first()->mahs;
+                    foreach ($modeldm as $dm) {
+                        $ttgia = $modelcthskk->where('mahhdv', $dm->mahhdv)->avg('gia');
+                        $gialk = ThGiaHhDvKCt::where('mahs',$mahslk)
+                            ->where('mahhdv',$dm->mahhdv)
+                            ->first()->gia;
+
+                        $modelct = new ThGiaHhDvKCtDf();
+                        $modelct->manhom = $inputs['manhombct'];
+                        //$modelct->ngaychotbc = $inputs['ngaychotbct'];
+                        $modelct->mahhdv = $dm->mahhdv;
+                        $modelct->tenhhdv = $dm->tenhhdv;
+                        $modelct->dacdiemkt = $dm->dacdiemkt;
+                        $modelct->dvt = $dm->dvt;
+                        $modelct->gia = $ttgia;
+                        $modelct->gialk = $gialk;
+                        $modelct->save();
+
+                    }
+                    $modelct = ThGiaHhDvKCtDf::where('manhom', $inputs['manhombct'])
+                       //->where('ngaychotbc', $inputs['ngaychotbct'])
                         ->get();
 
                     //dd($modelct);

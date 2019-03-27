@@ -112,21 +112,13 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label class="control-label">Phân loại báo cáo: </label>
-                                    <label class="control-label" style="color: blue;font-weight: bold"> @if($inputs['phanloaibc'] == '15ngaydau') 15 ngày đầu tháng
-                                        @elseif($inputs['phanloaibc'] == '15ngaycuoi') 15 ngày cuối tháng
-                                        @endif</label>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Tháng báo cáo: </label>
                                     <label class="control-label" style="color: blue;font-weight: bold">{{$inputs['thangbc']}}</label>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Năm báo cáo: </label>
                                     <label class="control-label" style="color: blue;font-weight: bold">{{$inputs['nambc']}}</label>
@@ -176,7 +168,6 @@
                         </div>
                         <input type="hidden" name="district" id="district" value="{{$inputs['districtbc']}}">
                         <input type="hidden" name="manhom" id="manhom" value="{{$inputs['manhombc']}}">
-                        <input type="hidden" name="phanloai" id="phanloai" value="{{$inputs['phanloaibc']}}">
                         <input type="hidden" name="thang" id="thang" value="{{$inputs['thangbc']}}">
                         <input type="hidden" name="nam" id="nam" value="{{$inputs['nambc']}}">
                         <h4 style="color: blue">Thông tin chi tiết</h4>

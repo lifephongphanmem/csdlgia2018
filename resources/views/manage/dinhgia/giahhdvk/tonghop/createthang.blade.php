@@ -58,8 +58,11 @@
                     _token: CSRF_TOKEN,
                     id: $('input[name="idedit"]').val(),
                     gia: $('input[name="giaedit"]').val(),
+                    gialk: $('input[name="gialkedit"]').val(),
                     manhom: $('input[name="manhom"]').val(),
-                    ngaychotbc: $('input[name="ngaychotbc"]').val()
+                    nguontt: $('input[name="nguonttedit"]').val(),
+                    ghichu: $('input[name="ghichuedit"]').val(),
+                    //ngaychotbc: $('input[name="ngaychotbc"]').val()
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -125,12 +128,6 @@
                                     <label class="control-label" style="color: blue;font-weight: bold">{{$inputs['nambct']}}</label>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label class="control-label">Ngày chốt báo cáo:</label>
-                                    <label class="control-label" style="color: blue;font-weight: bold">{{getDayVn($inputs['ngaychotbct'])}}</label>
-                                </div>
-                            </div>
 
                         </div>
                         <div class="row">
@@ -153,7 +150,6 @@
                         </div>
 
                         <input type="hidden" name="manhom" id="manhom" value="{{$inputs['manhombct']}}">
-                        <input type="hidden" name="ngaychotbc" id="manhom" value="{{$inputs['ngaychotbct']}}">
                         <input type="hidden" name="phanloai" id="manhom" value="{{$inputs['phanloaibct']}}">
                         <input type="hidden" name="thang" id="thang" value="{{$inputs['thangbct']}}">
                         <input type="hidden" name="nam" id="nam" value="{{$inputs['nambct']}}">
@@ -165,8 +161,10 @@
                                     <thead>
                                     <tr>
                                         <th width="2%" style="text-align: center">STT</th>
-                                        <th style="text-align: center">Tên hàng hóa dịch vụ</th>
+                                        <th style="text-align: center" width="25%">Tên hàng hóa dịch vụ</th>
+                                        <th style="text-align: center">Đặc điểm kinh tế,<br>kỹ thuật, quy cách</th>
                                         <th style="text-align: center" width="10%">Đơn vị tính</th>
+                                        <th style="text-align: center" width="10%">Đơn giá liền kề</th>
                                         <th style="text-align: center" width="10%">Đơn giá</th>
                                         <th style="text-align: center" width="15%">Thao tác</th>
                                     </tr>
@@ -176,7 +174,9 @@
                                             <tr>
                                                 <td style="text-align: center">{{$tt->mahhdv}}</td>
                                                 <td class="active" style="font-weight: bold">{{$tt->tenhhdv}}</td>
+                                                <td>{{$tt->dacdiemkt}}</td>
                                                 <td style="text-align: center">{{$tt->dvt}}</td>
+                                                <td style="text-align: right;font-weight: bold">{{number_format($tt->gialk)}}</td>
                                                 <td style="text-align: right;font-weight: bold">{{number_format($tt->gia)}}</td>
                                                 <td>
                                                     <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem({{$tt->id}})"><i class="fa fa-edit"></i>&nbsp;Kê khai</button>
