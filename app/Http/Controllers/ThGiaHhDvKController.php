@@ -441,7 +441,7 @@ class ThGiaHhDvKController extends Controller
                     foreach ($modeldm as $dm) {
                         $ttgia = $modelcthskk->where('mahhdv', $dm->mahhdv)->avg('gia');
                         if(!$mahslk) {
-                            $modelk = ThGiaHhDvKCt::where('mahs', $mahslk)
+                            $modellk = ThGiaHhDvKCt::where('mahs', $mahslk)
                                 ->where('mahhdv', $dm->mahhdv)
                                 ->first();
                             if(count($modellk)>0)
