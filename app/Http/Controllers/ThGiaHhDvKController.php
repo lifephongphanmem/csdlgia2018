@@ -430,7 +430,7 @@ class ThGiaHhDvKController extends Controller
 
                     $modeldm = DmHhDvK::where('theodoi', 'TD')
                         ->where('manhom', $inputs['manhombct'])
-                        ->select('mahhdv', 'tenhhdv', 'dvt')
+                        ->select('mahhdv', 'tenhhdv', 'dvt','dacdiemkt')
                         ->get();
                     //dd($modeldm);
                     $idlk = ThGiaHhDvK::where('manhom',$inputs['manhombct'])
