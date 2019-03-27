@@ -439,9 +439,12 @@ class ThGiaHhDvKController extends Controller
                     $mahslk = ThGiaHhDvK::where('id',$idlk)->first()->mahs;
                     foreach ($modeldm as $dm) {
                         $ttgia = $modelcthskk->where('mahhdv', $dm->mahhdv)->avg('gia');
+                        if(!$mahslk)
                         $gialk = ThGiaHhDvKCt::where('mahs',$mahslk)
                             ->where('mahhdv',$dm->mahhdv)
                             ->first()->gia;
+                        else
+                            $gialk = 0;
 
                         $modelct = new ThGiaHhDvKCtDf();
                         $modelct->manhom = $inputs['manhombct'];

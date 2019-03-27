@@ -24,19 +24,24 @@
                 var url = '/dichvukcb?'+namhs;
                 window.location.href = url;
             });
-            $('#trangthai').change(function() {
+            /*$('#trangthai').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
                 var trangthai = '&trangthai=' + $('#trangthai').val();
                 var url = '/dichvukcb?'+namhs + trangthai;
                 window.location.href = url;
+            });*/
+            $('#mahuyen').change(function() {
+                var namhs = '&nam=' + $('#nam').val();
+                var mahuyen = '&mahuyen='+ $('#mahuyen').val();
+                var url = '/dichvukcb?' + namhs  + mahuyen;
+                window.location.href = url;
             });
-
             $('#maxa').change(function() {
                 var nam = '&nam='+ $('#nam').val();
-                var trangthai = '&trangthai=' + $('#trangthai').val();
+                //var trangthai = '&trangthai=' + $('#trangthai').val();
+                var mahuyen = '&mahuyen='+ $('#mahuyen').val();
                 var maxa = '&maxa='+ $('#maxa').val();
-                var url = '/dichvukcb?' + nam +trangthai + maxa;
-
+                var url = '/dichvukcb?' + nam + mahuyen + maxa;
                 window.location.href = url;
             });
 
@@ -75,8 +80,10 @@
                     </div>
                     <div class="actions">
                         @if(can('kkgiadvkcb','create'))
-                        <button type="button" class="btn btn-default btn-sm" data-target="#create-modal-confirm" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;
-                            Thêm mới</button>
+                            @if($inputs['maxa'] != '')
+                            <button type="button" class="btn btn-default btn-sm" data-target="#create-modal-confirm" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;
+                                Thêm mới</button>
+                            @endif
                         @endif
                     </div>
 
@@ -85,7 +92,7 @@
                     <div class="row">
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label>Năm hồ sơ</label>
+                                <label style="font-weight: bold">Năm hồ sơ</label>
                                 <select name="nam" id="nam" class="form-control">
                                     @if ($nam_start = intval(date('Y')) - 5 ) @endif
                                     @if ($nam_stop = intval(date('Y')) + 1) @endif
@@ -95,23 +102,24 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Trạng thái hồ sơ</label>
-                                <select name="trangthai" id="trangthai" class="form-control">
-                                    @if(session('admin')->level == 'X')
-                                    <option value="CHT" {{$inputs['trangthai']  == 'CHT' ? 'selected' : ''}}>Chưa hoàn thành</option>
-                                    @endif
-                                    <option value="HT" {{$inputs['trangthai']  == 'HT' ? 'selected' : ''}}>Hoàn thành</option>
-                                    <option value="HHT" {{$inputs['trangthai']  == 'HHT' ? 'selected' : ''}}>Hủy hoàn thành</option>
-                                    <option value="CB" {{$inputs['trangthai']  == 'CB' ? 'selected' : ''}}>Công bố</option>
-                                </select>
+                        @if(session('admin')->level == 'T')
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label style="font-weight: bold">Đơn vị quản lý</label>
+                                    <select name="mahuyen" id="mahuyen" class="form-control">
+                                        @foreach($modeldvql as $dvql)
+                                            <option value="{{$dvql->mahuyen}}" {{$dvql->mahuyen == $inputs['mahuyen'] ? 'selected' : ''}}>{{$dvql->tendv}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
+                        @else
+                            <input type="hidden" name="mahuyen" id="mahuyen" value="{{$inputs['mahuyen']}}">
+                        @endif
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H')
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label>Đơn vị</label>
+                                    <label style="font-weight: bold">Đơn vị</label>
                                     <select name="maxa" id="maxa" class="form-control">
                                         @foreach($modeldv as $dv)
                                             <option value="{{$dv->maxa}}" {{$dv->maxa == $inputs['maxa']  ? 'selected' : ''}}>{{$dv->tendv}}</option>

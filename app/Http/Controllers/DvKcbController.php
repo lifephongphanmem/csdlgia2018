@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\District;
 use App\DmDvKcb;
 use App\DvKcb;
 use App\DvKcbCt;
@@ -19,7 +20,7 @@ class DvKcbController extends Controller
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
 
-            if(session('admin')->level == 'X'){
+            /*if(session('admin')->level == 'X'){
                 $modeldv = Town::where('maxa',session('admin')->maxa)->get();
                 $inputs['maxa'] = session('admin')->maxa;
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CHT';
@@ -30,13 +31,27 @@ class DvKcbController extends Controller
                     $modeldv = Town::where('mahuyen',session('admin')->mahuyen)->get();
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
                 $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
+            }*/
+            $modeldvql = District::all();
+            if(session('admin')->level == 'X') {
+                $modeldv = Town::where('maxa',session('admin')->maxa)->get();
+                $inputs['maxa'] = session('admin')->maxa;
+                $inputs['mahuyen'] = session('admin')->mahuyen;
+            }else {
+                if(session('admin')->level == 'T') {
+                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldvql->first()->mahuyen;
+                    $modeldv = Town::where('mahuyen',$inputs['mahuyen'])->get();
+                }else {
+                    $inputs['mahuyen'] = session('admin')->mahuyen;
+                    $modeldv = Town::where('mahuyen', session('admin')->mahuyen)->get();
+                }
+                $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : (count($modeldv)> 0 ? $modeldv->first()->maxa : '');
             }
+
 
             $model = DvKcb::join('nhomdvkcb','nhomdvkcb.manhom','=','dvkcb.manhom')
                 ->select('dvkcb.*','nhomdvkcb.tennhom')
                 ->where('dvkcb.maxa',$inputs['maxa']);
-            if($inputs['trangthai'] != '')
-                $model = $model->where('trangthai',$inputs['trangthai']);
 
             $model=$model->get();
             $m_nhomdvkcb = NhomDvKcb::where('theodoi','TD')
@@ -46,6 +61,7 @@ class DvKcbController extends Controller
                 ->with('modeldv',$modeldv)
                 ->with('inputs',$inputs)
                 ->with('m_nhomdvkcb',$m_nhomdvkcb)
+                ->with('modeldvql',$modeldvql)
                 ->with('pageTitle','Thông tin hồ sơ giá dịch vụ khám chữa bệnh');
 
         }else
