@@ -146,7 +146,7 @@ class ThGiaHhDvKController extends Controller
                         $modelct = new ThGiaHhDvKCt();
                         $modelct->mahs = $inputs['mahs'];
                         $modelct->manhom = $inputs['manhom'];
-                        $modelct->ngaychotbc = $inputs['ngaychotbc'];
+                        //$modelct->ngaychotbc = $inputs['ngaychotbc'];
                         $modelct->mahhdv = $ctdf->mahhdv;
                         $modelct->tenhhdv = $ctdf->tenhhdv;
                         $modelct->dvt = $ctdf->dvt;
