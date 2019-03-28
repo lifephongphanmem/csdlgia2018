@@ -140,7 +140,7 @@ class ThGiaHhDvKController extends Controller
                 $model = new ThGiaHhDvK();
                 if($model->create($inputs)){
                     $modelctdf = ThGiaHhDvKCtDf::where('manhom',$inputs['manhom'])
-                        ->where('ngaychotbc',$inputs['ngaychotbc'])
+                        //->where('ngaychotbc',$inputs['ngaychotbc'])
                         ->get();
                     foreach($modelctdf as $ctdf){
                         $modelct = new ThGiaHhDvKCt();
