@@ -151,6 +151,8 @@ class ThGiaHhDvKController extends Controller
                         $modelct->tenhhdv = $ctdf->tenhhdv;
                         $modelct->dvt = $ctdf->dvt;
                         $modelct->gia = $ctdf->gia;
+                        $modelct->gialk = $ctdf->gialk;
+                        $modelct->dacdiemkt = $ctdf->dacdiemkt;
                         $modelct->save();
                     }
                 }
