@@ -134,7 +134,7 @@ class ThGiaHhDvKController extends Controller
         if (Session::has('admin')) {
             if (session('admin')->level == 'T' || session('admin')->level == 'H') {
                 $inputs = $request->all();
-                $inputs['ngaybc'] = getDateToDb($inputs['ngaybc']);
+                //$inputs['ngaybc'] = getDateToDb($inputs['ngaybc']);
                 $inputs['mahs'] = $inputs['manhom'].getdate()[0];
                 $inputs['trangthai'] = 'CHT';
                 $model = new ThGiaHhDvK();
