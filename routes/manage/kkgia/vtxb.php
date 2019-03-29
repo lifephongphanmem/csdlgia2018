@@ -22,3 +22,4 @@ Route::get('ttdnkkvtxb','KkGiaVtXbXdController@ttdn');
 Route::post('xetduyetkekhaigiavtxb/tralai','KkGiaVtXbXdController@tralai');
 Route::get('xetduyetkekhaigiavtxb/ttnhanhs','KkGiaVtXbXdController@ttnhanhs');
 Route::post('xetduyetkekhaigiavtxb/nhanhs','KkGiaVtXbXdController@nhanhs');
+Route::get('timkiemgiavantaixebuyt','KkGiaVtXbXdController@search');

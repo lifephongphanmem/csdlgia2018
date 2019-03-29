@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\District;
-use App\KkGiaVtXb;
+use App\KkCuocVcHk;
 use App\Town;
 use App\Company;
 use Carbon\Carbon;
@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
-class KkGiaVtXbXdController extends Controller
+class KkCuocVcHkXdController extends Controller
 {
     public function index(Request $request){
         if (Session::has('admin')) {
@@ -21,11 +21,11 @@ class KkGiaVtXbXdController extends Controller
                 $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CD';
 
-                $model = KkGiaVtXb::join('company','company.maxa','=','kkgiavtxb.maxa')
-                    ->select('kkgiavtxb.*','company.tendn')
+                $model = KkCuocVcHk::join('company','company.maxa','=','kkcuocvchk.maxa')
+                    ->select('kkcuocvchk.*','company.tendn')
                     ->where('company.level','DVVT')
-                    ->where('kkgiavtxb.trangthai',$inputs['trangthai'])
-                    ->whereYear('kkgiavtxb.ngaychuyen',$inputs['nam']);
+                    ->where('kkcuocvchk.trangthai',$inputs['trangthai'])
+                    ->whereYear('kkcuocvchk.ngaychuyen',$inputs['nam']);
 
                 $modeldvql = District::all();
                 if(session('admin')->level == 'X') {
@@ -43,15 +43,15 @@ class KkGiaVtXbXdController extends Controller
                     }
                     $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : (count($modeldv)> 0 ? $modeldv->first()->maxa : '');
                 }
-                $model = $model->where('kkgiavtxb.mahuyen',$inputs['maxa']);
+                $model = $model->where('kkcuocvchk.mahuyen',$inputs['maxa']);
 
                 $model = $model->get();
-                return view('manage.kkgia.vtxb.kkgia.xetduyet.index')
+                return view('manage.kkgia.cuocvchk.kkgia.xetduyet.index')
                     ->with('model', $model)
                     ->with('inputs',$inputs)
                     ->with('modeldvql',$modeldvql)
                     ->with('modeldv',$modeldv)
-                    ->with('pageTitle', 'Xét duyệt hồ sơ kê khai giá vận tải xe buýt');
+                    ->with('pageTitle', 'Xét duyệt hồ sơ kê khai giá cước vận chuyển hành khách: xe buýt, xe điện, bè mảng');
             }else{
                 return view('errors.perm');
             }
@@ -77,7 +77,7 @@ class KkGiaVtXbXdController extends Controller
 
         if(isset($inputs['id'])){
 
-            $modelhs = KkGiaVtXb::where('id',$inputs['id'])
+            $modelhs = KkCuocVcHk::where('id',$inputs['id'])
                 ->first();
             $modeldn = Company::where('maxa',$modelhs->maxa)->where('level','DVVT')->first();
 
@@ -96,7 +96,7 @@ class KkGiaVtXbXdController extends Controller
             if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $inputs['trangthai'] = 'BTL';
-                $model = KkGiaVtXb::where('id',$inputs['idtralai'])->first();
+                $model = KkCuocVcHk::where('id',$inputs['idtralai'])->first();
                 if($model->update($inputs)){
                     $tencqcq = Town::where('maxa',$model->mahuyen)->first();
                     $dn = Company::where('maxa',$model->maxa)->where('level','DVVT')->first();
@@ -117,7 +117,7 @@ class KkGiaVtXbXdController extends Controller
                         $message->from('phanmemcsdlgia@gmail.com','Phần mềm CSDL giá');
                     });
                 }
-                return redirect('xetduyetkekhaigiavtxb?&trangthai='.$inputs['trangthai'].'&maxa='.$model->mahuyen);
+                return redirect('xetduyetkekhaicuocvchk?&trangthai='.$inputs['trangthai'].'&maxa='.$model->mahuyen);
             }else{
                 return view('errors.perm');
             }
@@ -143,7 +143,7 @@ class KkGiaVtXbXdController extends Controller
 
         if(isset($inputs['id'])){
 
-            $modelhs = KkGiaVtXb::where('id',$inputs['id'])
+            $modelhs = KkCuocVcHk::where('id',$inputs['id'])
                 ->first();
             $model = Town::where('maxa',$modelhs->mahuyen)
                 ->first();
@@ -179,7 +179,7 @@ class KkGiaVtXbXdController extends Controller
     }
 
     public function getsohsnhan($mahuyen){
-        $model = KkGiaVtXb::where('trangthai', 'DD')
+        $model = KkCuocVcHk::where('trangthai', 'DD')
             ->where('mahuyen', $mahuyen)
             ->max('id');
         if (count($model) == 0) {
@@ -193,7 +193,7 @@ class KkGiaVtXbXdController extends Controller
         if (Session::has('admin')) {
             $inputs = $request->all();
             $id = $inputs['idnhanhs'];
-            $model = KkGiaVtXb::findOrFail($id);
+            $model = KkCuocVcHk::findOrFail($id);
             $inputs['trangthai'] = 'DD';
             $inputs['ngaynhan'] = getDateToDb($inputs['ngaynhan']);
             //$inputs['thoihan'] = getThXdHsDvLt($model->ngaychuyen,$inputs['ngaynhan']);
@@ -227,7 +227,7 @@ class KkGiaVtXbXdController extends Controller
                 });
 
             }
-            return redirect('xetduyetkekhaigiavtxb?&trangthai=DD&maxa='.$model->mahuyen);
+            return redirect('xetduyetkekhaicuocvchk?&trangthai=DD&maxa='.$model->mahuyen);
         }else
             return view('errors.notlogin');
     }
@@ -237,21 +237,22 @@ class KkGiaVtXbXdController extends Controller
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
             $inputs['tthhdv'] = isset($inputs['tthhdv']) ? $inputs['tthhdv'] : '';
-            $model = KkGiaVtXb::leftJoin('kkgiavtxbct','kkgiavtxb.mahs','=','kkgiavtxbct.mahs')
-                ->leftjoin('company','company.maxa','=','kkgiavtxb.maxa')
+            $model = KkCuocVcHk::leftJoin('kkcuocvchkct','kkcuocvchk.mahs','=','kkcuocvchkct.mahs')
+                ->leftjoin('company','company.maxa','=','kkcuocvchk.maxa')
                 ->where('company.level','DVVT')
-                ->whereYear('kkgiavtxb.ngayhieuluc',$inputs['nam'])
-                ->select('kkgiavtxbct.*','company.tendn','kkgiavtxb.ngayhieuluc','kkgiavtxb.maxa')
-                ->where('kkgiavtxb.trangthai','DD');
+                ->whereYear('kkcuocvchk.ngayhieuluc',$inputs['nam'])
+                ->select('kkcuocvchkct.*','company.tendn','kkcuocvchk.ngayhieuluc','kkcuocvchk.maxa')
+                ->where('kkcuocvchk.trangthai','DD');
             if($inputs['tthhdv'] != '')
-                $model = $model->where('kkgiavtxbct.tthhdv','like','%'.$inputs['tthhdv'].'%');
+                $model = $model->where('kkcuocvchkct.tthhdv','like','%'.$inputs['tthhdv'].'%');
             $model = $model->get();
 
-            return view('manage.kkgia.vtxb.kkgia.timkiem.index')
+            return view('manage.kkgia.cuocvchk.kkgia.timkiem.index')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
-                ->with('pageTitle','Tìm kiếm thông tin kê khai giá vận tải xe buýt');
+                ->with('pageTitle','Tìm kiếm thông tin kê khai giá cước vận chuyển hành khách: xe buýt, xe điện, bè mảng');
         }else
             return view('errors.notlogin');
     }
+
 }

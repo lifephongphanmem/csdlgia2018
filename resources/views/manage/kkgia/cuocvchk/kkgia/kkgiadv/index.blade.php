@@ -88,7 +88,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/kkvtxb/showlydo',
+                url: '/kkvchk/showlydo',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -192,17 +192,17 @@
                                 <td>
                                     <a href="{{url('kekhaicuocvchk/prints?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                     @if(canEdit($tt->trangthai))
-                                        @if(can('kkvtxb','edit'))
+                                        @if(can('kkvtch','edit'))
                                             <a href="{{url('kekhaicuocvchk/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                         @endif
                                         @if(canChuyenXoa($tt->trangthai))
-                                            @if(can('kkvtxb','delete'))
+                                            @if(can('kkvtch','delete'))
                                                 @if($tt->trangthai == 'CC')
                                                 <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                                     Xóa</button>
                                                 @endif
                                             @endif
-                                            @if(can('kkvtxb','approve'))
+                                            @if(can('kkvtch','approve'))
                                                 @if($tt->trangthai == 'CC' || $tt->trangthai == 'BTL')
                                                 <button type="button" onclick="confirmChuyen('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyen-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
                                                     Chuyển</button>

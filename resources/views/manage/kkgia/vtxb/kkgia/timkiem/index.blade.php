@@ -23,13 +23,13 @@
         $(function(){
             $('#nam').change(function() {
                 var namhs = $('#nam').val();
-                var url = '/timkiemgiavantaixekhach?'+namhs;
+                var url = '/timkiemgiavantaixebuyt?'+namhs;
                 window.location.href = url;
             });
-            $('#mota').change(function() {
+            $('#tthhdv').change(function() {
                 var namhs = '&nam='+ $('#nam').val();
-                var mota = '&mota=' + $('#mota').val();
-                var url = '/timkiemgiavantaixekhach?'+namhs + mota;
+                var tthhdv = '&tthhdv=' + $('#tthhdv').val();
+                var url = '/timkiemgiavantaixebuyt?'+namhs + tthhdv;
                 window.location.href = url;
             });
 
@@ -40,7 +40,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Tìm kiếm thông tin kê khai giá<small>&nbsp;vận tải xe khách</small>
+        Tìm kiếm thông tin kê khai giá<small>&nbsp;vận tải xe buýt</small>
     </h3>
     <div class="row">
         <div class="col-md-2">
@@ -57,8 +57,8 @@
         </div>
         <div class="col-md-5">
             <div class="form-group">
-                <label>Mô tả</label>
-                <input type="text" class="form-control" id="mota" name="mota" value="{{$inputs['mota']}}">
+                <label>Tên hàng hóa, dịch vụ</label>
+                <input type="text" class="form-control" id="tthhdv" name="tthhdv" value="{{$inputs['tthhdv']}}">
             </div>
         </div>
 
@@ -78,12 +78,10 @@
                             <th style="text-align: center ; margin: auto" width="2%">STT</th>
                             <th style="text-align: center" width="20%">Doanh nghiệp</th>
                             <th style="text-align: center" width="8%">Ngày thực hiện<br>mức giá</th>
-                            <th style="text-align: center" >Loại xe</th>
-                            <th style="text-align: center" >Mô tả</th>
+                            <th style="text-align: center" >Tên hàng hóa, dịch vụ</th>
                             <th style="text-align: center" >Quy cách chất lượng</th>
                             <th style="text-align: center" >Đơn vị tính</th>
                             <th style="text-align: center" >Mức giá kê khai</th>
-
                         </tr>
                         </thead>
                         <tbody>
@@ -93,11 +91,10 @@
                                 <td class="active"><b>Tên DN: </b> {{$tt->tendn}}
                                     <br><b>Mã số thuế:</b> {{$tt->maxa}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->ngayhieuluc)}}</td>
-                                <td style="text-align: left">{{$tt->loaixe}}</td>
-                                <td style="text-align: left">{{$tt->mota}}</td>
+                                <td style="text-align: left">{{$tt->tthhdv}}</td>
                                 <td style="text-align: left">{{$tt->qccl}}</td>
                                 <td style="text-align: left">{{$tt->dvt}}</td>
-                                <td style="text-align: right;font-weight: bold">{{number_format($tt->giathanh)}}</td>
+                                <td style="text-align: right;font-weight: bold">{{number_format($tt->dongia)}}</td>
 
                             </tr>
                         @endforeach
