@@ -30,9 +30,9 @@
             <td>STT</td>
             <td>Mã hàng</td>
             <td>Tên hàng</td>
-            <td>Đơn vị tính</td>
             <td>Đặc điểm kỹ thuật</td>
             <td>Xuất xứ</td>
+            <td>Đơn vị tính</td>
             <td>Giá liền kề</td>
             <td>Giá hàng hóa</td>
         </tr>
@@ -46,9 +46,9 @@
                         <td>{{$stt++}}</td>
                         <td>{{$ct->mahhdv}}</td>
                         <td>{{$ct->tenhhdv}}</td>
-                        <td>{{$ct->dvt}}</td>
                         <td>{{$ct->dacdiemkt}}</td>
                         <td>{{$ct->xuatxu}}</td>
+                        <td>{{$ct->dvt}}</td>
                         <td>{{$ct->gialk}}</td>
                         <td>{{$ct->gia}}</td>
                     </tr>

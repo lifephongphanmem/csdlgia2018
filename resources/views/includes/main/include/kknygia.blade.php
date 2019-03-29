@@ -196,7 +196,7 @@
                                         @if(canDVVT('dvvt','vtxk'))
                                             <li>
                                                 <a href="">
-                                                    <span class="title">Vận tải hành khách bằng ôtô tuyến cố định</span>
+                                                    <span class="title">Cước vận tải hành khách bằng ôtô tuyến cố định</span>
                                                     <span class="arrow"></span>
                                                 </a>
                                                 <ul class="sub-menu" style="display: none;">
@@ -230,7 +230,7 @@
                                         @if(canDVVT('dvvt','vtxb'))
                                             <li>
                                                 <a href="">
-                                                    <span class="title">Vận tải hành khách bằng xe buýt theo tuyến cố định</span>
+                                                    <span class="title">Cước vận tải hành khách bằng xe buýt theo tuyến cố định</span>
                                                     <span class="arrow"></span>
                                                 </a>
                                                 <ul class="sub-menu" style="display: none;">
@@ -261,7 +261,7 @@
                                         @if(canDVVT('dvvt','vtxtx'))
                                             <li>
                                                 <a href="">
-                                                    <span class="title">Vận tải hành khách bằng xe taxi</span>
+                                                    <span class="title">Cước vận tải hành khách bằng xe taxi</span>
                                                     <span class="arrow"></span>
                                                 </a>
                                                 <ul class="sub-menu" style="display: none;">
@@ -295,15 +295,27 @@
                                         @if(canDVVT('dvvt','vtch'))
                                             <li>
                                                 <a href="">
-                                                    <span class="title">Vận tải khác</span>
+                                                    <span class="title">Cước vận chuyển hành khách: xe buýt, xe điện, bè mảng</span>
                                                     <span class="arrow"></span>
                                                 </a>
                                                 <ul class="sub-menu" style="display: none;">
-                                                    <li><a href="">Danh mục dịch vụ</a> </li>
-                                                    <li><a href="">Kê khai giá</a></li>
-                                                    <li><a href="">Xét duyệt hồ sơ kê khai</a></li>
-                                                    <li><a href="">Tìm kiếm hồ sơ kê khai</a></li>
-                                                    <!--li><a href="">Báo cáo</a></li-->
+                                                    @if(session('admin')->level == 'DVVT')
+                                                        @if(can('kkvtch','index'))
+                                                            <li><a href="{{url('kekhaicuocvchk')}}">Kê khai giá</a></li>
+                                                        @endif
+                                                    @endif
+                                                    @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
+                                                        @if(can('kkvtch','index'))
+                                                            <li><a href="{{url('thongtindnvchk')}}">Kê khai giá</a></li>
+                                                            <li><a href="{{url('xetduyetvantaikhac')}}">Xét duyệt hồ sơ kê khai</a></li>
+                                                        @endif
+                                                        @if(can('thvtch','timkiem'))
+                                                            <li><a href="{{url('timkiemvantaikhac')}}">Tìm kiếm hồ sơ kê khai</a></li>
+                                                        @endif
+                                                        @if(can('thvtch','baocao'))
+                                                            <!--li><a href="">Báo cáo</a></li-->
+                                                        @endif
+                                                    @endif
                                                 </ul>
                                             </li>
                                         @endif

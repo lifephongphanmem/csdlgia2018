@@ -231,30 +231,30 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="row">
                     <div class="col-md-12">
                         @if(canGeneral('vtxk','index'))
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <input type="checkbox" value="1" name="roles[dvvt][vtxk]" checked> Vận tải xe khách
+                                <input type="checkbox" value="1" name="roles[dvvt][vtxk]" checked> Vận tải hành khách bằng ôtô theo tuyến cố định
                             </div>
                         </div>
                         @endif
                         @if(canGeneral('vtxb','index'))
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <input type="checkbox" value="1" name="roles[dvvt][vtxb]" checked> Vận tải xe buýt
+                                <input type="checkbox" value="1" name="roles[dvvt][vtxb]" checked> Vận tải hành khách bằng xe buýt theo tuyến cố định
                             </div>
                         </div>
                         @endif
                         @if(canGeneral('vtxtx','index'))
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <input type="checkbox" value="1" name="roles[dvvt][vtxtx]" checked> Vận tải xe taxi
+                                <input type="checkbox" value="1" name="roles[dvvt][vtxtx]" checked> Vận tải hành khách bằng xe taxi
                             </div>
                         </div>
                         @endif
                         @if(canGeneral('vtch','index'))
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <input type="checkbox" value="1" name="roles[dvvt][vtch]" checked> Vận tải chở hàng
+                                <input type="checkbox" value="1" name="roles[dvvt][vtch]" checked> Vận chuyển hành khách: xe buýt, xe điện, bè mảng
                             </div>
                         </div>
                         @endif

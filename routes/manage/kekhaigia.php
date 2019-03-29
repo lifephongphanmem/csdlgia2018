@@ -28,6 +28,9 @@ include('kkgia/vtxb.php');
 //VLXD
 include('kkgia/vlxd.php');
 
+//Cước vận chuyển hành khách
+include('kkgia/cuocvchk.php');
+
 //Đăng ký giá
 include('kkgia/dkg.php');
 
@@ -36,6 +39,7 @@ include('kkgia/xmtxd.php');
 
 //dvhdtm
 include('kkgia/dvhdtm.php');
+
 
 //
 ?>

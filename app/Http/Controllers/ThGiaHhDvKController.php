@@ -439,7 +439,10 @@ class ThGiaHhDvKController extends Controller
                         ->where('trangthai','HT')
                         ->where('phanloai','thang')
                         ->max('id');
-                    $mahslk = ThGiaHhDvK::where('id',$idlk)->first()->mahs;
+                    if($idlk != '')
+                        $mahslk = ThGiaHhDvK::where('id',$idlk)->first()->mahs;
+                    else
+                        $mahslk = '';
                     foreach ($modeldm as $dm) {
                         $ttgia = $modelcthskk->where('mahhdv', $dm->mahhdv)->avg('gia');
                         if($mahslk != '') {

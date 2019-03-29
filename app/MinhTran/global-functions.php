@@ -3342,13 +3342,13 @@ function getTtPhong($str)
 function getNgayHieuLuc($ngaynhap,$pl){
     $dayngaynhap = date('D',strtotime($ngaynhap));
     if($pl == 'DVLT')
-        $thoihan = isset(getGeneralConfigs()['thoihanlt']) ? getGeneralConfigs()['thoihanlt'] : 2;
+        $thoihan = isset(getGeneralConfigs()['thoihanlt']) ? getGeneralConfigs()['thoihanlt'] : 5;
     elseif($pl == 'DVVT')
-        $thoihan = isset(getGeneralConfigs()['thoihanvt']) ? getGeneralConfigs()['thoihanvt'] : 2;
+        $thoihan = isset(getGeneralConfigs()['thoihanvt']) ? getGeneralConfigs()['thoihanvt'] : 5;
     elseif($pl == 'TPCNTE6T')
-        $thoihan = isset(getGeneralConfigs()['thoihangs']) ? getGeneralConfigs()['thoihangs'] : 2;
+        $thoihan = isset(getGeneralConfigs()['thoihangs']) ? getGeneralConfigs()['thoihangs'] : 5;
     elseif($pl == 'TACN')
-        $thoihan = isset(getGeneralConfigs()['thoihantacn']) ? getGeneralConfigs()['thoihantacn'] : 2;
+        $thoihan = isset(getGeneralConfigs()['thoihantacn']) ? getGeneralConfigs()['thoihantacn'] : 5;
     $ngaynghi = 0;
 
     if ($dayngaynhap == 'Thu') {
@@ -3699,6 +3699,24 @@ function quy(){
     else
         $value = 4;
     return $value;
+}
+
+function getNgayApDung($ngaynhap,$mahuyen){
+    $dayngaynhap = date('D',strtotime($ngaynhap));
+    $ngaynghi = 0;
+    $model = \App\Town::where('maxa',$mahuyen)->first();
+    $thoihan = $model->songaylv;
+
+    if ($dayngaynhap == 'Thu') {
+        $ngayhieuluc = date('Y-m-d', mktime(0, 0, 0, date("m"), date("d") + 2 + $thoihan + $ngaynghi, date("Y")));
+    } elseif ($dayngaynhap == 'Fri') {
+        $ngayhieuluc = date('Y-m-d', mktime(0, 0, 0, date("m"), date("d") + 2 + $thoihan + $ngaynghi, date("Y")));
+    } elseif ($dayngaynhap == 'Sat') {
+        $ngayhieuluc = date('Y-m-d', mktime(0, 0, 0, date("m"), date("d") + 1 + $thoihan + $ngaynghi, date("Y")));
+    } else {
+        $ngayhieuluc = date('Y-m-d', mktime(0, 0, 0, date("m"), date("d") + $thoihan + $ngaynghi, date("Y")));
+    }
+    return $ngayhieuluc;
 }
 
 ?>
