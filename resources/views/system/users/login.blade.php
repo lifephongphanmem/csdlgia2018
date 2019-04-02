@@ -176,6 +176,26 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="col-md-12" style="text-align: center">
 								<div class="profile-userbuttons">
 									<a class="btn default pink-stripe" href="{{url('dangkytaikhoan?&level=DVHDTM')}}"> Doanh nghiêp cung cấp <br>dịch vụ hỗ trợ hoạt động thương mại</a>&nbsp;
+									<a class="btn default pink-stripe" href="{{url('dangkytaikhoan?&level=THAN')}}"> Doanh nghiêp cung cấp <br>Than</a>&nbsp;
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-12" style="text-align: center">
+								<div class="profile-userbuttons">
+									<a class="btn default pink-stripe" href="{{url('dangkytaikhoan?&level=GIAY')}}"> Doanh nghiêp cung cấp <br>giấy in, viết (dạng cuộn),<br> giấy in báo sản xuất trong nước</a>&nbsp;
+									<a class="btn default pink-stripe" href="{{url('dangkytaikhoan?&level=SACH')}}"> Doanh nghiêp cung cấp <br>sách giáo khoa</a>&nbsp;
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-12" style="text-align: center">
+								<div class="profile-userbuttons">
+									<a class="btn default pink-stripe" href="{{url('dangkytaikhoan?&level=ETANOL')}}"> Doanh nghiêp cung cấp <br>Etanol nhiên liệu không biến tính; <br>khí tự nhiên hóa lỏng(LNG);<br> khí thiên nhiên nén (CNG)</a>&nbsp;
 								</div>
 							</div>
 						</div>

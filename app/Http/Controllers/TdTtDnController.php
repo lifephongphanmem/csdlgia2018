@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\District;
 use App\Town;
 use App\TtDnTd;
 use App\Company;
@@ -20,18 +21,20 @@ class TdTtDnController extends Controller
                     $inputs = $request->all();
                     $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CD';
                     $inputs['level'] = isset($inputs['level']) ? $inputs['level'] : '';
-                    if (session('admin')->level == 'X') {
-                        $modeldv = Town::where('maxa', session('admin')->maxa)
-                            ->where('mahuyen', session('admin')->mahuyen)
-                            ->get();
+                    $modeldvql = District::all();
+                    if(session('admin')->level == 'X') {
+                        $modeldv = Town::where('maxa',session('admin')->maxa)->get();
                         $inputs['maxa'] = session('admin')->maxa;
-                    }elseif(session('admin')->level == 'H') {
-                        $modeldv = Town::where('mahuyen', session('admin')->mahuyen)
-                            ->get();
-                        $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
+                        $inputs['mahuyen'] = session('admin')->mahuyen;
                     }else {
-                        $modeldv = Town::all();
-                        $inputs['maxa'] =  isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
+                        if(session('admin')->level == 'T') {
+                            $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldvql->first()->mahuyen;
+                            $modeldv = Town::where('mahuyen',$inputs['mahuyen'])->get();
+                        }else {
+                            $inputs['mahuyen'] = session('admin')->mahuyen;
+                            $modeldv = Town::where('mahuyen', session('admin')->mahuyen)->get();
+                        }
+                        $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : (count($modeldv)> 0 ? $modeldv->first()->maxa : '');
                     }
                     if ($inputs['level'] != '') {
                         $model = TtDnTd::where('trangthai', $inputs['trangthai'])
@@ -44,6 +47,7 @@ class TdTtDnController extends Controller
                         ->with('model', $model)
                         ->with('inputs', $inputs)
                         ->with('modeldv', $modeldv)
+                        ->with('modeldvql',$modeldvql)
                         ->with('pageTitle', 'Xét duyệt thông tin doanh nghiệp thay đổi');
                 } else
                     return view('errors.perm');

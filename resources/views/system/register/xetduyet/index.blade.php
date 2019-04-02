@@ -56,15 +56,24 @@
         
         $(function(){
             $('#level').change(function() {
-                var pl = '&level='+ $('#level').val();
-                var mahuyen = '&mahuyen='+$('#mahuyen').val();
-                var url = 'register?'+pl+mahuyen;
+                var current_path_url = '/register?';
+                var level = '&level='+$('#level').val();
+                var url = current_path_url + level;
                 window.location.href = url;
             });
+
             $('#mahuyen').change(function() {
-                var pl = '&level='+ $('#level').val();
-                var mahuyen = '&mahuyen='+$('#mahuyen').val();
-                var url = 'register?'+pl+mahuyen;
+                var mahuyen = '&mahuyen='+ $('#mahuyen').val();
+                var level = '&level='+$('#level').val();
+                var url = '/register?'  + mahuyen + level;
+
+                window.location.href = url;
+            });
+            $('#maxa').change(function() {
+                var current_path_url = '/register?';
+                var level = '&level='+$('#level').val();
+                var maxa = '&maxa='+$('#maxa').val();
+                var url = current_path_url + level + maxa;
                 window.location.href = url;
             });
         })
@@ -88,7 +97,7 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label>Doanh nghiệp cung cấp</label>
+                                    <label style="font-weight: bold">Doanh nghiệp cung cấp</label>
                                     <select class="form-control" name="level" id="level">
                                         <option value="">--Chọn phân loại tài khoản--</option>
                                         @if(can('dvlt','index') && can('thdvlt','xdttdn'))
@@ -115,16 +124,42 @@
                                         @if(can('dvhdtm','index') && can('thdvhdtm','xdttdn'))
                                             <option value="DVHDTM" {{$inputs['level'] == 'DVHDTM' ? 'selected' :''}}>Dịch vụ hỗ trợ hoạt động thương mại</option>
                                         @endif
+                                        @if(can('than','index') && can('ththan','xdttdn'))
+                                            <option value="THAN" {{$inputs['level'] == 'THAN' ? 'selected' :''}}>Than</option>
+                                        @endif
+                                        @if(can('giay','index') && can('thgiay','xdttdn'))
+                                            <option value="GIAY" {{$inputs['level'] == 'GIAY' ? 'selected' :''}}>Giấy in, viết(dạng cuộn), giấy in báo sản xuất trong nước</option>
+                                        @endif
+                                        @if(can('sach','index') && can('thsach','xdttdn'))
+                                            <option value="SACH" {{$inputs['level'] == 'SACH' ? 'selected' :''}}>Sách giáo khoa</option>
+                                        @endif
+                                        @if(can('etanol','index') && can('thetanol','xdttdn'))
+                                            <option value="ETANOL" {{$inputs['level'] == 'ETANOL' ? 'selected' :''}}>Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG)</option>
+                                        @endif
                                     </select>
                                 </div>
                             </div>
-                            @if(session('admin')->level == 'T' || session('admin')->level == 'H')
-                                <div class="col-md-5">
+                            @if(session('admin')->level == 'T')
+                                <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>Đơn vị</label>
-                                        <select class="form-control" name="mahuyen" id="mahuyen">
-                                            @foreach($towns as $town)
-                                                <option value="{{$town->maxa}}" {{$town->maxa == $inputs['mahuyen'] ? 'selected' : ''}}>{{$town->tendv}}</option>
+                                        <label style="font-weight: bold">Đơn vị chủ quản</label>
+                                        <select name="mahuyen" id="mahuyen" class="form-control">
+                                            @foreach($modeldvql as $dvql)
+                                                <option value="{{$dvql->mahuyen}}" {{$dvql->mahuyen == $inputs['mahuyen'] ? 'selected' : ''}}>{{$dvql->tendv}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            @else
+                                <input type="hidden" name="mahuyen" id="mahuyen" value="{{$inputs['mahuyen']}}">
+                            @endif
+                            @if(session('admin')->level == 'T' || session('admin')->level == 'H')
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label style="font-weight: bold;">Đơn vị quản lý</label>
+                                        <select class="form-control" name="maxa" id="maxa">
+                                            @foreach($modeldv as $dv)
+                                                <option value="{{$dv->maxa}}" {{$dv->maxa == $inputs['maxa']? 'selected' : ''}}>{{$dv->tendv}}</option>
                                             @endforeach
                                         </select>
                                     </div>

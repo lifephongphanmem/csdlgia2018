@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\District;
 use App\Town;
 use App\TtDnTd;
 use App\Company;
@@ -20,32 +21,34 @@ class CompanyController extends Controller
 
                 $inputs = $request->all();
                 $inputs['level'] =  isset($inputs['level']) ? $inputs['level'] : '';
-                if(session('admin')->level == 'T'){
-                    $towns = Town::all();
-                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $towns->first()->maxa;
-                    $tttown = Town::where('maxa',$inputs['mahuyen'])->first();
-                }elseif(session('admin')->level == 'H'){
-                    $towns = Town::where('mahuyen',session('admin')->mahuyen)->get();
-                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $towns->first()->maxa;
-                    $tttown = Town::where('maxa',$inputs['mahuyen'])->first();
-                }else{
-                    $towns = Town::where('mahuyen',session('admin')->mahuyen)
-                        ->where('maxa',session('admin')->maxa)
-                        ->get();
-                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $towns->first()->maxa;
-                    $tttown = Town::where('maxa',$inputs['mahuyen'])->first();
+                $modeldvql = District::all();
+                if(session('admin')->level == 'X') {
+                    $modeldv = Town::where('maxa',session('admin')->maxa)->get();
+                    $inputs['maxa'] = session('admin')->maxa;
+                    $inputs['mahuyen'] = session('admin')->mahuyen;
+                }else {
+                    if(session('admin')->level == 'T') {
+                        $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldvql->first()->mahuyen;
+                        $modeldv = Town::where('mahuyen',$inputs['mahuyen'])->get();
+                    }else {
+                        $inputs['mahuyen'] = session('admin')->mahuyen;
+                        $modeldv = Town::where('mahuyen', session('admin')->mahuyen)->get();
+                    }
+                    $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : (count($modeldv)> 0 ? $modeldv->first()->maxa : '');
                 }
 
+                $tttown = Town::where('maxa',$inputs['maxa'])->first();
 
                 $model = Company::where('level', $inputs['level'])
-                    ->where('mahuyen',$inputs['mahuyen'])
+                    ->where('mahuyen',$inputs['maxa'])
                     ->get();
 
 
                 return view('system.company.index')
                     ->with('model', $model)
                     ->with('inputs', $inputs)
-                    ->with('towns',$towns)
+                    ->with('modeldv', $modeldv)
+                    ->with('modeldvql',$modeldvql)
                     ->with('tttown',$tttown)
                     ->with('pageTitle', 'Danh mục doanh nghiệp cung cấp dịch vụ');
             }else

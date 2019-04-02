@@ -3010,7 +3010,7 @@ function getPermissionDefault($level) {
         ),
     );
 
-//End TACN
+//End Cung cấp giá
     $roles['CCG'] = array(
         'csdlthamdinhgia'=>array(
             'index'=>1,
@@ -3029,6 +3029,156 @@ function getPermissionDefault($level) {
             'approve'=>1,
         ),
     );
+
+//THAN
+    $roles['THAN'] = array(
+        'csdlmucgiahhdv'=>array(
+            'index'=>1,
+        ),
+        'kknygia'=>array(
+            'index'=>1
+        ),
+        'kkgia'=>array(
+            'index'=>1,
+        ),
+        'ttdn'=> array(
+            'index'=>1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'than'=>array(
+            'index'=>1,
+        ),
+        'kkthan'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'ththan'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+    );
+
+//End THAN
+//GIẤY
+    $roles['GIAY'] = array(
+        'csdlmucgiahhdv'=>array(
+            'index'=>1,
+        ),
+        'kknygia'=>array(
+            'index'=>1
+        ),
+        'kkgia'=>array(
+            'index'=>1,
+        ),
+        'ttdn'=> array(
+            'index'=>1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'giay'=>array(
+            'index'=>1,
+        ),
+        'kkgiay'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thgiay'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+    );
+
+//End Giấy
+
+//SÁCH
+    $roles['SACH'] = array(
+        'csdlmucgiahhdv'=>array(
+            'index'=>1,
+        ),
+        'kknygia'=>array(
+            'index'=>1
+        ),
+        'kkgia'=>array(
+            'index'=>1,
+        ),
+        'ttdn'=> array(
+            'index'=>1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'sach'=>array(
+            'index'=>1,
+        ),
+        'kksach'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thsach'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+    );
+
+//End Sách
+//ETANOL
+    $roles['ETANOL'] = array(
+        'csdlmucgiahhdv'=>array(
+            'index'=>1,
+        ),
+        'kknygia'=>array(
+            'index'=>1
+        ),
+        'kkgia'=>array(
+            'index'=>1,
+        ),
+        'ttdn'=> array(
+            'index'=>1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'etanol'=>array(
+            'index'=>1,
+        ),
+        'kketanol'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thetanol'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+    );
+
+//End THAN
 
     return json_encode($roles[$level]);
 

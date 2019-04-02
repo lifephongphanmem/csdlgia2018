@@ -204,6 +204,62 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->than->index) && $setting->than->index == 1) ? 'checked' : '' }} value="1" name="roles[than][index]"/></td>
+                                    <td>Than</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->than->congbo) && $setting->dvhdtm->congbo == 1) ? 'checked' : '' }} value="1" name="roles[than][congbo]"/></td>
+                                    <td>Công bố giá than</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->giay->index) && $setting->giay->index == 1) ? 'checked' : '' }} value="1" name="roles[giay][index]"/></td>
+                                    <td>Giấy in, viết (dạng cuộn), giấy in báo sản xuất trong nước</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->giay->congbo) && $setting->giay->congbo == 1) ? 'checked' : '' }} value="1" name="roles[giay][congbo]"/></td>
+                                    <td>Công bố giá Giấy in, viết (dạng cuộn), giấy in báo sản xuất trong nước</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->sach->index) && $setting->sach->index == 1) ? 'checked' : '' }} value="1" name="roles[sach][index]"/></td>
+                                    <td>Sách giáo khoa</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->sach->congbo) && $setting->sach->congbo == 1) ? 'checked' : '' }} value="1" name="roles[sach][congbo]"/></td>
+                                    <td>Công bố giá Sách giáo khoa</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->etanol->index) && $setting->etanol->index == 1) ? 'checked' : '' }} value="1" name="roles[etanol][index]"/></td>
+                                    <td>Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG)</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->etanol->congbo) && $setting->etanol->congbo == 1) ? 'checked' : '' }} value="1" name="roles[etanol][congbo]"/></td>
+                                    <td>Công bố giá Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG)</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
