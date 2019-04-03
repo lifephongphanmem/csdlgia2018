@@ -82,7 +82,7 @@ class KkCuocVcHkXdController extends Controller
             $modeldn = Company::where('maxa',$modelhs->maxa)->where('level','DVVT')->first();
 
             $result['message'] = '<div class="form-group" id="ttdnkkdvgs"> ';
-            $result['message'] .= '<label style="color: blue"><b>'.$modeldn->tendn.'</b> Kê khai giá vật liệu xây dựng số công văn <b>'.$modelhs->socv.'</b> ngày áp dụng <b>'.getDayVn($modelhs->ngayhieuluc).'</b></b></label>';
+            $result['message'] .= '<label style="color: blue"><b>'.$modeldn->tendn.'</b> Kê khai giá số công văn <b>'.$modelhs->socv.'</b> ngày áp dụng <b>'.getDayVn($modelhs->ngayhieuluc).'</b></b></label>';
             $result['message'] .= '<label style="color: blue">Mã hồ sơ kê khai: <b>'.$modelhs->mahs.'</b></label>';
             $result['message'] .= '</div>';
 
