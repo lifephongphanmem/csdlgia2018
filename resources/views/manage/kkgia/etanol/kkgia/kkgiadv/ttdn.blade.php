@@ -24,12 +24,12 @@
             $('#maxa').change(function() {
                 var maxa = '&maxa=' + $('#maxa').val();
                 var mahuyen = '&mahuyen='+ $('#mahuyen').val();
-                var url = '/thongtindnsach?'+ mahuyen + maxa;
+                var url = '/thongtindnetanol?'+ mahuyen + maxa;
                 window.location.href = url;
             });
             $('#mahuyen').change(function() {
                 var mahuyen = '&mahuyen='+ $('#mahuyen').val();
-                var url = '/thongtindnsach?'  + mahuyen;
+                var url = '/thongtindnetanol?'  + mahuyen;
 
                 window.location.href = url;
             });
@@ -41,7 +41,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin doanh nghiệp kê khai<small>&nbsp;giá sách giáo khoa</small>
+        Thông tin doanh nghiệp kê khai<small>&nbsp;giá Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG)</small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -99,7 +99,7 @@
                                 <td class="active">{{$tt->tendn}}</td>
                                 <td>{{$tt->diachi}}</td>
                                 <td>
-                                    <a href="{{url('kekhaigiasach?&masothue='.$tt->maxa)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-plus"></i>&nbsp;Kê khai giá </a>
+                                    <a href="{{url('kekhaigiaetanol?&masothue='.$tt->maxa)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-plus"></i>&nbsp;Kê khai giá </a>
                                 </td>
                             </tr>
                         @endforeach

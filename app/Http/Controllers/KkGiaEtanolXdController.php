@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\District;
-use App\KkGiaSach;
+use App\KkGiaEtanol;
 use App\Town;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
-class KkGiaSachXdController extends Controller
+class KkGiaEtanolXdController extends Controller
 {
     public function index(Request $request){
         if (Session::has('admin')) {
@@ -21,11 +21,11 @@ class KkGiaSachXdController extends Controller
                 $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CD';
 
-                $model = KkGiaSach::join('company','company.maxa','=','kkgiasach.maxa')
-                    ->select('kkgiasach.*','company.tendn')
-                    ->where('company.level','SACH')
-                    ->where('kkgiasach.trangthai',$inputs['trangthai'])
-                    ->whereYear('kkgiasach.ngaychuyen',$inputs['nam']);
+                $model = KkGiaEtanol::join('company','company.maxa','=','kkgiaetanol.maxa')
+                    ->select('kkgiaetanol.*','company.tendn')
+                    ->where('company.level','ETANOL')
+                    ->where('kkgiaetanol.trangthai',$inputs['trangthai'])
+                    ->whereYear('kkgiaetanol.ngaychuyen',$inputs['nam']);
 
                 $modeldvql = District::all();
                 if(session('admin')->level == 'X') {
@@ -43,15 +43,15 @@ class KkGiaSachXdController extends Controller
                     }
                     $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : (count($modeldv)> 0 ? $modeldv->first()->maxa : '');
                 }
-                $model = $model->where('kkgiasach.mahuyen',$inputs['maxa']);
+                $model = $model->where('kkgiaetanol.mahuyen',$inputs['maxa']);
 
                 $model = $model->get();
-                return view('manage.kkgia.sach.kkgia.xetduyet.index')
+                return view('manage.kkgia.etanol.kkgia.xetduyet.index')
                     ->with('model', $model)
                     ->with('inputs',$inputs)
                     ->with('modeldvql',$modeldvql)
                     ->with('modeldv',$modeldv)
-                    ->with('pageTitle', 'Xét duyệt hồ sơ kê khai giá sách giáo khoa');
+                    ->with('pageTitle', 'Xét duyệt hồ sơ kê khai giá Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG)');
             }else{
                 return view('errors.perm');
             }
@@ -77,12 +77,12 @@ class KkGiaSachXdController extends Controller
 
         if(isset($inputs['id'])){
 
-            $modelhs = KkGiaSach::where('id',$inputs['id'])
+            $modelhs = KkGiaEtanol::where('id',$inputs['id'])
                 ->first();
-            $modeldn = Company::where('maxa',$modelhs->maxa)->where('level','SACH')->first();
+            $modeldn = Company::where('maxa',$modelhs->maxa)->where('level','ETANOL')->first();
 
             $result['message'] = '<div class="form-group" id="ttdnkkdvgs"> ';
-            $result['message'] .= '<label style="color: blue"><b>'.$modeldn->tendn.'</b> Kê khai giá vật liệu xây dựng số công văn <b>'.$modelhs->socv.'</b> ngày áp dụng <b>'.getDayVn($modelhs->ngayhieuluc).'</b></b></label>';
+            $result['message'] .= '<label style="color: blue"><b>'.$modeldn->tendn.'</b> Kê khai giá số công văn <b>'.$modelhs->socv.'</b> ngày áp dụng <b>'.getDayVn($modelhs->ngayhieuluc).'</b></b></label>';
             $result['message'] .= '<label style="color: blue">Mã hồ sơ kê khai: <b>'.$modelhs->mahs.'</b></label>';
             $result['message'] .= '</div>';
 
@@ -96,10 +96,10 @@ class KkGiaSachXdController extends Controller
             if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $inputs['trangthai'] = 'BTL';
-                $model = KkGiaSach::where('id',$inputs['idtralai'])->first();
+                $model = KkGiaEtanol::where('id',$inputs['idtralai'])->first();
                 if($model->update($inputs)){
                     $tencqcq = Town::where('maxa',$model->mahuyen)->first();
-                    $dn = Company::where('maxa',$model->maxa)->where('level','SACH')->first();
+                    $dn = Company::where('maxa',$model->maxa)->where('level','ETANOL')->first();
                     $data=[];
                     $data['tendn'] = $dn->tendn;
                     $data['masothue'] = $model->maxa;
@@ -117,7 +117,7 @@ class KkGiaSachXdController extends Controller
                         $message->from('phanmemcsdlgia@gmail.com','Phần mềm CSDL giá');
                     });
                 }
-                return redirect('xetduyetgiasach?&trangthai='.$inputs['trangthai'].'&maxa='.$model->mahuyen);
+                return redirect('xetduyetgiaetanol?&trangthai='.$inputs['trangthai'].'&maxa='.$model->mahuyen);
             }else{
                 return view('errors.perm');
             }
@@ -143,12 +143,12 @@ class KkGiaSachXdController extends Controller
 
         if(isset($inputs['id'])){
 
-            $modelhs =  KkGiaSach::where('id',$inputs['id'])
+            $modelhs =  KkGiaEtanol::where('id',$inputs['id'])
                 ->first();
             $model = Town::where('maxa',$modelhs->mahuyen)
                 ->first();
             $modeldn = Company::where('maxa',$modelhs->maxa)
-                ->where('level','SACH')
+                ->where('level','ETANOL')
                 ->first();
 
             $ngay = Carbon::now()->toDateString();
@@ -179,7 +179,7 @@ class KkGiaSachXdController extends Controller
     }
 
     public function getsohsnhan($mahuyen){
-        $model = KkGiaSach::where('trangthai', 'DD')
+        $model = KkGiaEtanol::where('trangthai', 'DD')
             ->where('mahuyen', $mahuyen)
             ->max('id');
         if (count($model) == 0) {
@@ -193,7 +193,7 @@ class KkGiaSachXdController extends Controller
         if (Session::has('admin')) {
             $inputs = $request->all();
             $id = $inputs['idnhanhs'];
-            $model = KkGiaSach::findOrFail($id);
+            $model = KkGiaEtanol::findOrFail($id);
             $inputs['trangthai'] = 'DD';
             $inputs['ngaynhan'] = getDateToDb($inputs['ngaynhan']);
             //$inputs['thoihan'] = getThXdHsDvLt($model->ngaychuyen,$inputs['ngaynhan']);
@@ -203,7 +203,7 @@ class KkGiaSachXdController extends Controller
 
                 $tencqcq = Town::where('maxa',$model->mahuyen)->first();
                 $dn = Company::where('maxa',$model->maxa)
-                    ->where('level','SACH')
+                    ->where('level','ETANOL')
                     ->first();
                 $data=[];
                 $data['tendn'] = $dn->tendn;
@@ -227,7 +227,7 @@ class KkGiaSachXdController extends Controller
                 });
 
             }
-            return redirect('xetduyetgiasach?&trangthai=DD&maxa='.$model->mahuyen);
+            return redirect('xetduyetgiaetanol?&trangthai=DD&maxa='.$model->mahuyen);
         }else
             return view('errors.notlogin');
     }
@@ -237,17 +237,17 @@ class KkGiaSachXdController extends Controller
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
             $inputs['tthhdv'] = isset($inputs['tthhdv']) ? $inputs['tthhdv'] : '';
-            $model = KkGiaSach::leftJoin('kkgiasachct','kkgiasachct.mahs','=','kkgiasach.mahs')
-                ->leftjoin('company','company.maxa','=','kkgiasach.maxa')
-                ->where('company.level','SACH')
-                ->whereYear('kkgiasach.ngayhieuluc',$inputs['nam'])
-                ->select('kkgiasachct.*','company.tendn','kkgiasach.ngayhieuluc','kkgiasach.maxa')
-                ->where('kkgiasach.trangthai','DD');
+            $model = KkGiaEtanol::leftJoin('kkgiaetanolct','kkgiaetanolct.mahs','=','kkgiaetanol.mahs')
+                ->leftjoin('company','company.maxa','=','kkgiaetanol.maxa')
+                ->where('company.level','ETANOL')
+                ->whereYear('kkgiaetanol.ngayhieuluc',$inputs['nam'])
+                ->select('kkgiaetanolct.*','company.tendn','kkgiaetanol.ngayhieuluc','kkgiaetanol.maxa')
+                ->where('kkgiaetanol.trangthai','DD');
             if($inputs['tthhdv'] != '')
-                $model = $model->where('kkgiasachct.tthhdv','like','%'.$inputs['tthhdv'].'%');
+                $model = $model->where('kkgiaetanolct.tthhdv','like','%'.$inputs['tthhdv'].'%');
             $model = $model->get();
 
-            return view('manage.kkgia.sach.kkgia.timkiem.index')
+            return view('manage.kkgia.etanol.kkgia.timkiem.index')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
                 ->with('pageTitle','Tìm kiếm thông tin kê khai giá sách giáo khoa');

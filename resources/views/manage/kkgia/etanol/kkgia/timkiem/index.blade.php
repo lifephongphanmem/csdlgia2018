@@ -23,13 +23,13 @@
         $(function(){
             $('#nam').change(function() {
                 var namhs = $('#nam').val();
-                var url = '/timkiemgiasach?'+namhs;
+                var url = '/timkiemgiaetanol?'+namhs;
                 window.location.href = url;
             });
             $('#tthhdv').change(function() {
                 var namhs = '&nam='+ $('#nam').val();
                 var tthhdv = '&tthhdv=' + $('#tthhdv').val();
-                var url = '/timkiemgiasach?'+namhs + tthhdv;
+                var url = '/timkiemgiaetanol?'+namhs + tthhdv;
                 window.location.href = url;
             });
 
@@ -40,7 +40,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Tìm kiếm thông tin kê khai giá<small>&nbsp;sách giáo khoa</small>
+        Tìm kiếm thông tin kê khai giá<small>&nbsp;Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG)</small>
     </h3>
     <div class="row">
         <div class="col-md-2">

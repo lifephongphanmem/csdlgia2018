@@ -163,7 +163,7 @@
         function createttp(){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/giasachct/storett',
+                url: '/giaetanolct/storett',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -193,7 +193,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/giasachct/edittt',
+                url: '/giaetanolct/edittt',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -214,7 +214,7 @@
         function updatets() {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/giasachct/updatett',
+                url: '/giaetanolct/updatett',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -248,7 +248,7 @@
         function deleteRow() {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/giasachct/deletett',
+                url: '/giaetanolct/deletett',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -376,12 +376,12 @@
 
 @section('content')
     <h3 class="page-title">
-        Thông tin kê khai hồ sơ giá <small>&nbsp;sách giáo khoa chỉnh sửa</small>
+        Thông tin kê khai hồ sơ giá <small>&nbsp;Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG) chỉnh sửa</small>
         <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
-        {!! Form::model($model, ['method' => 'PATCH', 'url'=>'kekhaigiasach/'. $model->id, 'class'=>'horizontal-form','id'=>'update_kkgiavtxb']) !!}
+        {!! Form::model($model, ['method' => 'PATCH', 'url'=>'kekhaigiaetanol/'. $model->id, 'class'=>'horizontal-form','id'=>'update_kkgiavtxb']) !!}
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box blue">
@@ -500,7 +500,7 @@
             </div>
             <!-- END EXAMPLE TABLE PORTLET-->
             <div style="text-align: center">
-                <a href="{{url('kekhaigiasach?&masothue='.$model->maxa)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('kekhaigiaetanol?&masothue='.$model->maxa)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
             </div>
