@@ -208,7 +208,7 @@
                             <ul class="sub-menu" style="display: none;">
                                 @if(session('admin')->level == 'ETANOL')
                                     @if(can('kketanol','index'))
-                                        <li><a href="{{url('kkgiaetanol')}}">Kê khai giá</a> </li>
+                                        <li><a href="{{url('kekhaigiaetanol')}}">Kê khai giá</a> </li>
                                     @endif
                                 @endif
                                 @if(session('admin')->level == 'X' || session('admin')->level == 'T' || session('admin')->level == 'H')

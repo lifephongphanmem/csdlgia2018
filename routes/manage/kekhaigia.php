@@ -49,5 +49,8 @@ include('kkgia/giay.php');
 //Sách giáo khoa
 include('kkgia/sach.php');
 
+//Etanol
+include('kkgia/etanol.php');
+
 //
 ?>
