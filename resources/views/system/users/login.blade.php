@@ -200,6 +200,15 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 						</div>
 					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-12" style="text-align: center">
+								<div class="profile-userbuttons">
+									<a class="btn default pink-stripe" href="{{url('dangkytaikhoan?&level=KCBTN')}}">Dịch vụ khám bệnh, chữa bệnh cho người<br> tại cơ sở khám bệnh, chữa bệnh tư nhân; <br>khám bệnh, chữa bệnh theo yêu cầu tại<br> cơ sở khám bệnh, chữa bệnh của nhà nước</a>&nbsp;
+								</div>
+							</div>
+						</div>
+					</div>
 
 				</div>
 			</div>

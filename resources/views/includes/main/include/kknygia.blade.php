@@ -258,16 +258,35 @@
                         <li><a href="">Kê khai giá</a></li>
                     </ul>
                 </li-->
-                <!--li>
-                    <a href="javascript:;">
-                        <span class="title">Dịch vụ khám chữa bệnh</span>
-                        <span class="arrow"></span>
-                    </a>
-                    <ul class="sub-menu" style="display: none;">
-                        <li><a href="">---</a> </li>
-                        <li><a href="">Kê khai giá</a></li>
-                    </ul>
-                </li-->
+                @if(canGeneral('kcbtn','index'))
+                    @if(can('kcbtn','index'))
+                        <li>
+                            <a href="javascript:;">
+                                <span class="title">Dịch vụ khám chữa bệnh cho người tại cơ sở khám chữa bệnh tư nhân; khám chữa bệnh theo yêu cầu tại cơ sở khám chữa bệnh của nhà nước</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu" style="display: none;">
+                                @if(session('admin')->level == 'KCBTN')
+                                    @if(can('kkkcbtn','index'))
+                                        <li><a href="{{url('kekhaikcbtn')}}">Kê khai giá</a> </li>
+                                    @endif
+                                @endif
+                                @if(session('admin')->level == 'X' || session('admin')->level == 'T' || session('admin')->level == 'H')
+                                    @if(can('kkkcbtn','index'))
+                                        <li><a href="{{url('thongtindnkcbtn')}}">Kê khai giá </a> </li>
+                                        <li><a href="{{url('xetduyetgiakcbtn')}}">Thông tin hồ sơ xét duyệt</a></li>
+                                    @endif
+                                    @if(can('thkcbtn','timkiem'))
+                                        <li><a href="{{url('timkiemgiakcbtn')}}">Tìm kiếm thông tin</a> </li>
+                                    @endif
+                                    @if(can('thkcbtn','baocao'))
+                                        <!--li><a href="{{url('baocaogiakcbtn')}}">Báo cáo thống kê</a></li-->
+                                    @endif
+                                @endif
+                            </ul>
+                        </li>
+                    @endif
+                @endif
                 @if(canGeneral('dvvt','index'))
                     @if(can('dvvt','index'))
                         <li>

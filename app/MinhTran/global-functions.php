@@ -3177,6 +3177,41 @@ function getPermissionDefault($level) {
             'xdttdn'=>0,
         ),
     );
+//Khám chữa bệnh tư nhân
+    $roles['KCBTN'] = array(
+        'csdlmucgiahhdv'=>array(
+            'index'=>1,
+        ),
+        'kknygia'=>array(
+            'index'=>1
+        ),
+        'kkgia'=>array(
+            'index'=>1,
+        ),
+        'ttdn'=> array(
+            'index'=>1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'kcbtn'=>array(
+            'index'=>1,
+        ),
+        'kkkcbtn'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thkcbtn'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+    );
 
 //End THAN
 

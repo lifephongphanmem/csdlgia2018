@@ -260,6 +260,20 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->kcbtn->index) && $setting->kcbtn->index == 1) ? 'checked' : '' }} value="1" name="roles[kcbtn][index]"/></td>
+                                    <td>Dịch vụ khám bệnh, chữa bệnh cho người<br> tại cơ sở khám bệnh, chữa bệnh tư nhân; <br>khám bệnh, chữa bệnh theo yêu cầu tại<br> cơ sở khám bệnh, chữa bệnh của nhà nước</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->kcbtn->congbo) && $setting->kcbtn->congbo == 1) ? 'checked' : '' }} value="1" name="roles[kcbtn][congbo]"/></td>
+                                    <td>Công bố giá Dịch vụ khám bệnh, chữa bệnh cho người<br> tại cơ sở khám bệnh, chữa bệnh tư nhân; <br>khám bệnh, chữa bệnh theo yêu cầu tại<br> cơ sở khám bệnh, chữa bệnh của nhà nước</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

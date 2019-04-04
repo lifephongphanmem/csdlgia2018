@@ -136,6 +136,9 @@
                                         @if(can('etanol','index') && can('thetanol','xdttdn'))
                                             <option value="ETANOL" {{$inputs['level'] == 'ETANOL' ? 'selected' :''}}>Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG)</option>
                                         @endif
+                                        @if(can('kcbtn','index') && can('thkcbtn','xdttdn'))
+                                            <option value="KCBTN" {{$inputs['level'] == 'KCBTN' ? 'selected' :''}}>Dịch vụ khám chữa bệnh cho người tại cơ sở khám chữa bệnh tư nhân; khám chữa bệnh theo yêu cầu tại cơ sở khám chữa bệnh của nhà nước</option>
+                                        @endif
                                     </select>
                                 </div>
                             </div>

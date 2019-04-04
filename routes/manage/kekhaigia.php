@@ -52,5 +52,6 @@ include('kkgia/sach.php');
 //Etanol
 include('kkgia/etanol.php');
 
-//
+//Khám chữa bệnh tư nhân
+include('kkgia/kcbtn.php');
 ?>
