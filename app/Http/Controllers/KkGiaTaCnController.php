@@ -86,7 +86,7 @@ class KkGiaTaCnController extends Controller
     public function create(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
-            if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
+            if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X' || session('admin')->level == 'TACN')
                 $inputs['masothue'] = isset($inputs['masothue']) ? $inputs['masothue'] : '';
             else
                 $inputs['masothue'] = session('admin')->maxa;
@@ -190,17 +190,20 @@ class KkGiaTaCnController extends Controller
 
     public function edit($id){
         if (Session::has('admin')) {
-            $model = KkGiaTaCn::findOrFail($id);
-            $modelct = KkGiaTaCnCt::where('mahs',$model->mahs)
-                ->get();
-            $modeldn = Company::where('maxa', $model->maxa)
-                ->where('level', 'TACN')->first();
+            if (session('admin')->level == 'TACN' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+                $model = KkGiaTaCn::findOrFail($id);
+                $modelct = KkGiaTaCnCt::where('mahs',$model->mahs)
+                    ->get();
+                $modeldn = Company::where('maxa', $model->maxa)
+                    ->where('level', 'TACN')->first();
 
-            return view('manage.kkgia.dvtacn.kkgia.kkgiadv.edit')
-                ->with('modeldn', $modeldn)
-                ->with('model',$model)
-                ->with('modelct',$modelct)
-                ->with('pageTitle', 'Chỉnh sửa kê khai giá thức ăn chăn nuôi');
+                return view('manage.kkgia.dvtacn.kkgia.kkgiadv.edit')
+                    ->with('modeldn', $modeldn)
+                    ->with('model',$model)
+                    ->with('modelct',$modelct)
+                    ->with('pageTitle', 'Chỉnh sửa kê khai giá thức ăn chăn nuôi');
+            }else
+                return view('errors.perm');
         }else
             return view('errors.notlogin');
     }
@@ -275,7 +278,7 @@ class KkGiaTaCnController extends Controller
 
     public function chuyen(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'TACN' || session('admin')->level == 'T' || session('admin')->level == 'H') {
+            if (session('admin')->level == 'TACN' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $model = KkGiaTaCn::where('id',$inputs['idchuyen'])
                     ->first();
@@ -341,7 +344,7 @@ class KkGiaTaCnController extends Controller
 
     public function delete(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'TACN' || session('admin')->level == 'T' || session('admin')->level == 'H') {
+            if (session('admin')->level == 'TACN' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $model = KkGiaTaCn::where('id',$inputs['iddelete'])
                     ->first();

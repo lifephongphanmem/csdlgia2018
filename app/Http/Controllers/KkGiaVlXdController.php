@@ -254,7 +254,7 @@ class KkGiaVlXdController extends Controller
 
     public function chuyen(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'VLXD' || session('admin')->level == 'T' || session('admin')->level == 'H') {
+            if (session('admin')->level == 'VLXD' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $model = KkGiaVlXd::where('id',$inputs['idchuyen'])
                     ->first();

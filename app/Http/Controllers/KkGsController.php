@@ -83,33 +83,34 @@ class KkGsController extends Controller
 
     public function create(Request $request){
         if (Session::has('admin')) {
-            $inputs = $request->all();
+            if (session('admin')->level == 'TPCNTE6T' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+                $inputs = $request->all();
 
-            $modelct = KkGsCtDf::where('maxa',$inputs['masothue'])->get();
+                $modelct = KkGsCtDf::where('maxa',$inputs['masothue'])->get();
 
-            $modeldn = Company::where('maxa', $inputs['masothue'])
-                ->where('level', 'TPCNTE6T')->first();
+                $modeldn = Company::where('maxa', $inputs['masothue'])
+                    ->where('level', 'TPCNTE6T')->first();
 
-            $datenow = date('Y-m-d');
-            $ngayhieuluc = date('d/m/Y', strtotime(getNgayHieuLuc($datenow,'TPCNTE6T')));
-            $ngaynhap = date('d/m/Y', strtotime($datenow));
+                $datenow = date('Y-m-d');
+                $ngayhieuluc = date('d/m/Y', strtotime(getNgayHieuLuc($datenow,'TPCNTE6T')));
+                $ngaynhap = date('d/m/Y', strtotime($datenow));
 
-            return view('manage.kkgia.dvgs.kkgia.kkgiadv.create')
-                ->with('modeldn', $modeldn)
-                ->with('maxa', $inputs['masothue'])
-                ->with('ngaynhap', $ngaynhap)
-                ->with('ngayhieuluc', $ngayhieuluc)
-                ->with('modelct',$modelct)
-                ->with('pageTitle', 'Kê khai giá mặt hàng sữa');
-
-
+                return view('manage.kkgia.dvgs.kkgia.kkgiadv.create')
+                    ->with('modeldn', $modeldn)
+                    ->with('maxa', $inputs['masothue'])
+                    ->with('ngaynhap', $ngaynhap)
+                    ->with('ngayhieuluc', $ngayhieuluc)
+                    ->with('modelct',$modelct)
+                    ->with('pageTitle', 'Kê khai giá mặt hàng sữa');
+            } else
+                return view('errors.perm');
         }else
             return view('errors.notlogin');
     }
 
     public function store(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'DVGS' || session('admin')->level == 'T' || session('admin')->level == 'H') {
+            if (session('admin')->level == 'DVGS' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $inputs['mahs'] = $inputs['maxa'].getdate()[0];
                 $inputs['ngaynhap'] = getDateToDb($inputs['ngaynhap']);
@@ -178,20 +179,23 @@ class KkGsController extends Controller
 
     public function edit($id){
         if (Session::has('admin')) {
-            //Kiểm tra có thuộc sự quản lý hay k
+            if (session('admin')->level == 'DVGS' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+                //Kiểm tra có thuộc sự quản lý hay k
 
-            $model = KkGs::findOrFail($id);
+                $model = KkGs::findOrFail($id);
 
-            $modeldn = Company::where('maxa', $model->maxa)
-                ->where('level', 'TPCNTE6T')->first();
-            $modelct = KkGsCt::where('mahs',$model->mahs)
-                ->get();
+                $modeldn = Company::where('maxa', $model->maxa)
+                    ->where('level', 'TPCNTE6T')->first();
+                $modelct = KkGsCt::where('mahs',$model->mahs)
+                    ->get();
 
-            return view('manage.kkgia.dvgs.kkgia.kkgiadv.edit')
-                ->with('modeldn', $modeldn)
-                ->with('model',$model)
-                ->with('modelct',$modelct)
-                ->with('pageTitle', 'Chỉnh sửa hồ sơ kê khai giá mật hàng sữa');
+                return view('manage.kkgia.dvgs.kkgia.kkgiadv.edit')
+                    ->with('modeldn', $modeldn)
+                    ->with('model',$model)
+                    ->with('modelct',$modelct)
+                    ->with('pageTitle', 'Chỉnh sửa hồ sơ kê khai giá mật hàng sữa');
+            }else
+                return view('errors.perm');
         }else
             return view('errors.notlogin');
     }
@@ -332,7 +336,7 @@ class KkGsController extends Controller
 
     public function delete(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'DVLT' || session('admin')->level == 'T' || session('admin')->level == 'H') {
+            if (session('admin')->level == 'DVLT' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $model = KkGs::where('id',$inputs['iddelete'])
                     ->first();

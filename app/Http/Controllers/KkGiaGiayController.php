@@ -94,7 +94,7 @@ class KkGiaGiayController extends Controller
     public function create(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
-            if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
+            if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X' || session('admin')->level == 'GIAY')
                 $inputs['masothue'] = isset($inputs['masothue']) ? $inputs['masothue'] : '';
             else
                 $inputs['masothue'] = session('admin')->maxa;
