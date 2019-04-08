@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\DmHangHoa;
 use App\DmNhomHangHoa;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\File;
+
 
 class DmNhomHangHoaController extends Controller
 {
@@ -101,6 +105,33 @@ class DmNhomHangHoaController extends Controller
             $model->update($inputs);
             return redirect('dmnhomhanghoa');
         }else
+            return view('errors.notlogin');
+    }
+
+    function epExcel(Request $request){
+        if (Session::has('admin')) {
+            if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+                $inputs = $request->all();
+                $model_nhom = DmNhomHangHoa::where('manhom', $inputs['manhom'])->first();
+                $model = DmHangHoa::where('manhom',$inputs['manhom'])
+                    ->get();
+                //dd($model);
+                    Excel::create($model_nhom->tennhom, function ($excel) use ($model_nhom, $model) {
+                        $excel->sheet($model_nhom->tennhom, function ($sheet) use ($model_nhom, $model) {
+                            $sheet->loadView('manage.thamdinhgia.danhmuc.excel.danhmuc')
+                                ->with('model_nhom', $model_nhom)
+                                ->with('model', $model)
+                                ->with('pageTitle', $model_nhom->tennhom);
+                            //$sheet->setPageMargin(0.25);
+                            $sheet->setAutoSize(false);
+                            $sheet->setFontFamily('Tahoma');
+                            $sheet->setFontBold(false);
+
+                        });
+                    })->download('xls');
+            }else
+                return view('errors.perm');
+        } else
             return view('errors.notlogin');
     }
 }
