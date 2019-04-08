@@ -35,6 +35,7 @@ class CreateThamdinhgiaTable extends Migration
             $table->string('tttstd')->nullable();
             $table->text('ghichu')->nullable();
             $table->string('congbo')->nullable();
+            $table->string('thaotac')->nullable();
 
             $table->string('ipt1')->nullable();
             $table->string('ipf1')->nullable();

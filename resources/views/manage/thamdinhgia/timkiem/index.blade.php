@@ -108,15 +108,15 @@
                                 <input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/>
                             </th-->
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center" >Đơn vị thẩm định</th>
-                            <th style="text-align: center" >Thời gian thẩm định</th>
-                            <th style="text-align: center">Thời hạn thẩm định</th>
+                            <th style="text-align: center" width="5%">Số CV</th>
+                            <th style="text-align: center" >Đơn vị thẩm định/<br>/Đơn vị yêu cầu thẩm định</th>
+                            <th style="text-align: center" >Thời gian<br> thẩm định</th>
+                            <th style="text-align: center">Thời hạn <br>thẩm định</th>
+
+                            <th style="text-align: center" width="10%">Thông tin người nhập</th>
                             <th style="text-align: center">Tên tài sản-<br>Thông số kỹ thuật</th>
                             <th style="text-align: center">Số lương-<br>Đơn vị tính</th>
-                            <th style="text-align: center">Đơn giá<br>đề nghị</th>
-                            <th style="text-align: center">Giá trị<br>đề nghị</th>
                             <th style="text-align: center">Đơn giá<br> thẩm định</th>
-                            <th style="text-align: center">Giá trị<br> thẩm định</th>
                             <th style="text-align: center">Thao tác</th>
                         </tr>
                         </thead>
@@ -124,15 +124,15 @@
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
-                                <td>{{$tt->tendv}}</td>
+                                <td>{{$tt->sotbkl}}</td>
+                                <td class="active">{{$tt->tendv}}/<br><b>{{$tt->dvyeucau}}</b></td>
                                 <td>{{getDayVn($tt->thoidiem)}}</td>
                                 <td>{{getDayVn($tt->thoihan)}}</td>
+
+                                <td>{{$tt->thaotac}}</td>
                                 <td class="success">{{$tt->tents}}-{{$tt->thongsokt}}</td>
                                 <td style="text-align: center; font-weight: bold;">{{$tt->sl}}-{{$tt->dvt}}</td>
-                                <td style="text-align: right; font-weight: bold;" class="active">{{number_format($tt->nguyengiadenghi)}}</td>
-                                <td style="text-align: right; font-weight: bold;" class="active">{{number_format($tt->giadenghi)}}</td>
                                 <td style="text-align: right; font-weight: bold;" class="active">{{number_format($tt->nguyengiathamdinh)}}</td>
-                                <td style="text-align: right; font-weight: bold;" class="active">{{number_format($tt->giatritstd)}}</td>
                                 <td>
                                     <button type="button" data-target="#modal-show" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="ShowItem({{$tt->id}})"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</button>
                                 </td>

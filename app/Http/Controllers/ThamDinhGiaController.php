@@ -11,6 +11,7 @@ use App\ThamDinhGiaCt;
 use App\ThamDinhGiaCtDf;
 use App\ThanhLyTaiSan;
 use App\Town;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -91,6 +92,7 @@ class ThamDinhGiaController extends Controller
             $inputs['mahs'] = $inputs['maxa'].getdate()[0];
             $inputs['trangthai'] = 'CHT';
             $inputs['congbo'] = 'chuacongbo';
+            $inputs['thaotac'] = session('admin')->username.' thêm mới - ' . getDateTime(Carbon::now()->toDateTimeString());
             if(isset($inputs['ipf1'])){
                 $ipf1 = $request->file('ipf1');
                 $inputs['ipt1'] = $inputs['mahs'] .'&1.'.$ipf1->getClientOriginalExtension();
@@ -172,6 +174,7 @@ class ThamDinhGiaController extends Controller
             $inputs['thoidiem'] = getDateToDb($inputs['thoidiem']);
             $inputs['thoihan'] = getDateToDb($inputs['thoihan']);
             $inputs['quy'] = Thang2Quy(getMonth($inputs['thoidiem']));
+            $inputs['thaotac'] = session('admin')->username.' thêm mới - ' . getDateTime(Carbon::now()->toDateTimeString());
             $model = ThamDinhGia::findOrFail($id);
             if(isset($inputs['ipf1'])){
                 $ipf1 = $request->file('ipf1');
@@ -244,7 +247,7 @@ class ThamDinhGiaController extends Controller
             $inputs['tents'] = isset($inputs['tents']) ? $inputs['tents'] : '';
             $model = ThamDinhGiaCt::join('thamdinhgia','thamdinhgiact.mahs','=','thamdinhgia.mahs')
                 ->join('town','thamdinhgia.maxa','=','town.maxa')
-                ->select('thamdinhgiact.*','thamdinhgia.thoidiem','thamdinhgia.thuevat','thamdinhgia.sotbkl',
+                ->select('thamdinhgiact.*','thamdinhgia.thoidiem','thamdinhgia.thuevat','thamdinhgia.sotbkl','thamdinhgia.thaotac','thamdinhgia.dvyeucau',
                 'thamdinhgia.thoihan','thamdinhgia.ppthamdinh','town.tendv')
                 ->whereYear('thamdinhgia.thoidiem',$inputs['nam']);
             if($inputs['tents'] != '')
