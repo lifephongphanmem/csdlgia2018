@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\District;
 use App\DmMhBinhOnGia;
 use App\Register;
 use App\Town;
@@ -22,26 +23,31 @@ class RegisterController extends Controller
                 $inputs['level'] = isset($inputs['level']) ? $inputs['level'] : '';
                 //Check quyền
 
-                if(session('admin')->level == 'T') {
-                    $towns = Town::all();
-                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $towns->first()->maxa;
-                }elseif(session('admin')->level == 'H') {
-                    $towns = Town::where('mahuyen',session('admin')->mahuyen)->get();
-                    $inputs['mahuyen'] =  isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $towns->first()->maxa;
-                }else{
-                    $towns = Town::where('mahuyen',session('admin')->mahuyen)
-                        ->where('maxa',session('admin')->maxa)
-                        ->get();
-                    $inputs['mahuyen'] =  session('admin')->maxa;
+                $modeldvql = District::all();
+                if(session('admin')->level == 'X') {
+                    $modeldv = Town::where('maxa',session('admin')->maxa)->get();
+                    $inputs['maxa'] = session('admin')->maxa;
+                    $inputs['mahuyen'] = session('admin')->mahuyen;
+                }else {
+                    if(session('admin')->level == 'T') {
+                        $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldvql->first()->mahuyen;
+                        $modeldv = Town::where('mahuyen',$inputs['mahuyen'])->get();
+                    }else {
+                        $inputs['mahuyen'] = session('admin')->mahuyen;
+                        $modeldv = Town::where('mahuyen', session('admin')->mahuyen)->get();
+                    }
+                    $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : (count($modeldv)> 0 ? $modeldv->first()->maxa : '');
                 }
+
                 $model = Register::where('level', $inputs['level'])
-                    ->where('mahuyen',$inputs['mahuyen'])
+                    ->where('mahuyen',$inputs['maxa'])
                     ->get();
-                $ttdv = Town::where('maxa',$inputs['mahuyen'])->first();
+                $ttdv = Town::where('maxa',$inputs['maxa'])->first();
                 return view('system.register.xetduyet.index')
                     ->with('model', $model)
                     ->with('inputs', $inputs)
-                    ->with('towns',$towns)
+                    ->with('modeldv', $modeldv)
+                    ->with('modeldvql',$modeldvql)
                     ->with('ttdv',$ttdv)
                     ->with('pageTitle', 'Xét duyệt tài khoản đăng ký');
 

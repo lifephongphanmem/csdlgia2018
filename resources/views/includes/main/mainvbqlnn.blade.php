@@ -19,7 +19,7 @@
             @endif
             @if(canGeneral('giacpi','index'))
                 @if(can('giacpi','index'))
-                    <li class="tooltips" data-container="body" data-placement="right" data-html="true"
+                    <!--li class="tooltips" data-container="body" data-placement="right" data-html="true"
                         data-original-title="Giá CPI">
                         <a href="">Giá CPI</a>
                         <ul class="sub-menu" style="display: none;">
@@ -30,7 +30,7 @@
                                 <a href="{{url('/hsgiacpi/danhsach?thang='.date('m').'&nam='.date('Y'))}}">Hồ sơ giá hàng hóa</a>
                             </li>
                         </ul>
-                    </li>
+                    </li-->
                 @endif
             @endif
         </ul>

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ url('css/themes/style1/zvinhtq.css') }}">
     <link rel="stylesheet" href="{{ url('css/style-responsive.css') }}">
 </head>
-<body id="error-page" class="animated bounceInLeft">
+<body id="error-page" class="animated bounceInLeft" style="width: 100%">
 <div id="error-page-content"><h1>Lỗi</h1><h2>Đăng ký không thành công</h2>
     <p>Bạn chưa nhập thông tin bảo mật! Bạn cần kiểm tra lại!!!</p>
     <p>Thông tin đăng ký đã có! Bạn cần kiểm tra lại!!!</p>

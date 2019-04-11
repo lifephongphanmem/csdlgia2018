@@ -21,7 +21,8 @@
         $(function(){
             $('#nam').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
-                var url = '/hosocungcapgia?'+namhs;
+                var masothue = '&masothue=' + $('#maxa').val();
+                var url = '/hosocungcapgia?'+namhs + masothue;
                 window.location.href = url;
             });
 
@@ -88,6 +89,7 @@
                     </div>
 
                 </div>
+                <input value="{{$inputs['masothue']}}" id="maxa" name="maxa" type="hidden">
                 <div class="portlet-body">
                     <div class="row">
                         <div class="col-md-2">

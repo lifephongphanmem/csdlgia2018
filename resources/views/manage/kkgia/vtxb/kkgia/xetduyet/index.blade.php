@@ -255,7 +255,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin xét duyệt kê khai giá<small>&nbsp;vận tải xe khách</small>
+        Thông tin xét duyệt kê khai giá<small>&nbsp;vận tải xe buýt</small>
     </h3>
     <div class="row">
         <div class="col-md-2">

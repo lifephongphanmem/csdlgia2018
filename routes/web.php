@@ -29,6 +29,7 @@ include('manage/thanhlytaisan.php');
 include('manage/cungcapgiahh.php');
 include('manage/muataisan.php');
 include('manage/chisogiatieudung.php');
+include('manage/giagocvlxd.php');
 
 //End Manage
 

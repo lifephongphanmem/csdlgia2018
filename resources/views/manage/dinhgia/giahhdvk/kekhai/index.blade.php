@@ -19,26 +19,26 @@
             TableManaged.init();
         });
         $(function(){
-            $('#thang').change(function() {
+            /*$('#thang').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
                 var thang = '&thang=' + $('#thang').val();
                 var district = '&district='+ $('#district').val();
                 var url = '/giahhdvkhac?'+ thang + namhs + district;
                 window.location.href = url;
-            });
+            });*/
             $('#nam').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
-                var thang = '&thang=' + $('#thang').val();
+                //var thang = '&thang=' + $('#thang').val();
                 var district = '&district='+ $('#district').val();
-                var url = '/giahhdvkhac?'+ thang + namhs + district;
+                var url = '/giahhdvkhac?' + namhs + district;
                 window.location.href = url;
             });
 
             $('#district').change(function() {
                 var namhs = '&nam='+ $('#nam').val();
-                var thang = '&thang=' + $('#thang').val();
+                //var thang = '&thang=' + $('#thang').val();
                 var district = '&district='+ $('#district').val();
-                var url = '/giahhdvkhac?'+ thang + namhs + district;
+                var url = '/giahhdvkhac?' + namhs + district;
 
                 window.location.href = url;
             });
@@ -92,7 +92,7 @@
                 </div>
                 <div class="portlet-body">
                     <div class="row">
-                        <div class="col-md-2">
+                        <!--div class="col-md-2">
                             <div class="form-group">
                                 <label>Tháng báo cáo</label>
                                 {!! Form::select(
@@ -102,7 +102,7 @@
                                 array('id' => 'thang', 'class' => 'form-control'))
                                 !!}
                             </div>
-                        </div>
+                        </div-->
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>Năm báo cáo</label>
@@ -133,7 +133,7 @@
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Phân loại báo cáo</th>
+                            <th style="text-align: center">Thời điểm báo cáo</th>
                             <th style="text-align: center">Nhóm hàng hóa dịch vụ</th>
                             <th style="text-align: center" width="20%">Số quyết định <br>Ngày áp dụng</th>
                             <th style="text-align: center" width="20%">Số QĐ liền kề<br>Ngày áp dụng liền kề</th>
@@ -145,9 +145,7 @@
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
-                                <td>@if($tt->phanloai == '15ngaydau') <b>15 ngày đầu tháng</b>
-                                    @else <b>15 ngày cuối tháng</b>
-                                    @endif<br>Tháng {{$tt->thang}}/{{$tt->nam}}</td>
+                                <td>Tháng {{$tt->thang}}/{{$tt->nam}}</td>
                                 <td class="active" style="font-weight: bold">{{$tt->tennhom}}</td>
                                 <td>Số: {{$tt->soqd}}<br>Ngày áp dụng: {{getDayVn($tt->ngayapdung)}}</td>
                                 <td>Số: {{$tt->soqdlk}}<br>Ngày áp dụng: {{getDayVn($tt->ngayapdunglk)}}</td>
@@ -232,7 +230,7 @@
                                 {!!Form::select('manhombc', $a_nhom, null, array('id' => 'manhombc','class' => 'form-control select2me'))!!}
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!--div class="form-group">
                             <div class="col-md-12">
                                 <label>Phân loại báo cáo</label>
                                 {!! Form::select(
@@ -245,7 +243,7 @@
                                 array('id' => 'phanloaibc', 'class' => 'form-control'))
                                 !!}
                             </div>
-                        </div>
+                        </div-->
                         <div class="form-group">
                             <div class="col-md-12">
                                 <label>Tháng</label>
@@ -269,7 +267,7 @@
                                 </select>
                             </div>
                         </div>
-                        <input type="text" id="districtbc" name="districtbc" value="{{$inputs['district']}}">
+                        <input type="hidden" id="districtbc" name="districtbc" value="{{$inputs['district']}}">
                     </div>
                 </div>
 

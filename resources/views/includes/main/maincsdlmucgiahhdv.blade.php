@@ -172,6 +172,34 @@
         @endif
     </ul>
 </li-->
+@if(canGeneral('giagocvlxd','index'))
+    @if(can('giagocvlxd','index'))
+        <li class="">
+            <a href="">
+                <i class="icon-folder"></i>
+                <span class="title">Giá gốc vật liệu xây dựng</span>
+                <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                @if(can('kkgiagocvlxd','index'))
+                    <li>
+                        <a href="{{url('thongtingiagocvlxd')}}">Thông tin hồ sơ</a>
+                    </li>
+                @endif
+                @if(can('thgiagocvlxd','index'))
+                    <li>
+                        <a href="{{url('tonghopgiagocvlxd')}}">Tổng hợp hồ sơ</a>
+                    </li>
+                @endif
+                @if(can('thgiagocvlxd','timkiem'))
+                    <li>
+                        <a href="{{url('timkiemttgiabantaisan')}}">Tìm kiếm thông tin</a>
+                    </li>
+                @endif
+            </ul>
+        </li>
+    @endif
+@endif
 
 @include('includes.main.include.bog')
 @include('includes.main.include.kknygia')

@@ -133,6 +133,7 @@
                                 @endif
                                 @if($tt->theodoi == 'TD')
                                 <a href="{{url('dmhanghoa?&manhom='.$tt->manhom)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                <a href="{{url('dmnhomhanghoa/epExcel?&manhom='.$tt->manhom)}}" class="btn btn-default btn-xs mbs" target="_blank"><i class="fa fa-cloud-download"></i>&nbsp;Xuất dữ liệu</a>
                                 @endif
                             </td>
                         </tr>

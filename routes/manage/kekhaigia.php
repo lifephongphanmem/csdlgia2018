@@ -28,6 +28,9 @@ include('kkgia/vtxb.php');
 //VLXD
 include('kkgia/vlxd.php');
 
+//Cước vận chuyển hành khách
+include('kkgia/cuocvchk.php');
+
 //Đăng ký giá
 include('kkgia/dkg.php');
 
@@ -37,5 +40,18 @@ include('kkgia/xmtxd.php');
 //dvhdtm
 include('kkgia/dvhdtm.php');
 
-//
+//Than
+include('kkgia/than.php');
+
+//Giấy in, viết
+include('kkgia/giay.php');
+
+//Sách giáo khoa
+include('kkgia/sach.php');
+
+//Etanol
+include('kkgia/etanol.php');
+
+//Khám chữa bệnh tư nhân
+include('kkgia/kcbtn.php');
 ?>

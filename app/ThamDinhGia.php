@@ -31,6 +31,7 @@ class ThamDinhGia extends Model
         'tttstd',
         'ghichu',
         'congbo',
+        'thaotac',
 
         'ipt1',
         'ipf1',

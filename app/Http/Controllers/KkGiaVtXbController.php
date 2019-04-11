@@ -98,7 +98,7 @@ class KkGiaVtXbController extends Controller
     public function create(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
-            if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
+            if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X' || session('admin')->level == 'DVVT')
                 $inputs['masothue'] = isset($inputs['masothue']) ? $inputs['masothue'] : '';
             else
                 $inputs['masothue'] = session('admin')->maxa;
@@ -181,7 +181,7 @@ class KkGiaVtXbController extends Controller
 
     public function edit($id){
         if (Session::has('admin')) {
-            if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X'){
+            if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X' || session('admin')->level == 'DVVT'){
                 $model = KkGiaVtXb::findOrFail($id);
                 $modelct = KkGiaVtXbCt::where('mahs',$model->mahs)->get();
                 $modeldn = Company::where('maxa', $model->maxa)
@@ -247,7 +247,7 @@ class KkGiaVtXbController extends Controller
 
     public function chuyen(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'DVVT' || session('admin')->level == 'T' || session('admin')->level == 'H') {
+            if (session('admin')->level == 'DVVT' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $model = KkGiaVtXb::where('id',$inputs['idchuyen'])
                     ->first();

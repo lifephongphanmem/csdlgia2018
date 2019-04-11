@@ -14,7 +14,12 @@ class ThGiaHhDvKCt extends Model
         'manhom',
         'mahhdv',
         'tenhhdv',
+        'dacdiemkt',
+        'xuatxu',
         'dvt',
+        'gialk',
         'gia',
+        'nguontt',
+        'ghichu',
     ];
 }

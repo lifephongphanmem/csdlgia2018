@@ -30,21 +30,30 @@
                 window.location.href = url;
             });
 
-            $('#trangthai').change(function() {
-                var current_path_url = '/xetduyettdttdn?';
-                var trangthai = '&trangthai='+$('#trangthai').val();
+            $('#mahuyen').change(function() {
+                var mahuyen = '&mahuyen='+ $('#mahuyen').val();
                 var level = '&level='+$('#level').val();
-                var url = current_path_url + trangthai + level;
+                var url = '/xetduyettdttdn?'  + mahuyen + level;
+
                 window.location.href = url;
             });
             $('#maxa').change(function() {
                 var current_path_url = '/xetduyettdttdn?';
+                var level = '&level='+$('#level').val();
+                var maxa = '&maxa='+$('#maxa').val();
+                var url = current_path_url + level + maxa;
+                window.location.href = url;
+            });
+            $('#trangthai').change(function() {
+                var current_path_url = '/xetduyettdttdn?';
                 var trangthai = '&trangthai='+$('#trangthai').val();
                 var level = '&level='+$('#level').val();
                 var maxa = '&maxa='+$('#maxa').val();
-                var url = current_path_url + level + trangthai + maxa;
+                var mahuyen = '&mahuyen='+ $('#mahuyen').val();
+                var url = current_path_url + trangthai + level + mahuyen + maxa;
                 window.location.href = url;
             });
+
         })
         function ClickDelete(){
             $('#frm_delete').submit();
@@ -63,9 +72,9 @@
             <div class="portlet box">
                 <div class="portlet-body">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
-                                <label>Doanh nghiệp</label>
+                                <label style="font-weight: bold">Doanh nghiệp</label>
                                 <select class="form-control" name="level" id="level">
                                     <option value="">--Chọn doanh nghiệp cung cấp loại dịch vụ</option>
                                     @if(can('dvlt','index') && can('thdvlt','xdttdn'))
@@ -92,23 +101,43 @@
                                     @if(can('dvhdtm','index') && can('thdvhdtm','xdttdn'))
                                         <option value="DVHDTM" {{$inputs['level'] == 'DVHDTM' ? 'selected' :''}}>Dịch vụ hỗ trợ hoạt động thương mại</option>
                                     @endif
+                                    @if(can('than','index') && can('ththan','xdttdn'))
+                                        <option value="THAN" {{$inputs['level'] == 'THAN' ? 'selected' :''}}>Than</option>
+                                    @endif
+                                    @if(can('giay','index') && can('thgiay','xdttdn'))
+                                        <option value="GIAY" {{$inputs['level'] == 'GIAY' ? 'selected' :''}}>Giấy in, viết(dạng cuộn), giấy in báo sản xuất trong nước</option>
+                                    @endif
+                                    @if(can('sach','index') && can('thsach','xdttdn'))
+                                        <option value="SACH" {{$inputs['level'] == 'SACH' ? 'selected' :''}}>Sách giáo khoa</option>
+                                    @endif
+                                    @if(can('etanol','index') && can('thetanol','xdttdn'))
+                                        <option value="ETANOL" {{$inputs['level'] == 'ETANOL' ? 'selected' :''}}>Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG)</option>
+                                    @endif
+                                    @if(can('kcbtn','index') && can('thkcbtn','xdttdn'))
+                                        <option value="KCBTN" {{$inputs['level'] == 'KCBTN' ? 'selected' :''}}>Dịch vụ khám chữa bệnh cho người tại cơ sở khám chữa bệnh tư nhân; khám chữa bệnh theo yêu cầu tại cơ sở khám chữa bệnh của nhà nước</option>
+                                    @endif
 
                                 </select>
                             </div>
                         </div>
+                        @if(session('admin')->level == 'T')
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label style="font-weight: bold">Đơn vị chủ quản</label>
+                                    <select name="mahuyen" id="mahuyen" class="form-control">
+                                        @foreach($modeldvql as $dvql)
+                                            <option value="{{$dvql->mahuyen}}" {{$dvql->mahuyen == $inputs['mahuyen'] ? 'selected' : ''}}>{{$dvql->tendv}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        @else
+                            <input type="hidden" name="mahuyen" id="mahuyen" value="{{$inputs['mahuyen']}}">
+                        @endif
+                        @if(session('admin')->level == 'T' || session('admin')->level == 'H')
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label>Trạng thái hồ sơ</label>
-                                <select class="form-control" name="trangthai" id="trangthai">
-                                    <option value="CD" {{($inputs['trangthai'] == "CD") ? 'selected' : ''}}>Chờ duyệt</option>
-                                    <option value="BTL" {{($inputs['trangthai'] == "BTL") ? 'selected' : ''}}>Bị trả lại</option>
-                                </select>
-                            </div>
-                        </div>
-                        @if(session('admin')->level == 'T' || session('admin')->level == 'H')
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label>Đơn vị quản lý</label>
+                                <label style="font-weight: bold;">Đơn vị quản lý</label>
                                 <select class="form-control" name="maxa" id="maxa">
                                     @foreach($modeldv as $dv)
                                         <option value="{{$dv->maxa}}" {{$dv->maxa == $inputs['maxa']? 'selected' : ''}}>{{$dv->tendv}}</option>
@@ -117,6 +146,15 @@
                             </div>
                         </div>
                         @endif
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label style="font-weight: bold">Trạng thái hồ sơ</label>
+                                <select class="form-control" name="trangthai" id="trangthai">
+                                    <option value="CD" {{($inputs['trangthai'] == "CD") ? 'selected' : ''}}>Chờ duyệt</option>
+                                    <option value="BTL" {{($inputs['trangthai'] == "BTL") ? 'selected' : ''}}>Bị trả lại</option>
+                                </select>
+                            </div>
+                        </div>
 
                     </div>
                     <div class="portlet-body">

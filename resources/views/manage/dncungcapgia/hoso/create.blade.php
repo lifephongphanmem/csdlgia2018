@@ -52,11 +52,8 @@
                 })
             });
         });
-
-
     </script>
     <script>
-
         function clearForm(){
             $('#mahanghoa').val('');
             $('#tenhanghoa').val('');

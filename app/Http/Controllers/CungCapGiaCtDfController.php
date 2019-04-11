@@ -23,7 +23,6 @@ class CungCapGiaCtDfController extends Controller
         }
 
         $inputs = $request->all();
-        dd($inputs);
         if(isset($inputs['mahanghoa']) &&  $inputs['mahanghoa']!=''){
             //$inputs['sl'] = getDbl($inputs['sl']);
             $inputs['gia'] = getDbl($inputs['gia']);

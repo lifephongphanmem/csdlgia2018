@@ -3010,7 +3010,7 @@ function getPermissionDefault($level) {
         ),
     );
 
-//End TACN
+//End Cung cấp giá
     $roles['CCG'] = array(
         'csdlthamdinhgia'=>array(
             'index'=>1,
@@ -3029,6 +3029,191 @@ function getPermissionDefault($level) {
             'approve'=>1,
         ),
     );
+
+//THAN
+    $roles['THAN'] = array(
+        'csdlmucgiahhdv'=>array(
+            'index'=>1,
+        ),
+        'kknygia'=>array(
+            'index'=>1
+        ),
+        'kkgia'=>array(
+            'index'=>1,
+        ),
+        'ttdn'=> array(
+            'index'=>1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'than'=>array(
+            'index'=>1,
+        ),
+        'kkthan'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'ththan'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+    );
+
+//End THAN
+//GIẤY
+    $roles['GIAY'] = array(
+        'csdlmucgiahhdv'=>array(
+            'index'=>1,
+        ),
+        'kknygia'=>array(
+            'index'=>1
+        ),
+        'kkgia'=>array(
+            'index'=>1,
+        ),
+        'ttdn'=> array(
+            'index'=>1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'giay'=>array(
+            'index'=>1,
+        ),
+        'kkgiay'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thgiay'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+    );
+
+//End Giấy
+
+//SÁCH
+    $roles['SACH'] = array(
+        'csdlmucgiahhdv'=>array(
+            'index'=>1,
+        ),
+        'kknygia'=>array(
+            'index'=>1
+        ),
+        'kkgia'=>array(
+            'index'=>1,
+        ),
+        'ttdn'=> array(
+            'index'=>1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'sach'=>array(
+            'index'=>1,
+        ),
+        'kksach'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thsach'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+    );
+
+//End Sách
+//ETANOL
+    $roles['ETANOL'] = array(
+        'csdlmucgiahhdv'=>array(
+            'index'=>1,
+        ),
+        'kknygia'=>array(
+            'index'=>1
+        ),
+        'kkgia'=>array(
+            'index'=>1,
+        ),
+        'ttdn'=> array(
+            'index'=>1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'etanol'=>array(
+            'index'=>1,
+        ),
+        'kketanol'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thetanol'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+    );
+//Khám chữa bệnh tư nhân
+    $roles['KCBTN'] = array(
+        'csdlmucgiahhdv'=>array(
+            'index'=>1,
+        ),
+        'kknygia'=>array(
+            'index'=>1
+        ),
+        'kkgia'=>array(
+            'index'=>1,
+        ),
+        'ttdn'=> array(
+            'index'=>1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'kcbtn'=>array(
+            'index'=>1,
+        ),
+        'kkkcbtn'=>array(
+            'index'=>1,
+            'create'=>1,
+            'edit'=>1,
+            'delete'=>1,
+            'approve'=>1,
+        ),
+        'thkcbtn'=>array(
+            'baocao'=>0,
+            'congbo'=>0,
+            'timkiem'=>0,
+            'xdttdn'=>0,
+        ),
+    );
+
+//End THAN
 
     return json_encode($roles[$level]);
 
@@ -3342,13 +3527,13 @@ function getTtPhong($str)
 function getNgayHieuLuc($ngaynhap,$pl){
     $dayngaynhap = date('D',strtotime($ngaynhap));
     if($pl == 'DVLT')
-        $thoihan = isset(getGeneralConfigs()['thoihanlt']) ? getGeneralConfigs()['thoihanlt'] : 2;
+        $thoihan = isset(getGeneralConfigs()['thoihanlt']) ? getGeneralConfigs()['thoihanlt'] : 5;
     elseif($pl == 'DVVT')
-        $thoihan = isset(getGeneralConfigs()['thoihanvt']) ? getGeneralConfigs()['thoihanvt'] : 2;
+        $thoihan = isset(getGeneralConfigs()['thoihanvt']) ? getGeneralConfigs()['thoihanvt'] : 5;
     elseif($pl == 'TPCNTE6T')
-        $thoihan = isset(getGeneralConfigs()['thoihangs']) ? getGeneralConfigs()['thoihangs'] : 2;
+        $thoihan = isset(getGeneralConfigs()['thoihangs']) ? getGeneralConfigs()['thoihangs'] : 5;
     elseif($pl == 'TACN')
-        $thoihan = isset(getGeneralConfigs()['thoihantacn']) ? getGeneralConfigs()['thoihantacn'] : 2;
+        $thoihan = isset(getGeneralConfigs()['thoihantacn']) ? getGeneralConfigs()['thoihantacn'] : 5;
     $ngaynghi = 0;
 
     if ($dayngaynhap == 'Thu') {
@@ -3672,6 +3857,51 @@ function getNgayLamViec($maxa){
     }else
         $songaylv = 2;
     return $songaylv;
+}
+
+function SelectedQuy($quy){
+    if(date('m') == 1 || date('m') == 2 || date('m') == 3 )
+        $value = 1;
+    elseif(date('m') == 4 || date('m') == 5 || date('m') == 6 )
+        $value = 2;
+    elseif(date('m') == 7 || date('m') == 8 || date('m') == 9 )
+        $value = 3;
+    else
+        $value = 4;
+    if($quy == $value)
+        return 'selected';
+    else
+        return '';
+}
+
+function quy(){
+    if(date('m') == 1 || date('m') == 2 || date('m') == 3 )
+        $value = 1;
+    elseif(date('m') == 4 || date('m') == 5 || date('m') == 6 )
+        $value = 2;
+    elseif(date('m') == 7 || date('m') == 8 || date('m') == 9 )
+        $value = 3;
+    else
+        $value = 4;
+    return $value;
+}
+
+function getNgayApDung($ngaynhap,$mahuyen){
+    $dayngaynhap = date('D',strtotime($ngaynhap));
+    $ngaynghi = 0;
+    $model = \App\Town::where('maxa',$mahuyen)->first();
+    $thoihan = $model->songaylv;
+
+    if ($dayngaynhap == 'Thu') {
+        $ngayhieuluc = date('Y-m-d', mktime(0, 0, 0, date("m"), date("d") + 2 + $thoihan + $ngaynghi, date("Y")));
+    } elseif ($dayngaynhap == 'Fri') {
+        $ngayhieuluc = date('Y-m-d', mktime(0, 0, 0, date("m"), date("d") + 2 + $thoihan + $ngaynghi, date("Y")));
+    } elseif ($dayngaynhap == 'Sat') {
+        $ngayhieuluc = date('Y-m-d', mktime(0, 0, 0, date("m"), date("d") + 1 + $thoihan + $ngaynghi, date("Y")));
+    } else {
+        $ngayhieuluc = date('Y-m-d', mktime(0, 0, 0, date("m"), date("d") + $thoihan + $ngaynghi, date("Y")));
+    }
+    return $ngayhieuluc;
 }
 
 ?>

@@ -82,7 +82,7 @@ class KkGiaVtXbXdController extends Controller
             $modeldn = Company::where('maxa',$modelhs->maxa)->where('level','DVVT')->first();
 
             $result['message'] = '<div class="form-group" id="ttdnkkdvgs"> ';
-            $result['message'] .= '<label style="color: blue"><b>'.$modeldn->tendn.'</b> Kê khai giá vật liệu xây dựng số công văn <b>'.$modelhs->socv.'</b> ngày áp dụng <b>'.getDayVn($modelhs->ngayhieuluc).'</b></b></label>';
+            $result['message'] .= '<label style="color: blue"><b>'.$modeldn->tendn.'</b> Kê khai giá số công văn <b>'.$modelhs->socv.'</b> ngày áp dụng <b>'.getDayVn($modelhs->ngayhieuluc).'</b></b></label>';
             $result['message'] .= '<label style="color: blue">Mã hồ sơ kê khai: <b>'.$modelhs->mahs.'</b></label>';
             $result['message'] .= '</div>';
 
@@ -228,6 +228,29 @@ class KkGiaVtXbXdController extends Controller
 
             }
             return redirect('xetduyetkekhaigiavtxb?&trangthai=DD&maxa='.$model->mahuyen);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function search(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
+            $inputs['tthhdv'] = isset($inputs['tthhdv']) ? $inputs['tthhdv'] : '';
+            $model = KkGiaVtXb::leftJoin('kkgiavtxbct','kkgiavtxb.mahs','=','kkgiavtxbct.mahs')
+                ->leftjoin('company','company.maxa','=','kkgiavtxb.maxa')
+                ->where('company.level','DVVT')
+                ->whereYear('kkgiavtxb.ngayhieuluc',$inputs['nam'])
+                ->select('kkgiavtxbct.*','company.tendn','kkgiavtxb.ngayhieuluc','kkgiavtxb.maxa')
+                ->where('kkgiavtxb.trangthai','DD');
+            if($inputs['tthhdv'] != '')
+                $model = $model->where('kkgiavtxbct.tthhdv','like','%'.$inputs['tthhdv'].'%');
+            $model = $model->get();
+
+            return view('manage.kkgia.vtxb.kkgia.timkiem.index')
+                ->with('model',$model)
+                ->with('inputs',$inputs)
+                ->with('pageTitle','Tìm kiếm thông tin kê khai giá vận tải xe buýt');
         }else
             return view('errors.notlogin');
     }

@@ -58,6 +58,9 @@
                     _token: CSRF_TOKEN,
                     id: $('input[name="idedit"]').val(),
                     gia: $('input[name="giaedit"]').val(),
+                    gialk: $('input[name="gialkedit"]').val(),
+                    nguontt: $('input[name="nguonttedit"]').val(),
+                    ghichu: $('input[name="ghichuedit"]').val(),
                     mahs: $('input[name="mahs"]').val(),
                 },
                 dataType: 'JSON',
@@ -81,7 +84,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Hồ sơ giá hàng hóa dịch vụ<small> thêm mới</small>
+        Tổn hợp giá hàng hóa dịch vụ<small> chỉnh sửa</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -100,14 +103,6 @@
                                 <div class="form-group">
                                     <label class="control-label">Nhóm hàng hóa dịch vụ:</label>
                                     <label class="control-label" style="color: blue;font-weight: bold">{{$modelnhom->tennhom}}</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label">Ngày chốt báo cáo</label>
-                                    <label class="control-label" style="color: blue;font-weight: bold">{{getDayVn($model->ngaychotbc)}}</label>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +135,9 @@
                                     <tr>
                                         <th width="2%" style="text-align: center">STT</th>
                                         <th style="text-align: center">Tên hàng hóa dịch vụ</th>
+                                        <th style="text-align: center">Đặc điểm kinh tế,<bR> kỹ thuật, quy cách</th>
                                         <th style="text-align: center" width="10%">Đơn vị tính</th>
+                                        <th style="text-align: center" width="10%">Đơn giá liền kề</th>
                                         <th style="text-align: center" width="10%">Đơn giá</th>
                                         <th style="text-align: center" width="15%">Thao tác</th>
                                     </tr>
@@ -150,7 +147,9 @@
                                             <tr>
                                                 <td style="text-align: center">{{$tt->mahhdv}}</td>
                                                 <td class="active" style="font-weight: bold">{{$tt->tenhhdv}}</td>
+                                                <td>{{$tt->dacdiemkt}}</td>
                                                 <td style="text-align: center">{{$tt->dvt}}</td>
+                                                <td style="text-align: right;font-weight: bold">{{number_format($tt->gialk)}}</td>
                                                 <td style="text-align: right;font-weight: bold">{{number_format($tt->gia)}}</td>
                                                 <td>
                                                     <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem({{$tt->id}})"><i class="fa fa-edit"></i>&nbsp;Kê khai</button>

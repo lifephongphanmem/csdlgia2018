@@ -31,8 +31,8 @@ class GiaHhDvKController extends Controller
             $model = GiaHhDvK::join('nhomhhdvk','nhomhhdvk.manhom','=','giahhdvk.manhom')
                 ->select('giahhdvk.*', 'nhomhhdvk.tennhom')
                 ->where('giahhdvk.district', $inputs['district'])
-                ->where('giahhdvk.nam',$inputs['nam'])
-                ->where('giahhdvk.thang',$inputs['thang']);
+                ->where('giahhdvk.nam',$inputs['nam']);
+                //->where('giahhdvk.thang',$inputs['thang']);
 
             $model = $model->get();
             $m_nhom =array_column(NhomHhDvK::where('theodoi', 'TD')
@@ -58,7 +58,7 @@ class GiaHhDvKController extends Controller
                 $modelkt = GiaHhDvK::where('manhom',$inputs['manhombc'])
                     ->where('thang',$inputs['thangbc'])
                     ->where('nam',$inputs['nambc'])
-                    ->where('phanloai',$inputs['phanloaibc'])
+                    //->where('phanloai',$inputs['phanloaibc'])
                     ->where('district',$inputs['districtbc'])
                     ->count();
                 if($modelkt > 0){
@@ -384,7 +384,7 @@ class GiaHhDvKController extends Controller
     function import_excel(Request $request){
         if(Session::has('admin')){
             $inputs=$request->all();
-            $inputs['phanloaibc'] = $inputs['phanloai'];
+            //$inputs['phanloaibc'] = $inputs['phanloai'];
             $inputs['thangbc'] = $inputs['thang'];
             $inputs['nambc'] = $inputs['nam'];
             $inputs['districtbc'] = $inputs['district'];
@@ -394,7 +394,7 @@ class GiaHhDvKController extends Controller
                 ->where('thang',$inputs['thang'])
                 ->where('nam',$inputs['nam'])
                 ->where('district',$inputs['district'])
-                ->where('phanloai',$inputs['phanloai'])
+                //->where('phanloai',$inputs['phanloai'])
                 ->count();
             if($modelkt > 0)
                 dd('Báo cáo đã tồn tại, bạn cần kiểm tra lại! Nếu thay đổi thông tin bạn cần xóa báo cáo và nhận lại file');

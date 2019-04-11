@@ -60,6 +60,10 @@
                         @include('system.users.include.perms.csdlmucgiahhdv.kknygia.kkgiavlxd')
                         @include('system.users.include.perms.csdlmucgiahhdv.kknygia.kkgiaxmtxd')
                         @include('system.users.include.perms.csdlmucgiahhdv.kknygia.kkgiadvhdtm')
+                        @include('system.users.include.perms.csdlmucgiahhdv.kknygia.kkgiathan')
+                        @include('system.users.include.perms.csdlmucgiahhdv.kknygia.kkgiagiay')
+                        @include('system.users.include.perms.csdlmucgiahhdv.kknygia.kkgiasach')
+                        @include('system.users.include.perms.csdlmucgiahhdv.kknygia.kkgiaetanol')
                     </div>
                 </div>
             </div>
