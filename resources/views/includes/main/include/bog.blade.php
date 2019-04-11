@@ -64,7 +64,7 @@
                                             @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
                                                 <!--li><a href="{{url('dsthongtindn?ma='.$dm->phanloai)}}">Thông tin dn đăng ký giá</a></li-->
                                                 <!--li><a href="">Xét duyệt đăng ký giá</a></li-->
-                                                <li><a href="{{url('dangkygia?ma='.$dm->phanloai)}}">Đăng ký giá</a></li>
+                                                <li><a href="{{url('thongtindndkgbog?ma='.$dm->phanloai)}}">Đăng ký giá</a></li>
                                                 <li><a href="{{url('timkiem?ma='.$dm->phanloai)}}">Tìm kiếm thông tin đăng ký giá</a></li>
                                                 <!--li><a href="{{url('baocaodkg?ma='.$dm->phanloai)}}">Báo cáo tổng hợp</a></li-->
                                             @endif

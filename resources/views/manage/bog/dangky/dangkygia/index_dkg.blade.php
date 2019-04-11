@@ -45,10 +45,10 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
-                        <a href="{{url('createdkg/create?ma='.$inputs['ma'].'&masothue='.$inputs['masothue'])}}" class="btn btn-default btn-sm">
+                        <a href="{{url('hosodkgbog/create?ma='.$inputs['ma'].'&masothue='.$inputs['masothue'])}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
-                            <a href="{{url('dangkygia?ma='.$inputs['ma']).'&mahuyen='.$modeldn->mahuyen}}" class="btn btn-default btn-sm">
+                            <a href="{{url('thongtindndkgbog?ma='.$inputs['ma']).'&mahuyen='.$modeldn->mahuyen}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-reply"></i> Quay lại </a>
                         @endif
                     </div>
@@ -82,7 +82,7 @@
                             <td>
                                 <a href="{{url('baocao/'.$tt->id.'/Bc1')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;In</a>
                                 @if($tt->trangthai == 'CC')
-                                <a href="{{url('editdkgbog/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                <a href="{{url('hosodkgbog/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                     <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                         Xóa</button>
                                     <button type="button" onclick="confirmChuyen('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyen-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
@@ -106,7 +106,7 @@
         <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    {!! Form::open(['url'=>'deletedkgbog','id' => 'frm_delete'])!!}
+                    {!! Form::open(['url'=>'hosodkgbog/delete','id' => 'frm_delete'])!!}
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                         <h4 class="modal-title">Đồng ý xóa?</h4>

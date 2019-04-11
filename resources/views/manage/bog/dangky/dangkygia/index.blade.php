@@ -24,7 +24,7 @@
             $('#mahuyen').change(function() {
                 var mahuyen = $('#mahuyen').val();
                 var ma = $('#ma').val();
-                var url = '/dangkygia?&ma='+ma+'&mahuyen='+mahuyen;
+                var url = '/thongtindndkgbog?&ma='+ma+'&mahuyen='+mahuyen;
                 window.location.href = url;
             });
         });
@@ -90,8 +90,7 @@
                                 <td>{{$tt->maxa}}</td>
                                 <td style="text-align: center">{{$tt->diachi}}</td>
                                 <td>
-                                    <a href="{{url('dsdangkygia?ma='.$inputs['ma'].'&masothue='.$tt->maxa)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Đăng ký giá</a>
-                                    <!--Vãi cả truyền id -->
+                                    <a href="{{url('hosodkgbog?ma='.$inputs['ma'].'&masothue='.$tt->maxa)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Đăng ký giá</a>
                                 </td>
                             </tr>
                         @endforeach

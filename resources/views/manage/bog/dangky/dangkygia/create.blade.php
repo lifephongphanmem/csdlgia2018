@@ -50,7 +50,7 @@
         function createmhbog(){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: 'add',
+                url: '/createdkg/add',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -80,7 +80,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: 'show',
+                url: '/createdkg/show',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -100,7 +100,7 @@
         function updatemhbog(){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: 'update',
+                url: '/createdkg/update',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -134,7 +134,7 @@
         function delmhbog() {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: 'del',
+                url: '/createdkg/del',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -178,7 +178,7 @@
                 </div-->
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    {!! Form::open(['url'=>'storedkgbog', 'id' => 'create_dkgbog', 'class'=>'horizontal-form']) !!}
+                    {!! Form::open(['url'=>'hosodkgbog', 'id' => 'create_dkgbog', 'class'=>'horizontal-form']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
                         <div class="form-body">
@@ -233,7 +233,7 @@
                             </div>
                             <input type="hidden" name="phanloai" id="phanloai" value="{{$inputs['ma']}}">
                             <input type="hidden" name="maxa" id="maxa" value="{{$inputs['masothue']}}">
-                            <input type="hidden" name="mahuyen" id="mahuyen" value="{{$m_dv->mahuyen}}">
+                            <!--input type="hidden" name="mahuyen" id="mahuyen" value="{{$m_dv->mahuyen}}"-->
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -282,7 +282,7 @@
                 </div>
             </div>
             <div style="text-align: center">
-                <a href="{{url('dsdangkygia?ma='.$inputs['ma'].'&masothue='.$inputs['masothue'])}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('hosodkgbog?ma='.$inputs['ma'].'&masothue='.$inputs['masothue'])}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
             </div>

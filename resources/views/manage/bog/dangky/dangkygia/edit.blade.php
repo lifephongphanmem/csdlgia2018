@@ -177,7 +177,7 @@
                 </div-->
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    {!! Form::model($model, ['method' => 'POST', 'url'=>'updatedkgbog', 'class'=>'horizontal-form','id'=>'update_updatedkgbog']) !!}
+                    {!! Form::model($model, ['method' => 'PATCH', 'url'=>'hosodkgbog/'. $model->id, 'class'=>'horizontal-form','id'=>'update_updatedkgbog']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
                         <div class="form-body">
@@ -284,7 +284,7 @@
             </div>
             <div style="text-align: center">
                 <!--a href="{{url('dsdangkygia?ma='.$m_dn->id)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a-->
-                <a href="{{url('dsdangkygia?ma='.$model->phanloai.'&masothue='.$model->maxa)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('hosodkgbog?ma='.$model->phanloai.'&masothue='.$model->maxa)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
             </div>

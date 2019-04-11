@@ -1,10 +1,9 @@
 <?php
-Route::resource('kkdkg','KkDkgController');
+Route::resource('hosokkdkg','KkDkgController');
 Route::get('thongtindnkkgdk','KkDkgController@ttdn');
 Route::post('storekkdkg','KkDkgController@store');
 Route::post('kkdkg/delete','KkDkgController@delete');
 Route::post('kkdkg/chuyen','KkDkgController@chuyen');
-Route::get('kkdkg/prints','KkDkgController@prints');
 
 
 //Ajax chuyen

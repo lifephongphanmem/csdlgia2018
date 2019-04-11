@@ -209,7 +209,7 @@ class KkDkgController extends Controller
                 }
                 $modelctdf->delete();
             }
-            return redirect('kkdkg/?&ma='.$inputs['ma'].'&masothue='.$inputs['maxa']);
+            return redirect('hosokkdkg/?&ma='.$inputs['ma'].'&masothue='.$inputs['maxa']);
 
         }else
             return view('errors.notlogin');
@@ -355,7 +355,7 @@ class KkDkgController extends Controller
                 });
             }
              */
-            return redirect('kkdkg/?&ma='.$model->phanloai.'&masothue='.$model->maxa.'&trangthai='.$model->trangthai);
+            return redirect('hosokkdkg/?&ma='.$model->phanloai.'&masothue='.$model->maxa.'&trangthai='.$model->trangthai);
 
         }else
             return view('errors.notlogin');

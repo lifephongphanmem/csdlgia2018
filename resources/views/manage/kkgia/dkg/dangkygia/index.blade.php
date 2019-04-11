@@ -26,7 +26,7 @@
                 var nam = $('#namhs').val();
                 var masothue = $('#masothue').val();
                 var trangthai = $('#trangthai').val();
-                var url = '/kkdkg?&ma='+ma+'&masothue='+masothue+'&nam='+nam+'&trangthai='+trangthai;
+                var url = '/hosokkdkg?&ma='+ma+'&masothue='+masothue+'&nam='+nam+'&trangthai='+trangthai;
 
                 window.location.href = url;
             });
@@ -35,7 +35,7 @@
                 var nam = $('#namhs').val();
                 var masothue = $('#masothue').val();
                 var trangthai = $('#trangthai').val();
-                var url = '/kkdkg?&ma='+ma+'&masothue='+masothue+'&nam='+nam+'&trangthai='+trangthai;
+                var url = '/hosokkdkg?&ma='+ma+'&masothue='+masothue+'&nam='+nam+'&trangthai='+trangthai;
                 window.location.href = url;
             });
 
@@ -134,7 +134,7 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
-                                <a href="{{url('kkdkg/create?&ma='.$inputs['ma'].'&masothue='.$masothue)}}" class="btn btn-default btn-sm">
+                                <a href="{{url('hosokkdkg/create?&ma='.$inputs['ma'].'&masothue='.$masothue)}}" class="btn btn-default btn-sm">
                                     <i class="fa fa-plus"></i> Kê khai mới </a>
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
                             <a href="{{url('thongtindnkkgdk?ma='.$inputs['ma'].'&maxa='.$modeldn->mahuyen)}}" class="btn btn-default btn-sm">
@@ -214,9 +214,9 @@
                                     </td>
                                 @endif
                                 <td>
-                                    <a href="{{url('kkdkg/prints?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                    <a href="{{url('hosokkdkg/show?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                     @if(canEdit($tt->trangthai))
-                                    <a href="{{url('kkdkg/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                    <a href="{{url('hosokkdkg/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                     @if(canChuyenXoa($tt->trangthai))
                                         @if($tt->trangthai == 'CC')
                                         <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
@@ -352,7 +352,7 @@
     <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['url'=>'kkdkg/delete','id' => 'frm_delete'])!!}
+                {!! Form::open(['url'=>'hosokkdkg/delete','id' => 'frm_delete'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title">Đồng ý xóa?</h4>

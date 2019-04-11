@@ -77,7 +77,7 @@
                                 <td class="active">{{$tt->tendn}}</td>
                                 <td>{{$tt->diachi}}</td>
                                 <td>
-                                    <a href="{{url('kkdkg/?&ma='.$inputs['ma'].'&masothue='.$tt->maxa)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-plus"></i>&nbsp;Kê khai giá</a>
+                                    <a href="{{url('hosokkdkg/?&ma='.$inputs['ma'].'&masothue='.$tt->maxa)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-plus"></i>&nbsp;Kê khai giá</a>
                                 </td>
                             </tr>
                         @endforeach

@@ -341,7 +341,7 @@
                                     </td>
                                 @endif
                                 <td>
-                                    <a href="{{url('kkdkg/prints?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                    <a href="{{url('hosokkdkg/show?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                     @if(canApprove($tt->trangthai))
                                         <button type="button" onclick="ClickTraLai({{$tt->id}})" class="btn btn-default btn-xs mbs" data-target="#tralai-modal" data-toggle="modal"><i class="fa fa-reply"></i>&nbsp;
                                             Trả lại</button>
