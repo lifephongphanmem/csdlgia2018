@@ -109,7 +109,6 @@ class DangKyGiaBOGController extends Controller
                 ->first();
             $modeldm = DmMhBinhOnGia::where('phanloai',$inputs['ma'])
                 ->first();
-
             //$tenmh = DmMhBinhOnGia::where('phanloai',$m_dv['phanloai'])->first()->hienthi;
             return view('manage.bog.dangky.dangkygia.index_dkg')
                 ->with('model', $model)
