@@ -121,7 +121,7 @@ class DmNhomHangHoaController extends Controller
                             $sheet->loadView('manage.thamdinhgia.danhmuc.excel.danhmuc')
                                 ->with('model_nhom', $model_nhom)
                                 ->with('model', $model)
-                                ->with('pageTitle', $model_nhom->tennhom);
+                                ->with('pageTitle', 'Danh sách hàng hóa');
                             //$sheet->setPageMargin(0.25);
                             $sheet->setAutoSize(false);
                             $sheet->setFontFamily('Tahoma');
