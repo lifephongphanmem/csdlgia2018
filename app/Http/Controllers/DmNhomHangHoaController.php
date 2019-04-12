@@ -116,7 +116,7 @@ class DmNhomHangHoaController extends Controller
                 $model = DmHangHoa::where('manhom',$inputs['manhom'])
                     ->get();
                 //dd($model);
-                    Excel::create('DMHANGHOA'.$model_nhom->manhom, function ($excel) use ($model_nhom, $model) {
+                    Excel::create('DMHANGHOA-'.$model_nhom->manhom, function ($excel) use ($model_nhom, $model) {
                         $excel->sheet('DMHANGHOA', function ($sheet) use ($model_nhom, $model) {
                             $sheet->loadView('manage.thamdinhgia.danhmuc.excel.danhmuc')
                                 ->with('model_nhom', $model_nhom)
