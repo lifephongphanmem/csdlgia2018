@@ -116,12 +116,12 @@ class DmNhomHangHoaController extends Controller
                 $model = DmHangHoa::where('manhom',$inputs['manhom'])
                     ->get();
                 //dd($model);
-                    Excel::create($model_nhom->tennhom, function ($excel) use ($model_nhom, $model) {
-                        $excel->sheet($model_nhom->tennhom, function ($sheet) use ($model_nhom, $model) {
+                    Excel::create('DMHANGHOA', function ($excel) use ($model_nhom, $model) {
+                        $excel->sheet('DMHANGHOA', function ($sheet) use ($model_nhom, $model) {
                             $sheet->loadView('manage.thamdinhgia.danhmuc.excel.danhmuc')
                                 ->with('model_nhom', $model_nhom)
                                 ->with('model', $model)
-                                ->with('pageTitle', 'Danh mục hàng hóa thẩm định');
+                                ->with('pageTitle', $model_nhom->tennhom);
                             //$sheet->setPageMargin(0.25);
                             $sheet->setAutoSize(false);
                             $sheet->setFontFamily('Tahoma');
