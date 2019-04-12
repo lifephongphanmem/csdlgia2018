@@ -107,12 +107,10 @@
                             <!--th class="table-checkbox">
                                 <input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/>
                             </th-->
-                            <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center" width="5%">Số CV</th>
                             <th style="text-align: center" >Đơn vị thẩm định/<br>/Đơn vị yêu cầu thẩm định</th>
                             <th style="text-align: center" >Thời gian<br> thẩm định</th>
                             <th style="text-align: center">Thời hạn <br>thẩm định</th>
-
                             <th style="text-align: center" width="10%">Thông tin người nhập</th>
                             <th style="text-align: center">Tên tài sản-<br>Thông số kỹ thuật</th>
                             <th style="text-align: center">Số lương-<br>Đơn vị tính</th>
@@ -121,14 +119,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($model as $key=>$tt)
+                        @foreach($model as $tt)
                             <tr>
-                                <td style="text-align: center">{{$key + 1}}</td>
                                 <td>{{$tt->sotbkl}}</td>
                                 <td class="active">{{$tt->tendv}}/<br><b>{{$tt->dvyeucau}}</b></td>
                                 <td>{{getDayVn($tt->thoidiem)}}</td>
                                 <td>{{getDayVn($tt->thoihan)}}</td>
-
                                 <td>{{$tt->thaotac}}</td>
                                 <td class="success">{{$tt->tents}}-{{$tt->thongsokt}}</td>
                                 <td style="text-align: center; font-weight: bold;">{{$tt->sl}}-{{$tt->dvt}}</td>
