@@ -113,7 +113,7 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label class="control-label">Nhận từ dòng<span class="require">*</span></label>
-                                                            {!!Form::text('tudong', '6', array('id' => 'tudong','class' => 'form-control required','data-mask'=>'fdecimal'))!!}
+                                                            {!!Form::text('tudong', '4', array('id' => 'tudong','class' => 'form-control required','data-mask'=>'fdecimal'))!!}
                                                         </div>
                                                     </div>
                                                     <!--/span-->
