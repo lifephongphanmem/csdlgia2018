@@ -110,7 +110,7 @@ class DmNhomHangHoaController extends Controller
 
     function epExcel(Request $request){
         if (Session::has('admin')) {
-            if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+            if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X' || session('admin')->level == 'CCG') {
                 $inputs = $request->all();
                 $model_nhom = DmNhomHangHoa::where('manhom', $inputs['manhom'])->first();
                 $model = DmHangHoa::where('manhom',$inputs['manhom'])
