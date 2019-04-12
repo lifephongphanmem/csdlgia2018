@@ -230,7 +230,7 @@ class CungCapGiaController extends Controller
             for ($i = $inputs['tudong']; $i < ($inputs['tudong'] + $inputs['sodong']); $i++) {
                 //dd($data[$i]);
                 if (!isset($data[$i][$inputs['mahanghoa']]) || $data[$i][$inputs['tenhanghoa']] == '') {
-                    continue;//Tên cán bộ rỗng => thoát
+                    continue;
                 }
                 $modelctnew = new CungCapGiaCtDf();
                 $modelctnew->maxa = $inputs['maxa'];

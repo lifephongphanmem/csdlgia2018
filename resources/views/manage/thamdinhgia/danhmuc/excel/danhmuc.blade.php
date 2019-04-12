@@ -20,31 +20,31 @@
     <table>
         <tr>
             <th colspan="8" style="text-align: center; font-weight: bold; font-size: 20px;">
-                {{$model_nhom->tennhom}}
+                {{$model_nhom->tennhom}} - Mã nhóm : {{$model_nhom->manhom}}
             </th>
         </tr>
     </table>
 
     <table>
         <tr>
-            <td>STT</td>
-            <td>Mã nhóm</td>
             <td>Mã hàng hóa</td>
             <td>Tên hàng hóa</td>
             <td>Đặc điểm kỹ thuật</td>
             <td>Xuất xứ</td>
             <td>Đơn vị tính</td>
+            <td>Đơn giá</td>
+            <td>Ghi chú</td>
         </tr>
 
             @foreach($model as $key=> $tt)
                 <tr>
-                    <td>{{$key+1}}</td>
-                    <td>{{$tt->manhom}}</td>
                     <td>{{$tt->mahanghoa}}</td>
                     <td>{{$tt->tenhanghoa}}</td>
                     <td>{{$tt->thongsokt}}</td>
                     <td>{{$tt->xuatxu}}</td>
                     <td>{{$tt->dvt}}</td>
+                    <td></td>
+                    <td></td>
                 </tr>
             @endforeach
     </table>
