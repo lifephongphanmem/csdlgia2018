@@ -117,11 +117,11 @@ class DmNhomHangHoaController extends Controller
                     ->get();
                 //dd($model);
                     Excel::create($model_nhom->tennhom, function ($excel) use ($model_nhom, $model) {
-                        $excel->sheet($model_nhom->manhom, function ($sheet) use ($model_nhom, $model) {
+                        $excel->sheet($model_nhom->tennhom, function ($sheet) use ($model_nhom, $model) {
                             $sheet->loadView('manage.thamdinhgia.danhmuc.excel.danhmuc')
                                 ->with('model_nhom', $model_nhom)
                                 ->with('model', $model)
-                                ->with('pageTitle', $model_nhom->tennhom);
+                                ->with('pageTitle', 'Danh mục hàng hóa thẩm định');
                             //$sheet->setPageMargin(0.25);
                             $sheet->setAutoSize(false);
                             $sheet->setFontFamily('Tahoma');
