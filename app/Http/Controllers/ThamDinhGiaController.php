@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\File;
 class ThamDinhGiaController extends Controller
 {
     public function index(Request $request){
-        if(Session::has('admin')){
+        if(!Session::has('admin')){
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
             $modeldvql = District::all();
@@ -60,7 +60,7 @@ class ThamDinhGiaController extends Controller
     }
 
     public function create(Request $request){
-        if(Session::has('admin')){
+        if(!Session::has('admin')){
             $inputs = $request->all();
 
             if(session('admin')->level == 'X')
@@ -84,7 +84,7 @@ class ThamDinhGiaController extends Controller
     }
 
     public function store(Request $request){
-        if(Session::has('admin')){
+        if(!Session::has('admin')){
             $inputs = $request->all();
             $inputs['thoidiem'] = getDateToDb($inputs['thoidiem']);
             $inputs['thoihan'] = getDateToDb($inputs['thoihan']);
@@ -154,7 +154,7 @@ class ThamDinhGiaController extends Controller
     }
 
     public function edit($id){
-        if(Session::has('admin')){
+        if(!Session::has('admin')){
             $model = ThamDinhGia::findOrFail($id);
             $modelct = ThamDinhGiaCt::where('mahs',$model->mahs)->get();
             $modeldv = Town::where('maxa',$model->maxa)
@@ -169,7 +169,7 @@ class ThamDinhGiaController extends Controller
     }
 
     public function update(Request $request,$id){
-        if(Session::has('admin')){
+        if(!Session::has('admin')){
             $inputs = $request->all();
             $inputs['thoidiem'] = getDateToDb($inputs['thoidiem']);
             $inputs['thoihan'] = getDateToDb($inputs['thoihan']);
@@ -214,7 +214,7 @@ class ThamDinhGiaController extends Controller
     }
 
     public function destroy(Request $request){
-        if(Session::has('admin')){
+        if(!Session::has('admin')){
             $inputs = $request->all();
             $id = $inputs['iddelete'];
             $model = ThamDinhGia::findOrFail($id);
@@ -227,7 +227,7 @@ class ThamDinhGiaController extends Controller
     }
 
     public function show($id){
-        if(Session::has('admin')){
+        if(!Session::has('admin')){
             $model = ThamDinhGia::findOrFail($id);
             $modelct = ThamDinhGiaCt::where('mahs',$model->mahs)->get();
             $modeldv = Town::where('maxa',$model->maxa)->first();
@@ -403,7 +403,7 @@ class ThamDinhGiaController extends Controller
     }
 
     public function hoanthanh(Request $request){
-        if(Session::has('admin')){
+        if(!Session::has('admin')){
             $inputs = $request->all();
             $id = $inputs['idhoanthanh'];
             $model = ThamDinhGia::findOrFail($id);
@@ -415,7 +415,7 @@ class ThamDinhGiaController extends Controller
     }
 
     public function huyhoanthanh(Request $request){
-        if(Session::has('admin')){
+        if(!Session::has('admin')){
             $inputs = $request->all();
             $id = $inputs['idhuyhoanthanh'];
             $model = ThamDinhGia::findOrFail($id);
@@ -427,7 +427,7 @@ class ThamDinhGiaController extends Controller
     }
 
     public function congbo(Request $request){
-        if(Session::has('admin')){
+        if(!Session::has('admin')){
             $inputs = $request->all();
             $id = $inputs['idcongbo'];
             $model = ThamDinhGia::findOrFail($id);
@@ -509,7 +509,7 @@ class ThamDinhGiaController extends Controller
     }
 
     public function nhanexcel(Request $request){
-        if(Session::has('admin')){
+        if(!Session::has('admin')){
             $inputs = $request->all();
             if(session('admin')->level == 'X')
                 $inputs['maxa'] = session('admin')->maxa;
@@ -525,7 +525,7 @@ class ThamDinhGiaController extends Controller
     }
 
     function import_excel(Request $request){
-        if(Session::has('admin')){
+        if(!Session::has('admin')){
             $inputs=$request->all();
             $filename = $inputs['maxa'] . '_' . getdate()[0];
             $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
