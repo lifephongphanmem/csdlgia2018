@@ -43,6 +43,7 @@ class CungCapGiaController extends Controller
         if (Session::has('admin')) {
             if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level =='X' || session('admin')->level == 'CCG') {
                 $inputs = $request->all();
+                $delct = CungCapGiaCtDf::where('maxa',$inputs['masothue'])->delete();
                 if(session('admin')->level == 'CCG')
                     $inputs['masothue'] = session('admin')->maxa;
                 $modeldn = Company::where('level','CCG')
