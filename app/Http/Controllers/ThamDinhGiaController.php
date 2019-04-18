@@ -420,6 +420,7 @@ class ThamDinhGiaController extends Controller
             $id = $inputs['idhuyhoanthanh'];
             $model = ThamDinhGia::findOrFail($id);
             $model->trangthai = 'HHT';
+            $model->congbo = 'huycongbo';
             $model->save();
             return redirect('thamdinhgia?&maxa='.$model->maxa);
         }else
