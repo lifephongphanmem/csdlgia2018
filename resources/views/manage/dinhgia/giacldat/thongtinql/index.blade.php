@@ -70,7 +70,6 @@
                     </div>
                 </div>
                 <div class="portlet-body">
-                    @if(session('admin')->level == 'T' || session('admin')->level == 'H')
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
@@ -83,7 +82,6 @@
                             </div>
                         </div>
                     </div>
-                    @endif
                     <input type="hidden" name="district" id="district" value="{{$district}}">
 
                     <table id="example-advanced" class="treetable">
