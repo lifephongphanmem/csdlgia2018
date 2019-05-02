@@ -23,7 +23,10 @@ class CreateGiacacloaidatTable extends Migration
             $table->text('hienthi')->nullable();//hiển thị số thứ tự trên báo cáo
             $table->date('ngaynhap')->nullable();
             $table->string('soqd')->nullable();
-            $table->double('giadat')->default(0);
+            $table->double('giavt1')->default(0);
+            $table->double('giavt2')->default(0);
+            $table->double('giavt3')->default(0);
+            $table->double('giavt4')->default(0);
             $table->string('sapxep')->nullable();
             $table->string('ghichu')->nullable();
             $table->string('mahuyen')->nullable();//cho trường hợp huyện nào nhập giá của huyện đó

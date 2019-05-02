@@ -30,6 +30,7 @@ class GiaCacLoaiDatController extends Controller
                 if($model->where('magoc',$ct->maso)->count() > 0)
                     $ct->b_xoa = false;
             }
+
             return view('manage.dinhgia.giacldat.thongtinql.index')
                 ->with('model',$model)
                 ->with('model_diaban',$model_diaban)
@@ -95,26 +96,48 @@ class GiaCacLoaiDatController extends Controller
         $result['message'] .= '</div>';
         if($sub_node == false) {
             $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="col-md-6">';
             $result['message'] .= '<div class="form-group">';
-            $result['message'] .= '<label class="control-label">Giá đất<span class="require">*</span></label>';
-            $result['message'] .= '<input type="text" name="edit_giadat" id="edit_giadat" class="form-control" data-mask="fdecimal" style="text-align: right; font-weight: bold" value="' . $model->giadat . '" ' . '/>';
-            $result['message'] .= '<input type="hidden" name="idedit" id="idedit" class="form-control" value="' . $model->id . '"/>';
+            $result['message'] .= '<label class="control-label">Giá vị trí I<span class="require">*</span></label>';
+            $result['message'] .= '<input type="text" name="edit_giavt1" id="edit_giavt1" class="form-control" data-mask="fdecimal" style="text-align: right; font-weight: bold" value="' . $model->giavt1 . '" ' . '/>';
+
+            $result['message'] .= '</div></div>';
+            $result['message'] .= '<div class="col-md-6">';
+            $result['message'] .= '<div class="form-group">';
+            $result['message'] .= '<label class="control-label">Giá vị trí II<span class="require">*</span></label>';
+            $result['message'] .= '<input type="text" name="edit_giavt2" id="edit_giavt2" class="form-control" data-mask="fdecimal" style="text-align: right; font-weight: bold" value="' . $model->giavt2 . '" ' . '/>';
             $result['message'] .= '</div></div>';
             $result['message'] .= '</div>';
-        }
 
-        $result['message'] .= '<div class="row">';
-        $result['message'] .= '<div class="col-md-12">';
-        $result['message'] .= '<div class="form-group">';
-        $result['message'] .= '<label class="control-label">Căn cứ quyết định</label>';
-        $result['message'] .= '<select name="edit_soquyetdinh" id="edit_soquyetdinh" class="form-control">';
-        $result['message'] .= '<option value="">--Chọn quyết định thay đổi giá--</option>';
-        foreach($modelqd as $ct){
-            $result['message'] .= '<option value="'.$ct->soquyetdinh.'"'.($ct->soquyetdinh==$model->soqd?' selected':'').'>'. $ct->mota.'</option>';
+            $result['message'] .= '<div class="row">';
+            $result['message'] .= '<div class="col-md-6">';
+            $result['message'] .= '<div class="form-group">';
+            $result['message'] .= '<label class="control-label">Giá vị trí III<span class="require">*</span></label>';
+            $result['message'] .= '<input type="text" name="edit_giavt3" id="edit_giavt3" class="form-control" data-mask="fdecimal" style="text-align: right; font-weight: bold" value="' . $model->giavt3 . '" ' . '/>';
+
+            $result['message'] .= '</div></div>';
+            $result['message'] .= '<div class="col-md-6">';
+            $result['message'] .= '<div class="form-group">';
+            $result['message'] .= '<label class="control-label">Giá vị trí IV<span class="require">*</span></label>';
+            $result['message'] .= '<input type="text" name="edit_giavt4" id="edit_giavt4" class="form-control" data-mask="fdecimal" style="text-align: right; font-weight: bold" value="' . $model->giavt4 . '" ' . '/>';
+            $result['message'] .= '</div></div>';
+            $result['message'] .= '</div>';
+
+            $result['message'] .= '<div class="row">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="form-group">';
+            $result['message'] .= '<label class="control-label">Căn cứ quyết định</label>';
+            $result['message'] .= '<select name="edit_soquyetdinh" id="edit_soquyetdinh" class="form-control">';
+            $result['message'] .= '<option value="">--Chọn quyết định thay đổi giá--</option>';
+            foreach($modelqd as $ct){
+                $result['message'] .= '<option value="'.$ct->soquyetdinh.'"'.($ct->soquyetdinh==$model->soqd?' selected':'').'>'. $ct->mota.'</option>';
+            }
+            $result['message'] .= '</select></div></div>';
+            $result['message'] .= '</div>';
         }
-        $result['message'] .= '</select></div></div>';
-        $result['message'] .= '</div>';
+        $result['message'] .= '<input type="hidden" name="idedit" id="idedit" class="form-control" value="' . $model->id . '"/>';
+
+
 
 
         $result['message'] .= '</div>';
@@ -139,7 +162,10 @@ class GiaCacLoaiDatController extends Controller
         $inputs = $request->all();
         $id = $inputs['id'];
         $model = GiaCacLoaiDat::findOrFail($id);
-        $inputs['giadat'] = getDbl($inputs['giadat']);
+        $inputs['giavt1'] = str_replace(',','',$inputs['giavt1']);
+        $inputs['giavt2'] = str_replace(',','',$inputs['giavt2']);
+        $inputs['giavt3'] = str_replace(',','',$inputs['giavt3']);
+        $inputs['giavt4'] = str_replace(',','',$inputs['giavt4']);
         $model->update($inputs);
         $result['message'] = 'Cập nhật thành công.';
         $result['status'] = 'success';
@@ -232,6 +258,7 @@ class GiaCacLoaiDatController extends Controller
                 ->first();
 
             $model = GiaCacLoaiDat::where('mahuyen',$inputs['district'])->get();
+
             return view('manage.dinhgia.giacldat.reports.print')
                 ->with('model',$model)
                 ->with('model_diaban',$model_diaban)

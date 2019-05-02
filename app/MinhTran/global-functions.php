@@ -3904,4 +3904,30 @@ function getNgayApDung($ngaynhap,$mahuyen){
     return $ngayhieuluc;
 }
 
+function trim_zeros($str) {
+    if(!is_string($str)) return $str;
+    return preg_replace(array('`\.0+$`','`(\.\d+?)0+$`'),array('','$1'),$str);
+}
+
+function dinhdangsothapphan ($number , $decimals = 0) {
+    if(!is_numeric($number) || $number == 0){return '';}
+    $number = round($number , $decimals);
+    $str_kq = trim_zeros(number_format($number, $decimals ));
+    /*for ($i = 0; $i < strlen($str_kq); $i++){
+        if($str_kq[$i]== '.'){
+            $str_kq[$i]= ',';
+        }elseif($str_kq[$i]== ','){
+            $str_kq[$i]= '.';
+        }
+    }*/
+    //$a_so = str_split($str_kq);
+
+    //$str_kq = str_replace(",", ".", $str_kq);
+    //$str_kq = str_replace(".", ",", $str_kq);
+    return $str_kq;
+    //return number_format($number, $decimals ,$dec_point, $thousands_sep);
+    //làm lại hàm chú ý đo khi các số thập phân nếu làm tròn thi ko bỏ dc số 0 đằng sau dấu ,
+    // round(5.4,4) = 5,4000
+}
+
 ?>

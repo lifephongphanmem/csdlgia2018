@@ -2,7 +2,7 @@
     @if(can('kknygia','index'))
         <li class="tooltips" data-container="body" data-placement="right" data-html="true"
             data-original-title="Giá kê khai của hàng hóa, dịch vụ thuộc dnah mục kê khai giá">
-            <a href="javascript:;">
+            <a href="">
                 <i class="icon-folder"></i>
                 <span class="title">Kê khai - niêm yết giá</span>
                 <span class="arrow"></span>
@@ -85,7 +85,7 @@
                 @if(canGeneral('than','index'))
                     @if(can('than','index'))
                         <li>
-                            <a href="javascript:;">
+                            <a href="">
                                 <span class="title">Than</span>
                                 <span class="arrow"></span>
                             </a>
@@ -114,7 +114,7 @@
                 @if(canGeneral('tacn','index'))
                     @if(can('tacn','index'))
                     <li>
-                        <a href="javascript:;">
+                        <a href="">
                             <span class="title">Thức ăn chăn nuôi</span>
                             <span class="arrow"></span>
                         </a>
@@ -143,7 +143,7 @@
                 @if(canGeneral('giay','index'))
                     @if(can('giay','index'))
                         <li>
-                            <a href="javascript:;">
+                            <a href="">
                                 <span class="title">Giấy in, viết (dạng cuộn), giấy in báo sản xuất trong nước</span>
                                 <span class="arrow"></span>
                             </a>
@@ -172,7 +172,7 @@
                 @if(canGeneral('sach','index'))
                     @if(can('sach','index'))
                         <li>
-                            <a href="javascript:;">
+                            <a href="">
                                 <span class="title">Sách giáo khoa</span>
                                 <span class="arrow"></span>
                             </a>
@@ -201,7 +201,7 @@
                 @if(canGeneral('etanol','index'))
                     @if(can('etanol','index'))
                         <li>
-                            <a href="javascript:;">
+                            <a href="">
                                 <span class="title">Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG)</span>
                                 <span class="arrow"></span>
                             </a>
@@ -261,7 +261,7 @@
                 @if(canGeneral('kcbtn','index'))
                     @if(can('kcbtn','index'))
                         <li>
-                            <a href="javascript:;">
+                            <a href="">
                                 <span class="title">Dịch vụ khám chữa bệnh cho người tại cơ sở khám chữa bệnh tư nhân; khám chữa bệnh theo yêu cầu tại cơ sở khám chữa bệnh của nhà nước</span>
                                 <span class="arrow"></span>
                             </a>

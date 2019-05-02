@@ -89,10 +89,16 @@
                     <table id="example-advanced" class="treetable">
                         <thead>
                         <tr>
-                            <th style="text-align: center">Vị trí đất</th>
-                            <th style="text-align: center" width="10%">Căn cứ quyết định</th>
-                            <th style="text-align: center" width="10%">Giá đất</th>
-                            <th style="text-align: center" width="25%">Thao tác</th>
+                            <th style="text-align: center" rowspan="2">Vị trí đất</th>
+                            <th style="text-align: center" width="10%" rowspan="2">Căn cứ quyết định</th>
+                            <th style="text-align: center" width="10%" colspan="4">Giá đất</th>
+                            <th style="text-align: center" width="25%" rowspan="2">Thao tác</th>
+                        </tr>
+                        <tr>
+                            <th>VT1</th>
+                            <th>VT2</th>
+                            <th>VT3</th>
+                            <th>VT4</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -101,7 +107,10 @@
                             <tr data-tt-id="{{$cap1->maso}}" style="display: none">
                                 <td>{{$cap1->vitri}}</td>
                                 <td>{{$cap1->soqd}}</td>
-                                <td style="text-align: right; font-weight: bold">{{dinhdangso($cap1->giadat)}}</td>
+                                <td style="text-align: right; font-weight: bold">{{dinhdangso($cap1->giavt1)}}</td>
+                                <td style="text-align: right; font-weight: bold">{{dinhdangso($cap1->giavt2)}}</td>
+                                <td style="text-align: right; font-weight: bold">{{dinhdangso($cap1->giavt3)}}</td>
+                                <td style="text-align: right; font-weight: bold">{{dinhdangso($cap1->giavt4)}}</td>
                                 <td>
                                     @if(can('kkgiacldat','create'))
                                     <button type="button" onclick="addchirld('{{$cap1->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
@@ -121,7 +130,10 @@
                                 <tr data-tt-id="{{$cap2->maso}}" data-tt-parent-id="{{$cap2->magoc}}">
                                     <td>{{$cap2->vitri}}</td>
                                     <td>{{$cap2->soqd}}</td>
-                                    <td style="text-align: right; font-weight: bold">{{dinhdangso($cap2->giadat)}}</td>
+                                    <td style="text-align: right; font-weight: bold">{{dinhdangso($cap2->giavt1)}}</td>
+                                    <td style="text-align: right; font-weight: bold">{{dinhdangso($cap2->giavt2)}}</td>
+                                    <td style="text-align: right; font-weight: bold">{{dinhdangso($cap2->giavt3)}}</td>
+                                    <td style="text-align: right; font-weight: bold">{{dinhdangso($cap2->giavt4)}}</td>
                                     <td>
                                         @if(can('kkgiacldat','create'))
                                         <button type="button" onclick="addchirld('{{$cap2->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
@@ -141,7 +153,10 @@
                                     <tr data-tt-id="{{$cap3->maso}}" data-tt-parent-id="{{$cap3->magoc}}">
                                         <td>{{$cap3->vitri}}</td>
                                         <td>{{$cap3->soqd}}</td>
-                                        <td style="text-align: right; font-weight: bold">{{dinhdangso($cap3->giadat)}}</td>
+                                        <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap3->giavt1,3)}}</td>
+                                        <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap3->giavt2,3)}}</td>
+                                        <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap3->giavt3,3)}}</td>
+                                        <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap3->giavt4,3)}}</td>
                                         <td>
                                             @if(can('kkgiacldat','create'))
                                             <button type="button" onclick="addchirld('{{$cap3->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
@@ -161,7 +176,10 @@
                                         <tr data-tt-id="{{$cap4->maso}}" data-tt-parent-id="{{$cap4->magoc}}">
                                             <td>{{$cap4->vitri}}</td>
                                             <td>{{$cap4->soquyetdinh}}</td>
-                                            <td style="text-align: right; font-weight: bold">{{dinhdangso($cap4->giadat)}}</td>
+                                            <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap4->giavt1,3)}}</td>
+                                            <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap4->giavt2,3)}}</td>
+                                            <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap4->giavt3,3)}}</td>
+                                            <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap4->giavt4,3)}}</td>
                                             <td>
                                                 @if(can('kkgiacldat','create'))
                                                 <button type="button" onclick="addchirld('{{$cap4->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
@@ -181,7 +199,10 @@
                                             <tr data-tt-id="{{$cap5->maso}}" data-tt-parent-id="{{$cap5->magoc}}">
                                                 <td>{{$cap5->vitri}}</td>
                                                 <td>{{$cap5->soqd}}</td>
-                                                <td style="text-align: right; font-weight: bold">{{dinhdangso($cap5->giadat)}}</td>
+                                                <td style="text-align: right; font-weight: bold">{{dinhdangso($cap5->giavt1)}}</td>
+                                                <td style="text-align: right; font-weight: bold">{{dinhdangso($cap5->giavt2)}}</td>
+                                                <td style="text-align: right; font-weight: bold">{{dinhdangso($cap5->giavt3)}}</td>
+                                                <td style="text-align: right; font-weight: bold">{{dinhdangso($cap5->giavt4)}}</td>
                                                 <td>
                                                     @if(can('kkgiacldat','create'))
                                                     <button type="button" onclick="addchirld('{{$cap5->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
@@ -201,7 +222,10 @@
                                                 <tr data-tt-id="{{$cap6->maso}}" data-tt-parent-id="{{$cap6->magoc}}">
                                                     <td>{{$cap6->vitri}}</td>
                                                     <td>{{$cap6->soqd}}</td>
-                                                    <td style="text-align: right; font-weight: bold">{{dinhdangso($cap6->giadat)}}</td>
+                                                    <td style="text-align: right; font-weight: bold">{{dinhdangso($cap6->giavt1)}}</td>
+                                                    <td style="text-align: right; font-weight: bold">{{dinhdangso($cap6->giavt2)}}</td>
+                                                    <td style="text-align: right; font-weight: bold">{{dinhdangso($cap6->giavt3)}}</td>
+                                                    <td style="text-align: right; font-weight: bold">{{dinhdangso($cap6->giavt4)}}</td>
                                                     <td>
                                                         @if(can('kkgiacldat','create'))
                                                         <button type="button" onclick="addchirld('{{$cap6->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
@@ -221,7 +245,10 @@
                                                     <tr data-tt-id="{{$cap7->maso}}" data-tt-parent-id="{{$cap7->magoc}}">
                                                         <td>{{$cap7->vitri}}</td>
                                                         <td>{{$cap7->soqd}}</td>
-                                                        <td style="text-align: right; font-weight: bold">{{dinhdangso($cap7->giadat)}}</td>
+                                                        <td style="text-align: right; font-weight: bold">{{dinhdangso($cap7->giavt1)}}</td>
+                                                        <td style="text-align: right; font-weight: bold">{{dinhdangso($cap7->giavt2)}}</td>
+                                                        <td style="text-align: right; font-weight: bold">{{dinhdangso($cap7->giavt3)}}</td>
+                                                        <td style="text-align: right; font-weight: bold">{{dinhdangso($cap7->giavt4)}}</td>
                                                         <td>
                                                             <!--button type="button" onclick="addchirld('{{$cap7->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button-->
                                                             @if(can('kkgiacldat','edit'))
@@ -454,7 +481,10 @@
                         _token: CSRF_TOKEN,
                         vitri: vitri,
                         id: $('#idedit').val(),
-                        giadat: $('#edit_giadat').val(),
+                        giavt1: $('#edit_giavt1').val(),
+                        giavt2: $('#edit_giavt2').val(),
+                        giavt3: $('#edit_giavt3').val(),
+                        giavt4: $('#edit_giavt4').val(),
                         soqd: $('#edit_soquyetdinh').val()
                     },
                     dataType: 'JSON',
