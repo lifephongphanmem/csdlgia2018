@@ -189,7 +189,8 @@ class GiaCacLoaiDatController extends Controller
         $model = GiaCacLoaiDat::findOrFail($id);
         $inputs['capdo'] = $model->capdo+1;
 
-        $inputs['macapdo'] = GiaCacLoaiDat::where('mahuyen',$inputs['mahuyen'])->where('capdo',($model->capdo +1))->where('magoc',$model->maso)->get()->max('macapdo') + 1;
+        $inputs['macapdo'] = GiaCacLoaiDat::where('mahuyen',$inputs['mahuyen'])->where('capdo',($model->capdo +1))->where('magoc',$model->maso)->get()
+                ->max('macapdo') + 1;
         if($model->capdo == 1)
             $inputs['hienthi'] = $model->vitri;
         else
