@@ -537,7 +537,7 @@
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
-                    capdo: $('#capdo').val()
+                    capdo: $('#capdo').val(),
                     mahuyen: $('#district').val()
                 },
                 dataType: 'JSON',
