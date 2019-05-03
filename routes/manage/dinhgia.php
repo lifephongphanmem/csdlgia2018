@@ -9,6 +9,7 @@ Route::get('thongtingiacacloaidat/editvitri','GiaCacLoaiDatController@editvitri'
 Route::get('thongtingiacacloaidat/updatevitri','GiaCacLoaiDatController@updatevitri');
 Route::get('thongtingiacacloaidat/storechirld','GiaCacLoaiDatController@storechirld');
 Route::post('thongtingiacacloaidat/delete','GiaCacLoaiDatController@destroy');
+Route::post('thongtingiacacloaidat/upgrade','GiaCacLoaiDatController@upgrade');
 
 Route::get('reportsgiacldat','GiaCacLoaiDatController@show');
 

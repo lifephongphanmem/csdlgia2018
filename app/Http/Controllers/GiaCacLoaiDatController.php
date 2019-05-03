@@ -189,7 +189,7 @@ class GiaCacLoaiDatController extends Controller
         $model = GiaCacLoaiDat::findOrFail($id);
         $inputs['capdo'] = $model->capdo+1;
 
-        $inputs['macapdo'] = getDbl(GiaCacLoaiDat::where('mahuyen',$inputs['mahuyen'])->where('capdo',($model->capdo +1))->where('magoc',$model->maso)->max('macapdo')) + 1;
+        $inputs['macapdo'] = GiaCacLoaiDat::where('mahuyen',$inputs['mahuyen'])->where('capdo',($model->capdo +1))->where('magoc',$model->maso)->get()->max('macapdo') + 1;
         if($model->capdo == 1)
             $inputs['hienthi'] = $model->vitri;
         else
@@ -263,6 +263,23 @@ class GiaCacLoaiDatController extends Controller
                 ->with('model',$model)
                 ->with('model_diaban',$model_diaban)
                 ->with('pageTitle','Thông tin quản lý giá các loại đất');
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function upgrade(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $model = GiaCacLoaiDat::where('mahuyen',$inputs['district'])
+                ->where('capdo',$inputs['capdo'])->get();
+            foreach($model as $tt){
+                $m_search = GiaCacLoaiDat::where('maso',$tt->magoc)->first();
+                $m_up = GiaCacLoaiDat::where('id',$tt->id)
+                    ->update(['hienthi' => $m_search->vitri]);
+            }
+
+            return redirect('hongtingiacacloaidat?&&district='.$inputs['district']);
 
         }else
             return view('errors.notlogin');

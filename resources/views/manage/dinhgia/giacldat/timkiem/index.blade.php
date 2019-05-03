@@ -107,11 +107,17 @@
                             <!--th class="table-checkbox">
                                 <input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/>
                             </th-->
-                            <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Địa bàn</th>
-                            <th style="text-align: center">Vị trí</th>
-                            <th style="text-align: center" width="10%">Căn cứ quyết định</th>
-                            <th style="text-align: center" width="10%">Giá đất</th>
+                            <th width="2%" style="text-align: center" rowspan="2">STT</th>
+                            <th style="text-align: center" rowspan="2">Địa bàn</th>
+                            <th style="text-align: center" rowspan="2">Vị trí</th>
+                            <th style="text-align: center" width="10%" rowspan="2">Căn cứ quyết định</th>
+                            <th style="text-align: center" colspan="4">Giá đất</th>
+                        </tr>
+                        <tr>
+                            <th>VT1</th>
+                            <th>VT2</th>
+                            <th>VT3</th>
+                            <th>VT4</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -121,7 +127,10 @@
                                 <td>{{$tt->hienthi}}</td>
                                 <td class="success">{{$tt->vitri}}</td>
                                 <td class="text-center">{{$tt->soqd}}</td>
-                                <td style="text-align: right; font-weight: bold;" class="active">{{number_format($tt->giadat)}}</td>
+                                <td style="text-align: right; font-weight: bold;" class="active">{{dinhdangso($tt->giavt1)}}</td>
+                                <td style="text-align: right; font-weight: bold;" class="active">{{dinhdangso($tt->giavt2)}}</td>
+                                <td style="text-align: right; font-weight: bold;" class="active">{{dinhdangso($tt->giavt3)}}</td>
+                                <td style="text-align: right; font-weight: bold;" class="active">{{dinhdangso($tt->giavt4)}}</td>
                             </tr>
                         @endforeach
                         </tbody>

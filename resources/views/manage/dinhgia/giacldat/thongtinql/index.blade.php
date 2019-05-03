@@ -67,6 +67,9 @@
                         <button type="button" class="btn btn-default btn-xs mbs" id="expand" onclick="expand()"><i class="fa fa-angle-double-down"></i>&nbsp;Expand All</button>
                         <button type="button" class="btn btn-default btn-xs mbs" id="collapse" onclick="collapse()"><i class="fa fa-angle-double-up"></i>&nbsp;Collapse All</button>
                         <a href="{{url('reportsgiacldat?&district='.$district)}}" class="btn btn-default btn-xs mbs" target="_blank"><i class="fa fa-print"></i>&nbsp;Print</a>
+                        @if(session('admin')->sadmin == 'ssa')
+                        <button type="button" class="btn btn-default btn-xs mbs" data-target="#modal-upgrade" data-toggle="modal"><i class="fa fa-angle-double-up"></i>&nbsp;Upgrade</button>
+                        @endif
                     </div>
                 </div>
                 <div class="portlet-body">
@@ -90,7 +93,7 @@
                             <th style="text-align: center" rowspan="2">Vị trí đất</th>
                             <th style="text-align: center" width="10%" rowspan="2">Căn cứ quyết định</th>
                             <th style="text-align: center" width="10%" colspan="4">Giá đất</th>
-                            <th style="text-align: center" width="25%" rowspan="2">Thao tác</th>
+                            <th style="text-align: center" width="15%" rowspan="2">Thao tác</th>
                         </tr>
                         <tr>
                             <th>VT1</th>
@@ -292,6 +295,32 @@
                 <div class="modal-body">
                     <label class="form-control-label">Tên khu vực vị trí<span class="require">*</span></label>
                     <textarea id="vitri1" class="form-control" name="vitri1" rows="3" required="required"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" id="submit" name="submit" value="submit" class="btn btn-primary" onclick="upgrade()">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal upgrade-->
+    <div id="modal-upgrade" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Nâng cấp dữ liệu</h4>
+                </div>
+                <div class="modal-body">
+                    <label class="form-control-label">Tầng nâng cấp<span class="require">*</span></label>
+                    <select class="form-control" name="capdo" id="capdo">
+                        <option value="2">Cấp 2</option>
+                        <option value="3">Cấp 3</option>
+                        <option value="4">Cấp 4</option>
+                        <option value="5">Cấp 5</option>
+                        <option value="6">Cấp 6</option>
+                        <option value="7">Cấp 7</option>
+                    </select>
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
@@ -500,6 +529,27 @@
 
                 toastr.error(message,'Lỗi!.');
             }
+        }
+        function upgrade(){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url:  'thongtingiacacloaidat/upgrade',
+                type: 'GET',
+                data: {
+                    _token: CSRF_TOKEN,
+                    capdo: $('#capdo').val()
+                    mahuyen: $('#district').val()
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.status == 'success') {
+                        location.reload();
+                    }
+                },
+                error: function(message){
+                    toastr.error(message);
+                }
+            });
         }
     </script>
     @include('includes.script.inputmask-ajax-scripts')
