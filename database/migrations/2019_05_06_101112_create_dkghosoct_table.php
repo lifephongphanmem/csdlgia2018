@@ -13,7 +13,7 @@ class CreateDkghosoctTable extends Migration
      */
     public function up()
     {
-        Schema::create('=dkghosoct', function (Blueprint $table) {
+        Schema::create('dkghosoct', function (Blueprint $table) {
             $table->increments('id');
             $table->string('mahs')->nullable();
             $table->string('tenhhdv')->nullable();
@@ -32,6 +32,6 @@ class CreateDkghosoctTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('=dkghosoct');
+        Schema::dropIfExists('dkghosoct');
     }
 }

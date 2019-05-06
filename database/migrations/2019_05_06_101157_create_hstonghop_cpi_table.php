@@ -13,7 +13,7 @@ class CreateHstonghopCpiTable extends Migration
      */
     public function up()
     {
-        Schema::create('=hstonghop_cpi', function (Blueprint $table) {
+        Schema::create('hstonghop_cpi', function (Blueprint $table) {
             $table->increments('id');
             $table->string('mahs')->unique();
             $table->string('soqd')->nullable();
@@ -43,6 +43,6 @@ class CreateHstonghopCpiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('=hstonghop_cpi');
+        Schema::dropIfExists('hstonghop_cpi');
     }
 }
