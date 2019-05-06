@@ -8,6 +8,8 @@ Route::get('thongtingiacacloaidat/addlv1','GiaCacLoaiDatController@addlv1');
 Route::get('thongtingiacacloaidat/editvitri','GiaCacLoaiDatController@editvitri');
 Route::get('thongtingiacacloaidat/updatevitri','GiaCacLoaiDatController@updatevitri');
 Route::get('thongtingiacacloaidat/storechirld','GiaCacLoaiDatController@storechirld');
+Route::get('thongtingiacacloaidat/edithesok','GiaCacLoaiDatController@edithesok');
+Route::get('thongtingiacacloaidat/updatehesok','GiaCacLoaiDatController@updatehesok');
 Route::post('thongtingiacacloaidat/delete','GiaCacLoaiDatController@destroy');
 Route::post('thongtingiacacloaidat/upgrade','GiaCacLoaiDatController@upgrade');
 

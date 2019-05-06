@@ -24,12 +24,12 @@ class GiaCacLoaiDatController extends Controller
             $model = GiaCacLoaiDat::where('mahuyen',$inputs['district'])->get();
 
             $model_quyetdinh = DmQdGiaDat::all();
-            foreach($model as $ct){
+            /*foreach($model as $ct){
                 $ct->b_xoa = true; //mặc định đc xóa
                 //kiểm tra nếu mã số dc sử dụng thì ko dc xóa
                 if($model->where('magoc',$ct->maso)->count() > 0)
                     $ct->b_xoa = false;
-            }
+            }*/
 
             return view('manage.dinhgia.giacldat.thongtinql.index')
                 ->with('model',$model)
@@ -210,7 +210,8 @@ class GiaCacLoaiDatController extends Controller
             $inputs = $request->all();
             $id = $inputs['iddelete'];
             $model = GiaCacLoaiDat::findOrFail($id);
-            $model->delete();
+            $modelct = GiaCacLoaiDat::where('maso','like',$model->maso.'%')->delete();
+            //$model->delete();
             return redirect('thongtingiacacloaidat');
 
         }else
@@ -283,6 +284,137 @@ class GiaCacLoaiDatController extends Controller
 
         }else
             return view('errors.notlogin');
+    }
+
+    public function edithesok(Request $request){
+        $result = array(
+            'status' => 'fail',
+            'message' => 'error',
+        );
+        if (!Session::has('admin')) {
+            $result = array(
+                'status' => 'fail',
+                'message' => 'permission denied',
+            );
+            die(json_encode($result));
+        }
+
+        $inputs = $request->all();
+        $id = $inputs['id'];
+        $model = GiaCacLoaiDat::findOrFail($id);
+        $modelqd = DmQdGiaDat::all();
+        $sub_node = GiaCacLoaiDat::where('magoc',$model->maso)->count()>0? true:false;
+        if($sub_node == false) {
+            $result['message'] = '<div class="modal-body" id="edit_hesok">';
+            $result['message'] .= '<div class="row">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="form-group">';
+            $result['message'] .= '<label class="control-label">Tên khu vực / vị trí: </label>';
+            $result['message'] .= '<label class="control-label">'.$model->vitri.'</label>';
+            $result['message'] .= '</div></div>';
+            $result['message'] .= '</div>';
+
+            $result['message'] .= '<div class="row">';
+            $result['message'] .= '<div class="col-md-6">';
+            $result['message'] .= '<div class="form-group">';
+            $result['message'] .= '<label class="control-label">Giá vị trí I: </label>';
+            $result['message'] .= '<label class="control-label" style="font-weight: bold">&nbsp;'.$model->giavt1.'</label>';
+
+            $result['message'] .= '</div></div>';
+            $result['message'] .= '<div class="col-md-6">';
+            $result['message'] .= '<div class="form-group">';
+            $result['message'] .= '<label class="control-label">Giá vị trí II: </label>';
+            $result['message'] .= '<label class="control-label" style="font-weight: bold">&nbsp;'.$model->giavt2.'</label>';
+            $result['message'] .= '</div></div>';
+            $result['message'] .= '</div>';
+
+            $result['message'] .= '<div class="row">';
+            $result['message'] .= '<div class="col-md-6">';
+            $result['message'] .= '<div class="form-group">';
+            $result['message'] .= '<label class="control-label">Giá vị trí III: </label>';
+            $result['message'] .= '<label class="control-label" style="font-weight: bold">&nbsp;'.$model->giavt3.'</label>';
+
+            $result['message'] .= '</div></div>';
+            $result['message'] .= '<div class="col-md-6">';
+            $result['message'] .= '<div class="form-group">';
+            $result['message'] .= '<label class="control-label">Giá vị trí IV: </label>';
+            $result['message'] .= '<label class="control-label" style="font-weight: bold">&nbsp;'.$model->giavt4.'</label>';
+            $result['message'] .= '</div></div>';
+            $result['message'] .= '</div>';
+
+            $result['message'] .= '<div class="row">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="form-group">';
+            $result['message'] .= '<label class="control-label">Hệ số K<span class="require">*</span></label>';
+            $result['message'] .= '<input type="text" name="editvl_hesok" id="editvl_hesok" class="form-control" data-mask="fdecimal" style="text-align: right; font-weight: bold" maxlength="2" value="' . $model->hesok . '" ' . '/>';
+            $result['message'] .= '</div></div>';
+            $result['message'] .= '</div>';
+
+            $result['message'] .= '<div class="row">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="form-group">';
+            $result['message'] .= '<label class="control-label">Căn cứ quyết định</label>';
+            $result['message'] .= '<select name="edit_soquyetdinh" id="edit_soquyetdinh" class="form-control">';
+            $result['message'] .= '<option value="">--Chọn quyết định thay đổi giá--</option>';
+            foreach($modelqd as $ct){
+                $result['message'] .= '<option value="'.$ct->soquyetdinh.'"'.($ct->soquyetdinh==$model->soqd?' selected':'').'>'. $ct->mota.'</option>';
+            }
+            $result['message'] .= '</select></div></div>';
+            $result['message'] .= '</div>';
+        }else{
+            $result['message'] = '<div class="modal-body" id="edit_hesok">';
+            $result['message'] .= '<div class="row">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="form-group">';
+            $result['message'] .= '<label class="control-label">Không có giá trị nhập hệ số K<span class="require">*</span></label>';
+            $result['message'] .= '</div></div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+        }
+        $result['message'] .= '<input type="hidden" name="idedithesok" id="idedithesok" class="form-control" value="' . $model->id . '"/>';
+
+
+
+
+        $result['message'] .= '</div>';
+        $result['status'] = 'success';
+
+
+        die(json_encode($result));
+    }
+
+    public function updatehesok(Request $request){
+        $result = array(
+            'status' => 'fail',
+            'message' => 'error',
+        );
+        if(!Session::has('admin')) {
+            $result = array(
+                'status' => 'fail',
+                'message' => 'permission denied',
+            );
+            die(json_encode($result));
+        }
+
+        $inputs = $request->all();
+        if(isset($inputs['hesok'])) {
+            $id = $inputs['id'];
+            $model = GiaCacLoaiDat::findOrFail($id);
+            $inputs['hesok'] = str_replace(',', '', $inputs['hesok']);
+            $inputs['giavt1'] = $model->giavt1/$model->hesok * $inputs['hesok'];
+            $inputs['giavt2'] = $model->giavt2/$model->hesok * $inputs['hesok'];
+            $inputs['giavt3'] = $model->giavt3/$model->hesok * $inputs['hesok'];
+            $inputs['giavt4'] = $model->giavt4/$model->hesok * $inputs['hesok'];
+            $model->update($inputs);
+            $result['message'] = 'Cập nhật thành công.';
+            $result['status'] = 'success';
+        }else{
+            $result = array(
+                'status' => 'fail',
+                'message' => 'Không tồn tại giá trị hệ số K',
+            );
+        }
+        die(json_encode($result));
     }
 
 }

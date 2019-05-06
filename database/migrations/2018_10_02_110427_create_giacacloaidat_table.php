@@ -27,6 +27,7 @@ class CreateGiacacloaidatTable extends Migration
             $table->double('giavt2')->default(0);
             $table->double('giavt3')->default(0);
             $table->double('giavt4')->default(0);
+            $table->double('hesok')->default(1);
             $table->string('sapxep')->nullable();
             $table->string('ghichu')->nullable();
             $table->string('mahuyen')->nullable();//cho trường hợp huyện nào nhập giá của huyện đó

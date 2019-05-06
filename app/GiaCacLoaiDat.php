@@ -22,6 +22,7 @@ class GiaCacLoaiDat extends Model
         'giavt2',
         'giavt3',
         'giavt4',
+        'hesok',
         'ghichu',
         'mahuyen',
         'username',

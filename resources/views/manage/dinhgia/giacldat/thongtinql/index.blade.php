@@ -91,9 +91,10 @@
                         <thead>
                         <tr>
                             <th style="text-align: center" rowspan="2">Vị trí đất</th>
-                            <th style="text-align: center" width="10%" rowspan="2">Căn cứ quyết định</th>
+                            <th style="text-align: center" width="10%" rowspan="2">Căn cứ<br> quyết định</th>
+                            <th rowspan="2" width="2%">Hệ số K</th>
                             <th style="text-align: center" width="10%" colspan="4">Giá đất</th>
-                            <th style="text-align: center" width="15%" rowspan="2">Thao tác</th>
+                            <th style="text-align: center" width="20%" rowspan="2">Thao tác</th>
                         </tr>
                         <tr>
                             <th>VT1</th>
@@ -108,6 +109,7 @@
                             <tr data-tt-id="{{$cap1->maso}}" style="display: none">
                                 <td>{{$cap1->vitri}}</td>
                                 <td>{{$cap1->soqd}}</td>
+                                <td>{{$cap1->hesok}}</td>
                                 <td style="text-align: right; font-weight: bold">{{dinhdangso($cap1->giavt1)}}</td>
                                 <td style="text-align: right; font-weight: bold">{{dinhdangso($cap1->giavt2)}}</td>
                                 <td style="text-align: right; font-weight: bold">{{dinhdangso($cap1->giavt3)}}</td>
@@ -118,11 +120,10 @@
                                     @endif
                                     @if(can('kkgiacldat','edit'))
                                     <button type="button" onclick="editvitri('{{$cap1->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                    <button type="button" onclick="edithesok('{{$cap1->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
                                     @endif
-                                    @if($cap1->b_xoa)
-                                        @if(can('kkgiacldat','delete'))
-                                        <button type="button" onclick="confirmDelete('{{$cap1->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
-                                        @endif
+                                    @if(can('kkgiacldat','delete'))
+                                    <button type="button" onclick="confirmDelete('{{$cap1->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                     @endif
                                 </td>
                             </tr>
@@ -131,6 +132,7 @@
                                 <tr data-tt-id="{{$cap2->maso}}" data-tt-parent-id="{{$cap2->magoc}}">
                                     <td>{{$cap2->vitri}}</td>
                                     <td>{{$cap2->soqd}}</td>
+                                    <td>{{$cap2->hesok}}</td>
                                     <td style="text-align: right; font-weight: bold">{{dinhdangso($cap2->giavt1)}}</td>
                                     <td style="text-align: right; font-weight: bold">{{dinhdangso($cap2->giavt2)}}</td>
                                     <td style="text-align: right; font-weight: bold">{{dinhdangso($cap2->giavt3)}}</td>
@@ -141,11 +143,10 @@
                                         @endif
                                         @if(can('kkgiacldat','edit'))
                                         <button type="button" onclick="editvitri('{{$cap2->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                            <button type="button" onclick="edithesok('{{$cap2->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
                                         @endif
-                                        @if($cap2->b_xoa)
-                                            @if(can('kkgiacldat','delete'))
-                                            <button type="button" onclick="confirmDelete('{{$cap2->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
-                                            @endif
+                                        @if(can('kkgiacldat','delete'))
+                                        <button type="button" onclick="confirmDelete('{{$cap2->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                         @endif
                                     </td>
                                 </tr>
@@ -154,6 +155,7 @@
                                     <tr data-tt-id="{{$cap3->maso}}" data-tt-parent-id="{{$cap3->magoc}}">
                                         <td>{{$cap3->vitri}}</td>
                                         <td>{{$cap3->soqd}}</td>
+                                        <td>{{$cap3->hesok}}</td>
                                         <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap3->giavt1,3)}}</td>
                                         <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap3->giavt2,3)}}</td>
                                         <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap3->giavt3,3)}}</td>
@@ -164,11 +166,10 @@
                                             @endif
                                             @if(can('kkgiacldat','edit'))
                                             <button type="button" onclick="editvitri('{{$cap3->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                            <button type="button" onclick="edithesok('{{$cap3->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
                                             @endif
-                                            @if($cap3->b_xoa)
-                                                @if(can('kkgiacldat','delete'))
-                                                <button type="button" onclick="confirmDelete('{{$cap3->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
-                                                @endif
+                                            @if(can('kkgiacldat','delete'))
+                                            <button type="button" onclick="confirmDelete('{{$cap3->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                             @endif
                                         </td>
                                     </tr>
@@ -177,6 +178,7 @@
                                         <tr data-tt-id="{{$cap4->maso}}" data-tt-parent-id="{{$cap4->magoc}}">
                                             <td>{{$cap4->vitri}}</td>
                                             <td>{{$cap4->soquyetdinh}}</td>
+                                            <td>{{$cap4->hesok}}</td>
                                             <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap4->giavt1,3)}}</td>
                                             <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap4->giavt2,3)}}</td>
                                             <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap4->giavt3,3)}}</td>
@@ -187,11 +189,10 @@
                                                 @endif
                                                 @if(can('kkgiacldat','edit'))
                                                 <button type="button" onclick="editvitri('{{$cap4->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                    <button type="button" onclick="edithesok('{{$cap4->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
                                                 @endif
-                                                @if($cap4->b_xoa)
-                                                    @if(can('kkgiacldat','delete'))
-                                                    <button type="button" onclick="confirmDelete('{{$cap4->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
-                                                    @endif
+                                                @if(can('kkgiacldat','delete'))
+                                                <button type="button" onclick="confirmDelete('{{$cap4->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                                 @endif
                                             </td>
                                         </tr>
@@ -200,6 +201,7 @@
                                             <tr data-tt-id="{{$cap5->maso}}" data-tt-parent-id="{{$cap5->magoc}}">
                                                 <td>{{$cap5->vitri}}</td>
                                                 <td>{{$cap5->soqd}}</td>
+                                                <td>{{$cap5->hesok}}</td>
                                                 <td style="text-align: right; font-weight: bold">{{dinhdangso($cap5->giavt1)}}</td>
                                                 <td style="text-align: right; font-weight: bold">{{dinhdangso($cap5->giavt2)}}</td>
                                                 <td style="text-align: right; font-weight: bold">{{dinhdangso($cap5->giavt3)}}</td>
@@ -210,11 +212,10 @@
                                                     @endif
                                                     @if(can('kkgiacldat','edit'))
                                                     <button type="button" onclick="editvitri('{{$cap5->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                        <button type="button" onclick="edithesok('{{$cap5->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
                                                     @endif
-                                                    @if($cap5->b_xoa)
-                                                        @if(can('kkgiacldat','delete'))
-                                                        <button type="button" onclick="confirmDelete('{{$cap5->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
-                                                        @endif
+                                                    @if(can('kkgiacldat','delete'))
+                                                    <button type="button" onclick="confirmDelete('{{$cap5->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -223,6 +224,7 @@
                                                 <tr data-tt-id="{{$cap6->maso}}" data-tt-parent-id="{{$cap6->magoc}}">
                                                     <td>{{$cap6->vitri}}</td>
                                                     <td>{{$cap6->soqd}}</td>
+                                                    <td>{{$cap6->hesok}}</td>
                                                     <td style="text-align: right; font-weight: bold">{{dinhdangso($cap6->giavt1)}}</td>
                                                     <td style="text-align: right; font-weight: bold">{{dinhdangso($cap6->giavt2)}}</td>
                                                     <td style="text-align: right; font-weight: bold">{{dinhdangso($cap6->giavt3)}}</td>
@@ -233,11 +235,10 @@
                                                         @endif
                                                         @if(can('kkgiacldat','edit'))
                                                         <button type="button" onclick="editvitri('{{$cap6->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                            <button type="button" onclick="edithesok('{{$cap6->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
                                                         @endif
-                                                        @if($cap6->b_xoa)
-                                                            @if(can('kkgiacldat','delete'))
-                                                            <button type="button" onclick="confirmDelete('{{$cap6->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
-                                                            @endif
+                                                        @if(can('kkgiacldat','delete'))
+                                                        <button type="button" onclick="confirmDelete('{{$cap6->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                                         @endif
                                                     </td>
                                                 </tr>
@@ -246,6 +247,7 @@
                                                     <tr data-tt-id="{{$cap7->maso}}" data-tt-parent-id="{{$cap7->magoc}}">
                                                         <td>{{$cap7->vitri}}</td>
                                                         <td>{{$cap7->soqd}}</td>
+                                                        <td>{{$cap7->hesok}}</td>
                                                         <td style="text-align: right; font-weight: bold">{{dinhdangso($cap7->giavt1)}}</td>
                                                         <td style="text-align: right; font-weight: bold">{{dinhdangso($cap7->giavt2)}}</td>
                                                         <td style="text-align: right; font-weight: bold">{{dinhdangso($cap7->giavt3)}}</td>
@@ -254,11 +256,10 @@
                                                             <!--button type="button" onclick="addchirld('{{$cap7->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button-->
                                                             @if(can('kkgiacldat','edit'))
                                                             <button type="button" onclick="editvitri('{{$cap7->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                            <button type="button" onclick="edithesok('{{$cap7->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
                                                             @endif
-                                                            @if($cap7->b_xoa)
-                                                                @if(can('kkgiacldat','delete'))
-                                                                <button type="button" onclick="confirmDelete('{{$cap7->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
-                                                                @endif
+                                                            @if(can('kkgiacldat','delete'))
+                                                            <button type="button" onclick="confirmDelete('{{$cap7->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                                             @endif
                                                         </td>
                                                     </tr>
@@ -272,9 +273,6 @@
                         </tbody>
                     </table>
                 </div>
-                <!--div class="col-md-offset-5 col-md-2">
-                    <a class="btn blue" href="{{url('/giathuetn')}}"><i class="fa fa-mail-reply"></i> Quay lại</a>
-                </div-->
             </div>
             <!-- END EXAMPLE TABLE PORTLET-->
         </div>
@@ -370,6 +368,24 @@
             </div>
         </div>
     </div>
+
+    <!--Modal node edit hệ số k-->
+    <div id="modal-edit-hesok" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Chỉnh sửa hệ số K</h4>
+                </div>
+                <div class="modal-body" id="edit_hesok">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" id="submit" name="submit" value="submit" class="btn btn-primary" onclick="updatehesok()">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!--Model delete-->
     <div id="delete-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
         {!! Form::open(['url'=>'thongtingiacacloaidat/delete','id' => 'frm_delete'])!!}
@@ -379,8 +395,12 @@
                     <button type="button" data-dismiss="modal" aria-hidden="true"
                             class="close">&times;</button>
                     <h4 id="modal-header-primary-label" class="modal-title">Đồng ý xoá?</h4>
+
                     <input type="hidden" name="iddelete" id="iddelete">
 
+                </div>
+                <div class="modal-body" id="edit_node">
+                    <label class="form-control-label">Lưu ý: Nếu bạn xóa nhóm thì mọi chi tiết của nhóm đó sẽ bị xóa!<span class="require">*</span></label>
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
@@ -489,6 +509,28 @@
             });
         }
 
+        function edithesok(id) {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: 'thongtingiacacloaidat/edithesok',
+                type: 'GET',
+                data: {
+                    _token: CSRF_TOKEN,
+                    id: id
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.status == 'success') {
+                        $('#edit_hesok').replaceWith(data.message);
+                        InputMask();
+                    }
+                },
+                error: function (message) {
+                    toastr.error(message, 'Lỗi!');
+                }
+            });
+        }
+
         function updatevitri(){
             var valid=true;
             var message='';
@@ -550,6 +592,29 @@
                     toastr.error(message);
                 }
             });
+        }
+
+        function updatehesok(){
+
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: 'thongtingiacacloaidat/updatehesok',
+                    type: 'GET',
+                    data: {
+                        _token: CSRF_TOKEN,
+                        id: $('#idedithesok').val(),
+                        hesok: $('#editvl_hesok').val()
+                    },
+                    dataType: 'JSON',
+                    success: function (data) {
+                        if (data.status == 'success') {
+                            location.reload();
+                        }
+                    },
+                    error: function (message) {
+                        toastr.error(message);
+                    }
+                });
         }
     </script>
     @include('includes.script.inputmask-ajax-scripts')
