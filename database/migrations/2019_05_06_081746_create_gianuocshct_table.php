@@ -34,6 +34,6 @@ class CreateGianuocshctTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gianuocsh');
+        Schema::dropIfExists('gianuocshct');
     }
 }

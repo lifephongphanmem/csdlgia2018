@@ -24,7 +24,6 @@ class CreateThgiahhdvkctdfTable extends Migration
             $table->string('dvt')->nullable();
             $table->string('gialk')->nullable();
             $table->string('gia')->nullable();
-            $table->string('dvt')->nullable();
             $table->timestamps();
         });
     }
