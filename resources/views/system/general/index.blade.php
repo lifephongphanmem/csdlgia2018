@@ -30,12 +30,13 @@
                             @if(count($model) >0)
                                 <a href="{{url('general/'.$model->id.'/edit')}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-edit"></i> Chỉnh sửa </a>
+                                <a href="{{url('setting')}}" class="btn btn-default btn-sm">
+                                    <i class="icon-settings"></i> Setting</a>
                             @else
                                 <a href="{{url('general/create')}}" class="btn btn-default btn-sm">
                                     <i class="fa fa-plus"></i> Thêm mới</a>
                             @endif
-                            <a href="{{url('setting')}}" class="btn btn-default btn-sm">
-                                <i class="icon-settings"></i> Setting</a>
+
                         @endif
                     </div>
                 </div>
