@@ -3293,6 +3293,7 @@ function canApprove($trangthai){
 function canGeneral($module = null, $action =null)
 {
     $model = \App\GeneralConfigs::first();
+    dd($model);
     if(!isset($model)) {
         if(count($model)> 0 && $model->setting != '')
             $setting = json_decode($model->setting, true);
