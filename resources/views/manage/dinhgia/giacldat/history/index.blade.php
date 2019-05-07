@@ -65,7 +65,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($model as $key=>$tt)
+                        @foreach($modelh as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
                                 <td>{{$tt->hienthi}}</td>
@@ -84,6 +84,11 @@
                 </div>
             </div>
             <!-- END EXAMPLE TABLE PORTLET-->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align: center">
+            <a href="{{url('thongtingiacacloaidat?&district='.$model->mahuyen)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
         </div>
     </div>
     <!-- BEGIN DASHBOARD STATS -->

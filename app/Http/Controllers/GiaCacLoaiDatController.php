@@ -431,14 +431,17 @@ class GiaCacLoaiDatController extends Controller
     public function showhis(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
-            $model = GiaCacLoaiDatH::join('diabanhd','giacacloaidath.mahuyen','=','diabanhd.district')
+            $modelh = GiaCacLoaiDatH::join('diabanhd','giacacloaidath.mahuyen','=','diabanhd.district')
                 ->where('diabanhd.level','H')
                 ->where('giacacloaidath.maso',$inputs['maso'])
                 ->select('giacacloaidath.*','diabanhd.diaban')
                 ->get();
+            $model = GiaCacLoaiDat::where('maso',$inputs['maso'])
+                ->first();
 
             return view('manage.dinhgia.giacldat.history.index')
                 ->with('model',$model)
+                ->with('modelh',$modelh)
                 ->with('pageTitle','Thông tin quản lý giá các loại đất lịch sử');
 
         }else
