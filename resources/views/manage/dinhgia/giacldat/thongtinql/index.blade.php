@@ -90,11 +90,11 @@
                     <table id="example-advanced" class="treetable">
                         <thead>
                         <tr>
-                            <th style="text-align: center" rowspan="2">Vị trí đất</th>
-                            <th style="text-align: center" width="10%" rowspan="2">Căn cứ<br> quyết định</th>
+                            <th style="text-align: center" rowspan="2" width="60%">Vị trí đất</th>
+                            <th style="text-align: center" width="5%" rowspan="2">Căn cứ<br> quyết định</th>
                             <th rowspan="2" width="2%">Hệ số K</th>
                             <th style="text-align: center" width="10%" colspan="4">Giá đất</th>
-                            <th style="text-align: center" width="20%" rowspan="2">Thao tác</th>
+                            <th style="text-align: center" width="15%" rowspan="2">Thao tác</th>
                         </tr>
                         <tr>
                             <th>VT1</th>
@@ -116,15 +116,16 @@
                                 <td style="text-align: right; font-weight: bold">{{dinhdangso($cap1->giavt4)}}</td>
                                 <td>
                                     @if(can('kkgiacldat','create'))
-                                    <button type="button" onclick="addchirld('{{$cap1->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                                        <button type="button" onclick="addchirld('{{$cap1->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal" style="margin: 2px"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
                                     @endif
                                     @if(can('kkgiacldat','edit'))
-                                    <button type="button" onclick="editvitri('{{$cap1->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
-                                    <button type="button" onclick="edithesok('{{$cap1->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
+                                        <button type="button" onclick="editvitri('{{$cap1->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                        <button type="button" onclick="edithesok('{{$cap1->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
                                     @endif
                                     @if(can('kkgiacldat','delete'))
-                                    <button type="button" onclick="confirmDelete('{{$cap1->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                        <button type="button" onclick="confirmDelete('{{$cap1->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                     @endif
+                                        <a href="{{url('thongtingiacacloaidat/history?&maso='.$cap1->maso)}}" class="btn btn-default btn-xs mbs" style="margin: 2px"><i class="fa fa-book"></i> History</a>
                                 </td>
                             </tr>
                             <?php $model_cap2 = $model->where('magoc',$cap1->maso); ?>
@@ -139,15 +140,16 @@
                                     <td style="text-align: right; font-weight: bold">{{dinhdangso($cap2->giavt4)}}</td>
                                     <td>
                                         @if(can('kkgiacldat','create'))
-                                        <button type="button" onclick="addchirld('{{$cap2->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                                        <button type="button" onclick="addchirld('{{$cap2->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal" style="margin: 2px"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
                                         @endif
                                         @if(can('kkgiacldat','edit'))
-                                        <button type="button" onclick="editvitri('{{$cap2->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
-                                            <button type="button" onclick="edithesok('{{$cap2->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
+                                        <button type="button" onclick="editvitri('{{$cap2->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                            <button type="button" onclick="edithesok('{{$cap2->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
                                         @endif
                                         @if(can('kkgiacldat','delete'))
-                                        <button type="button" onclick="confirmDelete('{{$cap2->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                        <button type="button" onclick="confirmDelete('{{$cap2->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                         @endif
+                                            <a href="{{url('thongtingiacacloaidat/history?&maso='.$cap2->maso)}}" class="btn btn-default btn-xs mbs" style="margin: 2px"><i class="fa fa-book"></i> History</a>
                                     </td>
                                 </tr>
                                 <?php $model_cap3 = $model->where('magoc',$cap2->maso); ?>
@@ -162,15 +164,16 @@
                                         <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap3->giavt4,3)}}</td>
                                         <td>
                                             @if(can('kkgiacldat','create'))
-                                            <button type="button" onclick="addchirld('{{$cap3->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                                            <button type="button" onclick="addchirld('{{$cap3->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal" style="margin: 2px"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
                                             @endif
                                             @if(can('kkgiacldat','edit'))
-                                            <button type="button" onclick="editvitri('{{$cap3->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
-                                            <button type="button" onclick="edithesok('{{$cap3->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
+                                            <button type="button" onclick="editvitri('{{$cap3->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                            <button type="button" onclick="edithesok('{{$cap3->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
                                             @endif
                                             @if(can('kkgiacldat','delete'))
-                                            <button type="button" onclick="confirmDelete('{{$cap3->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                            <button type="button" onclick="confirmDelete('{{$cap3->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                             @endif
+                                                <a href="{{url('thongtingiacacloaidat/history?&maso='.$cap3->maso)}}" class="btn btn-default btn-xs mbs" style="margin: 2px"><i class="fa fa-book"></i> History</a>
                                         </td>
                                     </tr>
                                     <?php $model_cap4 = $model->where('magoc',$cap3->maso); ?>
@@ -185,15 +188,16 @@
                                             <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap4->giavt4,3)}}</td>
                                             <td>
                                                 @if(can('kkgiacldat','create'))
-                                                <button type="button" onclick="addchirld('{{$cap4->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                                                <button type="button" onclick="addchirld('{{$cap4->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal" style="margin: 2px"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
                                                 @endif
                                                 @if(can('kkgiacldat','edit'))
-                                                <button type="button" onclick="editvitri('{{$cap4->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
-                                                    <button type="button" onclick="edithesok('{{$cap4->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
+                                                <button type="button" onclick="editvitri('{{$cap4->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                    <button type="button" onclick="edithesok('{{$cap4->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
                                                 @endif
                                                 @if(can('kkgiacldat','delete'))
-                                                <button type="button" onclick="confirmDelete('{{$cap4->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                <button type="button" onclick="confirmDelete('{{$cap4->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                                 @endif
+                                                    <a href="{{url('thongtingiacacloaidat/history?&maso='.$cap4->maso)}}" class="btn btn-default btn-xs mbs" style="margin: 2px"><i class="fa fa-book"></i> History</a>
                                             </td>
                                         </tr>
                                         <?php $model_cap5 = $model->where('magoc',$cap4->maso); ?>
@@ -208,15 +212,16 @@
                                                 <td style="text-align: right; font-weight: bold">{{dinhdangso($cap5->giavt4)}}</td>
                                                 <td>
                                                     @if(can('kkgiacldat','create'))
-                                                    <button type="button" onclick="addchirld('{{$cap5->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                                                    <button type="button" onclick="addchirld('{{$cap5->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal" style="margin: 2px"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
                                                     @endif
                                                     @if(can('kkgiacldat','edit'))
-                                                    <button type="button" onclick="editvitri('{{$cap5->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
-                                                        <button type="button" onclick="edithesok('{{$cap5->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
+                                                    <button type="button" onclick="editvitri('{{$cap5->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                        <button type="button" onclick="edithesok('{{$cap5->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
                                                     @endif
                                                     @if(can('kkgiacldat','delete'))
-                                                    <button type="button" onclick="confirmDelete('{{$cap5->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                    <button type="button" onclick="confirmDelete('{{$cap5->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                                     @endif
+                                                        <a href="{{url('thongtingiacacloaidat/history?&maso='.$cap5->maso)}}" class="btn btn-default btn-xs mbs" style="margin: 2px"><i class="fa fa-book"></i> History</a>
                                                 </td>
                                             </tr>
                                             <?php $model_cap6 = $model->where('magoc',$cap5->maso); ?>
@@ -231,15 +236,16 @@
                                                     <td style="text-align: right; font-weight: bold">{{dinhdangso($cap6->giavt4)}}</td>
                                                     <td>
                                                         @if(can('kkgiacldat','create'))
-                                                        <button type="button" onclick="addchirld('{{$cap6->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                                                        <button type="button" onclick="addchirld('{{$cap6->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal" style="margin: 2px"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
                                                         @endif
                                                         @if(can('kkgiacldat','edit'))
-                                                        <button type="button" onclick="editvitri('{{$cap6->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
-                                                            <button type="button" onclick="edithesok('{{$cap6->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
+                                                        <button type="button" onclick="editvitri('{{$cap6->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                            <button type="button" onclick="edithesok('{{$cap6->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
                                                         @endif
                                                         @if(can('kkgiacldat','delete'))
-                                                        <button type="button" onclick="confirmDelete('{{$cap6->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                        <button type="button" onclick="confirmDelete('{{$cap6->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                                         @endif
+                                                            <a href="{{url('thongtingiacacloaidat/history?&maso='.$cap6->maso)}}" class="btn btn-default btn-xs mbs" style="margin: 2px"><i class="fa fa-book"></i> History</a>
                                                     </td>
                                                 </tr>
                                                 <?php $model_cap7 = $model->where('magoc',$cap6->maso); ?>
@@ -255,12 +261,13 @@
                                                         <td>
                                                             <!--button type="button" onclick="addchirld('{{$cap7->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-add-chirld" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button-->
                                                             @if(can('kkgiacldat','edit'))
-                                                            <button type="button" onclick="editvitri('{{$cap7->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
-                                                            <button type="button" onclick="edithesok('{{$cap7->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
+                                                            <button type="button" onclick="editvitri('{{$cap7->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                            <button type="button" onclick="edithesok('{{$cap7->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-hesok" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Hệ số K</button>
                                                             @endif
                                                             @if(can('kkgiacldat','delete'))
-                                                            <button type="button" onclick="confirmDelete('{{$cap7->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                            <button type="button" onclick="confirmDelete('{{$cap7->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                                             @endif
+                                                            <a href="{{url('thongtingiacacloaidat/history?&maso='.$cap7->maso)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-book" style="margin: 2px"></i> History</a>
                                                         </td>
                                                     </tr>
                                                 @endforeach

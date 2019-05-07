@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DiaBanHd;
 use App\DmQdGiaDat;
 use App\GiaCacLoaiDat;
+use App\GiaCacLoaiDatH;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -162,11 +163,16 @@ class GiaCacLoaiDatController extends Controller
         $inputs = $request->all();
         $id = $inputs['id'];
         $model = GiaCacLoaiDat::findOrFail($id);
-        $inputs['giavt1'] = str_replace(',','',$inputs['giavt1']);
-        $inputs['giavt2'] = str_replace(',','',$inputs['giavt2']);
-        $inputs['giavt3'] = str_replace(',','',$inputs['giavt3']);
-        $inputs['giavt4'] = str_replace(',','',$inputs['giavt4']);
+        $inputs['giavt1'] = getDoubleToDb($inputs['giavt1']);
+        $inputs['giavt2'] = getDoubleToDb($inputs['giavt2']);
+        $inputs['giavt3'] = getDoubleToDb($inputs['giavt3']);
+        $inputs['giavt4'] = getDoubleToDb($inputs['giavt4']);
+        $inputs['username'] = session('admin')->name.'('.session('admin')->username.')';
+        $inputs['thaotac'] = 'Cập nhật giá đất';
         $model->update($inputs);
+        $arrayh = $model->toArray();
+        unset($arrayh['id']);
+        $modelh = GiaCacLoaiDatH::create($arrayh);
         $result['message'] = 'Cập nhật thành công.';
         $result['status'] = 'success';
         die(json_encode($result));
@@ -405,7 +411,12 @@ class GiaCacLoaiDatController extends Controller
             $inputs['giavt2'] = $model->giavt2/$model->hesok * $inputs['hesok'];
             $inputs['giavt3'] = $model->giavt3/$model->hesok * $inputs['hesok'];
             $inputs['giavt4'] = $model->giavt4/$model->hesok * $inputs['hesok'];
+            $inputs['username'] = session('admin')->name.'('.session('admin')->username.')';
+            $inputs['thaotac'] = 'Điều chỉnh hệ số K giá đất';
             $model->update($inputs);
+            $arrayh = $model->toArray();
+            unset($arrayh['id']);
+            $modelh = GiaCacLoaiDatH::create($arrayh);
             $result['message'] = 'Cập nhật thành công.';
             $result['status'] = 'success';
         }else{
@@ -415,6 +426,23 @@ class GiaCacLoaiDatController extends Controller
             );
         }
         die(json_encode($result));
+    }
+
+    public function showhis(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $model = GiaCacLoaiDatH::join('diabanhd','giacacloaidath.mahuyen','=','diabanhd.district')
+                ->where('diabanhd.level','H')
+                ->where('giacacloaidath.maso',$inputs['maso'])
+                ->select('giacacloaidath.*','diabanhd.diaban')
+                ->get();
+
+            return view('manage.dinhgia.giacldat.history.index')
+                ->with('model',$model)
+                ->with('pageTitle','Thông tin quản lý giá các loại đất lịch sử');
+
+        }else
+            return view('errors.notlogin');
     }
 
 }

@@ -12,6 +12,7 @@ Route::get('thongtingiacacloaidat/edithesok','GiaCacLoaiDatController@edithesok'
 Route::get('thongtingiacacloaidat/updatehesok','GiaCacLoaiDatController@updatehesok');
 Route::post('thongtingiacacloaidat/delete','GiaCacLoaiDatController@destroy');
 Route::post('thongtingiacacloaidat/upgrade','GiaCacLoaiDatController@upgrade');
+ROute::get('thongtingiacacloaidat/history','GiaCacLoaiDatController@showhis');
 
 Route::get('reportsgiacldat','GiaCacLoaiDatController@show');
 

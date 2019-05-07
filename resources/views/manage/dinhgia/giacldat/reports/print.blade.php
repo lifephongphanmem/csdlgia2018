@@ -59,7 +59,8 @@
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <tr>
         <th style="text-align: center" rowspan="2">Vị trí đất</th>
-        <th style="text-align: center" width="10%" rowspan="2">Căn cứ quyết định</th>
+        <th style="text-align: center" width="5%" rowspan="2">Căn cứ quyết định</th>
+        <th rowspan="2" width="2%">Hệ số K</th>
         <th style="text-align: center" width="10%" colspan="4">Giá đất</th>
     </tr>
     <tr>
@@ -74,6 +75,7 @@
         <tr>
             <td style="text-align: left;font-weight: bold;text-transform: uppercase;">{{toAlpha($lv1++) .' .' .$cap1->vitri}}</td>
             <td>{{$cap1->soqd}}</td>
+            <td>{{$cap1->hesok}}</td>
             <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap1->giavt1,3)}}</td>
             <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap1->giavt2,3)}}</td>
             <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap1->giavt3,3)}}</td>
@@ -85,6 +87,7 @@
             <tr>
                 <td style="text-align: left;font-weight: bold">&nbsp;{{romanNumerals($lv2++) .'. ' .$cap2->vitri}}</td>
                 <td>{{$cap2->soqd}}</td>
+                <td>{{$cap2->hesok}}</td>
                 <td style="text-align: right; font-weight: bold">{{dinhdangso($cap2->giavt1)}}</td>
                 <td style="text-align: right; font-weight: bold">{{dinhdangso($cap2->giavt2)}}</td>
                 <td style="text-align: right; font-weight: bold">{{dinhdangso($cap2->giavt3)}}</td>
@@ -97,6 +100,7 @@
                 <tr>
                     <td style="text-align: left;font-style: oblique;font-weight: bold">&nbsp;&nbsp;{{$lv3++ .'. ' .$cap3->vitri}}</td>
                     <td>{{$cap3->soqd}} </td>
+                    <td>{{$cap3->hesok}} </td>
                     <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap3->giavt1,3)}}</td>
                     <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap3->giavt2,3)}}</td>
                     <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($cap3->giavt3,3)}}</td>
@@ -106,7 +110,8 @@
                 @foreach($model_cap4 as $cap4)
                     <tr>
                         <td style="text-align: left;font-style: italic">&nbsp;&nbsp;&nbsp;- {{$cap4->vitri}}</td>
-                        <td>{{$cap4->soquyetdinh}}</td>
+                        <td>{{$cap4->soqd}}</td>
+                        <td>{{$cap4->hesok}}</td>
                         <td style="text-align: right; font-weight: bold">{{dinhdangso($cap4->giavt1)}}</td>
                         <td style="text-align: right; font-weight: bold">{{dinhdangso($cap4->giavt2)}}</td>
                         <td style="text-align: right; font-weight: bold">{{dinhdangso($cap4->giavt3)}}</td>
@@ -117,6 +122,7 @@
                         <tr>
                             <td style="text-align: left">&nbsp;&nbsp;&nbsp;&nbsp;+ {{$cap5->vitri}}</td>
                             <td>{{$cap5->soqd}}</td>
+                            <td>{{$cap5->hesok}}</td>
                             <td style="text-align: right; font-weight: bold">{{dinhdangso($cap5->giavt1)}}</td>
                             <td style="text-align: right; font-weight: bold">{{dinhdangso($cap5->giavt2)}}</td>
                             <td style="text-align: right; font-weight: bold">{{dinhdangso($cap5->giavt3)}}</td>
@@ -127,6 +133,7 @@
                             <tr>
                                 <td style="text-align: left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i. {{$cap6->vitri}}</td>
                                 <td>{{$cap6->soqd}}</td>
+                                <td>{{$cap6->hesok}}</td>
                                 <td style="text-align: right; font-weight: bold">{{dinhdangso($cap6->giavt1)}}</td>
                                 <td style="text-align: right; font-weight: bold">{{dinhdangso($cap6->giavt2)}}</td>
                                 <td style="text-align: right; font-weight: bold">{{dinhdangso($cap6->giavt3)}}</td>
@@ -137,6 +144,7 @@
                                 <tr>
                                     <td style="text-align: left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ii. {{$cap7->vitri}}</td>
                                     <td>{{$cap7->soqd}}</td>
+                                    <td>{{$cap7->hesok}}</td>
                                     <td style="text-align: right; font-weight: bold">{{dinhdangso($cap7->giavt1)}}</td>
                                     <td style="text-align: right; font-weight: bold">{{dinhdangso($cap7->giavt2)}}</td>
                                     <td style="text-align: right; font-weight: bold">{{dinhdangso($cap7->giavt3)}}</td>

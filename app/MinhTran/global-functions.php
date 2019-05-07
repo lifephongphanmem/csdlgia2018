@@ -3473,6 +3473,15 @@ function getMoneyToDb ($value){
     return $kq;
 }
 
+function getDoubleToDb ($value){
+    if($value == ''){
+        $kq = 0;
+    }else {
+        $kq = str_replace(',', '', $value);
+    }
+    return $kq;
+}
+
 function getDecimalToDb($value){
     if($value == ''){
         $kq = 1;
