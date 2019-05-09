@@ -7,7 +7,7 @@
                     <div class="portlet-title">
                         <div class="caption">
                             <input type="checkbox" {{ (isset($permission->kcbtn->index) && $permission->kcbtn->index == 1) ? 'checked' : '' }} value="1" name="roles[kcbtn][index]"/>
-                            >Dịch vụ khám bệnh, chữa bệnh cho người tại cơ sở khám bệnh, chữa bệnh tư nhân; khám bệnh, chữa bệnh theo yêu cầu tại cơ sở khám bệnh, chữa bệnh của nhà nước
+                            Dịch vụ khám bệnh, chữa bệnh cho người tại cơ sở khám bệnh, chữa bệnh tư nhân; khám bệnh, chữa bệnh theo yêu cầu tại cơ sở khám bệnh, chữa bệnh của nhà nước
                         </div>
                         <div class="tools">
                             <a href="" class="expand" data-original-title="" title="">

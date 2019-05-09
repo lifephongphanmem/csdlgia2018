@@ -14,5 +14,6 @@ class GiaNuocSh extends Model
         'ngayapdung',
         'ghichu',
         'trangthai',
+        'mahuyen'
     ];
 }

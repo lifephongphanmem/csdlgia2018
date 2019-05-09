@@ -20,6 +20,7 @@ class CreateGianuocshTable extends Migration
             $table->text('ghichu')->nullable();
             $table->string('mahs')->nullable();
             $table->string('trangthai')->nullable();
+            $table->string('mahuyen')->nullable();
             $table->timestamps();
         });
     }
