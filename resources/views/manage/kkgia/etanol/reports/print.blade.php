@@ -156,7 +156,7 @@
         <td style="text-align: right">{{number_format($tt->dongialk)}}</td>
         <td style="text-align: right">{{number_format($tt->dongia)}}</td>
         <td style="text-align: right">{{number_format($tt->dongia - $tt->dongialk)}}</td>
-        <td style="text-align: right">{{number_format(($tt->dongia - $tt->dongialk)/$tt->dongialk*100)}}%</td>
+        <td style="text-align: right">{{($tt->dongialk == 0) ? '100' : number_format(($tt->dongia - $tt->dongialk)/$tt->dongialk*100)}}%</td>
         <td>{{$tt->ghichu}}</td>
     </tr>
     @endforeach

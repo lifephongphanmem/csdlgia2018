@@ -156,7 +156,7 @@
         <td style="text-align: right;font-weight: bold">{{number_format($tt->dongialk).'đ/'.$tt->sllk.' '.$tt->dvtlk}}</td>
         <td style="text-align: right;font-weight: bold">{{number_format($tt->dongia).'đ/'.$tt->sl.' '.$tt->dvt}}</td>
         <td style="text-align: right">{{number_format($tt->dongia/$tt->sl - $tt->dongialk/$tt->sllk)}}</td>
-        <td style="text-align: center">{{number_format(($tt->dongia/$tt->sl - $tt->dongialk/$tt->sllk)/($tt->dongialk/$tt->sllk)*100)}}%</td>
+        <td style="text-align: center">{{$tt->dongialk == 0 ? '100' : number_format(($tt->dongia/$tt->sl - $tt->dongialk/$tt->sllk)/($tt->dongialk/$tt->sllk)*100)}}%</td>
         <td>{{$tt->ghichu}}</td>
     </tr>
     @endforeach
