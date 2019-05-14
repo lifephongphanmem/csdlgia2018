@@ -103,46 +103,71 @@
                                     <label style="font-weight: bold">Dịch vụ cung cấp</label>
                                     <select class="form-control" name="level" id="level">
                                         <option value="">--Chọn dịch vụ cung cấp--</option>
-                                        @if(can('dvlt','index') && can('thdvlt','xdttdn'))
-                                            <option value="DVLT" {{($inputs['level'] == "DVLT") ? 'selected' : ''}}>Dịch vụ lưu trú</option>
+                                        @if(canGeneral('dvlt','index'))
+                                            @if(can('dvlt','index') && can('thdvlt','xdttdn'))
+                                                <option value="DVLT" {{($inputs['level'] == "DVLT") ? 'selected' : ''}}>Dịch vụ lưu trú</option>
+                                            @endif
                                         @endif
-                                        @if(can('dvvt','index') && can('dvvt','xdttdn'))
-                                            <option value="DVVT" {{($inputs['level'] == "DVVT") ? 'selected' : ''}}>Dịch vụ vận tải</option>
+                                        @if(canGeneral('dvvt','index'))
+                                            @if(can('dvvt','index') && can('dvvt','xdttdn'))
+                                                <option value="DVVT" {{($inputs['level'] == "DVVT") ? 'selected' : ''}}>Dịch vụ vận tải</option>
+                                            @endif
                                         @endif
-                                        @if( can('tpcnte6t','index') && can('thtpcnte6t','xdttdn'))
-                                            <option value="TPCNTE6T" {{($inputs['level'] == "TPCNTE6T") ? 'selected' : ''}}>Thực phẩm chức năng cho trẻ em dưới 6 tuổi</option>
+                                        @if(canGeneral('tpcnte6t','index'))
+                                            @if( can('tpcnte6t','index') && can('thtpcnte6t','xdttdn'))
+                                                <option value="TPCNTE6T" {{($inputs['level'] == "TPCNTE6T") ? 'selected' : ''}}>Thực phẩm chức năng cho trẻ em dưới 6 tuổi</option>
+                                            @endif
                                         @endif
-                                        @if(can('tacn','index') && can('thtacn','xdttdn'))
-                                            <option value="TACN" {{($inputs['level'] == "TACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
+                                        @if(canGeneral('tacn','index'))
+                                            @if(can('tacn','index') && can('thtacn','xdttdn'))
+                                                <option value="TACN" {{($inputs['level'] == "TACN") ? 'selected' : ''}}>Thức ăn chăn nuôi</option>
+                                            @endif
                                         @endif
-                                        @if(can('dangkygia','index'))
-                                            <option value="DKG" {{($inputs['level'] == 'DKG') ? 'selected' : ''}}>Mặt hàng BOG</option>
+                                        @if(canGeneral('dangkygia','index'))
+                                            @if(can('dangkygia','index'))
+                                                <option value="DKG" {{($inputs['level'] == 'DKG') ? 'selected' : ''}}>Mặt hàng BOG</option>
+                                            @endif
                                         @endif
-                                        @if(can('vlxd','index') && can('thvlxd','xdttdn'))
-                                            <option value="VLXD" {{$inputs['level'] == 'VLXD' ? 'selected' :''}}>Vật liệu xây dựng</option>
+                                        @if(canGeneral('vlxd','index'))
+                                            @if(can('vlxd','index') && can('thvlxd','xdttdn'))
+                                                <option value="VLXD" {{$inputs['level'] == 'VLXD' ? 'selected' :''}}>Vật liệu xây dựng</option>
+                                            @endif
                                         @endif
-                                        @if(can('xmtxd','index') && can('thxmtxd','xdttdn'))
-                                            <option value="XMTXD" {{$inputs['level'] == 'XMTXD' ? 'selected' :''}}>Xi măng, thép xây dựng</option>
+                                        @if(canGeneral('xmtxd','index'))
+                                            @if(can('xmtxd','index') && can('thxmtxd','xdttdn'))
+                                                <option value="XMTXD" {{$inputs['level'] == 'XMTXD' ? 'selected' :''}}>Xi măng, thép xây dựng</option>
+                                            @endif
                                         @endif
-                                        @if(can('dvhdtm','index') && can('thdvhdtm','xdttdn'))
-                                            <option value="DVHDTM" {{$inputs['level'] == 'DVHDTM' ? 'selected' :''}}>Dịch vụ hỗ trợ hoạt động thương mại</option>
+                                        @if(canGeneral('dvhdtm','index'))
+                                            @if(can('dvhdtm','index') && can('thdvhdtm','xdttdn'))
+                                                <option value="DVHDTM" {{$inputs['level'] == 'DVHDTM' ? 'selected' :''}}>Dịch vụ hỗ trợ hoạt động thương mại</option>
+                                            @endif
                                         @endif
-                                        @if(can('than','index') && can('ththan','xdttdn'))
-                                            <option value="THAN" {{$inputs['level'] == 'THAN' ? 'selected' :''}}>Than</option>
+                                        @if(canGeneral('than','index'))
+                                            @if(can('than','index') && can('ththan','xdttdn'))
+                                                <option value="THAN" {{$inputs['level'] == 'THAN' ? 'selected' :''}}>Than</option>
+                                            @endif
                                         @endif
-                                        @if(can('giay','index') && can('thgiay','xdttdn'))
-                                            <option value="GIAY" {{$inputs['level'] == 'GIAY' ? 'selected' :''}}>Giấy in, viết(dạng cuộn), giấy in báo sản xuất trong nước</option>
+                                        @if(canGeneral('giay','index'))
+                                            @if(can('giay','index') && can('thgiay','xdttdn'))
+                                                <option value="GIAY" {{$inputs['level'] == 'GIAY' ? 'selected' :''}}>Giấy in, viết(dạng cuộn), giấy in báo sản xuất trong nước</option>
+                                            @endif
                                         @endif
-                                        @if(can('sach','index') && can('thsach','xdttdn'))
-                                            <option value="SACH" {{$inputs['level'] == 'SACH' ? 'selected' :''}}>Sách giáo khoa</option>
+                                        @if(canGeneral('sach','index'))
+                                            @if(can('sach','index') && can('thsach','xdttdn'))
+                                                <option value="SACH" {{$inputs['level'] == 'SACH' ? 'selected' :''}}>Sách giáo khoa</option>
+                                            @endif
                                         @endif
-                                        @if(can('etanol','index') && can('thetanol','xdttdn'))
-                                            <option value="ETANOL" {{$inputs['level'] == 'ETANOL' ? 'selected' :''}}>Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG)</option>
+                                        @if(canGeneral('etanol','index'))
+                                            @if(can('etanol','index') && can('thetanol','xdttdn'))
+                                                <option value="ETANOL" {{$inputs['level'] == 'ETANOL' ? 'selected' :''}}>Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG)</option>
+                                            @endif
                                         @endif
-                                        @if(can('kcbtn','index') && can('thkcbtn','xdttdn'))
-                                            <option value="KCBTN" {{$inputs['level'] == 'KCBTN' ? 'selected' :''}}>Dịch vụ khám chữa bệnh cho người tại cơ sở khám chữa bệnh tư nhân; khám chữa bệnh theo yêu cầu tại cơ sở khám chữa bệnh của nhà nước</option>
+                                        @if(canGeneral('kcbtn','index'))
+                                            @if(can('kcbtn','index') && can('thkcbtn','xdttdn'))
+                                                <option value="KCBTN" {{$inputs['level'] == 'KCBTN' ? 'selected' :''}}>Dịch vụ khám chữa bệnh cho người tại cơ sở khám chữa bệnh tư nhân; khám chữa bệnh theo yêu cầu tại cơ sở khám chữa bệnh của nhà nước</option>
+                                            @endif
                                         @endif
-
                                     </select>
                                 </div>
                             </div>
