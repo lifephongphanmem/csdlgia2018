@@ -101,21 +101,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <!--div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thời hạn trả hồ sơ lưu trú<span class="require">*</span></label>
                                         {!!Form::text('thoihanlt', '0', array('id' => 'thoihanlt','class' => 'form-control','data-mask'=>'fdecimal','style'=>'text-align: right'))!!}
                                     </div>
                                 </div>
-                                <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thời hạn trả hồ sơ vận tải<span class="require">*</span></label>
                                         {!!Form::text('thoihanvt', '0', array('id' => 'thoihanvt','class' => 'form-control','data-mask'=>'fdecimal','style'=>'text-align: right'))!!}
                                     </div>
                                 </div>
-                                <!--/span-->
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -124,15 +122,13 @@
                                         {!!Form::text('thoihangs', '0', array('id' => 'thoihangs','class' => 'form-control','data-mask'=>'fdecimal','style'=>'text-align: right'))!!}
                                     </div>
                                 </div>
-                                <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thời hạn trả hồ sơ thức ăn chăn nuôi<span class="require">*</span></label>
                                         {!!Form::text('thoihantacn', '0', array('id' => 'thoihantacn','class' => 'form-control','data-mask'=>'fdecimal','style'=>'text-align: right'))!!}
                                     </div>
                                 </div>
-                                <!--/span-->
-                            </div>
+                            </div-->
                         </div>
                     <!-- END FORM-->
                 </div>
