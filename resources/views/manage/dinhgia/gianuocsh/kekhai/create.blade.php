@@ -172,6 +172,7 @@
 
     <h3 class="page-title">
         Thông tin hồ sơ giá nước sạch sinh hoạt<small> thêm mới</small>
+
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -188,6 +189,13 @@
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
                         <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Đơn vị: {{$modeldv->tendv}}</label>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">

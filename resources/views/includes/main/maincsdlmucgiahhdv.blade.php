@@ -153,25 +153,29 @@
     </li>
     @endif
 @endif
-<!--li class="">
-    <a href="">
-        <i class="icon-folder"></i>
-        <span class="title">Giá đấu thầu mua TS</span>
-        <span class="arrow"></span>
-    </a>
-    <ul class="sub-menu">
-        @if(can('kkmuataisan','index'))
-            <li>
-                <a href="{{url('thongtinmuataisan')}}">Thông tin đấu thầu mua TS</a>
-            </li>
-        @endif
-        @if(can('thmuataisan','timkiem'))
-            <li>
-                <a href="{{url('timkiemmuataisan')}}">Tìm kiếm thông tin</a>
-            </li>
-        @endif
-    </ul>
-</li-->
+@if(canGeneral('muataisan','index'))
+    @if(can('muataisan','index'))
+    <li class="">
+        <a href="">
+            <i class="icon-folder"></i>
+            <span class="title">Giá trúng thầu của HH-DV được mua sắm theo QĐ của PL về đấu thầu</span>
+            <span class="arrow"></span>
+        </a>
+        <ul class="sub-menu">
+            @if(can('hsmuataisan','index'))
+                <li>
+                    <a href="{{url('thongtinmuataisan')}}">Thông tin trúng thầu HH-DV</a>
+                </li>
+            @endif
+            @if(can('thmuataisan','timkiem'))
+                <li>
+                    <a href="{{url('timkiemmuataisan')}}">Tìm kiếm thông tin</a>
+                </li>
+            @endif
+        </ul>
+    </li>
+    @endif
+@endif
 @if(canGeneral('giagocvlxd','index'))
     @if(can('giagocvlxd','index'))
         <li class="">
@@ -194,6 +198,35 @@
                 @if(can('thgiagocvlxd','timkiem'))
                     <li>
                         <a href="{{url('timkiemttgiabantaisan')}}">Tìm kiếm thông tin</a>
+                    </li>
+                @endif
+            </ul>
+        </li>
+    @endif
+@endif
+
+@if(canGeneral('giadatduan','index'))
+    @if(can('giadatduan','index'))
+        <li class="">
+            <a href="">
+                <i class="icon-folder"></i>
+                <span class="title">Giá đất dự án</span>
+                <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                @if(can('kkgiadatduan','index'))
+                    <li>
+                        <a href="{{url('thongtingiadatduan')}}">Thông tin giá đất</a>
+                    </li>
+                @endif
+                @if(can('thgiadatduan','baocao'))
+                    <li>
+                        <a href="{{url('baocaogiadatduan')}}">Báo cáo giá đất dự án</a>
+                    </li>
+                @endif
+                @if(can('thgiadatduan','timkiem'))
+                    <li>
+                        <a href="{{url('timkiemgiadatduan')}}">Tìm kiếm thông tin</a>
                     </li>
                 @endif
             </ul>

@@ -36,10 +36,10 @@
                 var url = '/thongtingianuocsinhhoat?' + namhs;
                 window.location.href = url;
             });
-            $('#trangthai').change(function() {
+            $('#mahuyen').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
-                var trangthai = '&trangthai=' + $('#trangthai').val();
-                var url = '/thongtingianuocsinhhoat?' + namhs + trangthai;
+                var mahuyen = '&mahuyen=' + $('#mahuyen').val();
+                var url = '/thongtingianuocsinhhoat?' + namhs + mahuyen;
                 window.location.href = url;
             });
 
@@ -75,7 +75,7 @@
                     </div>
                     <div class="actions">
                         @if(can('kkgianuocsh','create'))
-                            <a href="{{url('thongtingianuocsinhhoat/create')}}" class="btn btn-default btn-sm">
+                            <a href="{{url('thongtingianuocsinhhoat/create?&mahuyen='.$inputs['mahuyen'])}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-plus"></i> Thêm mới </a>
                             <div class="btn-group">
                                 <a class="btn btn-default btn-sm" href="" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
@@ -109,19 +109,20 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Trạng thái hồ sơ</label>
-                                <select name="trangthai" id="trangthai" class="form-control">
-                                    @if(can('kkgianuocsh','create'))
-                                    <option value="CHT" {{$inputs['trangthai'] == 'CHT' ? 'selected' : ''}}>Chưa hoàn thành</option>
-                                    @endif
-                                    <option value="HT" {{$inputs['trangthai'] == 'HT' ? 'selected' : ''}}>Hoàn thành</option>
-                                    <option value="HHT" {{$inputs['trangthai'] == 'HHT' ? 'selected' : ''}}>Hủy hoàn thành</option>
-                                    <option value="CB" {{$inputs['trangthai'] == 'CB' ? 'selected' : ''}}>Công bố</option>
-                                </select>
+                        @if(session('admin')->level == 'T')
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Đơn vị</label>
+                                    <select name="mahuyen" id="mahuyen" class="form-control">
+                                        @foreach($modeldv as $dv)
+                                            <option value="{{$dv->mahuyen}}" {{$dv->mahuyen == $inputs['mahuyen'] ? 'selected' : ''}}>{{$dv->tendv}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
+                        @else
+                            <input type="hidden" id="mahuyen" name="mahuyen" value="{{$input['mahuyen']}}">
+                        @endif
                     </div>
                     <div class="table-toolbar">
                     </div>

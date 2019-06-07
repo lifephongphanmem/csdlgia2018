@@ -21,22 +21,23 @@
         $(function(){
             $('#nam').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
-                var url = '/thongtinmuataisan?'+namhs;
+                var mahuyen = '&mahuyen='+ $('#mahuyen').val();
+                var url = '/timkiemgiadatduan?' + namhs  + mahuyen;
                 window.location.href = url;
             });
-
             $('#mahuyen').change(function() {
-                var nam = '&nam='+ $('#nam').val();
+                var namhs = '&nam=' + $('#nam').val();
                 var mahuyen = '&mahuyen='+ $('#mahuyen').val();
-                var url = '/thongtinmuataisan?' + nam  + mahuyen;
+                var url = '/timkiemgiadatduan?' + namhs  + mahuyen;
+
                 window.location.href = url;
             });
-
-            $('#maxa').change(function() {
-                var nam = '&nam='+ $('#nam').val();
+            $('#tenduan').change(function() {
+                var namhs = '&nam=' + $('#nam').val();
                 var mahuyen = '&mahuyen='+ $('#mahuyen').val();
-                var maxa = '&maxa='+ $('#maxa').val();
-                var url = '/thongtinmuataisan?' + nam  + mahuyen + maxa;
+                var tenduan = '&tenduan='+ $('#tenduan').val();
+                var url = '/timkiemgiadatduan?' + namhs  + mahuyen + tenduan;
+
                 window.location.href = url;
             });
 
@@ -78,26 +79,17 @@
 @stop
 
 @section('content')
+
     <h3 class="page-title">
-        Thông tin hồ sơ <small>&nbsp;trúng thầu của HH-DV được mua sắm theo QĐ của PL về đấu thầu</small>
-        <br><small style="font-weight: bold">&nbsp;{{$ttdv->tendv}}</small>
+       Tìm kiếm<small>&nbsp; thông tin giá đất cụ thể của dự án trên địa bàn</small>
     </h3>
+
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box">
-                <div class="portlet-title">
-                    <div class="caption">
-                    </div>
-                    <div class="actions">
-                        @if(can('kkmuataisan','create'))
-                        <a href="{{url('thongtinmuataisan/create?&maxa='.$inputs['maxa'])}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-plus"></i> Thêm mới </a>
-                        <a href="{{url('thongtinmuataisan/nhanexcel?&maxa='. $inputs['maxa'])}}" class="btn btn-default btn-sm"><i class="fa fa-file-excel-o"></i>&nbsp;Nhận dữ liệu</a>
-                        @endif
-                    </div>
-                </div>
+
                 <div class="portlet-body">
                     <div class="row">
                         <div class="col-md-2">
@@ -112,100 +104,52 @@
                                 </select>
                             </div>
                         </div>
-                        @if(session('admin')->level == 'T')
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label style="font-weight: bold">Đơn vị chủ quản</label>
-                                    <select name="mahuyen" id="mahuyen" class="form-control">
-                                        @foreach($modeldvql as $dvql)
-                                            <option value="{{$dvql->mahuyen}}" {{$dvql->mahuyen == $inputs['mahuyen'] ? 'selected' : ''}}>{{$dvql->tendv}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label style="font-weight: bold">Địa bàn</label>
+                                <select name="mahuyen" id="mahuyen" class="form-control">
+                                    @foreach($diabans as $diaban)
+                                        <option value="{{$diaban->district}}" {{$diaban->district == $inputs['mahuyen'] ? 'selected' : ''}}>{{$diaban->diaban}}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                        @else
-                            <input type="hidden" name="mahuyen" id="mahuyen" value="{{$inputs['mahuyen']}}">
-                        @endif
-                        @if(session('admin')->level == 'T' || session('admin')->level == 'H')
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label style="font-weight: bold">Đơn vị</label>
-                                    <select name="maxa" id="maxa" class="form-control">
-                                        @foreach($modeldv as $dv)
-                                            <option value="{{$dv->maxa}}" {{$dv->maxa == $inputs['maxa'] ? 'selected' : ''}}>{{$dv->tendv}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label style="font-weight: bold">Tên dự án</label>
+                                <input type="text" id="tenduan" name="tenduan" value="{{$inputs['tenduan']}}" class="form-control">
                             </div>
-                        @endif
+                        </div>
                     </div>
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Thời điểm <br>thẩm định</th>
-                            <th style="text-align: center">Thông tin tờ trình</th>
-                            <th style="text-align: center">Số thông báo<br>kết luận</th>
-                            <th style="text-align: center">Thông tin tài sản thẩm định</th>
-                            <th style="text-align: center">Đơn vị yêu cầu thẩm định</th>
-                            <th style="text-align: center" with="3%">Thời hạn <br>thẩm định</th>
+                            <th style="text-align: center">Phân loại</th>
+                            <th style="text-align: center">Tên dự án</th>
+                            <th style="text-align: center">Thời điểm <br>xác định</th>
+                            <th style="text-align: center">Diện tích</th>
                             <th style="text-align: center">Trạng thái</th>
-                            <th style="text-align: center" width="20%">Thao tác</th>
+                            <th style="text-align: center" width="10%">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
+                                <td style="text-align: left" class="active">{{$tt->tennhomduan}}</td>
+                                <td style="text-align: left">{{$tt->tenduan}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->thoidiem)}}</td>
-                                <td style="text-align: left">{{$tt->hosotdgia}}</td>
-                                <td style="text-align: center">{{$tt->sotbkl}}</td>
-                                <td>{{$tt->tttstd}}</td>
-                                <td>{{$tt->dvyeucau}}</td>
-                                <td style="text-align: center">{{getDayVn($tt->thoihan)}}</td>
+                                <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->dientich,3)}}</td>
                                 <td style="text-align: center">
-                                    @if($tt->trangthai == 'HT')
-                                        <span class="badge badge-warning">Hoàn thành</span>
-                                    @elseif($tt->trangthai == 'CHT')
-                                        <span class="badge badge-danger">Chưa hoàn thành</span>
-                                    @elseif($tt->trangthai == 'HHT')
-                                        <span class="badge badge-danger">Hủy hoàn thành</span>
-                                    @else
+                                    @if($tt->congbo == 'congbo')
                                         <span class="badge badge-success">Công bố</span>
+                                    @else
+                                        <span class="badge badge-warning">Chưa công bố</span>
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{url('thamdinhgia/'.$tt->id)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
-                                    <button type="button" onclick="get_attack('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#dinhkem-modal-confirm" data-toggle="modal"><i class="fa fa-cloud-download"></i>&nbsp;File đính kèm</button>
-                                    @if($tt->trangthai == 'CHT' || $tt->trangthai == 'HHT')
-                                        @if(can('kkthamdinhgia','edit'))
-                                        <a href="{{url('thamdinhgia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
-                                        @endif
-                                        @if(can('kkthamdinhgia','approve'))
-                                        <button type="button" onclick="confirmHoanthanh('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn thành</button>
-                                        @endif
-                                        @if($tt->trangthai == 'CHT')
-                                            @if(can('kkthamdinhgia','delete'))
-                                            <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
-                                            Xóa</button>
-                                            @endif
-                                        @endif
-                                    @endif
-                                    @if($tt->trangthai == 'HT' || $tt->trangthai == 'CB')
-                                        @if(session('admin')->level == 'T' || session('admin')->level == 'H')
-                                            @if($tt->trangthai == 'HT')
-                                                @if(can('ththamdinhgia','congbo'))
-                                                <button type="button" onclick="confirmCB('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal-confirm" data-toggle="modal"><i class="fa fa-send"></i>&nbsp;
-                                                    Công bố</button>
-                                                @endif
-                                            @endif
-                                            @if(can('kkthamdinhgia','approve'))
-                                            <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
-                                                Hủy hoàn thành</button>
-                                            @endif
-                                        @endif
-                                    @endif
-                                    <!--a href="{{url('hoso-thamdinhgia/'.$tt->mahs.'/history')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Lịch sử</a-->
+                                    <a href="{{url('thongtingiadatduan/'.$tt->id)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -257,7 +201,9 @@
                     <button type="button" data-dismiss="modal" aria-hidden="true"
                             class="close">&times;</button>
                     <h4 id="modal-header-primary-label" class="modal-title">Đồng ý hoàn thành hồ sơ?</h4>
+
                     <input type="hidden" name="idhoanthanh" id="idhoanthanh">
+
                 </div>
                 <div class="modal-body">
                     <p style="color: #0000FF">Hồ sơ đã hoàn thành sẽ không được phép chỉnh sửa và xóa hồ sơ nữa!Bạn cần liên hệ cơ quan chủ quản để chỉnh sửa hồ sơ nếu cần!</p>
@@ -279,7 +225,9 @@
                     <button type="button" data-dismiss="modal" aria-hidden="true"
                             class="close">&times;</button>
                     <h4 id="modal-header-primary-label" class="modal-title">Đồng ý hủy hoàn thành hồ sơ?</h4>
+
                     <input type="hidden" name="idhuyhoanthanh" id="idhuyhoanthanh">
+
                 </div>
                 <div class="modal-body">
                     <p style="color: #0000FF">Hồ sơ Bị hủy sẽ chuyển lại cho cơ quan nhập chủ quản có thể chỉnh sửa hồ sơ!</p>
@@ -301,7 +249,9 @@
                     <button type="button" data-dismiss="modal" aria-hidden="true"
                             class="close">&times;</button>
                     <h4 id="modal-header-primary-label" class="modal-title">Đồng ý công bố hồ sơ?</h4>
+
                     <input type="hidden" name="idcongbo" id="idcongbo">
+
                 </div>
                 <div class="modal-body">
                     <p style="color: #0000FF">Hồ sơ sẽ được công bố lên trang công bố của tỉnh!</p>

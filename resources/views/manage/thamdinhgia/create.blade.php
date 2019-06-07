@@ -597,24 +597,28 @@
                     <h4 class="modal-title">Thêm mới thông tin hàng hóa</h4>
                 </div>
                 <div class="modal-body" id="ttmhbog">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Mã hàng hóa<span class="require">*</span></label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="mats" name="mats">
-                                    <span class="input-group-btn">
-                                    <button class="btn blue" type="button" data-target="#modal-search" data-toggle="modal" onclick="searchgiaHH()">Seach!</button>
-                                    </span>
+                    @if(canGeneral('dmhhthamdinhgia','index'))
+                        @if(can('dmhhthamdinhgia','index'))
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Mã hàng hóa<span class="require">*</span></label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="mats" name="mats">
+                                        <span class="input-group-btn">
+                                        <button class="btn blue" type="button" data-target="#modal-search" data-toggle="modal" onclick="searchgiaHH()">Seach!</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <a href="{{url('dmnhomhanghoa')}}" target="_blank">Bổ xung thông tin hàng hóa</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <a href="{{url('dmnhomhanghoa')}}" target="_blank">Bổ xung thông tin hàng hóa</a>
-                            </div>
-                        </div>
-                    </div>
+                        @endif
+                    @endif
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">

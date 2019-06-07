@@ -47,7 +47,7 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
-                        <a href="{{url('town/create')}}" class="btn btn-default btn-sm">
+                        <a href="{{url('town/create?&mahuyen='.$inputs['mahuyen'])}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
                     </div>
                 </div>
@@ -56,10 +56,10 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label>Đơn vị quản lý</label>
+                                <label style="font-weight: bold">Đơn vị quản lý</label>
                                 <select class="form-control" name="mahuyen" id="mahuyen">
                                     @foreach($district as $tt)
-                                        <option value="{{$tt->mahuyen}}" {{$mahuyen == $tt->mahuyen ? 'selected' : ''}}>{{$tt->tendv}}</option>
+                                        <option value="{{$tt->mahuyen}}" {{$inputs['mahuyen'] == $tt->mahuyen ? 'selected' : ''}}>{{$tt->tendv}}</option>
                                     @endforeach
                                 </select>
                             </div>

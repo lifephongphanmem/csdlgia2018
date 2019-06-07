@@ -35,6 +35,8 @@
                     @include('system.users.include.perms.csdlmucgiahhdv.giagocvlxd')
                     @include('system.users.include.perms.csdlmucgiahhdv.bog')
                     @include('system.users.include.perms.csdlmucgiahhdv.kknygia')
+                    @include('system.users.include.perms.csdlmucgiahhdv.giadatduan')
+                    @include('system.users.include.perms.csdlmucgiahhdv.muataisan')
                 </div>
             </div>
         </div>

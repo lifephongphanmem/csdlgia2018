@@ -11,6 +11,7 @@ class ThanhLyTaiSan extends Model
         'id',
         'mahs',
         'mahuyen',
+        'maxa',
         'sohd',
         'ngayhd',
         'benban',

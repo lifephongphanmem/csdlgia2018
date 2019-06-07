@@ -26,6 +26,8 @@
                     {!! Form::open(['url'=>'thongtingiabantaisan', 'files'=>true,'class'=>'horizontal-form','id'=>'create_tlts']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
+                            <input type="hidden" name="mahuyen" id="mahuyen" value="{{$inputs['mahuyen']}}">
+                            <input type="hidden" name="maxa" id="maxa" value="{{$inputs['maxa']}}">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">

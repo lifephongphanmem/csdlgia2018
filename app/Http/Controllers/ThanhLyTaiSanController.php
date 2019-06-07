@@ -13,13 +13,32 @@ class ThanhLyTaiSanController extends Controller
 {
     public function index(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'T' || session('admin')->level == 'H') {
+            if ((session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') && can('kkthanhlytaisan','index')) {
                 $inputs = $request->all();
                 $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
+                $modeldvql = District::all();
+                if(session('admin')->level == 'X') {
+                    $modeldv = Town::where('maxa',session('admin')->maxa)->get();
+                    $inputs['maxa'] = session('admin')->maxa;
+                    $inputs['mahuyen'] = session('admin')->mahuyen;
+                }else {
+                    if(session('admin')->level == 'T') {
+                        $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldvql->first()->mahuyen;
+                        $modeldv = Town::where('mahuyen',$inputs['mahuyen'])->get();
+                    }else {
+                        $inputs['mahuyen'] = session('admin')->mahuyen;
+                        $modeldv = Town::where('mahuyen', session('admin')->mahuyen)->get();
+                    }
+                    $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : (count($modeldv)> 0 ? $modeldv->first()->maxa : '');
+                }
                 $model = ThanhLyTaiSan::whereYear('ngayhd',$inputs['nam'])
+                    ->where('mahuyen',$inputs['mahuyen'])
+                    ->where('maxa',$inputs['maxa'])
                     ->get();
                 return view('manage.thanhlyts.hoso.index')
                     ->with('model',$model)
+                    ->with('modeldv',$modeldv)
+                    ->with('modeldvql',$modeldvql)
                     ->with('inputs',$inputs)
                     ->with('pageTitle','Thông tin giá đấu thầu bán tài sản');
             }else
@@ -30,10 +49,17 @@ class ThanhLyTaiSanController extends Controller
 
     public function create(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'H' && can('kkthanhlytaisan','create')) {
-                $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
+            if ((session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') && can('kkthanhlytaisan','create')) {
+                $inputs = $request->all();
+                $modeldvql = District::where('mahuyen',$inputs['mahuyen'])
+                    ->first();
+                $modeldv = Town::where('mahuyen',$inputs['mahuyen'])
+                    ->where('maxa',$inputs['maxa'])
+                    ->first();
                 return view('manage.thanhlyts.hoso.create')
                     ->with('modeldv',$modeldv)
+                    ->with('modeldvql',$modeldvql)
+                    ->with('inputs',$inputs)
                     ->with('pageTitle','Thông tin giá đấu thầu bán tài sản');
             }else
                 return view('errors.perm');
@@ -90,7 +116,7 @@ class ThanhLyTaiSanController extends Controller
 
     public function edit($id){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'T' || session('admin')->level == 'H' && can('kkthanhlytaisan','edit')) {
+            if ((session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') && can('kkthanhlytaisan','edit')) {
                 $model = ThanhLyTaiSan::findOrFail($id);
                 $modeldv = District::where('mahuyen',$model->mahuyen)->first();
                 return view('manage.thanhlyts.hoso.edit')

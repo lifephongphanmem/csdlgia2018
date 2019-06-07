@@ -106,10 +106,10 @@
 
         <td style="text-align: center; text-transform: uppercase;font-size: 16px" width="60%">
             <b>@if($modeldv->chucvukythay != '')
-                   KT. {{$modeldv->chucvuky}}<br> {{$modeldv->chucvukythay}}
-               @else
+                    KT. {{$modeldv->chucvuky}}<br> {{$modeldv->chucvukythay}}
+                @else
                     {{$modeldv->chucvuky}}
-               @endif
+                @endif
             </b>
             <br>
             <br>

@@ -121,6 +121,34 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->giadatduan->index) && $setting->giadatduan->index == 1) ? 'checked' : '' }} value="1" name="roles[giadatduan][index]"/></td>
+                                    <td>Giá đất cụ thể của dự án</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->giadatduan->congbo) && $setting->giadatduan->congbo == 1) ? 'checked' : '' }} value="1" name="roles[giadatduan][congbo]"/></td>
+                                    <td>Công bố giá đất cụ thể của dự án</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->muataisan->index) && $setting->muataisan->index == 1) ? 'checked' : '' }} value="1" name="roles[muataisan][index]"/></td>
+                                    <td>Giá trúng thầu của HH-DV được mua sắm theo QĐ của PL về đấu thầu</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->muataisan->congbo) && $setting->muataisan->congbo == 1) ? 'checked' : '' }} value="1" name="roles[muataisan][congbo]"/></td>
+                                    <td>Công bố Giá trúng thầu của HH-DV được mua sắm theo QĐ của PL về đấu thầu</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     @include('system.general.include.csdlmucgiahhdv.bog')
                     @include('system.general.include.csdlmucgiahhdv.kknygia')

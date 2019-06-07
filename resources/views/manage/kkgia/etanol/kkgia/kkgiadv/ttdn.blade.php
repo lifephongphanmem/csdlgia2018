@@ -50,8 +50,6 @@
             <div class="portlet box">
                 <div class="portlet-body">
                     <div class="portlet-body">
-
-
                         <div class="row">
                             @if(session('admin')->level == 'T')
                                 <div class="col-md-5">

@@ -28,7 +28,7 @@ class TownController extends Controller
                     return view('system.town.index')
                         ->with('model', $model)
                         ->with('district',$district)
-                        ->with('mahuyen',$inputs['mahuyen'])
+                        ->with('inputs',$inputs)
                         ->with('modeldistrict',$modeldistrict)
                         ->with('pageTitle', 'Danh mục đơn vị xã/phường');
                 }else
@@ -41,15 +41,17 @@ class TownController extends Controller
             return view('errors.notlogin');
     }
 
-    public function create(){
+    public function create(Request $request){
         if (Session::has('admin')) {
             if (session('admin')->level == 'T' || session('admin')->level == 'H') {
-                $district = District::all();
-                $dddistricts = DiaBanHd::where('level','H')->get();
-                if($district->count() > 0) {
+                $inputs = $request->all();
+                $modeldvql = District::where('mahuyen',$inputs['mahuyen'])->first();
+                $diabans = DiaBanHd::where('level','H')->get();
+                if($modeldvql->count() > 0) {
                     return view('system.town.create')
-                        ->with('district',$district)
-                        ->with('dddistricts',$dddistricts)
+                        ->with('modeldvql',$modeldvql)
+                        ->with('diabans',$diabans)
+                        ->with('inputs',$inputs)
                         ->with('pageTitle', 'Thêm mới thông tin đơn vị xã/phường');
                 }else
                     dd('Bạn chưa nhập thông tin đơn vị cấp quận/huyện!!!');

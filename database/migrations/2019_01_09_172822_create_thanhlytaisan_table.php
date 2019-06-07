@@ -17,6 +17,7 @@ class CreateThanhlytaisanTable extends Migration
             $table->increments('id');
             $table->string('mahs')->nullable();
             $table->string('mahuyen')->nullable();
+            $table->string('maxa')->nullable();
             $table->string('sohd')->nullable();
             $table->date('ngayhd')->nullable();
             $table->string('benban')->nullable();

@@ -32,6 +32,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label class="control-label">Đơn vị chủ quản: {{$modeldvql->tendv}}</label>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="mahuyen" id="mahuyen" value="{{$inputs['mahuyen']}}">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label class="control-label">Tên đơn vị<span class="require">*</span></label>
                                         <input type="text" class="form-control required" name="tendv" id="tendv" autofocus/>
                                     </div>
@@ -48,33 +56,17 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Đơn vị trực thuộc<span class="require">*</span></label>
-                                        <select class="form-control" name="mahuyen" id="mahuyen">
-                                            @if(session('admin')->level == 'H')
-                                                <option value="{{session('admin')->mahuyen}}">{{session('admin')->name}}</option>
-                                            @else
-                                                @foreach($district as $tt)
-                                                    <option value="{{$tt->mahuyen}}">{{$tt->tendv}}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
                                         <label class="control-label">Địa chỉ trụ sở</label>
                                         <input type="text" class="form-control" name="diachi" id="diachi">
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Địa bàn quản lý<span class="require">*</span></label>
+                                        {!! Form::select('district', getDiaDanhH(),null, array('id'=>'district','class'=>'form-control'))!!}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="row">
-                               <div class="col-md-6">
-                                   <div class="form-group">
-                                       <label class="control-label">Địa bàn quản lý<span class="require">*</span></label>
-                                       {!! Form::select('district', getDiaDanhH(),null, array('id'=>'district','class'=>'form-control required'))!!}
-                                   </div>
-                               </div>
-                           </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -176,7 +168,7 @@
             </div>
 
             <div style="text-align: center">
-                <a href="{{url('town')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('town?$mahuyen='.$inputs['mahuyen'])}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
             </div>

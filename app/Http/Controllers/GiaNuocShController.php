@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\District;
 use App\GiaNuocSh;
 use App\GiaNuocShCt;
 use App\GiaNuocShCtDf;
@@ -15,35 +16,41 @@ class GiaNuocShController extends Controller
         if(Session::has('admin')){
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-            $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CHT';
+            $modeldv = District::all();
+            if(session('admin')->level == 'T')
+                $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldv->first()->mahuyen;
+            else
+                $inputs['mahuyen'] = session('admin')->mahuyen;
 
-            $model = GiaNuocSh::whereYear('ngayapdung',$inputs['nam']);
-            if($inputs['trangthai'] != '')
-                $model = $model->where('trangthai',$inputs['trangthai']);
-
-            $model=$model->get();
+            $model = GiaNuocSh::whereYear('ngayapdung',$inputs['nam'])
+                    ->where('mahuyen',$inputs['mahuyen'])
+                    ->get();
 
             return view('manage.dinhgia.gianuocsh.kekhai.index')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
+                ->with('modeldv',$modeldv)
                 ->with('pageTitle','Thông tin hồ sơ giá nước sạch sinh hoạt');
 
         }else
             return view('errors.notlogin');
     }
 
-    public function create(){
+    public function create(Request $request){
         if(Session::has('admin')){
             if(session('admin')->level == 'T' || session('admin')->level == 'H') {
+                $inputs = $request->all();
                 if (session('admin')->level == 'H')
                     $inputs['mahuyen'] = session('admin')->mahuyen;
-                else
-                    $inputs['mahuyen'] = 'T';
+
                 $modelct = GiaNuocShCtDf::where('mahuyen',$inputs['mahuyen'])
                     ->get();
+                $modeldv = District::where('mahuyen',$inputs['mahuyen'])
+                    ->first();
                 return view('manage.dinhgia.gianuocsh.kekhai.create')
                     ->with('modelct', $modelct)
                     ->with('inputs', $inputs)
+                    ->with('modeldv',$modeldv)
                     ->with('pageTitle', 'Thông tin hồ sơ giá nước sạch sinh hoạt');
             }else
                 return view('errors.perm');

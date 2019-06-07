@@ -67,7 +67,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Địa bàn quản lý<span class="require">*</span></label>
+                                        <label class="control-label">Địa bàn quản lý</label>
                                         {!! Form::select('district', getDiaDanhH(),null, array('id'=>'district','class'=>'form-control'))!!}
                                     </div>
                                 </div>
@@ -160,7 +160,7 @@
             </div>
 
             <div style="text-align: center">
-                <a href="{{url('town')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('town?&mahuyen='.$model->mahuyen)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
             </div>
