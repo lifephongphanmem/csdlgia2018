@@ -63,7 +63,9 @@ License code: PRO4-69G6Q4M-8YGNXX-M2N8-KCHVWYK
     public function index(){
         if (Session::has('admin')) {
             //dd(session('admin'));
+            $model = GeneralConfigs::first();
             return view('dashboard')
+                ->with('model',$model)
                 ->with('pageTitle', 'Thông tin hỗ trợ');
         } else {
             $ip = $_SERVER['REMOTE_ADDR'];

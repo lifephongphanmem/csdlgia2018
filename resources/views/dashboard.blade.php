@@ -27,7 +27,7 @@
     <!-- BEGIN DASHBOARD STATS -->
     <div class="row">
         <div class="col-md-12">
-            <div class="note note-success">
+            <div class="well">
                 <p>Công ty LifeSoft chân thành cảm ơn quý khách hàng đã tin tưởng sử dụng phần mềm của công ty.
                     Thay mặt toàn bộ cán bộ nhân viên trong công ty gửi đến khách hàng lời chúc sức khỏe- thành công</p>
                 <p>Nhằm chăm sóc, hỗ trợ khách hàng nhanh chóng và tiện dụng nhất công ty xin cung cấp thông tin các cán bộ hỗ trợ khách hàng trong quá trình sử dụng.
@@ -40,75 +40,167 @@
 
     <div class="row">
         <div class="col-md-6">
-            <p style="font-weight: bold;font-size: 18px;color: blue">Phòng TKBT I - quản lý địa bàn các tỉnh phía Nam</p>
-            <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;" >
-                <tr>
-                    <th width="2%">STT</th>
-                    <th width="50%">Họ và tên <br>cán bộ</th>
-                    <th>Chức vụ</th>
-                    <th width="20%">Số điện thoại liên lạc</th>
-                </tr>
-                <tr>
-                    <td style="text-align: center">1</td>
-                    <td style="font-weight: bold;">Nguyễn Xuân Trường</td>
-                    <td>Trưởng phòng</td>
-                    <td>0917 737456</td>
-                </tr>
-                <tr>
-                    <td style="text-align: center">2</td>
-                    <td style="font-weight: bold">Hoàng Ngọc Long</td>
-                    <td>Phó phòng</td>
-                    <td>0985 365683</td>
-                </tr>
-                <tr>
-                    <td style="text-align: center">3</td>
-                    <td style="font-weight: bold">Triệu Hồng Đạt</td>
-                    <td>Nhân viên</td>
-                    <td>093 6368122</td>
-                </tr>
-                <tr>
-                    <td style="text-align: center">4</td>
-                    <td style="font-weight: bold">Nguyễn Văn Hiển</td>
-                    <td>Nhân viên</td>
-                    <td>0975 500274</td>
-                </tr>
-            </table>
+            <!-- BEGIN PORTLET -->
+            <div class="portlet light ">
+                <div class="portlet-title">
+                    <div class="caption caption-md">
+                        <i class="icon-bar-chart theme-font hide"></i>
+                        <span class="caption-subject font-blue-madison bold uppercase">Phòng TKBT I - quản lý địa bàn các tỉnh phía Nam</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-scrollable table-scrollable-borderless">
+                        <table class="table table-hover table-light">
+                            <thead>
+                            <tr class="uppercase">
+                                <th colspan="2">
+                                    Cán bộ hỗ trợ
+                                </th>
+                                <th>
+                                    TEL
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="fit">
+                                    <img class="user-pic" src="{{url('images/avatar/default-user.png')}}">
+                                </td>
+                                <td>
+                                    <a href="" class="primary-link">Nguyễn Xuân Trường</a>
+                                </td>
+                                <td style="text-align: center">
+                                    <span class="bold theme-font">0917 737456</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fit">
+                                    <img class="user-pic" src="{{url('images/avatar/default-user.png')}}">
+                                </td>
+                                <td>
+                                    <a href="" class="primary-link">Hoàng Ngọc Long</a>
+                                </td>
+                                <td style="text-align: center">
+                                    <span class="bold theme-font">0985 365683</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fit">
+                                    <img class="user-pic" src="{{url('images/avatar/default-user.png')}}">
+                                </td>
+                                <td>
+                                    <a href="" class="primary-link">Nguyễn Văn Hiển</a>
+                                </td>
+                                <td style="text-align: center">
+                                    <span class="bold theme-font">0975 500274</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- END PORTLET -->
         </div>
         <div class="col-md-6">
-            <p style="font-weight: bold;font-size: 18px;color: blue">Phòng TKBT II - quản lý địa bàn các tỉnh phía Bắc </p>
-            <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
-                <tr>
-                    <th width="2%">STT</th>
-                    <th width="50%">Họ và tên <br>cán bộ</th>
-                    <th>Chức vụ</th>
-                    <th width="20%">Số điện thoại liên lạc</th>
-                </tr>
-                <tr>
-                    <td style="text-align: center">1</td>
-                    <td style="font-weight: bold">Nguyễn Văn Nguyên</td>
-                    <td>Trưởng phòng</td>
-                    <td>0979 785068</td>
-                </tr>
-                <tr>
-                    <td style="text-align: center">2</td>
-                    <td style="font-weight: bold">Hoàng Văn Sáng</td>
-                    <td>Phó phòng</td>
-                    <td>0974 090556</td>
-                </tr>
-                <tr>
-                    <td style="text-align: center">3</td>
-                    <td style="font-weight: bold">Nguyễn Văn Dũng</td>
-                    <td>Nhân viên</td>
-                    <td>0986 012094</td>
-                </tr>
-                <tr>
-                    <td style="text-align: center">4</td>
-                    <td style="font-weight: bold">Nguyễn Văn Đạt</td>
-                    <td>Nhân viên</td>
-                    <td>0966 305 359</td>
-                </tr>
-            </table>
+            <!-- BEGIN PORTLET -->
+            <div class="portlet light ">
+                <div class="portlet-title">
+                    <div class="caption caption-md">
+                        <i class="icon-bar-chart theme-font hide"></i>
+                        <span class="caption-subject font-blue-madison bold uppercase">Phòng TKBT II - quản lý địa bàn các tỉnh phía Bắc </span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-scrollable table-scrollable-borderless">
+                        <table class="table table-hover table-light">
+                            <thead>
+                            <tr class="uppercase">
+                                <th colspan="2" style="text-transform: uppercase">
+                                    Cán bộ hỗ trợ
+                                </th>
+                                <th>
+                                    TEL
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="fit">
+                                    <img class="user-pic" src="{{url('images/avatar/default-user.png')}}">
+                                </td>
+                                <td>
+                                    <a href="" class="primary-link">Hoàng Văn Sáng</a>
+                                </td>
+                                <td style="text-align: center">
+                                    <span class="bold theme-font">0979 785068</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fit">
+                                    <img class="user-pic" src="{{url('images/avatar/default-user.png')}}">
+                                </td>
+                                <td>
+                                    <a href="" class="primary-link">Nguyễn Văn Dũng</a>
+                                </td>
+                                <td style="text-align: center">
+                                    <span class="bold theme-font">0986 012094</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fit">
+                                    <img class="user-pic" src="{{url('images/avatar/default-user.png')}}">
+                                </td>
+                                <td>
+                                    <a href="" class="primary-link">Nguyễn Văn Đạt</a>
+                                </td>
+                                <td style="text-align: center">
+                                    <span class="bold theme-font">0966 305 359</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- END PORTLET -->
         </div>
+    </div>
+    <div class="row" style="position: fixed;
+            bottom: 20px;
+            width: 100%;
+            left: 0px;
+            text-align: right;">
+        <div class="col-md-12">
+            <address>
+                <strong>{{isset($model) ? $model->tendonvi : ''}}</strong><br>
+                {{isset($model) ? $model->diachi : ''}}<br>
+                <abbr title="Phone">{{isset($model) ? $model->tel : ''}}</abbr>
+            </address>
+        </div>
+        {{--<div class="col-xs-8 invoice-block">--}}
+        {{--<ul class="list-unstyled amounts">--}}
+        {{--<li>--}}
+        {{--<strong>Sub - Total amount:</strong> $9265--}}
+        {{--</li>--}}
+        {{--<li>--}}
+        {{--<strong>Discount:</strong> 12.9%--}}
+        {{--</li>--}}
+        {{--<li>--}}
+        {{--<strong>VAT:</strong> -------}}
+        {{--</li>--}}
+        {{--<li>--}}
+        {{--<strong>Grand Total:</strong> $12489--}}
+        {{--</li>--}}
+        {{--</ul>--}}
+        {{--<br>--}}
+        {{--<a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="javascript:window.print();">--}}
+        {{--Print <i class="fa fa-print"></i>--}}
+        {{--</a>--}}
+        {{--<a class="btn btn-lg green hidden-print margin-bottom-5">--}}
+        {{--Submit Your Invoice <i class="fa fa-check"></i>--}}
+        {{--</a>--}}
+        {{--</div>--}}
     </div>
     <div class="clearfix">
     </div>
