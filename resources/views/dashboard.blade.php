@@ -165,42 +165,17 @@
             </div>
             <!-- END PORTLET -->
         </div>
-    </div>
-    <div class="row" style="position: fixed;
+        <div class="col-md-12" style="position: fixed;
             bottom: 20px;
-            width: 100%;
-            left: 0px;
+            width: 50%;
+            right: 0px;
             text-align: right;">
-        <div class="col-md-12">
             <address>
                 <strong>{{isset($model) ? $model->tendonvi : ''}}</strong><br>
                 {{isset($model) ? $model->diachi : ''}}<br>
                 <abbr title="Phone">{{isset($model) ? $model->tel : ''}}</abbr>
             </address>
         </div>
-        {{--<div class="col-xs-8 invoice-block">--}}
-        {{--<ul class="list-unstyled amounts">--}}
-        {{--<li>--}}
-        {{--<strong>Sub - Total amount:</strong> $9265--}}
-        {{--</li>--}}
-        {{--<li>--}}
-        {{--<strong>Discount:</strong> 12.9%--}}
-        {{--</li>--}}
-        {{--<li>--}}
-        {{--<strong>VAT:</strong> -------}}
-        {{--</li>--}}
-        {{--<li>--}}
-        {{--<strong>Grand Total:</strong> $12489--}}
-        {{--</li>--}}
-        {{--</ul>--}}
-        {{--<br>--}}
-        {{--<a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="javascript:window.print();">--}}
-        {{--Print <i class="fa fa-print"></i>--}}
-        {{--</a>--}}
-        {{--<a class="btn btn-lg green hidden-print margin-bottom-5">--}}
-        {{--Submit Your Invoice <i class="fa fa-check"></i>--}}
-        {{--</a>--}}
-        {{--</div>--}}
     </div>
     <div class="clearfix">
     </div>
