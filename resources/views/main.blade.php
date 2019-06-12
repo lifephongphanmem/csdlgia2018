@@ -421,7 +421,18 @@ License: You must have a valid license purchased only from themeforest(the above
             </div>
 
             @yield('content')
-
+            @if($ttbq = \App\GeneralConfigs::first())@endif
+            <div class="col-md-12" style="position: fixed;
+            bottom: 20px;
+            width: 50%;
+            right: 0px;
+            text-align: right;">
+                <address>
+                    <strong>{{isset($ttbq) ? $ttbq->tendonvi : ''}}</strong><br>
+                    {{isset($ttbq) ? $ttbq->diachi : ''}}<br>
+                    <abbr title="Phone">{{isset($ttbq) ? $ttbq->tel : ''}}</abbr>
+                </address>
+            </div>
         </div>
     </div>
     <!-- END CONTENT -->

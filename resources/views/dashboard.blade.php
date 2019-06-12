@@ -165,17 +165,6 @@
             </div>
             <!-- END PORTLET -->
         </div>
-        <div class="col-md-12" style="position: fixed;
-            bottom: 20px;
-            width: 50%;
-            right: 0px;
-            text-align: right;">
-            <address>
-                <strong>{{isset($model) ? $model->tendonvi : ''}}</strong><br>
-                {{isset($model) ? $model->diachi : ''}}<br>
-                <abbr title="Phone">{{isset($model) ? $model->tel : ''}}</abbr>
-            </address>
-        </div>
     </div>
     <div class="clearfix">
     </div>
