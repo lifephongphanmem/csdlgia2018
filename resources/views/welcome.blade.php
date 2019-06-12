@@ -10,7 +10,7 @@
     <!--link rel="shortcut icon" href="images/icons/loading.gif" type="image/x-icon"-->
     <link rel="shortcut icon" href="{{ url('images/LIFESOFT.png')}}" type="image/x-icon">
     <!--Loading bootstrap css-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700&subset=vietnamese' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700&subset=vietnamese' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{url('vendors/font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{url('vendors/bootstrap/css/bootstrap.min.css')}}">
     <!--LOADING STYLESHEET FOR PAGE-->
