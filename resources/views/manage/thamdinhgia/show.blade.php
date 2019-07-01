@@ -128,6 +128,7 @@
 <p style="text-align: center;font-size: 16px;"><i>(Kèm theo Công văn số: {{$model->sotbkl}}</i></p>
 <p style="text-align: center;font-size: 16px;"><i>Ngày ..... tháng ..... năm ..... của {{$modeldv->tendvhienthi}})</i></p>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
+    <thead>
     <tr>
         <th width="2%" style="text-align: center" rowspan="2">STT</th>
         <th style="text-align: center" rowspan="2">Tên vật tư - Quy cách</th>
@@ -143,6 +144,8 @@
         <th style="text-align: center">Đơn giá</th>
         <th style="text-align: center">Thành tiền</th>
     </tr>
+    </thead>
+    <tbody>
     @foreach($modelct as $key=>$tt)
         <tr>
             <td style="text-align: center">{{($key +1)}}</td>
@@ -156,6 +159,8 @@
             <td style="text-align: right;">{{number_format($tt->giatritstd)}}</td>
         </tr>
     @endforeach
+    </tbody>
+    <tfoot>
     <tr>
         <td></td>
         <td style="text-align: center;font-weight: bold">Tổng cộng</td>
@@ -167,6 +172,7 @@
         <td></td>
         <td style="text-align: right;font-weight: bold">{{number_format($modelct->sum('giatritstd'))}}</td>
     </tr>
+    </tfoot>
 </table>
 <p style="text-align: center;font-weight: bold"><i>(Tổng giá trị sau thẩm định: <b>{{number_format($modelct->sum('giatritstd'))}}</b> VNĐ)</i></p>
 <p><u>Ghi chú:</u></p>

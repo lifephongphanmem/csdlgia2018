@@ -57,6 +57,7 @@
 
 <p style="text-align: right"><i>Đơn vị tính: 1000 đồng/m2</i></p>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
+    <thead>
     <tr>
         <th style="text-align: center" rowspan="2">Vị trí đất</th>
         <th style="text-align: center" width="5%" rowspan="2">Căn cứ quyết định</th>
@@ -69,6 +70,8 @@
         <th>VT3</th>
         <th>VT4</th>
     </tr>
+    </thead>
+    <tbody>
     <?php $model_cap1 = $model->where('capdo','1');?>
     <?php $lv1 = 0;?>
     @foreach($model_cap1 as $cap1)
@@ -157,6 +160,7 @@
             @endforeach
         @endforeach
     @endforeach
+    </tbody>
 </table>
 <table width="96%" border="0" cellspacing="0" cellpadding="0" style="margin:10px auto; text-align: center;">
     <tr>

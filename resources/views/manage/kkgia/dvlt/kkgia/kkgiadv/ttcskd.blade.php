@@ -84,6 +84,7 @@
 
                         </tbody>
                     </table>
+                </div>
             </div>
             <!-- END EXAMPLE TABLE PORTLET-->
         </div>

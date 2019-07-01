@@ -48,6 +48,7 @@
     </tr>
 </table>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
+    <thead>
     <tr>
         <th>STT</th>
         <th>Tên tài<br>sản</th>
@@ -76,6 +77,8 @@
         <th>(11)</th>
         <th>(12)</th>
     </tr>
+    </thead>
+    <tbody>
     @foreach($model as $key=>$ts)
         <tr>
             <th>{{$key + 1}}</th>
@@ -92,6 +95,7 @@
             <th style="text-align: left">{{$ts->gc}}</th>
         </tr>
     @endforeach
+    </tbody>
 </table>
 </body>
 </html>

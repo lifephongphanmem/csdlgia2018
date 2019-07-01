@@ -50,6 +50,7 @@ class MuaTaiSanController extends Controller
         if(Session::has('admin')) {
             $inputs = $request->all();
 
+
         }else
             return view('errors.notlogin');
     }

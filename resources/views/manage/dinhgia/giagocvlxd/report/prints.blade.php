@@ -50,15 +50,17 @@
 <br>
 <p style="text-align: center;font-size: 16px; font-weight: bold" ><u>Thời điểm: Quý {{$model->quy}}/{{$model->nam}}</u></p>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
-    <tr height="40px">
-        <th style="text-align: center" width="2%">STT</th>
-        <th style="text-align: center">Tên vật liệu - quy cách</th>
-        <th style="text-align: center">ĐVT</th>
-        <th style="text-align: center">Giá vật liệu <br>gốc (đ)</th>
-        <th style="text-align: center">Tiêu chuẩn, Quy<br> chuẩn áp dụng</th>
-        <th style="text-align: center">Ghi chú</th>
-    </tr>
-
+    <thead>
+        <tr height="40px">
+            <th style="text-align: center" width="2%">STT</th>
+            <th style="text-align: center">Tên vật liệu - quy cách</th>
+            <th style="text-align: center">ĐVT</th>
+            <th style="text-align: center">Giá vật liệu <br>gốc (đ)</th>
+            <th style="text-align: center">Tiêu chuẩn, Quy<br> chuẩn áp dụng</th>
+            <th style="text-align: center">Ghi chú</th>
+        </tr>
+        </thead>
+    <tbody>
     @foreach($modelct as $key=>$tt)
         <tr>
             <td style="text-align: center">{{($key +1)}}</td>
@@ -69,6 +71,7 @@
             <td style="text-align: left">{{$tt->ghichu}}</td>
         </tr>
     @endforeach
+    </tbody>
 </table>
 </body>
 </html>

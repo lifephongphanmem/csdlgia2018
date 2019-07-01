@@ -53,6 +53,7 @@
 
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <p style="padding-left: 50px;font-weight: bold">Bảng giá gốc vật liệu xây dựng Quý {{romanNumerals($model->quy)}} / {{$model->nam}}</p>
+    <thead>
     <tr height="40px">
         <th style="text-align: center" width="2%">STT</th>
         <th style="text-align: center">Tên vật liệu - quy cách</th>
@@ -61,6 +62,8 @@
         <th style="text-align: center">Tiêu chuẩn, Quy<br> chuẩn áp dụng</th>
         <th style="text-align: center">Ghi chú</th>
     </tr>
+    </thead>
+    <tbody>
     @foreach($diabans as $diaban)
         <tr>
             <td></td>
@@ -79,6 +82,7 @@
             </tr>
         @endforeach
     @endforeach
+    </tbody>
 </table>
 </body>
 </html>

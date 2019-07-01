@@ -46,6 +46,7 @@
             <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
             <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Cập nhật</button>
         </div>
+        </div>
     </div>
     {!! Form::close() !!}
 
