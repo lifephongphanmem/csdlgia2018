@@ -421,60 +421,60 @@ License: You must have a valid license purchased only from themeforest(the above
             </div>
 
             @yield('content')
-            @if(session('admin')->level == 'T')
-                @if($ttbq = \App\GeneralConfigs::first())@endif
-                    <div class="row" style="position:relative;
-                        z-index:1; text-align: right;">
-                                <div class="col-md-12">
-                                    <address>
-                                        <strong>{{isset($ttbq) ? $ttbq->tendonvi : ''}}</strong><br>
-                                        {{isset($ttbq) ? $ttbq->diachi : ''}}<br>
-                                        <abbr title="Phone">{{isset($ttbq) ? $ttbq->tel : ''}}</abbr>
-                                    </address>
-                                </div>
-                    </div>
-            @elseif(session('admin')->level == 'H')
-                @if($ttbq = \App\District::where('mahuyen',session('admin')->mahuyen)
-                ->first())@endif
-                <div class="row" style="position:relative;
-                z-index:1; text-align: right;">
-                    <div class="col-md-12">
-                        <address>
-                            <strong>{{isset($ttbq) ? $ttbq->tendv : ''}}</strong><br>
-                            {{isset($ttbq) ? $ttbq->diachi : ''}}<br>
-                            <abbr title="Phone">{{isset($ttbq) ? $ttbq->ttlienhe : ''}}</abbr>
-                        </address>
-                    </div>
-                </div>
-            @elseif(session('admin')->level == 'X')
-                @if($ttbq = \App\Town::where('mahuyen',session('admin')->mahuyen)
-                ->where('maxa',session('admin')->maxa)
-                ->first())@endif
-                <div class="row" style="position:relative;
-                    z-index:1; text-align: right;">
-                    <div class="col-md-12">
-                        <address>
-                            <strong>{{isset($ttbq) ? $ttbq->tendv : ''}}</strong><br>
-                            {{isset($ttbq) ? $ttbq->diachi : ''}}<br>
-                            <abbr title="Phone">{{isset($ttbq) ? $ttbq->ttlienhe : ''}}</abbr>
-                        </address>
-                    </div>
-                </div>
-            @else
-                @if($ttbq = \App\Company::where('mahuyen',session('admin')->mahuyen)
-                ->where('maxa',session('admin')->maxa)
-                ->where('level',session('admin')->level)
-                ->first())@endif
-                <div class="row" style="position:relative;z-index:1; text-align: right;">
-                    <div class="col-md-12">
-                        <address>
-                            <strong>{{isset($ttbq) ? $ttbq->tendn : ''}}</strong><br>
-                            {{isset($ttbq) ? $ttbq->diachi : ''}}<br>
-                            <abbr title="Phone">{{isset($ttbq) ? $ttbq->tel : ''}}</abbr>
-                        </address>
-                    </div>
-                </div>
-            @endif
+            {{--@if(session('admin')->level == 'T')--}}
+                {{--@if($ttbq = \App\GeneralConfigs::first())@endif--}}
+                    {{--<div class="row" style="position:relative;--}}
+                        {{--z-index:1; text-align: right;">--}}
+                                {{--<div class="col-md-12">--}}
+                                    {{--<address>--}}
+                                        {{--<strong>{{isset($ttbq) ? $ttbq->tendonvi : ''}}</strong><br>--}}
+                                        {{--{{isset($ttbq) ? $ttbq->diachi : ''}}<br>--}}
+                                        {{--<abbr title="Phone">{{isset($ttbq) ? $ttbq->tel : ''}}</abbr>--}}
+                                    {{--</address>--}}
+                                {{--</div>--}}
+                    {{--</div>--}}
+            {{--@elseif(session('admin')->level == 'H')--}}
+                {{--@if($ttbq = \App\District::where('mahuyen',session('admin')->mahuyen)--}}
+                {{--->first())@endif--}}
+                {{--<div class="row" style="position:relative;--}}
+                {{--z-index:1; text-align: right;">--}}
+                    {{--<div class="col-md-12">--}}
+                        {{--<address>--}}
+                            {{--<strong>{{isset($ttbq) ? $ttbq->tendv : ''}}</strong><br>--}}
+                            {{--{{isset($ttbq) ? $ttbq->diachi : ''}}<br>--}}
+                            {{--<abbr title="Phone">{{isset($ttbq) ? $ttbq->ttlienhe : ''}}</abbr>--}}
+                        {{--</address>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--@elseif(session('admin')->level == 'X')--}}
+                {{--@if($ttbq = \App\Town::where('mahuyen',session('admin')->mahuyen)--}}
+                {{--->where('maxa',session('admin')->maxa)--}}
+                {{--->first())@endif--}}
+                {{--<div class="row" style="position:relative;--}}
+                    {{--z-index:1; text-align: right;">--}}
+                    {{--<div class="col-md-12">--}}
+                        {{--<address>--}}
+                            {{--<strong>{{isset($ttbq) ? $ttbq->tendv : ''}}</strong><br>--}}
+                            {{--{{isset($ttbq) ? $ttbq->diachi : ''}}<br>--}}
+                            {{--<abbr title="Phone">{{isset($ttbq) ? $ttbq->ttlienhe : ''}}</abbr>--}}
+                        {{--</address>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--@else--}}
+                {{--@if($ttbq = \App\Company::where('mahuyen',session('admin')->mahuyen)--}}
+                {{--->where('maxa',session('admin')->maxa)--}}
+                {{--->where('level',session('admin')->level)--}}
+                {{--->first())@endif--}}
+                {{--<div class="row" style="position:relative;z-index:1; text-align: right;">--}}
+                    {{--<div class="col-md-12">--}}
+                        {{--<address>--}}
+                            {{--<strong>{{isset($ttbq) ? $ttbq->tendn : ''}}</strong><br>--}}
+                            {{--{{isset($ttbq) ? $ttbq->diachi : ''}}<br>--}}
+                            {{--<abbr title="Phone">{{isset($ttbq) ? $ttbq->tel : ''}}</abbr>--}}
+                        {{--</address>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--@endif--}}
 
         </div>
     </div>
