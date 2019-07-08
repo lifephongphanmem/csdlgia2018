@@ -89,10 +89,10 @@
                                     <img class="user-pic" src="{{url('images/avatar/default-user.png')}}">
                                 </td>
                                 <td>
-                                    <a href="" class="primary-link">Nguyễn Văn Hiển</a>
+                                    <a href="" class="primary-link">Ngô Thế Dương</a>
                                 </td>
                                 <td style="text-align: center">
-                                    <span class="bold theme-font">0975 500274</span>
+                                    <span class="bold theme-font">0916 678 911</span>
                                 </td>
                             </tr>
                             </tbody>
@@ -133,7 +133,7 @@
                                     <a href="" class="primary-link">Hoàng Văn Sáng</a>
                                 </td>
                                 <td style="text-align: center">
-                                    <span class="bold theme-font">0979 785068</span>
+                                    <span class="bold theme-font">0974 090 556</span>
                                 </td>
                             </tr>
                             <tr>
