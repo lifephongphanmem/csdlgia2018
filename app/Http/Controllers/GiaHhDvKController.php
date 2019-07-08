@@ -325,7 +325,7 @@ class GiaHhDvKController extends Controller
                                 $sheet->loadView('manage.dinhgia.giahhdvk.excel.danhmuc')
                                     ->with('model_nhom', $model_nhom->sortBy('manhom'))
                                     ->with('model', $model)
-                                    ->with('pageTitle', 'Danh mục hàng hóa '.$model_nhom->manhom);
+                                    ->with('pageTitle', 'Danh mục hàng hóa');
                                 //$sheet->setPageMargin(0.25);
                                 $sheet->setAutoSize(false);
                                 $sheet->setFontFamily('Tahoma');
