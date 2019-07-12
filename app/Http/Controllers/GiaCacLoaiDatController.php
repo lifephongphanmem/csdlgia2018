@@ -163,11 +163,11 @@ class GiaCacLoaiDatController extends Controller
         $inputs = $request->all();
         $id = $inputs['id'];
         $model = GiaCacLoaiDat::findOrFail($id);
-        $inputs['giavt1'] = getDoubleToDb($inputs['giavt1']);
-        $inputs['giavt2'] = getDoubleToDb($inputs['giavt2']);
-        $inputs['giavt3'] = getDoubleToDb($inputs['giavt3']);
-        $inputs['giavt4'] = getDoubleToDb($inputs['giavt4']);
-        $inputs['username'] = session('admin')->name.'('.session('admin')->username.')';
+        $inputs['giavt1'] = isset($inputs['giavt1']) ? getDoubleToDb($inputs['giavt1']) : 0;
+        $inputs['giavt2'] = isset($inputs['giavt2']) ? getDoubleToDb($inputs['giavt2']) : 0;
+        $inputs['giavt3'] = isset($inputs['giavt3']) ? getDoubleToDb($inputs['giavt3']) : 0;
+        $inputs['giavt4'] = isset($inputs['giavt4']) ? getDoubleToDb($inputs['giavt4']) : 0;
+        $inputs['username'] = session('admin')->name.'('.session('admin')->username.')' ;
         $inputs['thaotac'] = 'Cập nhật giá đất';
         $model->update($inputs);
         $arrayh = $model->toArray();
