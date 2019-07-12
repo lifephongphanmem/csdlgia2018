@@ -216,9 +216,9 @@ class GiaCacLoaiDatController extends Controller
             $inputs = $request->all();
             $id = $inputs['iddelete'];
             $model = GiaCacLoaiDat::findOrFail($id);
-            $modelct = GiaCacLoaiDat::where('maso','like',$model->maso.'%')->delete();
+            $modelct = GiaCacLoaiDat::where('maso','like',$model->maso.'%')->where('mahuyen',$model->mahuyen)->delete();
             //$model->delete();
-            return redirect('thongtingiacacloaidat');
+            return redirect('thongtingiacacloaidat?&district='.$model->mahuyen);
 
         }else
             return view('errors.notlogin');
