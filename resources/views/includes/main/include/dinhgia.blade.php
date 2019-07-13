@@ -35,6 +35,14 @@
                         </li>
                     @endif
                 @endif
+                {{--Giá đất địa bàn--}}
+                    <li class="tooltips" data-container="body" data-placement="right" data-html="true"
+                        data-original-title="Giá đất theo địa bàn">
+                        <a href="{{url('giadatdiaban')}}">
+                            Giá đất theo địa bàn
+                        </a>
+                    </li>
+                    {{--End--}}
                 @if(canGeneral('giadaugiadat','index'))
                     @if(can('giadaugiadat','index'))
                         <li>

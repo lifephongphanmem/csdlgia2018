@@ -18,6 +18,11 @@ Route::get('reportsgiacldat','GiaCacLoaiDatController@show');
 
 Route::get('timkiemthongtingiacacloaidat','GiaCacLoaiDatController@search');
 
+//Giá đất địa bàn
+Route::get('giadatdiaban','GiaDatDiaBanController@index');
+Route::get('giadatdiaban/nhandulieutuexcel','GiaDatDiaBanController@nhandulieutuexcel');
+Route::post('giadatdiaban/import_excel','GiaDatDiaBanController@importexcel');
+
 
 //Lệ phí trước bạ
 Route::resource('nhomlephitruocba','NhomLePhiTruocBaController');
