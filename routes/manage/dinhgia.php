@@ -22,6 +22,7 @@ Route::get('timkiemthongtingiacacloaidat','GiaCacLoaiDatController@search');
 Route::get('giadatdiaban','GiaDatDiaBanController@index');
 Route::get('giadatdiaban/nhandulieutuexcel','GiaDatDiaBanController@nhandulieutuexcel');
 Route::post('giadatdiaban/import_excel','GiaDatDiaBanController@importexcel');
+Route::post('giadatdiaban/delete','GiaDatDiaBanController@multidelete');
 
 
 //Lệ phí trước bạ

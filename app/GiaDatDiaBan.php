@@ -9,6 +9,7 @@ class GiaDatDiaBan extends Model
     protected $table = 'giadatdiaban';
     protected $fillable = [
         'id',
+        'nam',
         'loaidat',
         'khuvuc',
         'mota',

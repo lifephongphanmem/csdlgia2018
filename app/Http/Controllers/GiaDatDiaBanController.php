@@ -15,10 +15,11 @@ class GiaDatDiaBanController extends Controller
     public function index(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
+            $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
             $inputs['loaidat'] = isset($inputs['loaidat']) ? $inputs['loaidat'] : 'All';
             $inputs['khuvuc'] = isset($inputs['khuvuc']) ? $inputs['khuvuc'] : '';
             $inputs['mota'] = isset($inputs['mota']) ? $inputs['mota'] : '';
-            $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 20;
+            $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
             $diabans = DiaBanHd::where('level','H')
                 ->get();
             if(session('admin')->level == 'T' || session('admin')->level == 'H')
@@ -26,15 +27,18 @@ class GiaDatDiaBanController extends Controller
             else
                 $inputs['district'] = session('admin')->districts;
 
-            $model  = new GiaDatDiaBan();
+            $model  = GiaDatDiaBan::join('diabanhd','diabanhd.district','=','giadatdiaban.district')
+                ->select('giadatdiaban.*','diabanhd.diaban');
+            if($inputs['nam'] != 'all')
+                $model = $model->where('giadatdiaban.nam',$inputs['nam']);
             if($inputs['district'] !='All')
-                $model = $model->where('district',$inputs['district']);
+                $model = $model->where('giadatdiaban.district',$inputs['district']);
             if($inputs['loaidat'] != 'All')
-                $model = $model->where('loaidat',$inputs['loaidat']);
+                $model = $model->where('giadatdiaban.loaidat',$inputs['loaidat']);
             if($inputs['khuvuc'] != '')
-                $model = $model->where('loaidat','like', '%'.$inputs['loaidat'].'%');
+                $model = $model->where('giadatdiaban.loaidat','like', '%'.$inputs['loaidat'].'%');
             if($inputs['mota'] != '')
-                $model = $model->where('mota','like', '%'.$inputs['mota'].'%');
+                $model = $model->where('giadatdiaban.mota','like', '%'.$inputs['mota'].'%');
             $model = $model->paginate($inputs['paginate']);
             return view('manage.dinhgia.giadatdiaban.index')
                 ->with('model',$model)
@@ -77,6 +81,7 @@ class GiaDatDiaBanController extends Controller
                     continue;//Tên cán bộ rỗng => thoát
                 }
                 $modelctnew = new GiaDatDiaBan();
+                $modelctnew->nam = $inputs['nam'];
                 $modelctnew->district = $inputs['district'];
                 $modelctnew->loaidat = $inputs['loaidat'];
                 $modelctnew->khuvuc = $data[$i][$inputs['khuvuc']];
@@ -92,7 +97,22 @@ class GiaDatDiaBanController extends Controller
                 $modelctnew->save();
             }
             File::Delete($path);
-            return redirect('giadatdiaban?&district='.$inputs['district'].'&loaidat='.$inputs['loaidat']);
+            return redirect('giadatdiaban?&nam='.$inputs['nam'].'&district='.$inputs['district'].'&loaidat='.$inputs['loaidat']);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function multidelete(Request $request){
+        if(Session::has('admin')){
+            $inputs=$request->all();
+            $model = GiaDatDiaBan::where('district',$inputs['districtdel'])
+                ->where('nam',$inputs['namdel']);
+            if($inputs['loaidatdel'] != 'All')
+                $model = $model->where('loaidat',$inputs['loaidatdel']);
+
+            $model = $model->delete();
+
+            return redirect('giadatdiaban?&nam='.$inputs['namdel'].'&district='.$inputs['districtdel'].'&loaidat='.$inputs['loaidatdel']);
         }else
             return view('errors.notlogin');
     }

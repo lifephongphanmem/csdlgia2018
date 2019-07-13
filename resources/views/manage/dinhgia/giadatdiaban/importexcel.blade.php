@@ -49,14 +49,29 @@
                                             <div class="form-body">
                                                 <div class="row">
                                                     <div class="col-md-3">
+                                                        <div class="form-group">
+                                                        <label>Năm</label>
+                                                        <select class="form-control" name="nam" id="nam">
+                                                            @if ($nam_start = 2015 ) @endif
+                                                            @if ($nam_stop = intval(date('Y')) + 1) @endif
+                                                            @for($i = $nam_start; $i <= $nam_stop; $i++)
+                                                                <option value="{{$i}}" {{$i== date('Y') ? 'selected' : ''}}>Năm {{$i}}</option>
+                                                            @endfor
+                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
                                                         <label>Địa bàn</label>
                                                         <select class="form-control" name="district" id="district">
                                                             @foreach($districts as $district)
                                                                 <option value="{{$district->district}}">{{$district->diaban}}</option>
                                                             @endforeach
                                                         </select>
+                                                        </div>
                                                     </div>
                                                     <div class="col-md-6">
+                                                        <div class="form-group">
                                                         <label>Loại đất</label>
                                                         <select class="form-control" name="loaidat" id="loaidat">
                                                             <option value="Đất trồng lúa">Đất trồng lúa</option>
@@ -71,6 +86,7 @@
                                                             <option value="Đất thương tại, dịch vụ tại đô thị">Đất thương tại, dịch vụ tại đô thị</option>
                                                             <option value="Đất sản xuất kinh doanh phi nông nghiệp không phải là đất thương mại, dịch vụ tại đô thị">Đất sản xuất kinh doanh phi nông nghiệp không phải là đất thương mại, dịch vụ tại đô thị</option>
                                                         </select>
+                                                        </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
