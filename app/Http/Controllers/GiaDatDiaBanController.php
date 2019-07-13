@@ -82,11 +82,11 @@ class GiaDatDiaBanController extends Controller
                 $modelctnew->khuvuc = $data[$i][$inputs['khuvuc']];
                 $modelctnew->mota = $data[$i][$inputs['mota']];
                 $modelctnew->mdsd = $data[$i][$inputs['mdsd']];
-                $modelctnew->giavt1 = (isset($data[$i][$inputs['giavt1']]) && $data[$i][$inputs['giavt1']] != '' ? $data[$i][$inputs['giavt1']] : 0);
-                $modelctnew->giavt2 = (isset($data[$i][$inputs['giavt2']]) && $data[$i][$inputs['giavt2']] != '' ? $data[$i][$inputs['giavt2']] : 0);
-                $modelctnew->giavt3 = (isset($data[$i][$inputs['giavt3']]) && $data[$i][$inputs['giavt3']] != '' ? $data[$i][$inputs['giavt3']] : 0);
-                $modelctnew->giavt4 = (isset($data[$i][$inputs['giavt4']]) && $data[$i][$inputs['giavt4']] != '' ? $data[$i][$inputs['giavt4']] : 0);
-                $modelctnew->giavt5 = (isset($data[$i][$inputs['giavt5']]) && $data[$i][$inputs['giavt5']] != '' ? $data[$i][$inputs['giavt5']] : 0);
+                $modelctnew->giavt1 = (isset($data[$i][$inputs['giavt1']]) && $data[$i][$inputs['giavt1']] != '' ? chkDbl($data[$i][$inputs['giavt1']]) : 0);
+                $modelctnew->giavt2 = (isset($data[$i][$inputs['giavt2']]) && $data[$i][$inputs['giavt2']] != '' ? chkDbl($data[$i][$inputs['giavt2']]) : 0);
+                $modelctnew->giavt3 = (isset($data[$i][$inputs['giavt3']]) && $data[$i][$inputs['giavt3']] != '' ? chkDbl($data[$i][$inputs['giavt3']]) : 0);
+                $modelctnew->giavt4 = (isset($data[$i][$inputs['giavt4']]) && $data[$i][$inputs['giavt4']] != '' ? chkDbl($data[$i][$inputs['giavt4']]) : 0);
+                $modelctnew->giavt5 = (isset($data[$i][$inputs['giavt5']]) && $data[$i][$inputs['giavt5']] != '' ? chkDbl($data[$i][$inputs['giavt5']]) : 0);
                 $modelctnew->username = session('admin')->name.'('.session('admin')->username.')' ;
                 $modelctnew->thaotac = 'Import';
                 $modelctnew->save();

@@ -3939,4 +3939,14 @@ function dinhdangsothapphan ($number , $decimals = 0) {
     // round(5.4,4) = 5,4000
 }
 
+function chkDbl($obj) {
+    $obj=str_replace(',','',$obj);
+    $obj=str_replace('%','',$obj);
+    if(is_numeric($obj)){
+        return $obj;
+    }else {
+        return 0;
+    }
+}
+
 ?>
