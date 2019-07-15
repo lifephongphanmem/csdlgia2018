@@ -30,6 +30,7 @@ class CreateGiadatdiabanTable extends Migration
             $table->string('soqd')->nullable();
             $table->string('username')->nullable();
             $table->string('thaotac')->nullable();
+            $table->string('trangthai')->nullable();
             $table->timestamps();
         });
     }

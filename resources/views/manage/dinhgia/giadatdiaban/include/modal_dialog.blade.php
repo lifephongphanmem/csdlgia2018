@@ -11,6 +11,15 @@
     function ClickAdd(){
         $('#frm_add').submit();
     }
+    function ClickCongBo(){
+        $('#frm_congbo').submit();
+    }
+    function ClickHuyCongBo(){
+        $('#frm_huycongbo').submit();
+    }
+    function clickCheckMulti(){
+        $('#frm_checkmulti').submit();
+    }
 </script>
 <!--Modal Delete-->
 <div id="delete-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
@@ -113,7 +122,7 @@
     </div>
     {!! Form::close() !!}
 </div>
-{{--Model del--}}
+{{--Model add--}}
 <div id="add-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
     {!! Form::open(['url'=>'giadatdiaban/add','id' => 'frm_add'])!!}
     <div class="modal-dialog">
@@ -216,6 +225,121 @@
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
                 <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickAdd()">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+    {!! Form::close() !!}
+</div>
+
+{{--Model công bố--}}
+<div id="congbo-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    {!! Form::open(['url'=>'giadatdiaban/congbo','id' => 'frm_congbo'])!!}
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <button type="button" data-dismiss="modal" aria-hidden="true"
+                        class="close">&times;</button>
+                <h4 id="modal-header-primary-label" class="modal-title">Đồng ý công bố?</h4>
+
+                <input type="hidden" name="congbo_id" id="congbo_id">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickCongBo()">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+    {!! Form::close() !!}
+</div>
+
+{{--Model công bố--}}
+<div id="huycongbo-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    {!! Form::open(['url'=>'giadatdiaban/huycongbo','id' => 'frm_huycongbo'])!!}
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <button type="button" data-dismiss="modal" aria-hidden="true"
+                        class="close">&times;</button>
+                <h4 id="modal-header-primary-label" class="modal-title">Đồng ý hủy công bố?</h4>
+
+                <input type="hidden" name="huycongbo_id" id="huycongbo_id">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickHuyCongBo()">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+    {!! Form::close() !!}
+</div>
+
+<!--Modal Check-->
+<div id="check-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    {!! Form::open(['url'=>'giadatdiaban/checkmulti','id' => 'frm_checkmulti'])!!}
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <button type="button" data-dismiss="modal" aria-hidden="true"
+                        class="close">&times;</button>
+                <h4 id="modal-header-primary-label" class="modal-title">Đồng ý công bố/ hủy?</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">Trạng thái<span class="require">*</span></label>
+                            <select class="form-control" name="trangthaicheck" id="trangthaicheck">
+                               <option value="CB">Công bố</option>
+                               <option value="HCB">Hủy công bố</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">Năm<span class="require">*</span></label>
+                            <select class="form-control" name="namcheck" id="namcheck">
+                                @if ($nam_start = 2015 ) @endif
+                                @if ($nam_stop = intval(date('Y')) + 1) @endif
+                                @for($i = $nam_start; $i <= $nam_stop; $i++)
+                                    <option value="{{$i}}">Năm {{$i}}</option>
+                                @endfor
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">Địa bàn<span class="require">*</span></label>
+                            <select class="form-control" name="districtcheck" id="districtcheck">
+                                @foreach($diabans as $diaban)
+                                    <option value="{{$diaban->district}}">{{$diaban->diaban}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">Loại đất<span class="require">*</span></label>
+                            <select class="form-control" name="maloaidatcheck" id="maloaidatcheck">
+                                <option value="All">--Tất cả--</option>
+                                @foreach($loaidats as $loaidat)
+                                    <option value="{{$loaidat->maloaidat}}">{{$loaidat->loaidat}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickCheckMulti()">Đồng ý</button>
             </div>
         </div>
     </div>

@@ -27,6 +27,9 @@ Route::get('giadatdiaban/edittt','GiaDatDiaBanController@edit');
 Route::post('giadatdiaban/update','GiaDatDiaBanController@update');
 Route::post('giadatdiaban/destroy','GiaDatDiaBanController@destroy');
 Route::post('giadatdiaban/add','GiaDatDiaBanController@store');
+Route::post('giadatdiaban/congbo','GiaDatDiaBanController@congbo');
+Route::post('giadatdiaban/huycongbo','GiaDatDiaBanController@huycongbo');
+Route::post('giadatdiaban/checkmulti','GiaDatDiaBanController@checkmulti');
 
 
 //Lệ phí trước bạ

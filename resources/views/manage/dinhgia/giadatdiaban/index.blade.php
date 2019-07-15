@@ -74,6 +74,12 @@
         function getId(id) {
             document.getElementById("destroy_id").value=id;
         }
+        function getIdCb(id) {
+            document.getElementById("congbo_id").value=id;
+        }
+        function getIdHcb(id) {
+            document.getElementById("huycongbo_id").value=id;
+        }
     </script>
 @stop
 
@@ -102,6 +108,8 @@
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                             Xóa</button>
                         @endif
+                        <button type="button" class="btn btn-default btn-xs mbs" data-target="#check-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;
+                            Công bố/ Hủy</button>
                     </div>
                 </div>
                 <hr>
@@ -192,14 +200,15 @@
                                 <th style="text-align: center" rowspan="2" width="5%">MĐSD</th>
                                 {{--<th style="text-align: center" rowspan="2" width="2%">Hệ số K</th>--}}
                                 <th style="text-align: center" colspan="5">Giá đất</th>
+                                <th style="text-align: center" rowspan="2" width="5%"> Trạng thái</th>
                                 <th style="text-align: center" rowspan="2"> Thao tác</th>
                             </tr>
                             <tr>
                                 <th style="text-align: center">VT1</th>
                                 <th style="text-align: center">VT2</th>
                                 <th style="text-align: center">VT3</th>
-                                <th style="text-align: center" width="3%">VT4</th>
-                                <th style="text-align: center" width="3%">VT5</th>
+                                <th style="text-align: center">VT4</th>
+                                <th style="text-align: center">VT5</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -219,19 +228,35 @@
                                             <td style="text-align: center">{{dinhdangsothapphan($tt->giavt3,2)}}</td>
                                             <td style="text-align: center">{{dinhdangsothapphan($tt->giavt4,2)}}</td>
                                             <td style="text-align: center">{{dinhdangsothapphan($tt->giavt5,2)}}</td>
-                                            <td>
-                                                @if(can('kkgiacldat','edit'))
-                                                    <button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                            <td style="text-align: center">
+                                                @if($tt->trangthai == 'CB')
+                                                    <span class="badge badge-warning">Công bố</span>
+                                                @else
+                                                    <span class="badge badge-danger">Chưa công bố</span>
                                                 @endif
-                                                @if(can('kkgiacldat','delete'))
-                                                    <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                            </td>
+                                            <td>
+                                                @if($tt->trangthai == 'CB')
+                                                    @if(can('kkgiacldat','delete'))
+                                                        <button type="button" onclick="getIdHcb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huycongbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-times"></i>&nbsp;Hủy công bố</button>
+                                                    @endif
+                                                @else
+                                                    @if(can('kkgiacldat','edit'))
+                                                        <button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                    @endif
+                                                    @if(can('kkgiacldat','delete'))
+                                                        <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                    @endif
+                                                    @if(can('kkgiacldat','delete'))
+                                                        <button type="button" onclick="getIdCb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Công bố</button>
+                                                    @endif
                                                 @endif
                                             </td>
                                         </tr>
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td style="text-align: center" colspan="13">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
+                                        <td style="text-align: center" colspan="14">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
                                     </tr>
                                 @endif
                             </tbody>

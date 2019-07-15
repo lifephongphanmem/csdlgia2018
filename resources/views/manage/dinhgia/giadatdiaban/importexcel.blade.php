@@ -139,7 +139,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Nhận đến dòng</label>
-                                                            {!!Form::text('sodong', '111', array('id' => 'sodong','class' => 'form-control','data-mask'=>'fdecimal'))!!}
+                                                            {!!Form::text('dendong', '111', array('id' => 'dendong','class' => 'form-control','data-mask'=>'fdecimal'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -223,9 +223,9 @@
                 ok = false;
             }
 
-            if (!$('#sodong').val()) {
-                str += '  - Số dòng dữ liệu \n';
-                $('#sodong').parent().addClass('has-error');
+            if (!$('#dendong').val()) {
+                str += '  - Đến dòng dữ liệu \n';
+                $('#dendong').parent().addClass('has-error');
                 ok = false;
             }
 

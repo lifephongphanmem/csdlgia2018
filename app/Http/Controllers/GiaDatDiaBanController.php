@@ -82,7 +82,7 @@ class GiaDatDiaBanController extends Controller
                 $data = $sheet->toArray(null, true, true, true);// giữ lại tiêu đề A=>'val';
             });
 
-            for ($i = $inputs['tudong']; $i < ($inputs['tudong'] + $inputs['sodong']); $i++) {
+            for ($i = $inputs['tudong']; $i <= $inputs['dendong']; $i++) {
                 if (!isset($data[$i][$inputs['khuvuc']]) || $data[$i][$inputs['khuvuc']] == '') {
                     continue;//Tên cán bộ rỗng => thoát
                 }
@@ -114,7 +114,7 @@ class GiaDatDiaBanController extends Controller
             $model = GiaDatDiaBan::where('district',$inputs['districtdel'])
                 ->where('nam',$inputs['namdel']);
             if($inputs['maloaidatdel'] != 'All')
-                $model = $model->where('maloaidat',$inputs['loaidatdel']);
+                $model = $model->where('maloaidat',$inputs['maloaidatdel']);
 
             $model = $model->delete();
 
@@ -300,6 +300,47 @@ class GiaDatDiaBanController extends Controller
 
 
             return redirect('giadatdiaban?&nam='.$inputs['add_nam'].'&district='.$inputs['add_district'].'&maloaidat='.$inputs['add_maloaidat']);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function congbo(Request $request){
+        if(Session::has('admin')){
+            $inputs=$request->all();
+            $id = $inputs['congbo_id'];
+            $model = GiaDatDiaBan::findOrFail($id);
+            $model->trangthai = 'CB';
+            $model->save();
+
+            return redirect('giadatdiaban?&nam='.$model->nam.'&district='.$model->district.'&maloaidat='.$model->maloaidat);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huycongbo(Request $request){
+        if(Session::has('admin')){
+            $inputs=$request->all();
+            $id = $inputs['huycongbo_id'];
+            $model = GiaDatDiaBan::findOrFail($id);
+            $model->trangthai = 'HCB';
+            $model->save();
+
+            return redirect('giadatdiaban?&nam='.$model->nam.'&district='.$model->district.'&maloaidat='.$model->maloaidat);
+        }else
+            return view('errors.notlogin');
+    }
+
+    function checkmulti(Request $request){
+        if(Session::has('admin')){
+            $inputs=$request->all();
+            $model = GiaDatDiaBan::where('district',$inputs['districtcheck'])
+                ->where('nam',$inputs['namcheck']);
+            if($inputs['maloaidatcheck'] != 'All')
+                $model = $model->where('maloaidat',$inputs['maloaidatcheck']);
+
+            $model = $model->update(['trangthai' => $inputs['trangthaicheck']]);
+
+            return redirect('giadatdiaban?&nam='.$inputs['namcheck'].'&district='.$inputs['districtcheck'].'&maloaidat='.$inputs['maloaidatcheck']);
         }else
             return view('errors.notlogin');
     }

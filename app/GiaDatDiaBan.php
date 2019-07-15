@@ -23,6 +23,7 @@ class GiaDatDiaBan extends Model
         'district',
         'username',
         'thaotac',
-        'soqd'
+        'soqd',
+        'trangthai'
     ];
 }
