@@ -10,39 +10,40 @@
             <ul class="sub-menu" style="display: none;">
                 @if(canGeneral('giacldat','index'))
                     @if(can('giacldat','index'))
+                        {{--Giá đất địa bàn--}}
                         <li class="tooltips" data-container="body" data-placement="right" data-html="true"
-                            data-original-title="Giá các loại đất">
-                            <a href="">
-                                Giá các loại đất <span class="arrow"></span>
+                            data-original-title="Giá đất theo địa bàn">
+                            <a href="{{url('giadatdiaban')}}">
+                                Giá đất theo địa bàn
                             </a>
-                            <ul class="sub-menu">
-                                @if(can('dmgiacldat','index'))
-                                    <li>
-                                        <a href="{{url('dmqdgiadat')}}">Danh mục quyết định giá đất</a>
-                                    </li>
-                                @endif
-                                @if(can('kkgiacldat','index'))
-                                    <li>
-                                        <a href="{{url('thongtingiacacloaidat')}}">Thông tin giá các loại đất</a>
-                                    </li>
-                                @endif
-                                @if(can('thgiacldat','timkiem'))
-                                    <li>
-                                        <a href="{{url('timkiemthongtingiacacloaidat')}}">Tìm kiếm thông tin giá các loại đất</a>
-                                    </li>
-                                @endif
-                            </ul>
                         </li>
+                        {{--End--}}
+                        {{--<li class="tooltips" data-container="body" data-placement="right" data-html="true"--}}
+                            {{--data-original-title="Giá các loại đất">--}}
+                            {{--<a href="">--}}
+                                {{--Giá các loại đất <span class="arrow"></span>--}}
+                            {{--</a>--}}
+                            {{--<ul class="sub-menu">--}}
+                                {{--@if(can('dmgiacldat','index'))--}}
+                                    {{--<li>--}}
+                                        {{--<a href="{{url('dmqdgiadat')}}">Danh mục quyết định giá đất</a>--}}
+                                    {{--</li>--}}
+                                {{--@endif--}}
+                                {{--@if(can('kkgiacldat','index'))--}}
+                                    {{--<li>--}}
+                                        {{--<a href="{{url('thongtingiacacloaidat')}}">Thông tin giá các loại đất</a>--}}
+                                    {{--</li>--}}
+                                {{--@endif--}}
+                                {{--@if(can('thgiacldat','timkiem'))--}}
+                                    {{--<li>--}}
+                                        {{--<a href="{{url('timkiemthongtingiacacloaidat')}}">Tìm kiếm thông tin giá các loại đất</a>--}}
+                                    {{--</li>--}}
+                                {{--@endif--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
                     @endif
                 @endif
-                {{--Giá đất địa bàn--}}
-                    <li class="tooltips" data-container="body" data-placement="right" data-html="true"
-                        data-original-title="Giá đất theo địa bàn">
-                        <a href="{{url('giadatdiaban')}}">
-                            Giá đất theo địa bàn
-                        </a>
-                    </li>
-                    {{--End--}}
+
                 @if(canGeneral('giadaugiadat','index'))
                     @if(can('giadaugiadat','index'))
                         <li>

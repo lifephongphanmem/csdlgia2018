@@ -23,6 +23,10 @@ Route::get('giadatdiaban','GiaDatDiaBanController@index');
 Route::get('giadatdiaban/nhandulieutuexcel','GiaDatDiaBanController@nhandulieutuexcel');
 Route::post('giadatdiaban/import_excel','GiaDatDiaBanController@importexcel');
 Route::post('giadatdiaban/delete','GiaDatDiaBanController@multidelete');
+Route::get('giadatdiaban/edittt','GiaDatDiaBanController@edit');
+Route::post('giadatdiaban/update','GiaDatDiaBanController@update');
+Route::post('giadatdiaban/destroy','GiaDatDiaBanController@destroy');
+Route::post('giadatdiaban/add','GiaDatDiaBanController@store');
 
 
 //Lệ phí trước bạ

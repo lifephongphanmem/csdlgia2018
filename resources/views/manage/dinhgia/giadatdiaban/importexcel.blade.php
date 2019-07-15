@@ -73,18 +73,10 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                         <label>Loại đất</label>
-                                                        <select class="form-control" name="loaidat" id="loaidat">
-                                                            <option value="Đất trồng lúa">Đất trồng lúa</option>
-                                                            <option value="Đất trồng cây hàng năm khác"}}>Đất trồng cây hàng năm khác</option>
-                                                            <option value="Đất trồng cây lâu năm khác">Đất trồng cây lâu năm khác</option>
-                                                            <option value="Đất lâm nghiệp">Đất lâm nghiệp</option>
-                                                            <option value="Đất nuôi trồng thủy sản">Đất nuôi trồng thủy sản</option>
-                                                            <option value="Đất ở tại nông thôn" >Đất ở tại nông thôn</option>
-                                                            <option value="Đất thương mại, dịch vụ tại nông thôn">Đất thương mại, dịch vụ tại nông thôn</option>
-                                                            <option value="Đất sản xuất kinh doanh phi nông nghiệp không phải là đất thương mại, dịch vụ tại nông thôn">Đất sản xuất kinh doanh phi nông nghiệp không phải là đất thương mại, dịch vụ tại nông thôn</option>
-                                                            <option value="Đất ở tại đô thị">Đất ở tại đô thị</option>
-                                                            <option value="Đất thương tại, dịch vụ tại đô thị">Đất thương tại, dịch vụ tại đô thị</option>
-                                                            <option value="Đất sản xuất kinh doanh phi nông nghiệp không phải là đất thương mại, dịch vụ tại đô thị">Đất sản xuất kinh doanh phi nông nghiệp không phải là đất thương mại, dịch vụ tại đô thị</option>
+                                                        <select class="form-control" name="maloaidat" id="maloaidat">
+                                                            @foreach($loaidats as $loaidat)
+                                                                <option value="{{$loaidat->maloaidat}}">{{$loaidat->loaidat}}</option>
+                                                            @endforeach
                                                         </select>
                                                         </div>
                                                     </div>

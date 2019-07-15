@@ -10,7 +10,7 @@ class GiaDatDiaBan extends Model
     protected $fillable = [
         'id',
         'nam',
-        'loaidat',
+        'maloaidat',
         'khuvuc',
         'mota',
         'mdsd',

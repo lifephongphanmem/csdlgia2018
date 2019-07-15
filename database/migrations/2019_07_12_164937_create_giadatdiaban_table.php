@@ -16,7 +16,7 @@ class CreateGiadatdiabanTable extends Migration
         Schema::create('giadatdiaban', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nam')->nullable();
-            $table->string('loaidat')->nullable();
+            $table->string('maloaidat')->nullable();
             $table->string('khuvuc')->nullable();
             $table->text('mota')->nullable();
             $table->string('mdsd')->nullable();
