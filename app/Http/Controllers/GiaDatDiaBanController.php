@@ -83,9 +83,7 @@ class GiaDatDiaBanController extends Controller
             });
 
             for ($i = $inputs['tudong']; $i <= $inputs['dendong']; $i++) {
-                if (!isset($data[$i][$inputs['khuvuc']]) || $data[$i][$inputs['khuvuc']] == '') {
-                    continue;//Tên cán bộ rỗng => thoát
-                }
+
                 $modelctnew = new GiaDatDiaBan();
                 $modelctnew->nam = $inputs['nam'];
                 $modelctnew->district = $inputs['district'];

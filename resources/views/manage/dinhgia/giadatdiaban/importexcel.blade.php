@@ -163,7 +163,7 @@
             <div class="col-md-12" style="text-align: center">
                 <a href="{{url('giadatdiaban')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn default"><i class="fa fa-refresh"></i> Tải lại</button>
-                <button type="submit" class="btn green" onclick="ClickCreate()"><i class="fa fa-plus"></i> Nhận dữ liệu</button>
+                <button type="submit" class="btn green" onclick="ClickCreate()" id="submitform" name="submitform"><i class="fa fa-plus"></i> Nhận dữ liệu</button>
             </div>
             {!! Form::close() !!}
             <!-- END VALIDATION STATES-->
@@ -244,6 +244,9 @@
             }
             else {
                 $("form").unbind('submit').submit();
+                var btn = document.getElementById('submitform');
+                btn.disabled = true;
+                btn.innerText = 'Loading...'
             }
         }
 
