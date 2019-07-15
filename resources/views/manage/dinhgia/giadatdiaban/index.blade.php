@@ -108,8 +108,10 @@
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                             Xóa</button>
                         @endif
+                        @if(can('thgiacldat','congbo'))
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#check-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;
                             Công bố/ Hủy</button>
+                        @endif
                     </div>
                 </div>
                 <hr>
@@ -237,7 +239,7 @@
                                             </td>
                                             <td>
                                                 @if($tt->trangthai == 'CB')
-                                                    @if(can('kkgiacldat','delete'))
+                                                    @if(can('thgiacldat','congbo'))
                                                         <button type="button" onclick="getIdHcb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huycongbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-times"></i>&nbsp;Hủy công bố</button>
                                                     @endif
                                                 @else
@@ -247,7 +249,7 @@
                                                     @if(can('kkgiacldat','delete'))
                                                         <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                                     @endif
-                                                    @if(can('kkgiacldat','delete'))
+                                                    @if(can('thgiacldat','congbo'))
                                                         <button type="button" onclick="getIdCb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Công bố</button>
                                                     @endif
                                                 @endif
