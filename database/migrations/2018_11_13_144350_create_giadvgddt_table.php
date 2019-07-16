@@ -15,12 +15,16 @@ class CreateGiadvgddtTable extends Migration
     {
         Schema::create('giadvgddt', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('soqd')->nullable();
-            $table->string('ngayapdung')->nullable();
+            $table->string('namhoc')->mullable();
+            $table->string('diaban')->nullable();
+            $table->string('khuvuc')->nullable();
+            $table->string('mota')->nullable();
+            $table->string('dongia')->nullable();
+            $table->string('ttqd')->nullable();
             $table->string('ghichu')->nullable();
-            $table->string('mahs')->nullable();
             $table->string('trangthai')->nullable();
-            $table->string('manhom')->nullable();
+            $table->string('username')->nullable();
+            $table->string('thaotac')->nullable();
             $table->timestamps();
         });
     }
