@@ -33,14 +33,13 @@
 
         $(function(){
             $('#paginate').change(function() {
-                var current_path_url = '/giadatdiaban?';
+                var current_path_url = '/giadvgiaoducdaotao?';
                 var nam = '&nam='+$('#nam').val();
-                var district = '&district='+$('#district').val();
-                var maloaidat = '&maloaidat='+$('#maloaidat').val();
+                var diaban = '&diaban='+$('#diaban').val();
                 var khuvuc = '&khuvuc='+$('#khuvuc').val();
                 var mota = '&mota='+$('#mota').val();
                 var paginate = '&paginate='+$('#paginate').val();
-                var url = current_path_url+nam+district+maloaidat+khuvuc+mota+paginate;
+                var url = current_path_url+nam+diaban+khuvuc+mota+paginate;
                 window.location.href = url;
             });
         });
