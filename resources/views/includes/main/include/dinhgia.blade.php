@@ -145,21 +145,21 @@
                 @if(canGeneral('gianuocsh','index'))
                     @if(can('gianuocsh','index'))
                         <li>
-                            <a href="">
-                                Giá nước sạch sinh hoạt<span class="arrow"></span>
+                            <a href="{{url('gianuocsachsinhhoat')}}">
+                                Giá nước sạch sinh hoạt
                             </a>
-                            <ul class="sub-menu">
-                                @if(can('kkgianuocsh','index'))
-                                    <li>
-                                        <a href="{{url('thongtingianuocsinhhoat')}}">Thông tin giá nước sạch sinh hoạt</a>
-                                    </li>
-                                @endif
-                                @if(can('thgianuocsh','timkiem'))
-                                    <li>
-                                        <a href="{{url('timkiemthongtingianuocsinhhoat')}}">Tìm kiếm thông tin</a>
-                                    </li>
-                                @endif
-                            </ul>
+                            {{--<ul class="sub-menu">--}}
+                                {{--@if(can('kkgianuocsh','index'))--}}
+                                    {{--<li>--}}
+                                        {{--<a href="">Thông tin giá nước sạch sinh hoạt</a>--}}
+                                    {{--</li>--}}
+                                {{--@endif--}}
+                                {{--@if(can('thgianuocsh','timkiem'))--}}
+                                    {{--<li>--}}
+                                        {{--<a href="{{url('timkiemthongtingianuocsinhhoat')}}">Tìm kiếm thông tin</a>--}}
+                                    {{--</li>--}}
+                                {{--@endif--}}
+                            {{--</ul>--}}
                         </li>
                     @endif
                 @endif
@@ -191,32 +191,9 @@
                         <li class="tooltips" data-container="body" data-placement="right" data-html="true"
                             data-original-title="Giá dịch vụ giáo dục, đào tạo áp dụng đối với cơ sở giáo dục mầm non, phổ thông công lập thuộc tỉnh">
                             <a href="{{url('giadvgiaoducdaotao')}}">
-                                Giá dịch vụ GD-ĐT<span class="arrow"></span>
+                                Giá dịch vụ GD-ĐT
                             </a>
                         </li>
-                        {{--<li class="tooltips" data-container="body" data-placement="right" data-html="true"--}}
-                            {{--data-original-title="Giá dịch vụ giáo dục, đào tạo áp dụng đối với cơ sở giáo dục mầm non, phổ thông công lập thuộc tỉnh">--}}
-                            {{--<a href="">--}}
-                                {{--Giá dịch vụ GD-ĐT<span class="arrow"></span>--}}
-                            {{--</a>--}}
-                            {{--<ul class="sub-menu">--}}
-                                {{--@if(can('dmgiadvgddt','index'))--}}
-                                    {{--<li>--}}
-                                        {{--<a href="{{url('danhmucgiadvgddt')}}">Danh mục giá DV GD-ĐT</a>--}}
-                                    {{--</li>--}}
-                                {{--@endif--}}
-                                {{--@if(can('kkgiadvgddt','index'))--}}
-                                    {{--<li>--}}
-                                        {{--<a href="{{url('thongtingiadvgddt')}}">Thông tin giá DV GD-DT</a>--}}
-                                    {{--</li>--}}
-                                {{--@endif--}}
-                                {{--@if(can('thgiadvgddt','timkiem'))--}}
-                                    {{--<li>--}}
-                                        {{--<a href="{{url('timkiemthongtingiadvgddt')}}">Tìm kiếm thông tin</a>--}}
-                                    {{--</li>--}}
-                                {{--@endif--}}
-                            {{--</ul>--}}
-                        {{--</li>--}}
                     @endif
                 @endif
 

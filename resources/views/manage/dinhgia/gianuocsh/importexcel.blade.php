@@ -5,6 +5,9 @@
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
+    <!--Date-->
+    <link type="text/css" rel="stylesheet" href="{{ url('vendors/bootstrap-datepicker/css/datepicker.css') }}">
+    <!--End Date-->
 @stop
 
 
@@ -22,13 +25,14 @@
         jQuery(document).ready(function() {
             FormWizard.init();
             //TableManaged.init();
+            $(":input").inputmask();
         });
     </script>
 @stop
 
 @section('content')
 
-    <h3 class="page-title">Nhận dữ liệu giá dịch vụ giáo dục đào tạo<small> từ file Excel</small> </h3>
+    <h3 class="page-title">Nhận dữ liệu giá nước sạch sinh hoạt<small> từ file Excel</small> </h3>
     <!-- END PAGE HEADER-->
 
     <!-- BEGIN DASHBOARD STATS -->
@@ -38,7 +42,7 @@
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM -->
-                    {!! Form::open(['url'=>'/giadvgiaoducdaotao/import_excel', 'method'=>'post' , 'files'=>true, 'id' => 'create_hscb','enctype'=>'multipart/form-data']) !!}
+                    {!! Form::open(['url'=>'/gianuocsachsinhhoat/import_excel', 'method'=>'post' , 'files'=>true, 'id' => 'create_hscb','enctype'=>'multipart/form-data']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
                             <!-- Thông tin chung-->
@@ -50,14 +54,8 @@
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                        <label>Năm</label>
-                                                        <select class="form-control" name="nam" id="nam">
-                                                            @if ($nam_start = 2015 ) @endif
-                                                            @if ($nam_stop = intval(date('Y')) + 1) @endif
-                                                            @for($i = $nam_start; $i <= $nam_stop; $i++)
-                                                                <option value="{{$i.'-'.($i+1)}}" {{($i.'-'.($i+1)) == (date('Y').'-'.(date('Y')+1)) ? 'selected' : ''}}>{{$i.'-'.($i+1)}}</option>
-                                                            @endfor
-                                                        </select>
+                                                        <label>Ngày áp dụng</label>
+                                                            {!!Form::text('ngayapdung',null, array('id' => 'ngayapdung','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -66,15 +64,13 @@
                                                         <select class="form-control" name="diaban" id="diaban">
                                                             <option value="Thành thị">Thành thị</option>
                                                             <option value="Nông thôn">Nông thôn</option>
-                                                            <option value="Miền núi">Miền núi</option>
-                                                            <option value="Hải đảo">Hải đảo</option>
                                                         </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Khu vực<span class="require">*</span></label>
-                                                            {!!Form::text('khuvuc', 'B', array('id' => 'khuvuc','class' => 'form-control required'))!!}
+                                                            <label class="control-label">Đối tượng<span class="require">*</span></label>
+                                                            {!!Form::text('doituong', 'B', array('id' => 'doituong','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
 
@@ -87,19 +83,13 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Đơn giá<span class="require">*</span></label>
-                                                            {!!Form::text('dongia', 'D', array('id' => 'dongia','class' => 'form-control required'))!!}
+                                                            {!!Form::text('thanhtien', 'D', array('id' => 'thanhtien','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Thông tin quyết định<span class="require">*</span></label>
-                                                            {!!Form::text('ttqd', 'E', array('id' => 'ttqd','class' => 'form-control required'))!!}
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Ghi chú<span class="require">*</span></label>
-                                                            {!!Form::text('ghichu', 'F', array('id' => 'ghichu','class' => 'form-control required'))!!}
+                                                            <label class="control-label">Đơn vị tính<span class="require">*</span></label>
+                                                            {!!Form::text('dvt', 'E', array('id' => 'dvt','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -134,7 +124,7 @@
                 </div>
             </div>
             <div class="col-md-12" style="text-align: center">
-                <a href="{{url('giadvgiaoducdaotao')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('gianuocsachsinhhoat')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn default"><i class="fa fa-refresh"></i> Tải lại</button>
                 <button type="submit" class="btn green" onclick="ClickCreate()" id="submitform" name="submitform"><i class="fa fa-plus"></i> Nhận dữ liệu</button>
             </div>
@@ -148,9 +138,15 @@
             var str = '';
             var ok = true;
 
-            if (!$('#khuvuc').val()) {
-                str += '  - Khu vực \n';
-                $('#khuvuc').parent().addClass('has-error');
+            if (!$('#ngayapdung').val()) {
+                str += '  - Ngày áp dụng \n';
+                $('#ngayapdung').parent().addClass('has-error');
+                ok = false;
+            }
+
+            if (!$('#doituong').val()) {
+                str += '  - Đối tượng \n';
+                $('#doituong').parent().addClass('has-error');
                 ok = false;
             }
 
@@ -160,23 +156,18 @@
                 ok = false;
             }
 
-            if (!$('#dongia').val()) {
+            if (!$('#thanhtien').val()) {
                 str += '  - Đơn giá \n';
-                $('#dongia').parent().addClass('has-error');
+                $('#thanhtien').parent().addClass('has-error');
                 ok = false;
             }
 
-            if (!$('#ttqd').val()) {
-                str += '  - Thông tin quyết định\n';
-                $('#ttqd').parent().addClass('has-error');
+            if (!$('#dvt').val()) {
+                str += '  - Đơn vị tính\n';
+                $('#dvt').parent().addClass('has-error');
                 ok = false;
             }
 
-            if (!$('#ghichu').val()) {
-                str += '  - Ghi chú \n';
-                $('#ghichu').parent().addClass('has-error');
-                ok = false;
-            }
 
             if (!$('#tudong').val()) {
                 str += '  - Dòng bắt đầu nhận dữ liệu \n';
@@ -212,4 +203,6 @@
         }
 
     </script>
+    @include('includes.script.create-header-scripts')
+    @include('includes.script.inputmask-ajax-scripts')
 @stop

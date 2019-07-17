@@ -18,9 +18,19 @@ class CreateGianuocshTable extends Migration
             $table->string('soqd')->nullable();
             $table->date('ngayapdung')->nullable();
             $table->text('ghichu')->nullable();
-            $table->string('mahs')->nullable();
+            $table->string('diaban')->nullable();
+            $table->string('doituong')->nullable();
+            $table->string('mota')->nullable();
+            $table->string('giachuathue')->nullable();
+            $table->string('thuevat')->nullable();
+            $table->string('giacothue')->nullable();
+            $table->string('phibvmttyle')->nullable();
+            $table->string('phibvmt')->nullable();
+            $table->string('thanhtien')->nullable();
+            $table->string('dvt')->nullable();
             $table->string('trangthai')->nullable();
-            $table->string('mahuyen')->nullable();
+            $table->string('username')->nullable();
+            $table->string('thaotac')->nullable();
             $table->timestamps();
         });
     }

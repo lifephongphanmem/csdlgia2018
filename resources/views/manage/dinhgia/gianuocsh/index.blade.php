@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
     <!-- END THEME STYLES -->
+    <link type="text/css" rel="stylesheet" href="{{ url('vendors/bootstrap-datepicker/css/datepicker.css') }}">
 @stop
 
 
@@ -15,43 +16,43 @@
     <script type="text/javascript" src="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')}}"></script>
     <!-- END PAGE LEVEL PLUGINS -->
     <script src="{{url('assets/admin/pages/scripts/table-managed.js')}}"></script>
+    <script src="{{url('minhtran/jquery.inputmask.bundle.min.js')}}"></script>
     <script>
         jQuery(document).ready(function() {
             TableManaged.init();
+            $(":input").inputmask();
         });
 
         function searchtt(){
-            var current_path_url = '/giadvgiaoducdaotao?';
+            var current_path_url = '/gianuocsachsinhhoat?';
             var nam = '&nam='+$('#nam').val();
             var diaban = '&diaban='+$('#diaban').val();
-            var khuvuc = '&khuvuc='+$('#khuvuc').val();
             var mota = '&mota='+$('#mota').val();
             var paginate = '&paginate='+$('#paginate').val();
-            var url = current_path_url+nam+diaban+khuvuc+mota+paginate;
+            var url = current_path_url+nam+diaban+mota+paginate;
             window.location.href = url;
         }
 
         $(function(){
             $('#paginate').change(function() {
-                var current_path_url = '/giadvgiaoducdaotao?';
+                var current_path_url = '/gianuocsachsinhhoat?';
                 var nam = '&nam='+$('#nam').val();
                 var diaban = '&diaban='+$('#diaban').val();
-                var khuvuc = '&khuvuc='+$('#khuvuc').val();
                 var mota = '&mota='+$('#mota').val();
                 var paginate = '&paginate='+$('#paginate').val();
-                var url = current_path_url+nam+diaban+khuvuc+mota+paginate;
+                var url = current_path_url+nam+diaban+mota+paginate;
                 window.location.href = url;
             });
         });
 
         function resettt(){
-            window.location.href = '/giadvgiaoducdaotao';
+            window.location.href = '/gianuocsachsinhhoat';
         }
 
         function edittt(id) {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: 'giadvgiaoducdaotao/edittt',
+                url: 'gianuocsachsinhhoat/edittt',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -59,13 +60,13 @@
                 },
                 dataType: 'JSON',
                 success: function (data) {
-                    if (data.status == 'success') {
-                        $('#edit_node').replaceWith(data.message);
-                        InputMask();
-                    }
-                },
-                error: function (message) {
-                    toastr.error(message, 'Lỗi!');
+                    $('#edit_ngayapdung').val(data.date);
+                    $('#edit_diaban').val(data.diaban);
+                    $('#edit_doituong').val(data.doituong);
+                    $('#edit_mota').val(data.mota);
+                    $('#edit_thanhtien').val(data.thanhtien);
+                    $('#edit_dvt').val(data.dvt);
+                    $('#edit_id').val(data.id);
                 }
             });
         }
@@ -84,7 +85,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Giá dịch vụ <small>&nbsp;giáo dục và đào tạo</small>
+        Giá nước sạch sinh hoạt <small>&nbsp;trên địa bàn</small>
     </h3>
     {{--<h3 class="page-title">
         <small> <b style="color: blue">{{$dvql->tendv}}</b><b style="color: blue"> - </b><b style="color: blue">{{$dv->tendv}}</b> - Người soạn thảo: <b style="color: blue">{{isset($model) ? $model->cvsoanthao : session('admin')->name}}</b> </small>
@@ -99,7 +100,7 @@
                         @if(can('kkgiadvgddt','create'))
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#add-modal" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;
                             Thêm mới</button>
-                        <a href="{{url('giadvgiaoducdaotao/nhandulieutuexcel')}}" class="btn btn-default btn-sm">
+                        <a href="{{url('gianuocsachsinhhoat/nhandulieutuexcel')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-file-excel-o"></i> Nhận dữ liệu</a>
                         @endif
                         @if(can('kkgiadvgddt','delete'))
@@ -126,7 +127,7 @@
                                                 @if ($nam_start = 2015 ) @endif
                                                 @if ($nam_stop = intval(date('Y')) + 1) @endif
                                                 @for($i = $nam_start; $i <= $nam_stop; $i++)
-                                                    <option value="{{$i.'-'.($i+1)}}" {{($i.'-'.($i+1)) == $inputs['nam'] ? 'selected' : ''}}>{{$i.'-'.($i+1)}}</option>
+                                                    <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
                                                 @endfor
                                             </select>
                                         </div>
@@ -138,16 +139,14 @@
                                                 <option value="All">--Tất cả--</option>
                                                 <option value="Thành thị" {{$inputs['diaban'] == 'Thành thị' ? 'selected' : ''}}>Thành thị</option>
                                                 <option value="Nông thôn" {{$inputs['diaban'] == 'Nông thôn' ? 'selected' : ''}}>Nông thôn</option>
-                                                <option value="Miền núi" {{$inputs['diaban'] == 'Miền núi' ? 'selected' : ''}}>Miền núi</option>
-                                                <option value="Hải đảo" {{$inputs['diaban'] == 'Hải đảo' ? 'selected' : ''}}>Hải đảo</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label class="control-label">Khu vực<span class="require">*</span></label>
-                                        {!! Form::text('khuvuc', $inputs['khuvuc'], ['id' => 'khuvuc', 'class' => 'form-control']) !!}
+                                        <label class="control-label">Đối tượng<span class="require">*</span></label>
+                                        {!! Form::text('doituong', $inputs['doituong'], ['id' => 'doituong', 'class' => 'form-control']) !!}
                                     </div>
                                     <div class="col-md-6">
                                         <label class="control-label">Mô tả<span class="require">*</span></label>
@@ -182,11 +181,12 @@
                             <thead>
                             <tr>
                                 <th style="text-align: center" width="2%">STT</th>
-                                <th style="text-align: center">Năm học</th>
+                                <th style="text-align: center">Ngày áp dụng</th>
                                 <th style="text-align: center">Địa bàn</th>
-                                <th style="text-align: center">Khu vực</th>
+                                <th style="text-align: center">Đối tượng</th>
                                 <th style="text-align: center">Mô tả</th>
-                                <th style="text-align: center" >Học phí</th>
+                                <th style="text-align: center" >Đơn giá</th>
+                                <th style="text-align: center" >Đơn vị tính</th>
                                 <th style="text-align: center"  width="5%"> Trạng thái</th>
                                 <th style="text-align: center"> Thao tác</th>
                             </tr>
@@ -196,12 +196,12 @@
                                     @foreach($model as $key => $tt)
                                         <tr>
                                             <td style="text-align: center">{{$key+1}}</td>
-                                            <td><b>{{$tt->nam}}</b></td>
+                                            <td><b>{{getDayVn($tt->ngayapdung)}}</b></td>
                                             <td><b>{{$tt->diaban}}</b></td>
-                                            <td style="text-align: left;"><b>{{$tt->khuvuc}}</b></td>
+                                            <td style="text-align: left;"><b>{{$tt->doituong}}</b></td>
                                             <td style="text-align: left" class="active">{{$tt->mota}}</td>
-                                            {{--<td style="text-align: center">{{$tt->hesok}}</td>--}}
-                                            <td style="text-align: center">{{dinhdangsothapphan($tt->dongia,2)}}</td>
+                                            <td style="text-align: center">{{dinhdangsothapphan($tt->thanhtien,2)}}</td>
+                                            <td style="text-align: center">{{$tt->dvt}}</td>
                                             <td style="text-align: center">
                                                 @if($tt->trangthai == 'CB')
                                                     <span class="badge badge-warning">Công bố</span>
@@ -230,7 +230,7 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td style="text-align: center" colspan="8">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
+                                        <td style="text-align: center" colspan="9">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
                                     </tr>
                                 @endif
                             </tbody>
@@ -247,7 +247,7 @@
                                     {{$model->appends([
                                                    'nam'=>$inputs['nam'],
                                                    'diaban'=>$inputs['diaban'],
-                                                   'khuvuc'=>$inputs['khuvuc'],
+                                                   'doituong'=>$inputs['doituong'],
                                                    'mota'=>$inputs['mota'],
                                                    'paginate'=>$inputs['paginate'],
                                 ])->links()}}
@@ -268,7 +268,7 @@
         <div class="clearfix"></div>
 
     </div>
-    @include('manage.dinhgia.giadvgddt.include.modal_dialog')
+    @include('manage.dinhgia.gianuocsh.include.modal_dialog')
     @include('includes.script.inputmask-ajax-scripts')
     @include('includes.script.create-header-scripts')
 @stop
