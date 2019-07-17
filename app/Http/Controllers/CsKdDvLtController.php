@@ -30,7 +30,8 @@ class CsKdDvLtController extends Controller
     public function create(){
         if (Session::has('admin')) {
             if (session('admin')->level == 'DVLT') {
-                $tendn = Company::where('maxa',session('admin')->maxa)->first()->tendn;
+                $tendn = Company::where('maxa',session('admin')->maxa)
+                ->where('level','DVLT')->first()->tendn;
                 $districts = DiaBanHd::where('level','H')
                     ->get();
                 return view('manage.kkgia.dvlt.cskd.create')
