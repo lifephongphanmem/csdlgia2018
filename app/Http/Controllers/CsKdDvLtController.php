@@ -76,7 +76,8 @@ class CsKdDvLtController extends Controller
         if (Session::has('admin')) {
             if (session('admin')->level == 'DVLT') {
                 $model = CsKdDvLt::findOrFail($id);
-                $tendn = Company::where('maxa',session('admin')->maxa)->first()->tendn;
+                $tendn = Company::where('maxa',session('admin')->maxa)
+                    ->where('level','DVLT')->first()->tendn;
                 $districts = DiaBanHd::where('level','H')
                     ->get();
                 if($model->district != '')
