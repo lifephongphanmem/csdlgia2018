@@ -16,7 +16,8 @@ class CsKdDvLtController extends Controller
             if (session('admin')->level == 'DVLT') {
                 $model = CsKdDvLt::where('maxa',session('admin')->maxa)
                     ->get();
-                $tendn = Company::where('maxa',session('admin')->maxa)->first()->tendn;
+                $tendn = Company::where('maxa',session('admin')->maxa)
+                    ->where('level','DVLT')->first()->tendn;
                 return view('manage.kkgia.dvlt.cskd.index')
                     ->with('model', $model)
                     ->with('tendn',$tendn)
