@@ -190,6 +190,7 @@
                                 </label>
                             </div>
                         </div></br>
+                        <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
                             <tr>
@@ -263,6 +264,7 @@
                                 @endif
                             </tbody>
                         </table>
+                        </div>
                         <div class="row">
                             @if(count($model) != 0)
                             <div class="col-md-5 col-sm-12">
