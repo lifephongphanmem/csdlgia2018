@@ -24,7 +24,8 @@
                                         </a>
                                         <ul class="sub-menu" style="display: none;">
                                             @if(session('admin')->level == 'DKG')
-                                                <li><a href="{{url('kkdkg?ma='.$dm->phanloai)}}">Kê khai giá</a></li>
+                                                {{--<li><a href="{{url('kkdkg?ma='.$dm->phanloai)}}">Kê khai giá</a></li>--}}
+                                                <li><a href="{{url('hosokkdkg?ma='.$dm->phanloai)}}">Kê khai giá</a></li>
                                             @endif
                                             @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
                                                 <li><a href="{{url('thongtindnkkgdk?ma='.$dm->phanloai)}}">Kê khai giá</a></li>
