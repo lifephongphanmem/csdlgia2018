@@ -293,25 +293,25 @@ class KkGiaDvLtController extends Controller
                 $inputs['trangthai'] = 'CD';
                 $inputs['ngaychuyen'] = Carbon::now()->toDateTimeString();
                 if($model->update($inputs)){
-                    $tencqcq = Town::where('maxa',$model->mahuyen)->first();
-                    $dn = Company::where('maxa',$model->maxa)->first();
-                    $data=[];
-                    $data['tendn'] = $dn->tendn;
-                    $data['masothue'] = $model->masothue;
-                    $data['tg'] = $inputs['ngaychuyen'];
-                    $data['tencqcq'] = $tencqcq->tendv;
-                    $data['ttnguoinop'] = $inputs['ttnguoinop'];
-                    $maildn = $dn->email;
-                    $tendn = $dn->tendn;
-                    $mailql = $tencqcq->emailql;
-                    $tenql = $tencqcq->tendv;
-
-                    Mail::send('mail.kkgia',$data, function ($message) use($maildn,$tendn,$mailql,$tenql) {
-                        $message->to($maildn,$tendn)
-                            ->to($mailql,$tenql)
-                            ->subject('Thông báo nhận hồ sơ kê khai giá dịch vụ');
-                        $message->from('phanmemcsdlgia@gmail.com','Phần mềm CSDL giá');
-                    });
+//                    $tencqcq = Town::where('maxa',$model->mahuyen)->first();
+//                    $dn = Company::where('maxa',$model->maxa)->first();
+//                    $data=[];
+//                    $data['tendn'] = $dn->tendn;
+//                    $data['masothue'] = $model->masothue;
+//                    $data['tg'] = $inputs['ngaychuyen'];
+//                    $data['tencqcq'] = $tencqcq->tendv;
+//                    $data['ttnguoinop'] = $inputs['ttnguoinop'];
+//                    $maildn = $dn->email;
+//                    $tendn = $dn->tendn;
+//                    $mailql = $tencqcq->emailql;
+//                    $tenql = $tencqcq->tendv;
+//
+//                    Mail::send('mail.kkgia',$data, function ($message) use($maildn,$tendn,$mailql,$tenql) {
+//                        $message->to($maildn,$tendn)
+//                            ->to($mailql,$tenql)
+//                            ->subject('Thông báo nhận hồ sơ kê khai giá dịch vụ');
+//                        $message->from('phanmemcsdlgia@gmail.com','Phần mềm CSDL giá');
+//                    });
                 }
                 return redirect('kekhaigiadvlt?&macskd='.$model->macskd);
             }else{

@@ -117,22 +117,22 @@ class RegisterController extends Controller
                 $model = Register::findOrFail($id);
                 $inputs['trangthai'] = 'Bị trả lại';
                 if($model->update($inputs)){
-                    $tencqcq = Town::where('maxa',$model->mahuyen)->first();
-                    $data=[];
-                    $data['tendn'] = $model->tendn;
-                    $data['tg'] = Carbon::now()->toDateTimeString();
-                    $data['tencqcq'] = $tencqcq->tendv;
-                    $data['masothue'] = $model->maxa;
-                    $data['user'] = $model->username;
-                    $data['madk'] = $model->ma;
-                    $data['lydo'] = $inputs['lydo'];
-                    $a = $model->email;
-                    $b  =  $model->tendn;
-                    Mail::send('mail.replyregister',$data, function ($message) use($a,$b) {
-                        $message->to($a,$b )
-                            ->subject('Thông báo trả lại thông tin đăng ký ');
-                        $message->from('csdlgia@gmail.com','Phần mềm CSDL giá');
-                    });
+//                    $tencqcq = Town::where('maxa',$model->mahuyen)->first();
+//                    $data=[];
+//                    $data['tendn'] = $model->tendn;
+//                    $data['tg'] = Carbon::now()->toDateTimeString();
+//                    $data['tencqcq'] = $tencqcq->tendv;
+//                    $data['masothue'] = $model->maxa;
+//                    $data['user'] = $model->username;
+//                    $data['madk'] = $model->ma;
+//                    $data['lydo'] = $inputs['lydo'];
+//                    $a = $model->email;
+//                    $b  =  $model->tendn;
+//                    Mail::send('mail.replyregister',$data, function ($message) use($a,$b) {
+//                        $message->to($a,$b )
+//                            ->subject('Thông báo trả lại thông tin đăng ký ');
+//                        $message->from('csdlgia@gmail.com','Phần mềm CSDL giá');
+//                    });
                 }
                 return redirect('register?&level='.$model->level.'&mahuyen='.$model->mahuyen);
             }else
@@ -253,24 +253,24 @@ class RegisterController extends Controller
 
                 $model = new Register();
                 if ($model->create($inputs)) {
-                    $tencqcq = Town::where('maxa', $inputs['mahuyen'])->first();
-                    $data = [];
-                    $data['tendn'] = $inputs['tendn'];
-                    $data['tg'] = Carbon::now()->toDateTimeString();
-                    $data['tencqcq'] = $tencqcq->tendv;
-                    $data['masothue'] = $inputs['maxa'];
-                    $data['user'] = $inputs['username'];
-                    $data['madk'] = $inputs['ma'];
-                    $maildn = $inputs['email'];
-                    $tendn = $inputs['tendn'];
-                    $mailql = $tencqcq->emailqt;
-                    $tenql = $tencqcq->tendv;
-                    Mail::send('mail.register', $data, function ($message) use ($maildn, $tendn, $mailql, $tenql) {
-                        $message->to($maildn, $tendn)
-                            ->to($mailql, $tenql)
-                            ->subject('Thông báo đăng ký tài khoản');
-                        $message->from('csdlgia@gmail.com', 'Phần mềm CSDL giá');
-                    });
+//                    $tencqcq = Town::where('maxa', $inputs['mahuyen'])->first();
+//                    $data = [];
+//                    $data['tendn'] = $inputs['tendn'];
+//                    $data['tg'] = Carbon::now()->toDateTimeString();
+//                    $data['tencqcq'] = $tencqcq->tendv;
+//                    $data['masothue'] = $inputs['maxa'];
+//                    $data['user'] = $inputs['username'];
+//                    $data['madk'] = $inputs['ma'];
+//                    $maildn = $inputs['email'];
+//                    $tendn = $inputs['tendn'];
+//                    $mailql = $tencqcq->emailqt;
+//                    $tenql = $tencqcq->tendv;
+//                    Mail::send('mail.register', $data, function ($message) use ($maildn, $tendn, $mailql, $tenql) {
+//                        $message->to($maildn, $tendn)
+//                            ->to($mailql, $tenql)
+//                            ->subject('Thông báo đăng ký tài khoản');
+//                        $message->from('csdlgia@gmail.com', 'Phần mềm CSDL giá');
+//                    });
                 }
                 return view('system.register.view.register-success')
                     ->with('ma', $inputs['ma']);
@@ -313,24 +313,24 @@ class RegisterController extends Controller
             }
             $model = Register::findOrFail($id);
             if ($model->update($inputs)) {
-                $tencqcq = Town::where('maxa', $inputs['mahuyen'])->first();
-                $data = [];
-                $data['tendn'] = $inputs['tendn'];
-                $data['tg'] = Carbon::now()->toDateTimeString();
-                $data['tencqcq'] = $tencqcq->tendv;
-                $data['masothue'] = $inputs['maxa'];
-                $data['user'] = $inputs['username'];
-                $data['madk'] = $model->ma;
-                $maildn = $inputs['email'];
-                $tendn = $inputs['tendn'];
-                $mailql = $tencqcq->emailqt;
-                $tenql = $tencqcq->tendv;
-                Mail::send('mail.register', $data, function ($message) use ($maildn, $tendn, $mailql, $tenql) {
-                    $message->to($maildn, $tendn)
-                        ->to($mailql, $tenql)
-                        ->subject('Thông báo đăng ký tài khoản');
-                    $message->from('csdlgia@gmail.com', 'Phần mềm CSDL giá');
-                });
+//                $tencqcq = Town::where('maxa', $inputs['mahuyen'])->first();
+//                $data = [];
+//                $data['tendn'] = $inputs['tendn'];
+//                $data['tg'] = Carbon::now()->toDateTimeString();
+//                $data['tencqcq'] = $tencqcq->tendv;
+//                $data['masothue'] = $inputs['maxa'];
+//                $data['user'] = $inputs['username'];
+//                $data['madk'] = $model->ma;
+//                $maildn = $inputs['email'];
+//                $tendn = $inputs['tendn'];
+//                $mailql = $tencqcq->emailqt;
+//                $tenql = $tencqcq->tendv;
+//                Mail::send('mail.register', $data, function ($message) use ($maildn, $tendn, $mailql, $tenql) {
+//                    $message->to($maildn, $tendn)
+//                        ->to($mailql, $tenql)
+//                        ->subject('Thông báo đăng ký tài khoản');
+//                    $message->from('csdlgia@gmail.com', 'Phần mềm CSDL giá');
+//                });
 
             }
             return view('system.register.view.register-success')
@@ -405,24 +405,24 @@ class RegisterController extends Controller
                         $modeluser->phanloai = $model->pl;
                         $modeluser->save();
                     }
-                    $tencqcq = Town::where('maxa', $model->mahuyen)->first();
-                    $data = [];
-                    $data['tendn'] = $model->tendn;
-                    $data['tg'] = Carbon::now()->toDateTimeString();
-                    $data['tencqcq'] = $tencqcq->tendv;
-                    $data['masothue'] = $model->maxa;
-                    $data['username'] = $model->username;
-                    $maildn = $model->email;
-                    $tendn = $model->tendn;
-                    $mailql = $tencqcq->emailqt;
-                    $tenql = $tencqcq->tendv;
-
-                    Mail::send('mail.successregister', $data, function ($message) use ($maildn,$tendn,$mailql,$tenql) {
-                        $message->to($maildn,$tendn)
-                            ->to($mailql,$tenql)
-                            ->subject('Thông báo thông tin đăng ký đã được xét duyệt');
-                        $message->from('phanmemcsdlgia@gmail.com', 'Phần mềm CSDL giá');
-                    });
+//                    $tencqcq = Town::where('maxa', $model->mahuyen)->first();
+//                    $data = [];
+//                    $data['tendn'] = $model->tendn;
+//                    $data['tg'] = Carbon::now()->toDateTimeString();
+//                    $data['tencqcq'] = $tencqcq->tendv;
+//                    $data['masothue'] = $model->maxa;
+//                    $data['username'] = $model->username;
+//                    $maildn = $model->email;
+//                    $tendn = $model->tendn;
+//                    $mailql = $tencqcq->emailqt;
+//                    $tenql = $tencqcq->tendv;
+//
+//                    Mail::send('mail.successregister', $data, function ($message) use ($maildn,$tendn,$mailql,$tenql) {
+//                        $message->to($maildn,$tendn)
+//                            ->to($mailql,$tenql)
+//                            ->subject('Thông báo thông tin đăng ký đã được xét duyệt');
+//                        $message->from('phanmemcsdlgia@gmail.com', 'Phần mềm CSDL giá');
+//                    });
                     $delete = Register::findOrFail($id)->delete();
                     return redirect('register?&level='.$model->level);
                 }

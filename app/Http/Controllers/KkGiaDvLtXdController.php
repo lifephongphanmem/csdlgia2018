@@ -98,24 +98,24 @@ class KkGiaDvLtXdController extends Controller
                 $inputs['trangthai'] = 'BTL';
                 $model = KkGiaDvLt::where('id',$inputs['idtralai'])->first();
                 if($model->update($inputs)){
-                    $tencqcq = Town::where('maxa',$model->mahuyen)->first();
-                    $dn = Company::where('maxa',$model->maxa)->where('level','DVLT')->first();
-                    $data=[];
-                    $data['tendn'] = $dn->tendn;
-                    $data['masothue'] = $model->maxa;
-                    $data['tg'] = Carbon::now()->toDateTimeString();
-                    $data['tencqcq'] = $tencqcq->tendv;
-                    $data['lydo'] = $inputs['lydo'];
-                    $maildn = $dn->email;
-                    $tendn = $dn->tendn;
-                    $mailql = $tencqcq->emailql;
-                    $tenql = $tencqcq->tendv;
-                    Mail::send('mail.replykkgia',$data, function ($message) use($maildn,$tendn,$mailql,$tenql) {
-                        $message->to($maildn,$tendn)
-                            ->to($mailql,$tenql)
-                            ->subject('Thông báo trả lại hồ sơ kê khai giá dịch vụ');
-                        $message->from('phanmemcsdlgia@gmail.com','Phần mềm CSDL giá');
-                    });
+//                    $tencqcq = Town::where('maxa',$model->mahuyen)->first();
+//                    $dn = Company::where('maxa',$model->maxa)->where('level','DVLT')->first();
+//                    $data=[];
+//                    $data['tendn'] = $dn->tendn;
+//                    $data['masothue'] = $model->maxa;
+//                    $data['tg'] = Carbon::now()->toDateTimeString();
+//                    $data['tencqcq'] = $tencqcq->tendv;
+//                    $data['lydo'] = $inputs['lydo'];
+//                    $maildn = $dn->email;
+//                    $tendn = $dn->tendn;
+//                    $mailql = $tencqcq->emailql;
+//                    $tenql = $tencqcq->tendv;
+//                    Mail::send('mail.replykkgia',$data, function ($message) use($maildn,$tendn,$mailql,$tenql) {
+//                        $message->to($maildn,$tendn)
+//                            ->to($mailql,$tenql)
+//                            ->subject('Thông báo trả lại hồ sơ kê khai giá dịch vụ');
+//                        $message->from('phanmemcsdlgia@gmail.com','Phần mềm CSDL giá');
+//                    });
                 }
                 return redirect('xetduyetkkgiadvlt?&trangthai=BTL&maxa='.$model->mahuyen);
             }else{
@@ -200,28 +200,28 @@ class KkGiaDvLtXdController extends Controller
             $inputs['trangthai'] = 'DD';
             $inputs['thoihan'] = getThXdHsDvLt($model->ngaychuyen,$inputs['ngaynhan']);
             if($model->update($inputs)){
-                $tencqcq = Town::where('maxa',$model->mahuyen)->first();
-                $dn = Company::where('maxa',$model->maxa)->first();
-                $data=[];
-                $data['tendn'] = $dn->tendn;
-                $data['tg'] = Carbon::now()->toDateTimeString();
-                $data['tencqcq'] = $tencqcq->tendv;
-                $data['ngaykk'] = $model->ngaynhap;
-                $data['ngayapdung'] = $model->ngayhieuluc;
-                $data['socv'] = $model->socv;
-                $data['ngaynhan'] = $inputs['ngaynhan'];
-                $data['sohsnhan'] = $inputs['sohsnhan'];
-
-                $maildn = $dn->email;
-                $tendn = $dn->tendn;
-                $mailql = $tencqcq->emailql;
-                $tenql = $tencqcq->tendv;
-                Mail::send('mail.successkkgia',$data, function ($message) use($maildn,$tendn,$mailql,$tenql) {
-                    $message->to($maildn,$tendn)
-                        ->to($mailql,$tenql)
-                        ->subject('Thông báo xét duyệt hồ sơ kê khai giá dịch vụ');
-                    $message->from('phanmemcsdlgia@gmail.com','Phần mềm CSDL giá');
-                });
+//                $tencqcq = Town::where('maxa',$model->mahuyen)->first();
+//                $dn = Company::where('maxa',$model->maxa)->first();
+//                $data=[];
+//                $data['tendn'] = $dn->tendn;
+//                $data['tg'] = Carbon::now()->toDateTimeString();
+//                $data['tencqcq'] = $tencqcq->tendv;
+//                $data['ngaykk'] = $model->ngaynhap;
+//                $data['ngayapdung'] = $model->ngayhieuluc;
+//                $data['socv'] = $model->socv;
+//                $data['ngaynhan'] = $inputs['ngaynhan'];
+//                $data['sohsnhan'] = $inputs['sohsnhan'];
+//
+//                $maildn = $dn->email;
+//                $tendn = $dn->tendn;
+//                $mailql = $tencqcq->emailql;
+//                $tenql = $tencqcq->tendv;
+//                Mail::send('mail.successkkgia',$data, function ($message) use($maildn,$tendn,$mailql,$tenql) {
+//                    $message->to($maildn,$tendn)
+//                        ->to($mailql,$tenql)
+//                        ->subject('Thông báo xét duyệt hồ sơ kê khai giá dịch vụ');
+//                    $message->from('phanmemcsdlgia@gmail.com','Phần mềm CSDL giá');
+//                });
             }
             return redirect('xetduyetkkgiadvlt?&trangthai=DD&maxa='.$model->mahuyen);
         }else
