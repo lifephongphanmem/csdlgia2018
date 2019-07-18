@@ -133,7 +133,8 @@ class KkDkgController extends Controller
                 ->where('pl',$inputs['ma'])
                 ->where('maxa',$inputs['masothue'])
                 ->first();
-            $modeldn= $modeldn->where('company.maxa', $inputs['masothue'])->first();
+            //dd($modeldn);
+            //$modeldn= $modeldn->where('company.maxa', $inputs['masothue'])->first();
             return view('manage.kkgia.dkg.dangkygia.index')
                 ->with('model', $model)
                 ->with('modeldn', $modeldn)

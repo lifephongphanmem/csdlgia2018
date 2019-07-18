@@ -250,7 +250,7 @@ class RegisterController extends Controller
 
                 $inputs['trangthai'] = 'Chờ duyệt';
                 $inputs['password'] = md5($inputs['rpassword']);
-
+//dd($inputs);
                 $model = new Register();
                 if ($model->create($inputs)) {
 //                    $tencqcq = Town::where('maxa', $inputs['mahuyen'])->first();
@@ -377,9 +377,8 @@ class RegisterController extends Controller
             $input = $request->all();
             $id = $input['idregister'];
             $model = Register::findOrFail($id);
-
             $inputs = $model->toArray();
-            $input['pl'] = $model->phanloai;
+            $inputs['pl'] = $model->pl;
             $inputs['avatar'] = 'no-image-available.jpg';
             unset($inputs['id']);
             if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
@@ -441,9 +440,9 @@ class RegisterController extends Controller
                 $inputs = $request->all();
                 $model = Register::where('id',$inputs['iddelete'])
                     ->first();
-                $level = $model->level;
+                //$level = $model->level;
                 $model->delete();
-                return redirect('register?&level='.$level);
+                return redirect('register');
             }else{
                 return view('errors.noperm');
             }
