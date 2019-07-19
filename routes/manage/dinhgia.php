@@ -284,6 +284,7 @@ Route::post('gianuocsachsinhhoat/congbo','manage\GiaNuocShController@congbo');
 Route::post('gianuocsachsinhhoat/huycongbo','manage\GiaNuocShController@huycongbo');
 Route::post('gianuocsachsinhhoat/checkmulti','manage\GiaNuocShController@checkmulti');
 Route::get('gianuocsachsinhhoat/nhandulieutuexcel','manage\GiaNuocShController@nhandulieutuexcel');
+Route::post('gianuocsachsinhhoat/import_excel','manage\GiaNuocShController@import_excel');
 
 
 //Giá DV GD-ĐT
