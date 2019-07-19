@@ -27,9 +27,10 @@
             var current_path_url = '/gianuocsachsinhhoat?';
             var nam = '&nam='+$('#nam').val();
             var diaban = '&diaban='+$('#diaban').val();
+            var doituong = '&doituong='+$('#doituong').val();
             var mota = '&mota='+$('#mota').val();
             var paginate = '&paginate='+$('#paginate').val();
-            var url = current_path_url+nam+diaban+mota+paginate;
+            var url = current_path_url+nam+diaban+doituong+mota+paginate;
             window.location.href = url;
         }
 
@@ -38,9 +39,10 @@
                 var current_path_url = '/gianuocsachsinhhoat?';
                 var nam = '&nam='+$('#nam').val();
                 var diaban = '&diaban='+$('#diaban').val();
+                var doituong = '&doituong='+$('#doituong').val();
                 var mota = '&mota='+$('#mota').val();
                 var paginate = '&paginate='+$('#paginate').val();
-                var url = current_path_url+nam+diaban+mota+paginate;
+                var url = current_path_url+nam+diaban+doituong+mota+paginate;
                 window.location.href = url;
             });
         });
