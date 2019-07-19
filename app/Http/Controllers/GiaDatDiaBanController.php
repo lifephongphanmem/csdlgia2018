@@ -96,6 +96,8 @@ class GiaDatDiaBanController extends Controller
                 $modelctnew->giavt3 = (isset($data[$i][$inputs['giavt3']]) && $data[$i][$inputs['giavt3']] != '' ? chkDbl($data[$i][$inputs['giavt3']]) : 0);
                 $modelctnew->giavt4 = (isset($data[$i][$inputs['giavt4']]) && $data[$i][$inputs['giavt4']] != '' ? chkDbl($data[$i][$inputs['giavt4']]) : 0);
                 $modelctnew->giavt5 = (isset($data[$i][$inputs['giavt5']]) && $data[$i][$inputs['giavt5']] != '' ? chkDbl($data[$i][$inputs['giavt5']]) : 0);
+                $modelctnew->hesok = (isset($data[$i][$inputs['hesok']]) && $data[$i][$inputs['hesok']] != '' ? chkDbl($data[$i][$inputs['hesok']]) : 1);
+                $modelctnew->soqd = $data[$i][$inputs['soqd']];
                 $modelctnew->username = session('admin')->name.'('.session('admin')->username.')' ;
                 $modelctnew->thaotac = 'Import';
                 $modelctnew->save();
@@ -242,7 +244,20 @@ class GiaDatDiaBanController extends Controller
         $result['message'] .= '<div class="form-group">';
         $result['message'] .= '<label class="control-label">Giá vị trí V<span class="require">*</span></label>';
         $result['message'] .= '<input type="text" name="edit_giavt5" id="edit_giavt5" class="form-control" data-mask="fdecimal" style="text-align: right; font-weight: bold" value="' . $model->giavt5 . '" ' . '/>';
+        $result['message'] .= '</div></div>';
+        $result['message'] .= '<div class="col-md-6">';
+        $result['message'] .= '<div class="form-group">';
+        $result['message'] .= '<label class="control-label">Hệ số K<span class="require">*</span></label>';
+        $result['message'] .= '<input type="text" name="edit_hesok" id="edit_hesok" class="form-control" data-mask="fdecimal" style="text-align: right; font-weight: bold" value="' . $model->hesok . '" ' . '/>';
 
+        $result['message'] .= '</div></div>';
+        $result['message'] .= '</div>';
+
+        $result['message'] .= '<div class="row">';
+        $result['message'] .= '<div class="col-md-12">';
+        $result['message'] .= '<div class="form-group">';
+        $result['message'] .= '<label class="control-label">Số quyết định<span class="require">*</span></label>';
+        $result['message'] .= '<input type="text" name="edit_soqd" id="edit_soqd" class="form-control" value="'.$model->soqd.'">';
         $result['message'] .= '</div></div>';
         $result['message'] .= '</div>';
 
@@ -272,6 +287,8 @@ class GiaDatDiaBanController extends Controller
             $model->giavt3 = chkDbl($inputs['edit_giavt3']);
             $model->giavt4 = chkDbl($inputs['edit_giavt4']);
             $model->giavt5 = chkDbl($inputs['edit_giavt5']);
+            $model->hesok = chkDbl($inputs['edit_hesok']);
+            $model->soqd = $inputs['edit_soqd'];
             $model->save();
 
 
@@ -294,6 +311,8 @@ class GiaDatDiaBanController extends Controller
             $model->giavt3 = chkDbl($inputs['add_giavt3']);
             $model->giavt4 = chkDbl($inputs['add_giavt4']);
             $model->giavt5 = chkDbl($inputs['add_giavt5']);
+            $model->hesok = chkDbl($inputs['add_hesok']);
+            $model->soqd = $inputs['add_soqd'];
             $model->save();
 
 

@@ -82,6 +82,12 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
+                                                            <label class="control-label">Số quyết định<span class="require">*</span></label>
+                                                            {!!Form::text('soqd', null, array('id' => 'soqd','class' => 'form-control required'))!!}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
                                                             <label class="control-label">Khu vực<span class="require">*</span></label>
                                                             {!!Form::text('khuvuc', 'B', array('id' => 'khuvuc','class' => 'form-control required'))!!}
                                                         </div>
@@ -127,6 +133,12 @@
                                                         <div class="form-group">
                                                             <label class="control-label">Giá đất VT5<span class="require">*</span></label>
                                                             {!!Form::text('giavt5', 'I', array('id' => 'giavt5','class' => 'form-control required'))!!}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Hệ số K<span class="require">*</span></label>
+                                                            {!!Form::text('hesok', 'J', array('id' => 'hesok','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -212,8 +224,19 @@
             }
 
             if (!$('#giavt5').val()) {
-                str += '  - Giá đất VT% \n';
+                str += '  - Giá đất VT5 \n';
                 $('#giavt5').parent().addClass('has-error');
+                ok = false;
+            }
+            if (!$('#hesok').val()) {
+                str += '  - Hệ số K \n';
+                $('#hesok').parent().addClass('has-error');
+                ok = false;
+            }
+
+            if (!$('#soqd').val()) {
+                str += '  - Số quyết định \n';
+                $('#soqd').parent().addClass('has-error');
                 ok = false;
             }
 

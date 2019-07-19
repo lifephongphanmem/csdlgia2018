@@ -109,8 +109,7 @@
                             Xóa</button>
                         @endif
                         @if(can('thgiacldat','congbo'))
-                        <button type="button" class="btn btn-default btn-xs mbs" data-target="#check-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;
-                            Công bố/ Hủy</button>
+                        <button type="button" class="btn btn-default btn-xs mbs" data-target="#check-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Công bố/ Hủy</button>
                         @endif
                     </div>
                 </div>
@@ -201,7 +200,7 @@
                                 <th style="text-align: center" rowspan="2">Khu vực</th>
                                 <th style="text-align: center" rowspan="2">Mô tả</th>
                                 <th style="text-align: center" rowspan="2" width="5%">MĐSD</th>
-                                {{--<th style="text-align: center" rowspan="2" width="2%">Hệ số K</th>--}}
+                                <th style="text-align: center" rowspan="2" width="2%">Hệ số K</th>
                                 <th style="text-align: center" colspan="5">Giá đất</th>
                                 <th style="text-align: center" rowspan="2" width="5%"> Trạng thái</th>
                                 <th style="text-align: center" rowspan="2"> Thao tác</th>
@@ -220,12 +219,12 @@
                                         <tr>
                                             <td style="text-align: center">{{$key+1}}</td>
                                             <td><b>{{$tt->nam}}</b></td>
-                                            <td><b>{{$tt->diaban}}</b></td>
+                                            <td><b>{{$tt->diaban}}</b><br>{{$tt->soqd}}</td>
                                             <td style="text-align: left"><b>{{$tt->loaidat}}</b></td>
                                             <td style="text-align: left;"><b>{{$tt->khuvuc}}</b></td>
                                             <td style="text-align: left" class="active">{{$tt->mota}}</td>
                                             <td style="text-align: center">{{$tt->mdsd}}</td>
-                                            {{--<td style="text-align: center">{{$tt->hesok}}</td>--}}
+                                            <td style="text-align: center">{{$tt->hesok}}</td>
                                             <td style="text-align: center">{{dinhdangsothapphan($tt->giavt1,2)}}</td>
                                             <td style="text-align: center">{{dinhdangsothapphan($tt->giavt2,2)}}</td>
                                             <td style="text-align: center">{{dinhdangsothapphan($tt->giavt3,2)}}</td>

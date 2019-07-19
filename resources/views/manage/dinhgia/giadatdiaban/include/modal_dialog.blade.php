@@ -220,6 +220,20 @@
                             <input type="text" name="add_giavt5" id="add_giavt5" class="form-control" data-mask="fdecimal" style="text-align: right; font-weight: bold">
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Hệ số K<span class="require">*</span></label>
+                            <input type="text" name="add_hesok" id="add_hesok" class="form-control" data-mask="fdecimal" style="text-align: right; font-weight: bold">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">Số quyết định<span class="require">*</span></label>
+                            <input type="text" name="add_soqd" id="add_soqd" class="form-control">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
