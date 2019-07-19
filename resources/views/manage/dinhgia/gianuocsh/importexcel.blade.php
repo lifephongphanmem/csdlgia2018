@@ -42,7 +42,7 @@
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM -->
-                    {!! Form::open(['url'=>'/gianuocsachsinhhoat/import_excel', 'method'=>'post' , 'files'=>true, 'id' => 'create_hscb','enctype'=>'multipart/form-data']) !!}
+                    {!! Form::open(['url'=>'/gianuocsachsinhhoat/importexcel', 'method'=>'post' , 'files'=>true, 'id' => 'create_hscb','enctype'=>'multipart/form-data']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
                             <!-- Thông tin chung-->

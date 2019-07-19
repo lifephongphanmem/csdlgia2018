@@ -191,7 +191,7 @@ class GiaNuocShController extends Controller
             for ($i = $inputs['tudong']; $i <= $inputs['dendong']; $i++) {
 
                 $modelctnew = new GiaNuocSh();
-                $modelctnew->ngayapdung = getDateToDb($inputs['nam']);
+                $modelctnew->ngayapdung = getDateToDb($inputs['ngayapdung']);
                 $modelctnew->diaban = $inputs['diaban'];
                 $modelctnew->doituong = $data[$i][$inputs['doituong']];
                 $modelctnew->mota = $data[$i][$inputs['mota']];
