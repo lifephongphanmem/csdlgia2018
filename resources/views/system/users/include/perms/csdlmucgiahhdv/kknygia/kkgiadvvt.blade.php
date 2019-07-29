@@ -386,7 +386,7 @@
                                     </div>
                                     @endif
                                     <!--Vận tải khác-->
-                                    @if(canGeneral('vtk','index'))
+                                    @if(canGeneral('vtch','index'))
                                     <div class="portlet box purple">
                                         <div class="portlet-title">
                                             <div class="caption">
