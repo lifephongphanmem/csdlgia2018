@@ -98,29 +98,52 @@ Route::get('giarungct/del','GiaRungCtController@destroy');
 Route::get('timkiemgiarung','GiaRungController@search');
 
 //Thuế tài nguyên
-Route::resource('nhomthuetn','NhomThueTnController');
-Route::get('nhomthuetn/show','NhomThueTnController@show');
-Route::post('nhomthuetn/update','NhomThueTnController@update');
-Route::resource('dmthuetn','DmThueTnController');
-Route::get('dmthuetn/show','DmThueTnController@show');
-Route::post('dmthuetn/update','DmThueTnController@update');
+//Route::resource('nhomthuetn','NhomThueTnController');
+//Route::get('nhomthuetn/show','NhomThueTnController@show');
+//Route::post('nhomthuetn/update','NhomThueTnController@update');
+//Route::resource('dmthuetn','DmThueTnController');
+//Route::get('dmthuetn/show','DmThueTnController@show');
+//Route::post('dmthuetn/update','DmThueTnController@update');
+//
+//Route::resource('thuetainguyen','ThueTaiNguyenController');
+//Route::post('thuetainguyen/create','ThueTaiNguyenController@create');
+//Route::post('thuetainguyen/delete','ThueTaiNguyenController@destroy');
+//Route::post('thuetainguyen/hoanthanh','ThueTaiNguyenController@hoanthanh');
+//Route::post('thuetainguyen/huyhoanthanh','ThueTaiNguyenController@huyhoanthanh');
+//Route::post('thuetainguyen/congbo','ThueTaiNguyenController@congbo');
+//Route::get('timkiemthuetainguyen','ThueTaiNguyenController@search');
+//
+//Route::get('/thuetainguyenctdf/edit','ThueTaiNguyenCtDfController@edit');
+//Route::get('/thuetainguyenctdf/update','ThueTaiNguyenCtDfController@update');
+//
+//Route::get('/thuetainguyenct/edit','ThueTaiNguyenCtController@edit');
+//Route::get('/thuetainguyenct/update','ThueTaiNguyenCtController@update');
+//
+//Route::get('reportsthuetainguyen','ReportsThueTNController@index');
+//Route::post('reportsthuetainguyen/bc1','ReportsThueTNController@BC1');
 
-Route::resource('thuetainguyen','ThueTaiNguyenController');
-Route::post('thuetainguyen/create','ThueTaiNguyenController@create');
-Route::post('thuetainguyen/delete','ThueTaiNguyenController@destroy');
-Route::post('thuetainguyen/hoanthanh','ThueTaiNguyenController@hoanthanh');
-Route::post('thuetainguyen/huyhoanthanh','ThueTaiNguyenController@huyhoanthanh');
-Route::post('thuetainguyen/congbo','ThueTaiNguyenController@congbo');
-Route::get('timkiemthuetainguyen','ThueTaiNguyenController@search');
+Route::get('nhomthuetn','manage\thuetn\NhomThueTnController@index');
+Route::get('nhomthuetn/show','manage\thuetn\NhomThueTnController@show');
+Route::post('nhomthuetn/update','manage\thuetn\NhomThueTnController@update');
+Route::get('dmthuetn','manage\thuetn\DmThueTnController@index');
+Route::post('dmthuetn','manage\thuetn\DmThueTnController@store');
+Route::get('dmthuetn/show','manage\thuetn\DmThueTnController@show');
+Route::post('dmthuetn/update','manage\thuetn\DmThueTnController@update');
+Route::post('dmthuetn/delete','manage\thuetn\DmThueTnController@destroy');
+Route::post('dmthuetn/importexcel','manage\thuetn\DmThueTnController@importexcel');
 
-Route::get('/thuetainguyenctdf/edit','ThueTaiNguyenCtDfController@edit');
-Route::get('/thuetainguyenctdf/update','ThueTaiNguyenCtDfController@update');
+Route::get('thuetainguyen','manage\thuetn\ThueTaiNguyenController@index');
+Route::post('thuetainguyen/add','manage\thuetn\ThueTaiNguyenController@store');
+Route::get('thuetainguyen/edit','manage\thuetn\ThueTaiNguyenController@edit');
+Route::post('thuetainguyen/update','manage\thuetn\ThueTaiNguyenController@update');
+Route::post('thuetainguyen/destroy','manage\thuetn\ThueTaiNguyenController@destroy');
+Route::post('thuetainguyen/delete','manage\thuetn\ThueTaiNguyenController@delete');
+Route::post('thuetainguyen/congbo','manage\thuetn\ThueTaiNguyenController@congbo');
+Route::post('thuetainguyen/huycongbo','manage\thuetn\ThueTaiNguyenController@huycongbo');
+Route::post('thuetainguyen/checkmulti','manage\thuetn\ThueTaiNguyenController@checkmulti');
+Route::get('thuetainguyen/nhandulieutuexcel','manage\thuetn\ThueTaiNguyenController@nhandulieutuexcel');
+Route::post('thuetainguyen/import_excel','manage\thuetn\ThueTaiNguyenController@importexcel');
 
-Route::get('/thuetainguyenct/edit','ThueTaiNguyenCtController@edit');
-Route::get('/thuetainguyenct/update','ThueTaiNguyenCtController@update');
-
-Route::get('reportsthuetainguyen','ReportsThueTNController@index');
-Route::post('reportsthuetainguyen/bc1','ReportsThueTNController@BC1');
 
 //DV Khám chữa bệnh
 Route::resource('nhomdichvukcb','NhomDvKcbController');

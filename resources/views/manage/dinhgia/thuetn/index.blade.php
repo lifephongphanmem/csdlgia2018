@@ -24,37 +24,47 @@
         });
 
         function searchtt(){
-            var current_path_url = '/gianuocsachsinhhoat?';
+            var current_path_url = '/thuetainguyen?';
             var nam = '&nam='+$('#nam').val();
-            var diaban = '&diaban='+$('#diaban').val();
-            var doituong = '&doituong='+$('#doituong').val();
-            var mota = '&mota='+$('#mota').val();
+            var manhom = '&manhom='+$('#manhom').val();
+            var cap1 = '&cap1='+$('#cap1').val();
+            var cap2 = '&cap2='+$('#cap2').val();
+            var cap3 = '&cap3='+$('#cap3').val();
+            var cap4 = '&cap4='+$('#cap4').val();
+            var cap5 = '&cap5='+$('#cap5').val();
             var paginate = '&paginate='+$('#paginate').val();
-            var url = current_path_url+nam+diaban+doituong+mota+paginate;
+            var url = current_path_url+nam+manhom+cap1+cap2+cap3+cap4+cap5+paginate;
             window.location.href = url;
         }
 
         $(function(){
             $('#paginate').change(function() {
-                var current_path_url = '/gianuocsachsinhhoat?';
+                var current_path_url = '/thuetainguyen?';
                 var nam = '&nam='+$('#nam').val();
-                var diaban = '&diaban='+$('#diaban').val();
-                var doituong = '&doituong='+$('#doituong').val();
-                var mota = '&mota='+$('#mota').val();
+                var manhom = '&manhom='+$('#manhom').val();
+                var cap1 = '&cap1='+$('#cap1').val();
+                var cap2 = '&cap2='+$('#cap2').val();
+                var cap3 = '&cap3='+$('#cap3').val();
+                var cap4 = '&cap4='+$('#cap4').val();
+                var cap5 = '&cap5='+$('#cap5').val();
                 var paginate = '&paginate='+$('#paginate').val();
-                var url = current_path_url+nam+diaban+doituong+mota+paginate;
+                var url = current_path_url+nam+manhom+cap1+cap2+cap3+cap4+cap5+paginate;
                 window.location.href = url;
             });
         });
 
         function resettt(){
-            window.location.href = '/gianuocsachsinhhoat';
+            window.location.href = '/thuetainguyen';
+        }
+
+        function ShowDialogAdd(){
+            $('#add-modal').modal('show');
         }
 
         function edittt(id) {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: 'gianuocsachsinhhoat/edittt',
+                url: 'thuetainguyen/edit',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -62,12 +72,16 @@
                 },
                 dataType: 'JSON',
                 success: function (data) {
-                    $('#edit_ngayapdung').val(data.date);
-                    $('#edit_diaban').val(data.diaban);
-                    $('#edit_doituong').val(data.doituong);
-                    $('#edit_mota').val(data.mota);
-                    $('#edit_thanhtien').val(data.thanhtien);
+                    $('#edit_matn').val(data.matn);
                     $('#edit_dvt').val(data.dvt);
+                    $('#edit_cap1').val(data.cap1);
+                    $('#edit_cap2').val(data.cap2);
+                    $('#edit_cap3').val(data.cap3);
+                    $('#edit_cap4').val(data.cap4);
+                    $('#edit_cap5').val(data.cap5);
+                    $('#edit_dongia').val(data.dongia);
+                    $('#edit_nam').val(data.nam);
+                    $('#edit_soqd').val(data.soqd);
                     $('#edit_id').val(data.id);
                 }
             });
@@ -87,7 +101,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Giá nước sạch sinh hoạt <small>&nbsp;trên địa bàn</small>
+        Giá thuế tài nguyên<small>&nbsp;trên địa bàn</small>
     </h3>
     {{--<h3 class="page-title">
         <small> <b style="color: blue">{{$dvql->tendv}}</b><b style="color: blue"> - </b><b style="color: blue">{{$dv->tendv}}</b> - Người soạn thảo: <b style="color: blue">{{isset($model) ? $model->cvsoanthao : session('admin')->name}}</b> </small>
@@ -99,17 +113,19 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
-                        @if(can('kkgianuocsh','create'))
-                        <button type="button" class="btn btn-default btn-xs mbs" data-target="#add-modal" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;
-                            Thêm mới</button>
-                        <a href="{{url('gianuocsachsinhhoat/nhandulieutuexcel')}}" class="btn btn-default btn-sm">
+                        @if(can('kkgiathuetn','create'))
+                        {{--<button type="button" class="btn btn-default btn-xs mbs" data-target="#add-modal" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;--}}
+                            {{--Thêm mới</button>--}}
+                            <button type="button" class="btn btn-default btn-xs mbs" onclick="ShowDialogAdd()"><i class="fa fa-plus"></i>&nbsp;
+                                Thêm mới</button>
+                        <a href="{{url('thuetainguyen/nhandulieutuexcel')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-file-excel-o"></i> Nhận dữ liệu</a>
                         @endif
-                        @if(can('kkgianuocsh','delete'))
+                        @if(can('kkgiathuetn','delete'))
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                             Xóa</button>
                         @endif
-                        @if(can('thgianuocsh','congbo'))
+                        @if(can('thgiathuetn','congbo'))
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#check-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;
                             Công bố/ Hủy</button>
                         @endif
@@ -121,7 +137,7 @@
                         <div class="portlet-body form" id="form_wizard">
                             <div class="form-body">
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="form-group">
                                             <label style="font-weight: bold">Năm</label>
                                             <select class="form-control" name="nam" id="nam">
@@ -134,25 +150,46 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <label style="font-weight: bold">Địa bàn</label>
-                                            <select class="form-control" name="diaban" id="diaban">
+                                            <label style="font-weight: bold">Nhóm tài nguyên</label>
+                                            <select class="form-control" name="manhom" id="manhom">
                                                 <option value="All">--Tất cả--</option>
-                                                <option value="Thành thị" {{$inputs['diaban'] == 'Thành thị' ? 'selected' : ''}}>Thành thị</option>
-                                                <option value="Nông thôn" {{$inputs['diaban'] == 'Nông thôn' ? 'selected' : ''}}>Nông thôn</option>
+                                                @foreach($nhoms as $nhom)
+                                                <option value="{{$nhom->manhom}}" {{$inputs['manhom'] == $nhom->manhom ? 'selected' : ''}}>{{$nhom->tennhom}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-md-6">
-                                        <label class="control-label">Đối tượng<span class="require">*</span></label>
-                                        {!! Form::text('doituong', $inputs['doituong'], ['id' => 'doituong', 'class' => 'form-control']) !!}
+                                        <div class="form-group">
+                                            <label class="control-label"><b>Tên nhóm, loại tài nguyên Cấp I </b><span class="require">*</span></label>
+                                            {!! Form::text('cap1', $inputs['cap1'], ['id' => 'cap1', 'class' => 'form-control']) !!}
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="control-label">Mô tả<span class="require">*</span></label>
-                                        {!! Form::text('mota', $inputs['mota'], ['id' => 'mota', 'rows' => 4, 'cols' => 10, 'class' => 'form-control']) !!}
+                                        <div class="form-group">
+                                            <label class="control-label"><b>Tên nhóm, loại tài nguyên Cấp II </b><span class="require">*</span></label>
+                                            {!! Form::text('cap2', $inputs['cap2'], ['id' => 'cap2', 'class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label"><b>Tên nhóm, loại tài nguyên Cấp III </b><span class="require">*</span></label>
+                                            {!! Form::text('cap3', $inputs['cap3'], ['id' => 'cap3', 'class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label"><b>Tên nhóm, loại tài nguyên Cấp IV </b><span class="require">*</span></label>
+                                            {!! Form::text('cap4', $inputs['cap4'], ['id' => 'cap4', 'class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label"><b>Tên nhóm, loại tài nguyên Cấp V </b><span class="require">*</span></label>
+                                            {!! Form::text('cap5', $inputs['cap5'], ['id' => 'cap5', 'class' => 'form-control']) !!}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -184,12 +221,16 @@
                             <thead>
                             <tr>
                                 <th style="text-align: center" width="2%">STT</th>
-                                <th style="text-align: center">Ngày áp dụng</th>
-                                <th style="text-align: center">Địa bàn</th>
-                                <th style="text-align: center">Đối tượng</th>
-                                <th style="text-align: center">Mô tả</th>
+                                <th style="text-align: center">Năm/<br> Thông tin quyết định</th>
+                                <th style="text-align: center">Nhóm tài nguyên</th>
+                                <th style="text-align: center">Mã tài nguyên</th>
+                                <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp I</th>
+                                <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp II</th>
+                                <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp III</th>
+                                <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp IV</th>
+                                <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp V</th>
+                                <th style="text-align: center">Đơn vi<br>tính</th>
                                 <th style="text-align: center" >Đơn giá</th>
-                                <th style="text-align: center" >Đơn vị tính</th>
                                 <th style="text-align: center"  width="5%"> Trạng thái</th>
                                 <th style="text-align: center"> Thao tác</th>
                             </tr>
@@ -199,12 +240,16 @@
                                     @foreach($model as $key => $tt)
                                         <tr>
                                             <td style="text-align: center">{{$key+1}}</td>
-                                            <td><b>{{getDayVn($tt->ngayapdung)}}</b></td>
-                                            <td><b>{{$tt->diaban}}</b></td>
-                                            <td style="text-align: left;"><b>{{$tt->doituong}}</b></td>
-                                            <td style="text-align: left" class="active">{{$tt->mota}}</td>
-                                            <td style="text-align: center">{{dinhdangsothapphan($tt->thanhtien,2)}}</td>
+                                            <td><b>{{$tt->nam}}</b><br>{{$tt->soqd}}</td>
+                                            <td>{{$tt->tennhom}}</td>
+                                            <td class="active" >{{$tt->matn}}</td>
+                                            <td>{{$tt->cap1}}</td>
+                                            <td>{{$tt->cap2}}</td>
+                                            <td>{{$tt->cap3}}</td>
+                                            <td>{{$tt->cap4}}</td>
+                                            <td>{{$tt->cap5}}</td>
                                             <td style="text-align: center">{{$tt->dvt}}</td>
+                                            <td style="text-align: center">{{dinhdangsothapphan($tt->dongia,2)}}</td>
                                             <td style="text-align: center">
                                                 @if($tt->trangthai == 'CB')
                                                     <span class="badge badge-warning">Công bố</span>
@@ -214,18 +259,18 @@
                                             </td>
                                             <td>
                                                 @if($tt->trangthai == 'CB')
-                                                    @if(can('thgianuocsh','congbo'))
+                                                    @if(can('thgiathuetn','congbo'))
                                                     <button type="button" onclick="getIdHcb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huycongbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-times"></i>&nbsp;Hủy công bố</button>
                                                     @endif
                                                 @else
-                                                    @if(can('kkgianuocsh','edit'))
-                                                    <button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                    @if(can('kkgiathuetn','edit'))
+                                                        <button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
                                                     @endif
-                                                    @if(can('kkgianuocsh','delete'))
-                                                    <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                    @if(can('kkgiathuetn','delete'))
+                                                        <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                                     @endif
-                                                    @if(can('thgianuocsh','congbo'))
-                                                    <button type="button" onclick="getIdCb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Công bố</button>
+                                                    @if(can('thgiathuetn','congbo'))
+                                                        <button type="button" onclick="getIdCb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Công bố</button>
                                                     @endif
                                                 @endif
                                             </td>
@@ -233,7 +278,7 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td style="text-align: center" colspan="9">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
+                                        <td style="text-align: center" colspan="13">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
                                     </tr>
                                 @endif
                             </tbody>
@@ -250,9 +295,12 @@
                                 <div class="dataTables_paginate paging_simple_numbers" id="sample_3_paginate">
                                     {{$model->appends([
                                                    'nam'=>$inputs['nam'],
-                                                   'diaban'=>$inputs['diaban'],
-                                                   'doituong'=>$inputs['doituong'],
-                                                   'mota'=>$inputs['mota'],
+                                                   'manhom'=>$inputs['manhom'],
+                                                   'cap1'=>$inputs['cap1'],
+                                                   'cap2'=>$inputs['cap2'],
+                                                   'cap3'=>$inputs['cap3'],
+                                                   'cap4'=>$inputs['cap4'],
+                                                   'cap5'=>$inputs['cap5'],
                                                    'paginate'=>$inputs['paginate'],
                                 ])->links()}}
                                 </div>
@@ -272,7 +320,7 @@
         <div class="clearfix"></div>
 
     </div>
-    @include('manage.dinhgia.gianuocsh.include.modal_dialog')
+    @include('manage.dinhgia.thuetn.include.modal_dialog')
     @include('includes.script.inputmask-ajax-scripts')
     @include('includes.script.create-header-scripts')
 @stop

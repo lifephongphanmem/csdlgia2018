@@ -15,14 +15,17 @@ class CreateThuetainguyenTable extends Migration
     {
         Schema::create('thuetainguyen', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('mahs')->nullable();
-            $table->date('ngayapdung')->nullable();
-            $table->string('maxa')->nullable();
-            $table->string('mahuyen')->nullable();
-            $table->string('district')->nullable();
-            $table->string('soqd')->nullable();
-            $table->string('ghichu')->nullable();
+            $table->string('matn')->nullable();
             $table->string('manhom')->nullable();
+            $table->string('cap1')->nullable();
+            $table->string('cap2')->nullable();
+            $table->string('cap3')->nullable();
+            $table->string('cap4')->nullable();
+            $table->string('cap5')->nullable();
+            $table->string('dvt')->nullable();
+            $table->string('dongia')->nullable();
+            $table->string('nam')->nullable();
+            $table->string('soqd')->nullbale();
             $table->string('trangthai')->nullable();
             $table->timestamps();
         });

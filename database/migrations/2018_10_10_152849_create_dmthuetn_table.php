@@ -15,22 +15,15 @@ class CreateDmthuetnTable extends Migration
     {
         Schema::create('dmthuetn', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('mahh')->nullable();
-            $table->string('masopnhom')->nullable();
+            $table->string('matn')->nullable();
             $table->string('manhom')->nullable();
-            $table->string('magoc')->nullable();
-            $table->string('macapdo')->nullable();
-            $table->string('capdo')->nullable();
-            $table->string('masp')->nullable();
-            $table->string('tenhh')->nullable();
-            $table->string('dacdiemkt')->nullable();
+            $table->string('cap1')->nullable();
+            $table->string('cap2')->nullable();
+            $table->string('cap3')->nullable();
+            $table->string('cap4')->nullable();
+            $table->string('cap5')->nullable();
             $table->string('dvt')->nullable();
-            $table->string('giatu')->nullable();
-            $table->string('giaden')->nullable();
-            $table->string('gc')->nullable();
-            $table->string('thoidiem')->nullable();
             $table->string('sapxep')->nullable();
-            $table->string('thuoctn')->nullable();
             $table->string('theodoi')->nullable();
             $table->timestamps();
         });

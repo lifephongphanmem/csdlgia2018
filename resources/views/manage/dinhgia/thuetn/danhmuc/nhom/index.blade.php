@@ -194,7 +194,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Chỉnh sửa nhóm loại rừng?</h4>
+                    <h4 class="modal-title">Chỉnh sửa nhóm tài nguyên?</h4>
                 </div>
                 {!! Form::open(['url'=>'nhomthuetn/update','id' => 'frm_update'])!!}
                 <div class="modal-body" id="edit-tt">

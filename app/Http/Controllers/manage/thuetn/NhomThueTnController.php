@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\manage\thuetn;
 
-use App\NhomThueTn;
+use App\Model\manage\dinhgia\thuetn\NhomThueTn;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
