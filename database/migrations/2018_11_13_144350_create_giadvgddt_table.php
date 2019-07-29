@@ -15,7 +15,7 @@ class CreateGiadvgddtTable extends Migration
     {
         Schema::create('giadvgddt', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('namhoc')->mullable();
+            $table->string('nam')->mullable();
             $table->string('diaban')->nullable();
             $table->string('khuvuc')->nullable();
             $table->string('mota')->nullable();

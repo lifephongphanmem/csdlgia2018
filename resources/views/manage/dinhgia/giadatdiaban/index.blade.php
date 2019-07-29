@@ -258,7 +258,7 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td style="text-align: center" colspan="14">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
+                                        <td style="text-align: center" colspan="15">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
                                     </tr>
                                 @endif
                             </tbody>
