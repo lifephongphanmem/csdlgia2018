@@ -321,7 +321,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 @if(canGeneral('csdlvbqlnn','index'))
                     @if(can('csdlvbqlnn','index'))
                     <li class="heading">
-                        <h3 class="uppercase">Văn bản QLNN về giá</h3>
+                        <h3 class="uppercase">Văn bản QLNN về giá - phí, lệ phí</h3>
                     </li>
                     @include('includes.main.mainvbqlnn')
                     @endif

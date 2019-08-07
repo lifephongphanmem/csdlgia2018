@@ -202,7 +202,7 @@
                                 <th style="text-align: center" rowspan="2">Khu vực</th>
                                 <th style="text-align: center" rowspan="2">Mô tả</th>
                                 <th style="text-align: center" rowspan="2" width="5%">MĐSD</th>
-                                <th style="text-align: center" rowspan="2" width="2%">Hệ số K</th>
+                                <th style="text-align: center" rowspan="2" width="5%">Hệ số K (so với bảng giá đất)</th>
                                 <th style="text-align: center" colspan="5">Giá đất</th>
                                 <th style="text-align: center" rowspan="2" width="5%"> Trạng thái</th>
                                 <th style="text-align: center" rowspan="2"> Thao tác</th>

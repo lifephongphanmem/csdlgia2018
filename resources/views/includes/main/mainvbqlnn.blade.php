@@ -5,7 +5,7 @@
         data-original-title="Văn bản quản lý nhà nước về giá, các báo cáo tổng hợp">
         <a href="">
             <i class="icon-folder"></i>
-            <span class="title">Văn bản QLNN về giá</span>
+            <span class="title">Văn bản QLNN về giá - phí, lệ phí</span>
             <span class="arrow"></span>
         </a>
         <ul class="sub-menu" style="display: none;">
@@ -13,7 +13,7 @@
                 @if(can('vbgia','index'))
                 <li class="tooltips" data-container="body" data-placement="right" data-html="true"
                     data-original-title="Các quyết định, văn bản quản lý, điều hành về giá">
-                    <a href="{{url('vanbanqlnnvegia')}}">Các quyết định, văn bản quản lý, điều hành về giá</a>
+                    <a href="{{url('vanbanqlnnvegia')}}">Các quyết định, văn bản quản lý, điều hành về giá - phí, lệ phí</a>
                 </li>
                 @endif
             @endif
