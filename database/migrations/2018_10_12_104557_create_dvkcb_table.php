@@ -15,14 +15,14 @@ class CreateDvkcbTable extends Migration
     {
         Schema::create('dvkcb', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('maxa')->nullable();
-            $table->string('mahuyen')->nullable();
+            $table->date('thoidiem')->nullable();
             $table->string('district')->nullable();
-            $table->string('soqd')->nullable();
-            $table->date('ngayapdung')->nullable();
+            $table->string('tenbv')->nullable();
+            $table->text('mota')->nullable();
+            $table->string('dvt')->nullable();
+            $table->double('dongia')->nullable();
             $table->string('trangthai')->nullable();
-            $table->string('mahs')->nullable();
-            $table->string('manhom')->nullable();
+            $table->string('ttqd')->nullable();
             $table->string('ghichu')->nullable();
             $table->timestamps();
         });

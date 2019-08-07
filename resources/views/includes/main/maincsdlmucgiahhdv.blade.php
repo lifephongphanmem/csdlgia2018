@@ -40,34 +40,42 @@
         </li>
     @endif
 @endif
-@if(canGeneral('giathuetn','index'))
-    @if(can('giathuetn','index'))
-        <li class="">
+
+@if(canGeneral('giathitruong','index'))
+    @if(can('giathitruong','index'))
+        <li class="tooltips" data-container="body" data-placement="right" data-html="true"
+            data-original-title="Giá thị trường hàng hóa dịch vụ khác do UBND tỉnh, thành phố trực thuộc trung ương và các Bộ quản lý ngành, lĩnh vực tự quy định thuộc nội dung CSDL giá của mình">
             <a href="">
                 <i class="icon-folder"></i>
-                <span class="title">Giá thuế tài nguyên</span>
+                <span class="title">Giá thị trường </span>
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu">
-                @if(can('dmgiathuetn','index'))
+                @if(can('dmgiathitruong','index'))
                     <li>
-                        <a href="{{url('nhomthuetn')}}">DM thuế tài nguyên </a>
+                        <a href="{{url('thongtugiathitruong')}}">Thông tư giá thị trường</a>
                     </li>
                 @endif
-                @if(can('kkgiathuetn','index'))
+                @if(can('kkgiathitruong','index'))
                     <li>
-                        <a href="{{url('thuetainguyen')}}">Thông tin thuế TN</a>
+                        <a href="{{url('kekhaigiathitruong')}}">Thông tin hồ sơ</a>
                     </li>
                 @endif
-                {{--@if(can('thgiathuetn','baocao'))--}}
-                    {{--<li>--}}
-                        {{--<a href="{{url('reportsthuetainguyen')}}">Báo cáo tổng hợp</a>--}}
-                    {{--</li>--}}
-                {{--@endif--}}
+                @if(can('thgiathitruong','timkiem'))
+                    <li>
+                        <a href="{{url('tkgiatrhitruong')}}">Tìm kiếm thông tin</a>
+                    </li>
+                @endif
+                @if(can('thgiathitruong','baocao'))
+                    <li>
+                        <a href="{{url('baocaogiathitruong')}}">Báo cáo tổng hợp</a>
+                    </li>
+                @endif
             </ul>
         </li>
     @endif
 @endif
+
 @if(canGeneral('gialephitruocba','index'))
     @if(can('gialephitruocba','index'))
         <li class="tooltips" data-container="body" data-placement="right" data-html="true"
@@ -200,34 +208,6 @@
     @endif
 @endif
 
-@if(canGeneral('giadatduan','index'))
-    @if(can('giadatduan','index'))
-        <li class="">
-            <a href="">
-                <i class="icon-folder"></i>
-                <span class="title">Giá đất dự án</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-                @if(can('kkgiadatduan','index'))
-                    <li>
-                        <a href="{{url('thongtingiadatduan')}}">Thông tin giá đất</a>
-                    </li>
-                @endif
-                @if(can('thgiadatduan','baocao'))
-                    <li>
-                        <a href="{{url('baocaogiadatduan')}}">Báo cáo giá đất dự án</a>
-                    </li>
-                @endif
-                @if(can('thgiadatduan','timkiem'))
-                    <li>
-                        <a href="{{url('timkiemgiadatduan')}}">Tìm kiếm thông tin</a>
-                    </li>
-                @endif
-            </ul>
-        </li>
-    @endif
-@endif
 
 @include('includes.main.include.bog')
 @include('includes.main.include.kknygia')

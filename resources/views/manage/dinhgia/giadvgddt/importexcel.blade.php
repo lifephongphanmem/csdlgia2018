@@ -63,11 +63,14 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                         <label>Địa bàn</label>
-                                                        <select class="form-control" name="diaban" id="diaban">
-                                                            <option value="Thành thị">Thành thị</option>
-                                                            <option value="Nông thôn">Nông thôn</option>
-                                                            <option value="Miền núi">Miền núi</option>
-                                                            <option value="Hải đảo">Hải đảo</option>
+                                                        <select class="form-control" name="district" id="district">
+                                                            {{--<option value="Thành thị">Thành thị</option>--}}
+                                                            {{--<option value="Nông thôn">Nông thôn</option>--}}
+                                                            {{--<option value="Miền núi">Miền núi</option>--}}
+                                                            {{--<option value="Hải đảo">Hải đảo</option>--}}
+                                                            @foreach($diabans as $diaban)
+                                                                <option value="{{$diaban->district}}">{{$diaban->diaban}}</option>
+                                                            @endforeach
                                                         </select>
                                                         </div>
                                                     </div>

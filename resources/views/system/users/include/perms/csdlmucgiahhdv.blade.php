@@ -28,14 +28,15 @@
                     </div>
                     @include('system.users.include.perms.csdlmucgiahhdv.dinhgia')
                     @include('system.users.include.perms.csdlmucgiahhdv.giahhdvk')
+                    @include('system.users.include.perms.csdlmucgiahhdv.giathitruong')
                     @include('system.users.include.perms.csdlmucgiahhdv.gialephitruocba')
                     @include('system.users.include.perms.csdlmucgiahhdv.giaphilephi')
-                    @include('system.users.include.perms.csdlmucgiahhdv.giathuetn')
+
                     @include('system.users.include.perms.csdlmucgiahhdv.thanhlytaisan')
                     @include('system.users.include.perms.csdlmucgiahhdv.giagocvlxd')
                     @include('system.users.include.perms.csdlmucgiahhdv.bog')
                     @include('system.users.include.perms.csdlmucgiahhdv.kknygia')
-                    @include('system.users.include.perms.csdlmucgiahhdv.giadatduan')
+
                     @include('system.users.include.perms.csdlmucgiahhdv.muataisan')
                 </div>
             </div>

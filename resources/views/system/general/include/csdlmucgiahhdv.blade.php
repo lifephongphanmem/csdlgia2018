@@ -55,16 +55,17 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
                                 <tr>
-                                    <td width="2%"><input type="checkbox" {{ (isset($setting->giathuetn->index) && $setting->giathuetn->index == 1) ? 'checked' : '' }} value="1" name="roles[giathuetn][index]"/></td>
-                                    <td>Giá thuế tài nguyên</td>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->giathitruong->index) && $setting->giathitruong->index == 1) ? 'checked' : '' }} value="1" name="roles[giathitruong][index]"/></td>
+                                    <td>Giá thị trường</td>
                                 </tr>
                                 <tr>
-                                    <td width="2"><input type="checkbox" {{ (isset($setting->giathuetn->congbo) && $setting->giathuetn->congbo == 1) ? 'checked' : '' }} value="1" name="roles[giathuetn][congbo]"/></td>
-                                    <td>Công bố giá thuế tài nguyên</td>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->giathitruong->congbo) && $setting->giathitruong->congbo == 1) ? 'checked' : '' }} value="1" name="roles[giathitruong][congbo]"/></td>
+                                    <td>Công bố giá thị trường</td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
+
                         <div class="col-md-3">
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
@@ -117,20 +118,6 @@
                                 <tr>
                                     <td width="2"><input type="checkbox" {{ (isset($setting->giagocvlxd->congbo) && $setting->giagocvlxd->congbo == 1) ? 'checked' : '' }} value="1" name="roles[giagocvlxd][congbo]"/></td>
                                     <td>Công bố Giá gốc vật liệu xây dựng</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-md-3">
-                            <table class="table table-striped table-bordered table-hover">
-                                <tbody>
-                                <tr>
-                                    <td width="2%"><input type="checkbox" {{ (isset($setting->giadatduan->index) && $setting->giadatduan->index == 1) ? 'checked' : '' }} value="1" name="roles[giadatduan][index]"/></td>
-                                    <td>Giá đất cụ thể của dự án</td>
-                                </tr>
-                                <tr>
-                                    <td width="2"><input type="checkbox" {{ (isset($setting->giadatduan->congbo) && $setting->giadatduan->congbo == 1) ? 'checked' : '' }} value="1" name="roles[giadatduan][congbo]"/></td>
-                                    <td>Công bố giá đất cụ thể của dự án</td>
                                 </tr>
                                 </tbody>
                             </table>

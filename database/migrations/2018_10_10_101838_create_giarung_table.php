@@ -15,12 +15,16 @@ class CreateGiarungTable extends Migration
     {
         Schema::create('giarung', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('mahs')->nullable();
-            $table->string('soqd')->nullable();
-            $table->date('ngayapdung')->nullable();
-            $table->string('ghichu')->nullable();
-            $table->string('trangthai')->nullable();
-            $table->string('district')->nullable();
+            $table->string('district',20)->nullable();
+            $table->string('manhom',20)->nullable();
+            $table->text('tenduan')->nullable();
+            $table->text('mota')->nullable();
+            $table->string('dientich')->nullable();
+            $table->double('dongia')->nullable();
+            $table->date('thoidiem')->nullable();
+            $table->string('ttqd')->nullable();
+            $table->text('ghichu')->nullable();
+            $table->string('trangthai',20)->nullable();
             $table->timestamps();
         });
     }

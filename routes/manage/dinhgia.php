@@ -30,6 +30,7 @@ Route::post('giadatdiaban/add','GiaDatDiaBanController@store');
 Route::post('giadatdiaban/congbo','GiaDatDiaBanController@congbo');
 Route::post('giadatdiaban/huycongbo','GiaDatDiaBanController@huycongbo');
 Route::post('giadatdiaban/checkmulti','GiaDatDiaBanController@checkmulti');
+Route::get('giadatdiaban/prints','GiaDatDiaBanController@bcgiadatdiaban');
 
 
 //Lệ phí trước bạ
@@ -76,26 +77,38 @@ Route::get('giathuematdatmatnuocct/update','GiaThueDatNuocCtController@update');
 Route::get('giathuematdatmatnuocct/del','GiaThueDatNuocCtController@destroy');
 
 //Giá rừng
-Route::resource('dmgiarung','DmGiaRungController');
-Route::post('dmgiarung/update','DmGiaRungController@update');
-
-Route::resource('giarung','GiaRungController');
-Route::post('giarung/delete','GiaRungController@destroy');
-Route::post('giarung/hoanthanh','GiaRungController@hoanthanh');
-Route::post('giarung/huyhoanthanh','GiaRungController@huyhoanthanh');
-Route::post('giarung/congbo','GiaRungController@congbo');
-
-Route::get('giarungctdf/add','GiaRungCtDfController@store');
-Route::get('giarungctdf/show','GiaRungCtDfController@show');
-Route::get('giarungctdf/update','GiaRungCtDfController@update');
-Route::get('giarungctdf/del','GiaRungCtDfController@destroy');
-
-Route::get('giarungct/add','GiaRungCtController@store');
-Route::get('giarungct/show','GiaRungCtController@show');
-Route::get('giarungct/update','GiaRungCtController@update');
-Route::get('giarungct/del','GiaRungCtController@destroy');
-
-Route::get('timkiemgiarung','GiaRungController@search');
+//Route::resource('dmgiarung','DmGiaRungController');
+//Route::post('dmgiarung/update','DmGiaRungController@update');
+//
+//Route::resource('giarung','GiaRungController');
+//Route::post('giarung/delete','GiaRungController@destroy');
+//Route::post('giarung/hoanthanh','GiaRungController@hoanthanh');
+//Route::post('giarung/huyhoanthanh','GiaRungController@huyhoanthanh');
+//Route::post('giarung/congbo','GiaRungController@congbo');
+//
+//Route::get('giarungctdf/add','GiaRungCtDfController@store');
+//Route::get('giarungctdf/show','GiaRungCtDfController@show');
+//Route::get('giarungctdf/update','GiaRungCtDfController@update');
+//Route::get('giarungctdf/del','GiaRungCtDfController@destroy');
+//
+//Route::get('giarungct/add','GiaRungCtController@store');
+//Route::get('giarungct/show','GiaRungCtController@show');
+//Route::get('giarungct/update','GiaRungCtController@update');
+//Route::get('giarungct/del','GiaRungCtController@destroy');
+//
+//Route::get('timkiemgiarung','GiaRungController@search');
+Route::get('giarung','manage\giarung\GiaRungController@index');
+Route::post('giarung/add','manage\giarung\GiaRungController@store');
+Route::get('giarung/edittt','manage\giarung\GiaRungController@edit');
+Route::post('giarung/update','manage\giarung\GiaRungController@update');
+Route::post('giarung/destroy','manage\giarung\GiaRungController@destroy');
+Route::post('giarung/delete','manage\giarung\GiaRungController@multidelete');
+Route::post('giarung/congbo','manage\giarung\GiaRungController@congbo');
+Route::post('giarung/huycongbo','manage\giarung\GiaRungController@huycongbo');
+Route::post('giarung/checkmulti','manage\giarung\GiaRungController@checkmulti');
+Route::get('giarung/prints','manage\giarung\GiaRungController@BcGiaRung');
+Route::get('giarung/nhandulieutuexcel','manage\giarung\GiaRungController@nhandulieutuexcel');
+Route::post('giarung/importexcel','manage\giarung\GiaRungController@importexcel');
 
 //Thuế tài nguyên
 //Route::resource('nhomthuetn','NhomThueTnController');
@@ -146,26 +159,40 @@ Route::post('thuetainguyen/import_excel','manage\thuetn\ThueTaiNguyenController@
 
 
 //DV Khám chữa bệnh
-Route::resource('nhomdichvukcb','NhomDvKcbController');
-Route::get('nhomdichvukcb/show','NhomDvKcbController@show');
-Route::post('nhomdichvukcb/update','NhomDvKcbController@update');
-Route::resource('dmdichvukcb','DmDvKcbController');
-Route::get('dmdichvukcb/show','DmDvKcbController@show');
-Route::post('dmdichvukcb/update','DmDvKcbController@update');
+//Route::resource('nhomdichvukcb','NhomDvKcbController');
+//Route::get('nhomdichvukcb/show','NhomDvKcbController@show');
+//Route::post('nhomdichvukcb/update','NhomDvKcbController@update');
+//Route::resource('dmdichvukcb','DmDvKcbController');
+//Route::get('dmdichvukcb/show','DmDvKcbController@show');
+//Route::post('dmdichvukcb/update','DmDvKcbController@update');
+//
+//Route::resource('dichvukcb','DvKcbController');
+//Route::post('dichvukcb/create','DvKcbController@create');
+//Route::post('dichvukcb/delete','DvKcbController@destroy');
+//Route::post('dichvukcb/hoanthanh','DvKcbController@hoanthanh');
+//Route::post('dichvukcb/huyhoanthanh','DvKcbController@huyhoanthanh');
+//Route::post('dichvukcb/congbo','DvKcbController@congbo');
+//Route::get('timkiemdichvukcb','DvKcbController@search');
+//
+//Route::get('/dichvukcbctdf/edit','DvKcbCtDfController@edit');
+//Route::get('/dichvukcbctdf/update','DvKcbCtDfController@update');
+//
+//Route::get('/dichvukcbct/edit','DvKcbCtController@edit');
+//Route::get('/dichvukcbct/update','DvKcbCtController@update');
+Route::get('dichvukcb','manage\dvkcb\DvKcbController@index');
+Route::post('dichvukcb/add','manage\dvkcb\DvKcbController@store');
+Route::get('dichvukcb/edittt','manage\dvkcb\DvKcbController@edit');
+Route::post('dichvukcb/update','manage\dvkcb\DvKcbController@update');
+Route::post('dichvukcb/delete','manage\dvkcb\DvKcbController@multidelete');
+Route::post('dichvukcb/destroy','manage\dvkcb\DvKcbController@destroy');
+Route::post('dichvukcb/congbo','manage\dvkcb\DvKcbController@congbo');
+Route::post('dichvukcb/huycongbo','manage\dvkcb\DvKcbController@huycongbo');
+Route::post('dichvukcb/checkmulti','manage\dvkcb\DvKcbController@checkmulti');
+Route::get('dichvukcb/nhandulieutuexcel','manage\dvkcb\DvKcbController@nhandulieutuexcel');
+Route::post('dichvukcb/importexcel','manage\dvkcb\DvKcbController@importexcel');
+Route::get('dichvukcb/prints','manage\dvkcb\DvKcbController@BcGiaDvKcb');
 
-Route::resource('dichvukcb','DvKcbController');
-Route::post('dichvukcb/create','DvKcbController@create');
-Route::post('dichvukcb/delete','DvKcbController@destroy');
-Route::post('dichvukcb/hoanthanh','DvKcbController@hoanthanh');
-Route::post('dichvukcb/huyhoanthanh','DvKcbController@huyhoanthanh');
-Route::post('dichvukcb/congbo','DvKcbController@congbo');
-Route::get('timkiemdichvukcb','DvKcbController@search');
 
-Route::get('/dichvukcbctdf/edit','DvKcbCtDfController@edit');
-Route::get('/dichvukcbctdf/update','DvKcbCtDfController@update');
-
-Route::get('/dichvukcbct/edit','DvKcbCtController@edit');
-Route::get('/dichvukcbct/update','DvKcbCtController@update');
 
 //Giá HH-DV khác
 Route::resource('nhomhanghoadichvu','NhomHhDvKController');
@@ -344,30 +371,69 @@ Route::post('giadvgiaoducdaotao/huycongbo','manage\GiaDvGdDtController@huycongbo
 Route::post('giadvgiaoducdaotao/checkmulti','manage\GiaDvGdDtController@checkmulti');
 Route::get('giadvgiaoducdaotao/nhandulieutuexcel','manage\GiaDvGdDtController@nhandulieutuexcel');
 Route::post('giadvgiaoducdaotao/import_excel','manage\GiaDvGdDtController@importexcel');
-
-
+Route::get('giadvgiaoducdaotao/prints','manage\GiaDvGdDtController@BcGiaDvGdDt');
 
 //Giá thuê mua nhà XH
-Route::resource('danhmucgiathuemuanhaxh','DmGiaThueMuaNhaXhController');
-Route::post('danhmucgiathuemuanhaxh/update','DmGiaThueMuaNhaXhController@update');
-Route::post('danhmucgiathuemuanhaxh/delete','DmGiaThueMuaNhaXhController@destroy');
+//Route::resource('danhmucgiathuemuanhaxh','DmGiaThueMuaNhaXhController');
+//Route::post('danhmucgiathuemuanhaxh/update','DmGiaThueMuaNhaXhController@update');
+//Route::post('danhmucgiathuemuanhaxh/delete','DmGiaThueMuaNhaXhController@destroy');
+//
+//Route::resource('thongtingiathuemuanhaxh','GiaThueMuaNhaXhController');
+//Route::post('thongtingiathuemuanhaxh/create','GiaThueMuaNhaXhController@create');
+//Route::post('thongtingiathuemuanhaxh/delete','GiaThueMuaNhaXhController@destroy');
+//Route::post('thongtingiathuemuanhaxh/hoanthanh','GiaThueMuaNhaXhController@hoanthanh');
+//Route::post('thongtingiathuemuanhaxh/huyhoanthanh','GiaThueMuaNhaXhController@huyhoanthanh');
+//Route::post('thongtingiathuemuanhaxh/congbo','GiaThueMuaNhaXhController@congbo');
+//Route::get('timkiemthongtingiathuemuanhaxh','GiaThueMuaNhaXhController@search');
+//
+//Route::get('thongtingiathuemuanhaxhctdf/store','GiaThueMuaNhaXhCtDfController@store');
+//Route::get('thongtingiathuemuanhaxhctdf/show','GiaThueMuaNhaXhCtDfController@show');
+//Route::get('thongtingiathuemuanhaxhctdf/update','GiaThueMuaNhaXhCtDfController@update');
+//Route::get('thongtingiathuemuanhaxhctdf/del','GiaThueMuaNhaXhCtDfController@destroy');
+//
+//Route::get('thongtingiathuemuanhaxhct/store','GiaThueMuaNhaXhCtController@store');
+//Route::get('thongtingiathuemuanhaxhct/show','GiaThueMuaNhaXhCtController@show');
+//Route::get('thongtingiathuemuanhaxhct/update','GiaThueMuaNhaXhCtController@update');
+//Route::get('thongtingiathuemuanhaxhct/del','GiaThueMuaNhaXhCtController@destroy');
+Route::get('thuemuanhaxahoi','manage\thuemuanhaxh\GiaThueMuaNhaXhController@index');
+Route::post('thuemuanhaxahoi/add','manage\thuemuanhaxh\GiaThueMuaNhaXhController@store');
+Route::get('thuemuanhaxahoi/edittt','manage\thuemuanhaxh\GiaThueMuaNhaXhController@edit');
+Route::post('thuemuanhaxahoi/update','manage\thuemuanhaxh\GiaThueMuaNhaXhController@update');
+Route::post('thuemuanhaxahoi/destroy','manage\thuemuanhaxh\GiaThueMuaNhaXhController@destroy');
+Route::post('thuemuanhaxahoi/delete','manage\thuemuanhaxh\GiaThueMuaNhaXhController@multidelete');
+Route::post('thuemuanhaxahoi/congbo','manage\thuemuanhaxh\GiaThueMuaNhaXhController@congbo');
+Route::post('thuemuanhaxahoi/huycongbo','manage\thuemuanhaxh\GiaThueMuaNhaXhController@huycongbo');
+Route::post('thuemuanhaxahoi/checkmulti','manage\thuemuanhaxh\GiaThueMuaNhaXhController@checkmulti');
+Route::get('thuemuanhaxahoi/nhandulieutuexcel','manage\thuemuanhaxh\GiaThueMuaNhaXhController@nhandulieutuexcel');
+Route::post('thuemuanhaxahoi/import_excel','manage\thuemuanhaxh\GiaThueMuaNhaXhController@importexcel');
+Route::get('thuemuanhaxahoi/prints','manage\thuemuanhaxh\GiaThueMuaNhaXhController@BcGiaThueMuaNhaXh');
 
-Route::resource('thongtingiathuemuanhaxh','GiaThueMuaNhaXhController');
-Route::post('thongtingiathuemuanhaxh/create','GiaThueMuaNhaXhController@create');
-Route::post('thongtingiathuemuanhaxh/delete','GiaThueMuaNhaXhController@destroy');
-Route::post('thongtingiathuemuanhaxh/hoanthanh','GiaThueMuaNhaXhController@hoanthanh');
-Route::post('thongtingiathuemuanhaxh/huyhoanthanh','GiaThueMuaNhaXhController@huyhoanthanh');
-Route::post('thongtingiathuemuanhaxh/congbo','GiaThueMuaNhaXhController@congbo');
-Route::get('timkiemthongtingiathuemuanhaxh','GiaThueMuaNhaXhController@search');
+//Giá thị trường
+Route::get('thongtugiathitruong','manage\giathitruong\GiaThiTruongTtController@index');
+Route::post('thongtugiathitruong','manage\giathitruong\GiaThiTruongTtController@store');
+Route::get('thongtugiathitruong/edit','manage\giathitruong\GiaThiTruongTtController@edit');
+Route::post('thongtugiathitruong/update','manage\giathitruong\GiaThiTruongTtController@update');
+Route::get('thongtugiathitruong/nhandulieutuexcel','manage\giathitruong\GiaThiTruongTtController@nhandulieutuexcel');
 
-Route::get('thongtingiathuemuanhaxhctdf/store','GiaThueMuaNhaXhCtDfController@store');
-Route::get('thongtingiathuemuanhaxhctdf/show','GiaThueMuaNhaXhCtDfController@show');
-Route::get('thongtingiathuemuanhaxhctdf/update','GiaThueMuaNhaXhCtDfController@update');
-Route::get('thongtingiathuemuanhaxhctdf/del','GiaThueMuaNhaXhCtDfController@destroy');
+Route::get('danhmucgiathitruong','manage\giathitruong\GiaThiTruongDmController@index');
+Route::post('danhmucgiathitruong','manage\giathitruong\GiaThiTruongDmController@store');
+Route::get('danhmucgiathitruong/edit','manage\giathitruong\GiaThiTruongDmController@edit');
+Route::post('danhmucgiathitruong/update','manage\giathitruong\GiaThiTruongDmController@update');
+Route::post('danhmucgiathitruong/importexcel','manage\giathitruong\GiaThiTruongDmController@importexcel');
 
-Route::get('thongtingiathuemuanhaxhct/store','GiaThueMuaNhaXhCtController@store');
-Route::get('thongtingiathuemuanhaxhct/show','GiaThueMuaNhaXhCtController@show');
-Route::get('thongtingiathuemuanhaxhct/update','GiaThueMuaNhaXhCtController@update');
-Route::get('thongtingiathuemuanhaxhct/del','GiaThueMuaNhaXhCtController@destroy');
+Route::get('kekhaigiathitruong','manage\giathitruong\GiaThiTruongController@index');
+Route::post('kekhaigiathitruong/create','manage\giathitruong\GiaThiTruongController@create');
+Route::post('kekhaigiathitruong','manage\giathitruong\GiaThiTruongController@store');
+Route::get('kekhaigiathitruong/{id}/edit','manage\giathitruong\GiaThiTruongController@edit');
+Route::patch('kekhaigiathitruong/{id}','manage\giathitruong\GiaThiTruongController@update');
+Route::get('kekhaigiathitruong/{id}','manage\giathitruong\GiaThiTruongController@show');
+Route::post('kekhaigiathitruong/hoanthanh','manage\giathitruong\GiaThiTruongController@hoanthanh');
+Route::post('kekhaigiathitruong/huyhoanthanh','manage\giathitruong\GiaThiTruongController@huyhoanthanh');
+
+Route::get('giathitruongct/edit','manage\giathitruong\GiaThiTruongCtController@edit');
+Route::get('giathitruongct/update','manage\giathitruong\GiaThiTruongCtController@update');
+
+Route::get('baocaogiathitruong','manage\giathitruong\GiaThiTruongBcController@index');
+Route::post('baocaogiathitruong/baocaotonghop1','manage\giathitruong\GiaThiTruongBcController@baocaotonghop1');
 
 ?>

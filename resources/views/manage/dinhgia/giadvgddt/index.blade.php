@@ -23,11 +23,11 @@
         function searchtt(){
             var current_path_url = '/giadvgiaoducdaotao?';
             var nam = '&nam='+$('#nam').val();
-            var diaban = '&diaban='+$('#diaban').val();
+            var district = '&district='+$('#district').val();
             var khuvuc = '&khuvuc='+$('#khuvuc').val();
             var mota = '&mota='+$('#mota').val();
             var paginate = '&paginate='+$('#paginate').val();
-            var url = current_path_url+nam+diaban+khuvuc+mota+paginate;
+            var url = current_path_url+nam+district+khuvuc+mota+paginate;
             window.location.href = url;
         }
 
@@ -35,11 +35,11 @@
             $('#paginate').change(function() {
                 var current_path_url = '/giadvgiaoducdaotao?';
                 var nam = '&nam='+$('#nam').val();
-                var diaban = '&diaban='+$('#diaban').val();
+                var district = '&district='+$('#district').val();
                 var khuvuc = '&khuvuc='+$('#khuvuc').val();
                 var mota = '&mota='+$('#mota').val();
                 var paginate = '&paginate='+$('#paginate').val();
-                var url = current_path_url+nam+diaban+khuvuc+mota+paginate;
+                var url = current_path_url+nam+district+khuvuc+mota+paginate;
                 window.location.href = url;
             });
         });
@@ -110,6 +110,8 @@
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#check-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;
                             Công bố/ Hủy</button>
                         @endif
+                        <a href="{{url('giadvgiaoducdaotao/prints?&nam='.$inputs['nam'].'&district='.$inputs['district'].'&khuvuc='.$inputs['khuvuc'].'&mota='.$inputs['mota'])}}" class="btn btn-default btn-sm" target="_blank">
+                            <i class="fa fa-print"></i> In</a>
                     </div>
                 </div>
                 <hr>
@@ -134,24 +136,29 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label style="font-weight: bold">Địa bàn</label>
-                                            <select class="form-control" name="diaban" id="diaban">
+                                            <select class="form-control" name="district" id="district">
                                                 <option value="All">--Tất cả--</option>
-                                                <option value="Thành thị" {{$inputs['diaban'] == 'Thành thị' ? 'selected' : ''}}>Thành thị</option>
-                                                <option value="Nông thôn" {{$inputs['diaban'] == 'Nông thôn' ? 'selected' : ''}}>Nông thôn</option>
-                                                <option value="Miền núi" {{$inputs['diaban'] == 'Miền núi' ? 'selected' : ''}}>Miền núi</option>
-                                                <option value="Hải đảo" {{$inputs['diaban'] == 'Hải đảo' ? 'selected' : ''}}>Hải đảo</option>
+                                                {{--<option value="Thành thị" {{$inputs['diaban'] == 'Thành thị' ? 'selected' : ''}}>Thành thị</option>--}}
+                                                {{--<option value="Nông thôn" {{$inputs['diaban'] == 'Nông thôn' ? 'selected' : ''}}>Nông thôn</option>--}}
+                                                {{--<option value="Miền núi" {{$inputs['diaban'] == 'Miền núi' ? 'selected' : ''}}>Miền núi</option>--}}
+                                                {{--<option value="Hải đảo" {{$inputs['diaban'] == 'Hải đảo' ? 'selected' : ''}}>Hải đảo</option>--}}
+                                                @foreach($diabans as $diaban)
+                                                    <option value="{{$diaban->district}}" {{$diaban->district == $inputs['district'] ? 'selected' : ''}}>{{$diaban->diaban}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-md-6">
-                                        <label class="control-label">Khu vực<span class="require">*</span></label>
+                                        <div class="form-group">
+                                        <label class="control-label" style="font-weight: bold">Khu vực<span class="require">*</span></label>
                                         {!! Form::text('khuvuc', $inputs['khuvuc'], ['id' => 'khuvuc', 'class' => 'form-control']) !!}
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="control-label">Mô tả<span class="require">*</span></label>
+                                        <div class="form-group">
+                                        <label class="control-label" style="font-weight: bold">Mô tả<span class="require">*</span></label>
                                         {!! Form::text('mota', $inputs['mota'], ['id' => 'mota', 'rows' => 4, 'cols' => 10, 'class' => 'form-control']) !!}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -182,13 +189,13 @@
                             <thead>
                             <tr>
                                 <th style="text-align: center" width="2%">STT</th>
-                                <th style="text-align: center">Năm học</th>
+                                <th style="text-align: center" width="8%">Năm học</th>
                                 <th style="text-align: center">Địa bàn</th>
                                 <th style="text-align: center">Khu vực</th>
                                 <th style="text-align: center">Mô tả</th>
                                 <th style="text-align: center" >Học phí</th>
                                 <th style="text-align: center"  width="5%"> Trạng thái</th>
-                                <th style="text-align: center"> Thao tác</th>
+                                <th style="text-align: center" width="15%"> Thao tác</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -196,12 +203,12 @@
                                     @foreach($model as $key => $tt)
                                         <tr>
                                             <td style="text-align: center">{{$key+1}}</td>
-                                            <td><b>{{$tt->nam}}</b></td>
+                                            <td style="text-align: center"><b>{{$tt->nam}}</b></td>
                                             <td><b>{{$tt->diaban}}</b></td>
                                             <td style="text-align: left;"><b>{{$tt->khuvuc}}</b></td>
                                             <td style="text-align: left" class="active">{{$tt->mota}}</td>
                                             {{--<td style="text-align: center">{{$tt->hesok}}</td>--}}
-                                            <td style="text-align: center">{{dinhdangsothapphan($tt->dongia,2)}}</td>
+                                            <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->dongia,2)}}</td>
                                             <td style="text-align: center">
                                                 @if($tt->trangthai == 'CB')
                                                     <span class="badge badge-warning">Công bố</span>
@@ -246,7 +253,7 @@
                                 <div class="dataTables_paginate paging_simple_numbers" id="sample_3_paginate">
                                     {{$model->appends([
                                                    'nam'=>$inputs['nam'],
-                                                   'diaban'=>$inputs['diaban'],
+                                                   'district'=>$inputs['district'],
                                                    'khuvuc'=>$inputs['khuvuc'],
                                                    'mota'=>$inputs['mota'],
                                                    'paginate'=>$inputs['paginate'],

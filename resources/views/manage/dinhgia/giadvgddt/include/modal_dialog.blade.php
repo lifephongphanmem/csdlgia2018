@@ -50,12 +50,15 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="control-label">Địa bàn<span class="require">*</span></label>
-                            <select class="form-control" name="diabandel" id="diabandel">
+                            <select class="form-control" name="districtdel" id="districtdel">
                                 <option value="All">--Tất cả các địa bàn--</option>
-                                <option value="Thành thị">Thành thị</option>
-                                <option value="Nông thôn">Nông thôn</option>
-                                <option value="Miền núi">Miền núi</option>
-                                <option value="Hải đảo">Hải đảo</option>
+                                {{--<option value="Thành thị">Thành thị</option>--}}
+                                {{--<option value="Nông thôn">Nông thôn</option>--}}
+                                {{--<option value="Miền núi">Miền núi</option>--}}
+                                {{--<option value="Hải đảo">Hải đảo</option>--}}
+                                @foreach($diabans as $diaban)
+                                    <option value="{{$diaban->district}}">{{$diaban->diaban}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -138,11 +141,14 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="control-label">Địa bàn<span class="require">*</span></label>
-                            <select class="form-control" name="add_diaban" id="add_diaban">
-                                <option value="Thành thị">Thành thị</option>
-                                <option value="Nông thôn">Nông thôn</option>
-                                <option value="Miền núi">Miền núi</option>
-                                <option value="Hải đảo">Hải đảo</option>
+                            <select class="form-control" name="add_district" id="add_district">
+                                {{--<option value="Thành thị">Thành thị</option>--}}
+                                {{--<option value="Nông thôn">Nông thôn</option>--}}
+                                {{--<option value="Miền núi">Miền núi</option>--}}
+                                {{--<option value="Hải đảo">Hải đảo</option>--}}
+                                @foreach($diabans as $diaban)
+                                    <option value="{{$diaban->district}}">{{$diaban->diaban}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -281,12 +287,15 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="control-label">Địa bàn<span class="require">*</span></label>
-                            <select class="form-control" name="diabancheck" id="diabancheck">
+                            <select class="form-control" name="districtcheck" id="districtcheck">
                                 <option value="All">--Tất cả các địa bàn--</option>
-                                <option value="Thành thị">Thành thị</option>
-                                <option value="Nông thôn">Nông thôn</option>
-                                <option value="Miền núi">Miền núi</option>
-                                <option value="Hải đảo">Hải đảo</option>
+                                {{--<option value="Thành thị">Thành thị</option>--}}
+                                {{--<option value="Nông thôn">Nông thôn</option>--}}
+                                {{--<option value="Miền núi">Miền núi</option>--}}
+                                {{--<option value="Hải đảo">Hải đảo</option>--}}
+                                @foreach($diabans as $diaban)
+                                    <option value="{{$diaban->district}}">{{$diaban->diaban}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

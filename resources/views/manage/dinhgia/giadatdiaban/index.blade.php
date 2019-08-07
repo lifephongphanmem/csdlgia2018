@@ -111,6 +111,8 @@
                         @if(can('thgiacldat','congbo'))
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#check-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Công bố/ Hủy</button>
                         @endif
+                        <a href="{{url('giadatdiaban/prints?nam='.$inputs['nam'].'&district='.$inputs['district'].'&maloaidat='.$inputs['maloaidat'].'&khuvuc='.$inputs['khuvuc'].'&mota='.$inputs['mota'])}}" class="btn btn-default btn-sm" target="_blank">
+                            <i class="fa fa-print"></i> In</a>
                     </div>
                 </div>
                 <hr>

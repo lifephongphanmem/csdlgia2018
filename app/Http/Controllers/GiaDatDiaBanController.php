@@ -361,4 +361,47 @@ class GiaDatDiaBanController extends Controller
         }else
             return view('errors.notlogin');
     }
+
+    function bcgiadatdiaban(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
+            $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : 'All';
+            $inputs['maloaidat'] = isset($inputs['maloaidat']) ? $inputs['maloaidat'] : 'All';
+            $inputs['khuvuc'] = isset($inputs['khuvuc']) ? $inputs['khuvuc'] : '';
+            $inputs['mota'] = isset($inputs['mota']) ? $inputs['mota'] : '';
+            $loaidats = GiaDatDiaBanDm::all();
+            $diaban = DiaBanHd::all();
+
+            $model  = GiaDatDiaBan::join('diabanhd','diabanhd.district','=','giadatdiaban.district')
+                ->join('giadatdiabandm','giadatdiaban.maloaidat','=','giadatdiabandm.maloaidat')
+                ->select('giadatdiaban.*','diabanhd.diaban','giadatdiabandm.loaidat');
+            if($inputs['nam'] != 'all')
+                $model = $model->where('giadatdiaban.nam',$inputs['nam']);
+            if($inputs['district'] !='All') {
+                $model = $model->where('giadatdiaban.district', $inputs['district']);
+                $diaban = DiaBanHd::where('district',$inputs['district'])
+                    ->where('level','H')
+                    ->first();
+            }
+            if($inputs['maloaidat'] != 'All') {
+                $model = $model->where('giadatdiaban.maloaidat', $inputs['maloaidat']);
+                $loaidats = GiaDatDiaBanDm::where('maloaidat',$inputs['maloaidat'])
+                    ->first();
+            }
+            if($inputs['khuvuc'] != '')
+                $model = $model->where('giadatdiaban.khuvuc','like', '%'.$inputs['khuvuc'].'%');
+            if($inputs['mota'] != '')
+                $model = $model->where('giadatdiaban.mota','like', '%'.$inputs['mota'].'%');
+            $model = $model->get();
+            return view('manage.dinhgia.giadatdiaban.reports.BcGiaDatDiaBan')
+                ->with('model',$model)
+                ->with('inputs',$inputs)
+                ->with('loaidats',$loaidats)
+                ->with('diaban',$diaban)
+                ->with('pageTitle','Báo cáo giá đất theo địa bàn');
+
+        } else
+            return view('errors.notlogin');
+    }
 }

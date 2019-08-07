@@ -15,12 +15,17 @@ class CreateGiathuemuanhaxhTable extends Migration
     {
         Schema::create('giathuemuanhaxh', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('manhom')->nullable();
-            $table->string('mahs')->nullable();
-            $table->string('soqd')->nullable();
-            $table->date('ngayapdung')->nullable();
+            $table->string('district',20)->nullable();
+            $table->text('tenduan')->nullable();
+            $table->text('mota')->nullable();
+            $table->string('dientich')->nullable();
+            $table->string('dvt',20)->nullable();
+            $table->double('dongiathue')->nullable();
+            $table->double('dongiathuemua')->nullable();
+            $table->date('thoidiem')->nullable();
+            $table->string('ttqd')->nullable();
             $table->text('ghichu')->nullable();
-            $table->string('trangthai')->nullable();
+            $table->string('trangthai',20)->nullable();
             $table->timestamps();
         });
     }

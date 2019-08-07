@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\manage;
 
+use App\DiaBanHd;
 use App\Model\manage\dinhgia\GiaDvGdDt;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,24 +16,28 @@ class GiaDvGdDtController extends Controller
         if (Session::has('admin')) {
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : (date('Y').'-'.(date('Y')+1));
-            $inputs['diaban'] = isset($inputs['diaban']) ? $inputs['diaban'] : 'All';
+            $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : 'All';
             $inputs['khuvuc'] = isset($inputs['khuvuc']) ? $inputs['khuvuc'] : '';
             $inputs['mota'] = isset($inputs['mota']) ? $inputs['mota'] : '';
             $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
-            $model = new GiaDvGdDt();
+            $model = GiaDvGdDt::join('diabanhd','diabanhd.district','=','giadvgddt.district')
+                ->select('giadvgddt.*','diabanhd.diaban');
             if($inputs['nam'] != 'all')
-                $model = $model->where('nam',$inputs['nam']);
-            if($inputs['diaban'] != 'All')
-                $model = $model ->where('diaban',$inputs['diaban']);
+                $model = $model->where('giadvgddt.nam',$inputs['nam']);
+            if($inputs['district'] != 'All')
+                $model = $model ->where('giadvgddt.district',$inputs['district']);
             if($inputs['khuvuc'] != '')
-                $model = $model->where('khuvuc','like', '%'.$inputs['khuvuc'].'%');
+                $model = $model->where('giadvgddt.khuvuc','like', '%'.$inputs['khuvuc'].'%');
             if($inputs['mota'] != '')
-                $model = $model->where('mota','like', '%'.$inputs['mota'].'%');
+                $model = $model->where('giadvgddt.mota','like', '%'.$inputs['mota'].'%');
 
             $model = $model->paginate($inputs['paginate']);
+            $diabans = DiaBanHd::where('level','H')
+                ->get();
             return view('manage.dinhgia.giadvgddt.index')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
+                ->with('diabans',$diabans)
                 ->with('pageTitle', 'Giá dịch vụ giáo dục đào tạo');
         }else
             return view('errors.notlogin');
@@ -43,14 +48,14 @@ class GiaDvGdDtController extends Controller
             $inputs = $request->all();
             $model = new GiaDvGdDt();
             $model->nam = $inputs['add_nam'];
-            $model->diaban = $inputs['add_diaban'];
+            $model->district = $inputs['add_district'];
             $model->khuvuc = $inputs['add_khuvuc'];
             $model->mota = $inputs['add_mota'];
             $model->dongia = chkDbl($inputs['add_dongia']);
             $model->ttqd = $inputs['add_ttqd'];
             $model->ghichu = $inputs['add_ghichu'];
             $model->save();
-            return redirect('giadvgiaoducdaotao?&nam='.$inputs['add_nam'].'&diaban='.$inputs['add_diaban']);
+            return redirect('giadvgiaoducdaotao?&nam='.$inputs['add_nam'].'&district='.$inputs['add_district']);
         }else
             return view('errors.notlogin');
     }
@@ -71,6 +76,8 @@ class GiaDvGdDtController extends Controller
         $inputs = $request->all();
         $id = $inputs['id'];
         $model = GiaDvGdDt::findOrFail($id);
+        $diabans = DiaBanHd::where('level','H')
+            ->geT();
 
         $result['message'] = '<div class="modal-body" id="edit_node">';
 
@@ -90,11 +97,13 @@ class GiaDvGdDtController extends Controller
         $result['message'] .= '<div class="col-md-6">';
         $result['message'] .= '<div class="form-group">';
         $result['message'] .= '<label class="control-label">Địa bàn<span class="require">*</span></label>';
-        $result['message'] .= '<select class="form-control" id="edit_diaban" name="edit_diaban">';
-        $result['message'] .= '<option value="Thành thị"'.($model->diaban == "Thành thị" ? "selected" : "") .'>Thành thị</option>';
-        $result['message'] .= '<option value="Nông thôn"'.($model->diaban == "Nông thôn" ? "selected" : "") .'>Nông thôn</option>';
-        $result['message'] .= '<option value="Miền núi"'.($model->diaban == "Miền núi" ? "selected" : "") .'>Miền núi</option>';
-        $result['message'] .= '<option value="Hải đảo"'.($model->diaban == "Hải đảo" ? "selected" : "") .'>Hải đảo</option>';
+        $result['message'] .= '<select class="form-control" id="edit_district" name="edit_district">';
+        foreach($diabans as $diaban){
+            $result['message'] .= '<option value="'.$diaban->district.'"'.($model->district == "'.$diaban->district.'" ? "selected" : "") .'>'.$diaban->diaban.'</option>';
+        }
+//        $result['message'] .= '<option value="Nông thôn"'.($model->diaban == "Nông thôn" ? "selected" : "") .'>Nông thôn</option>';
+//        $result['message'] .= '<option value="Miền núi"'.($model->diaban == "Miền núi" ? "selected" : "") .'>Miền núi</option>';
+//        $result['message'] .= '<option value="Hải đảo"'.($model->diaban == "Hải đảo" ? "selected" : "") .'>Hải đảo</option>';
         $result['message'] .= '</select>';
         $result['message'] .= '</div>';
         $result['message'] .= '</div>';
@@ -154,14 +163,14 @@ class GiaDvGdDtController extends Controller
             $inputs=$request->all();
             $model = GiaDvGdDt::where('id',$inputs['edit_id'])->first();
             $model->nam = $inputs['edit_nam'];
-            $model->diaban = $inputs['edit_diaban'];
+            $model->district = $inputs['edit_district'];
             $model->khuvuc = $inputs['edit_khuvuc'];
             $model->mota = $inputs['edit_mota'];
             $model->dongia = chkDbl($inputs['edit_dongia']);
             $model->ttqd = $inputs['edit_ttqd'];
             $model->ghichu = $inputs['edit_ghichu'];
             $model->save();
-            return redirect('giadvgiaoducdaotao?&nam='.$inputs['edit_nam'].'&diaban='.$inputs['edit_diaban']);
+            return redirect('giadvgiaoducdaotao?&nam='.$inputs['edit_nam'].'&district='.$inputs['edit_district']);
         }else
             return view('errors.notlogin');
     }
@@ -173,7 +182,7 @@ class GiaDvGdDtController extends Controller
             $model = GiaDvGdDt::findOrFail($id);
             $model->delete();
 
-            return redirect('giadvgiaoducdaotao?&nam='.$model->nam.'&diaban='.$model->diaban);
+            return redirect('giadvgiaoducdaotao?&nam='.$model->nam.'&district='.$model->district);
         }else
             return view('errors.notlogin');
     }
@@ -182,12 +191,12 @@ class GiaDvGdDtController extends Controller
         if(Session::has('admin')){
             $inputs=$request->all();
             $model = GiaDvGdDt::where('nam',$inputs['namdel']);
-            if($inputs['diabandel'] != 'All')
-                $model = $model->where('diaban',$inputs['diabandel']);
+            if($inputs['districtdel'] != 'All')
+                $model = $model->where('district',$inputs['districtdel']);
 
             $model = $model->delete();
 
-            return redirect('giadvgiaoducdaotao?&nam='.$inputs['namdel'].'&diaban='.$inputs['diabandel']);
+            return redirect('giadvgiaoducdaotao?&nam='.$inputs['namdel'].'&district='.$inputs['districtdel']);
         }else
             return view('errors.notlogin');
     }
@@ -200,7 +209,7 @@ class GiaDvGdDtController extends Controller
             $model->trangthai = 'CB';
             $model->save();
 
-            return redirect('giadvgiaoducdaotao?&nam='.$model->nam.'&diaban='.$model->diaban);
+            return redirect('giadvgiaoducdaotao?&nam='.$model->nam.'&district='.$model->district);
         }else
             return view('errors.notlogin');
     }
@@ -213,7 +222,7 @@ class GiaDvGdDtController extends Controller
             $model->trangthai = 'HCB';
             $model->save();
 
-            return redirect('giadvgiaoducdaotao?&nam='.$model->nam.'&diaban='.$model->diaban);
+            return redirect('giadvgiaoducdaotao?&nam='.$model->nam.'&district='.$model->district);
         }else
             return view('errors.notlogin');
     }
@@ -222,19 +231,22 @@ class GiaDvGdDtController extends Controller
         if(Session::has('admin')){
             $inputs=$request->all();
             $model = GiaDvGdDt::where('nam',$inputs['namcheck']);
-            if($inputs['diabancheck'] != 'All')
-                $model = $model->where('diaban',$inputs['diabancheck']);
+            if($inputs['districtcheck'] != 'All')
+                $model = $model->where('district',$inputs['districtcheck']);
 
             $model = $model->update(['trangthai' => $inputs['trangthaicheck']]);
 
-            return redirect('giadvgiaoducdaotao?&nam='.$inputs['namcheck'].'&diaban='.$inputs['diabancheck']);
+            return redirect('giadvgiaoducdaotao?&nam='.$inputs['namcheck'].'&district='.$inputs['districtcheck']);
         }else
             return view('errors.notlogin');
     }
 
     public function nhandulieutuexcel(){
         if (Session::has('admin')) {
+            $diabans = DiaBanHd::where('level','H')
+                ->get();
             return view('manage.dinhgia.giadvgddt.importexcel')
+                ->with('diabans',$diabans)
                 ->with('pageTitle','Nhận dữ liệu giá dịch vụ giáo dục đào tạo từ file Excel');
 
         } else
@@ -260,7 +272,7 @@ class GiaDvGdDtController extends Controller
 
                 $modelctnew = new GiaDvGdDt();
                 $modelctnew->nam = $inputs['nam'];
-                $modelctnew->diaban = $inputs['diaban'];
+                $modelctnew->district = $inputs['district'];
                 $modelctnew->khuvuc = $data[$i][$inputs['khuvuc']];
                 $modelctnew->mota = $data[$i][$inputs['mota']];
                 $modelctnew->dongia = (isset($data[$i][$inputs['dongia']]) && $data[$i][$inputs['dongia']] != '' ? chkDbl($data[$i][$inputs['dongia']]) : 0);
@@ -271,7 +283,42 @@ class GiaDvGdDtController extends Controller
                 $modelctnew->save();
             }
             File::Delete($path);
-            return redirect('giadvgiaoducdaotao?&nam='.$inputs['nam'].'&diaban='.$inputs['diaban']);
+            return redirect('giadvgiaoducdaotao?&nam='.$inputs['nam'].'&district='.$inputs['district']);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function BcGiaDvGdDt(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : (date('Y').'-'.(date('Y')+1));
+            $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : 'All';
+            $inputs['khuvuc'] = isset($inputs['khuvuc']) ? $inputs['khuvuc'] : '';
+            $inputs['mota'] = isset($inputs['mota']) ? $inputs['mota'] : '';
+            $diabans = DiaBanHd::where('level','H')
+                ->get();
+            $model = GiaDvGdDt::join('diabanhd','diabanhd.district','=','giadvgddt.district')
+                ->select('giadvgddt.*','diabanhd.diaban');
+            if($inputs['nam'] != 'all')
+                $model = $model->where('giadvgddt.nam',$inputs['nam']);
+            if($inputs['district'] != 'All') {
+                $model = $model->where('giadvgddt.district', $inputs['district']);
+                $diabans = DiaBanHd::where('level','H')
+                    ->where('district',$inputs['district'])
+                    ->first();
+            }
+            if($inputs['khuvuc'] != '')
+                $model = $model->where('giadvgddt.khuvuc','like', '%'.$inputs['khuvuc'].'%');
+            if($inputs['mota'] != '')
+                $model = $model->where('giadvgddt.mota','like', '%'.$inputs['mota'].'%');
+
+            $model = $model->get();
+
+            return view('manage.dinhgia.giadvgddt.reports.BcGiaDvGdDt')
+                ->with('model',$model)
+                ->with('inputs',$inputs)
+                ->with('diabans',$diabans)
+                ->with('pageTitle', 'Giá dịch vụ giáo dục đào tạo');
         }else
             return view('errors.notlogin');
     }

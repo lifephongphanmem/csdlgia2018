@@ -10,7 +10,7 @@ class GiaDvGdDt extends Model
     protected $fillable = [
         'id',
         'nam',
-        'diaban',
+        'district',
         'khuvuc',
         'mota',
         'dongia',
