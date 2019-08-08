@@ -97,7 +97,7 @@ class GiaDatDiaBanController extends Controller
                 $modelctnew->giavt4 = (isset($data[$i][$inputs['giavt4']]) && $data[$i][$inputs['giavt4']] != '' ? chkDbl($data[$i][$inputs['giavt4']]) : 0);
                 $modelctnew->giavt5 = (isset($data[$i][$inputs['giavt5']]) && $data[$i][$inputs['giavt5']] != '' ? chkDbl($data[$i][$inputs['giavt5']]) : 0);
                 $modelctnew->hesok = (isset($data[$i][$inputs['hesok']]) && $data[$i][$inputs['hesok']] != '' ? chkDbl($data[$i][$inputs['hesok']]) : 1);
-                $modelctnew->soqd = $data[$i][$inputs['soqd']];
+                $modelctnew->soqd = $inputs['soqd'];
                 $modelctnew->username = session('admin')->name.'('.session('admin')->username.')' ;
                 $modelctnew->thaotac = 'Import';
                 $modelctnew->save();

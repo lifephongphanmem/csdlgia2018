@@ -68,4 +68,9 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    public function index(){
+        return view('system.registers.dangkytk.index')
+            ->with('pageTitle','Đăng ký tài khoản truy cập');
+    }
 }

@@ -356,6 +356,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     @if(can('districts','index'))
                                     <li><a href="{{url('district')}}"> Danh sách đơn vị quản lý</a></li>
                                     @endif
+
                                 @endif
                                 @if(can('towns','index'))
                                 <li><a href="{{url('town')}}"> Danh sách đơn vị</a></li>
@@ -386,7 +387,8 @@ License: You must have a valid license purchased only from themeforest(the above
                             <li><a href="{{url('register')}}"> Tài khoản đăng ký</a></li>
                             @endif
                             @if(session('admin')->sadmin == 'ssa')
-                            <li><a href="{{url('general')}}">Cấu hình hệ thống</a></li>
+                                <li><a href="{{url('danhmucnganhkd')}}">Danh mục ngành nghề kinh doanh</a> </li>
+                                <li><a href="{{url('general')}}">Cấu hình hệ thống</a></li>
                             @endif
                         </ul>
                     </li>

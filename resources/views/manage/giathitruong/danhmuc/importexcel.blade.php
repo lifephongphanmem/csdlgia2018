@@ -42,7 +42,7 @@
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM -->
-                    {!! Form::open(['url'=>'/danhmucgiathitruong/', 'method'=>'post' , 'files'=>true, 'id' => 'create_hscb','enctype'=>'multipart/form-data']) !!}
+                    {!! Form::open(['url'=>'/danhmucgiathitruong/importexcel', 'method'=>'post' , 'files'=>true, 'id' => 'create_hscb','enctype'=>'multipart/form-data']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
                             <!-- Thông tin chung-->
@@ -87,27 +87,27 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Mã hàng hóa<span class="require">*</span></label>
-                                                            {!!Form::text('mahh', 'A', array('id' => 'mahh','class' => 'form-control required'))!!}
+                                                            {!!Form::text('mahh', 'B', array('id' => 'mahh','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Tên hàng hóa<span class="require">*</span></label>
-                                                            {!!Form::text('tenhh', 'B', array('id' => 'tenhh','class' => 'form-control required'))!!}
+                                                            {!!Form::text('tenhh', 'C', array('id' => 'tenhh','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Đặc điểm kinh tế, kỹ thuật, quy cách<span class="require">*</span></label>
-                                                            {!!Form::text('dacdiemkt', 'C', array('id' => 'dacdiemkt','class' => 'form-control required'))!!}
+                                                            {!!Form::text('dacdiemkt', 'D', array('id' => 'dacdiemkt','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Đơn vị tính<span class="require">*</span></label>
-                                                            {!!Form::text('dvt', 'D', array('id' => 'dvt','class' => 'form-control required'))!!}
+                                                            {!!Form::text('dvt', 'E', array('id' => 'dvt','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">

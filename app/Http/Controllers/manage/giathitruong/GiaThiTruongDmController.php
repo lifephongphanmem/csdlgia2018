@@ -20,7 +20,7 @@ class GiaThiTruongDmController extends Controller
             $thongtu = GiaThiTruongTt::where('matt',$inputs['matt'])
                 ->first();
             $districts = District::all();
-            $model = GiaThiTruongDm::join('district','district.mahuyen','=','giathitruongdm.mahuyen')
+            $model = GiaThiTruongDm::leftjoin('district','district.mahuyen','=','giathitruongdm.mahuyen')
                 ->select('giathitruongdm.*','district.tendv')
                 ->where('giathitruongdm.matt',$inputs['matt'])
                 ->get();
@@ -85,7 +85,7 @@ class GiaThiTruongDmController extends Controller
 
     public function importexcel(Request $request){
         if(Session::has('admin')){
-            $inputs=$request->all();
+            $inputs = $request->all();
             $filename = $inputs['mahuyen'] . '_' . getdate()[0];
             $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
             $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
@@ -96,10 +96,9 @@ class GiaThiTruongDmController extends Controller
                 $sheet = $obj->getSheet(0);
                 $data = $sheet->toArray(null, true, true, true);// giữ lại tiêu đề A=>'val';
             });
-
             for ($i = $inputs['tudong']; $i <= $inputs['dendong']; $i++) {
 
-                $modelctnew = new GiaDatDiaBanDm();
+                $modelctnew = new GiaThiTruongDm();
                 $modelctnew->matt = $inputs['matt'];
                 $modelctnew->mahuyen = $inputs['mahuyen'];
                 $modelctnew->manhom = $inputs['manhom'];

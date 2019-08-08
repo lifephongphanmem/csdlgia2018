@@ -100,9 +100,8 @@ License: You must have a valid license purchased only from themeforest(the above
 			</p>
 		</div-->
 		<div class="create-account">
-			<p>Hướng dẫn đăng ký tài khoản?&nbsp;<a href="http://help.csdlgia.vn/dang_ky_tai_khoan" target="_blank">Click here?</a> </p>
 			<p>
-				Bạn chưa có tài khoản?&nbsp;<a data-target="#dangky-doanhnghiep" data-toggle="modal">
+				Bạn chưa có tài khoản?&nbsp;<a href="{{url('dangkytaikhoantruycap')}}">
 					Đăng ký tài khoản </a>
 			</p>
 
@@ -113,138 +112,6 @@ License: You must have a valid license purchased only from themeforest(the above
 <div class="copyright">
 	Copyright &copy;  2016 - {{date('Y')}} LifeSoft <a href="" >Tiện ích hơn - Hiệu quả hơn</a>
 </div>
-
-<!--Modal đăng ký-->
-<div id="dangky-doanhnghiep" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header modal-header-primary">
-				<button type="button" data-dismiss="modal" aria-hidden="true"
-						class="close">&times;</button>
-				<h4 id="modal-header-primary-label" class="modal-title">Đăng ký tài khoản đăng ký giá - kê khai giá, niêm yết giá!!!</h4>
-			</div>
-			<div class="modal-body">
-				<div class="form-horizontal">
-					<div class="form-group">
-						<div class="row" style="text-align: center">
-							<div class="col-md-12" style="text-align: center">
-								<div class="profile-userbuttons">
-									@if(canGeneral('bog','index'))
-									<a href="{{url('dangkytaikhoan?&level=DKG')}}" class="btn blue btn-sm">
-										Doanh nghiệp cung cấp mặt hàng <br>trong danh mục bình ổn giá</a>&nbsp;
-									@endif
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<div class="row" style="text-align: center">
-							<div class="col-md-12" style="text-align: center">
-								<div class="profile-userbuttons">
-									@if(canGeneral('dvlt','index'))
-									<a href="{{url('dangkytaikhoan?&level=DVLT')}}" class="btn default red-stripe">
-										Doanh nghiệp cung cấp dịch vụ lưu trú </a>&nbsp;
-									@endif
-									@if(canGeneral('dvvt','index'))
-									<a class="btn default red-stripe" href="{{url('dangkytaikhoan?&level=DVVT')}}">
-										Doanh nghiệp cung cấp dịch vụ vận tải </a>
-									@endif
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<div class="row">
-							<div class="col-md-12" style="text-align: center">
-								<div class="profile-userbuttons">
-									@if(canGeneral('tpcnte6t','index'))
-									<a class="btn default blue-stripe" href="{{url('dangkytaikhoan?&level=TPCNTE6T')}}"> Doanh nghiêp TPCN cho TE dưới 6 tuổi</a>&nbsp;
-									@endif
-									@if(canGeneral('tacn','index'))
-									<a class="btn default blue-stripe" href="{{url('dangkytaikhoan?&level=TACN')}}">Doanh nghiệp Thức ăn chăn nuôi</a>
-									@endif
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="row">
-							<div class="col-md-12" style="text-align: center">
-								<div class="profile-userbuttons">
-									@if(canGeneral('vlxd','index'))
-									<a class="btn default green-stripe" href="{{url('dangkytaikhoan?&level=VLXD')}}"> Doanh nghiêp cung cấp <br>vật liệu xây dựng</a>&nbsp;
-									@endif
-									@if(canGeneral('xmtxd','index'))
-									<a class="btn default green-stripe" href="{{url('dangkytaikhoan?&level=XMTXD')}}"> Doanh nghiêp cung cấp<br> xi măng, thép xây dựng</a>&nbsp;
-									@endif
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="row">
-							<div class="col-md-12" style="text-align: center">
-								<div class="profile-userbuttons">
-									@if(canGeneral('dvhdtm','index'))
-									<a class="btn default pink-stripe" href="{{url('dangkytaikhoan?&level=DVHDTM')}}"> Doanh nghiêp cung cấp <br>dịch vụ hỗ trợ hoạt động thương mại</a>&nbsp;
-									@endif
-									@if(canGeneral('than','index'))
-									<a class="btn default pink-stripe" href="{{url('dangkytaikhoan?&level=THAN')}}"> Doanh nghiêp cung cấp <br>Than</a>&nbsp;
-									@endif
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="row">
-							<div class="col-md-12" style="text-align: center">
-								<div class="profile-userbuttons">
-									@if(canGeneral('giay','index'))
-									<a class="btn default pink-stripe" href="{{url('dangkytaikhoan?&level=GIAY')}}"> Doanh nghiêp cung cấp <br>giấy in, viết (dạng cuộn),<br> giấy in báo sản xuất trong nước</a>&nbsp;
-									@endif
-									@if(canGeneral('sach','index'))
-									<a class="btn default pink-stripe" href="{{url('dangkytaikhoan?&level=SACH')}}"> Doanh nghiêp cung cấp <br>sách giáo khoa</a>&nbsp;
-									@endif
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="row">
-							<div class="col-md-12" style="text-align: center">
-								<div class="profile-userbuttons">
-									@if(canGeneral('etanol','index'))
-									<a class="btn default pink-stripe" href="{{url('dangkytaikhoan?&level=ETANOL')}}"> Doanh nghiêp cung cấp <br>Etanol nhiên liệu không biến tính; <br>khí tự nhiên hóa lỏng(LNG);<br> khí thiên nhiên nén (CNG)</a>&nbsp;
-									@endif
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="row">
-							<div class="col-md-12" style="text-align: center">
-								<div class="profile-userbuttons">
-									@if(canGeneral('kcbtn','index'))
-									<a class="btn default pink-stripe" href="{{url('dangkytaikhoan?&level=KCBTN')}}">Dịch vụ khám bệnh, chữa bệnh cho người<br> tại cơ sở khám bệnh, chữa bệnh tư nhân; <br>khám bệnh, chữa bệnh theo yêu cầu tại<br> cơ sở khám bệnh, chữa bệnh của nhà nước</a>&nbsp;
-									@endif
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</div>
-			<div class="modal-footer">
-
-				<button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-				<!--a href="{{url('dangkytaikhoan')}}" class="btn green">Đăng ký tài khoản</a-->
-			</div>
-		</div>
-	</div>
-</div>
-<!--end Modol-->
 
 
 <!-- END COPYRIGHT -->

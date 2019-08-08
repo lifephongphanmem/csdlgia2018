@@ -92,7 +92,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Danh mục nhóm <small>&nbsp;hàng hóa dịch vụ </small>
+        Danh mục thông tư <small>&nbsp;giá thị trường </small>
     </h3>
 
     <!-- END PAGE HEADER-->

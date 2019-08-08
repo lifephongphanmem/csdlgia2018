@@ -1,10 +1,10 @@
 @if(canGeneral('kknygia','index'))
     @if(can('kknygia','index'))
         <li class="tooltips" data-container="body" data-placement="right" data-html="true"
-            data-original-title="Giá kê khai của hàng hóa, dịch vụ thuộc dnah mục kê khai giá">
+            data-original-title="Giá kê khai của hàng hóa, dịch vụ thuộc dah mục kê khai giá">
             <a href="">
                 <i class="icon-folder"></i>
-                <span class="title">Kê khai - niêm yết giá</span>
+                <span class="title">Kê khai giá HHDV</span>
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu" style="display: none;">
