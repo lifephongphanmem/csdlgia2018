@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\manage\kekhaidkg;
 
-use App\kkdkgctdf;
+use App\Model\manage\kekhaidkg\kkdkgctdf;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -29,7 +29,7 @@ class KkDkgCtDfController extends Controller
             $modeladd = new kkdkgctdf();
             $modeladd->create($inputs);
             //dd($inputs);
-            $model = kkdkgctdf::where('maxa',$inputs['maxa'])
+            $model = kkdkgctdf::where('mahs',$inputs['mahs'])
                 ->get();
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
@@ -163,7 +163,7 @@ class KkDkgCtDfController extends Controller
             unset($inputs['id']);
             $modeladd->update($inputs);
 
-            $model = kkdkgctdf::where('maxa',$inputs['maxa'])
+            $model = kkdkgctdf::where('mahs',$inputs['mahs'])
                 ->get();
 
             $result['message'] = '<div class="row" id="dsts">';
@@ -226,7 +226,7 @@ class KkDkgCtDfController extends Controller
         if(isset($inputs['id'])){
             $modeladd = kkdkgctdf::where('id',$inputs['id'])->delete();
 
-            $model = kkdkgctdf::where('maxa',$inputs['maxa'])
+            $model = kkdkgctdf::where('mahs',$inputs['mahs'])
                 ->get();
 
             $result['message'] = '<div class="row" id="dsts">';

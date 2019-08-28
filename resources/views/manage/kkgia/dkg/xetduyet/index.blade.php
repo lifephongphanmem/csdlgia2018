@@ -97,27 +97,27 @@
         }
         $(function(){
             $('#nam').change(function() {
-                var ma = '&ma=' + $('#ma').val();
+                var manghe = '&manghe=' + $('#manghe').val();
                 var namhs = '&nam=' + $('#nam').val();
                 var trangthai = '&trangthai=' +  $('#trangthai').val();
                 var mahuyen = '&mahuyen=' + $('#mahuyen').val();
-                var url = '/xetduyetkkdkg?'+ma+namhs+trangthai+mahuyen;
+                var url = '/xetduyetkkdkg?'+manghe+namhs+mahuyen+trangthai;
                 window.location.href = url;
             });
             $('#trangthai').change(function() {
-                var ma = '&ma=' + $('#ma').val();
+                var manghe = '&manghe=' + $('#manghe').val();
                 var namhs = '&nam=' + $('#nam').val();
                 var trangthai = '&trangthai=' +  $('#trangthai').val();
                 var mahuyen = '&mahuyen=' + $('#mahuyen').val();
-                var url = '/xetduyetkkdkg?'+ma+namhs+trangthai+mahuyen;
+                var url = '/xetduyetkkdkg?'+manghe+namhs+trangthai+mahuyen;
                 window.location.href = url;
             });
             $('#mahuyen').change(function() {
-                var ma = '&ma=' + $('#ma').val();
+                var manghe = '&manghe=' + $('#manghe').val();
                 var namhs = '&nam=' + $('#nam').val();
                 var trangthai = '&trangthai=' +  $('#trangthai').val();
                 var mahuyen = '&mahuyen=' + $('#mahuyen').val();
-                var url = '/xetduyetkkdkg?'+ma+namhs+trangthai+mahuyen;
+                var url = '/xetduyetkkdkg?'+manghe+namhs+trangthai+mahuyen;
                 window.location.href = url;
             });
 
@@ -145,6 +145,9 @@
             if($('#lydo').val() != ''){
                 toastr.success("Hồ sơ đã được trả lại!", "Thành công!");
                 $("#frm_tralai").unbind('submit').submit();
+                var btn = document.getElementById('submitTraLai');
+                btn.disabled = true;
+                btn.innerText = 'Loading...'
             }else{
                 toastr.error("Bạn cần nhập lý do trả lại hồ sơ", "Lỗi!!!");
                 $("#frm_tralai").submit(function (e) {
@@ -176,6 +179,9 @@
         }
         function ClickNhanHs(){
             $('#frm_nhanhs').submit();
+            var btn = document.getElementById('submitNhanHs');
+            btn.disabled = true;
+            btn.innerText = 'Loading...'
         }
 
         function confirmNhanHsedit(mahs){
@@ -241,7 +247,7 @@
                 dataType: 'JSON',
                 success: function (data) {
                     if(data.status == 'success') {
-                        $('#lydo').replaceWith(data.message);
+                        $('#showlydo').replaceWith(data.message);
                     }
                 }
             })
@@ -253,7 +259,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin xét duyệt kê khai giá<small>&nbsp;{{$tenmh}}</small>
+        Thông tin xét duyệt<small>&nbsp;{{$inputs['mh']}}</small>
     </h3>
     <div class="row">
         <div class="col-md-2">
@@ -290,7 +296,7 @@
                 </div>
             </div>
         @endif
-        <input hidden  name="ma" id="ma" value="{{$inputs['ma']}}">
+        <input hidden  name="manghe" id="manghe" value="{{$inputs['manghe']}}">
     </div>
 
 
@@ -351,8 +357,6 @@
                                     @if(canShowLyDo($tt->trangthai))
                                         <button type="button" data-target="#lydo-modal" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="viewLyDo({{$tt->id}})"><i class="fa fa-search"></i>&nbsp;Lý do trả lại</button>
                                     @endif
-
-
                                 </td>
                             </tr>
                         @endforeach
@@ -385,12 +389,12 @@
                             <textarea id="lydo" class="form-control" name="lydo" cols="30" rows="8"></textarea>
                         </div>
                         <input type="hidden" name="idtralai" id="idtralai">
-                        <input hidden  name="ma" id="ma" value="{{$inputs['ma']}}">
+                        <input hidden  name="manghe" id="manghe" value="{{$inputs['manghe']}}">
                     </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
-                        <button type="submit" class="btn blue" onclick="confirmTraLai()">Đồng ý</button>
+                        <button type="submit" class="btn blue" onclick="confirmTraLai()" id="submitTraLai">Đồng ý</button>
 
                     </div>
                     {!! Form::close() !!}
@@ -414,7 +418,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
-                    <button type="submit" class="btn blue" onclick="ClickNhanHs()">Đồng ý</button>
+                    <button type="submit" class="btn blue" onclick="ClickNhanHs()" id="submitNhanHs">Đồng ý</button>
                 </div>
                 {!! Form::close() !!}
             </div>
@@ -479,7 +483,7 @@
                     <h4 class="modal-title"><b>Lý do trả lại hồ sơ?</b></h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group" id="lydo">
+                    <div class="form-group" id="showlydo">
 
                     </div>
                 </div>

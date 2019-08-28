@@ -33,6 +33,7 @@ class CreateCompanyTable extends Migration
             $table->string('level')->nullable(); //Phân loại kd dịch vụ gì
             $table->string('avatar')->nullable();
             $table->string('pl')->nullable();
+            $table->string('mahs')->nullable();
 
             $table->string('settingdvvt')->nullable();
             $table->double('vtxk')->default(0);

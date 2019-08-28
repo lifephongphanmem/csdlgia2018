@@ -22,6 +22,7 @@ class GeneralConfigs extends Model
         'thoihanlt',
         'thoihanvt',
         'thoihangs',
-        'thoihantacn'
+        'thoihantacn',
+        'emailql',
     ];
 }

@@ -24,6 +24,7 @@ class CreateKkdkgctTable extends Migration
             $table->string('gialk')->nullable();
             $table->string('giakk')->nullable();
             $table->text('ghichu')->nullable();
+            $table->string('trangthai')->nullable();
             $table->timestamps();
         });
     }

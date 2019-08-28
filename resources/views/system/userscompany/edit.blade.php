@@ -43,7 +43,7 @@
                                         <label class="control-label">Trạng thái</label>
                                         <select class="form-control" name="status" id="status">
                                             <option value="Kích hoạt" {{($model->status == 'Kích hoat' ? 'selected' : '')}}>Kích hoạt</option>
-                                            <option value="Vô hiệu" {{($model->status == 'Vô hiệu' ? 'selected' : '')}}>Vô hiệu</option>
+                                            <option value="Vô hiệu hóa" {{($model->status == 'Vô hiệu hóa' ? 'selected' : '')}}>Vô hiệu hóa</option>
                                         </select>
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Tài khoản truy cập<span class="require">*</span></label>
-                                        {!!Form::text('username', null, array('id' => 'username','class' => 'form-control required', 'readonly'=>'readonly'))!!}
+                                        {!!Form::text('username', null, array('id' => 'username','class' => 'form-control required', 'disabled'))!!}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -62,19 +62,126 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Email</label>
-                                        {!!Form::text('email', null, array('id' => 'email','class' => 'form-control'))!!}
-                                    </div>
-                                </div>
-                            </div>
-
+                            <table id="user" class="table table-bordered table-striped">
+                                <tbody>
+                                <tr>
+                                    <td style="width:15%">
+                                        <b>Tên doanh nghiệp</b>
+                                    </td>
+                                    <td style="width:35%">
+                                <span class="text-muted">{{$modelcompany->tendn}}
+                                </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%">
+                                        <b>Mã số thuế</b>
+                                    </td>
+                                    <td style="width:35%">
+                                <span class="text-muted">{{$modelcompany->maxa}}
+                                </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%">
+                                        <b>Địa chỉ</b>
+                                    </td>
+                                    <td style="width:35%">
+                                <span class="text-muted">{{$modelcompany->diachi}}
+                                </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%">
+                                        <b>Số điện thoại</b>
+                                    </td>
+                                    <td style="width:35%">
+                                <span class="text-muted">{{$modelcompany->tel}}
+                                </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%">
+                                        <b>Số Fax</b>
+                                    </td>
+                                    <td style="width:35%">
+                                <span class="text-muted">{{$modelcompany->fax}}
+                                </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%">
+                                        <b>Email quản lý</b>
+                                    </td>
+                                    <td style="width:35%">
+                                <span class="text-muted">{{$modelcompany->email}}
+                                </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%">
+                                        <b>Nới đăng ký nộp thuế</b>
+                                    </td>
+                                    <td style="width:35%">
+                                <span class="text-muted">{{$modelcompany->noidknopthue}}
+                                </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%">
+                                        <b>Giấy đăng ký kinh doanh</b>
+                                    </td>
+                                    <td style="width:35%">
+                                <span class="text-muted"><a href="{{url('data/doanhnghiep/'.$modelcompany->tailieu)}}" target="_blank">{{$modelcompany->giayphepkd}}</a>
+                                </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%">
+                                        <b>Chức danh</b>
+                                    </td>
+                                    <td style="width:35%">
+                                <span class="text-muted">{{$modelcompany->chucdanh}}
+                                </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%">
+                                        <b>Người ký</b>
+                                    </td>
+                                    <td style="width:35%">
+                                <span class="text-muted">{{$modelcompany->nguoiky}}
+                                </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%">
+                                        <b>Địa danh</b>
+                                    </td>
+                                    <td style="width:35%">
+                                <span class="text-muted">{{$modelcompany->diadanh}}
+                                </span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-striped table-bordered table-hover" id="sample_3">
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Ngành</th>
+                                    <th>Nghề</th>
+                                    <th>Đơn vị nhận hồ sơ</th>
+                                </tr>
+                                @foreach($modellvcc as $key=> $lvcc)
+                                    <tr>
+                                        <td>{{$key+1}}</td>
+                                        <td>{{$lvcc->tennganh}}</td>
+                                        <td>{{$lvcc->tennghe}}</td>
+                                        <td>{{$lvcc->tendv}}</td>
+                                    </tr>
+                                @endforeach
+                            </table>
                         </div>
-
-                    <!-- END FORM-->
                 </div>
             </div>
             <div style="text-align: center">
@@ -98,29 +205,5 @@
                 }
             });
         }
-    </script>
-    <script>
-        jQuery(document).ready(function($) {
-            $('input[name="username"]').change(function(){
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                $.ajax({
-                    type: 'GET',
-                    url: '/checkuser',
-                    data: {
-                        _token: CSRF_TOKEN,
-                        user:$(this).val()
-
-                    },
-                    success: function (respond) {
-                        if(respond != 'ok'){
-                            toastr.error("Bạn cần nhập tài khoản khác", "Tài khoản nhập vào đã tồn tại!!!");
-                            $('input[name="username"]').val('');
-                            $('input[name="username"]').focus();
-                        }
-                    }
-
-                });
-            })
-        }(jQuery));
     </script>
 @stop

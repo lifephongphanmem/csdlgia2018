@@ -2,12 +2,24 @@
 
 @section('custom-style')
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
+    <link type="text/css" rel="stylesheet" href="{{ url('vendors/bootstrap-datepicker/css/datepicker.css') }}">
 @stop
 
 
 @section('custom-script')
     <script type="text/javascript" src="{{url('assets/global/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
     <script type="text/javascript" src="{{url('assets/global/plugins/select2/select2.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('assets/global/plugins/datatables/media/js/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')}}"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <script src="{{url('assets/admin/pages/scripts/table-managed.js')}}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            TableManaged.init();
+        });
+    </script>
+    <script src="{{url('minhtran/jquery.inputmask.bundle.min.js')}}"></script>
 
 @stop
 
@@ -26,204 +38,190 @@
                 </div-->
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    {!! Form::model($model, ['method' => 'PATCH', 'url'=>'thongtindoanhnghiep/'. $model->id, 'class'=>'horizontal-form','id'=>'update_tttaikhoan']) !!}
+                    {!! Form::model($model, ['method' => 'PATCH', 'url'=>'thongtindoanhnghiep/'. $model->id, 'class'=>'horizontal-form','id'=>'update_tttaikhoan','files'=>true]) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
+                            <input type="hidden" name="type" id="type" value="create">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Mã số thuế</label>
-                                        <p style="color: #000088"><b>{{$model->maxa}}</b></p>
+                                        <label class="control-label">Tên doanh nghiệp<span class="require">*</span></label>
+                                        {!!Form::text('tendn', null, array('id' => 'tendn','class' => 'form-control required','autofocus'))!!}
+                                        @if ($errors->any())
+                                            <em class="invalid">{{ $errors->first('tendn') }}</em>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Tên doanh nghiệp<span class="require">*</span></label>
-                                        {!!Form::text('tendn', null, array('id' => 'tendn','class' => 'form-control required'))!!}
+                                        <label class="control-label">Mã số thuế</label>
+                                        {!!Form::text('maxa', null, array('id' => 'maxa','class' => 'form-control required', 'disabled'))!!}
+                                        <input type="hidden" id="maxa" name="maxa" value="{{$model->maxa}}">
+                                        @if ($errors->any())
+                                            <em class="invalid">{{ $errors->first('maxa') }}</em>
+                                        @endif
                                     </div>
                                 </div>
-                                <!--/span-->
-
-                                <!--/span-->
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Số điện thoại trụ sở chính</label>
-                                        {!!Form::text('tel', null, array('id' => 'tel','class' => 'form-control','autofocus'))!!}
+                                        {!!Form::text('tel', null, array('id' => 'tel','class' => 'form-control'))!!}
                                     </div>
                                 </div>
+                                <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Số fax trụ sở chính</label>
                                         {!!Form::text('fax', null, array('id' => 'fax','class' => 'form-control'))!!}
                                     </div>
                                 </div>
+                                <!--/span-->
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Địa chỉ trụ sở<span class="require">*</span></label>
+                                        <label class="control-label">Địa chỉ trụ sở</label>
                                         {!!Form::text('diachi', null, array('id' => 'diachi','class' => 'form-control required'))!!}
+                                        @if ($errors->any())
+                                            <em class="invalid">{{ $errors->first('diachi') }}</em>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Nơi đăng ký nộp thuế<span class="require">*</span></label>
-                                        {!!Form::text('noidknopthue', null, array('id' => 'noidknopthue','class' => 'form-control'))!!}
+                                        <label class="control-label">Email</label>
+                                        {!!Form::text('email', null, array('id' => 'email','class' => 'form-control required'))!!}
+                                        @if ($errors->any())
+                                            <em class="invalid">{{ $errors->first('email') }}</em>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Giấy phép đăng ký kinh doanh<span class="require">*</span></label>
+                                        <label class="control-label">Nơi đăng ký nộp thuế</label>
+                                        {!!Form::text('noidknopthue', null, array('id' => 'noidknopthue','class' => 'form-control required'))!!}
+                                        @if ($errors->any())
+                                            <em class="invalid">{{ $errors->first('noidknopthue') }}</em>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Giấy đăng ký kinh doanh</label>
                                         {!!Form::text('giayphepkd', null, array('id' => 'giayphepkd','class' => 'form-control required'))!!}
+                                        @if ($errors->any())
+                                            <em class="invalid" >{{ $errors->first('giayphepkd') }}</em>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Link chia sẻ giấy phép đăng ký kinh doanh<span class="require">*</span></label>
-                                        {!!Form::text('tailieu', null, array('id' => 'tailieu','class' => 'form-control'))!!}
-                                    </div>
-                                    <p class="help-block">
-                                        <span class="label label-success label-sm">
-                                        Help: &nbsp;</span>
-                                        <a target="_blank" href="http://help.csdlgia.vn/data/help/tienich/upfile/upfile.pdf">
-                                            Hướng dẫn cách chia sẻ giấy phép đăng ký kinh doanh </a>
-                                    </p>
-                                </div>
+
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Chức danh người ký<span class="require">*</span></label>
+                                        <label class="control-label">Chức danh</label>
                                         {!!Form::text('chucdanh', null, array('id' => 'chucdanh','class' => 'form-control required'))!!}
+                                        @if ($errors->any())
+                                            <em class="invalid">{{ $errors->first('chucdanh') }}</em>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Họ và tên người ký<span class="require">*</span></label>
-                                        {!!Form::text('nguoiky', null, array('id' => 'nguoiky','class' => 'form-control'))!!}
+                                        <label class="control-label">Họ tên người ký</label>
+                                        {!!Form::text('nguoiky', null, array('id' => 'nguoiky','class' => 'form-control required'))!!}
+                                        @if ($errors->any())
+                                            <em class="invalid">{{ $errors->first('nguoiky') }}</em>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Địa danh<span class="require">*</span></label>
+                                        <label class="control-label">Địa danh</label>
                                         {!!Form::text('diadanh', null, array('id' => 'diadanh','class' => 'form-control required'))!!}
+                                        @if ($errors->any())
+                                            <em class="invalid">{{ $errors->first('diadanh') }}</em>
+                                        @endif
                                     </div>
                                 </div>
-
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Email quản lý<span class="require">*</span></label>
-                                        {!!Form::email('email',null, array('id' => 'email','class' => 'form-control required'))!!}
+                                        <label class="control-label">Giấy đăng ký kinh doanh</label>
+                                        <a href="{{url('data/doanhnghiep/'.$model->tailieu)}}" target="_blank">{{$model->giayphepkd}}</a>
+                                        <input name="tailieu" id="tailieu" type="file">
+                                        @if ($errors->any())
+                                            <em class="invalid">{{ $errors->first('tailieu') }}</em>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
+                            {{--<div class="row">--}}
+                            {{--<div class="col-md-6">--}}
+                            {{--<div class="form-group">--}}
+                            {{--<label class="control-label">Username</label>--}}
+                            {{--{!!Form::text('username', null, array('id' => 'username','class' => 'form-control required'))!!}--}}
+                            {{--@if ($errors->any())--}}
+                            {{--<em class="invalid">{{ $errors->first('username') }}</em>--}}
+                            {{--@endif--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-md-6">--}}
+                            {{--<div class="form-group">--}}
+                            {{--<label class="control-label">Password</label>--}}
+                            {{--{!!Form::text('password', null, array('id' => 'password','class' => 'form-control required'))!!}--}}
+                            {{--@if ($errors->any())--}}
+                            {{--<em class="invalid">{{ $errors->first('password') }}</em>--}}
+                            {{--@endif--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
                             <div class="row">
-                                <input type="hidden" name="mahuyen" id="mahuyen" value="{{$model->mahuyen}}">
-                                <input type="hidden" name="maxa" id="maxa" value="{{$model->maxa}}">
-                                <input type="hidden" name="level" id="level" value="{{$model->level}}">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <button type="button" data-target="#modal-create" data-toggle="modal" class="btn btn-success btn-xs"><i class="fa fa-plus"></i>&nbsp;Thêm mới thông tin lĩnh vực kinh doanh</button>
+                                        &nbsp;
+                                    </div>
+                                </div>
                             </div>
-                            @if($model->level == 'DVVT')
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Cung cấp dịch vụ</label>
-                                            <div class="input-group">
-                                                <div class="icheck-inline">
-                                                    <label>
-                                                        <input type="checkbox" value="1" {{ (isset($settingdvvt->dvvt->vtxk) && $settingdvvt->dvvt->vtxk == 1) ? 'checked' : '' }} name="roles[dvvt][vtxk]"> Vận tải xe khách </label>
-                                                    <label>
-                                                        <input type="checkbox" value="1" {{(isset($settingdvvt->dvvt->vtxb) && $settingdvvt->dvvt->vtxb == 1) ? 'checked' : '' }} name="roles[dvvt][vtxb]"> Vận tải xe buýt </label>
-                                                    <label>
-                                                        <input type="checkbox" value="1" {{(isset($settingdvvt->dvvt->vtxtx) && $settingdvvt->dvvt->vtxtx == 1) ? 'checked' : '' }} name="roles[dvvt][vtxtx]"> Vận tải xe taxi </label>
-                                                    <label>
-                                                        <input type="checkbox" value="1" {{(isset($settingdvvt->dvvt->vtch) && $settingdvvt->dvvt->vtch == 1) ? 'checked' : '' }} name="roles[dvvt][vtch]"> Vận tải chở hàng</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="row" id="dsts">
+                                <div class="col-md-12">
+                                    <table class="table table-striped table-bordered table-hover" id="sample_3">
+                                        <thead>
+                                        <tr>
+                                            <th width="2%" style="text-align: center">STT</th>
+                                            <th style="text-align: center">Mã ngành</th>
+                                            <th style="text-align: center">Tên ngành</th>
+                                            <th style="text-align: center">Mã nghề</th>
+                                            <th style="text-align: center">Tên nghề</th>
+                                            <th style="text-align: center">Đơn vị quản lý</th>
+                                            <th style="text-align: center">Thao tác</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="ttts">
+                                        @foreach($modellvcc as $key=>$lvcc)
+                                            <tr>
+                                                <td>{{$key+1}}</td>
+                                                <td>{{$lvcc->manganh}}</td>
+                                                <td>{{$lvcc->tennganh}}</td>
+                                                <td>{{$lvcc->manghe}}</td>
+                                                <td>{{$lvcc->tennghe}}</td>
+                                                <td>{{$lvcc->tendv}}</td>
+                                                <td>
+                                                    <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getidedit({{$lvcc->id}});" ><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>
+                                                    <button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid({{$lvcc->id}});" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
-                            @elseif($model->level == 'DKG')
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <input type="checkbox" value="1" name="roles[dkg][xangdau]" {{ (isset($loaihinhhd->dkg->xangdau) && $loaihinhhd->dkg->xangdau == 1) ? 'checked' : '' }} class="form-control"> Xăng dầu
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <input type="checkbox" value="1" name="roles[dkg][dien]" {{ (isset($loaihinhhd->dkg->dien) && $loaihinhhd->dkg->dien == 1) ? 'checked' : '' }} class="form-control"> Điện bán lẻ
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <input type="checkbox" value="1" name="roles[dkg][khidau]" {{ (isset($loaihinhhd->dkg->khidau) && $loaihinhhd->dkg->khidau == 1) ? 'checked' : '' }} class="form-control"> Khí dầu mỏ hóa lỏng
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <input type="checkbox" value="1" name="roles[dkg][phan]" {{ (isset($loaihinhhd->dkg->phan) && $loaihinhhd->dkg->phan == 1) ? 'checked' : '' }} class="form-control"> Phân đạm urê; phân NPK
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <input type="checkbox" value="1" name="roles[dkg][thuocbvtv]" {{ (isset($loaihinhhd->dkg->thuocbvtv) && $loaihinhhd->dkg->thuocbvtv == 1) ? 'checked' : '' }}> Thuốc bảo vệ thực vật
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <input type="checkbox" value="1" name="roles[dkg][vacxingsgc]" {{ (isset($loaihinhhd->dkg->vacxingsgc) && $loaihinhhd->dkg->vacxingsgc == 1) ? 'checked' : '' }}> Vắc-xin phòng bệnh gia súc gia cầm
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <input type="checkbox" value="1" name="roles[dkg][muoi]" {{ (isset($loaihinhhd->dkg->muoi) && $loaihinhhd->dkg->muoi == 1) ? 'checked' : '' }}> Muối ăn
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <input type="checkbox" value="1" name="roles[dkg][suate6t]" {{ (isset($loaihinhhd->dkg->suate6t) && $loaihinhhd->dkg->suate6t == 1) ? 'checked' : '' }}> Sữa trẻ em dưới 6 tuổi
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <input type="checkbox" value="1" name="roles[dkg][duong]" {{ (isset($loaihinhhd->dkg->duong) && $loaihinhhd->dkg->duong == 1) ? 'checked' : '' }}> Đường ăn
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <input type="checkbox" value="1" name="roles[dkg][thocgao]" {{ (isset($loaihinhhd->dkg->thocgao) && $loaihinhhd->dkg->thocgao == 1) ? 'checked' : '' }}> Thóc, gạo tẻ thường
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <input type="checkbox" value="1" name="roles[dkg][thuocpcb]" {{ (isset($loaihinhhd->dkg->thuocpcb) && $loaihinhhd->dkg->thuocpcb == 1) ? 'checked' : '' }}> Thuốc phòng, chữa bệnh cho người
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
+                            </div>
                         </div>
                     <!-- END FORM-->
                 </div>
@@ -252,5 +250,6 @@
             });
         }
     </script>
+    @include('manage.kkgia.ttdn.include.js-modal')
 
 @stop

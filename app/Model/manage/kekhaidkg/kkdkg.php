@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model\manage\kekhaidkg;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,6 +9,7 @@ class kkdkg extends Model
     protected $table = 'kkdkg';
     protected $fillable = [
         'id',
+        'congbo',
         'mahs',
         'maxa',
         'mahuyen',

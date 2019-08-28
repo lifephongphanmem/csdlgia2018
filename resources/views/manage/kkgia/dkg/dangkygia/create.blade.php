@@ -59,7 +59,7 @@
                     gialk: $('#gialk').val(),
                     giakk: $('#giakk').val(),
                     dvt: $('#dvt').val(),
-                    maxa: $('#maxa').val(),
+                    mahs: $('#mahs').val()
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -110,7 +110,7 @@
                     giakk: $('#giakkedit').val(),
                     dvt: $('#dvtedit').val(),
                     id: $('#idedit').val(),
-                    maxa: $('#maxa').val()
+                    mahs: $('#mahs').val()
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -139,7 +139,7 @@
                 data: {
                     _token: CSRF_TOKEN,
                     id: $('input[name="iddelete"]').val(),
-                    maxa: $('input[name="maxa"]').val(),
+                    mahs: $('input[name="mahs"]').val(),
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -164,7 +164,8 @@
 
 
     <h3 class="page-title">
-        {{$modeldn->tendn}} kê khai giá <small> thêm mới</small>
+        {{$dmnghe->tennghe}} <small> thêm mới</small>
+        <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -182,16 +183,15 @@
 
                     <div class="form-body">
                         <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group"><label for="selGender" class="control-label">Thực hiện theo</label>
-                                    <div>
-                                        <textarea id="theoqd" class="form-control" name="theoqd" cols="30" rows="5"
-                                        >{{isset($modelcb) ? $modelcb->theoqd : '' }}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {{--<div class="row">--}}
+                            {{--<div class="col-md-12">--}}
+                                {{--<div class="form-group"><label for="selGender" class="control-label">Thực hiện theo</label>--}}
+                                    {{--<div>--}}
+                                        {{--<textarea id="theoqd" class="form-control" name="theoqd" cols="30" rows="5">{{isset($modelcb) ? $modelcb->theoqd : '' }}</textarea>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -206,7 +206,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Ngày thực hiện mức giá kê khai<span class="require">*</span></label>
                                     <!--input type="date" name="ngayhieuluc" id="ngayhieuluc" class="form-control required"-->
-                                    {!!Form::text('ngayhieuluc',$ngayhieuluc, array('id' => 'ngayhieuluc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required','onchange'=>"checkngay()"))!!}
+                                    {!!Form::text('ngayhieuluc',null, array('id' => 'ngayhieuluc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required','onchange'=>"checkngay()"))!!}
                                 </div>
                             </div>
                             <!--/span-->
@@ -226,14 +226,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Số công văn liền kề</label>
-                                    {!!Form::text('socvlk',(isset($modelcb) ? $modelcb->socv : ''), array('id' => 'socvlk','class' => 'form-control'))!!}
+                                    {!!Form::text('socvlk',(isset($modellk) ? $modellk->socv : ''), array('id' => 'socvlk','class' => 'form-control'))!!}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Ngày nhập số công văn liền kề<span class="require">*</span></label>
                                     <!--input type="date" name="ngaycvlk" id="ngaycvlk" class="form-control" value="{{isset($modelcb) ? $modelcb->ngaynhap : '' }}"-->
-                                    {!!Form::text('ngaycvlk',(isset($modelcb) ? date('d/m/Y',  strtotime($modelcb->ngaynhap)) : ''), array('id' => 'ngaycvlk','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
+                                    {!!Form::text('ngaycvlk',(isset($modellk) ? date('d/m/Y',  strtotime($modellk->ngaynhap)) : ''), array('id' => 'ngaycvlk','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
                                 </div>
                             </div>
                         </div>
@@ -242,7 +242,7 @@
                                 <div class="form-group"><label for="selGender" class="control-label">Phân tích nguyên nhân điều chỉnh tăng/giảm giá kê khai của từng mặt hàng</label>
                                     <div>
                                         <textarea id="ghichu" class="form-control" name="ghichu" cols="30" rows="5"
-                                        >{{isset($modelcb) ? $modelcb->ghichu : '' }}</textarea>
+                                        >{{isset($modellk) ? $modellk->ghichu : '' }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -255,11 +255,10 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" name="maxa" id="maxa" value="{{$maxa}}">
-                        <input type="hidden" name="phanloai" id="phanloai" value="{{$ma}}">
-                        <input type="hidden" name="ma" id="ma" value="{{$ma}}">
-                        <input type="hidden" name="mahuyen" id="mahuyen" value="{{$modeldn->mahuyen}}">
-                        <input type="hidden" name="tendn" id="tendn" value="{{$modeldn->tendn}}">
+                        <input type="text" name="maxa" id="maxa" value="{{$modeldn->maxa}}">
+                        <input type="text" name="phanloai" id="phanloai" value="{{$inputs['manghe']}}">
+                        <input type="text" name="mahs" id="mahs" value="{{$inputs['mahs']}}">
+                        <input type="text" name="mahuyen" id="mahuyen" value="{{$modeldn->mahuyen}}">
                                 <!--/row-->
                         <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
 
@@ -309,7 +308,7 @@
                 </div>
             </div>
             <div style="text-align: center">
-                <a href="{{url('hosokkdkg?&ma='.$ma.'&masothue='.$maxa)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('hosokkdkg?&manghe='.$inputs['manghe'].'&maxa='.$inputs['maxa'])}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
             </div>

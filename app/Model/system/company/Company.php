@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model\system\company;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,6 +20,7 @@ class Company extends Model
         'chucdanh',
         'nguoiky',
         'noidknopthue',
+        'mahs',
 
         'ghichu',
         'trangthai',

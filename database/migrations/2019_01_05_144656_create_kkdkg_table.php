@@ -34,6 +34,7 @@ class CreateKkdkgTable extends Migration
             $table->string('thoihan')->nullable();
             $table->string('phanloai')->nullable();
             $table->text('ghichu')->nullable();
+            $table->string('congbo')->nullable();
             // file đính kèm
             $table->string('ipt1')->nullable();
             $table->string('ipf1')->nullable();

@@ -5,7 +5,20 @@ Route::post('setting','GeneralConfigsController@updatesetting');
 
 Route::resource('district','DistrictController');
 Route::resource('town','TownController');
-Route::resource('company','CompanyController');
+
+Route::get('company','system\company\CompanyController@index');
+Route::get('company/create','system\company\CompanyController@create');
+Route::post('company','system\company\CompanyController@store');
+Route::get('company/{id}/edit','system\company\CompanyController@edit');
+Route::patch('company/{id}','system\company\CompanyController@update');
+
+Route::get('companylvcc/getmanghe','system\company\CompanyLvCcController@getmanghe');
+Route::get('companylvcc/getdvql','system\company\CompanyLvCcController@getdvql');
+Route::get('companylvcc/edit','system\company\CompanyLvCcController@edit');
+Route::get('companylvcc/update','system\company\CompanyLvCcController@update');
+Route::get('companylvcc/store','system\company\CompanyLvCcController@store');
+Route::get('companylvcc/delete','system\company\CompanyLvCcController@delete');
+
 
 //Route::resource('xetduyet_thaydoi_ttdoanhnghiep','XdTdTtDnController');
 //Route::post('xetduyet_thaydoi_ttdoanhnghiep/tralai','XdTdTtDnController@tralai');
@@ -62,7 +75,21 @@ Route::get('danhmucnghekd/edit','system\dmnganhnghekd\DmNgheKdController@edit');
 Route::post('danhmucnghekd/update','system\dmnganhnghekd\DmNgheKdController@update');
 
 //Đăng ký tài khoản
-Route::get('dangkytaikhoantruycap','Auth\RegisterController@index');
+Route::get('dangkytaikhoantruycap','Auth\RegisterController@create');
+Route::post('dangkytaikhoantruycap','Auth\RegisterController@store');
+Route::patch('dangkytaikhoantruycap/{id}/update','Auth\RegisterController@update');
+Route::get('ajax/checkuser','AjaxController@checkusername');
+Route::get('ajax/checkmasothue','AjaxController@checkmasothue');
+Route::get('searchtkdangky','Auth\RegisterController@searchindex');
+Route::post('searchtkdangky','Auth\RegisterController@search');
+
+Route::get('dangkytaikhoantruycap/checkmadangky','Auth\RegisterController@checkmadk');
+Route::post('dangkytaikhoantruycap/checkmadangky','Auth\RegisterController@submitcheckmadk');
+
+Route::get('register','Auth\RegisterController@index');
+Route::get('register/{id}','Auth\RegisterController@show');
+Route::post('register/tralai','Auth\RegisterController@tralai');
+Route::post('register/kichhoat','Auth\RegisterController@kichhoat');
 
 
 ?>

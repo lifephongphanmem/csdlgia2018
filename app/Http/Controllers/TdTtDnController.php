@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\District;
+use App\GeneralConfigs;
+use App\Jobs\SendMail;
+use App\Jobs\SendMailTtDnTd;
 use App\Town;
 use App\TtDnTd;
-use App\Company;
+use App\Model\system\company\Company;
+use App\Model\system\company\CompanyLvCc;
+use App\TtDnTdCt;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,38 +21,15 @@ class TdTtDnController extends Controller
 {
     public function index(Request $request){
         if (Session::has('admin')) {
-            if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T') {
+            if(session('admin')->level == 'T') {
                 if (can('ttdn', 'approve')) {
                     $inputs = $request->all();
                     $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CD';
-                    $inputs['level'] = isset($inputs['level']) ? $inputs['level'] : '';
-                    $modeldvql = District::all();
-                    if(session('admin')->level == 'X') {
-                        $modeldv = Town::where('maxa',session('admin')->maxa)->get();
-                        $inputs['maxa'] = session('admin')->maxa;
-                        $inputs['mahuyen'] = session('admin')->mahuyen;
-                    }else {
-                        if(session('admin')->level == 'T') {
-                            $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldvql->first()->mahuyen;
-                            $modeldv = Town::where('mahuyen',$inputs['mahuyen'])->get();
-                        }else {
-                            $inputs['mahuyen'] = session('admin')->mahuyen;
-                            $modeldv = Town::where('mahuyen', session('admin')->mahuyen)->get();
-                        }
-                        $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : (count($modeldv)> 0 ? $modeldv->first()->maxa : '');
-                    }
-                    if ($inputs['level'] != '') {
-                        $model = TtDnTd::where('trangthai', $inputs['trangthai'])
-                            ->where('level', $inputs['level'])
-                            ->where('mahuyen',$inputs['maxa'])
-                            ->get();
-                    }else
-                        $model = array();
+                    $model = TtDnTd::where('trangthai', $inputs['trangthai'])
+                        ->get();
                     return view('system.xdtdttdn.index')
                         ->with('model', $model)
                         ->with('inputs', $inputs)
-                        ->with('modeldv', $modeldv)
-                        ->with('modeldvql',$modeldvql)
                         ->with('pageTitle', 'Xét duyệt thông tin doanh nghiệp thay đổi');
                 } else
                     return view('errors.perm');
@@ -59,24 +41,30 @@ class TdTtDnController extends Controller
 
     public function show($id){
         if (Session::has('admin')) {
-            if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T') {
+            if(session('admin')->level == 'T') {
                 if (can('ttdn', 'approve')) {
+
                     $modeltttd = TtDnTd::findOrFail($id);
-                    $settingdvvttd = !empty($modeltttd->settingdvvt) ? json_decode($modeltttd->settingdvvt) : '';
-                    $model = Company::where('maxa', $modeltttd->maxa)
-                        ->where('level', $modeltttd->level)
+                    $modeltttdct = TtDnTdCt::Leftjoin('town', 'town.maxa', '=', 'ttdntdct.mahuyen')
+                        ->join('dmnganhkd', 'dmnganhkd.manganh', '=', 'ttdntdct.manganh')
+                        ->join('dmnghekd', 'dmnghekd.manghe', '=', 'ttdntdct.manghe')
+                        ->select('ttdntdct.*', 'town.tendv', 'dmnganhkd.tennganh', 'dmnghekd.tennghe')
+                        ->where('ttdntdct.maxa', $modeltttd->maxa)
+                        ->get();
+                    $model = Company::where('maxa',$modeltttd->maxa)
                         ->first();
-                    $settingdvvt = !empty($model->settingdvvt) ? json_decode($model->settingdvvt) : '';
-                    $model_cqcq = Town::where('maxa', $modeltttd->mahuyen)
-                        ->first();
-                    $model->tencqcq = $model_cqcq->tendv;
-                    $modeltttd->tencqcq = $model_cqcq->tendv;
+                    $modellvcc = CompanyLvCc::Leftjoin('town','town.maxa','=','companylvcc.mahuyen')
+                        ->join('dmnganhkd','dmnganhkd.manganh','=','companylvcc.manganh')
+                        ->join('dmnghekd','dmnghekd.manghe','=','companylvcc.manghe')
+                        ->select('companylvcc.*','town.tendv','dmnganhkd.tennganh','dmnghekd.tennghe')
+                        ->where('companylvcc.maxa',$modeltttd->maxa)
+                        ->get();
 
                     return view('system.xdtdttdn.show')
                         ->with('model', $model)
                         ->with('modeltttd', $modeltttd)
-                        ->with('settingdvvt', $settingdvvt)
-                        ->with('settingdvvttd', $settingdvvttd)
+                        ->with('modellvcc',$modellvcc)
+                        ->with('modeltttdct',$modeltttdct)
                         ->with('pageTitle', 'Xét duyệt thông tin doanh nghiệp thay đổi');
                 } else
                     return view('errors.perm');
@@ -88,31 +76,25 @@ class TdTtDnController extends Controller
 
     public function tralai(Request $request){
         if (Session::has('admin')) {
-            if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T') {
+            if(session('admin')->level == 'T') {
                 if (can('ttdn', 'approve')) {
                     $input = $request->all();
                     $model = TtDnTd::where('id', $input['idtralai'])->first();
                     $model->lydo = $input['lydo'];
                     $model->trangthai = 'BTL';
+                    $model->save();
                     if ($model->save()) {
-                        $tencqcq = Town::where('maxa', $model->mahuyen)->first();
-                        $dn = Company::where('maxa', $model->maxa)
-                            ->where('level', $model->level)
+                        $modeldn = Company::where('maxa', $model->maxa)
                             ->first();
-                        $data = [];
-                        $data['tendn'] = $dn->tendn;
-                        $data['tg'] = Carbon::now()->toDateTimeString();
-                        $data['tencqcq'] = $tencqcq->tendv;
-                        $data['lydo'] = $input['lydo'];
-                        $a = $dn->email;
-                        $b = $dn->tendn;
-                        Mail::send('mail.replychangettdn', $data, function ($message) use ($a, $b) {
-                            $message->to($a, $b)
-                                ->subject('Thông báo không xét duyệt thay đổi thông tin doanh nghiệp');
-                            $message->from('phanmemcsdlgia@gmail.com', 'Phần mềm CSDL giá');
-                        });
+                        $modeldv = GeneralConfigs::first();
+                        $tg = getDateTime(Carbon::now()->toDateTimeString());
+                        $contentdn = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã trả lại yêu cầu thay đổi thông tin doanh nghiệp !!!';
+                        $contentht = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã trả lại yêu cầu thay đổi thông tin doanh nghiệp '.$modeldn->tendn.' - mã số thuế '.$modeldn->maxa.'. Lý do trả lại:'.$input['lydo'].' !!!';
+                        $run = new SendMail($modeldn,$contentdn,$modeldv,$contentht);
+                        $run->handle();
+                        //dispatch($run);
                     };
-                    return redirect('xetduyettdttdn');
+                    return redirect('xetduyettdttdn?&trangthai=BTL');
                 } else
                     return view('errors.perm');
             }else
@@ -123,29 +105,36 @@ class TdTtDnController extends Controller
 
     public function duyet($id){
         if (Session::has('admin')) {
-            if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T') {
+            if(session('admin')->level == 'T') {
                 if (can('ttdn', 'approve')) {
                     $model = TtDnTd::findOrFail($id);
                     $inputs = $model->toArray();
                     unset($inputs['id']);
-                    $modeldn = Company::where('level', $model->level)
-                        ->where('maxa', $model->maxa)
-                        ->where('mahuyen', $model->mahuyen)
+                    $modeldn = Company::where('maxa', $model->maxa)
                         ->first();
-                    $modeldn->update($inputs);
-                    $tencqcq = Town::where('maxa', $model->mahuyen)->first();
-                    $data = [];
-                    $data['tendn'] = $modeldn->tendn;
-                    $data['tg'] = Carbon::now()->toDateTimeString();
-                    $data['tencqcq'] = $tencqcq->tendv;
-                    $a = $model->email;
-                    $b = $model->tendn;
-                    Mail::send('mail.successchangettdn', $data, function ($message) use ($a, $b) {
-                        $message->to($a, $b)
-                            ->subject('Thông báo duyệt thay đổi thông tin doanh nghiệp');
-                        $message->from('phanmemcsdlgia@gmail.com', 'Phần mềm CSDL giá');
-                    });
+                    if($modeldn->update($inputs)){
+                        $modelctdel = CompanyLvCc::where('maxa',$model->maxa)->delete();
+                        $modelctdf = TtDnTdCt::where('maxa',$model->maxa);
+                        foreach($modelctdf->get() as $ctdf){
+                            $modelct = new CompanyLvCc();
+                            $modelct->maxa = $ctdf->maxa;
+                            $modelct->manganh = $ctdf->manganh;
+                            $modelct->manghe = $ctdf->manghe;
+                            $modelct->mahuyen = $ctdf->mahuyen;
+                            $modelct->trangthai = 'XD';
+                            $modelct->save();
+                        }
+                        $modelctdf->delete();
+                    }
                     $model->delete();
+                    //send mail
+                    $modeldv = GeneralConfigs::first();
+                    $tg = getDateTime(Carbon::now()->toDateTimeString());
+                    $contentdn = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã duyệt yêu cầu thay đổi thông tin doanh nghiệp !!!';
+                    $contentht = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã duyệt yêu cầu thay đổi thông tin doanh nghiệp '.$modeldn->tendn.' - mã số thuế '.$modeldn->maxa.' !!!';
+                    $run = new SendMail($modeldn,$contentdn,$modeldv,$contentht);
+                    $run->handle();
+                    //dispatch($run);
                     return redirect('xetduyettdttdn');
                 } else
                     return view('errors.perm');

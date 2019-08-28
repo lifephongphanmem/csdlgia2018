@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\system\company\Company;
+use App\Model\system\company\CompanyLvCc;
 use App\District;
 use App\Town;
 use App\Users;
@@ -16,36 +18,15 @@ class UsersCompanyController extends Controller
             if (can('users','index')) {
                 if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                     $inputs = $request->all();
-                    $inputs['level'] = isset($inputs['level']) ? $inputs['level'] : '';
-                    $model = Users::where('level', $inputs['level'])
-                        ->orderBy('id', 'desc');
-
-                    $modeldvql = District::all();
-                    if(session('admin')->level == 'X') {
-                        $modeldv = Town::where('maxa',session('admin')->maxa)->get();
-                        $inputs['maxa'] = session('admin')->maxa;
-                        $inputs['mahuyen'] = session('admin')->mahuyen;
-                    }else {
-                        if(session('admin')->level == 'T') {
-                            $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldvql->first()->mahuyen;
-                            $modeldv = Town::where('mahuyen',$inputs['mahuyen'])->get();
-                        }else {
-                            $inputs['mahuyen'] = session('admin')->mahuyen;
-                            $modeldv = Town::where('mahuyen', session('admin')->mahuyen)->get();
-                        }
-                        $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : (count($modeldv)> 0 ? $modeldv->first()->maxa : '');
-                    }
-
-                    $model = $model->where('mahuyen',$inputs['maxa'])
+                    $model = Users::where('level', 'DN')
+                        ->where('status','Kích hoạt')
+                        ->OrWhere('status','Vô hiệu hóa')
+                        ->orderBy('id', 'desc')
                         ->get();
-                    $ttdv = Town::where('maxa',$inputs['maxa'])->first();
+
 
                     return view('system.userscompany.index')
                         ->with('model', $model)
-                        ->with('inputs', $inputs)
-                        ->with('modeldv', $modeldv)
-                        ->with('modeldvql',$modeldvql)
-                        ->with('ttdv',$ttdv)
                         ->with('pageTitle', 'Danh sách tài khoản doanh nghiệp');
                 }else
                     return view('errors.perm');
@@ -59,8 +40,18 @@ class UsersCompanyController extends Controller
         if (Session::has('admin')) {
 
             $model = Users::findOrFail($id);
+            $modelcompany = Company::where('maxa',$model->maxa)
+                ->first();
+            $modellvcc = CompanyLvCc::join('town', 'town.maxa', '=', 'companylvcc.mahuyen')
+                ->join('dmnganhkd', 'dmnganhkd.manganh', '=', 'companylvcc.manganh')
+                ->join('dmnghekd', 'dmnghekd.manghe', '=', 'companylvcc.manghe')
+                ->select('companylvcc.*', 'town.tendv', 'dmnganhkd.tennganh', 'dmnghekd.tennghe')
+                ->where('companylvcc.maxa', $model->maxa)
+                ->get();
             return view('system.userscompany.edit')
                 ->with('model', $model)
+                ->with('modelcompany',$modelcompany)
+                ->with('modellvcc',$modellvcc)
                 ->with('pageTitle', 'Chỉnh sửa thông tin tài khoản doanh nghiệp');
         } else
             return view('errors.notlogin');
@@ -75,7 +66,7 @@ class UsersCompanyController extends Controller
                     $input['password'] = md5($input['newpass']);
                 $model->update($input);
 
-                return redirect('userscompany?&level='.$model->level);
+                return redirect('userscompany');
             }else
                 return view('errors.noperm');
 

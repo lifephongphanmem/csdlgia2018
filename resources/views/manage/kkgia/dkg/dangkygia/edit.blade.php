@@ -164,7 +164,8 @@
 
 
     <h3 class="page-title">
-        {{$modeldn->tendn}} kê khai giá <small> thêm mới</small>
+        {{$dmnghe->tennghe}} <small> chỉnh sửa</small>
+        <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -177,21 +178,21 @@
                 </div-->
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    {!! Form::model($model, ['method' => 'PATCH', 'url'=>'kkdkg/'. $model->id, 'class'=>'horizontal-form','id'=>'update_kkdkg', 'files'=>true]) !!}
+                    {!! Form::model($model, ['method' => 'PATCH', 'url'=>'hosokkdkg/'. $model->id, 'class'=>'horizontal-form','id'=>'update_kkdkg', 'files'=>true]) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
                     <div class="form-body">
                         <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group"><label for="selGender" class="control-label">Thực hiện theo</label>
-                                    <div>
-                                        <textarea id="thqd" class="form-control" name="thqd" cols="30" rows="5"
-                                        >{{$model->theoqd}}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {{--<div class="row">--}}
+                            {{--<div class="col-md-12">--}}
+                                {{--<div class="form-group"><label for="selGender" class="control-label">Thực hiện theo</label>--}}
+                                    {{--<div>--}}
+                                        {{--<textarea id="thqd" class="form-control" name="thqd" cols="30" rows="5"--}}
+                                        {{-->{{$model->theoqd}}</textarea>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -249,12 +250,10 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}">
-                        <input type="hidden" name="maxa" id="maxa" value="{{$model->maxa}}">
-                        <input type="hidden" name="phanloai" id="phanloai" value="{{$model->phanloai}}">
-                        <input type="hidden" name="ma" id="ma" value="{{$model->phanloai}}">
-                        <input type="hidden" name="mahuyen" id="mahuyen" value="{{$modeldn->mahuyen}}">
-                        <input type="hidden" name="tendn" id="tendn" value="{{$modeldn->tendn}}">
+                        <input type="text" name="mahs" id="mahs" value="{{$model->mahs}}">
+                        <input type="text" name="maxa" id="maxa" value="{{$model->maxa}}">
+                        <input type="text" name="phanloai" id="phanloai" value="{{$model->phanloai}}">
+                        <input type="text" name="mahuyen" id="mahuyen" value="{{$modeldn->mahuyen}}">
                                 <!--/row-->
                         <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
 
@@ -306,7 +305,7 @@
 
             </div>
             <div style="text-align: center">
-                <a href="{{url('hosokkdkg?&ma='.$model->phanloai.'&masothue='.$model->maxa)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('hosokkdkg?&manghe='.$model->phanloai.'&maxa='.$model->maxa)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
             </div>

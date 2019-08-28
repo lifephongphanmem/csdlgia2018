@@ -26,6 +26,6 @@ class Users extends Model
         'question',
         'answer',
         'ttnguoitao',
-        'phanloai'
+        'lydo'
     ];
 }

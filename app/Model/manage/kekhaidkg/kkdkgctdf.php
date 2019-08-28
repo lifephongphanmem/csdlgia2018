@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model\manage\kekhaidkg;
 
 use Illuminate\Database\Eloquent\Model;
 

@@ -1,16 +1,16 @@
 <?php
 Route::get('','HomeController@index');
-Route::get('/ajax/checkngay','AjaxController@checkngay');
-Route::get('/ajax/checkngaykk','AjaxController@checkngaykk');
-Route::get('/ajax/checkusername','AjaxController@checkusername');
-Route::get('/ajax/checkmaqhns','AjaxController@checkmaqhns');
-Route::get('/ajax/checkmasothue','AjaxController@checkmasothue');
-Route::get('/ajax/registerthongtin','AjaxController@registerthongtin');
-Route::get('/ajax/getTown','AjaxController@getTown');
-Route::get('ajax/reggetper','AjaxController@reggetper');
+//Route::get('/ajax/checkngay','AjaxController@checkngay');
+//Route::get('/ajax/checkngaykk','AjaxController@checkngaykk');
+//Route::get('/ajax/checkusername','AjaxController@checkusername');
+//Route::get('/ajax/checkmaqhns','AjaxController@checkmaqhns');
+//Route::get('/ajax/checkmasothue','AjaxController@checkmasothue');
+//Route::get('/ajax/registerthongtin','AjaxController@registerthongtin');
+//Route::get('/ajax/getTown','AjaxController@getTown');
+//Route::get('ajax/reggetper','AjaxController@reggetper');
 
 //Register
-include('system/register.php');
+//include('system/register.php');
 //End Register
 
 //System

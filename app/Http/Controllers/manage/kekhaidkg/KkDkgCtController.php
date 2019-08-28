@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\manage\kekhaidkg;
 
-use App\kkdkgct;
+use App\Model\manage\kekhaidkg\kkdkgct;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;

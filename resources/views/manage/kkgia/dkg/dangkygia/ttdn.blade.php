@@ -23,8 +23,8 @@
 
             $('#maxa').change(function() {
                 var maxa = '&maxa=' + $('#maxa').val();
-                var ma = '&ma=' + $('#ma').val();
-                var url = '/thongtindnkkgdk?'+ma + maxa;
+                var manghe = '&manghe=' + $('#manghe').val();
+                var url = '/thongtindnkkgdk?'+manghe + maxa;
                 window.location.href = url;
             });
 
@@ -36,6 +36,7 @@
 
     <h3 class="page-title">
         Thông tin doanh nghiệp kê khai <small>&nbsp;{{$inputs['mh']}}</small>
+        <p><h5 style="color: blue">Sở ban ngành quản lý {{$ttql->tendv}}</h5></p>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -57,7 +58,7 @@
                             </div>
                         </div>
                     </div>
-                        <input hidden  name="ma" id="ma" value="{{$inputs['ma']}}">
+                        <input hidden  name="manghe" id="manghe" value="{{$inputs['manghe']}}">
                     @endif
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>
@@ -77,7 +78,7 @@
                                 <td class="active">{{$tt->tendn}}</td>
                                 <td>{{$tt->diachi}}</td>
                                 <td>
-                                    <a href="{{url('hosokkdkg/?&ma='.$inputs['ma'].'&masothue='.$tt->maxa)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-plus"></i>&nbsp;Kê khai giá</a>
+                                    <a href="{{url('hosokkdkg/?&manghe='.$inputs['manghe'].'&maxa='.$tt->maxa)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-plus"></i>&nbsp;Kê khai giá</a>
                                 </td>
                             </tr>
                         @endforeach

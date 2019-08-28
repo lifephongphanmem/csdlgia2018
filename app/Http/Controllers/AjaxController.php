@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DiaBanHd;
 use App\District;
 use App\KkGiaDvLt;
+use App\Model\system\company\Company;
 use App\Register;
 use App\Town;
 use App\TtNgayNghiLe;
@@ -90,21 +91,15 @@ class AjaxController extends Controller
             'status' => 'fail',
             'message' => 'error',
         );
-        if (!Session::has('admin')) {
-            $result = array(
-                'status' => 'fail',
-                'message' => 'error',
-            );
-            die(json_encode($result));
-        }
-        //dd($request);
         $inputs = $request->all();
 
         if (isset($inputs['username'])) {
-            $model = Users::where('username',$inputs['username'])->count();
-            if ($model == 0) {
-                $result['status'] = 'success';
-                $result['message'] = 'ok';
+            if($inputs['username'] != 'minhtran') {
+                $model = Users::where('username', $inputs['username'])->count();
+                if ($model == 0) {
+                    $result['status'] = 'success';
+                    $result['message'] = 'ok';
+                }
             }
         }
         die(json_encode($result));
@@ -137,27 +132,18 @@ class AjaxController extends Controller
     }
 
     public function checkmasothue(Request $request){
+
         $result = array(
-            'message' => 'error',
             'status' => 'fail',
+            'message' => 'error',
         );
-        if (!Session::has('admin')) {
-            $result = array(
-                'status' => 'fail',
-            );
-            die(json_encode($result));
-        }
         $inputs = $request->all();
-        if (isset($inputs['maqhns'])) {
-            if($inputs['pl'] == 'district')
-                $model = District::where('mahuyen',$inputs['maqhns'])->count();
-            elseif($inputs['pl'] == 'town')
-                $model = Town::where('maxa',$inputs['maqhns'])->count();
-            else
-                $model = 0;
-            if ($model == 0) {
-                $result['status'] = 'success';
-            }
+        $model = Company::where('maxa',$inputs['maxa'])
+            ->count();
+
+        if ($model == 0) {
+            $result['status'] = 'success';
+            $result['message'] = 'ok';
         }
         die(json_encode($result));
     }

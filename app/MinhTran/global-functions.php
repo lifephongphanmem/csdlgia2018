@@ -3214,6 +3214,24 @@ function getPermissionDefault($level) {
     );
 
 //End THAN
+    $roles['DN'] = array(
+        'csdlmucgiahhdv'=>array(
+            'index'=>1,
+        ),
+        'kknygia'=>array(
+            'index'=>1
+        ),
+        'kkgia'=>array(
+            'index'=>1,
+        ),
+        'ttdn'=> array(
+            'index'=>1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
+    );
 
     return json_encode($roles[$level]);
 
@@ -3255,6 +3273,67 @@ function can($module = null, $action = null)
     }else
         return false;
 
+}
+
+function canKkGiaGr($manganh){
+    if(session('admin')->level == 'T')
+        return true;
+    else{
+        if(session('admin')->level == 'H' || session('admin')->level == 'X'){
+            $checkXH = \App\Model\system\dmnganhnghekd\DmNgheKd::where('manganh',$manganh)
+                ->where('mahuyen',session('admin')->mahuyen)
+                ->count();
+            if($checkXH > 0)
+                return true;
+            else
+                return false;
+        }else{
+            $checkdn = \App\Model\system\company\CompanyLvCc::where('manganh',$manganh)
+                ->where('maxa',session('admin')->maxa)
+                ->count();
+            if($checkdn > 0)
+                return true;
+            else
+                return false;
+        }
+    }
+
+}
+
+function canKkGiaCt($manganh = null, $manghe = null){
+    if(session('admin')->level == 'T' || session('admin')->sadmin == 'ssa')
+        return true;
+    else{
+        $modelnganh = \App\Model\system\dmnganhnghekd\DmNganhKd::where('manganh',$manganh)
+            ->where('theodoi','TD')
+            ->count();
+        if($modelnganh > 0){
+            $modelnghe = \App\Model\system\dmnganhnghekd\DmNgheKd::where('manganh',$manganh)
+                ->where('manghe',$manghe)
+                ->where('theodoi','TD');
+            if($modelnghe->count() > 0){
+                if(session('admin')->level == 'H' || session('admin')->level == 'X'){
+                    $modelcheck = $modelnghe->where('mahuyen',session('admin')->mahuyen)
+                        ->count();
+                    if($modelcheck > 0)
+                        return true;
+                    else
+                        return false;
+                }else{
+                    $dncheck = \App\Model\system\company\CompanyLvCc::where('maxa',session('admin')->maxa)
+                        ->where('manganh',$manganh)
+                        ->where('manghe',$manghe)
+                        ->count();
+                    if($dncheck > 0){
+                        return true;
+                    }else
+                        return false;
+                }
+            }else
+                return false;
+        }else
+            return false;
+    }
 }
 
 function canEdit($trangthai){

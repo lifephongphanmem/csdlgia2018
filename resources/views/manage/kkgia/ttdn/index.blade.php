@@ -82,336 +82,149 @@
                                     <td colspan="2" style="text-align: center;color: #5b9bd1"><b>Thông tin hiện tại</b></td>
                                 </tr>
                                 <tr>
-                                    <td style="width:15%">
-                                        <b>Cơ quan chủ quản</b>
-                                    </td>
-                                    <td style="width:35%">
-
-                            <span class="text-muted"><b>{{$model->tencqcq}}</b>
-                            </span>
-                                    </td>
+                                    <td style="width:15%"> <b>Tên doanh nghiệp</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$model->tendn}}</span> </td>
                                 </tr>
                                 <tr>
-                                    <td style="width:15%">
-                                        <b>Tên doanh nghiệp</b>
-                                    </td>
-                                    <td style="width:35%">
-                            <span class="text-muted">{{$model->tendn}}
-                            </span>
-                                    </td>
+                                    <td style="width:15%"><b>Mã số thuế</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$model->maxa}}</span></td>
                                 </tr>
                                 <tr>
-                                    <td style="width:15%">
-                                        <b>Mã số thuế</b>
-                                    </td>
-                                    <td style="width:35%">
-                            <span class="text-muted">{{$model->maxa}}
-                            </span>
-                                    </td>
+                                    <td style="width:15%"><b>Địa chỉ trụ sở chính</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$model->diachi}}</span></td>
                                 </tr>
                                 <tr>
-                                    <td style="width:15%">
-                                        <b>Địa chỉ trụ sở chính</b>
-                                    </td>
-                                    <td style="width:35%">
-                            <span class="text-muted">{{$model->diachi}}
-                            </span>
-                                    </td>
+                                    <td style="width:15%"><b>Điện thoại trụ sở chính</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$model->tel}}</span></td>
                                 </tr>
                                 <tr>
-                                    <td style="width:15%">
-                                        <b>Điện thoại trụ sở chính</b>
-                                    </td>
-                                    <td style="width:35%">
-                            <span class="text-muted">{{$model->tel}}
-                            </span>
-                                    </td>
+                                    <td style="width:15%"><b>Số fax trụ sở chính</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$model->fax}}</span></td>
                                 </tr>
                                 <tr>
-                                    <td style="width:15%">
-                                        <b>Số fax trụ sở chính</b>
-                                    </td>
-                                    <td style="width:35%">
-                            <span class="text-muted">{{$model->fax}}
-                            </span>
-                                    </td>
+                                    <td style="width:15%"><b>Email quản lý</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$model->email}}</span></td>
                                 </tr>
                                 <tr>
-                                    <td style="width:15%">
-                                        <b>Email quản lý</b>
-                                    </td>
-                                    <td style="width:35%">
-                            <span class="text-muted">{{$model->email}}
-                            </span>
-                                    </td>
+                                    <td style="width:15%"><b>Nơi đăng ký nộp thuế</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$model->noidknopthue}}</span></td>
                                 </tr>
                                 <tr>
-                                    <td style="width:15%">
-                                        <b>Nơi đăng ký nộp thuế</b>
-                                    </td>
-                                    <td style="width:35%">
-                            <span class="text-muted">{{$model->noidknopthue}}
-                            </span>
-                                    </td>
+                                    <td style="width:15%"><b>Giấy phép kinh doanh</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$model->giayphepkd}}</span></td>
                                 </tr>
                                 <tr>
-                                    <td style="width:15%">
-                                        <b>Giấy phép kinh doanh</b>
-                                    </td>
-                                    <td style="width:35%">
-                            <span class="text-muted">{{$model->giayphepkd}}
-                            </span>
-                                    </td>
+                                    <td style="width:15%"><b>Giấy phép đăng ký kinh doanh</b></td>
+                                    <td style="width:35%"><span class="text-muted"><a href="{{url('data/doanhnghiep/'.$model->tailieu)}}" target="_blank">Xem chi tiết</a></span></td>
                                 </tr>
                                 <tr>
-                                    <td style="width:15%">
-                                        <b>Link chia sẻ giấy phép đăng ký kinh doanh</b>
-                                    </td>
-                                    <td style="width:35%">
-                            <span class="text-muted"><a href="{{$model->tailieu}}" target="_blank">Xem chi tiết</a>
-                            </span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td style="width:15%">
-                                        <b>Chức danh người ký</b>
-                                    </td>
-                                    <td style="width:35%">
-                            <span class="text-muted">{{$model->chucdanh}}
-                            </span>
-                                    </td>
+                                    <td style="width:15%"><b>Chức danh người ký</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$model->chucdanh}}</span></td>
                                 </tr>
                                 <tr>
-                                    <td style="width:15%">
-                                        <b>Họ và tên người ký</b>
-                                    </td>
-                                    <td style="width:35%">
-                            <span class="text-muted">{{$model->nguoiky}}
-                            </span>
-                                    </td>
+                                    <td style="width:15%"><b>Họ và tên người ký</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$model->nguoiky}}</span></td>
                                 </tr>
                                 <tr>
-                                    <td style="width:15%">
-                                        <b>Địa danh</b>
-                                    </td>
-                                    <td style="width:35%">
-                            <span class="text-muted">{{$model->diadanh}}
-                            </span>
-                                    </td>
+                                    <td style="width:15%"><b>Địa danh</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$model->diadanh}}</span></td>
                                 </tr>
-                                @if($model->level == 'DVVT')
-                                    <tr>
-                                        <td style="width:15%">
-                                            <b>Dịch vụ cung cấp</b>
-                                        </td>
-                                        <td style="width:35%">
-                            <span class="text-muted">
-                                <div class="icheck-inline">
-                                    @if(canGeneral('vtxk','index'))
-                                    <label>
-                                        <input type="checkbox" disabled value="1" {{ (isset($settingdvvt->dvvt->vtxk) && $settingdvvt->dvvt->vtxk == 1) ? 'checked' : '' }} name="roles[dvvt][vtxk]"> Vận tải xe khách </label>
-                                    @endif
-                                    @if(canGeneral('vtxb','index'))
-                                    <label>
-                                        <input type="checkbox" disabled value="1" {{(isset($settingdvvt->dvvt->vtxb) && $settingdvvt->dvvt->vtxb == 1) ? 'checked' : '' }} name="roles[dvvt][vtxb]"> Vận tải xe buýt </label>
-                                    @endif
-                                    @if(canGeneral('vtxtx','index'))
-                                    <label>
-                                        <input type="checkbox" disabled value="1" {{(isset($settingdvvt->dvvt->vtxtx) && $settingdvvt->dvvt->vtxtx == 1) ? 'checked' : '' }} name="roles[dvvt][vtxtx]"> Vận tải xe taxi </label>
-                                    @endif
-                                    @if(canGeneral('vtch','index'))
-                                    <label>
-                                        <input type="checkbox" disabled value="1" {{(isset($settingdvvt->dvvt->vtch) && $settingdvvt->dvvt->vtch == 1) ? 'checked' : '' }} name="roles[dvvt][vtch]"> Vận tải chở hàng</label>
-                                    @endif
-                                </div>
-                            </span>
-                                        </td>
-                                    </tr>
-                                @endif
                                 </tbody>
+                            </table>
+                            <table class="table table-striped table-bordered table-hover" id="sample_3">
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Ngành</th>
+                                    <th>Nghề</th>
+                                    <th>Đơn vị nhận hồ sơ</th>
+                                </tr>
+                                @foreach($modellvcc as $key=> $lvcc)
+                                    <tr>
+                                        <td>{{$key+1}}</td>
+                                        <td>{{$lvcc->tennganh}}</td>
+                                        <td>{{$lvcc->tennghe}}</td>
+                                        <td>{{$lvcc->tendv}}</td>
+                                    </tr>
+                                @endforeach
                             </table>
                         </div>
                         @if(isset($modeltttd))
-                            <div class="col-md-6">
-                                <table id="user" class="table table-bordered table-striped">
-                                    <tbody>
-                                    <tr>
-                                        <td colspan="2" style="text-align: center;color: #5b9bd1"><b>Thông tin thay đổi</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width:15%">
-                                            <b>Cơ quan chủ quản</b>
-                                        </td>
-                                        <td style="width:35%">
-                            <span class="text-muted"><b>{{$modeltttd->tencqcq}}</b>
-                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width:15%">
-                                            <b>Tên doanh nghiệp</b>
-                                        </td>
-                                        <td style="width:35%">
-                            <span class="text-muted">{{$modeltttd->tendn}}
-                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width:15%">
-                                            <b>Mã số thuế</b>
-                                        </td>
-                                        <td style="width:35%">
-                            <span class="text-muted">{{$modeltttd->maxa}}
-                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width:15%">
-                                            <b>Địa chỉ trụ sở chính</b>
-                                        </td>
-                                        <td style="width:35%">
-                            <span class="text-muted">{{$modeltttd->diachi}}
-                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width:15%">
-                                            <b>Điện thoại trụ sở chính</b>
-                                        </td>
-                                        <td style="width:35%">
-                            <span class="text-muted">{{$modeltttd->tel}}
-                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width:15%">
-                                            <b>Số fax trụ sở chính</b>
-                                        </td>
-                                        <td style="width:35%">
-                            <span class="text-muted">{{$modeltttd->fax}}
-                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width:15%">
-                                            <b>Email quản lý</b>
-                                        </td>
-                                        <td style="width:35%">
-                            <span class="text-muted">{{$modeltttd->email}}
-                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width:15%">
-                                            <b>Nơi đăng ký nộp thuế</b>
-                                        </td>
-                                        <td style="width:35%">
-                            <span class="text-muted">{{$modeltttd->noidknopthue}}
-                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width:15%">
-                                            <b>Giấy phép kinh doanh</b>
-                                        </td>
-                                        <td style="width:35%">
-                            <span class="text-muted">{{$modeltttd->giayphepkd}}
-                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width:15%">
-                                            <b>Link chia sẻ giấy phép đăng ký kinh doanh</b>
-                                        </td>
-                                        <td style="width:35%">
-                            <span class="text-muted"><a href="{{$modeltttd->tailieu}}" target="_blank">Xem chi tiết</a>
-                            </span>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="width:15%">
-                                            <b>Chức danh người ký</b>
-                                        </td>
-                                        <td style="width:35%">
-                            <span class="text-muted">{{$modeltttd->chucdanh}}
-                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width:15%">
-                                            <b>Họ và tên người ký</b>
-                                        </td>
-                                        <td style="width:35%">
-                            <span class="text-muted">{{$modeltttd->nguoiky}}
-                            </span>
-                                        </td>
+                        <div class="col-md-6">
+                            <table id="user" class="table table-bordered table-striped">
+                                <tbody>
+                                <tr><td colspan="2" style="text-align: center;color: #5b9bd1"><b>Thông tin thay đổi</b></td></tr>
+                                <tr>
+                                    <td style="width:15%"><b>Tên doanh nghiệp</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$modeltttd->tendn}}</span></td>
                                 </tr>
                                 <tr>
-                                    <td style="width:15%">
-                                        <b>Địa danh</b>
-                                    </td>
+                                    <td style="width:15%"><b>Mã số thuế</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$modeltttd->maxa}}</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%"><b>Địa chỉ trụ sở chính</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$modeltttd->diachi}}</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%"><b>Điện thoại trụ sở chính</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$modeltttd->tel}}</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%"><b>Số fax trụ sở chính</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$modeltttd->fax}}</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%"><b>Email quản lý</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$modeltttd->email}}</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%"><b>Nơi đăng ký nộp thuế</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$modeltttd->noidknopthue}}</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%"><b>Giấy phép kinh doanh</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$modeltttd->giayphepkd}}</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%"><b>Giấy phép đăng ký kinh doanh</b></td>
                                     <td style="width:35%">
-                        <span class="text-muted">{{$modeltttd->diadanh}}
-                        </span>
-                        </td>
-                    </tr>
-                        @if($model->level == 'DVVT')
-                            <tr>
-                                <td style="width:15%">
-                                    <b>Dịch vụ cung cấp</b>
-                                </td>
-                                <td style="width:35%">
-                                    <span class="text-muted">
-                                        <div class="icheck-inline">
-                                            @if(canGeneral('vtxk','index'))
-                                            <label>
-                                                <input type="checkbox" disabled value="1" {{ (isset($settingdvvttd->dvvt->vtxk) && $settingdvvttd->dvvt->vtxk == 1) ? 'checked' : '' }} name="roles[dvvt][vtxk]"> Vận tải xe khách </label>
-                                            @endif
-                                            @if(canGeneral('vtxb','index'))
-                                            <label>
-                                                <input type="checkbox" disabled value="1" {{(isset($settingdvvttd->dvvt->vtxb) && $settingdvvttd->dvvt->vtxb == 1) ? 'checked' : '' }} name="roles[dvvt][vtxb]"> Vận tải xe buýt </label>
-                                            @endif
-                                            @if(canGeneral('vtxtx','index'))
-                                            <label>
-                                                <input type="checkbox" disabled value="1" {{(isset($settingdvvttd->dvvt->vtxtx) && $settingdvvttd->dvvt->vtxtx == 1) ? 'checked' : '' }} name="roles[dvvt][vtxtx]"> Vận tải xe taxi </label>
-                                            @endif
-                                            @if(canGeneral('vtch','index'))
-                                            <label>
-                                                <input type="checkbox" disabled value="1" {{(isset($settingdvvttd->dvvt->vtch) && $settingdvvttd->dvvt->vtch == 1) ? 'checked' : '' }} name="roles[dvvt][vtch]"> Vận tải chở hàng</label>
-                                            @endif
-                                        </div>
-                                    </span>
-                                </td>
-                            </tr>
-                        @endif
-                        </tbody>
-                        </table>
-                    </div>
-                @endif
-                    </div>
-                @if(session('admin')->level != 'DVLT')
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Hình ảnh đại diện</label>
-                                <div class="col-sm-4 controls">
-                                    @if($model->avatar =='')
-                                        <p><img src="{{ url('images/avatar/no-image-available.jpg')}}" width="96">
-                                    @else
-                                        <p><img src="{{ url('images/avatar/'.$model->avatar)}}" width="96">
-                                    @endif
-                                    </p>
-                                </div>
-                                <div class="col-sm-4 controls">
-                                    <button type="button" data-target="#avatar-modal" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getId({{$model->id}})"><i class="fa fa-edit"></i>&nbsp;Thay đổi hình ảnh đại diện</button>
-                                </div>
-                            </div>
+                                        @if($modeltttd->tailieu !='')
+                                            <span class="text-muted"><a href="{{url('data/doanhnghiep/'.$modeltttd->tailieu)}}" target="_blank">Xem chi tiết</a></span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%"><b>Chức danh người ký</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$modeltttd->chucdanh}}</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%"><b>Họ và tên người ký</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$modeltttd->nguoiky}}</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%"><b>Địa danh</b></td>
+                                    <td style="width:35%"><span class="text-muted">{{$modeltttd->diadanh}}</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-striped table-bordered table-hover" id="sample_3">
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Ngành</th>
+                                    <th>Nghề</th>
+                                    <th>Đơn vị nhận hồ sơ</th>
+                                </tr>
+                                @foreach($modeltttdct as $key=> $ttdncttd)
+                                    <tr>
+                                        <td>{{$key+1}}</td>
+                                        <td>{{$ttdncttd->tennganh}}</td>
+                                        <td>{{$ttdncttd->tennghe}}</td>
+                                        <td>{{$ttdncttd->tendv}}</td>
+                                    </tr>
+                                @endforeach
+                            </table>
                         </div>
-                    </div>
-                </div>
-                @endif
+                    @endif
             </div>
         </div>
     </div>

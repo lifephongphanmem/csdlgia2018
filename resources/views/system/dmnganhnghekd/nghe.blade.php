@@ -18,6 +18,7 @@
     <script>
         jQuery(document).ready(function() {
             TableManaged.init();
+//            $("#edit_mahuyen").select2();
         });
         function getId(id){
             document.getElementById("iddelete").value=id;
@@ -39,9 +40,12 @@
                 },
                 dataType: 'JSON',
                 success: function (data) {
+//                    var a_pc = data.mahuyen.split(',');
                     $('#edit_manghe').val(data.manghe);
                     $('#edit_tennghe').val(data.tennghe);
                     $('#edit_theodoi').val(data.theodoi);
+                    $('#edit_mahuyen').val(data.mahuyen);
+//                    $('#edit_mahuyen').select2("val",a_pc);
                     $('#edit_id').val(data.id);
                 },
                 error: function (message) {
@@ -73,6 +77,8 @@
                             <thead>
                             <tr>
                                 <th style="text-align: center" width="2%">STT</th>
+                                <th style="text-align: center">Mã ngành</th>
+                                <th style="text-align: center">Tên ngành</th>
                                 <th style="text-align: center">Mã nghề</th>
                                 <th style="text-align: center">Tên nghề</th>
                                 <th style="text-align: center">Cơ quan chủ quản</th>
@@ -84,6 +90,8 @@
                             @foreach($model as $key=>$tt)
                                 <tr class="odd gradeX">
                                     <td style="text-align: center">{{$key + 1}}</td>
+                                    <td>{{$tt->manganh}}</td>
+                                    <td>{{$tt->tennganh}}</td>
                                     <td>{{$tt->manghe}}</td>
                                     <td>{{$tt->tennghe}}</td>
                                     <td>{{$tt->tendv}}</td>
@@ -135,6 +143,18 @@
                             <div class="form-group">
                                 <label class="control-label">Tên nghề<span class="require">*</span></label>
                                 <input type="text" name="edit_tennghe" id="edit_tennghe" class="form-control" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">Đơn vị quản lý<span class="require">*</span></label>
+                                <select name="edit_mahuyen" id="edit_mahuyen" class="form-control">
+                                    @foreach($districts as $district)
+                                        <option value="{{$district->mahuyen}}">{{$district->tendv}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
