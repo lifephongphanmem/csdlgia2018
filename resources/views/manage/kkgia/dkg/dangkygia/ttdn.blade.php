@@ -49,7 +49,7 @@
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label>Đơn vị quản lý</label>
+                                <label><b>Đơn vị quản lý</b></label>
                                 <select name="maxa" id="maxa" class="form-control">
                                     @foreach($modeldv as $dv)
                                     <option value="{{$dv->maxa}}" {{$dv->maxa == $inputs['maxa'] ? 'selected' : ''}}>{{$dv->tendv}}</option>
@@ -58,8 +58,9 @@
                             </div>
                         </div>
                     </div>
-                        <input hidden  name="manghe" id="manghe" value="{{$inputs['manghe']}}">
                     @endif
+                        <input hidden  name="manghe" id="manghe" value="{{$inputs['manghe']}}">
+                    <hr>
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>
                         <tr>

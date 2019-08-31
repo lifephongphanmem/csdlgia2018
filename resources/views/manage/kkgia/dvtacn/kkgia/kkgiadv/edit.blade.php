@@ -411,7 +411,7 @@
             định của Bộ Nông nghiệp và Phát trỉến nông thôn</small>
         <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
     </h3>
-
+    <hr>
     <!-- END PAGE HEADER-->
     <div class="row">
         {!! Form::model($model, ['method' => 'PATCH', 'url'=>'kekhaigiathucanchannuoi/'. $model->id, 'class'=>'horizontal-form','id'=>'update_kkdvtacn']) !!}
@@ -420,27 +420,27 @@
             <div class="portlet box blue">
                 <div class="portlet-body">
                     <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label">Thực hiện theo</label>
-                                <div>
-                                        <textarea id="thqd" class="form-control" name="thqd" cols="30" rows="5"
-                                                >{{$model->thqd}}</textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {{--<div class="row">--}}
+                        {{--<div class="col-md-12">--}}
+                            {{--<div class="form-group"><label for="selGender" class="control-label">Thực hiện theo</label>--}}
+                                {{--<div>--}}
+                                        {{--<textarea id="thqd" class="form-control" name="thqd" cols="30" rows="5"--}}
+                                                {{-->{{$model->thqd}}</textarea>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Ngày kê khai<span class="require">*</span></label>
-                                <p style="color: #000088"><b>{{getDayVn($model->ngaynhap)}}</b></p>
+                                {!!Form::text('ngaynhap',date('d/m/Y',  strtotime($model->ngaynhap)), array('id' => 'ngaynhap','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Ngày thực hiện mức giá kê khai<span class="require">*</span></label>
-                                {!!Form::text('ngayhieuluc',date('d/m/Y',  strtotime($model->ngayhieuluc)), array('id' => 'ngayhieuluc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required','onchange'=>"checkngay()"))!!}
+                                {!!Form::text('ngayhieuluc',date('d/m/Y',  strtotime($model->ngayhieuluc)), array('id' => 'ngayhieuluc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                             </div>
                         </div>
                     </div>

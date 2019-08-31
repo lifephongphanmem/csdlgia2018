@@ -24,19 +24,10 @@
             $('#namhs').change(function() {
                 var nam = $('#namhs').val();
                 var masothue = $('#masothue').val();
-                var trangthai = $('#trangthai').val();
-                var url = '/thongtinkkdvhoatdongthuongmai?&masothue='+masothue+'&nam='+nam+'&trangthai='+trangthai;
+                var url = '/thongtinkkdvhoatdongthuongmai?&masothue='+masothue+'&nam='+nam;
 
                 window.location.href = url;
             });
-            $('#trangthai').change(function() {
-                var nam = $('#namhs').val();
-                var masothue = $('#masothue').val();
-                var trangthai = $('#trangthai').val();
-                var url = '/thongtinkkdvhoatdongthuongmai?&masothue='+masothue+'&nam='+nam+'&trangthai='+trangthai;
-                window.location.href = url;
-            });
-
         });
         function getId(id){
             document.getElementById("iddelete").value=id;
@@ -83,6 +74,9 @@
 
         function ClickChuyen(){
             if($('#ttnguoinop').val() != ''){
+                var btn = document.getElementById('submitChuyen');
+                btn.disabled = true;
+                btn.innerText = 'Loading...';
                 toastr.success("Hồ sơ đã được chuyển!", "Thành công!");
                 $("#frm_chuyen").unbind('submit').submit();
             }else{
@@ -118,7 +112,9 @@
 @stop
 
 @section('content')
-
+    <marquee>
+        <b style="color: #ff0000">{{$modeldv->tendv}} xin thông báo:</b> Ngày áp dụng hồ sơ kê khai giá xi măng, thép xây dựng phải sau {{$modeldv->songaylv}} ngày làm việc, tính từ thời điểm chuyển hồ sơ. Hồ sơ chuyển  trước 17h sẽ tính từ ngày gửi, sau 17h sẽ tính ngày hôm sau!!! (Ngày làm việc không tính thứ 7, CN và ngày nghỉ lể)
+    </marquee>
     <h3 class="page-title">
         Thông tin kê khai giá<small>&nbsp;dịch vụ hỗ trợ hoạt động thương mại</small>
         <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}} - Cơ quan chủ quản: {{$modeldv->tendv}}</h5></p>
@@ -141,6 +137,7 @@
                     </div>
                 <input type="hidden" name="masothue" id="masothue" value="{{$inputs['masothue']}}">
                 </div>
+                <hr>
                 <div class="portlet-body">
                     <div class="portlet-body">
                         <div class="row">
@@ -153,17 +150,6 @@
                                         @for($i = $nam_start; $i <= $nam_stop; $i++)
                                             <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
                                         @endfor
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Trạng thái hồ sơ</label>
-                                    <select name="trangthai" id="trangthai" class="form-control">
-                                        <option value="CC" {{$inputs['trangthai'] == 'CC' ? 'selected' : ''}}>Hồ sơ chờ chuyển</option>
-                                        <option value="CD" {{$inputs['trangthai'] == 'CD' ? 'selected' : ''}}>Hồ sơ chờ duyệt</option>
-                                        <option value="BTL" {{$inputs['trangthai'] == 'BTL' ? 'selected' : ''}}>Hồ sơ bị trả lại</option>
-                                        <option value="DD" {{$inputs['trangthai'] == 'DD' ? 'selected' : ''}}>Hồ sơ đã duyệt</option>
                                     </select>
                                 </div>
                             </div>
@@ -272,7 +258,7 @@
                     <input type="hidden" name="idchuyen" id="idchuyen">
                     <div class="modal-footer">
                         <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
-                        <button type="submit" class="btn blue" onclick="ClickChuyen()">Đồng ý</button>
+                        <button type="submit" class="btn blue" onclick="ClickChuyen()" id="submitChuyen">Đồng ý</button>
 
                     </div>
                     {!! Form::close() !!}

@@ -382,16 +382,16 @@
             <div class="portlet box blue">
                 <div class="portlet-body">
                     <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label">Thực hiện theo</label>
-                                <div>
-                                    <textarea id="thqd" class="form-control" name="thqd" cols="30" rows="5"
-                                              autofocus></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {{--<div class="row">--}}
+                        {{--<div class="col-md-12">--}}
+                            {{--<div class="form-group"><label for="selGender" class="control-label">Thực hiện theo</label>--}}
+                                {{--<div>--}}
+                                    {{--<textarea id="thqd" class="form-control" name="thqd" cols="30" rows="5"--}}
+                                              {{--autofocus></textarea>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">

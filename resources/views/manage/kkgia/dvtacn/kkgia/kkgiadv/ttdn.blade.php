@@ -37,7 +37,9 @@
         Thông tin doanh nghiệp kê khai <br><small>&nbsp;Thức ăn chăn nuôi cho gia súc, gia cầm và thủy sản; thuốc thủ y để
             tiêu độc, sát trùng, tay trùng, trị bệnh cho gia súc, gia cầm và thủy sản theo quy
             định của Bộ Nông nghiệp và Phát trỉến nông thôn </small>
+        <p><h5 style="color: blue">Sở ban ngành quản lý {{$ttql->tendv}}</h5></p>
     </h3>
+    <hr>
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">

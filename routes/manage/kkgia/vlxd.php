@@ -1,33 +1,33 @@
 <?php
-Route::resource('danhmucvatlieuxaydung','DmVlXdController');
-Route::post('danhmucvatlieuxaydung/update','DmVlXdController@update');
+    Route::resource('danhmucvatlieuxaydung', 'manage\kekhaigia\kkgiavlxd\DmVlXdController');
+    Route::post('danhmucvatlieuxaydung/update', 'manage\kekhaigia\kkgiavlxd\DmVlXdController@update');
 
-Route::get('thongtindnkkgiavlxd','KkGiaVlXdController@ttdn');
-Route::resource('thongtinkekhaigiavatlieuxaydung','KkGiaVlXdController');
-Route::post('thongtinkekhaigiavatlieuxaydung/delete','KkGiaVlXdController@delete');
-Route::post('thongtinkekhaigiavatlieuxaydung/chuyen','KkGiaVlXdController@chuyen');
+    Route::get('thongtindnkkgiavlxd', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdController@ttdn');
+    Route::resource('thongtinkekhaigiavatlieuxaydung', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdController');
+    Route::post('thongtinkekhaigiavatlieuxaydung/delete', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdController@delete');
+    Route::post('thongtinkekhaigiavatlieuxaydung/chuyen', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdController@chuyen');
 
-Route::get('kkvlxd/kiemtra','KkGiaVlXdController@kiemtra');
-Route::get('kkvlxd/showlydo','KkGiaVlXdController@showlydo');
+    Route::get('kkvlxd/kiemtra', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdController@kiemtra');
+    Route::get('kkvlxd/showlydo', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdController@showlydo');
 
 
-Route::get('/kkgiavlxdctdf/storett','KkGiaVlXdCtDfController@store');
-Route::get('/kkgiavlxdctdf/edittt','KkGiaVlXdCtDfController@edit');
-Route::get('/kkgiavlxdctdf/updatett','KkGiaVlXdCtDfController@update');
-Route::get('/kkgiavlxdctdf/deletett','KkGiaVlXdCtDfController@delete');
+    Route::get('/kkgiavlxdctdf/storett', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdCtDfController@store');
+    Route::get('/kkgiavlxdctdf/edittt', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdCtDfController@edit');
+    Route::get('/kkgiavlxdctdf/updatett', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdCtDfController@update');
+    Route::get('/kkgiavlxdctdf/deletett', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdCtDfController@delete');
 
-Route::get('/kkgiavlxdct/storett','KkGiaVlXdCtController@store');
-Route::get('/kkgiavlxdct/edittt','KkGiaVlXdCtController@edit');
-Route::get('/kkgiavlxdct/updatett','KkGiaVlXdCtController@update');
-Route::get('/kkgiavlxdct/deletett','KkGiaVlXdCtController@delete');
+    Route::get('/kkgiavlxdct/storett', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdCtController@store');
+    Route::get('/kkgiavlxdct/edittt', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdCtController@edit');
+    Route::get('/kkgiavlxdct/updatett', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdCtController@update');
+    Route::get('/kkgiavlxdct/deletett', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdCtController@delete');
 
 //End Ajax create
 
-Route::get('xetduyetkkgiavlxd','KkGiaVlXdXdController@index');
-Route::post('xetduyetkkgiavlxd/tralai','KkGiaVlXdXdController@tralai');
-Route::get('ttdnkkvlxd','KkGiaVlXdXdController@ttdnkkvlxd');
-Route::get('/xetduyetkkgiavlxd/ttnhanhs','KkGiaVlXdXdController@ttnhanhs');
-Route::post('/xetduyetkkgiavlxd/nhanhs','KkGiaVlXdXdController@nhanhs');
-Route::get('timkiemkkgiavlxd','KkGiaVlXdXdController@search');
+    Route::get('xetduyetkkgiavlxd', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdXdController@index');
+    Route::post('xetduyetkkgiavlxd/tralai', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdXdController@tralai');
+    Route::get('ttdnkkvlxd', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdXdController@ttdnkkvlxd');
+    Route::get('/xetduyetkkgiavlxd/ttnhanhs', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdXdController@ttnhanhs');
+    Route::post('/xetduyetkkgiavlxd/nhanhs', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdXdController@nhanhs');
+    Route::get('timkiemkkgiavlxd', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdXdController@search');
 
 ?>

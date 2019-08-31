@@ -1,0 +1,99 @@
+<?php
+
+namespace App\Http\Controllers\manage\kekhaigia\kkgiavlxd;
+
+use App\Model\manage\kekhaigia\kkgiavlxd\DmVlXd;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
+
+class DmVlXdController extends Controller
+{
+    public function index(){
+        if(Session::has('admin')){
+            $model = DmVlXd::where('level','NHOM')
+                ->get();
+            return view('manage.kkgia.vlxd.danhmuc.index')
+                ->with('model',$model)
+                ->with('pageTitle','Thông tin danh mục vật liệu xây dựng');
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function store(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $inputs['theodoi'] = 'TD';
+            $inputs['level'] = 'NHOM';
+            $model = new DmVlXd();
+            $model->create($inputs);
+            return redirect('danhmucvatlieuxaydung');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function show(Request $request){
+        $result = array(
+            'status' => 'fail',
+            'message' => 'error',
+        );
+        if (!Session::has('admin')) {
+            $result = array(
+                'status' => 'fail',
+                'message' => 'permission denied',
+            );
+            die(json_encode($result));
+        }
+
+        $inputs = $request->all();
+        $id = $inputs['id'];
+        $model = DmVlXd::findOrFail($id);
+        //check xem có chưa thì mới cho sửa mã
+        $check = 0;
+        $check1 = 0;
+
+
+        $result['message'] = '<div class="modal-body" id="edit-tt">';
+
+        $result['message'] .= '<div class="row">';
+        $result['message'] .= '<div class="col-md-12">';
+        $result['message'] .= '<div class="form-group">';
+        $result['message'] .= '<label class="control-label">Tên nhóm <span class="require">*</span></label>';
+        $result['message'] .= '<input type="text" name="edit_tennhom" id="edit_tennhom" class="form-control" value="'.$model->tennhom.'"/>';
+        $result['message'] .= '</div></div>';
+        $result['message'] .= '</div>';
+        $result['message'] .= '<div class="row">';
+        $result['message'] .= '<div class="col-md-12">';
+        $result['message'] .= '<div class="form-group">';
+        $result['message'] .= '<label class="control-label">Theo dõi <span class="require">*</span></label>';
+        $result['message'] .= '<select name="edit_theodoi" id="edit_theodoi" class="form-control">';
+        if($model->theodoi == 'TD') {
+            $result['message'] .= '<option value="TD" selected>Theo dõi</option>';
+            $result['message'] .= '<option value="KTD">Bỏ theo dõi</option>';
+        }else {
+            $result['message'] .= '<option value="TD" >Theo dõi</option>';
+            $result['message'] .= '<option value="KTD" selected>Bỏ theo dõi</option>';
+        }
+        $result['message'] .= '</select>';
+        $result['message'] .= '</div></div>';
+        $result['message'] .= '</div>';
+        $result['message'] .= '<input type="hidden" name="edit_id" id="edit_id" class="form-control" value="'.$model->id.'"/>';
+        $result['message'] .= '</div>';
+        $result['status'] = 'success';
+        die(json_encode($result));
+    }
+
+    public function update(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $id = $inputs['edit_id'];
+            $inputs['tennhom'] = $inputs['edit_tennhom'];
+            $inputs['theodoi'] = $inputs['edit_theodoi'];
+            $model = DmVlXd::findOrFail($id);
+            $model->update($inputs);
+            return redirect('danhmucvatlieuxaydung');
+        }else
+            return view('errors.notlogin');
+    }
+}

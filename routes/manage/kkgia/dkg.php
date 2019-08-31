@@ -42,7 +42,7 @@ Route::get('xetduyetkkdkg/lydo','manage\kekhaidkg\KkDkgXdController@lydo');
 Route::get('xetduyetkkdkg/download','manage\kekhaidkg\KkDkgXdController@download');
 
 //End xét duyệt
-Route::get('timkiemkkdkg','KkDkgController@search');
+Route::get('timkiemkkdkg','manage\kekhaidkg\KkDkgController@search');
 
 //Ajax nhận trả
 Route::get('/ttdnkkdkg','manage\kekhaidkg\KkDkgXdController@ttdnkkdkg');

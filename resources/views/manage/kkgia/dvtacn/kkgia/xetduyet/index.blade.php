@@ -137,6 +137,9 @@
         }
         function confirmTraLai(){
             if($('#lydo').val() != ''){
+                var btn = document.getElementById('submitTraLai');
+                btn.disabled = true;
+                btn.innerText = 'Loading...';
                 toastr.success("Hồ sơ đã được trả lại!", "Thành công!");
                 $("#frm_tralai").unbind('submit').submit();
             }else{
@@ -170,6 +173,9 @@
         }
         function ClickNhanHs(){
             $('#frm_nhanhs').submit();
+            var btn = document.getElementById('submitNhanHs');
+            btn.disabled = true;
+            btn.innerText = 'Loading...';
         }
 
         function confirmNhanHsedit(mahs){
@@ -251,6 +257,7 @@
             tiêu độc, sát trùng, tay trùng, trị bệnh cho gia súc, gia cầm và thủy sản theo quy
             định của Bộ Nông nghiệp và Phát trỉến nông thôn</small>
     </h3>
+    <hr>
     <div class="row">
         <div class="col-md-2">
             <div class="form-group">
@@ -388,7 +395,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
-                        <button type="submit" class="btn blue" onclick="confirmTraLai()">Đồng ý</button>
+                        <button type="submit" class="btn blue" onclick="confirmTraLai()" id="submitTraLai">Đồng ý</button>
 
                     </div>
                     {!! Form::close() !!}
@@ -412,7 +419,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
-                    <button type="submit" class="btn blue" onclick="ClickNhanHs()">Đồng ý</button>
+                    <button type="submit" class="btn blue" onclick="ClickNhanHs()" id="submitNhanHs">Đồng ý</button>
                 </div>
                 {!! Form::close() !!}
             </div>

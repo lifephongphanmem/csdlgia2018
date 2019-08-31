@@ -31,6 +31,7 @@ class KkDkgCtDfController extends Controller
             //dd($inputs);
             $model = kkdkgctdf::where('mahs',$inputs['mahs'])
                 ->get();
+
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
             $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';

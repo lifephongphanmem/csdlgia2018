@@ -1,25 +1,25 @@
 <?php
-Route::get('thongtindnthan','KkGiaThanController@ttdn');
-Route::resource('kekhaigiathan','KkGiaThanController');
-Route::get('giathan/kiemtra','KkGiaThanController@kiemtra');
-Route::post('kekhaigiathan/chuyen','KkGiaThanController@chuyen');
-Route::get('/giathan/showlydo','KkGiaThanController@showlydo');
-Route::post('kekhaigiathan/delete','KkGiaThanController@delete');
-Route::get('kekhaigiathan/prints','KkGiaThanController@prints');
+Route::get('thongtindnthan','manage\kekhaigia\kkgiathan\KkGiaThanController@ttdn');
+Route::resource('kekhaigiathan','manage\kekhaigia\kkgiathan\KkGiaThanController');
+Route::get('giathan/kiemtra','manage\kekhaigia\kkgiathan\KkGiaThanController@kiemtra');
+Route::post('kekhaigiathan/chuyen','manage\kekhaigia\kkgiathan\KkGiaThanController@chuyen');
+Route::get('/giathan/showlydo','manage\kekhaigia\kkgiathan\KkGiaThanController@showlydo');
+Route::post('kekhaigiathan/delete','manage\kekhaigia\kkgiathan\KkGiaThanController@delete');
+Route::get('kekhaigiathan/prints','manage\kekhaigia\kkgiathan\KkGiaThanController@prints');
 
-Route::get('giathanctdf/storett','KkGiaThanCtDfController@store');
-Route::get('giathanctdf/edittt','KkGiaThanCtDfController@edit');
-Route::get('giathanctdf/updatett','KkGiaThanCtDfController@update');
-Route::get('giathanctdf/deletett','KkGiaThanCtDfController@destroy');
+Route::get('giathanctdf/storett','manage\kekhaigia\kkgiathan\KkGiaThanCtDfController@store');
+Route::get('giathanctdf/edittt','manage\kekhaigia\kkgiathan\KkGiaThanCtDfController@edit');
+Route::get('giathanctdf/updatett','manage\kekhaigia\kkgiathan\KkGiaThanCtDfController@update');
+Route::get('giathanctdf/deletett','manage\kekhaigia\kkgiathan\KkGiaThanCtDfController@destroy');
 
-Route::get('giathanct/storett','KkGiaThanCtController@store');
-Route::get('giathanct/edittt','KkGiaThanCtController@edit');
-Route::get('giathanct/updatett','KkGiaThanCtController@update');
-Route::get('giathanct/deletett','KkGiaThanCtController@destroy');
+Route::get('giathanct/storett','manage\kekhaigia\kkgiathan\KkGiaThanCtController@store');
+Route::get('giathanct/edittt','manage\kekhaigia\kkgiathan\KkGiaThanCtController@edit');
+Route::get('giathanct/updatett','manage\kekhaigia\kkgiathan\KkGiaThanCtController@update');
+Route::get('giathanct/deletett','manage\kekhaigia\kkgiathan\KkGiaThanCtController@destroy');
 
-Route::get('xetduyetgiathan','KkGiaThanXdController@index');
-Route::get('ttdnkkthan','KkGiaThanXdController@ttdn');
-Route::post('xetduyetgiathan/tralai','KkGiaThanXdController@tralai');
-Route::get('xetduyetgiathan/ttnhanhs','KkGiaThanXdController@ttnhanhs');
-Route::post('xetduyetgiathan/nhanhs','KkGiaThanXdController@nhanhs');
-Route::get('timkiemgiathan','KkGiaThanXdController@search');
+Route::get('xetduyetgiathan','manage\kekhaigia\kkgiathan\KkGiaThanXdController@index');
+Route::get('ttdnkkthan','manage\kekhaigia\kkgiathan\KkGiaThanXdController@ttdn');
+Route::post('xetduyetgiathan/tralai','manage\kekhaigia\kkgiathan\KkGiaThanXdController@tralai');
+Route::get('xetduyetgiathan/ttnhanhs','manage\kekhaigia\kkgiathan\KkGiaThanXdController@ttnhanhs');
+Route::post('xetduyetgiathan/nhanhs','manage\kekhaigia\kkgiathan\KkGiaThanXdController@nhanhs');
+Route::get('timkiemgiathan','manage\kekhaigia\kkgiathan\KkGiaThanXdController@search');

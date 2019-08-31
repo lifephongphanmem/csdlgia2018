@@ -68,6 +68,8 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
+                        <a href="{{url('danhmucnganhkd')}}" class="btn btn-default btn-sm">
+                            <i class="fa fa-reply"></i> Quay lại </a>
                     </div>
                 </div>
                 <hr>

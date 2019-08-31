@@ -256,7 +256,6 @@ class KkDkgController extends Controller
             );
             die(json_encode($result));
         }
-        //dd($request);
         $inputs = $request->all();
         $ngaychuyen = Carbon::now()->toDateTimeString();
         if(isset($inputs['id'])){
@@ -305,32 +304,7 @@ class KkDkgController extends Controller
                 $result['message'] = '"Ngày áp dụng hồ sơ không đủ điều kiện xét duyệt", "Lỗi!!!"';
             }
         }
-        //dd($result);
         die(json_encode($result));
-//        $result = array(
-//            'status' => 'fail',
-//            'message' => 'error',
-//        );
-//        if(!Session::has('admin')) {
-//            $result = array(
-//                'status' => 'fail',
-//                'message' => 'permission denied',
-//            );
-//            die(json_encode($result));
-//        }
-//        //dd($request);
-//        $inputs = $request->all();
-//
-//        if(isset($inputs['id'])){
-//            $model = KkDkg::where('id',$inputs['id'])
-//                ->first();
-//
-//            $result['message'] = '<div class="form-group" id="tthschuyen">';
-//            $result['message'] .= '<label> Số CV: '.$model->socv.'- Ngày áp dụng: '.getDayVn($model->ngayhieuluc).'</label>';
-//            $result['message'] .= '</div>';
-//            $result['status'] = 'success';
-//        }
-//        die(json_encode($result));
     }
 
     public function show(Request $request){
@@ -392,15 +366,15 @@ class KkDkgController extends Controller
     public function search(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
-            $inputs['mh'] = DmMhBinhOnGia::where('phanloai',$inputs['ma'])->first()->hienthi;
+            $inputs['mh'] = DmNgheKd::where('manghe',$inputs['manghe'])->first()->tennghe;
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
             $inputs['tenhh'] = isset($inputs['tenhh']) ? $inputs['tenhh'] : '';
             $model = kkdkgct::leftJoin('kkdkg','kkdkg.mahs','=','kkdkgct.mahs')
                 ->leftjoin('company','company.maxa','=','kkdkg.maxa')
                 ->whereYear('kkdkg.ngayhieuluc',$inputs['nam'])
                 ->select('kkdkgct.*','company.tendn','kkdkg.ngayhieuluc')
-                ->where('phanloai',$inputs['ma'])
-                ->wherein('kkdkg.trangthai',['DD','CB']);
+                ->where('phanloai',$inputs['manghe'])
+                ->where('kkdkg.trangthai','DD');
             if($inputs['tenhh'] != '')
                 $model = $model->where('kkdkgct.tenhh','like','%'.$inputs['tenhh'].'%');
             $model = $model->get();

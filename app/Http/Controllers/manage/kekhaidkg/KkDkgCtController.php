@@ -14,6 +14,7 @@ class KkDkgCtController extends Controller
             'status' => 'fail',
             'message' => 'error',
         );
+
         if(!Session::has('admin')) {
             $result = array(
                 'status' => 'fail',

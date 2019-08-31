@@ -131,8 +131,8 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
-                                <a href="{{url('hosokkdkg/create?&manghe='.$inputs['manghe'].'&maxa='.$inputs['maxa'])}}" class="btn btn-default btn-sm">
-                                    <i class="fa fa-plus"></i> Kê khai mới </a>
+                        <a href="{{url('hosokkdkg/create?&manghe='.$inputs['manghe'].'&maxa='.$inputs['maxa'])}}" class="btn btn-default btn-sm">
+                            <i class="fa fa-plus"></i> Kê khai mới </a>
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
                             <a href="{{url('thongtindnkkgdk?manghe='.$inputs['manghe'].'&maxa='.$modeldn->mahuyen)}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-reply"></i> Quay lại </a>
@@ -141,6 +141,7 @@
                 <input type="hidden" name="maxa" id="maxa" value="{{$inputs['maxa']}}">
                 <input type="hidden" name="manghe" id="manghe" value="{{$inputs['manghe']}}">
                 </div>
+                <hr>
                 <div class="portlet-body">
                     <div class="portlet-body">
                         <div class="row">

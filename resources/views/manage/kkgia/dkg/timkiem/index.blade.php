@@ -22,7 +22,7 @@
 
         $(function(){
             $('#nam').change(function() {
-                var ma = '&ma='+ $('#ma').val();
+                var manghe = '&manghe='+ $('#manghe').val();
                 var namhs = '&nam='+ $('#nam').val();
                 var tenhh = '&tenhh=' + $('#tenhh').val();
                 var url = '/timkiemkkdkg?'+ma+namhs + tenhh;
@@ -48,6 +48,7 @@
     <div class="row">
         <div class="col-md-2">
             <div class="form-group">
+                <label>Năm</label>
                 <select name="nam" id="nam" class="form-control">
                     @if ($nam_start = intval(date('Y')) - 5 ) @endif
                     @if ($nam_stop = intval(date('Y')) + 1 ) @endif
@@ -58,13 +59,14 @@
             </div>
         </div>
         <div class="col-md-5">
+            <label>Tên mặt hàng</label>
             <div class="form-group">
                 <input type="text" class="form-control" id="tenhh" name="tenhh" value="{{$inputs['tenhh']}}">
             </div>
         </div>
 
     </div>
-    <input hidden  name="ma" id="ma" value="{{$inputs['ma']}}">
+    <input hidden  name="manghe" id="manghe" value="{{$inputs['manghe']}}">
 
     <!-- END PAGE HEADER-->
     <div class="row">

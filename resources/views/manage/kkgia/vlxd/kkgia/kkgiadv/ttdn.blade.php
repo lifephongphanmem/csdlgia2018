@@ -35,6 +35,7 @@
 
     <h3 class="page-title">
         Thông tin doanh nghiệp kê khai<small>&nbsp;giá vật liệu xây dựng</small>
+        <p><h5 style="color: blue">Sở ban ngành quản lý {{$ttql->tendv}}</h5></p>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -47,7 +48,7 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label>Đơn vị quản lý</label>
+                                    <label><b>Đơn vị quản lý</b></label>
                                     <select name="maxa" id="maxa" class="form-control">
                                         @foreach($modeldv as $dv)
                                             <option value="{{$dv->maxa}}" {{$dv->maxa == $inputs['maxa'] ? 'selected' : ''}}>{{$dv->tendv}}</option>
@@ -57,12 +58,14 @@
                             </div>
                         </div>
                     @endif
+                    <hr>
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>
                         <tr>
                             <th style="text-align: center" width="2%">STT</th>
                             <th style="text-align: center">Đơn vị quản lý</th>
                             <th style="text-align: center">Tên doanh nghiệp</th>
+                            <th style="text-align: center">Mã số thuế</th>
                             <th style="text-align: center">Địa chỉ</th>
                             <th style="text-align: center" width="25%">Thao tác</th>
                         </tr>
@@ -73,6 +76,7 @@
                                 <td style="text-align: center">{{$key+1}}</td>
                                 <td style="font-weight: bold">{{$tt->tendv}}</td>
                                 <td class="active">{{$tt->tendn}}</td>
+                                <td>{{$tt->maxa}}</td>
                                 <td>{{$tt->diachikd}}</td>
                                 <td>
                                     <a href="{{url('thongtinkekhaigiavatlieuxaydung/?&masothue='.$tt->maxa)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-plus"></i>&nbsp;Kê khai giá </a>

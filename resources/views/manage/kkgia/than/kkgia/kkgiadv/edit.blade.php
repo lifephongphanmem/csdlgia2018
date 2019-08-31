@@ -379,6 +379,7 @@
         Thông tin kê khai hồ sơ giá <small>&nbsp;than chỉnh sửa</small>
         <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
     </h3>
+    <hr>
     <!-- END PAGE HEADER-->
     <div class="row">
         {!! Form::model($model, ['method' => 'PATCH', 'url'=>'kekhaigiathan/'. $model->id, 'class'=>'horizontal-form','id'=>'update_kkgiavtxb']) !!}
@@ -400,7 +401,7 @@
                             <div class="form-group">
                                 <label class="control-label">Ngày thực hiện mức giá kê khai<span class="require">*</span></label>
                                 <!--input type="date" name="ngayhieuluc" id="ngayhieuluc" class="form-control required"-->
-                                {!!Form::text('ngayhieuluc',date('d/m/Y',  strtotime($model->ngayhieuluc)), array('id' => 'ngayhieuluc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required','onchange'=>"checkngay()"))!!}
+                                {!!Form::text('ngayhieuluc',date('d/m/Y',  strtotime($model->ngayhieuluc)), array('id' => 'ngayhieuluc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                             </div>
                         </div>
                         <!--/span-->

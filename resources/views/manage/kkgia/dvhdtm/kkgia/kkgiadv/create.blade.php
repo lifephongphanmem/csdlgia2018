@@ -378,6 +378,7 @@
         Thông tin kê khai hồ sơ giá <small>&nbsp;dịch vụ hỗ trợ hoạt động thương mại</small>
         <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
     </h3>
+    <hr>
     <!-- END PAGE HEADER-->
     <div class="row">
         {!! Form::open(['url'=>'thongtinkkdvhoatdongthuongmai', 'id' => 'create_kkdvhdtm', 'class'=>'horizontal-form']) !!}
@@ -401,7 +402,7 @@
                             <div class="form-group">
                                 <label class="control-label">Ngày kê khai<span class="require">*</span></label>
                                 <!--input type="date" name="ngaynhap" id="ngaynhap" class="form-control required" autofocus-->
-                                {!!Form::text('ngaynhap',null, array('id' => 'ngaynhap','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required','onchange'=>"checkngaykk()"))!!}
+                                {!!Form::text('ngaynhap',null, array('id' => 'ngaynhap','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                             </div>
                         </div>
                         <!--/span-->
@@ -409,7 +410,7 @@
                             <div class="form-group">
                                 <label class="control-label">Ngày thực hiện mức giá kê khai<span class="require">*</span></label>
                                 <!--input type="date" name="ngayhieuluc" id="ngayhieuluc" class="form-control required"-->
-                                {!!Form::text('ngayhieuluc',null, array('id' => 'ngayhieuluc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required','onchange'=>"checkngay()"))!!}
+                                {!!Form::text('ngayhieuluc',null, array('id' => 'ngayhieuluc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                             </div>
                         </div>
                         <!--/span-->

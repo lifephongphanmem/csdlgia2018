@@ -177,18 +177,16 @@ class KkDkgXdController extends Controller
         die(json_encode($result));
     }
     public function getsohsnhan($mahuyen,$phanloai){
-        if(session('admin')->level == 'T')
-            $stt = 0;
-        else {
-            $model = KkDkg::where('trangthai', 'DD')
-                ->where('mahuyen', $mahuyen)
-                ->where('phanloai',$phanloai)
-                ->max('id');
-            if (count($model) == 0) {
-                $stt = 1;
-            } else
-                $stt = $model->sohsnhan + 1;
-        }
+        $idmax = kkdkg::where('trangthai', 'DD')
+            ->where('mahuyen', $mahuyen)
+            ->where('phanloai',$phanloai)
+            ->max('id');
+        if (isset($idmax)) {
+            $model = kkdkg::where('id',$idmax)
+                ->first();
+            $stt = $model->sohsnhan + 1;
+        } else
+            $stt = 1;
         return $stt;
     }
     public function nhanhs(Request $request){
@@ -216,7 +214,6 @@ class KkDkgXdController extends Controller
                 $run = new SendMail($modeldn,$contentdn,$modeldv,$contentht);
                 $run->handle();
                 //dispatch($run);
-
             }
 
             return redirect('xetduyetkkdkg?manghe='.$model->phanloai.'&trangthai=DD&mahuyen='.$model->mahuyen);

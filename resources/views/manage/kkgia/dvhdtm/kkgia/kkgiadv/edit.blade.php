@@ -378,6 +378,7 @@
         Thông tin kê khai hồ sơ giá <small>&nbsp;dịch vụ hỗ trợ hoạt động thương mại</small>
         <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
     </h3>
+    <hr>
     <!-- END PAGE HEADER-->
     <div class="row">
         {!! Form::model($model, ['method' => 'PATCH', 'url'=>'thongtinkkdvhoatdongthuongmai/'. $model->id, 'class'=>'horizontal-form','id'=>'update_kkdvhdtm']) !!}

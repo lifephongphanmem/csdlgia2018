@@ -173,6 +173,9 @@
                 },
                 dataType: 'JSON',
                 success: function (data) {
+                    var btn = document.getElementById('submitAdd');
+                    btn.disabled = true;
+                    btn.innerText = 'Loading...';
                     if(data.status == 'success') {
                         toastr.success("Bổ xung thông tin thành công!");
                         $('#dsts').replaceWith(data.message);
@@ -266,34 +269,34 @@
             })
 
         }
-        function checkngaykk(){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '/ajax/checkngaykk',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    ngaynhap: $('input[name="ngaynhap"]').val()
-
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        toastr.success("Ngày kê khai có thể sử dụng được", "Thành công!");
-                    }else {
-                        toastr.error("Bạn cần kiểm tra lại ngày có kê khai, ngày kê khai không được nhỏ hơn ngày hiện tại! ", "Lỗi!");
-                        var today = new Date();
-                        var dd = today.getDate();
-                        var mm = today.getMonth()+1;//January is 0!
-                        var yyyy = today.getFullYear();
-                        if(dd<10){dd='0'+dd}
-                        if(mm<10){mm='0'+mm}
-                        $('#ngaynhap').val(dd+'/'+mm+'/'+yyyy);
-                        $('input[name="ngayhieuluc"]').val('');
-                    }
-                }
-            })
-        }
+//        function checkngaykk(){
+//            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+//            $.ajax({
+//                url: '/ajax/checkngaykk',
+//                type: 'GET',
+//                data: {
+//                    _token: CSRF_TOKEN,
+//                    ngaynhap: $('input[name="ngaynhap"]').val()
+//
+//                },
+//                dataType: 'JSON',
+//                success: function (data) {
+//                    if (data.status == 'success') {
+//                        toastr.success("Ngày kê khai có thể sử dụng được", "Thành công!");
+//                    }else {
+//                        toastr.error("Bạn cần kiểm tra lại ngày có kê khai, ngày kê khai không được nhỏ hơn ngày hiện tại! ", "Lỗi!");
+//                        var today = new Date();
+//                        var dd = today.getDate();
+//                        var mm = today.getMonth()+1;//January is 0!
+//                        var yyyy = today.getFullYear();
+//                        if(dd<10){dd='0'+dd}
+//                        if(mm<10){mm='0'+mm}
+//                        $('#ngaynhap').val(dd+'/'+mm+'/'+yyyy);
+//                        $('input[name="ngayhieuluc"]').val('');
+//                    }
+//                }
+//            })
+//        }
     </script>
     <script>
         function InputMask() {
@@ -382,22 +385,22 @@
             <div class="portlet box blue">
                 <div class="portlet-body">
                     <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label">Thực hiện theo</label>
-                                <div>
-                                    <textarea id="thqd" class="form-control" name="thqd" cols="30" rows="5"
-                                    autofocus></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {{--<div class="row">--}}
+                        {{--<div class="col-md-12">--}}
+                            {{--<div class="form-group"><label for="selGender" class="control-label">Thực hiện theo</label>--}}
+                                {{--<div>--}}
+                                    {{--<textarea id="thqd" class="form-control" name="thqd" cols="30" rows="5"--}}
+                                    {{--autofocus></textarea>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Ngày kê khai<span class="require">*</span></label>
                                 <!--input type="date" name="ngaynhap" id="ngaynhap" class="form-control required" autofocus-->
-                                {!!Form::text('ngaynhap',null, array('id' => 'ngaynhap','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required','onchange'=>"checkngaykk()"))!!}
+                                {!!Form::text('ngaynhap',null, array('id' => 'ngaynhap','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                             </div>
                         </div>
                         <!--/span-->
@@ -405,7 +408,7 @@
                             <div class="form-group">
                                 <label class="control-label">Ngày thực hiện mức giá kê khai<span class="require">*</span></label>
                                 <!--input type="date" name="ngayhieuluc" id="ngayhieuluc" class="form-control required"-->
-                                {!!Form::text('ngayhieuluc',null, array('id' => 'ngayhieuluc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required','onchange'=>"checkngay()"))!!}
+                                {!!Form::text('ngayhieuluc',null, array('id' => 'ngayhieuluc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                             </div>
                         </div>
                         <!--/span-->
@@ -578,7 +581,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
-                    <button type="button" class="btn btn-primary" onclick="createttp()">Bổ xung</button>
+                    <button type="button" class="btn btn-primary" onclick="createttp()" id="submitAdd">Bổ xung</button>
                 </div>
             </div>
             <!-- /.modal-content -->

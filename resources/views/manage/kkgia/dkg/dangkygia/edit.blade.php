@@ -250,10 +250,10 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="text" name="mahs" id="mahs" value="{{$model->mahs}}">
-                        <input type="text" name="maxa" id="maxa" value="{{$model->maxa}}">
-                        <input type="text" name="phanloai" id="phanloai" value="{{$model->phanloai}}">
-                        <input type="text" name="mahuyen" id="mahuyen" value="{{$modeldn->mahuyen}}">
+                        <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}">
+                        <input type="hidden" name="maxa" id="maxa" value="{{$model->maxa}}">
+                        <input type="hidden" name="phanloai" id="phanloai" value="{{$model->phanloai}}">
+                        <input type="hidden" name="mahuyen" id="mahuyen" value="{{$modeldn->mahuyen}}">
                                 <!--/row-->
                         <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
 
