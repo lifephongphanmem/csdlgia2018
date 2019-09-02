@@ -1,15 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Model\manage\kekhaigia\kkgiakcbtn;
 
 use Illuminate\Database\Eloquent\Model;
 
-class KkGiaKcbTnCtDf extends Model
+class KkGiaKcbTnCt extends Model
 {
-    protected $table = 'kkgiakcbtnctdf';
+    protected $table = 'kkgiakcbtnct';
     protected $fillable = [
         'id',
-        'maxa',
+        'mahs',
         'tthhdv',
         'qccl',
         'dvt',

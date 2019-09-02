@@ -154,9 +154,7 @@
                             </a>
                             <ul class="sub-menu" style="display: none;">
                                 @if(session('admin')->level == 'DN')
-                                    @if(can('kksach','index'))
                                         <li><a href="{{url('kekhaigiasach')}}">Kê khai giá</a> </li>
-                                    @endif
                                 @endif
                                 @if(session('admin')->level == 'X' || session('admin')->level == 'T' || session('admin')->level == 'H')
                                     <li><a href="{{url('thongtindnsach')}}">Kê khai giá </a> </li>
@@ -220,30 +218,22 @@
                         <li><a href="">Kê khai giá</a></li>
                     </ul>
                 </li-->
-                @if(canGeneral('kcbtn','index'))
-                    @if(can('kcbtn','index'))
+                @if(canKkGiaGr('KCBTN'))
+                    @if(canKkGiaCt('KCBTN','KCBTN'))
                         <li>
                             <a href="">
                                 <span class="title">Dịch vụ khám chữa bệnh cho người tại cơ sở khám chữa bệnh tư nhân; khám chữa bệnh theo yêu cầu tại cơ sở khám chữa bệnh của nhà nước</span>
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu" style="display: none;">
-                                @if(session('admin')->level == 'KCBTN')
-                                    @if(can('kkkcbtn','index'))
-                                        <li><a href="{{url('kekhaikcbtn')}}">Kê khai giá</a> </li>
-                                    @endif
+                                @if(session('admin')->level == 'DN')
+                                        <li><a href="{{url('kekhaigiakcbtn')}}">Kê khai giá</a> </li>
                                 @endif
                                 @if(session('admin')->level == 'X' || session('admin')->level == 'T' || session('admin')->level == 'H')
-                                    @if(can('kkkcbtn','index'))
-                                        <li><a href="{{url('thongtindnkcbtn')}}">Kê khai giá </a> </li>
-                                        <li><a href="{{url('xetduyetgiakcbtn')}}">Thông tin hồ sơ xét duyệt</a></li>
-                                    @endif
-                                    @if(can('thkcbtn','timkiem'))
-                                        <li><a href="{{url('timkiemgiakcbtn')}}">Tìm kiếm thông tin</a> </li>
-                                    @endif
-                                    @if(can('thkcbtn','baocao'))
-                                        <!--li><a href="{{url('baocaogiakcbtn')}}">Báo cáo thống kê</a></li-->
-                                    @endif
+                                    <li><a href="{{url('thongtindnkcbtn')}}">Kê khai giá </a> </li>
+                                    <li><a href="{{url('xetduyetgiakcbtn')}}">Thông tin hồ sơ xét duyệt</a></li>
+                                    <li><a href="{{url('timkiemgiakcbtn')}}">Tìm kiếm thông tin</a> </li>
+                                    <!--li><a href="{{url('baocaogiakcbtn')}}">Báo cáo thống kê</a></li-->
                                 @endif
                             </ul>
                         </li>

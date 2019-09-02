@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\manage\kekhaigia\kkgiakcbtn;
 
-use App\KkGiaKcbTnCtDf;
+use App\Model\manage\kekhaigia\kkgiakcbtn\KkGiaKcbTnCtDf;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;

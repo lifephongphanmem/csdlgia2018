@@ -23,13 +23,13 @@
         $(function(){
             $('#nam').change(function() {
                 var namhs = $('#nam').val();
-                var url = '/timkiemgiasach?'+namhs;
+                var url = '/timkiemgiakcbtn?'+namhs;
                 window.location.href = url;
             });
             $('#tthhdv').change(function() {
                 var namhs = '&nam='+ $('#nam').val();
                 var tthhdv = '&tthhdv=' + $('#tthhdv').val();
-                var url = '/timkiemgiasach?'+namhs + tthhdv;
+                var url = '/timkiemgiakcbtn?'+namhs + tthhdv;
                 window.location.href = url;
             });
 
@@ -42,6 +42,7 @@
     <h3 class="page-title">
         Tìm kiếm thông tin kê khai giá<small>&nbsp;Dịch vụ khám chữa bệnh cho người tại cơ sở khám chữa bệnh tư nhân; khám chữa bệnh theo yêu cầu tại cơ sở khám chữa bệnh của nhà nước</small>
     </h3>
+    <hr>
     <div class="row">
         <div class="col-md-2">
             <div class="form-group">
