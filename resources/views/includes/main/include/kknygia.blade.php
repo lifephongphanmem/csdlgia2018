@@ -124,8 +124,8 @@
                     </li>
                     @endif
                 @endif
-                @if(canGeneral('giay','index'))
-                    @if(can('giay','index'))
+                @if(canKkGiaGr('GIAY'))
+                    @if(canKkGiaCt('GIAY','GIAY'))
                         <li>
                             <a href="">
                                 <span class="title">Giấy in, viết (dạng cuộn), giấy in báo sản xuất trong nước</span>

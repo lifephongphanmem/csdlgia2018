@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\manage\kekhaigia\kkgiay;
 
-use App\KkGiaGiayCtDf;
+use App\Model\manage\kekhaigia\kkgiay\KkGiaGiayCtDf;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
