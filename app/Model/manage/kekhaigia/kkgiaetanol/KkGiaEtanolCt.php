@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model\manage\kekhaigia\kkgiaetanol;
 
 use Illuminate\Database\Eloquent\Model;
 

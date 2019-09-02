@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\manage\kekhaigia\kkgiaetanol;
 
-use App\KkGiaEtanolCtDF;
+use App\Model\manage\kekhaigia\kkgiaetanol\KkGiaEtanolCt;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
-class KkGiaEtanolCtDfController extends Controller
+class KkGiaEtanolCtController extends Controller
 {
     public function store(Request $request){
         $result = array(
@@ -26,9 +26,9 @@ class KkGiaEtanolCtDfController extends Controller
         $inputs['dongialk'] = getMoneyToDb($inputs['dongialk']);
         $inputs['dongia'] = getMoneyToDb($inputs['dongia']);
         if(isset($inputs['tthhdv'])){
-            $modelkkgia = new KkGiaEtanolCtDF();
+            $modelkkgia = new KkGiaEtanolCt();
             $modelkkgia->create($inputs);
-            $model = KkGiaEtanolCtDF::where('maxa',$inputs['maxa'])
+            $model = KkGiaEtanolCt::where('mahs',$inputs['mahs'])
                 ->get();
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
@@ -86,7 +86,7 @@ class KkGiaEtanolCtDfController extends Controller
         $inputs = $request->all();
         if(isset($inputs['id'])){
             $id = $inputs['id'];
-            $model = KkGiaEtanolCtDF::findOrFail($id);
+            $model = KkGiaEtanolCt::findOrFail($id);
 
             $result['message'] = '<div class="modal-body" id="ttpedit">';
 
@@ -160,9 +160,9 @@ class KkGiaEtanolCtDfController extends Controller
         $inputs['dongialk'] = getMoneyToDb($inputs['dongialk']);
         $inputs['dongia'] = getMoneyToDb($inputs['dongia']);
         if(isset($inputs['id'])){
-            $modelkkgia = KkGiaEtanolCtDF::where('id',$inputs['id'])->first();
+            $modelkkgia = KkGiaEtanolCt::where('id',$inputs['id'])->first();
             $modelkkgia->update($inputs);
-            $model = KkGiaEtanolCtDF::where('maxa',$inputs['maxa'])
+            $model = KkGiaEtanolCt::where('mahs',$inputs['mahs'])
                 ->get();
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
@@ -219,9 +219,9 @@ class KkGiaEtanolCtDfController extends Controller
         //dd($request);
         $inputs = $request->all();
         if(isset($inputs['id'])){
-            $modelkkgia = KkGiaEtanolCtDF::where('id',$inputs['id'])->first();
+            $modelkkgia = KkGiaEtanolCt::where('id',$inputs['id'])->first();
             $modelkkgia->delete();
-            $model = KkGiaEtanolCtDF::where('maxa',$inputs['maxa'])
+            $model = KkGiaEtanolCt::where('mahs',$inputs['mahs'])
                 ->get();
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';

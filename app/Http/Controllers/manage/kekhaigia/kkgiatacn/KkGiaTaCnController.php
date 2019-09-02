@@ -339,7 +339,7 @@ class KkGiaTaCnController extends Controller
             $ngayduyet = $model->ngayhieuluc;
             $ngaylv = 0;
 //            dd($ngaychuyen.'-'.$ngayduyet);
-            while (strtotime($ngaychuyen) < strtotime($ngayduyet)) {
+            while (strtotime($ngaychuyen) <= strtotime($ngayduyet)) {
                 $checkngay = NgayNghiLe::where('tungay', '<=', $ngaychuyen)
                     ->where('denngay', '>=', $ngaychuyen)->get();
                 if (count($checkngay) > 0)

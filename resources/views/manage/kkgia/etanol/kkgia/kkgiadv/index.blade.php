@@ -73,6 +73,9 @@
 
         function ClickChuyen(){
             if($('#ttnguoinop').val() != ''){
+                var btn = document.getElementById('submitChuyen');
+                btn.disabled = true;
+                btn.innerText = 'Loading...';
                 toastr.success("Hồ sơ đã được chuyển!", "Thành công!");
                 $("#frm_chuyen").unbind('submit').submit();
             }else{
@@ -113,6 +116,7 @@
         Thông tin kê khai giá<small>&nbsp;Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG)</small>
         <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}} - Cơ quan chủ quản: {{$modeldv->tendv}}</h5></p>
     </h3>
+
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">
@@ -131,6 +135,7 @@
                     </div>
                 <input type="hidden" name="masothue" id="masothue" value="{{$inputs['masothue']}}">
                 </div>
+                <hr>
                 <div class="portlet-body">
                     <div class="portlet-body">
                         <div class="row">
@@ -253,7 +258,7 @@
                     <input type="hidden" name="idchuyen" id="idchuyen">
                     <div class="modal-footer">
                         <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
-                        <button type="submit" class="btn blue" onclick="ClickChuyen()">Đồng ý</button>
+                        <button type="submit" class="btn blue" onclick="ClickChuyen()" id="submitChuyen">Đồng ý</button>
 
                     </div>
                     {!! Form::close() !!}

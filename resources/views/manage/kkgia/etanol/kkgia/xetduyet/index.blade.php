@@ -98,13 +98,16 @@
         $(function(){
             $('#nam').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
-                var url = '/xetduyetgiaetanol?'+namhs;
+                var trangthai = '&trangthai=' +  $('#trangthai').val();
+                var mahuyen = '&mahuyen=' + $('#mahuyen').val();
+                var url = '/xetduyetgiaetanol?'+namhs+trangthai+mahuyen;
                 window.location.href = url;
             });
             $('#trangthai').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
                 var trangthai = '&trangthai=' +  $('#trangthai').val();
-                var url = '/xetduyetgiaetanol?'+namhs+trangthai;
+                var mahuyen = '&mahuyen=' + $('#mahuyen').val();
+                var url = '/xetduyetgiaetanol?'+namhs+trangthai+mahuyen;
                 window.location.href = url;
             });
             $('#mahuyen').change(function() {
@@ -114,14 +117,7 @@
                 var url = '/xetduyetgiaetanol?'+namhs+trangthai+mahuyen;
                 window.location.href = url;
             });
-            $('#maxa').change(function() {
-                var namhs = '&nam=' + $('#nam').val();
-                var trangthai = '&trangthai=' +  $('#trangthai').val();
-                var mahuyen = '&mahuyen=' + $('#mahuyen').val();
-                var maxa = '&maxa=' + $('#maxa').val();
-                var url = '/xetduyetgiaetanol?'+namhs+trangthai+mahuyen+maxa;
-                window.location.href = url;
-            });
+
 
         });
         function ClickTraLai(id) {
@@ -145,6 +141,9 @@
         }
         function confirmTraLai(){
             if($('#lydo').val() != ''){
+                var btn = document.getElementById('submitTraLai');
+                btn.disabled = true;
+                btn.innerText = 'Loading...';
                 toastr.success("Hồ sơ đã được trả lại!", "Thành công!");
                 $("#frm_tralai").unbind('submit').submit();
             }else{
@@ -178,6 +177,9 @@
         }
         function ClickNhanHs(){
             $('#frm_nhanhs').submit();
+            var btn = document.getElementById('submitNhanHs');
+            btn.disabled = true;
+            btn.innerText = 'Loading...';
         }
 
         function confirmNhanHsedit(mahs){
@@ -257,6 +259,7 @@
     <h3 class="page-title">
         Thông tin xét duyệt kê khai giá<small>&nbsp;Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG)</small>
     </h3>
+    <hr>
     <div class="row">
         <div class="col-md-2">
             <div class="form-group">
@@ -280,35 +283,19 @@
                 </select>
             </div>
         </div>
-        @if(session('admin')->level == 'T')
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label style="font-weight: bold">Đơn vị chủ quản</label>
-                    <select name="mahuyen" id="mahuyen" class="form-control">
-                        @foreach($modeldvql as $dvql)
-                            <option value="{{$dvql->mahuyen}}" {{$dvql->mahuyen == $inputs['mahuyen'] ? 'selected' : ''}}>{{$dvql->tendv}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-        @else
-            <input type="hidden" name="mahuyen" id="mahuyen" value="{{$inputs['mahuyen']}}">
-        @endif
         @if(session('admin')->level == 'T' || session('admin')->level == 'H')
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div class="form-group">
-                    <label style="font-weight: bold">Đơn vị quản lý</label>
-                    <select name="maxa" id="maxa" class="form-control">
+                    <label>Đơn vị quản lý</label>
+                    <select name="mahuyen" id="mahuyen" class="form-control">
                         @foreach($modeldv as $dv)
-                            <option value="{{$dv->maxa}}" {{$dv->maxa == $inputs['maxa'] ? 'selected' : ''}}>{{$dv->tendv}}</option>
+                            <option value="{{$dv->maxa}}" {{$dv->maxa == $inputs['mahuyen'] ? 'selected' : ''}}>{{$dv->tendv}}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
         @endif
     </div>
-
-
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">
@@ -408,7 +395,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
-                        <button type="submit" class="btn blue" onclick="confirmTraLai()">Đồng ý</button>
+                        <button type="submit" class="btn blue" onclick="confirmTraLai()" id="submitTraLai">Đồng ý</button>
 
                     </div>
                     {!! Form::close() !!}
@@ -432,7 +419,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
-                    <button type="submit" class="btn blue" onclick="ClickNhanHs()">Đồng ý</button>
+                    <button type="submit" class="btn blue" onclick="ClickNhanHs()" id="submitNhanHs">Đồng ý</button>
                 </div>
                 {!! Form::close() !!}
             </div>
