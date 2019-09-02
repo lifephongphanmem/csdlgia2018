@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\manage\kekhaigia\kkgiasach;
 
-use App\Company;
 use App\District;
-use App\KkGiaSach;
+use App\Jobs\SendMail;
+use App\Model\manage\kekhaigia\kkgiasach\KkGiaSach;
+use App\Model\system\company\Company;
+use App\Model\system\dmnganhnghekd\DmNgheKd;
 use App\Town;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -18,44 +20,39 @@ class KkGiaSachXdController extends Controller
         if (Session::has('admin')) {
             if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
-                $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CD';
-
-                $model = KkGiaSach::join('company','company.maxa','=','kkgiasach.maxa')
-                    ->select('kkgiasach.*','company.tendn')
-                    ->where('company.level','SACH')
-                    ->where('kkgiasach.trangthai',$inputs['trangthai'])
-                    ->whereYear('kkgiasach.ngaychuyen',$inputs['nam']);
-
-                $modeldvql = District::all();
-                if(session('admin')->level == 'X') {
-                    $modeldv = Town::where('maxa',session('admin')->maxa)->get();
-                    $inputs['maxa'] = session('admin')->maxa;
-                    $inputs['mahuyen'] = session('admin')->mahuyen;
-
-                }else {
-                    if(session('admin')->level == 'T') {
-                        $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldvql->first()->mahuyen;
-                        $modeldv = Town::where('mahuyen',$inputs['mahuyen'])->get();
-                    }else {
-                        $inputs['mahuyen'] = session('admin')->mahuyen;
-                        $modeldv = Town::where('mahuyen', session('admin')->mahuyen)->get();
-                    }
-                    $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : (count($modeldv)> 0 ? $modeldv->first()->maxa : '');
+                $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
+                $modeldmnghe = DmNgheKd::where('manganh','SACH')
+                    ->where('manghe','SACH')
+                    ->first();
+                if(session('admin')->level == 'T'){
+                    $modeldv = Town::where('mahuyen',$modeldmnghe->mahuyen)->get();
+                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldv->first()->maxa;
+                }elseif(session('admin')->level == 'H'){
+                    if(session('admin')->mahuyen == $modeldmnghe->mahuyen){
+                        $modeldv = Town::where('mahuyen',$modeldmnghe->mahuyen)->get();
+                        $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldv->first()->maxa;
+                    }else
+                        return view('errors.perm');
+                }else{
+                    if(session('admin')->mahuyen == $modeldmnghe->mahuyen){
+                        $modeldv = Town::where('mahuyen',$modeldmnghe->mahuyen)->get();
+                        $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : session('admin')->maxa;
+                    }else
+                        return view('errors.perm');
                 }
-                $model = $model->where('kkgiasach.mahuyen',$inputs['maxa']);
-
-                $model = $model->get();
+                $model = KkGiaSach::join('company','company.maxa','=','kkgiasach.maxa')
+                    ->where('kkgiasach.mahuyen',$inputs['mahuyen'])
+                    ->where('kkgiasach.trangthai',$inputs['trangthai'])
+                    ->select('kkgiasach.*','company.tendn')
+                    ->get();
                 return view('manage.kkgia.sach.kkgia.xetduyet.index')
                     ->with('model', $model)
                     ->with('inputs',$inputs)
-                    ->with('modeldvql',$modeldvql)
                     ->with('modeldv',$modeldv)
                     ->with('pageTitle', 'Xét duyệt hồ sơ kê khai giá sách giáo khoa');
-            }else{
+            }else
                 return view('errors.perm');
-            }
-
         }else
             return view('errors.notlogin');
     }
@@ -79,7 +76,7 @@ class KkGiaSachXdController extends Controller
 
             $modelhs = KkGiaSach::where('id',$inputs['id'])
                 ->first();
-            $modeldn = Company::where('maxa',$modelhs->maxa)->where('level','SACH')->first();
+            $modeldn = Company::where('maxa',$modelhs->maxa)->first();
 
             $result['message'] = '<div class="form-group" id="ttdnkkdvgs"> ';
             $result['message'] .= '<label style="color: blue"><b>'.$modeldn->tendn.'</b> Kê khai giá số công văn <b>'.$modelhs->socv.'</b> ngày áp dụng <b>'.getDayVn($modelhs->ngayhieuluc).'</b></b></label>';
@@ -98,30 +95,25 @@ class KkGiaSachXdController extends Controller
                 $inputs['trangthai'] = 'BTL';
                 $model = KkGiaSach::where('id',$inputs['idtralai'])->first();
                 if($model->update($inputs)){
-                    $tencqcq = Town::where('maxa',$model->mahuyen)->first();
-                    $dn = Company::where('maxa',$model->maxa)->where('level','SACH')->first();
-                    $data=[];
-                    $data['tendn'] = $dn->tendn;
-                    $data['masothue'] = $model->maxa;
-                    $data['tg'] = Carbon::now()->toDateTimeString();
-                    $data['tencqcq'] = $tencqcq->tendv;
-                    $data['lydo'] = $inputs['lydo'];
-                    $maildn = $dn->email;
-                    $tendn = $dn->tendn;
-                    $mailql = $tencqcq->emailql;
-                    $tenql = $tencqcq->tendv;
-                    Mail::send('mail.replykkgia',$data, function ($message) use($maildn,$tendn,$mailql,$tenql) {
-                        $message->to($maildn,$tendn)
-                            ->to($mailql,$tenql)
-                            ->subject('Thông báo trả lại hồ sơ kê khai giá dịch vụ');
-                        $message->from('phanmemcsdlgia@gmail.com','Phần mềm CSDL giá');
-                    });
+                    $modeldn = Company::where('maxa', $model->maxa)
+                        ->first();
+                    $modeldv = Town::where('maxa',$model->mahuyen)
+                        ->first();
+                    $dmnghe = DmNgheKd::where('manghe','SACH')
+                        ->where('manganh','SACH')
+                        ->first();
+                    $tg = getDateTime(Carbon::now()->toDateTimeString());
+                    $contentdn = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã trả lại hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp. Số công văn: '.$model->socv.
+                        ' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Lý do: '.$inputs['lydo'].'!!!';
+                    $contentht = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã trả lại hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp '.$modeldn->tendn.' - mã số thuế '.$modeldn->maxa.
+                        ' Số công văn: '.$model->socv.' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Lý do: '.$inputs['lydo'].'!!!';
+                    $run = new SendMail($modeldn,$contentdn,$modeldv,$contentht);
+                    $run->handle();
+                    //dispatch($run);
                 }
                 return redirect('xetduyetgiasach?&trangthai='.$inputs['trangthai'].'&maxa='.$model->mahuyen);
-            }else{
+            }else
                 return view('errors.perm');
-            }
-
         }else
             return view('errors.notlogin');
     }
@@ -148,7 +140,6 @@ class KkGiaSachXdController extends Controller
             $model = Town::where('maxa',$modelhs->mahuyen)
                 ->first();
             $modeldn = Company::where('maxa',$modelhs->maxa)
-                ->where('level','SACH')
                 ->first();
 
             $ngay = Carbon::now()->toDateString();
@@ -179,13 +170,15 @@ class KkGiaSachXdController extends Controller
     }
 
     public function getsohsnhan($mahuyen){
-        $model = KkGiaSach::where('trangthai', 'DD')
+        $idmax = KkGiaSach::where('trangthai', 'DD')
             ->where('mahuyen', $mahuyen)
             ->max('id');
-        if (count($model) == 0) {
-            $stt = 1;
-        } else
+        if (isset($idmax)) {
+            $model = KkGiaSach::where('id',$idmax)
+                ->first();
             $stt = $model->sohsnhan + 1;
+        } else
+            $stt = 1;
         return $stt;
     }
 
@@ -199,33 +192,21 @@ class KkGiaSachXdController extends Controller
             //$inputs['thoihan'] = getThXdHsDvLt($model->ngaychuyen,$inputs['ngaynhan']);
 
             if($model->update($inputs)){
-                //$this->congbo($id);
-
-                $tencqcq = Town::where('maxa',$model->mahuyen)->first();
-                $dn = Company::where('maxa',$model->maxa)
-                    ->where('level','SACH')
+                $modeldn = Company::where('maxa', $model->maxa)
                     ->first();
-                $data=[];
-                $data['tendn'] = $dn->tendn;
-                $data['tg'] = Carbon::now()->toDateTimeString();
-                $data['tencqcq'] = $tencqcq->tendv;
-                $data['ngaykk'] = $model->ngaynhap;
-                $data['ngayapdung'] = $model->ngayhieuluc;
-                $data['socv'] = $model->socv;
-                $data['ngaynhan'] = $inputs['ngaynhan'];
-                $data['sohsnhan'] = $inputs['sohsnhan'];
-
-                $maildn = $dn->email;
-                $tendn = $dn->tendn;
-                $mailql = $tencqcq->emailql;
-                $tenql = $tencqcq->tendv;
-                Mail::send('mail.successkkgia',$data, function ($message) use($maildn,$tendn,$mailql,$tenql) {
-                    $message->to($maildn,$tendn)
-                        ->to($mailql,$tenql)
-                        ->subject('Thông báo xét duyệt hồ sơ kê khai giá dịch vụ');
-                    $message->from('phanmemcsdlgia@gmail.com','Phần mềm CSDL giá');
-                });
-
+                $modeldv = Town::where('maxa',$model->mahuyen)
+                    ->first();
+                $dmnghe = DmNgheKd::where('manghe','SACH')
+                    ->where('manganh','SACH')
+                    ->first();
+                $tg = getDateTime(Carbon::now()->toDateTimeString());
+                $contentdn = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã duyệt hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp. Số công văn: '.$model->socv.
+                    ' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Số hồ sơ nhận: '.$inputs['sohsnhan'].'- Ngày nhận: '.getDayVn($inputs['ngaynhan']).'!!!';
+                $contentht = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã duyệt hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp '.$modeldn->tendn.' - mã số thuế '.$modeldn->maxa.
+                    '. Số công văn: '.$model->socv.' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Số hồ sơ nhận: '.$inputs['sohsnhan'].'- Ngày nhận: '.getDayVn($inputs['ngaynhan']).'!!!';
+                $run = new SendMail($modeldn,$contentdn,$modeldv,$contentht);
+                $run->handle();
+                //dispatch($run);
             }
             return redirect('xetduyetgiasach?&trangthai=DD&maxa='.$model->mahuyen);
         }else
@@ -239,7 +220,6 @@ class KkGiaSachXdController extends Controller
             $inputs['tthhdv'] = isset($inputs['tthhdv']) ? $inputs['tthhdv'] : '';
             $model = KkGiaSach::leftJoin('kkgiasachct','kkgiasachct.mahs','=','kkgiasach.mahs')
                 ->leftjoin('company','company.maxa','=','kkgiasach.maxa')
-                ->where('company.level','SACH')
                 ->whereYear('kkgiasach.ngayhieuluc',$inputs['nam'])
                 ->select('kkgiasachct.*','company.tendn','kkgiasach.ngayhieuluc','kkgiasach.maxa')
                 ->where('kkgiasach.trangthai','DD');

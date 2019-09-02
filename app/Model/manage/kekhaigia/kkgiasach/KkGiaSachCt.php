@@ -1,15 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Model\manage\kekhaigia\kkgiasach;
 
 use Illuminate\Database\Eloquent\Model;
 
-class KkGiaSachCtDf extends Model
+class KkGiaSachCt extends Model
 {
-    protected $table = 'kkgiasachctdf';
+    protected $table = 'kkgiasachct';
     protected $fillable = [
         'id',
-        'maxa',
+        'mahs',
         'tthhdv',
         'qccl',
         'dvt',

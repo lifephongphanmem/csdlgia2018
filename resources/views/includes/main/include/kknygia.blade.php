@@ -153,8 +153,8 @@
                         </li>
                     @endif
                 @endif
-                @if(canGeneral('sach','index'))
-                    @if(can('sach','index'))
+                @if(canKkGiaGr('SACH'))
+                    @if(canKkGiaCt('SACH','SACH'))
                         <li>
                             <a href="">
                                 <span class="title">Sách giáo khoa</span>

@@ -114,14 +114,6 @@
                 var url = '/xetduyetgiagiay?'+namhs+trangthai+mahuyen;
                 window.location.href = url;
             });
-            $('#maxa').change(function() {
-                var namhs = '&nam=' + $('#nam').val();
-                var trangthai = '&trangthai=' +  $('#trangthai').val();
-                var mahuyen = '&mahuyen=' + $('#mahuyen').val();
-                var maxa = '&maxa=' + $('#maxa').val();
-                var url = '/xetduyetgiagiay?'+namhs+trangthai+mahuyen+maxa;
-                window.location.href = url;
-            });
 
         });
         function ClickTraLai(id) {

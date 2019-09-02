@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\manage\kekhaigia\kkgiasach;
 
-use App\KkGiaSachCt;
+use App\Model\manage\kekhaigia\kkgiasach\KkGiaSachCtDf;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
-class KkGiaSachCtController extends Controller
+class KkGiaSachCtDfController extends Controller
 {
     public function store(Request $request){
         $result = array(
@@ -26,9 +26,9 @@ class KkGiaSachCtController extends Controller
         $inputs['dongialk'] = getMoneyToDb($inputs['dongialk']);
         $inputs['dongia'] = getMoneyToDb($inputs['dongia']);
         if(isset($inputs['tthhdv'])){
-            $modelkkgia = new KkGiaSachCt();
+            $modelkkgia = new KkGiaSachCtDf();
             $modelkkgia->create($inputs);
-            $model = KkGiaSachCt::where('mahs',$inputs['mahs'])
+            $model = KkGiaSachCtDf::where('maxa',$inputs['maxa'])
                 ->get();
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
@@ -86,7 +86,7 @@ class KkGiaSachCtController extends Controller
         $inputs = $request->all();
         if(isset($inputs['id'])){
             $id = $inputs['id'];
-            $model = KkGiaSachCt::findOrFail($id);
+            $model = KkGiaSachCtDf::findOrFail($id);
 
             $result['message'] = '<div class="modal-body" id="ttpedit">';
 
@@ -160,9 +160,9 @@ class KkGiaSachCtController extends Controller
         $inputs['dongialk'] = getMoneyToDb($inputs['dongialk']);
         $inputs['dongia'] = getMoneyToDb($inputs['dongia']);
         if(isset($inputs['id'])){
-            $modelkkgia = KkGiaSachCt::where('id',$inputs['id'])->first();
+            $modelkkgia = KkGiaSachCtDf::where('id',$inputs['id'])->first();
             $modelkkgia->update($inputs);
-            $model = KkGiaSachCt::where('mahs',$inputs['mahs'])
+            $model = KkGiaSachCtDf::where('maxa',$inputs['maxa'])
                 ->get();
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
@@ -219,9 +219,9 @@ class KkGiaSachCtController extends Controller
         //dd($request);
         $inputs = $request->all();
         if(isset($inputs['id'])){
-            $modelkkgia = KkGiaSachCt::where('id',$inputs['id'])->first();
+            $modelkkgia = KkGiaSachCtDf::where('id',$inputs['id'])->first();
             $modelkkgia->delete();
-            $model = KkGiaSachCt::where('mahs',$inputs['mahs'])
+            $model = KkGiaSachCtDf::where('maxa',$inputs['maxa'])
                 ->get();
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
