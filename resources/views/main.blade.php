@@ -345,22 +345,20 @@ License: You must have a valid license purchased only from themeforest(the above
                             <span class="arrow "></span>
                         </a>
                         <ul class="sub-menu">
-                            @if(session('admin')->level == 'T' || session('admin')->level == 'H')
-                                @if(session('admin')->level == 'T')
-                                    @if(can('ngaynghile','index'))
-                                    <li><a href="{{url('thongtinngaynghile')}}"> Thông tin ngày nghỉ lễ</a></li>
-                                    @endif
-                                    @if(can('dmdiadanh','index'))
-                                    <li><a href="{{url('danhmucdiadanh')}}"> Danh mục địa danh</a></li>
-                                    @endif
-                                    @if(can('districts','index'))
-                                    <li><a href="{{url('district')}}"> Danh sách đơn vị quản lý</a></li>
-                                    @endif
+                            @if(session('admin')->level == 'T')
+                                @if(can('ngaynghile','index'))
+                                <li><a href="{{url('thongtinngaynghile')}}"> Thông tin ngày nghỉ lễ</a></li>
+                                @endif
+                                @if(can('dmdiadanh','index'))
+                                <li><a href="{{url('danhmucdiadanh')}}"> Danh mục địa danh</a></li>
+                                @endif
+                                @if(can('districts','index'))
+                                <li><a href="{{url('district')}}"> Danh sách đơn vị quản lý</a></li>
+                                @endif
 
-                                @endif
-                                @if(can('towns','index'))
-                                <li><a href="{{url('town')}}"> Danh sách đơn vị</a></li>
-                                @endif
+                            @endif
+                            @if(can('towns','index'))
+                            <li><a href="{{url('town')}}"> Danh sách đơn vị</a></li>
                             @endif
                             @if(can('companies','index'))
                             <li><a href="{{url('company')}}"> Danh sách doanh nghiệp</a></li>

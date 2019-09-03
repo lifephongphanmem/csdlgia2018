@@ -98,13 +98,16 @@
         $(function(){
             $('#nam').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
-                var url = '/xdkekhaigiatpcnte6t?'+namhs;
+                var trangthai = '&trangthai=' +  $('#trangthai').val();
+                var mahuyen = '&mahuyen=' + $('#mahuyen').val();
+                var url = '/xdkekhaigiatpcnte6t?'+namhs+trangthai+mahuyen;
                 window.location.href = url;
             });
             $('#trangthai').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
                 var trangthai = '&trangthai=' +  $('#trangthai').val();
-                var url = '/xdkekhaigiatpcnte6t?'+namhs+trangthai;
+                var mahuyen = '&mahuyen=' + $('#mahuyen').val();
+                var url = '/xdkekhaigiatpcnte6t?'+namhs+trangthai+mahuyen;
                 window.location.href = url;
             });
             $('#mahuyen').change(function() {
@@ -137,6 +140,9 @@
         }
         function confirmTraLai(){
             if($('#lydo').val() != ''){
+                var btn = document.getElementById('submitTraLai');
+                btn.disabled = true;
+                btn.innerText = 'Loading...';
                 toastr.success("Hồ sơ đã được trả lại!", "Thành công!");
                 $("#frm_tralai").unbind('submit').submit();
             }else{
@@ -170,6 +176,9 @@
         }
         function ClickNhanHs(){
             $('#frm_nhanhs').submit();
+            var btn = document.getElementById('submitNhanHs');
+            btn.disabled = true;
+            btn.innerText = 'Loading...';
         }
 
         function confirmNhanHsedit(mahs){
@@ -197,6 +206,7 @@
 
         function ClickNhanHsedit(){
             $('#frm_nhanhsedit').submit();
+
         }
         //Chưa làm
         function confirmHuyduyet(mahs){
@@ -245,10 +255,10 @@
 @stop
 
 @section('content')
-
     <h3 class="page-title">
         Thông tin xét duyệt kê khai giá<small>&nbsp;TPCN cho TE dưới 6 tuổi</small>
     </h3>
+    <hr>
     <div class="row">
         <div class="col-md-2">
             <div class="form-group">
@@ -337,12 +347,10 @@
                                 <td>
                                     <a href="{{url('kekhaithucphamchucnangchote6t/prints?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                     @if(canApprove($tt->trangthai))
-                                        @if(can('kkdvlt','approve'))
-                                            <button type="button" onclick="ClickTraLai({{$tt->id}})" class="btn btn-default btn-xs mbs" data-target="#tralai-modal" data-toggle="modal"><i class="fa fa-reply"></i>&nbsp;
-                                                Trả lại</button>
-                                            <button type="button" onclick="confirmNhanHs({{$tt->id}})" class="btn btn-default btn-xs mbs" data-target="#nhanhs-modal" data-toggle="modal"><i class="fa fa-share"></i>&nbsp;
-                                                Nhận hồ sơ</button>
-                                        @endif
+                                        <button type="button" onclick="ClickTraLai({{$tt->id}})" class="btn btn-default btn-xs mbs" data-target="#tralai-modal" data-toggle="modal"><i class="fa fa-reply"></i>&nbsp;
+                                            Trả lại</button>
+                                        <button type="button" onclick="confirmNhanHs({{$tt->id}})" class="btn btn-default btn-xs mbs" data-target="#nhanhs-modal" data-toggle="modal"><i class="fa fa-share"></i>&nbsp;
+                                            Nhận hồ sơ</button>
                                     @endif
                                     @if(canShowLyDo($tt->trangthai))
                                         <button type="button" data-target="#lydo-modal" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="viewLyDo({{$tt->id}})"><i class="fa fa-search"></i>&nbsp;Lý do trả lại</button>
@@ -386,7 +394,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
-                        <button type="submit" class="btn blue" onclick="confirmTraLai()">Đồng ý</button>
+                        <button type="submit" class="btn blue" onclick="confirmTraLai()" id="submitTraLai">Đồng ý</button>
 
                     </div>
                     {!! Form::close() !!}
@@ -410,7 +418,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
-                    <button type="submit" class="btn blue" onclick="ClickNhanHs()">Đồng ý</button>
+                    <button type="submit" class="btn blue" onclick="ClickNhanHs()" id="submitNhanHs">Đồng ý</button>
                 </div>
                 {!! Form::close() !!}
             </div>

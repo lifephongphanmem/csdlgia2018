@@ -411,27 +411,27 @@
             <div class="portlet box blue">
                 <div class="portlet-body">
                     <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label">Thực hiện theo</label>
-                                <div>
-                                        <textarea id="thqd" class="form-control" name="thqd" cols="30" rows="5"
-                                                >{{$model->thqd}}</textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {{--<div class="row">--}}
+                        {{--<div class="col-md-12">--}}
+                            {{--<div class="form-group"><label for="selGender" class="control-label">Thực hiện theo</label>--}}
+                                {{--<div>--}}
+                                        {{--<textarea id="thqd" class="form-control" name="thqd" cols="30" rows="5"--}}
+                                                {{-->{{$model->thqd}}</textarea>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Ngày kê khai<span class="require">*</span></label>
-                                <p style="color: #000088"><b>{{getDayVn($model->ngaynhap)}}</b></p>
+                                {!!Form::text('ngaynhap',date('d/m/Y',  strtotime($model->ngaynhap)), array('id' => 'ngaynhap','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Ngày thực hiện mức giá kê khai<span class="require">*</span></label>
-                                {!!Form::text('ngayhieuluc',date('d/m/Y',  strtotime($model->ngayhieuluc)), array('id' => 'ngayhieuluc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required','onchange'=>"checkngay()"))!!}
+                                {!!Form::text('ngayhieuluc',date('d/m/Y',  strtotime($model->ngayhieuluc)), array('id' => 'ngayhieuluc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                             </div>
                         </div>
                     </div>
@@ -468,9 +468,6 @@
                         </div>
                     </div>
                     <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}">
-                    <input type="hidden" name="maxa" id="maxa" value="{{$model->maxa}}">
-                    <input type="hidden" name="mahuyen" id="mahuyen" value="{{$modeldn->mahuyen}}">
-                    <input type="hidden" name="tendn" id="tendn" value="{{$modeldn->tendn}}">
                     {!! Form::close() !!}
                     <!--/row-->
                     <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>

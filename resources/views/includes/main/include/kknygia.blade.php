@@ -380,30 +380,22 @@
                         </li>
                     @endif
                 @endif
-                @if(canGeneral('tpcnte6t','index'))
-                    @if(can('tpcnte6t','index'))
+                @if(canKkGiaGr('TPCNTE6T'))
+                    @if(canKkGiaCt('TPCNTE6T','TPCNTE6T'))
                         <li>
                             <a href="">
                                 <span class="title">Thực phẩm chức năng cho trẻ em dưới 6 tuổi</span>
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu" style="display: none;">
-                                @if(session('admin')->level == 'TPCNTE6T')
-                                    @if(can('kktpcnte6t','index'))
-                                        <li><a href="{{url('kekhaithucphamchucnangchote6t')}}">Kê khai giá TPCN cho TE dưới 6 tuổi</a> </li>
-                                    @endif
+                                @if(session('admin')->level == 'DN')
+                                    <li><a href="{{url('kekhaithucphamchucnangchote6t')}}">Kê khai giá TPCN cho TE dưới 6 tuổi</a> </li>
                                 @endif
                                 @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
-                                    @if(can('kktpcnte6t','index'))
-                                        <li><a href="{{url('thongtindntpcn6t')}}">Kê khai giá TPCN cho TE dưới 6 tuổi</a></li>
-                                        <li><a href="{{url('xdkekhaigiatpcnte6t')}}">Thông tin hồ sơ xét duyệt</a></li>
-                                    @endif
-                                    @if(can('tpcnte6t','timkiem'))
-                                        <li><a href="{{url('timkiemkekhaigiatpcnte6t')}}">Tìm kiếm thông tin</a> </li>
-                                    @endif
-                                    @if(can('tpcnte6t','baocao'))
-                                        <!--li><a href="{{url('baocaokekhaigiatpcnte6t')}}">Báo cáo thống kê</a></li-->
-                                    @endif
+                                    <li><a href="{{url('thongtindntpcn6t')}}">Kê khai giá TPCN cho TE dưới 6 tuổi</a></li>
+                                    <li><a href="{{url('xdkekhaigiatpcnte6t')}}">Thông tin hồ sơ xét duyệt</a></li>
+                                    <li><a href="{{url('timkiemkekhaigiatpcnte6t')}}">Tìm kiếm thông tin</a> </li>
+                                    <!--li><a href="{{url('baocaokekhaigiatpcnte6t')}}">Báo cáo thống kê</a></li-->
                                 @endif
                             </ul>
                         </li>

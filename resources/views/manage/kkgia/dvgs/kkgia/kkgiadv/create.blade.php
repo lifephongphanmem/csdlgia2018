@@ -504,7 +504,7 @@
         Thông tin hồ sơ kê khai giá <small>&nbsp;TPCN cho TE dưới 6 tuổi thêm mới</small>
         <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
     </h3>
-
+    <hr>
     <!-- END PAGE HEADER-->
     <div class="row">
         {!! Form::open(['url'=>'kekhaithucphamchucnangchote6t', 'id' => 'create_kkdvgs', 'class'=>'horizontal-form']) !!}
@@ -513,31 +513,28 @@
             <div class="portlet box blue">
                 <div class="portlet-body">
                     <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label">Thực hiện theo</label>
-                                <div>
-                                        <textarea id="thqd" class="form-control" name="thqd" cols="30" rows="5"
-                                                >{{isset($modelcb) ? $modelcb->thqd : '' }}</textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {{--<div class="row">--}}
+                        {{--<div class="col-md-12">--}}
+                            {{--<div class="form-group"><label for="selGender" class="control-label">Thực hiện theo</label>--}}
+                                {{--<div>--}}
+                                        {{--<textarea id="thqd" class="form-control" name="thqd" cols="30" rows="5"--}}
+                                                {{-->{{isset($modelcb) ? $modelcb->thqd : '' }}</textarea>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Ngày kê khai<span class="require">*</span></label>
-                                <!--input type="date" name="ngaynhap" id="ngaynhap" class="form-control required" autofocus-->
-                                <label class="form-control required" >{{$ngaynhap}}</label>
-                                {!!Form::hidden('ngaynhap',$ngaynhap, array('id' => 'ngaynhap','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required','onchange'=>"checkngaykk()"))!!}
+                                {!!Form::text('ngaynhap',null, array('id' => 'ngaynhap','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                             </div>
                         </div>
                         <!--/span-->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Ngày thực hiện mức giá kê khai<span class="require">*</span></label>
-                                <!--input type="date" name="ngayhieuluc" id="ngayhieuluc" class="form-control required"-->
-                                {!!Form::text('ngayhieuluc',$ngayhieuluc, array('id' => 'ngayhieuluc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required','onchange'=>"checkngay()"))!!}
+                                {!!Form::text('ngayhieuluc',null, array('id' => 'ngayhieuluc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                             </div>
                         </div>
                         <!--/span-->
@@ -563,7 +560,6 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Ngày nhập số công văn liền kề<span class="require">*</span></label>
-                                <!--input type="date" name="ngaycvlk" id="ngaycvlk" class="form-control" value="{{isset($modelcb) ? $modelcb->ngaynhap : '' }}"-->
                                 {!!Form::text('ngaycvlk',(isset($modelcb) ? date('d/m/Y',  strtotime($modelcb->ngaynhap)) : ''), array('id' => 'ngaycvlk','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
                             </div>
                         </div>
@@ -578,7 +574,7 @@
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" name="maxa" id="maxa" value="{{$maxa}}">
+                    <input type="hidden" name="maxa" id="maxa" value="{{$inputs['masothue']}}">
                     <input type="hidden" name="mahuyen" id="mahuyen" value="{{$modeldn->mahuyen}}">
                     <input type="hidden" name="tendn" id="tendn" value="{{$modeldn->tendn}}">
                     {!! Form::close() !!}
@@ -635,7 +631,7 @@
             </div>
             <!-- END EXAMPLE TABLE PORTLET-->
             <div style="text-align: center">
-                <a href="{{url('kekhaithucphamchucnangchote6t?&masothue='.$maxa)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('kekhaithucphamchucnangchote6t?&masothue='.$inputs['masothue'])}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
             </div>

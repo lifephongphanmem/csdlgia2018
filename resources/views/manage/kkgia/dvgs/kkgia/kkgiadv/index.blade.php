@@ -24,16 +24,8 @@
             $('#namhs').change(function() {
                 var nam = $('#namhs').val();
                 var masothue = $('#masothue').val();
-                var trangthai = $('#trangthai').val();
-                var url = '/kekhaithucphamchucnangchote6t?&masothue='+masothue+'&nam='+nam+'&trangthai='+trangthai;
+                var url = '/kekhaithucphamchucnangchote6t?&masothue='+masothue+'&nam='+nam;
 
-                window.location.href = url;
-            });
-            $('#trangthai').change(function() {
-                var nam = $('#namhs').val();
-                var masothue = $('#masothue').val();
-                var trangthai = $('#trangthai').val();
-                var url = '/kekhaithucphamchucnangchote6t?&masothue='+masothue+'&nam='+nam+'&trangthai='+trangthai;
                 window.location.href = url;
             });
 
@@ -83,6 +75,9 @@
 
         function ClickChuyen(){
             if($('#ttnguoinop').val() != ''){
+                var btn = document.getElementById('submitChuyen');
+                btn.disabled = true;
+                btn.innerText = 'Loading...';
                 toastr.success("Hồ sơ đã được chuyển!", "Thành công!");
                 $("#frm_chuyen").unbind('submit').submit();
             }else{
@@ -118,10 +113,12 @@
 @stop
 
 @section('content')
-
+    <marquee>
+        <b style="color: #ff0000">{{$modeldv->tendv}} xin thông báo:</b> Ngày áp dụng hồ sơ kê khai giá thực phẩm chức năng cho trẻ em dưới 6 tuổi phải sau {{$modeldv->songaylv}} ngày làm việc, tính từ thời điểm chuyển hồ sơ. Hồ sơ chuyển  trước 17h sẽ tính từ ngày gửi, sau 17h sẽ tính ngày hôm sau!!! (Ngày làm việc không tính thứ 7, CN và ngày nghỉ lể)
+    </marquee>
     <h3 class="page-title">
         Thông tin hồ sơ kê khai giá<small>&nbsp;TPCN cho TE dưới 6 tuổi</small>
-        <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
+        <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}} - Cơ quan chủ quản: {{$modeldv->tendv}}</h5></p>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -130,17 +127,16 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
-                        @if(can('kktpcnte6t','create'))
-                                <a href="{{url('kekhaithucphamchucnangchote6t/create?&masothue='.$masothue)}}" class="btn btn-default btn-sm">
-                                    <i class="fa fa-plus"></i> Kê khai mới </a>
-                        @endif
+                        <a href="{{url('kekhaithucphamchucnangchote6t/create?&masothue='.$inputs['masothue'])}}" class="btn btn-default btn-sm">
+                            <i class="fa fa-plus"></i> Kê khai mới </a>
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
                             <a href="{{url('thongtindntpcn6t')}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-reply"></i> Quay lại </a>
                         @endif
                     </div>
-                <input type="hidden" name="masothue" id="masothue" value="{{$masothue}}">
+                <input type="hidden" name="masothue" id="masothue" value="{{$inputs['masothue']}}">
                 </div>
+                <hr>
                 <div class="portlet-body">
                     <div class="portlet-body">
                         <div class="row">
@@ -151,19 +147,8 @@
                                         @if ($nam_start = intval(date('Y')) - 5 ) @endif
                                         @if ($nam_stop = intval(date('Y')) + 1 ) @endif
                                         @for($i = $nam_start; $i <= $nam_stop; $i++)
-                                            <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>Năm {{$i}}</option>
+                                            <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
                                         @endfor
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Trạng thái hồ sơ</label>
-                                    <select name="trangthai" id="trangthai" class="form-control">
-                                        <option value="CC" {{$trangthai == 'CC' ? 'selected' : ''}}>Hồ sơ chờ chuyển</option>
-                                        <option value="CD" {{$trangthai == 'CD' ? 'selected' : ''}}>Hồ sơ chờ duyệt</option>
-                                        <option value="BTL" {{$trangthai == 'BTL' ? 'selected' : ''}}>Hồ sơ bị trả lại</option>
-                                        <option value="DD" {{$trangthai == 'DD' ? 'selected' : ''}}>Hồ sơ đã duyệt</option>
                                     </select>
                                 </div>
                             </div>
@@ -213,24 +198,14 @@
                                 <td>
                                     <a href="{{url('kekhaithucphamchucnangchote6t/prints?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                     @if(canEdit($tt->trangthai))
-                                        @if(can('kktpcnte6t','edit'))
                                             <a href="{{url('kekhaithucphamchucnangchote6t/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
-                                        @endif
                                         @if(canChuyenXoa($tt->trangthai))
-                                            @if(can('kktpcnte6t','delete'))
-                                                @if($tt->trangthai == 'CC')
-                                                <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
-                                                    Xóa</button>
-                                                @endif
+                                            @if($tt->trangthai == 'CC')
+                                            <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                                Xóa</button>
                                             @endif
-                                            @if(can('kktpcnte6t','approve'))
                                             <button type="button" onclick="confirmChuyen('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyen-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
                                                 Chuyển</button>
-                                                @if(session('admin')->sadmin == 'ssa')
-                                                    <!--button type="button" onclick="confirmChuyenHSCham('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyenhscham-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
-                                                        Chuyển HS chậm</button-->
-                                                @endif
-                                            @endif
                                         @endif
                                         @if(canShowLyDo($tt->trangthai))
                                         <button type="button" data-target="#lydo-modal" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="viewLyDo({{$tt->id}})"><i class="fa fa-search"></i>&nbsp;Lý do trả lại</button>
@@ -272,7 +247,7 @@
                     <input type="hidden" name="idchuyen" id="idchuyen">
                     <div class="modal-footer">
                         <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
-                        <button type="submit" class="btn blue" onclick="ClickChuyen()">Đồng ý</button>
+                        <button type="submit" class="btn blue" onclick="ClickChuyen()" id="submitChuyen">Đồng ý</button>
 
                     </div>
                     {!! Form::close() !!}

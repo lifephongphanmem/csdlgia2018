@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\manage\kekhaigia\kkgiatpcnte6t;
 
-use App\KkGs;
-use App\Company;
-use App\KkGsCt;
+use App\Jobs\SendMail;
+use App\Model\manage\kekhaigia\kkgiatpcnte6t\KkGs;
+use App\Model\manage\kekhaigia\kkgiatpcnte6t\KkGsCt;
+use App\Model\system\company\Company;
+use App\Model\system\dmnganhnghekd\DmNgheKd;
 use App\Town;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -18,28 +20,32 @@ class KkGsXdController extends Controller
         if (Session::has('admin')) {
             if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
-                $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CD';
-                $model = KkGs::leftjoin('company','company.maxa','=','kkgs.maxa')
-                    ->select('kkgs.*','company.tendn')
-                    ->where('kkgs.trangthai',$inputs['trangthai'])
-                    ->whereYear('kkgs.ngaychuyen',$inputs['nam']);
+                $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
+                $modeldmnghe = DmNgheKd::where('manganh','TPCNTE6T')
+                    ->where('manghe','TPCNTE6T')
+                    ->first();
                 if(session('admin')->level == 'T'){
-                    $modeldv = Town::all();
+                    $modeldv = Town::where('mahuyen',$modeldmnghe->mahuyen)->get();
                     $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldv->first()->maxa;
-                    $model = $model->where('kkgs.mahuyen',$inputs['mahuyen']);
                 }elseif(session('admin')->level == 'H'){
-                    $modeldv = Town::where('mahuyen',session('admin')->mahuyen)->get();
-                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldv->first()->maxa;
-                    $model = $model->where('kkgs.mahuyen',$inputs['mahuyen']);
+                    if(session('admin')->mahuyen == $modeldmnghe->mahuyen){
+                        $modeldv = Town::where('mahuyen',$modeldmnghe->mahuyen)->get();
+                        $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldv->first()->maxa;
+                    }else
+                        return view('errors.perm');
                 }else{
-                    $modeldv = Town::where('mahuyen',session('admin')->mahuyen)
-                        ->where('maxa',session('admin')->maxa)
-                        ->get();
-                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldv->first()->maxa;
-                    $model = $model->where('kkgs.mahuyen',$inputs['mahuyen']);
+                    if(session('admin')->mahuyen == $modeldmnghe->mahuyen){
+                        $modeldv = Town::where('mahuyen',$modeldmnghe->mahuyen)->get();
+                        $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : session('admin')->maxa;
+                    }else
+                        return view('errors.perm');
                 }
-                $model = $model->get();
+                $model = KkGs::join('company','company.maxa','=','kkgs.maxa')
+                    ->where('kkgs.mahuyen',$inputs['mahuyen'])
+                    ->where('kkgs.trangthai',$inputs['trangthai'])
+                    ->select('kkgs.*','company.tendn')
+                    ->get();
                 return view('manage.kkgia.dvgs.kkgia.xetduyet.index')
                     ->with('model', $model)
                     ->with('inputs',$inputs)
@@ -72,7 +78,7 @@ class KkGsXdController extends Controller
 
             $modelhs = KkGs::where('id',$inputs['id'])
                 ->first();
-            $modeldn = Company::where('maxa',$modelhs->maxa)->where('level','TPCNTE6T')->first();
+            $modeldn = Company::where('maxa',$modelhs->maxa)->first();
 
             $result['message'] = '<div class="form-group" id="ttdnkkdvgs"> ';
             $result['message'] .= '<label style="color: blue"><b>'.$modeldn->tendn.'</b> Kê khai giá số công văn <b>'.$modelhs->socv.'</b> ngày áp dụng <b>'.getDayVn($modelhs->ngayhieuluc).'</b></b></label>';
@@ -91,26 +97,23 @@ class KkGsXdController extends Controller
                 $inputs['trangthai'] = 'BTL';
                 $model = KkGs::where('id',$inputs['idtralai'])->first();
                 if($model->update($inputs)){
-                    $tencqcq = Town::where('maxa',$model->mahuyen)->first();
-                    $dn = Company::where('maxa',$model->maxa)->where('level','TPCNTE6T')->first();
-                    $data=[];
-                    $data['tendn'] = $dn->tendn;
-                    $data['masothue'] = $model->maxa;
-                    $data['tg'] = Carbon::now()->toDateTimeString();
-                    $data['tencqcq'] = $tencqcq->tendv;
-                    $data['lydo'] = $inputs['lydo'];
-                    $maildn = $dn->email;
-                    $tendn = $dn->tendn;
-                    $mailql = $tencqcq->emailql;
-                    $tenql = $tencqcq->tendv;
-                    Mail::send('mail.replykkgia',$data, function ($message) use($maildn,$tendn,$mailql,$tenql) {
-                        $message->to($maildn,$tendn)
-                            ->to($mailql,$tenql)
-                            ->subject('Thông báo trả lại hồ sơ kê khai giá dịch vụ');
-                        $message->from('phanmemcsdlgia@gmail.com','Phần mềm CSDL giá');
-                    });
+                    $modeldn = Company::where('maxa', $model->maxa)
+                        ->first();
+                    $modeldv = Town::where('maxa',$model->mahuyen)
+                        ->first();
+                    $dmnghe = DmNgheKd::where('manghe','TPCNTE6T')
+                        ->where('manganh','TPCNTE6T')
+                        ->first();
+                    $tg = getDateTime(Carbon::now()->toDateTimeString());
+                    $contentdn = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã trả lại hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp. Số công văn: '.$model->socv.
+                        ' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Lý do: '.$inputs['lydo'].'!!!';
+                    $contentht = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã trả lại hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp '.$modeldn->tendn.' - mã số thuế '.$modeldn->maxa.
+                        ' Số công văn: '.$model->socv.' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Lý do: '.$inputs['lydo'].'!!!';
+                    $run = new SendMail($modeldn,$contentdn,$modeldv,$contentht);
+                    $run->handle();
+                    //dispatch($run);
                 }
-                return redirect('xdkekhaigiatpcnte6t?&trangthai='.$inputs['trangthai'].'mahuyen='.$model->mahuyen);
+                return redirect('xdkekhaigiatpcnte6t?&trangthai='.$inputs['trangthai'].'&mahuyen='.$model->mahuyen);
             }else{
                 return view('errors.perm');
             }
@@ -141,7 +144,6 @@ class KkGsXdController extends Controller
             $model = Town::where('maxa',$modelhs->mahuyen)
                 ->first();
             $modeldn = Company::where('maxa',$modelhs->maxa)
-                ->where('level','TPCNTE6T')
                 ->first();
 
             $ngay = Carbon::now()->toDateString();
@@ -172,17 +174,15 @@ class KkGsXdController extends Controller
     }
 
     public function getsohsnhan($mahuyen){
-        if(session('admin')->level == 'T')
-            $stt = 0;
-        else {
-            $model = KkGs::where('trangthai', 'DD')
-                ->where('mahuyen', $mahuyen)
-                ->max('id');
-            if (count($model) == 0) {
-                $stt = 1;
-            } else
-                $stt = $model->sohsnhan + 1;
-        }
+        $idmax = KkGs::where('trangthai', 'DD')
+            ->where('mahuyen', $mahuyen)
+            ->max('id');
+        if (isset($idmax)) {
+            $model = KkGs::where('id',$idmax)
+                ->first();
+            $stt = $model->sohsnhan + 1;
+        } else
+            $stt = 1;
         return $stt;
     }
 
@@ -195,32 +195,21 @@ class KkGsXdController extends Controller
             $inputs['thoihan'] = getThXdHsDvLt($model->ngaychuyen,$inputs['ngaynhan']);
 
             if($model->update($inputs)){
-                //$this->congbo($id);
-
-                $tencqcq = Town::where('maxa',$model->mahuyen)->first();
-                $dn = Company::where('maxa',$model->maxa)
-                    ->where('level','TPCNTE6T')
+                $modeldn = Company::where('maxa', $model->maxa)
                     ->first();
-                $data=[];
-                $data['tendn'] = $dn->tendn;
-                $data['tg'] = Carbon::now()->toDateTimeString();
-                $data['tencqcq'] = $tencqcq->tendv;
-                $data['ngaykk'] = $model->ngaynhap;
-                $data['ngayapdung'] = $model->ngayhieuluc;
-                $data['socv'] = $model->socv;
-                $data['ngaynhan'] = $inputs['ngaynhan'];
-                $data['sohsnhan'] = $inputs['sohsnhan'];
-
-                $maildn = $dn->email;
-                $tendn = $dn->tendn;
-                $mailql = $tencqcq->emailql;
-                $tenql = $tencqcq->tendv;
-                Mail::send('mail.successkkgia',$data, function ($message) use($maildn,$tendn,$mailql,$tenql) {
-                    $message->to($maildn,$tendn)
-                        ->to($mailql,$tenql)
-                        ->subject('Thông báo xét duyệt hồ sơ kê khai giá dịch vụ');
-                    $message->from('phanmemcsdlgia@gmail.com','Phần mềm CSDL giá');
-                });
+                $modeldv = Town::where('maxa',$model->mahuyen)
+                    ->first();
+                $dmnghe = DmNgheKd::where('manghe','TPCNTE6T')
+                    ->where('manganh','TPCNTE6T')
+                    ->first();
+                $tg = getDateTime(Carbon::now()->toDateTimeString());
+                $contentdn = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã duyệt hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp. Số công văn: '.$model->socv.
+                    ' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Số hồ sơ nhận: '.$inputs['sohsnhan'].'- Ngày nhận: '.getDayVn($inputs['ngaynhan']).'!!!';
+                $contentht = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã duyệt hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp '.$modeldn->tendn.' - mã số thuế '.$modeldn->maxa.
+                    '. Số công văn: '.$model->socv.' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Số hồ sơ nhận: '.$inputs['sohsnhan'].'- Ngày nhận: '.getDayVn($inputs['ngaynhan']).'!!!';
+                $run = new SendMail($modeldn,$contentdn,$modeldv,$contentht);
+                $run->handle();
+                //dispatch($run);
 
             }
             return redirect('xdkekhaigiatpcnte6t?&trangthai=DD&mahuyen='.$model->mahuyen);
@@ -237,7 +226,7 @@ class KkGsXdController extends Controller
                 ->leftjoin('company','company.maxa','=','kkgs.maxa')
                 ->whereYear('kkgs.ngayhieuluc',$inputs['nam'])
                 ->select('kkgsct.*','company.tendn','kkgs.ngayhieuluc')
-                ->wherein('kkgs.trangthai',['DD','CB']);
+                ->where('kkgs.trangthai','DD');
             if($inputs['tenhh'] != '')
                 $model = $model->where('kkgsct.tenhh','like','%'.$inputs['tenhh'].'%');
             $model = $model->get();
