@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\manage\kekhaigia\kkdvvt\vtxk;
 
-use App\GiaVtXkCt;
+use App\Model\manage\kekhaigia\kkdvvt\vtxk\GiaVtXkCt;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;

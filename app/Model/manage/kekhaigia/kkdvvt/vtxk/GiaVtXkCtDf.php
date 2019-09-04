@@ -1,15 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Model\manage\kekhaigia\kkdvvt\vtxk;
 
 use Illuminate\Database\Eloquent\Model;
 
-class GiaVtXkCt extends Model
+class GiaVtXkCtDf extends Model
 {
-    protected $table = 'giavtxkct';
+    protected $table = 'giavtxkctdf';
     protected $fillable = [
         'id',
-        'mahs',
+        'maxa',
         'madichvu',
         'loaixe',
         'diemdau',
