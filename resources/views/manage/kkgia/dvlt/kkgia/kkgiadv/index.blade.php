@@ -75,6 +75,9 @@
 
         function ClickChuyen(){
             if($('#ttnguoinop').val() != ''){
+                var btn = document.getElementById('submitChuyen');
+                btn.disabled = true;
+                btn.innerText = 'Loading...';
                 toastr.success("Hồ sơ đã được chuyển!", "Thành công!");
                 $("#frm_chuyen").unbind('submit').submit();
             }else{
@@ -113,7 +116,7 @@
 
     <h3 class="page-title">
         Thông tin kê khai giá<small>&nbsp;dịch vụ lưu trú</small>
-        <p><h5 style="color: blue">{{$modelcskd->tencskd}} - {{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
+        <p><h5 style="color: blue">{{$modelcskd->tencskd}} - {{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}- Cơ quan chủ quản: {{$modeldv->tendv}}</h5></p>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -122,15 +125,14 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
-                        @if(can('kkdvlt','create'))
-                            <a href="{{url('kekhaigiadvlt/create?&macskd='.$macskd.'&masothue='.$modeldn->maxa)}}" class="btn btn-default btn-sm">
-                                <i class="fa fa-plus"></i> Kê khai mới </a>
-                        @endif
+                        <a href="{{url('kekhaigiadvlt/create?&macskd='.$inputs['macskd'].'&masothue='.$modeldn->maxa)}}" class="btn btn-default btn-sm">
+                            <i class="fa fa-plus"></i> Kê khai mới </a>
                         <a href="{{url('thongtincskdkkdvlt')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-reply"></i> Quay lại </a>
                     </div>
-                <input type="hidden" name="macskd" id="macskd" value="{{$macskd}}">
+                <input type="hidden" name="macskd" id="macskd" value="{{$inputs['macskd']}}">
                 </div>
+                <hr>
                 <div class="portlet-body">
                     <div class="portlet-body">
                         <div class="row">
@@ -141,7 +143,7 @@
                                         @if ($nam_start = intval(date('Y')) - 5 ) @endif
                                         @if ($nam_stop = intval(date('Y')) + 1 ) @endif
                                         @for($i = $nam_start; $i <= $nam_stop; $i++)
-                                            <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>Năm {{$i}}</option>
+                                            <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
                                         @endfor
                                     </select>
                                 </div>
@@ -193,23 +195,17 @@
                                     <a href="{{url('kekhaigiadvlt/prints?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
 
                                     @if(canEdit($tt->trangthai))
-                                        @if(can('kkdvlt','edit'))
                                             <a href="{{url('kekhaigiadvlt/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
-                                        @endif
                                         @if($tt->trangthai == 'CC' || $tt->trangthai=='BTL')
                                             @if($tt->trangthai == 'CC')
-                                                @if(can('kkdvlt','delete'))
                                                 <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                                     Xóa</button>
-                                                @endif
                                             @endif
                                             @if( $tt->trangthai == 'BTL')
                                             <button type="button" data-target="#lydo-modal" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="viewLyDo({{$tt->id}})"><i class="fa fa-search"></i>&nbsp;Lý do trả lại</button>
                                             @endif
-                                            @if(can('kkdvlt','approve'))
-                                                <button type="button" onclick="confirmChuyen('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyen-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
-                                                    Chuyển</button>
-                                            @endif
+                                            <button type="button" onclick="confirmChuyen('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyen-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
+                                                Chuyển</button>
                                         @endif
                                     @endif
                                     <!--a href="{{url('ke_khai_gia_sua/'.$tt->mahs.'/history')}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Lịch sử</a-->
@@ -251,7 +247,7 @@
                     <input type="hidden" name="idchuyen" id="idchuyen">
                     <div class="modal-footer">
                         <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
-                        <button type="submit" class="btn blue" onclick="ClickChuyen()">Đồng ý</button>
+                        <button type="submit" class="btn blue" onclick="ClickChuyen()" id="submitChuyen">Đồng ý</button>
 
                     </div>
                     {!! Form::close() !!}

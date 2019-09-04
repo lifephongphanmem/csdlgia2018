@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\manage\kekhaigia\kkdvlt;
 
 use App\DtAdDvLt;
-use App\KkGiaDvLtCt;
+use App\Model\manage\kekhaigia\kkdvlt\KkGiaDvLtCt;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -252,10 +252,10 @@ class KkGiaDvLtCtController extends Controller
 
         $inputs = $request->all();
         if(isset($inputs['id'])){
-            $modelkkgia = KkGiaDvLtCtDf::where('id',$inputs['id'])->first();
+            $modelkkgia = KkGiaDvLtCt::where('id',$inputs['id'])->first();
             $modelkkgia->delete();
 
-            $model = KkGiaDvLtCtDf::where('kkgiadvltctdf.maxa',$inputs['maxa'])
+            $model = KkGiaDvLtCt::where('kkgiadvltctdf.maxa',$inputs['maxa'])
                 ->leftJoin('dtapdungdvlt','dtapdungdvlt.madtad','=','kkgiadvltctdf.madtad')
                 ->select('kkgiadvltctdf.*','dtapdungdvlt.tendtad')
                 ->get();

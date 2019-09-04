@@ -13,10 +13,11 @@
 
 @section('content')
     <h3 class="page-title">
-        Thông tin cơ sở kinh doanh<small> thêm mới - Doanh nghiệp:</small>&nbsp;{{$tendn}}
+        Thông tin cơ sở kinh doanh<small> thêm mới</small>
+        <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
     </h3>
     <!-- END PAGE HEADER-->
-
+    <hr>
     <!-- BEGIN DASHBOARD STATS -->
     <div class="row center">
         <div class="col-md-12 center">
@@ -64,7 +65,7 @@
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
-                                    <div class="form-group has-error">
+                                    <div class="form-group">
                                         <label class="control-label">Địa chỉ</label>
                                         <input type="text" id="diachikd" name="diachikd" class="form-control">
                                     </div>
@@ -88,20 +89,11 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Quận/huyện</label>
-                                        <select name="district" id="district" class="form-control">
-                                            <option value="all">--Chọn quận/huyện--</option>
-                                            @foreach($districts as $district)
-                                                <option value="{{$district->district}}">{{$district->diaban}}</option>
+                                        <label class="control-label">Đơn vị nhận hồ sơ</label>
+                                        <select name="mahuyen" id="mahuyen" class="form-control">
+                                            @foreach($modeldv as $dv)
+                                                <option value="{{$dv->maxa}}">{{$dv->tendv}}</option>
                                             @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Xã/phường</label>
-                                        <select name="town" id="town" class="form-control">
-                                            <option value="">--Chọn xã/phường--</option>
                                         </select>
                                     </div>
                                 </div>

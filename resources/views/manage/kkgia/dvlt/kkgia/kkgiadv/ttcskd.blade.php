@@ -35,6 +35,7 @@
     <h3 class="page-title">
         Thông tin cơ sở kinh doanh<small>&nbsp; dịch vụ lưu trú</small>
     </h3>
+    <hr>
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\manage\kekhaigia\kkdvlt;
 
 use App\DtAdDvLt;
-use App\KkGiaDvLtCtDf;
+use App\Model\manage\kekhaigia\kkdvlt\KkGiaDvLtCtDf;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;

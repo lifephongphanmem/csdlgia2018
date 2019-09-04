@@ -401,8 +401,8 @@
                         </li>
                     @endif
                 @endif
-                @if(canGeneral('dvlt','index'))
-                    @if(can('dvlt','index'))
+                @if(canKkGiaGr('DVLT'))
+                    @if(canKkGiaCt('DVLT','DVLT'))
                         <li>
                             <a href="">
                                 <span class="title">Dịch vụ lưu trú</span>

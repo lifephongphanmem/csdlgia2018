@@ -29,9 +29,13 @@
 @stop
 
 @section('content')
-
+    <marquee>
+        <b style="color: #ff0000">Ghi chú:</b> Màn hình hiển thị thông tin cơ sở kinh doanh mà doanh nghiệp đang quản lý. Cơ sở kinh doanh là duy nhất khi doanh nghiệp bắt đầu nhập chương trình cần cập
+        nhật cơ sở kinh doanh mình đang quản lý. Có thể sửa thông tin của cơ sở kinh doanh nhưng ko thể xoá cơ sở kinh doanh.
+    </marquee>
     <h3 class="page-title">
-        Danh sách cơ sở kinh doanh <small>dịch vụ lưu trú - Doanh nghiệp:</small>&nbsp;{{$tendn}}
+        Danh sách cơ sở kinh doanh <small>dịch vụ lưu trú</small>
+        <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -40,21 +44,12 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
-                        @if(can('dmdvlt','create'))
                         <a href="{{url('thongtincskd/create')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
-                        @endif
                     </div>
                 </div>
-                <div class="note note-success">
-                    <p>
-                        Màn hình hiển thị thông tin cơ sở kinh doanh mà doanh nghiệp đang quản lý. Cơ sở kinh doanh là duy nhất khi doanh nghiệp bắt đầu nhập chương trình cần cập
-                        nhật cơ sở kinh doanh mình đang quản lý. Có thể sửa thông tin của cơ sở kinh doanh nhưng ko thể xoá cơ sở kinh doanh.
-                    </p>
-                    <a target="_blank" href="">Hướng dẫn nhập cơ sở kinh doanh</a>
-                </div>
+                <hr>
                 <div class="portlet-body">
-
                     <div class="portlet-body">
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>
@@ -64,6 +59,7 @@
                             <th style="text-align: center" width="30%">Tên cơ sở kinh doanh</th>
                             <th style="text-align: center" width="10%">Loại hạng</th>
                             <th style="text-align: center" width="20%">Địa chỉ</th>
+                            <th style="text-align: center" width="20%">Đơn vị nhận hồ sơ</th>
                             <th style="text-align: center" width="10%">Thao tác</th>
                         </tr>
                         </thead>
@@ -77,10 +73,9 @@
                                 <td><a href="{{$tt->link}}" target="_blank">{{$tt->tencskd}}</a></td>
                                 <td>{{$tt->loaihang}}</td>
                                 <td>{{$tt->diachikd}}</td>
+                                <td>{{$tt->tendv}}</td>
                                 <td>
-                                    @if(can('dmdvlt','edit'))
                                     <a href="{{url('thongtincskd/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
-                                    @endif
                                 </td>
                             </tr>
                         @endforeach

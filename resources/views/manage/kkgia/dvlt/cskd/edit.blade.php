@@ -25,7 +25,8 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin cơ sở kinh doanh<small>&nbsp;chỉnh sửa- Doanh nghiệp:</small>&nbsp;{{$tendn}}
+        Thông tin cơ sở kinh doanh<small>&nbsp;chỉnh sửa</small>
+        <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
     </h3>
 
     <!-- END PAGE HEADER-->
@@ -103,25 +104,11 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">Quận/huyện</label>
-                                <select name="district" id="district" class="form-control">
-                                    <option value="all">--Chọn quận/huyện--</option>
-                                    @foreach($districts as $district)
-                                        <option value="{{$district->district}}" {{$district->district == $model->district ? 'selected' : ''}}>{{$district->diaban}}</option>
+                                <label class="control-label">Đơn vị nhận hồ sơ</label>
+                                <select name="mahuyen" id="mahuyen" class="form-control">
+                                    @foreach($modeldv as $dv)
+                                        <option value="{{$dv->maxa}}" {{$dv->maxa == $model->mahuyen ? 'selected' : ''}}>{{$dv->tendv}}</option>
                                     @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Xã/phường</label>
-                                <select name="town" id="town" class="form-control">
-                                    <option value="">--Chọn xã/phường--</option>
-                                    @if($towns != '')
-                                        @foreach($towns as $town)
-                                            <option value="{{$town->town}}" {{$town->town == $model->town ? 'selected' : ''}}>{{$town->diaban}}</option>
-                                        @endforeach
-                                    @endif
                                 </select>
                             </div>
                         </div>

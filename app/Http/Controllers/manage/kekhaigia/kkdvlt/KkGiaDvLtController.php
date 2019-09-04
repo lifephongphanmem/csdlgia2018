@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\manage\kekhaigia\kkdvlt;
 
-use App\CsKdDvLt;
-use App\KkGiaDvLt;
-use App\Company;
-use App\KkGiaDvLtCt;
-use App\KkGiaDvLtCtDf;
+use App\Jobs\SendMail;
+use App\Model\manage\kekhaigia\kkdvlt\CsKdDvLt;
+use App\Model\manage\kekhaigia\kkdvlt\KkGiaDvLt;
+use App\Model\manage\kekhaigia\kkdvlt\KkGiaDvLtCt;
+use App\Model\manage\kekhaigia\kkdvlt\KkGiaDvLtCtDf;
+use App\Model\system\company\Company;
+use App\Model\system\dmnganhnghekd\DmNgheKd;
 use App\NgayNghiLe;
 use App\Town;
-use App\TtNgayNghiLe;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -20,33 +21,37 @@ class KkGiaDvLtController extends Controller
 {
     public function ttcskd(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'DVLT' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+            if (session('admin')->level == 'DN' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
+                $dmnghe = DmNgheKd::where('manganh','DVLT')
+                    ->where('manghe','DVLT')
+                    ->first();
                 $model = CsKdDvLt::join('company','company.maxa','=','cskddvlt.maxa')
                     ->join('town','town.maxa','=','cskddvlt.mahuyen')
-                    ->where('company.level','DVLT')
                     ->select('cskddvlt.*','company.tendn','town.tendv');
 
                 if(session('admin')->level == 'T') {
-                    $modeldv = Town::all();
+                    $modeldv = Town::where('mahuyen',$dmnghe->mahuyen)->get();
                     $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
                     $model = $model->where('cskddvlt.mahuyen',$inputs['maxa']);
                 }elseif(session('admin')->level == 'H') {
-                    $modeldv = Town::where('mahuyen',session('admin')->mahuyen)->get();
-                    $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
-                    $model = $model->where('cskddvlt.mahuyen',$inputs['maxa']);
+                    if(session('admin')->mahuyen == $dmnghe->mahuyen) {
+                        $modeldv = Town::where('mahuyen',$dmnghe->mahuyen)->get();
+                        $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
+                        $model = $model->where('cskddvlt.mahuyen', $inputs['maxa']);
+                    }else
+                        return view('errors.perm');
                 }elseif(session('admin')->level == 'X') {
-                    $modeldv = Town::where('mahuyen',session('admin')->mahuyen)
-                        ->where('maxa',session('admin')->maxa)
-                        ->get();
-                    $inputs['maxa'] = session('admin')->maxa;
-                    $model = $model->where('cskddvlt.mahuyen',$inputs['maxa']);
+                    if(session('admin')->mahuyen == $dmnghe->mahuyen) {
+                        $modeldv = Town::where('mahuyen',$dmnghe->mahuyen)->get();
+                        $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : session('admin')->maxa;
+                        $model = $model->where('cskddvlt.mahuyen', $inputs['maxa']);
+                    }else
+                        return view('errors.perm');
                 }else {//dndvlt
-                    $modeldv = Town::where('maxa',session('admin')->mahuyen)
-                        ->get();
+                    $modeldv = Town::where('mahuyen',$dmnghe->mahuyen)->get();
                     $inputs['maxa'] = session('admin')->maxa;
-                    $model = $model->where('cskddvlt.mahuyen', session('admin')->mahuyen)
-                        ->where('cskddvlt.maxa', $inputs['maxa']);
+                    $model = $model->where('cskddvlt.maxa',session('admin')->maxa);
                 }
                 $model = $model->get();
                 return view('manage.kkgia.dvlt.kkgia.kkgiadv.ttcskd')
@@ -64,24 +69,25 @@ class KkGiaDvLtController extends Controller
 
     public function index(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'DVLT' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+            if (session('admin')->level == 'DN' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $inputs['macskd'] = isset($inputs['macskd']) ? $inputs['macskd'] : '';
                 $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-
                 $model = KkGiaDvLt::where('macskd',$inputs['macskd'])
                     ->whereYear('ngaynhap', $inputs['nam'])
                     ->orderBy('id','desc')
                     ->get();
                 $modelcskd = CsKdDvLt::where('macskd',$inputs['macskd'])->first();
                 $modeldn = Company::where('maxa',$modelcskd->maxa)
-                    ->where('level','DVLT')->first();
+                    ->first();
+                $modeldv = Town::where('maxa',$modelcskd->mahuyen)
+                    ->first();
                 return view('manage.kkgia.dvlt.kkgia.kkgiadv.index')
                     ->with('model', $model)
                     ->with('modelcskd',$modelcskd)
                     ->with('modeldn',$modeldn)
-                    ->with('nam',$inputs['nam'])
-                    ->with('macskd',$inputs['macskd'])
+                    ->with('modeldv',$modeldv)
+                    ->with('inputs',$inputs)
                     ->with('pageTitle', 'Danh sách hồ sơ kê khai dịch vụ lưu trú');
             }else{
                 return view('errors.perm');
@@ -94,25 +100,48 @@ class KkGiaDvLtController extends Controller
     public function create(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
-            $modelcskd = CsKdDvLt::where('macskd', $inputs['macskd'])->first();
-            $modeldn = Company::where('maxa', $inputs['masothue'])
-                ->where('level', 'DVLT')->first();
-            $datenow = date('Y-m-d');
-            $ngayhieuluc = date('d/m/Y', strtotime(getNgayHieuLuc($datenow,'DVLT')));
-            $ngaynhap = date('d/m/Y', strtotime($datenow));
-            $modelct =  KkGiaDvLtCtDf::where('kkgiadvltctdf.maxa',$inputs['masothue'])
-                ->leftJoin('dtapdungdvlt','dtapdungdvlt.madtad','=','kkgiadvltctdf.madtad')
-                ->select('kkgiadvltctdf.*','dtapdungdvlt.tendtad')
-                ->get();
-            return view('manage.kkgia.dvlt.kkgia.kkgiadv.create')
-                ->with('modelcskd', $modelcskd)
-                ->with('modeldn', $modeldn)
-                ->with('macskd', $inputs['macskd'])
-                ->with('maxa', $inputs['masothue'])
-                ->with('ngaynhap', $ngaynhap)
-                ->with('ngayhieuluc', $ngayhieuluc)
-                ->with('modelct',$modelct)
-                ->with('pageTitle', 'Kê khai giá dịch vụ lưu trú');
+            if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
+                $inputs['masothue'] = isset($inputs['masothue']) ? $inputs['masothue'] : '';
+            else
+                $inputs['masothue'] = session('admin')->maxa;
+            $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
+                ->where('company.maxa',$inputs['masothue'])
+                ->where('companylvcc.manghe','DVLT')
+                ->select('company.*','companylvcc.mahuyen')
+                ->first();
+            if(isset($modeldn)) {
+                $modelcskd = CsKdDvLt::where('macskd', $inputs['macskd'])->first();
+                $delctdf = KkGiaDvLtCtDf::where('maxa',$inputs['masothue'])->delete();
+                $idlk = KkGiaDvLt::where('maxa',$inputs['masothue'])
+                    ->where('trangthai','DD')
+                    ->max('id');
+                if(isset($idlk)){
+                    $modellk = KkGiaDvLt::where('id',$idlk)
+                        ->first();
+                    $modellkct = KkGiaDvLtCt::where('mahs',$modellk->mahs)
+                        ->get();
+                    foreach($modellkct as  $ctdf){
+                        $addct = new KkGiaDvLtCtDf();
+                        $addct->loaip = $ctdf->loaip;
+                        $addct->qccl = $ctdf->qccl;
+                        $addct->sohieu = $ctdf->sohieu;
+                        $addct->mucgialk = $ctdf->mucgia;
+                        $addct->madtad = $ctdf->madtad;
+                        $addct->maxa = $ctdf->$inputs['masothue'];
+                        $addct->save();
+                    }
+                }
+                $modelct = KkGiaDvLtCtDf::where('maxa',$inputs['masothue'])
+                    ->get();
+
+                return view('manage.kkgia.dvlt.kkgia.kkgiadv.create')
+                    ->with('modelcskd', $modelcskd)
+                    ->with('modeldn', $modeldn)
+                    ->with('modelct',$modelct)
+                    ->with('inputs',$inputs)
+                    ->with('pageTitle', 'Kê khai giá dịch vụ lưu trú');
+            }else
+                return view('errors.perm');
 
         }else
             return view('errors.notlogin');
@@ -120,7 +149,7 @@ class KkGiaDvLtController extends Controller
 
     public function store(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'DVLT' || session('admin')->level == 'T' || session('admin')->level == 'H'|| session('admin')->level == 'X') {
+            if (session('admin')->level == 'DN' || session('admin')->level == 'T' || session('admin')->level == 'H'|| session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $inputs['mahs'] = $inputs['macskd'].getdate()[0];
                 $inputs['ngaynhap'] = getDateToDb($inputs['ngaynhap']);
@@ -162,7 +191,6 @@ class KkGiaDvLtController extends Controller
             $mahs = $input['mahs'];
             $modelkk = KkGiaDvLt::where('mahs',$mahs)->first();
             $modeldn = Company::where('maxa',$modelkk->maxa)
-                ->where('level','DVLT')
                 ->first();
             $modelcskd = CsKdDvLt::where('macskd',$modelkk->macskd)
                 ->first();
@@ -170,7 +198,7 @@ class KkGiaDvLtController extends Controller
                 ->select('kkgiadvltct.*','dtapdungdvlt.tendtad')
                 ->where('kkgiadvltct.mahs',$modelkk->mahs)
                 ->get();
-            $modelcqcq = Town::where('maxa',$modeldn->mahuyen)
+            $modelcqcq = Town::where('maxa',$modelkk->mahuyen)
                 ->first();
             return view('manage.kkgia.dvlt.reports.print')
                 ->with('modelkk',$modelkk)
@@ -186,11 +214,11 @@ class KkGiaDvLtController extends Controller
 
     public function edit($id){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'DVLT' || session('admin')->level == 'T' || session('admin')->level == 'H') {
+            if (session('admin')->level == 'DN' || session('admin')->level == 'T' || session('admin')->level == 'H'|| session('admin')->level == 'X') {
                 $model = KkGiaDvLt::findOrFail($id);
                 $modelcskd = CsKdDvLt::where('macskd',$model->macskd)->first();
                 $modeldn = Company::where('maxa',$model->maxa)
-                    ->where('level', 'DVLT')->first();
+                    ->first();
                 $modelct = KkGiaDvLtCt::where('mahs',$model->mahs)
                     ->leftJoin('dtapdungdvlt','dtapdungdvlt.madtad','=','kkgiadvltct.madtad')
                     ->select('kkgiadvltct.*','dtapdungdvlt.tendtad')
@@ -211,11 +239,11 @@ class KkGiaDvLtController extends Controller
 
     public function update(Request $request,$id){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'DVLT' || session('admin')->level == 'T' || session('admin')->level == 'H') {
+            if (session('admin')->level == 'DN' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $model = KkGiaDvLt::findOrFail($id);
                 $inputs = $request->all();
-                unset($inputs['ngaynhap']);
                 $inputs['ngayhieuluc'] = getDateToDb($inputs['ngayhieuluc']);
+                $inputs['ngaynhap'] = getDateToDb($inputs['ngaynhap']);
                 if($inputs['ngaycvlk'] != '')
                     $inputs['ngaycvlk']= getDateToDb($inputs['ngaycvlk']);
                 else
@@ -249,13 +277,17 @@ class KkGiaDvLtController extends Controller
             $model = KkGiaDvLt::where('id',$inputs['id'])
                 ->first();
             $date = date_create($ngaychuyen);
-            $datenew = date_modify($date, "+1 days");
+            if(date('H',strtotime($ngaychuyen)) >= '17')
+                $datenew = date_modify($date, "+1 days");
+            else
+                $datenew = $date;
+
             $ngaychuyen = date_format($datenew, "Y-m-d");
             $ngayduyet = $model->ngayhieuluc;
             $ngaylv = 0;
             while (strtotime($ngaychuyen) <= strtotime($ngayduyet)) {
                 $checkngay = NgayNghiLe::where('tungay', '<=', $ngaychuyen)
-                    ->where('denngay', '>=', $ngaychuyen)->first();
+                    ->where('denngay', '>=', $ngaychuyen)->get();
                 if (count($checkngay) > 0)
                     $ngaylv = $ngaylv;
                 elseif (date('D', strtotime($ngaychuyen)) == 'Sat')
@@ -264,21 +296,24 @@ class KkGiaDvLtController extends Controller
                     $ngaylv = $ngaylv;
                 else
                     $ngaylv = $ngaylv + 1;
+                //dd($ngaylv);
                 $datestart = date_create($ngaychuyen);
                 $datestartnew = date_modify($datestart, "+1 days");
                 $ngaychuyen = date_format($datestartnew, "Y-m-d");
 
             }
-            if ($ngaylv >= (isset(getGeneralConfigs()['thoihan_lt']) ? getGeneralConfigs()['thoihan_lt'] : 2)) {
+            $modeldv = Town::where('maxa',$model->mahuyen)
+                ->first();
+            if ($ngaylv >= $modeldv->songaylv) {
                 $result['message'] = '<div class="form-group" id="tthschuyen">';
-                $result['message'] .= '<label style="text-align: center;font-weight: bold;color: blue" > Số CV: '.$model->socv.'- Ngày áp dụng: '.getDayVn($model->ngayhieuluc).'</label>';
+                $result['message'] .= '<label> Số CV: '.$model->socv.'- Ngày áp dụng: '.getDayVn($model->ngayhieuluc).'</label>';
                 $result['message'] .= '</div>';
                 $result['status'] = 'success';
+
             }else{
                 $result['status'] = 'fail';
                 $result['message'] = '"Ngày áp dụng hồ sơ không đủ điều kiện xét duyệt", "Lỗi!!!"';
             }
-
         }
         //dd($result);
         die(json_encode($result));
@@ -286,32 +321,28 @@ class KkGiaDvLtController extends Controller
 
     public function chuyen(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'DVLT' || session('admin')->level == 'T' || session('admin')->level == 'H' ) {
+            if (session('admin')->level == 'DN' || session('admin')->level == 'T' || session('admin')->level == 'H' ) {
                 $inputs = $request->all();
                 $model = KkGiaDvLt::where('id',$inputs['idchuyen'])
                     ->first();
                 $inputs['trangthai'] = 'CD';
                 $inputs['ngaychuyen'] = Carbon::now()->toDateTimeString();
                 if($model->update($inputs)){
-//                    $tencqcq = Town::where('maxa',$model->mahuyen)->first();
-//                    $dn = Company::where('maxa',$model->maxa)->first();
-//                    $data=[];
-//                    $data['tendn'] = $dn->tendn;
-//                    $data['masothue'] = $model->masothue;
-//                    $data['tg'] = $inputs['ngaychuyen'];
-//                    $data['tencqcq'] = $tencqcq->tendv;
-//                    $data['ttnguoinop'] = $inputs['ttnguoinop'];
-//                    $maildn = $dn->email;
-//                    $tendn = $dn->tendn;
-//                    $mailql = $tencqcq->emailql;
-//                    $tenql = $tencqcq->tendv;
-//
-//                    Mail::send('mail.kkgia',$data, function ($message) use($maildn,$tendn,$mailql,$tenql) {
-//                        $message->to($maildn,$tendn)
-//                            ->to($mailql,$tenql)
-//                            ->subject('Thông báo nhận hồ sơ kê khai giá dịch vụ');
-//                        $message->from('phanmemcsdlgia@gmail.com','Phần mềm CSDL giá');
-//                    });
+                    $modeldn = Company::where('maxa', $model->maxa)
+                        ->first();
+                    $modeldv = Town::where('maxa',$model->mahuyen)
+                        ->first();
+                    $modelcskd = CsKdDvLt::where('macskd',$model->macskd)->first();
+                    $dmnghe = DmNgheKd::where('manghe','DVLT')
+                        ->where('manganh','DVLT')
+                        ->first();
+                    $tg = getDateTime(Carbon::now()->toDateTimeString());
+                    $contentdn = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận được hồ sơ '.$dmnghe->tennghe.' của '.$modelcskd->tencskd.'. Số công văn: '.$model->socv.
+                        ' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['ttnguoinop'].'!!!';
+                    $contentht = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận được hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp '.$modeldn->tendn.' - mã số thuế '.$modeldn->maxa.
+                        ' -  '.$modelcskd->tencskd.' - Số công văn: '.$model->socv.' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['ttnguoinop'].'!!!';
+                    $run = new SendMail($modeldn,$contentdn,$modeldv,$contentht);
+                    $run->handle();
                 }
                 return redirect('kekhaigiadvlt?&macskd='.$model->macskd);
             }else{
@@ -352,7 +383,7 @@ class KkGiaDvLtController extends Controller
 
     public function delete(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'DVLT' || session('admin')->level == 'T' || session('admin')->level == 'H') {
+            if (session('admin')->level == 'DN' || session('admin')->level == 'T' || session('admin')->level == 'H') {
                 $inputs = $request->all();
                 $model = KkGiaDvLt::where('id',$inputs['iddelete'])
                     ->first();
