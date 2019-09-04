@@ -303,36 +303,24 @@
                                     </ul>
                                 </li>
                             @endif
-                            @if(canGeneral('vtch','index'))
-                                @if(can('vtch','index'))
-                                    @if(canDVVT('dvvt','vtch'))
-                                        <li>
-                                            <a href="">
-                                                <span class="title">Cước vận chuyển hành khách: xe buýt, xe điện, bè mảng</span>
-                                                <span class="arrow"></span>
-                                            </a>
-                                            <ul class="sub-menu" style="display: none;">
-                                                @if(session('admin')->level == 'DVVT')
-                                                    @if(can('kkvtch','index'))
-                                                        <li><a href="{{url('kekhaicuocvchk')}}">Kê khai giá</a></li>
-                                                    @endif
-                                                @endif
-                                                @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
-                                                    @if(can('kkvtch','index'))
-                                                        <li><a href="{{url('thongtindnvchk')}}">Kê khai giá</a></li>
-                                                        <li><a href="{{url('xetduyetkekhaicuocvchk')}}">Xét duyệt hồ sơ kê khai</a></li>
-                                                    @endif
-                                                    @if(can('thvtch','timkiem'))
-                                                        <li><a href="{{url('timkiemcuocvchk')}}">Tìm kiếm hồ sơ kê khai</a></li>
-                                                    @endif
-                                                    @if(can('thvtch','baocao'))
-                                                        <!--li><a href="">Báo cáo</a></li-->
-                                                    @endif
-                                                @endif
-                                            </ul>
-                                        </li>
-                                    @endif
-                                @endif
+                            @if(canKkGiaCt('DVVT','VCHK'))
+                                <li>
+                                    <a href="">
+                                        <span class="title">Cước vận chuyển hành khách: xe buýt, xe điện, bè mảng</span>
+                                        <span class="arrow"></span>
+                                    </a>
+                                    <ul class="sub-menu" style="display: none;">
+                                        @if(session('admin')->level == 'DN')
+                                            <li><a href="{{url('kekhaicuocvchk')}}">Kê khai giá</a></li>
+                                        @endif
+                                        @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
+                                            <li><a href="{{url('thongtindnvchk')}}">Kê khai giá</a></li>
+                                            <li><a href="{{url('xetduyetkekhaicuocvchk')}}">Xét duyệt hồ sơ kê khai</a></li>
+                                            <li><a href="{{url('timkiemcuocvchk')}}">Tìm kiếm hồ sơ kê khai</a></li>
+                                            <!--li><a href="">Báo cáo</a></li-->
+                                        @endif
+                                    </ul>
+                                </li>
                             @endif
                         </ul>
                     </li>

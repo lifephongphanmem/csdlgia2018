@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\manage\kekhaigia\kkdvvt\vchk;
 
-use App\KkCuocVcHkCtDf;
+use App\Model\manage\kekhaigia\kkdvvt\vchk\KkCuocVcHkCt;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
-class KkCuocVcHkCtDfController extends Controller
+class KkCuocVcHkCtController extends Controller
 {
     public function store(Request $request){
         $result = array(
@@ -26,9 +26,9 @@ class KkCuocVcHkCtDfController extends Controller
         $inputs['dongialk'] = getMoneyToDb($inputs['dongialk']);
         $inputs['dongia'] = getMoneyToDb($inputs['dongia']);
         if(isset($inputs['tthhdv'])){
-            $modelkkgia = new KkCuocVcHkCtDf();
+            $modelkkgia = new KkCuocVcHkCt();
             $modelkkgia->create($inputs);
-            $model = KkCuocVcHkCtDf::where('maxa',$inputs['maxa'])
+            $model = KkCuocVcHkCt::where('mahs',$inputs['mahs'])
                 ->get();
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
@@ -86,7 +86,7 @@ class KkCuocVcHkCtDfController extends Controller
         $inputs = $request->all();
         if(isset($inputs['id'])){
             $id = $inputs['id'];
-            $model = KkCuocVcHkCtDf::findOrFail($id);
+            $model = KkCuocVcHkCt::findOrFail($id);
 
             $result['message'] = '<div class="modal-body" id="ttpedit">';
 
@@ -160,9 +160,9 @@ class KkCuocVcHkCtDfController extends Controller
         $inputs['dongialk'] = getMoneyToDb($inputs['dongialk']);
         $inputs['dongia'] = getMoneyToDb($inputs['dongia']);
         if(isset($inputs['id'])){
-            $modelkkgia = KkCuocVcHkCtDf::where('id',$inputs['id'])->first();
+            $modelkkgia = KkCuocVcHkCt::where('id',$inputs['id'])->first();
             $modelkkgia->update($inputs);
-            $model = KkCuocVcHkCtDf::where('maxa',$inputs['maxa'])
+            $model = KkCuocVcHkCt::where('mahs',$inputs['mahs'])
                 ->get();
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
@@ -219,9 +219,9 @@ class KkCuocVcHkCtDfController extends Controller
         //dd($request);
         $inputs = $request->all();
         if(isset($inputs['id'])){
-            $modelkkgia = KkCuocVcHkCtDf::where('id',$inputs['id'])->first();
+            $modelkkgia = KkCuocVcHkCt::where('id',$inputs['id'])->first();
             $modelkkgia->delete();
-            $model = KkCuocVcHkCtDf::where('maxa',$inputs['maxa'])
+            $model = KkCuocVcHkCt::where('mahs',$inputs['mahs'])
                 ->get();
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';

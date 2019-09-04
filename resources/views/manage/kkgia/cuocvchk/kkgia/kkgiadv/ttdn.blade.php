@@ -20,17 +20,9 @@
             TableManaged.init();
         });
         $(function(){
-
             $('#maxa').change(function() {
                 var maxa = '&maxa=' + $('#maxa').val();
-                var mahuyen = '&mahuyen='+ $('#mahuyen').val();
-                var url = '/thongtindnvchk?'+ mahuyen + maxa;
-                window.location.href = url;
-            });
-            $('#mahuyen').change(function() {
-                var mahuyen = '&mahuyen='+ $('#mahuyen').val();
-                var url = '/thongtindnvchk?'  + mahuyen;
-
+                var url = '/thongtindnvchk?'+ maxa;
                 window.location.href = url;
             });
 
@@ -42,7 +34,9 @@
 
     <h3 class="page-title">
         Thông tin doanh nghiệp kê khai<small>&nbsp;giá cước vận chuyển hành khách: xe buýt, xe điện, bè mảng</small>
+        <p><h5 style="color: blue">Sở ban ngành quản lý {{$ttql->tendv}}</h5></p>
     </h3>
+    <hr>
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">
@@ -50,37 +44,20 @@
             <div class="portlet box">
                 <div class="portlet-body">
                     <div class="portlet-body">
-
-
-                        <div class="row">
-                            @if(session('admin')->level == 'T')
+                        @if(session('admin')->level == 'T' || session('admin')->level == 'H')
+                            <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
-                                        <label style="font-weight: bold">Đơn vị chủ quản</label>
-                                        <select name="mahuyen" id="mahuyen" class="form-control">
-                                            @foreach($modeldvql as $dvql)
-                                                <option value="{{$dvql->mahuyen}}" {{$dvql->mahuyen == $inputs['mahuyen'] ? 'selected' : ''}}>{{$dvql->tendv}}</option>
+                                        <label>Đơn vị quản lý</label>
+                                        <select name="maxa" id="maxa" class="form-control">
+                                            @foreach($modeldv as $dv)
+                                                <option value="{{$dv->maxa}}" {{$dv->maxa == $inputs['maxa'] ? 'selected' : ''}}>{{$dv->tendv}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                            @else
-                                <input type="hidden" name="mahuyen" id="mahuyen" value="{{$inputs['mahuyen']}}">
-                            @endif
-                            @if(session('admin')->level == 'T' || session('admin')->level == 'H')
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label style="font-weight: bold">Đơn vị quản lý</label>
-                                    <select name="maxa" id="maxa" class="form-control">
-                                        @foreach($modeldv as $dv)
-                                            <option value="{{$dv->maxa}}" {{$dv->maxa == $inputs['maxa'] ? 'selected' : ''}}>{{$dv->tendv}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
                             </div>
-                            @endif
-                        </div>
-
+                        @endif
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>
                         <tr>
