@@ -98,13 +98,16 @@
         $(function(){
             $('#nam').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
-                var url = '/xetduyetkekhaigiavtxtx?'+namhs;
+                var trangthai = '&trangthai=' +  $('#trangthai').val();
+                var mahuyen = '&mahuyen=' + $('#mahuyen').val();
+                var url = '/xetduyetkekhaigiavtxtx?'+namhs+trangthai+mahuyen;
                 window.location.href = url;
             });
             $('#trangthai').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
                 var trangthai = '&trangthai=' +  $('#trangthai').val();
-                var url = '/xetduyetkekhaigiavtxtx?'+namhs+trangthai;
+                var mahuyen = '&mahuyen=' + $('#mahuyen').val();
+                var url = '/xetduyetkekhaigiavtxtx?'+namhs+trangthai+mahuyen;
                 window.location.href = url;
             });
             $('#mahuyen').change(function() {
@@ -136,6 +139,9 @@
         }
         function confirmTraLai(){
             if($('#lydo').val() != ''){
+                var btn = document.getElementById('submitTraLai');
+                btn.disabled = true;
+                btn.innerText = 'Loading...';
                 toastr.success("Hồ sơ đã được trả lại!", "Thành công!");
                 $("#frm_tralai").unbind('submit').submit();
             }else{
@@ -169,6 +175,9 @@
         }
         function ClickNhanHs(){
             $('#frm_nhanhs').submit();
+            var btn = document.getElementById('submitNhanHs');
+            btn.disabled = true;
+            btn.innerText = 'Loading...';
         }
 
         function confirmNhanHsedit(mahs){
@@ -248,6 +257,7 @@
     <h3 class="page-title">
         Thông tin xét duyệt kê khai giá<small>&nbsp;vận tải xe taxi</small>
     </h3>
+    <hr>
     <div class="row">
         <div class="col-md-2">
             <div class="form-group">
@@ -384,7 +394,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
-                        <button type="submit" class="btn blue" onclick="confirmTraLai()">Đồng ý</button>
+                        <button type="submit" class="btn blue" onclick="confirmTraLai()" id="submitTraLai">Đồng ý</button>
 
                     </div>
                     {!! Form::close() !!}
@@ -408,7 +418,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
-                    <button type="submit" class="btn blue" onclick="ClickNhanHs()">Đồng ý</button>
+                    <button type="submit" class="btn blue" onclick="ClickNhanHs()" id="submitNhanHs">Đồng ý</button>
                 </div>
                 {!! Form::close() !!}
             </div>

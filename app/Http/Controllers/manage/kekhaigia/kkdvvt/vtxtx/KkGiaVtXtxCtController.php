@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\manage\kekhaigia\kkdvvt\vtxtx;
 
-use App\KkGiaVtXtxCtDf;
+use App\Model\manage\kekhaigia\kkdvvt\vtxtx\KkGiaVtXtxCt;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
-class KkGiaVtXtxCtDfController extends Controller
+class KkGiaVtXtxCtController extends Controller
 {
     public function store(Request $request){
         $result = array(
@@ -27,10 +27,10 @@ class KkGiaVtXtxCtDfController extends Controller
             $inputs['sllk'] = getDecimalToDb($inputs['sllk']);
             $inputs['dongia'] = getMoneyToDb($inputs['dongia']);
             $inputs['sl'] = getDecimalToDb($inputs['sl']);
-            $modeladd = new KkGiaVtXtxCtDf();
+            $modeladd = new KkGiaVtXtxCt();
             $modeladd->create($inputs);
 
-            $model = KkGiaVtXtxCtDf::where('maxa',$inputs['maxa'])->get();
+            $model = KkGiaVtXtxCt::where('mahs',$inputs['mahs'])->get();
 
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
@@ -93,7 +93,7 @@ class KkGiaVtXtxCtDfController extends Controller
         if(isset($inputs['id'])){
             $id = $inputs['id'];
 
-            $model = KkGiaVtXtxCtDf::findOrFail($id);
+            $model = KkGiaVtXtxCt::findOrFail($id);
             //dd($model);
             $result['message'] = '<div class="modal-body" id="ttpedit">';
             $result['message'] .= '<div class="row">';
@@ -194,10 +194,10 @@ class KkGiaVtXtxCtDfController extends Controller
             $inputs['sllk'] = getDecimalToDb($inputs['sllk']);
             $inputs['dongia'] = getMoneyToDb($inputs['dongia']);
             $inputs['sl'] = getDecimalToDb($inputs['sl']);
-            $modeladd = KkGiaVtXtxCtDf::where('id',$inputs['id'])->first();
+            $modeladd = KkGiaVtXtxCt::where('id',$inputs['id'])->first();
             $modeladd->update($inputs);
 
-            $model = KkGiaVtXtxCtDf::where('maxa',$inputs['maxa'])->get();
+            $model = KkGiaVtXtxCt::where('mahs',$inputs['mahs'])->get();
 
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
@@ -256,10 +256,11 @@ class KkGiaVtXtxCtDfController extends Controller
         }
         $inputs = $request->all();
         if(isset($inputs['id'])){
-            $modeladd = KkGiaVtXtxCtDf::where('id',$inputs['id'])->first();
+            $modeladd = KkGiaVtXtxCt::where('id',$inputs['id'])->first();
             $modeladd->delete();
 
-            $model = KkGiaVtXtxCtDf::where('maxa',$inputs['maxa'])->get();
+
+            $model = KkGiaVtXtxCt::where('mahs',$inputs['mahs'])->get();
 
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';

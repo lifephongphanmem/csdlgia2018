@@ -284,39 +284,24 @@
                                     </ul>
                                 </li>
                             @endif
-                            @if(canGeneral('vtxtx','index'))
-                                @if(can('vtxtx','index'))
-                                    @if(canDVVT('dvvt','vtxtx'))
-                                        <li>
-                                            <a href="">
-                                                <span class="title">Cước vận tải hành khách bằng xe taxi</span>
-                                                <span class="arrow"></span>
-                                            </a>
-                                            <ul class="sub-menu" style="display: none;">
-                                                @if(session('admin')->level == 'DVVT')
-                                                    @if(can('dmvtxtx','index'))
-                                                        <!--li><a href="">Danh mục dịch vụ</a> </li-->
-                                                    @endif
-                                                    @if(can('kkvtxtx','index'))
-                                                        <li><a href="{{url('kekhaigiavantaixetaxi')}}">Kê khai giá</a></li>
-                                                    @endif
-                                                @endif
-                                                @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
-                                                    @if(can('kkvtxtx','index'))
-                                                        <li><a href="{{url('thongtindnvtxtx')}}">Kê khai giá vận tải xe taxi</a></li>
-                                                        <li><a href="{{url('xetduyetkekhaigiavtxtx')}}">Xét duyệt hồ sơ kê khai</a></li>
-                                                    @endif
-                                                    @if(can('thvtxtx','timkiem'))
-                                                        <li><a href="{{url('timkiemgiavantaixetaxi')}}">Tìm kiếm hồ sơ kê khai</a></li>
-                                                    @endif
-                                                    @if(can('thvtxtx','baocao'))
-                                                        <!--li><a href="">Báo cáo</a></li-->
-                                                    @endif
-                                                @endif
-                                            </ul>
-                                        </li>
-                                    @endif
-                                @endif
+                            @if(canKkGiaCt('DVVT','VTXTX'))
+                                <li>
+                                    <a href="">
+                                        <span class="title">Cước vận tải hành khách bằng xe taxi</span>
+                                        <span class="arrow"></span>
+                                    </a>
+                                    <ul class="sub-menu" style="display: none;">
+                                        @if(session('admin')->level == 'DN')
+                                                <li><a href="{{url('kekhaigiavantaixetaxi')}}">Kê khai giá</a></li>
+                                        @endif
+                                        @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
+                                            <li><a href="{{url('thongtindnvtxtx')}}">Kê khai giá vận tải xe taxi</a></li>
+                                            <li><a href="{{url('xetduyetkekhaigiavtxtx')}}">Xét duyệt hồ sơ kê khai</a></li>
+                                            <li><a href="{{url('timkiemgiavantaixetaxi')}}">Tìm kiếm hồ sơ kê khai</a></li>
+                                            <!--li><a href="">Báo cáo</a></li-->
+                                        @endif
+                                    </ul>
+                                </li>
                             @endif
                             @if(canGeneral('vtch','index'))
                                 @if(can('vtch','index'))
