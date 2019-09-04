@@ -153,7 +153,7 @@ class KkGiaVtXkController extends Controller
                         $addct->giathanhtblk = $ctdf->giathanhtb;
                         $addct->giathanhlk = $ctdf->giathanh;
                         $addct->giahllk = $ctdf->giahl;
-                        $addct->maxa = $ctdf->$inputs['masothue'];
+                        $addct->maxa = $inputs['masothue'];
                         $addct->save();
                     }
                 }
