@@ -379,6 +379,7 @@
         Thông tin kê khai hồ sơ giá <small>&nbsp;vận tải xe buýt chỉnh sửa</small>
         <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
     </h3>
+    <hr>
     <!-- END PAGE HEADER-->
     <div class="row">
         {!! Form::model($model, ['method' => 'PATCH', 'url'=>'kekhaivantaixebuyt/'. $model->id, 'class'=>'horizontal-form','id'=>'update_kkgiavtxb']) !!}

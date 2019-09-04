@@ -42,6 +42,7 @@
     <h3 class="page-title">
         Tìm kiếm thông tin kê khai giá<small>&nbsp;vận tải xe buýt</small>
     </h3>
+    <hr>
     <div class="row">
         <div class="col-md-2">
             <div class="form-group">
