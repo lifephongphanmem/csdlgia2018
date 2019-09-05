@@ -77,6 +77,11 @@ Route::get('giathuematdatmatnuocct/update','GiaThueDatNuocCtController@update');
 Route::get('giathuematdatmatnuocct/del','GiaThueDatNuocCtController@destroy');
 
 //Giá rừng
+Route::get('dmgiarung','manage\giarung\DmGiaRungController@index');
+Route::post('dmgiarung','manage\giarung\DmGiaRungController@store');
+Route::get('dmgiarung/show','manage\giarung\DmGiaRungController@show');
+Route::post('dmgiarung/update','manage\giarung\DmGiaRungController@update');
+
 Route::get('giarung','manage\giarung\GiaRungController@index');
 Route::post('giarung/add','manage\giarung\GiaRungController@store');
 Route::get('giarung/edittt','manage\giarung\GiaRungController@edit');
