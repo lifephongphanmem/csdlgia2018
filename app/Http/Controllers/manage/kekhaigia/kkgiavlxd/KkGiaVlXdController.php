@@ -97,11 +97,8 @@ class KkGiaVlXdController extends Controller
                         ->with('pageTitle', 'Danh sách hồ sơ kê khai giá vật liệu xây dựng');
                 }else
                     return view('errors.perm');
-
-
-            } else {
+            } else
                 return view('errors.perm');
-            }
         }else
             return view('errors.notlogin');
     }

@@ -334,6 +334,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     @include('includes.main.mainttpvctqlnn')
                     @endif
                 @endif
+                @if(session('admin')->level == 'T')
                 @if(can('system','index'))
                     <li class="heading">
                         <h3 class="uppercase">System</h3>
@@ -390,6 +391,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             @endif
                         </ul>
                     </li>
+                @endif
                 @endif
             </ul>
 

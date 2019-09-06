@@ -21,7 +21,7 @@ class CreateGiathitruongdmTable extends Migration
             $table->string('mahh',20)->nullable();
             $table->string('tenhh')->nullable();
             $table->text('dacdiemkt')->nullable();
-            $table->string('dvt',20)->nullable();
+            $table->string('dvt')->nullable();
             $table->string('mahuyen')->nullable();
             $table->string('theodoi')->nullable();
             $table->timestamps();

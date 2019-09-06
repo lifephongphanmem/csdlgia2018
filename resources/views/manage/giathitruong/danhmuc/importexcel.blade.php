@@ -79,7 +79,7 @@
                                                             <label>Đơn vị báo cáo</label>
                                                             <select class="form-control" name="mahuyen" id="mahuyen">
                                                                 @foreach($districts as $district)
-                                                                    <option value="{{$district->district}}">{{$district->tendv}}</option>
+                                                                    <option value="{{$district->mahuyen}}">{{$district->tendv}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>

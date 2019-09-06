@@ -85,9 +85,9 @@
                                     Thêm mới</button>
                                 @endif
                             @endif
-                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-filemau"><i class="fa fa-cloud-download"></i>
-                                &nbsp;Xuất dữ liệu</button>
-                            <a href="{{url('/giahhdvkhac/nhanexcel?&district=')}}" class="btn btn-default btn-sm"><i class="fa fa-file-excel-o"></i>&nbsp;Nhận dữ liệu</a>
+                            {{--<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-filemau"><i class="fa fa-cloud-download"></i>--}}
+                                {{--&nbsp;Xuất dữ liệu</button>--}}
+                            {{--<a href="{{url('/giahhdvkhac/nhanexcel?&district=')}}" class="btn btn-default btn-sm"><i class="fa fa-file-excel-o"></i>&nbsp;Nhận dữ liệu</a>--}}
                         @endif
                     </div>
                 </div>
@@ -119,6 +119,7 @@
                                 </select>
                             </div>
                         </div>
+                        @if(session('admin')->level =='T')
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Đơn vị</label>
@@ -132,6 +133,7 @@
                                 </select>
                             </div>
                         </div>
+                        @endif
                     </div>
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>

@@ -3276,12 +3276,19 @@ function can($module = null, $action = null)
 }
 
 function canKkGiaGr($manganh){
-    if(session('admin')->level == 'T')
-        return true;
-    else{
+    if(session('admin')->level == 'T') {
+        $checkXH = \App\Model\system\dmnganhnghekd\DmNganhKd::where('manganh',$manganh)
+            ->where('theodoi','TD')
+            ->count();
+        if($checkXH > 0)
+            return true;
+        else
+            return false;
+    }else{
         if(session('admin')->level == 'H' || session('admin')->level == 'X'){
             $checkXH = \App\Model\system\dmnganhnghekd\DmNgheKd::where('manganh',$manganh)
                 ->where('mahuyen',session('admin')->mahuyen)
+                ->where('theodoi','TD')
                 ->count();
             if($checkXH > 0)
                 return true;
@@ -3301,10 +3308,16 @@ function canKkGiaGr($manganh){
 }
 
 function canKkGiaCt($manganh = null, $manghe = null){
-    if(session('admin')->level == 'T' || session('admin')->sadmin == 'ssa')
-        return true;
-    else{
-        $modelnganh = \App\Model\system\dmnganhnghekd\DmNganhKd::where('manganh',$manganh)
+    if(session('admin')->level == 'T' || session('admin')->sadmin == 'ssa') {
+        $modelnghe = \App\Model\system\dmnganhnghekd\DmNgheKd::where('manganh',$manganh)
+            ->where('manghe',$manghe)
+            ->where('theodoi','TD');
+        if($modelnghe->count() > 0)
+            return true;
+        else
+            return false;
+    }else{
+        $modelnganh = \App\Model\system\dmnganhnghekd\DmNgheKd::where('manganh',$manganh)
             ->where('theodoi','TD')
             ->count();
         if($modelnganh > 0){

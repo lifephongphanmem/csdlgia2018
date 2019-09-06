@@ -1,4 +1,4 @@
-@if($model->level == 'T' || $model->level == 'H' || $model->level == 'X')
+@if($model->level == 'T')
 <div class="row">
     <div class="col-md-12 ">
         <!-- BEGIN SAMPLE FORM PORTLET-->

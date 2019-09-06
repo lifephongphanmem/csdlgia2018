@@ -94,7 +94,7 @@
         Báo cáo giá hàng hóa dịch vụ<small> thêm mới</small>
     </h3>
     <!-- END PAGE HEADER-->
-
+    <hr>
     <!-- BEGIN DASHBOARD STATS -->
     <div class="row center">
         <div class="col-md-12 center">
@@ -188,10 +188,10 @@
                                             <tr>
                                                 <td style="text-align: center">{{$key+1}}</td>
                                                 <td style="text-align: center">{{$tt->manhom}}</td>
-                                                <td style="text-align: center">{{$tt->tennhom}}</td>
+                                                <td style="text-align: left">{{$tt->tennhom}}</td>
                                                 <td style="text-align: center">{{$tt->mahh}}</td>
                                                 <td class="active" style="font-weight: bold">{{$tt->tenhh}}</td>
-                                                <td style="text-align: center">{{$tt->dacdiemkt}}</td>
+                                                <td style="text-align: left">{{$tt->dacdiemkt}}</td>
                                                 <td style="text-align: center">{{$tt->dvt}}</td>
                                                 <td style="text-align: center">{{$tt->loaigia}}</td>
                                                 <td style="text-align: right;font-weight: bold">{{number_format($tt->gia)}}</td>
@@ -333,7 +333,7 @@
                             </div>
                         </div>
                     </div>
-                    <input type="text" id="edit_id" name="edit_id">
+                    <input type="hidden" id="edit_id" name="edit_id">
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
