@@ -98,6 +98,7 @@ Route::post('giarung/importexcel','manage\giarung\GiaRungController@importexcel'
 //Thuế tài nguyên
 
 Route::get('nhomthuetn','manage\thuetn\NhomThueTnController@index');
+Route::post('nhomthuetn','manage\thuetn\NhomThueTnController@store');
 Route::get('nhomthuetn/show','manage\thuetn\NhomThueTnController@show');
 Route::post('nhomthuetn/update','manage\thuetn\NhomThueTnController@update');
 Route::get('dmthuetn','manage\thuetn\DmThueTnController@index');

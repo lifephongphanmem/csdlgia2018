@@ -113,7 +113,7 @@ class DmThueTnController extends Controller
 
                 $modelctnew = new DmThueTn();
                 $modelctnew->manhom = $inputs['imex_manhom'];
-                $modelctnew->matn = $inputs['imex_matn'];
+                $modelctnew->matn = $data[$i][$inputs['imex_matn']];
                 $modelctnew->dvt = $data[$i][$inputs['imex_dvt']];
                 $modelctnew->cap1 = $data[$i][$inputs['imex_cap1']];
                 $modelctnew->cap2 = $data[$i][$inputs['imex_cap2']];
