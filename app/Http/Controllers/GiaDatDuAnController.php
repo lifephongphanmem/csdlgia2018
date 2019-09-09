@@ -9,6 +9,8 @@ use App\GiaDatDuAn;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\File;
 
 class GiaDatDuAnController extends Controller
 {
@@ -16,22 +18,30 @@ class GiaDatDuAnController extends Controller
         if (Session::has('admin')) {
             if(can('giadatduan','index')) {
                 $inputs = $request->all();
+                $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
+                $inputs['tenduan'] = isset($inputs['tenduan']) ? $inputs['tenduan'] : '';
+                $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : 'all';
                 $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
+                $inputs['manhomduan'] = isset($inputs['manhomduan']) ? $inputs['manhomduan'] : 'all';
                 $diabans = DiaBanHd::where('level','H')
                     ->get();
-                if(session('admin')->level == 'T' || session('admin')->level == 'H')
-                    $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $diabans->first()->district;
-                else
-                    $inputs['mahuyen'] = session('admin')->districts;
+                $modeldm = DmGiaDatDuAn::all();
                 $model = GiaDatDuAn::join('dmgiadatduan','dmgiadatduan.manhomduan','=','giadatduan.manhomduan')
-                    ->select('giadatduan.*','dmgiadatduan.tennhomduan')
-                    ->whereYear('giadatduan.thoidiem',$inputs['nam'])
-                    ->where('mahuyen',$inputs['mahuyen'])
-                    ->get();
+                    ->select('giadatduan.*','dmgiadatduan.tennhomduan');
+                if($inputs['nam'] != 'all')
+                    $model = $model->whereYear('giadatduan.thoidiem',$inputs['nam']);
+                if($inputs['mahuyen'] != 'all')
+                    $model = $model->where('giadatduan.mahuyen',$inputs['mahuyen']);
+                if($inputs['manhomduan'] != 'all')
+                    $model = $model->where('giadatduan.manhomduan',$inputs['manhomduan']);
+                if($inputs['tenduan'] != '')
+                    $model = $model->where('giadatduan.tenduan','like', '%'.$inputs['tenduan'].'%');
+                $model = $model->paginate($inputs['paginate']);
                 return view('manage.giadatduan.index')
                     ->with('model',$model)
                     ->with('inputs',$inputs)
                     ->with('diabans',$diabans)
+                    ->with('modeldm',$modeldm)
                     ->with('pageTitle','Thông tin gia đất cụ thể của dự án');
             }else
                 return view('errors.noperm');
@@ -162,14 +172,28 @@ class GiaDatDuAnController extends Controller
     public function prints(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
-            if($inputs['phuluc'] = '08a') {
-                $model = GiaDatDuAn::join('dmgiadatduan', 'dmgiadatduan.manhomduan', '=', 'giadatduan.manhomduan')
-                    ->join('diabanhd', 'diabanhd.district', '=', 'giadatduan.mahuyen')
-                    ->select('giadatduan.*', 'dmgiadatduan.tennhomduan', 'diabanhd.diaban')
-                    ->whereYear('giadatduan.thoidiem', $inputs['nam'])
-                    ->where('giadatduan.mahuyen', $inputs['mahuyen'])
+            $inputs['tenduan'] = isset($inputs['tenduan']) ? $inputs['tenduan'] : '';
+            $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : 'all';
+            $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
+            $inputs['manhomduan'] = isset($inputs['manhomduan']) ? $inputs['manhomduan'] : 'all';
+            $model = GiaDatDuAn::join('dmgiadatduan', 'dmgiadatduan.manhomduan', '=', 'giadatduan.manhomduan')
+                ->join('diabanhd', 'diabanhd.district', '=', 'giadatduan.mahuyen')
+                ->select('giadatduan.*', 'dmgiadatduan.tennhomduan', 'diabanhd.diaban');
+            if($inputs['nam'] != 'all')
+                $model = $model->whereYear('giadatduan.thoidiem',$inputs['nam']);
+            if($inputs['mahuyen'] != 'all')
+                $model = $model->where('giadatduan.mahuyen',$inputs['mahuyen']);
+            if($inputs['manhomduan'] != 'all')
+                $model = $model->where('giadatduan.manhomduan',$inputs['manhomduan']);
+            if($inputs['tenduan'] != '')
+                $model = $model->where('giadatduan.tenduan','like', '%'.$inputs['tenduan'].'%');
+            $model = $model->get();
+            if($inputs['manhomduan'] != 'all')
+                $modeldm = DmGiaDatDuAn::where('manhomduan',$inputs['manhomduan'])
                     ->get();
+            else
                 $modeldm = DmGiaDatDuAn::all();
+            if($inputs['mahuyen'] != 'all') {
                 $modeldb = DiaBanHd::where('district',$inputs['mahuyen'])
                     ->where('level','H')
                     ->first();
@@ -179,6 +203,16 @@ class GiaDatDuAnController extends Controller
                     ->with('modeldb',$modeldb)
                     ->with('inputs',$inputs)
                     ->with('pageTitle', 'Thông tin gia đất cụ thể của dự án ');
+            }else{
+                $modeldb = DiaBanHd::where('level','H')
+                    ->get();
+                return view('manage.giadatduan.reports.phuluc08')
+                    ->with('model', $model)
+                    ->with('modeldm',$modeldm)
+                    ->with('modeldb',$modeldb)
+                    ->with('inputs',$inputs)
+                    ->with('pageTitle', 'Thông tin gia đất cụ thể của dự án ');
+
             }
 
         } else
@@ -213,6 +247,7 @@ class GiaDatDuAnController extends Controller
                     $modeldm = DmGiaDatDuAn::all();
                     $modeldb = DiaBanHd::where('level','H')
                         ->get();
+//                    dd($modeldb);
                     return view('manage.giadatduan.reports.phuluc08')
                         ->with('model', $model)
                         ->with('modeldm',$modeldm)
@@ -220,7 +255,7 @@ class GiaDatDuAnController extends Controller
                         ->with('inputs',$inputs)
                         ->with('pageTitle', 'Thông tin gia đất cụ thể của dự án ');
                 }else
-                    return redirect('thongtingiadatduan/print?&phuluc=08a&mahuyen='.$inputs['mahuyen'].'&nam='.$inputs['nam']);
+                    return redirect('thongtingiadatduan/print?&mahuyen='.$inputs['mahuyen'].'&nam='.$inputs['nam']);
             }else
                 return view('errors.noperm');
 
@@ -254,6 +289,63 @@ class GiaDatDuAnController extends Controller
                 return view('errors.noperm');
 
         } else
+            return view('errors.notlogin');
+    }
+
+    public function nhandulieutuexcel(){
+        if (Session::has('admin')) {
+            $districts =DiaBanHd::where('level','H')
+                ->get();
+            $modeldm = DmGiaDatDuAn::all();
+            return view('manage.giadatduan.importexcel')
+                ->with('districts',$districts)
+                ->with('modeldm',$modeldm)
+                ->with('pageTitle','Nhận dữ liệu giá đất cụ thể của dự án từ file Excel');
+
+        } else
+            return view('errors.notlogin');
+    }
+
+    public function importexcel(Request $request){
+        if(Session::has('admin')){
+            $inputs=$request->all();
+            $filename = $inputs['district'] . '_' . getdate()[0];
+            $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
+            $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
+            $data = [];
+
+            Excel::load($path, function ($reader) use (&$data, $inputs) {
+                $obj = $reader->getExcel();
+                $sheet = $obj->getSheet(0);
+                $data = $sheet->toArray(null, true, true, true);// giữ lại tiêu đề A=>'val';
+            });
+
+            for ($i = $inputs['tudong']; $i <= $inputs['dendong']; $i++) {
+
+                $modelctnew = new GiaDatDuAn();
+                $modelctnew->nam = $inputs['nam'];
+                $modelctnew->district = $inputs['district'];
+                $modelctnew->manhomduan = $inputs['manhomduan'];
+                $modelctnew->tenduan = $data[$i][$inputs['tenduan']];
+                $modelctnew->thoidiem = getDateToDb($data[$i][$inputs['thoidiem']]);
+                $modelctnew->dientich = $data[$i][$inputs['dientich']];
+                $modelctnew->loaidat = $data[$i][$inputs['loaidat']];
+                $modelctnew->tenduong = $data[$i][$inputs['tenduong']];
+                $modelctnew->loaiduong = $data[$i][$inputs['loaiduong']];
+                $modelctnew->vitri = $data[$i][$inputs['vitri']];
+                $modelctnew->qddato = $data[$i][$inputs['qddato']];
+                $modelctnew->qddatsxkd = $data[$i][$inputs['qddatsxkd']];
+                $modelctnew->qddatnnkdc = $data[$i][$inputs['qddatnnkdc']];
+                $modelctnew->qddatnnnkdc = $data[$i][$inputs['qddatnnnkdc']];
+                $modelctnew->tddato = $data[$i][$inputs['tddato']];
+                $modelctnew->tddatsxkd = $data[$i][$inputs['tddatsxkd']];
+                $modelctnew->tddatnnkdc = $data[$i][$inputs['tddatnnkdc']];
+                $modelctnew->tddatnnnkdc = $data[$i][$inputs['tddatnnnkdc']];
+                $modelctnew->save();
+            }
+            File::Delete($path);
+            return redirect('thongtingiadatduan?&nam='.$inputs['nam'].'&district='.$inputs['district'].'&manhomduan='.$inputs['manhomduan']);
+        }else
             return view('errors.notlogin');
     }
 }

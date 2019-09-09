@@ -39,48 +39,36 @@
     <tr>
         <td colspan="2" style="text-align: center; font-size: 16px; text-transform: uppercase;">
             <b>BÁO CÁO GIÁ THUẾ TÀI NGUYÊN</b>
-
         </td>
     </tr>
-    <tr>
-        <td colspan="2" style="text-align: center;">Từ ngày: {{getDayVn($inputs['ngaytu'])}} - Đến ngày: {{getDayVn($inputs['ngayden'])}}
-        <br>Nhóm tài nguyên: {{$inputs['tennhom']}}</td>
-    </tr>
-
 </table>
+<p style="text-align: center">Nhóm tài nguyên: {{$m_nhomthuetn->tennhom}}</p>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
-    <tr height="40px">
-        <th width="5%">STT</th>
-        <th>Nhóm, loại tài nguyên</th>
-        <th width="15%">Đơn vị tính</th>
-        <th width="20%">Thuế suất</th>
-    </tr>
-
-    <tr style="font-style: italic; font-size: 10px; line-height: 15px;">
-        <th>1</th>
-        <th>2</th>
-        <th>3</th>
-        <th>4</th>
-    </tr>
-    @foreach($modelgr as $key=>$tt)
-        <!--Nhóm tài nguyên-->
-        <tr style="font-weight: bold">
-            <td style="text-align: left" colspan="4">Địa bàn: {{$tt->diaban}}-Theo số QĐ: {{$tt->soqd}} - Ngày áp dụng: {{getDayVn($tt->ngayapdung)}}</td>
+   <tr>
+       <th style="text-align: center" width="2%">STT</th>
+       <th style="text-align: center">Mã tài nguyên</th>
+       <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp I</th>
+       <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp II</th>
+       <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp III</th>
+       <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp IV</th>
+       <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp V</th>
+       <th style="text-align: center">Đơn vi<br>tính</th>
+       <th style="text-align: center" >Đơn giá <br>({{$inputs['namlk']}})</th>
+       <th style="text-align: center" >Đơn giá <br>({{$inputs['nambc']}})</th>
+   </tr>
+    @foreach($model as $key=>$tt)
+        <tr>
+        <td style="text-align: center">{{$key+1}}</td>
+        <td>{{$tt->matn}}</td>
+        <td>{{$tt->cap1}}</td>
+        <td>{{$tt->cap2}}</td>
+        <td>{{$tt->cap3}}</td>
+        <td>{{$tt->cap4}}</td>
+        <td>{{$tt->cap5}}</td>
+        <td style="text-align: center">{{$tt->dvt}}</td>
+        <td style="text-align: right">{{dinhdangsothapphan($tt->dongialk,2)}}</td>
+        <td style="text-align: right">{{dinhdangsothapphan($tt->dongiabc,2)}}</td>
         </tr>
-        <?php $i=1;
-            $modelct = $model->where('mahs',$tt->mahs);
-        ?>
-
-        @foreach($modelct as $ct)
-            <tr>
-                <td>{{$i++}}</td>
-                <td style="text-align: left;font-weight: bold">{{$ct->tenhh}}</td>
-                <td style="text-align: center;font-weight: bold">{{$ct->dvt}}</td>
-                <td style="text-align: right;font-weight: bold">{{$ct->dvt!= '' ? number_format($ct->giatttn) : ''}}</td>
-            </tr>
-            <!--phần chi tiết tạm thời làm 2 vòng foreach => nên nghiên cứu làm hàm đệ quy để cho danh mục có nhiều nhánh-->
-
-        @endforeach
     @endforeach
 </table>
 </body>

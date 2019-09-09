@@ -120,6 +120,9 @@ Route::post('thuetainguyen/checkmulti','manage\thuetn\ThueTaiNguyenController@ch
 Route::get('thuetainguyen/nhandulieutuexcel','manage\thuetn\ThueTaiNguyenController@nhandulieutuexcel');
 Route::post('thuetainguyen/import_excel','manage\thuetn\ThueTaiNguyenController@importexcel');
 
+Route::get('baocaothuetainguyen','manage\thuetn\ReportsThueTnController@index');
+Route::post('/baocaothuetainguyen/bc1','manage\thuetn\ReportsThueTnController@Bc1');
+
 
 //DV Khám chữa bệnh
 Route::get('dichvukcb','manage\dvkcb\DvKcbController@index');
@@ -312,6 +315,8 @@ Route::post('kekhaigiathitruong/huyhoanthanh','manage\giathitruong\GiaThiTruongC
 
 Route::get('giathitruongct/edit','manage\giathitruong\GiaThiTruongCtController@edit');
 Route::get('giathitruongct/update','manage\giathitruong\GiaThiTruongCtController@update');
+Route::get('tkgiatrhitruong','manage\giathitruong\GiaThiTruongController@search');
+
 
 Route::get('baocaogiathitruong','manage\giathitruong\GiaThiTruongBcController@index');
 Route::post('baocaogiathitruong/baocaotonghop1','manage\giathitruong\GiaThiTruongBcController@baocaotonghop1');

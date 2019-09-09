@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\manage\thuetn;
 
-use App\NhomThueTn;
-use App\ThueTaiNguyen;
-use App\ThueTaiNguyenCt;
+use App\Model\manage\dinhgia\thuetn\DmThueTn;
+use App\Model\manage\dinhgia\thuetn\NhomThueTn;
+use App\Model\manage\dinhgia\thuetn\ThueTaiNguyen;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -27,20 +27,25 @@ class ReportsThueTnController extends Controller
     public function Bc1(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
-            $model = ThueTaiNguyenCt::join('thuetainguyen','thuetainguyenct.mahs','=','thuetainguyen.mahs')
-                ->whereBetween('thuetainguyen.ngayapdung',[$inputs['ngaytu'], $inputs['ngayden']])
-                ->where('thuetainguyen.manhom',$inputs['manhom'])
-                ->select('thuetainguyenct.*','thuetainguyen.ngayapdung','thuetainguyen.soqd')
+            $m_nhomthuetn = NhomThueTn::where('manhom',$inputs['manhom'])
+                ->first();
+            $model = DmThueTn::where('manhom',$inputs['manhom'])
                 ->get();
-            $modelgr = ThueTaiNguyen::join('diabanhd','diabanhd.district','=','thuetainguyen.district')
-                ->whereBetween('thuetainguyen.ngayapdung',[$inputs['ngaytu'], $inputs['ngayden']])
-                ->where('thuetainguyen.manhom',$inputs['manhom'])
-                ->select('diabanhd.diaban','thuetainguyen.ngayapdung','thuetainguyen.soqd','thuetainguyen.mahs')
-                ->get();
-            $inputs['tennhom'] = NhomThueTn::where('manhom',$inputs['manhom'])->first()->tennhom;
+            foreach($model as $tn){
+                $modellk = ThueTaiNguyen::where('manhom',$inputs['manhom'])
+                    ->where('matn',$tn->matn)
+                    ->where('nam','namlk')
+                    ->firsT();
+                $modelbc = ThueTaiNguyen::where('manhom',$inputs['manhom'])
+                    ->where('matn',$tn->matn)
+                    ->where('nam','nambc')
+                    ->firsT();
+                $tn->dongialk = isset($modellk) ? $modellk->dongia : 0;
+                $tn->dongiabc = isset($modelbc) ?$modelbc->dongia : 0;
+            }
             return view('manage.dinhgia.thuetn.reports.Bc1')
                 ->with('model',$model)
-                ->with('modelgr',$modelgr)
+                ->with('m_nhomthuetn',$m_nhomthuetn)
                 ->with('inputs',$inputs)
                 ->with('pageTitle','Báo cáo tổng hợp thuế tài nguyên');
 

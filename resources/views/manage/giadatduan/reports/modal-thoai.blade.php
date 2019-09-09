@@ -28,7 +28,6 @@
                                 @endfor
                             </select>
                         </div>
-                        @if(session('admin')->level == 'T')
                         <div class="col-md-12">
                             <label>Địa bàn</label>
                             <select name="mahuyen" id="mahuyen" class="form-control">
@@ -38,9 +37,6 @@
                                 @endforeach
                             </select>
                         </div>
-                        @else
-                            <input type="hidden" name="mahuyen" id="mahuyen" value="{{session('admin')->mahuyen}}">
-                        @endif
                     </div>
                 </div>
             </div>

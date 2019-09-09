@@ -20,19 +20,6 @@
                 <div class="form-horizontal">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <label><b>Từ ngày</b></label>
-                            <input type="date" id="ngaytu" name="ngaytu" class="form-control" value="{{intval(date('Y')).'-01-01'}}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                        <label><b>Đến ngày</b></label>
-                            <input type="date" id="ngayden" name="ngayden" class="form-control" value="{{intval(date('Y')).'-12-31'}}">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-12">
                             <label><b>Phân nhóm tài nguyên</b></label>
                             <select name="manhom" id="manhom" class="form-control">
                                 @foreach($m_nhomthuetn as $ct)
@@ -40,12 +27,32 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="col-md-12">
+                            <label class="control-label">Năm liền kề<span class="require">*</span></label>
+                            <select class="form-control" name="namlk" id="namlk">
+                                @if ($nam_start = 2015 ) @endif
+                                @if ($nam_stop = intval(date('Y')) + 1) @endif
+                                @for($i = $nam_start; $i <= $nam_stop; $i++)
+                                    <option value="{{$i}}">Năm {{$i}}</option>
+                                @endfor
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="control-label">Năm báo cáo<span class="require">*</span></label>
+                            <select class="form-control" name="nambc" id="nambc">
+                                @if ($nam_start = 2015 ) @endif
+                                @if ($nam_stop = intval(date('Y')) + 1) @endif
+                                @for($i = $nam_start; $i <= $nam_stop; $i++)
+                                    <option value="{{$i}}">Năm {{$i}}</option>
+                                @endfor
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickBC1('/reportsthuetainguyen/bc1')">Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickBC1('/baocaothuetainguyen/bc1')">Đồng ý</button>
                 <!--button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickBCExcel('/reports/thuetn/bcgiathuetnexcel')">Xuất Excel</button-->
             </div>
             {!! Form::close() !!}

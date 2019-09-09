@@ -98,17 +98,17 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
-                        @if(can('kkgianuocsh','create'))
+                        @if(can('kkgiadvkcb','create'))
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#add-modal" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;
                             Thêm mới</button>
                         <a href="{{url('dichvukcb/nhandulieutuexcel')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-file-excel-o"></i> Nhận dữ liệu</a>
                         @endif
-                        @if(can('kkgianuocsh','delete'))
+                        @if(can('kkgiadvkcb','delete'))
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                             Xóa</button>
                         @endif
-                        @if(can('thgianuocsh','congbo'))
+                        @if(can('thgiadvkcb','congbo'))
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#check-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;
                             Công bố/ Hủy</button>
                         @endif

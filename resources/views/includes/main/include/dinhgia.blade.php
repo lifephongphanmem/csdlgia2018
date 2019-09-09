@@ -111,11 +111,11 @@
                                         <a href="{{url('thuetainguyen')}}">Thông tin thuế TN</a>
                                     </li>
                                 @endif
-                                {{--@if(can('thgiathuetn','baocao'))--}}
-                                {{--<li>--}}
-                                {{--<a href="{{url('reportsthuetainguyen')}}">Báo cáo tổng hợp</a>--}}
-                                {{--</li>--}}
-                                {{--@endif--}}
+                                @if(can('thgiathuetn','baocao'))
+                                <li>
+                                <a href="{{url('baocaothuetainguyen')}}">Báo cáo tổng hợp</a>
+                                </li>
+                                @endif
                             </ul>
                         </li>
                     @endif

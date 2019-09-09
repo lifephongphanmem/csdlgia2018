@@ -202,4 +202,31 @@ class GiaThiTruongController extends Controller
         }else
             return view('errors.notlogin');
     }
+
+    public function search(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
+            $inputs['matt'] = isset($inputs['matt']) ? $inputs['matt'] : 'all';
+            $inputs['tenhh'] = isset($inputs['tenhhdv']) ? $inputs['tenhh'] : '';
+            $modeltt = GiaThiTruongTt::where('theodoi','TD')
+                ->get();
+            $model = GiaThiTruongCt::join('giathitruong','giathitruong.mahs','=','giathitruongct.mahs')
+                ->join('district','district.mahuyen','=','giathitruong.mahuyen')
+                ->select('giathitruongct.*','district.tendv','giathitruong.sobc','giathitruong.ngaybc');
+            if($inputs['nam'] != 'all')
+                $model = $model->where('giathitruong.nam',$inputs['nam']);
+            if($inputs['matt'] != 'all')
+                $model = $model->where('giathitruong.matt',$inputs['matt']);
+            if($inputs['tenhh'] != '')
+                $model = $model->where('giathitruongct.tenhh','like', '%'.$inputs['tenhh'].'%');
+            $model = $model->get();
+            return view('manage.giathitruong.timkiem.index')
+                ->with('model',$model)
+                ->with('modeltt',$modeltt)
+                ->with('inputs',$inputs)
+                ->with('pageTitle','Tìm kiếm giá thị trường');
+        }else
+            return view('errors.notlogin');
+    }
 }
