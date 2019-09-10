@@ -142,7 +142,7 @@ class RegisterController extends Controller
         $model->update($inputs);
         $modeldn = Company::where('maxa',$inputs['maxa'])
             ->first();
-        $modeldn = Users::where('maxa',$inputs['maxa'])
+        $modeluserup = Users::where('maxa',$inputs['maxa'])
             ->where('level','DN')
             ->update(['status' => 'Chờ xét duyệt']);
         $modeldv = GeneralConfigs::first();
