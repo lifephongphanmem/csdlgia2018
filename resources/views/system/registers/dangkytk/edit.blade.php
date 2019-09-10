@@ -189,7 +189,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="control-label">Giấy đăng ký kinh doanh</label>
-                        <a href="{{url('data/doanhnghiep/'.$model->tailieu)}}" target="_blank">{{$model->giayphepkd}}</a>
+                        <a href="{{url('data/doanhnghiep/'.$model->tailieu)}}" target="_blank">Giấy đăng ký kinh doanh hiện tại</a>
                         <input name="tailieu" id="tailieu" type="file">
                         @if ($errors->any())
                             <em class="invalid">{{ $errors->first('tailieu') }}</em>
@@ -358,7 +358,6 @@ License: You must have a valid license purchased only from themeforest(the above
                 diachi:"required",
                 emaildn:"required",
                 noidknopthue:"required",
-                tailieu: "required",
             },
             messages: {
                 captcha: "Tích vào đây!!!",
@@ -367,7 +366,6 @@ License: You must have a valid license purchased only from themeforest(the above
                 diachi: "Nhập thông tin địa chỉ!!!",
                 email: "Nhập thông tin email!!!",
                 noidknopthue: "Nhập thông tin nơi đăng ký nộp thuế!!!",
-                tailieu: "Bạn cần chia sẻ giấy chứng nhận đăng ký kinh doanh!!!",
             }
         });
     }

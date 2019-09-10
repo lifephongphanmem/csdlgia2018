@@ -41,7 +41,6 @@ class RegisterRequest extends FormRequest
                     'noidknopthue'=>'required',
                     'giayphepkd'=>'required',
                     'email'=>'required|email',
-                    'tailieu'=>'required',
                     'chucdanh'=>'required',
                     'nguoiky'=>'required',
                     'diadanh'=>'required',

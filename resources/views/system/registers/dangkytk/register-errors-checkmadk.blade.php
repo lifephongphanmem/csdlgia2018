@@ -19,7 +19,9 @@
 <body id="error-page" class="animated bounceInLeft">
 <div id="error-page-content"><h1>Lỗi</h1><h2>Mã đăng ký tài khoản hoặc mã số thuế không đúng!!!</h2>
     <p>Liên hệ với quản trị hệ thống để biết thêm chi tiết</p>
+    <p><a href='{{ url('searchtkdangky') }}'>Bấm vào đây</a> để quay lại trang nhập kiểm tra tài khoản đăng ký.</p>
     <p><a href='{{ url('dangkytaikhoantruycap/checkmadangky') }}'>Bấm vào đây</a> để quay lại trang nhập mã đăng ký.</p>
+
     <p><a href='{{ url('/') }}'>Bấm vào đây</a> để quay lại trang chủ.</p>
 </div>
 <script src="{{ url('js/jquery-1.9.1.js') }}"></script>
