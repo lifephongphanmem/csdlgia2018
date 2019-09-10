@@ -168,6 +168,7 @@ class RegisterController extends Controller
         $modelcompany = Company::where('maxa',$inputs['maxa'])
             ->first();
         $modeluser = Users::where('maxa',$inputs['maxa'])
+            ->where('level','DN')
             ->first();
         if($modeluser->status == 'Chờ xét duyệt')
             return view('system.registers.dangkytk.register-choduyet')
