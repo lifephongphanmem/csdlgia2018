@@ -96,14 +96,14 @@ class RegisterController extends Controller
     public function store(RegisterRequest $request){
         $inputs = $request->all();
         $inputs['trangthai'] = 'Chưa kích hoạt';
-        $modeldn = new Company();
+        $model = new Company();
         if(isset($inputs['tailieu'])){
             $ipf1 = $request->file('tailieu');
             $inputs['ipt1'] = $inputs['maxa'].'.'.$ipf1->getClientOriginalExtension();
             $ipf1->move(public_path() . '/data/doanhnghiep/', $inputs['ipt1']);
             $inputs['tailieu']= $inputs['ipt1'];
         }
-        if($modeldn->create($inputs)){
+        if($model->create($inputs)){
             $modeluser = new Users();
             $modeluser->username = $inputs['username'];
             $modeluser->password = md5($inputs['rpassword']);
@@ -116,6 +116,8 @@ class RegisterController extends Controller
                 ->update(['maxa' => $inputs['maxa'],'trangthai' => 'XD']);
 
         }
+        $modeldn = Company::where('maxa',$inputs['maxa'])
+            ->first();
         $modeldv = GeneralConfigs::first();
         $tg = getDateTime(Carbon::now()->toDateTimeString());
         $contentdn = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận yêu cầu đăng ký thông tin doanh nghiệp . Mã số đăng ký: '.$inputs['mahs'].'!!!';
@@ -130,15 +132,17 @@ class RegisterController extends Controller
 
     public function update(Request $request,$id){
         $inputs = $request->all();
-        $modeldn = Company::findOrFail($id);
+        $model = Company::findOrFail($id);
         if(isset($inputs['tailieu'])){
             $ipf1 = $request->file('tailieu');
             $inputs['ipt1'] = $inputs['maxa'].'.'.$ipf1->getClientOriginalExtension();
             $ipf1->move(public_path() . '/data/doanhnghiep/', $inputs['ipt1']);
             $inputs['tailieu']= $inputs['ipt1'];
         }
-        $modeldn->update($inputs);
-        $modeluser = Users::where('maxa',$inputs['maxa'])
+        $model->update($inputs);
+        $modeldn = Company::where('maxa',$inputs['maxa'])
+            ->first();
+        $modeldn = Users::where('maxa',$inputs['maxa'])
             ->where('level','DN')
             ->update(['status' => 'Chờ xét duyệt']);
         $modeldv = GeneralConfigs::first();

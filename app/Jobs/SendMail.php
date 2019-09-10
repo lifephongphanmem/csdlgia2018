@@ -42,11 +42,10 @@ class SendMail implements ShouldQueue
     {
         sleep(5);
         $emaildn = new MailDoanhNghiep($this->modeldn,$this->contentdn);
-        //dd($emaildn);
         Mail::to($this->modeldn->email)->send($emaildn);
         $emailht = new MailHeThong($this->contentht,$this->modeldv);
 //        dd($emailht);;
         Mail::to($this->modeldv->emailql)->send($emailht);
-        echo 'End send email';
+//        echo 'End send email';
     }
 }
