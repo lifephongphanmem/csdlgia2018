@@ -73,11 +73,11 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN LOGIN -->
 <div class="content">
     <!-- BEGIN REGISTER FORM -->
-    {!! Form::open(['url'=>'dangkytaikhoantruycap','id' => 'form-register', 'class'=>'form control']) !!}
+    {!! Form::open(['url'=>'dangkytaikhoantruycap','id' => 'form-register', 'class'=>'form control','files'=>true,'enctype'=>'multipart/form-data']) !!}
     <!--form class="register-form" action="index.html" method="post" novalidate="novalidate" style="display: block;"-->
     <div class="row">
         <div class="col-md-12">
-            <input type="text" id="mahs" name="mahs" value="{{$inputs['mahs']}}">
+            <input type="hidden" id="mahs" name="mahs" value="{{$inputs['mahs']}}">
             <p style="color: #000000">Thông tin doanh nghiệp</p>
             <div class="row">
                 <div class="col-md-6">

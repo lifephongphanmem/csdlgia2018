@@ -28,7 +28,7 @@
                 </div-->
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    {!! Form::model($model, ['method' => 'PATCH', 'url'=>'users/'. $model->id, 'class'=>'horizontal-form','id'=>'update_tttaikhoan']) !!}
+                    {!! Form::model($model, ['method' => 'PATCH', 'url'=>'users/'. $model->id, 'class'=>'horizontal-form','id'=>'update_tttaikhoan','files'=>true,'enctype'=>'multipart/form-data']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
                             <div class="row">
