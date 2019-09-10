@@ -170,17 +170,20 @@ class RegisterController extends Controller
         $modeluser = Users::where('maxa',$inputs['maxa'])
             ->where('level','DN')
             ->first();
-        if($modeluser->status == 'Chờ xét duyệt')
-            return view('system.registers.dangkytk.register-choduyet')
-                ->with('modelcompany',$modelcompany)
-                ->with('pageTitle','Đăng ký tài khoản truy cập đang chờ xét duyệt');
-        elseif($modeluser->status == 'Bị trả lại')
-            return view('system.registers.dangkytk.register-bitralai')
-                ->with('modelcompany',$modelcompany)
-                ->with('modeluser',$modeluser)
-                ->with('pageTitle','Đăng ký tài khoản truy cập bị trả lại');
-        else
-            return view('system.registers.dangkytk.register-usersuccess');
+        if(isset($modeluser)) {
+            if ($modeluser->status == 'Chờ xét duyệt')
+                return view('system.registers.dangkytk.register-choduyet')
+                    ->with('modelcompany', $modelcompany)
+                    ->with('pageTitle', 'Đăng ký tài khoản truy cập đang chờ xét duyệt');
+            elseif ($modeluser->status == 'Bị trả lại')
+                return view('system.registers.dangkytk.register-bitralai')
+                    ->with('modelcompany', $modelcompany)
+                    ->with('modeluser', $modeluser)
+                    ->with('pageTitle', 'Đăng ký tài khoản truy cập bị trả lại');
+            else
+                return view('system.registers.dangkytk.register-usersuccess');
+        }else
+            return view('system.registers.dangkytk.register-errors-checkmadk');
     }
 
     public function checkmadk(){
