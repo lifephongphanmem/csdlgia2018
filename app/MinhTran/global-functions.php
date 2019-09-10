@@ -4041,4 +4041,13 @@ function chkDbl($obj) {
     }
 }
 
+function emailValid($email)
+{
+    $pattern = '#^[a-z][a-z0-9\._]{2,31}@[a-z0-9\-]{3,}(\.[a-z]{2,4}){1,2}$#';
+    if(preg_match($pattern, $email))
+        return true;
+    else
+        return false;
+}
+
 ?>
