@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\manage\giadatduan;
 
 use App\DiaBanHd;
-use App\District;
-use App\DmGiaDatDuAn;
-use App\GiaDatDuAn;
+use App\Model\manage\dinhgia\giadatduan\DmGiaDatDuAn;
+use App\Model\manage\dinhgia\giadatduan\GiaDatDuAn;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -21,26 +20,46 @@ class GiaDatDuAnController extends Controller
                 $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
                 $inputs['tenduan'] = isset($inputs['tenduan']) ? $inputs['tenduan'] : '';
                 $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : 'all';
+                $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : 'all';
                 $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
                 $inputs['manhomduan'] = isset($inputs['manhomduan']) ? $inputs['manhomduan'] : 'all';
-                $diabans = DiaBanHd::where('level','H')
+                $huyens = DiaBanHd::where('level','H')
+                    ->get();
+                $xas = DiaBanHd::where('level','X')
                     ->get();
                 $modeldm = DmGiaDatDuAn::all();
                 $model = GiaDatDuAn::join('dmgiadatduan','dmgiadatduan.manhomduan','=','giadatduan.manhomduan')
                     ->select('giadatduan.*','dmgiadatduan.tennhomduan');
                 if($inputs['nam'] != 'all')
                     $model = $model->whereYear('giadatduan.thoidiem',$inputs['nam']);
-                if($inputs['mahuyen'] != 'all')
-                    $model = $model->where('giadatduan.mahuyen',$inputs['mahuyen']);
+                if($inputs['mahuyen'] != 'all') {
+                    $model = $model->where('giadatduan.mahuyen', $inputs['mahuyen']);
+                    $xas = DiaBanHd::where('level','X')
+                        ->where('district',$inputs['mahuyen'])
+                        ->get();
+                }
+                if($inputs['maxa'] != 'all')
+                    $model = $model->where('giadatduan.maxa', $inputs['maxa']);
                 if($inputs['manhomduan'] != 'all')
                     $model = $model->where('giadatduan.manhomduan',$inputs['manhomduan']);
                 if($inputs['tenduan'] != '')
                     $model = $model->where('giadatduan.tenduan','like', '%'.$inputs['tenduan'].'%');
                 $model = $model->paginate($inputs['paginate']);
-                return view('manage.giadatduan.index')
+                foreach($model as $tt){
+                    $tenhuyen = DiaBanHd::where('level','H')
+                        ->where('district',$tt->mahuyen)
+                        ->first();
+                    $tenxa = DiaBanHd::where('level','X')
+                        ->where('town',$tt->maxa)
+                        ->first();
+                    $tt->tenhuyen = $tenhuyen->diaban;
+                    $tt->tenxa = $tenxa->diaban;
+                }
+                return view('manage.dinhgia.giadatduan.index')
                     ->with('model',$model)
                     ->with('inputs',$inputs)
-                    ->with('diabans',$diabans)
+                    ->with('huyens',$huyens)
+                    ->with('xas',$xas)
                     ->with('modeldm',$modeldm)
                     ->with('pageTitle','Thông tin gia đất cụ thể của dự án');
             }else
@@ -61,14 +80,19 @@ class GiaDatDuAnController extends Controller
                 $modeldm = DmGiaDatDuAn::all();
 
                 $nhomduan = array();
-                foreach ($modeldm as $dm) {
-
+                foreach ($modeldm as $dm)
                     $nhomduan[$dm->manhomduan] = $dm->tennhomduan;
-                }
-                return view('manage.giadatduan.create')
+                $modelxas = DiaBanHd::where('level','X')
+                    ->where('district',$inputs['mahuyen'])
+                    ->get();
+                $xas = array();
+                foreach ($modelxas as $xa)
+                    $xas[$xa->town] = $xa->diaban;
+                return view('manage.dinhgia.giadatduan.create')
                     ->with('modeldb',$modeldb)
                     ->with('inputs',$inputs)
                     ->with('nhomduan',$nhomduan)
+                    ->with('xas',$xas)
                     ->with('pageTitle','Thông tin gia đất cụ thể của dự án thêm mới');
             }else
                 return view('errors.noperm');
@@ -80,18 +104,24 @@ class GiaDatDuAnController extends Controller
     public function store(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
+            dd($inputs);
             $model = new GiaDatDuAn();
             $inputs['thoidiem'] = getDateToDb($inputs['thoidiem']);
             $inputs['dientich'] = getDoubleToDb($inputs['dientich']);
-            $inputs['qddato'] = getDoubleToDb($inputs['qddato']);
-            $inputs['qddatsxkd'] = getDoubleToDb($inputs['qddatsxkd']);
-            $inputs['qddatnnkdc']= getDoubleToDb($inputs['qddatnnkdc']);
-            $inputs['qddatnnnkdc']= getDoubleToDb($inputs['qddatnnnkdc']);
 
-            $inputs['tddato'] = getDoubleToDb($inputs['tddato']);
-            $inputs['tddatsxkd'] = getDoubleToDb($inputs['tddatsxkd']);
-            $inputs['tddatnnkdc'] = getDoubleToDb($inputs['tddatnnkdc']);
-            $inputs['tddatnnnkdc'] = getDoubleToDb($inputs['tddatnnnkdc']);
+            $inputs['qdgiadato'] = getDoubleToDb($inputs['qdgiadato']);
+            $inputs['qdgiadattmdv'] = getDoubleToDb($inputs['qdgiadattmdv']);
+            $inputs['qdgiadatsxkd'] = getDoubleToDb($inputs['qdgiadatsxkd']);
+            $inputs['qdgiadatnn'] = getDoubleToDb($inputs['qdgiadatnn']);
+            $inputs['qdgiadatnuoits'] = getDoubleToDb($inputs['qdgiadatnuoits']);
+            $inputs['qdgiadatmuoi'] = getDoubleToDb($inputs['qdgiadatmuoi']);
+
+            $inputs['qdpddato'] = getDoubleToDb($inputs['qdpddato']);
+            $inputs['qdpddattmdv'] = getDoubleToDb($inputs['qdpddattmdv']);
+            $inputs['qdpddatsxkd'] = getDoubleToDb($inputs['qdpddatsxkd']);
+            $inputs['qdpddatnn'] = getDoubleToDb($inputs['qdpddatnn']);
+            $inputs['qdpddatnuoits'] = getDoubleToDb($inputs['qdpddatnuoits']);
+            $inputs['qdpddatmuoi'] = getDoubleToDb($inputs['qdpddatmuoi']);
 
             $model->create($inputs);
 
@@ -117,10 +147,17 @@ class GiaDatDuAnController extends Controller
 
                     $nhomduan[$dm->manhomduan] = $dm->tennhomduan;
                 }
-                return view('manage.giadatduan.edit')
+                $modelxas = DiaBanHd::where('level','X')
+                    ->where('district',$model->mahuyen)
+                    ->get();
+                $xas = array();
+                foreach ($modelxas as $xa)
+                    $xas[$xa->town] = $xa->diaban;
+                return view('manage.dinhgia.giadatduan.edit')
                     ->with('modeldb',$modeldb)
                     ->with('model',$model)
                     ->with('nhomduan',$nhomduan)
+                    ->with('xas',$xas)
                     ->with('pageTitle','Thông tin gia đất cụ thể của dự án chỉnh sửa');
             }else
                 return view('errors.noperm');
@@ -134,15 +171,20 @@ class GiaDatDuAnController extends Controller
             $inputs = $request->all();
             $inputs['thoidiem'] = getDateToDb($inputs['thoidiem']);
             $inputs['dientich'] = getDoubleToDb($inputs['dientich']);
-            $inputs['qddato'] = getDoubleToDb($inputs['qddato']);
-            $inputs['qddatsxkd'] = getDoubleToDb($inputs['qddatsxkd']);
-            $inputs['qddatnnkdc']= getDoubleToDb($inputs['qddatnnkdc']);
-            $inputs['qddatnnnkdc']= getDoubleToDb($inputs['qddatnnnkdc']);
 
-            $inputs['tddato'] = getDoubleToDb($inputs['tddato']);
-            $inputs['tddatsxkd'] = getDoubleToDb($inputs['tddatsxkd']);
-            $inputs['tddatnnkdc'] = getDoubleToDb($inputs['tddatnnkdc']);
-            $inputs['tddatnnnkdc'] = getDoubleToDb($inputs['tddatnnnkdc']);
+            $inputs['qdgiadato'] = getDoubleToDb($inputs['qdgiadato']);
+            $inputs['qdgiadattmdv'] = getDoubleToDb($inputs['qdgiadattmdv']);
+            $inputs['qdgiadatsxkd'] = getDoubleToDb($inputs['qdgiadatsxkd']);
+            $inputs['qdgiadatnn'] = getDoubleToDb($inputs['qdgiadatnn']);
+            $inputs['qdgiadatnuoits'] = getDoubleToDb($inputs['qdgiadatnuoits']);
+            $inputs['qdgiadatmuoi'] = getDoubleToDb($inputs['qdgiadatmuoi']);
+
+            $inputs['qdpddato'] = getDoubleToDb($inputs['qdpddato']);
+            $inputs['qdpddattmdv'] = getDoubleToDb($inputs['qdpddattmdv']);
+            $inputs['qdpddatsxkd'] = getDoubleToDb($inputs['qdpddatsxkd']);
+            $inputs['qdpddatnn'] = getDoubleToDb($inputs['qdpddatnn']);
+            $inputs['qdpddatnuoits'] = getDoubleToDb($inputs['qdpddatnuoits']);
+            $inputs['qdpddatmuoi'] = getDoubleToDb($inputs['qdpddatmuoi']);
 
             $model = GiaDatDuAn::findOrFail($id);
             $model->update($inputs);
@@ -157,12 +199,18 @@ class GiaDatDuAnController extends Controller
     public function show($id){
         if (Session::has('admin')) {
             $model = GiaDatDuAn::join('dmgiadatduan','dmgiadatduan.manhomduan','=','giadatduan.manhomduan')
-                ->join('diabanhd','diabanhd.district','=','giadatduan.mahuyen')
-                ->select('giadatduan.*','dmgiadatduan.tennhomduan','diabanhd.diaban')
                 ->where('giadatduan.id',$id)
                 ->first();
-            return view('manage.giadatduan.show')
+            $huyen = DiaBanHd::where('district',$model->mahuyen)
+                ->where('level','H')
+                ->first();
+            $xa = DiaBanHd::where('town',$model->maxa)
+                ->where('level','X')
+                ->first();
+            return view('manage.dinhgia.giadatduan.show')
                 ->with('model',$model)
+                ->with('huyen',$huyen)
+                ->with('xa',$xa)
                 ->with('pageTitle','Thông tin gia đất cụ thể của dự án ');
 
         } else
@@ -177,12 +225,13 @@ class GiaDatDuAnController extends Controller
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
             $inputs['manhomduan'] = isset($inputs['manhomduan']) ? $inputs['manhomduan'] : 'all';
             $model = GiaDatDuAn::join('dmgiadatduan', 'dmgiadatduan.manhomduan', '=', 'giadatduan.manhomduan')
-                ->join('diabanhd', 'diabanhd.district', '=', 'giadatduan.mahuyen')
-                ->select('giadatduan.*', 'dmgiadatduan.tennhomduan', 'diabanhd.diaban');
+                ->select('giadatduan.*', 'dmgiadatduan.tennhomduan');
             if($inputs['nam'] != 'all')
                 $model = $model->whereYear('giadatduan.thoidiem',$inputs['nam']);
             if($inputs['mahuyen'] != 'all')
                 $model = $model->where('giadatduan.mahuyen',$inputs['mahuyen']);
+//            if($inputs['maxa'] != 'all')
+//                $model = $model->where('giadatduan.maxa',$inputs['maxa']);
             if($inputs['manhomduan'] != 'all')
                 $model = $model->where('giadatduan.manhomduan',$inputs['manhomduan']);
             if($inputs['tenduan'] != '')
@@ -197,7 +246,17 @@ class GiaDatDuAnController extends Controller
                 $modeldb = DiaBanHd::where('district',$inputs['mahuyen'])
                     ->where('level','H')
                     ->first();
-                return view('manage.giadatduan.reports.phuluc08a')
+//                dd($modeldb);
+//                dd($model);
+//                dd($modeldm);
+                foreach($model as $tt){
+                    $tenxa = DiaBanHd::where('level','X')
+                        ->where('town',$tt->maxa)
+                        ->first();
+                    $tt->tenxa = $tenxa->diaban;
+                }
+
+                return view('manage.dinhgia.giadatduan.reports.phuluc08a')
                     ->with('model', $model)
                     ->with('modeldm',$modeldm)
                     ->with('modeldb',$modeldb)
@@ -206,7 +265,13 @@ class GiaDatDuAnController extends Controller
             }else{
                 $modeldb = DiaBanHd::where('level','H')
                     ->get();
-                return view('manage.giadatduan.reports.phuluc08')
+                foreach($model as $tt){
+                    $tenxa = DiaBanHd::where('level','X')
+                        ->where('town',$tt->maxa)
+                        ->first();
+                    $tt->tenxa = $tenxa->diaban;
+                }
+                return view('manage.dinhgia.giadatduan.reports.phuluc08')
                     ->with('model', $model)
                     ->with('modeldm',$modeldm)
                     ->with('modeldb',$modeldb)
@@ -224,8 +289,10 @@ class GiaDatDuAnController extends Controller
             if (can('thgiadatduan', 'baocao')) {
                 $modeldb = DiaBanHd::where('level', 'H')
                     ->get();
-                return view('manage.giadatduan.reports.index')
+                $modeldm = DmGiaDatDuAn::all();
+                return view('manage.dinhgia.giadatduan.reports.index')
                     ->with('modeldb', $modeldb)
+                    ->with('modeldm',$modeldm)
                     ->with('pageTitle', 'Báo cáo tổng hợp giá đất cụ thể của dự án trên địa bàn');
             }else
                 return view('errors.noperm');
@@ -238,24 +305,7 @@ class GiaDatDuAnController extends Controller
         if (Session::has('admin')) {
             if (can('thgiadatduan', 'baocao')) {
                 $inputs = $request->all();
-                if($inputs['mahuyen'] == 'all'){
-                    $model = GiaDatDuAn::join('dmgiadatduan', 'dmgiadatduan.manhomduan', '=', 'giadatduan.manhomduan')
-                        ->join('diabanhd', 'diabanhd.district', '=', 'giadatduan.mahuyen')
-                        ->select('giadatduan.*', 'dmgiadatduan.tennhomduan', 'diabanhd.diaban')
-                        ->whereYear('giadatduan.thoidiem', $inputs['nam'])
-                        ->get();
-                    $modeldm = DmGiaDatDuAn::all();
-                    $modeldb = DiaBanHd::where('level','H')
-                        ->get();
-//                    dd($modeldb);
-                    return view('manage.giadatduan.reports.phuluc08')
-                        ->with('model', $model)
-                        ->with('modeldm',$modeldm)
-                        ->with('modeldb',$modeldb)
-                        ->with('inputs',$inputs)
-                        ->with('pageTitle', 'Thông tin gia đất cụ thể của dự án ');
-                }else
-                    return redirect('thongtingiadatduan/print?&mahuyen='.$inputs['mahuyen'].'&nam='.$inputs['nam']);
+                return redirect('thongtingiadatduan/print?&mahuyen='.$inputs['mahuyen'].'&nam='.$inputs['nam'].'&manhomduan='.$inputs['manhomduan']);
             }else
                 return view('errors.noperm');
 
@@ -280,7 +330,7 @@ class GiaDatDuAnController extends Controller
                 if($inputs['tenduan'] != '')
                     $model = $model->where('tenduan','like','%'.$inputs['tenduan'].'%');
                 $model = $model->get();
-                return view('manage.giadatduan.search')
+                return view('manage.dinhgia.giadatduan.search')
                     ->with('model',$model)
                     ->with('inputs',$inputs)
                     ->with('diabans',$diabans)
@@ -297,7 +347,7 @@ class GiaDatDuAnController extends Controller
             $districts =DiaBanHd::where('level','H')
                 ->get();
             $modeldm = DmGiaDatDuAn::all();
-            return view('manage.giadatduan.importexcel')
+            return view('manage.dinhgia.giadatduan.importexcel')
                 ->with('districts',$districts)
                 ->with('modeldm',$modeldm)
                 ->with('pageTitle','Nhận dữ liệu giá đất cụ thể của dự án từ file Excel');

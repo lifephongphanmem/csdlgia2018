@@ -22,7 +22,8 @@ class CreateGiathuemuanhaxhTable extends Migration
             $table->string('dvt',20)->nullable();
             $table->double('dongiathue')->nullable();
             $table->double('dongiathuemua')->nullable();
-            $table->date('thoidiem')->nullable();
+            $table->date('thoidiemkc')->nullable();
+            $table->date('thoidiemht')->nullable();
             $table->string('ttqd')->nullable();
             $table->text('ghichu')->nullable();
             $table->string('trangthai',20)->nullable();

@@ -83,12 +83,6 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label">Thời điểm<span class="require">*</span></label>
-                            {!!Form::text('edit_thoidiem',null, array('id' => 'edit_thoidiem','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
                             <label class="control-label">Địa bàn<span class="require">*</span></label>
                             <select class="form-control" name="edit_district" id="edit_district">
                                 @foreach($districts as $district)
@@ -103,6 +97,20 @@
                         <div class="form-group">
                             <label class="control-label">Tên dự án<span class="require">*</span></label>
                             <input name="edit_tenduan" id="edit_tenduan" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Thời điểm<span class="require">*</span></label>
+                            {!!Form::text('edit_thoidiemkc',null, array('id' => 'edit_thoidiemkc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Thời điểm<span class="require">*</span></label>
+                            {!!Form::text('edit_thoidiemht',null, array('id' => 'edit_thoidiemht','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                         </div>
                     </div>
                 </div>
@@ -183,12 +191,6 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label">Thời điểm<span class="require">*</span></label>
-                            {!!Form::text('add_thoidiem',null, array('id' => 'add_thoidiem','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
                             <label class="control-label">Địa bàn<span class="require">*</span></label>
                             <select class="form-control" name="add_district" id="add_district">
                                 @foreach($districts as $district)
@@ -209,6 +211,20 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label class="control-label">Thời điểm khởi công<span class="require">*</span></label>
+                            {!!Form::text('add_thoidiemkc',null, array('id' => 'add_thoidiemkc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Thời điểm hoàn thành<span class="require">*</span></label>
+                            {!!Form::text('add_thoidiemht',null, array('id' => 'add_thoidiemht','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
                             <label class="control-label">Đơn giá thuê<span class="require">*</span></label>
                             <input type="text" name="add_dongiathue" id="add_dongiathue" class="form-control" data-mask="fdecimal" style="text-align: right; font-weight: bold">
                         </div>
@@ -223,7 +239,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="control-label">Số TTQĐ<span class="require">*</span></label>
+                            <label class="control-label">Số quyết định phê duyệt giá<span class="require">*</span></label>
                             <input name="add_ttqd" id="add_ttqd" class="form-control">
                         </div>
                     </div>

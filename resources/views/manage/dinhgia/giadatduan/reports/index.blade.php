@@ -35,5 +35,5 @@
             </div>
         </div>
     </div>
-    @include('manage.giadatduan.reports.modal-thoai')
+    @include('manage.dinhgia.giadatduan.reports.modal-thoai')
 @stop

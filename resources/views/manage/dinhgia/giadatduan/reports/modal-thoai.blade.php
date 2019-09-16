@@ -28,12 +28,25 @@
                                 @endfor
                             </select>
                         </div>
+                    </div>
+                    <div class="form-group">
                         <div class="col-md-12">
                             <label>Địa bàn</label>
                             <select name="mahuyen" id="mahuyen" class="form-control">
                                 <option value="all">--Tất cả các địa bàn--</option>
                                 @foreach($modeldb as $db)
                                     <option value="{{$db->district}}">{{$db->diaban}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label>Địa bàn</label>
+                            <select name="manhomduan" id="manhomduan" class="form-control">
+                                <option value="all">--Tất cả--</option>
+                                @foreach($modeldm as $dm)
+                                    <option value="{{$dm->manhomduan}}">{{$dm->tennhomduan}}</option>
                                 @endforeach
                             </select>
                         </div>

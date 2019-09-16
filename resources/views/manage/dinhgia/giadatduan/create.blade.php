@@ -38,7 +38,7 @@
                     <!-- BEGIN FORM-->
 
                     <div class="form-body">
-                       @include('manage.giadatduan.include.ttgiadatduan')
+                       @include('manage.dinhgia.giadatduan.include.ttgiadatduan')
                         <input type="hidden" name="mahuyen" id="mahuyen" value="{{$inputs['mahuyen']}}">
                     </div>
                 </div>

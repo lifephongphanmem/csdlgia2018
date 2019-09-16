@@ -58,31 +58,41 @@
     <tr>
         <th style="text-align: center" rowspan="2">STT</th>
         <th style="text-align: center" rowspan="2">Tên dự án</th>
-        <th style="text-align: center" rowspan="2">Địa bàn</th>
+        <th style="text-align: center" rowspan="2">Xã/ phường</th>
         <th style="text-align: center" rowspan="2">Thời điểm<br> xác định</th>
         <th style="text-align: center" rowspan="2">Diện<br> tích <br>(m2)</th>
+        <th style="text-align: center" rowspan="2">Số quyết định</th>
         <th style="text-align: center" colspan="4">Thông tin địa chính</th>
-        <th style="text-align: center" colspan="4">Quy định</th>
-        <th style="text-align: center" colspan="4">Kết quả thẩm định (sau khi giảm trừ)</th>
-        <th style="text-align: center" colspan="4">Tăng giảm (lần)</th>
+        <th style="text-align: center" colspan="6">Quyết định bảng giá đất của tỉnh</th>
+        <th style="text-align: center" colspan="6">Quyết định phê duyệt giá đất của tỉnh</th>
+        <th style="text-align: center" colspan="6">Tăng giảm (lần)</th>
     </tr>
     <tr>
         <th style="text-align: center">Loại đất</th>
         <th style="text-align: center">Tên đường</th>
         <th style="text-align: center">Loại đường,<br> khu vực</th>
         <th style="text-align: center">Vị trí</th>
+
         <th style="text-align: center">Đất ở</th>
+        <th style="text-align: center">Đất TMDV</th>
         <th style="text-align: center">Đất SXKD</th>
-        <th style="text-align: center">Đất NN- KDC</th>
-        <th style="text-align: center">Đất NN-<br> ngoài KDC</th>
+        <th style="text-align: center">Đất NN<br>(trồng cây <br>lâu năm,<br> hàng năm)</th>
+        <th style="text-align: center">Đất nuôi trổng thủy sản</th>
+        <th style="text-align: center">Đất làm muối</th>
+
         <th style="text-align: center">Đất ở</th>
+        <th style="text-align: center">Đất TMDV</th>
         <th style="text-align: center">Đất SXKD</th>
-        <th style="text-align: center">Đất NN- KDC</th>
-        <th style="text-align: center">Đất NN-<br> ngoài KDC</th>
+        <th style="text-align: center">Đất NN<br>(trồng cây <br>lâu năm,<br> hàng năm)</th>
+        <th style="text-align: center">Đất nuôi trổng thủy sản</th>
+        <th style="text-align: center">Đất làm muối</th>
+
         <th style="text-align: center">Đất ở</th>
+        <th style="text-align: center">Đất TMDV</th>
         <th style="text-align: center">Đất SXKD</th>
-        <th style="text-align: center">Đất NN- KDC</th>
-        <th style="text-align: center">Đất NN-<br> ngoài KDC</th>
+        <th style="text-align: center">Đất NN<br>(trồng cây <br>lâu năm,<br> hàng năm)</th>
+        <th style="text-align: center">Đất nuôi trổng thủy sản</th>
+        <th style="text-align: center">Đất làm muối</th>
     </tr>
     <tr>
         <td style="text-align: center">1</td>
@@ -102,15 +112,22 @@
         <td style="text-align: center">15</td>
         <td style="text-align: center">16</td>
         <td style="text-align: center">17</td>
-        <td style="text-align: center">18=14/10</td>
-        <td style="text-align: center">19=15/11</td>
-        <td style="text-align: center">20=16/12</td>
-        <td style="text-align: center">21=17/13</td>
+        <td style="text-align: center">18</td>
+        <td style="text-align: center">19</td>
+        <td style="text-align: center">20</td>
+        <td style="text-align: center">21</td>
+        <td style="text-align: center">22</td>
+        <td style="text-align: center">23=17/11</td>
+        <td style="text-align: center">24=18/12</td>
+        <td style="text-align: center">25=19/13</td>
+        <td style="text-align: center">26=20/14</td>
+        <td style="text-align: center">27=21/15</td>
+        <td style="text-align: center">28=22/16</td>
     </tr>
     @foreach($modeldm as $dm)
         <tr>
             <td style="text-align: center;font-weight: bold;">{{$dm->manhomduan}}</td>
-            <td colspan="20" style="font-weight: bold;">{{$dm->tennhomduan}}</td>
+            <td colspan="27" style="font-weight: bold;">{{$dm->tennhomduan}}</td>
         </tr>
         @foreach($modeldb as $gr2=>$db)
             <?php $modeltt = $model->where('manhomduan',$dm->manhomduan)
@@ -125,27 +142,35 @@
                 <tr>
                     <td style="text-align: center">{{$gr3+1}}</td>
                     <td style="text-align: left">{{$tt->tenduan}}</td>
-                    <td style="text-align: left">{{$tt->diaban}}</td>
+                    <td style="text-align: left">{{$tt->tenxa}}</td>
                     <td style="text-align: center">{{getDayVn($tt->thoidiem)}}</td>
                     <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->dientich,3)}}</td>
+                    <td>{{$tt->soqd}}</td>
                     <td style="text-align: center">{{$tt->loaidat}}</td>
                     <td style="text-align: center">{{$tt->tenduong}}</td>
                     <td style="text-align: center">{{$tt->loaiduong}}</td>
                     <td style="text-align: center">{{$tt->vitri}}</td>
-                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qddato,3)}}</td>
-                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qddatsxkd,3)}}</td>
-                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qddatnnkdc,3)}}</td>
-                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qddatnnnkdc,3)}}</td>
 
-                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->tddato,3)}}</td>
-                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->tddatsxkd,3)}}</td>
-                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->tddatnnkdc,3)}}</td>
-                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->tddatnnnkdc,3)}}</td>
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdgiadato,3)}}</td>
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdgiadattmdv,3)}}</td>
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdgiadatsxkd,3)}}</td>
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdgiadatnn,3)}}</td>
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdgiadatnuoits,3)}}</td>
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdgiadatmuoi,3)}}</td>
 
-                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->tddato/$tt->qddato,3)}}</td>
-                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->tddatsxkd/$tt->qddatsxkd,3)}}</td>
-                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->tddatnnkdc/$tt->qddatnnkdc,3)}}</td>
-                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->tddatnnnkdc/$tt->qddatnnnkdc,3)}}</td>
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddato,3)}}</td>
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddattmdv,3)}}</td>
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddatsxkd,3)}}</td>
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddatnn,3)}}</td>
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddatnuoits,3)}}</td>
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddatmuoi,3)}}</td>
+
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddato/$tt->qdgiadato,3)}}</td>
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddattmdv/$tt->qdgiadattmdv,3)}}</td>
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddatsxkd/$tt->qdgiadatsxkd,3)}}</td>
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddatnn/$tt->qdgiadatnn,3)}}</td>
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddatnuoits/$tt->qdgiadatnuoits,3)}}</td>
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddatmuoi/$tt->qdgiadatmuoi,3)}}</td>
                 </tr>
                 @endforeach
             @endif

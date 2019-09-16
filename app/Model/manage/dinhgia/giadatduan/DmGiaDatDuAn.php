@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model\manage\dinhgia\giadatduan;
 
 use Illuminate\Database\Eloquent\Model;
 

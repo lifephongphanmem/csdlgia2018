@@ -29,7 +29,7 @@ class GiaThueMuaNhaXhController extends Controller
             $model  = GiaThueMuaNhaXh::join('diabanhd','diabanhd.district','=','giathuemuanhaxh.district')
                 ->select('giathuemuanhaxh.*','diabanhd.diaban');
             if($inputs['nam'] != 'all')
-                $model = $model->whereYear('giathuemuanhaxh.thoidiem',$inputs['nam']);
+                $model = $model->whereYear('giathuemuanhaxh.thoidiemht',$inputs['nam']);
             if($inputs['district'] !='all')
                 $model = $model->where('giathuemuanhaxh.district',$inputs['district']);
             if($inputs['tenduan'] != '')
@@ -75,7 +75,8 @@ class GiaThueMuaNhaXhController extends Controller
 
                 $modelctnew = new GiaThueMuaNhaXh();
                 $modelctnew->district = $inputs['district'];
-                $modelctnew->thoidiem = getDateToDb($data[$i][$inputs['thoidiem']]);
+                $modelctnew->thoidiemkc = getDateToDb($data[$i][$inputs['thoidiemkc']]);
+                $modelctnew->thoidiemht = getDateToDb($data[$i][$inputs['thoidiemht']]);
                 $modelctnew->tenduan = $data[$i][$inputs['tenduan']];
                 $modelctnew->dongiathue = (isset($data[$i][$inputs['dongiathue']]) && $data[$i][$inputs['dongiathue']] != '' ? chkDbl($data[$i][$inputs['dongiathue']]) : 0);
                 $modelctnew->dongiathuemua = (isset($data[$i][$inputs['dongiathuemua']]) && $data[$i][$inputs['dongiathuemua']] != '' ? chkDbl($data[$i][$inputs['dongiathuemua']]) : 0);
@@ -140,7 +141,8 @@ class GiaThueMuaNhaXhController extends Controller
             $inputs=$request->all();
             $model = GiaThueMuaNhaXh::where('id',$inputs['edit_id'])->first();
             $model->district = $inputs['edit_district'];
-            $model->thoidiem = getDateToDb($inputs['edit_thoidiem']);
+            $model->thoidiemkc= getDateToDb($inputs['edit_thoidiemkc']);
+            $model->thoidiemht = getDateToDb($inputs['edit_thoidiemht']);
             $model->tenduan = $inputs['edit_tenduan'];
             $model->dongiathue = chkDbl($inputs['edit_dongiathue']);
             $model->dongiathuemua = chkDbl($inputs['edit_dongiathuemua']);
@@ -159,14 +161,15 @@ class GiaThueMuaNhaXhController extends Controller
             $inputs=$request->all();
             $model = new GiaThueMuaNhaXh();
             $model->district = $inputs['add_district'];
-            $model->thoidiem = getDateToDb($inputs['add_thoidiem']);
+            $model->thoidiemkc = getDateToDb($inputs['add_thoidiemkc']);
+            $model->thoidiemht = getDateToDb($inputs['add_thoidiemht']);
             $model->tenduan = $inputs['add_tenduan'];
             $model->dongiathue = chkDbl($inputs['add_dongiathue']);
             $model->dongiathuemua = chkDbl($inputs['add_dongiathuemua']);
             $model->ttqd = $inputs['add_ttqd'];
             $model->ghichu = $inputs['add_ghichu'];
             $model->save();
-            $nam = $inputs['add_thoidiem'] != '' ? date('Y',strtotime(getDateToDb($inputs['add_thoidiem']))) :'all';
+            $nam = $inputs['add_thoidiemht'] != '' ? date('Y',strtotime(getDateToDb($inputs['add_thoidiemht']))) :'all';
 
             return redirect('thuemuanhaxahoi?&nam='.$nam.'&district='.$inputs['add_district']);
         }else
@@ -229,7 +232,7 @@ class GiaThueMuaNhaXhController extends Controller
             $model  = GiaThueMuaNhaXh::join('diabanhd','diabanhd.district','=','giathuemuanhaxh.district')
                 ->select('giathuemuanhaxh.*','diabanhd.diaban');
             if($inputs['nam'] != 'all')
-                $model = $model->whereYear('giathuemuanhaxh.thoidiem',$inputs['nam']);
+                $model = $model->whereYear('giathuemuanhaxh.thoidiemht',$inputs['nam']);
             if($inputs['district'] !='all') {
                 $model = $model->where('giathuemuanhaxh.district', $inputs['district']);
                 $districts = DiaBanHd::where('level','H')

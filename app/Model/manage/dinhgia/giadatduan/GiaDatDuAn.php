@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model\manage\dinhgia\giadatduan;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,26 +10,33 @@ class GiaDatDuAn extends Model
     protected $fillable = [
         'id',
         'mahuyen',
+        'maxa',
         'tenduan',
         'thoidiem',
         'dientich',
+        'soqd',
         'loaidat',
         'tenduong',
         'loaiduong',
         'vitri',
 
-        'qddato',
-        'qddatsxkd',
-        'qddatnnkdc',
-        'qddatnnnkdc',
+        'qdgiadato',
+        'qdgiadattmdv',
+        'qdgiadatsxkd',
+        'qdgiadatnn',
+        'qdgiadatnuoits',
+        'qdgiadatmuoi',
 
-        'tddato',
-        'tddatsxkd',
-        'tddatnnkdc',
-        'tddatnnnkdc',
+        'qdpddato',
+        'qdpddattmdv',
+        'qdpddatsxkd',
+        'qdpddatnn',
+        'qdpddatnuoits',
+        'qdpddatmuoi',
 
         'manhomduan',
         'trangthai',
         'thaotac',
+        'ghichu',
     ];
 }

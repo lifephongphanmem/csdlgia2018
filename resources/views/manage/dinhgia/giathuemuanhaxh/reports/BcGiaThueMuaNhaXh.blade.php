@@ -60,9 +60,10 @@
     <thead>
     <tr>
         <th style="text-align: center" width="2%">STT</th>
-        <th style="text-align: center">Thời điểm</th>
-        <th style="text-align: center">Địa bàn</th>
         <th style="text-align: center">Tên dự án</th>
+        <th style="text-align: center">Địa bàn</th>
+        <th style="text-align: center">Thời điểm khởi công</th>
+        <th style="text-align: center">Thời điểm hoàn thành</th>
         <th style="text-align: center" >Đơn giá thuê</th>
         <th style="text-align: center" >Đơn giá thuê mua</th>
         <th style="text-align: center" >Thông tin quyết định</th>
@@ -74,11 +75,12 @@
         @foreach($model as $key => $tt)
             <tr>
                 <td style="text-align: center">{{$key+1}}</td>
-                <td><b>{{getDayVn($tt->thoidiem)}}</b></td>
-                <td><b>{{$tt->diaban}}</b></td>
                 <td style="text-align: left" class="active">{{$tt->tenduan}}</td>
-                <td style="text-align: center">{{dinhdangsothapphan($tt->dongiathue,2)}}</td>
-                <td style="text-align: center">{{dinhdangsothapphan($tt->dongiathuemua,2)}}</td>
+                <td><b>{{$tt->diaban}}</b></td>
+                <td style="text-align: center"><b>{{getDayVn($tt->thoidiemkc)}}</b></td>
+                <td style="text-align: center"><b>{{getDayVn($tt->thoidiemht)}}</b></td>
+                <td style="text-align: right">{{dinhdangsothapphan($tt->dongiathue,2)}}</td>
+                <td style="text-align: right">{{dinhdangsothapphan($tt->dongiathuemua,2)}}</td>
                 <td style="text-align: center">{{$tt->ttqd}}</td>
                 <td style="text-align: center">{{$tt->ghichu}}</td>
             </tr>

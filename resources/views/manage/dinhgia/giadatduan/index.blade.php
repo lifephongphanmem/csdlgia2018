@@ -23,10 +23,11 @@
                 var current_path_url = '/thongtingiadatduan?';
                 var namhs = '&nam='+$('#nam').val();
                 var mahuyen = '&mahuyen='+$('#mahuyen').val();
+                var maxa = '&maxa='+$('#maxa').val();
                 var tenduan = '&tenduan='+$('#tenduan').val();
                 var manhomduan = '&manhomduan='+$('#manhomduan').val();
                 var paginate = '&paginate='+$('#paginate').val();
-                var url = current_path_url+namhs+mahuyen+tenduan+paginate+manhomduan;
+                var url = current_path_url+namhs+mahuyen+tenduan+paginate+manhomduan+maxa;
                 window.location.href = url;
             });
         });
@@ -34,10 +35,11 @@
             var current_path_url = '/thongtingiadatduan?';
             var namhs = '&nam='+$('#nam').val();
             var mahuyen = '&mahuyen='+$('#mahuyen').val();
+            var maxa = '&maxa='+$('#maxa').val();
             var tenduan = '&tenduan='+$('#tenduan').val();
             var manhomduan = '&manhomduan='+$('#manhomduan').val();
             var paginate = '&paginate='+$('#paginate').val();
-            var url = current_path_url+namhs+mahuyen+tenduan+paginate+manhomduan;
+            var url = current_path_url+namhs+mahuyen+tenduan+paginate+manhomduan+maxa;
             window.location.href = url;
         }
         function resettt(){
@@ -106,7 +108,7 @@
                         @if(can('kkgiadatduan','congbo'))
                             {{--<button type="button" class="btn btn-default btn-xs mbs" data-target="#check-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Công bố/ Hủy</button>--}}
                         @endif
-                        <a href="{{url('thongtingiadatduan/print?&mahuyen='.$inputs['mahuyen'].'&nam='.$inputs['nam'].'&manhomduan='.$inputs['manhomduan'].'&tenduan='.$inputs['tenduan'])}}"
+                        <a href="{{url('thongtingiadatduan/print?&mahuyen='.$inputs['mahuyen'].'&nam='.$inputs['nam'].'&manhomduan='.$inputs['manhomduan'].'&tenduan='.$inputs['tenduan']).'&maxa='.$inputs['maxa']}}"
                            class="btn btn-default btn-sm" target="_blank"><i class="fa fa-print"></i> Print </a>
                     </div>
                 </div>
@@ -130,16 +132,27 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label style="font-weight: bold">Địa bàn</label>
+                                        <label style="font-weight: bold">Quận/huyện</label>
                                         <select name="mahuyen" id="mahuyen" class="form-control">
-                                            <option value="all">--Tất cả các địa bàn--</option>
-                                            @foreach($diabans as $diaban)
-                                                <option value="{{$diaban->district}}" {{$diaban->district == $inputs['mahuyen'] ? 'selected' : ''}}>{{$diaban->diaban}}</option>
+                                            <option value="all">--Tất cả các quận/huyện--</option>
+                                            @foreach($huyens as $huyen)
+                                                <option value="{{$huyen->district}}" {{$huyen->district == $inputs['mahuyen'] ? 'selected' : ''}}>{{$huyen->diaban}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label style="font-weight: bold">Xã phường</label>
+                                        <select name="maxa" id="maxa" class="form-control">
+                                            <option value="all">--Tất cả các xã phường--</option>
+                                            @foreach($xas as $xa)
+                                                <option value="{{$xa->town}}" {{$xa->town == $inputs['maxa'] ? 'selected' : ''}}>{{$xa->diaban}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label style="font-weight: bold">Phân loại</label>
                                         <select name="manhomduan" id="manhomduan" class="form-control">
@@ -158,6 +171,7 @@
 
                         </div>
                     </div>
+                    <br>
                     <div style="text-align: center">
                         <button type="reset" class="btn btn-circle" onclick="resettt()"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                         <button type="submit" class="btn btn-circle green" onclick="searchtt()"><i class="fa fa-search"></i>Tìm kiếm</button>
@@ -185,6 +199,8 @@
                             <thead>
                             <tr>
                             <th width="2%" style="text-align: center">STT</th>
+                            <th style="text-align: center">Quận/ huyện</th>
+                            <th style="text-align: center">Xã/phường</th>
                             <th style="text-align: center">Phân loại</th>
                             <th style="text-align: center">Tên dự án</th>
                             <th style="text-align: center">Thời điểm <br>xác định</th>
@@ -198,6 +214,8 @@
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
+                                <td style="text-align: center">{{$tt->tenhuyen}}</td>
+                                <td style="text-align: center">{{$tt->tenxa}}</td>
                                 <td style="text-align: left" class="active">{{$tt->tennhomduan}}</td>
                                 <td style="text-align: left">{{$tt->tenduan}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->thoidiem)}}</td>
@@ -255,6 +273,7 @@
                             <div class="dataTables_paginate paging_simple_numbers" id="sample_3_paginate">
                                 {{$model->appends(['nam'=>$inputs['nam'],
                                                'mahuyen'=>$inputs['mahuyen'],
+                                               'maxa'=>$inputs['maxa'],
                                                'manhomduan'=>$inputs['manhomduan'],
                                                'tenduan'=>$inputs['tenduan'],
                                                'paginate'=>$inputs['paginate'],

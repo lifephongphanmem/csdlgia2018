@@ -17,7 +17,8 @@ class GiaThueMuaNhaXh extends Model
         'dvt',
         'dongiathue',
         'dongiathuemua',
-        'thoidiem',
+        'thoidiemkc',
+        'thoidiemht',
         'ttqd',
         'ghichu',
         'trangthai'
