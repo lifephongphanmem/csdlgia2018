@@ -55,6 +55,7 @@
        <th style="text-align: center">Đơn vi<br>tính</th>
        <th style="text-align: center" >Đơn giá <br>({{$inputs['namlk']}})</th>
        <th style="text-align: center" >Đơn giá <br>({{$inputs['nambc']}})</th>
+       <th style="text-align: center" >Tăng giảm</th>
    </tr>
     @foreach($model as $key=>$tt)
         <tr>
@@ -68,6 +69,8 @@
         <td style="text-align: center">{{$tt->dvt}}</td>
         <td style="text-align: right">{{dinhdangsothapphan($tt->dongialk,2)}}</td>
         <td style="text-align: right">{{dinhdangsothapphan($tt->dongiabc,2)}}</td>
+        <td style="text-align: right">{{(dinhdangsothapphan($tt->dongiabc,2) == 0 || $tt->dongiabc == '') ? 0 :
+        ((dinhdangsothapphan($tt->dongialk,2) == 0 || $tt->dongialk == '') ? 0 : (dinhdangsothapphan($tt->dongiabc/$tt->dongialk,2)))}}</td>
         </tr>
     @endforeach
 </table>

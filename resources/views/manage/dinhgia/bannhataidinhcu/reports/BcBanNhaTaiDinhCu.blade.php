@@ -52,7 +52,7 @@
         </td>
     </tr>
 </table>
-<p style="text-align: center;font-weight: bold;font-size: 20px; text-transform: uppercase;">GIÁ CHO BÁN - THUÊ MUA NHÀ TÁI ĐỊNH CƯ @if($inputs['district'] != 'all'){{$districts->diaban}}@endif</p>
+<p style="text-align: center;font-weight: bold;font-size: 20px; text-transform: uppercase;">GIÁ CHO BÁN NHÀ TÁI ĐỊNH CƯ @if($inputs['district'] != 'all'){{$districts->diaban}}@endif</p>
 @if($inputs['nam'] != 'all')
     <p style="text-align: center;font-weight: bold;font-size: 16px">Năm {{$inputs['nam']}}</p>
 @endif
