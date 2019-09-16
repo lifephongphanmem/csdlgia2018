@@ -24,7 +24,7 @@
         });
 
         function searchtt(){
-            var current_path_url = '/thuemuanhaxahoi?';
+            var current_path_url = '/bannhataidinhcu?';
             var nam = '&nam='+$('#nam').val();
             var district = '&district='+$('#district').val();
             var tenduan = '&tenduan='+$('#tenduan').val();
@@ -35,7 +35,7 @@
 
         $(function(){
             $('#paginate').change(function() {
-                var current_path_url = '/thuemuanhaxahoi?';
+                var current_path_url = '/bannhataidinhcu?';
                 var nam = '&nam='+$('#nam').val();
                 var district = '&district='+$('#district').val();
                 var tenduan = '&tenduan='+$('#tenduan').val();
@@ -46,13 +46,13 @@
         });
 
         function resettt(){
-            window.location.href = '/thuemuanhaxahoi';
+            window.location.href = '/bannhataidinhcu';
         }
 
         function edittt(id) {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: 'thuemuanhaxahoi/edittt',
+                url: 'bannhataidinhcu/edittt',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -60,11 +60,11 @@
                 },
                 dataType: 'JSON',
                 success: function (data) {
-                    $('#edit_thoidiemkc').val(data.datekc);
-                    $('#edit_thoidiemht').val(data.dateht);
                     $('#edit_district').val(data.district);
                     $('#edit_tenduan').val(data.tenduan);
-                    $('#edit_dongiathue').val(data.dongiathue);
+                    $('#edit_dongiaban').val(data.dongiaban);
+                    $('#edit_thoidiemkc').val(data.datekc);
+                    $('#edit_thoidiemht').val(data.dateht);
                     $('#edit_dongiathuemua').val(data.dongiathuemua);
                     $('#edit_ttqd').val(data.ttqd);
                     $('#edit_ghichu').val(data.ghichu);
@@ -90,7 +90,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Giá thuê - thuê mua<small>&nbsp;nhà ở xã hội</small>
+        Giá bán<small>&nbsp;nhà tái định cư</small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -99,21 +99,21 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
-                        @if(can('kkgiarung','create'))
-                        <button type="button" class="btn btn-default btn-xs mbs" data-target="#add-modal" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;
-                            Thêm mới</button>
-                        <a href="{{url('thuemuanhaxahoi/nhandulieutuexcel')}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-file-excel-o"></i> Nhận dữ liệu</a>
+                        @if(can('kkbannhataidinhcu','create'))
+                            <button type="button" class="btn btn-default btn-xs mbs" data-target="#add-modal" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;
+                                Thêm mới</button>
+                            <a href="{{url('bannhataidinhcu/nhandulieutuexcel')}}" class="btn btn-default btn-sm">
+                                <i class="fa fa-file-excel-o"></i> Nhận dữ liệu</a>
                         @endif
-                        @if(can('kkgiarung','delete'))
-                        <button type="button" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
-                            Xóa</button>
+                        @if(can('kkbannhataidinhcu','delete'))
+                            <button type="button" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                Xóa</button>
                         @endif
-                        @if(can('thgiarung','congbo'))
-                        <button type="button" class="btn btn-default btn-xs mbs" data-target="#check-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;
-                            Công bố/ Hủy</button>
+                        @if(can('thbannhataidinhcu','congbo'))
+                            <button type="button" class="btn btn-default btn-xs mbs" data-target="#check-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;
+                                Công bố/ Hủy</button>
                         @endif
-                        <a href="{{url('thuemuanhaxahoi/prints?&nam='.$inputs['nam'].'&district='.$inputs['district'].'&tenduan='.$inputs['tenduan'])}}" class="btn btn-default btn-sm" target="_blank">
+                        <a href="{{url('bannhataidinhcu/prints?&nam='.$inputs['nam'].'&district='.$inputs['district'].'&tenduan='.$inputs['tenduan'])}}" class="btn btn-default btn-sm" target="_blank">
                             <i class="fa fa-print"></i> In</a>
                     </div>
                 </div>
@@ -186,7 +186,7 @@
                                 <th style="text-align: center">Địa bàn</th>
                                 <th style="text-align: center">Thời điểm khởi công</th>
                                 <th style="text-align: center">Thời điểm hoàn thành</th>
-                                <th style="text-align: center" >Đơn giá thuê</th>
+                                <th style="text-align: center" >Đơn giá bán</th>
                                 <th style="text-align: center" >Đơn giá thuê mua</th>
                                 <th style="text-align: center" >Số QĐ phê duyệt giá</th>
                                 <th style="text-align: center" >Ghi chú</th>
@@ -195,69 +195,69 @@
                             </tr>
                             </thead>
                             <tbody>
-                                @if($model->count() != 0)
-                                    @foreach($model as $key => $tt)
-                                        <tr>
-                                            <td style="text-align: center">{{$key+1}}</td>
-                                            <td style="text-align: left" class="active">{{$tt->tenduan}}</td>
-                                            <td><b>{{$tt->diaban}}</b></td>
-                                            <td><b>{{getDayVn($tt->thoidiemkc)}}</b></td>
-                                            <td><b>{{getDayVn($tt->thoidiemht)}}</b></td>
-                                            <td style="text-align: center">{{dinhdangsothapphan($tt->dongiathue,2)}}</td>
-                                            <td style="text-align: center">{{dinhdangsothapphan($tt->dongiathuemua,2)}}</td>
-                                            <td style="text-align: center">{{$tt->ttqd}}</td>
-                                            <td style="text-align: center">{{$tt->ghichu}}</td>
-                                            <td style="text-align: center">
-                                                @if($tt->trangthai == 'CB')
-                                                    <span class="badge badge-warning">Công bố</span>
-                                                @else
-                                                    <span class="badge badge-danger">Chưa công bố</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if($tt->trangthai == 'CB')
-                                                    @if(can('thgiarung','congbo'))
-                                                    <button type="button" onclick="getIdHcb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huycongbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-times"></i>&nbsp;Hủy công bố</button>
-                                                    @endif
-                                                @else
-                                                    @if(can('kkgiarung','edit'))
-                                                    <button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
-                                                    @endif
-                                                    @if(can('kkgiarung','delete'))
-                                                    <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
-                                                    @endif
-                                                    @if(can('thgiarung','congbo'))
-                                                    <button type="button" onclick="getIdCb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Công bố</button>
-                                                    @endif
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @else
+                            @if($model->count() != 0)
+                                @foreach($model as $key => $tt)
                                     <tr>
-                                        <td style="text-align: center" colspan="11">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
+                                        <td style="text-align: center">{{$key+1}}</td>
+                                        <td style="text-align: left" class="active">{{$tt->tenduan}}</td>
+                                        <td><b>{{$tt->diaban}}</b></td>
+                                        <td><b>{{getDayVn($tt->thoidiemkc)}}</b></td>
+                                        <td><b>{{getDayVn($tt->thoidiemht)}}</b></td>
+                                        <td style="text-align: center">{{dinhdangsothapphan($tt->dongiaban,2)}}</td>
+                                        <td style="text-align: center">{{dinhdangsothapphan($tt->dongiathuemua,2)}}</td>
+                                        <td style="text-align: center">{{$tt->ttqd}}</td>
+                                        <td style="text-align: center">{{$tt->ghichu}}</td>
+                                        <td style="text-align: center">
+                                            @if($tt->trangthai == 'CB')
+                                                <span class="badge badge-warning">Công bố</span>
+                                            @else
+                                                <span class="badge badge-danger">Chưa công bố</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($tt->trangthai == 'CB')
+                                                @if(can('thbannhataidinhcu','congbo'))
+                                                    <button type="button" onclick="getIdHcb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huycongbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-times"></i>&nbsp;Hủy công bố</button>
+                                                @endif
+                                            @else
+                                                @if(can('kkbannhataidinhcu','edit'))
+                                                    <button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                @endif
+                                                @if(can('kkbannhataidinhcu','delete'))
+                                                    <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                @endif
+                                                @if(can('thbannhataidinhcu','congbo'))
+                                                    <button type="button" onclick="getIdCb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Công bố</button>
+                                                @endif
+                                            @endif
+                                        </td>
                                     </tr>
-                                @endif
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td style="text-align: center" colspan="11">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
+                                </tr>
+                            @endif
                             </tbody>
                         </table>
                         <div class="row">
                             @if(count($model) != 0)
-                            <div class="col-md-5 col-sm-12">
-                                <div class="dataTables_info" id="sample_3_info" role="status" aria-live="polite">
+                                <div class="col-md-5 col-sm-12">
+                                    <div class="dataTables_info" id="sample_3_info" role="status" aria-live="polite">
                                         Hiển thị 1 đến {{$model->count()}} trên {{$model->total()}} thông tin
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-7 col-sm-12">
-                                <div class="dataTables_paginate paging_simple_numbers" id="sample_3_paginate">
-                                    {{$model->appends([
-                                                   'nam'=>$inputs['nam'],
-                                                   'district'=>$inputs['district'],
-                                                   'manhom'=>$inputs['manhom'],
-                                                   'tenduan'=>$inputs['tenduan'],
-                                                   'paginate'=>$inputs['paginate'],
-                                ])->links()}}
+                                <div class="col-md-7 col-sm-12">
+                                    <div class="dataTables_paginate paging_simple_numbers" id="sample_3_paginate">
+                                        {{$model->appends([
+                                                       'nam'=>$inputs['nam'],
+                                                       'district'=>$inputs['district'],
+                                                       'manhom'=>$inputs['manhom'],
+                                                       'tenduan'=>$inputs['tenduan'],
+                                                       'paginate'=>$inputs['paginate'],
+                                    ])->links()}}
+                                    </div>
                                 </div>
-                            </div>
                             @endif
                         </div>
                     </div>
@@ -273,7 +273,7 @@
         <div class="clearfix"></div>
 
     </div>
-    @include('manage.dinhgia.giathuemuanhaxh.include.modal_dialog')
+    @include('manage.dinhgia.bannhataidinhcu.include.modal_dialog')
     @include('includes.script.inputmask-ajax-scripts')
     @include('includes.script.create-header-scripts')
 @stop

@@ -27,6 +27,7 @@ class GiaThueMuaNhaXhController extends Controller
                 $inputs['district'] = session('admin')->districts;
 
             $model  = GiaThueMuaNhaXh::join('diabanhd','diabanhd.district','=','giathuemuanhaxh.district')
+                ->where('diabanhd.level','H')
                 ->select('giathuemuanhaxh.*','diabanhd.diaban');
             if($inputs['nam'] != 'all')
                 $model = $model->whereYear('giathuemuanhaxh.thoidiemht',$inputs['nam']);
@@ -132,7 +133,8 @@ class GiaThueMuaNhaXhController extends Controller
         $inputs = $request->all();
         $id = $inputs['id'];
         $model = GiaThueMuaNhaXh::findOrFail($id);
-        $model->date = getDayVn($model->thoidiem);
+        $model->datekc = getDayVn($model->thoidiemkc);
+        $model->dateht = getDayVn($model->thoidiemht);
         die($model);
     }
 
@@ -149,7 +151,7 @@ class GiaThueMuaNhaXhController extends Controller
             $model->ttqd = $inputs['edit_ttqd'];
             $model->ghichu = $inputs['edit_ghichu'];
             $model->save();
-            $nam = $inputs['edit_thoidiem'] != '' ? date('Y',strtotime(getDateToDb($inputs['edit_thoidiem']))) :'all';
+            $nam = $inputs['edit_thoidiemht'] != '' ? date('Y',strtotime(getDateToDb($inputs['edit_thoidiemht']))) :'all';
 
             return redirect('thuemuanhaxahoi?&nam='.$nam.'&district='.$inputs['edit_district']);
         }else
@@ -230,6 +232,7 @@ class GiaThueMuaNhaXhController extends Controller
                 $inputs['district'] = session('admin')->districts;
 
             $model  = GiaThueMuaNhaXh::join('diabanhd','diabanhd.district','=','giathuemuanhaxh.district')
+                ->where('diabanhd.level','H')
                 ->select('giathuemuanhaxh.*','diabanhd.diaban');
             if($inputs['nam'] != 'all')
                 $model = $model->whereYear('giathuemuanhaxh.thoidiemht',$inputs['nam']);

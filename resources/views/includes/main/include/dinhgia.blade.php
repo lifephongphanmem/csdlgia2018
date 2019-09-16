@@ -17,30 +17,6 @@
                                 Giá đất theo địa bàn
                             </a>
                         </li>
-                        {{--End--}}
-                        {{--<li class="tooltips" data-container="body" data-placement="right" data-html="true"--}}
-                            {{--data-original-title="Giá các loại đất">--}}
-                            {{--<a href="">--}}
-                                {{--Giá các loại đất <span class="arrow"></span>--}}
-                            {{--</a>--}}
-                            {{--<ul class="sub-menu">--}}
-                                {{--@if(can('dmgiacldat','index'))--}}
-                                    {{--<li>--}}
-                                        {{--<a href="{{url('dmqdgiadat')}}">Danh mục quyết định giá đất</a>--}}
-                                    {{--</li>--}}
-                                {{--@endif--}}
-                                {{--@if(can('kkgiacldat','index'))--}}
-                                    {{--<li>--}}
-                                        {{--<a href="{{url('thongtingiacacloaidat')}}">Thông tin giá các loại đất</a>--}}
-                                    {{--</li>--}}
-                                {{--@endif--}}
-                                {{--@if(can('thgiacldat','timkiem'))--}}
-                                    {{--<li>--}}
-                                        {{--<a href="{{url('timkiemthongtingiacacloaidat')}}">Tìm kiếm thông tin giá các loại đất</a>--}}
-                                    {{--</li>--}}
-                                {{--@endif--}}
-                            {{--</ul>--}}
-                        {{--</li>--}}
                     @endif
                 @endif
                 @if(canGeneral('giadatduan','index'))
@@ -70,8 +46,6 @@
                         </li>
                     @endif
                 @endif
-
-
                 @if(canGeneral('giadaugiadat','index'))
                     @if(can('giadaugiadat','index'))
                         <li>
@@ -176,23 +150,29 @@
                                 {{--<span class="arrow"></span>--}}
                             </a>
                             @endif
-                            {{--<ul class="sub-menu">--}}
-                                {{--@if(can('dmgiathuemuanhaxh','index'))--}}
-                                    {{--<li>--}}
-                                        {{--<a href="{{url('danhmucgiathuemuanhaxh')}}">Danh mục thuê mua nhà XH</a>--}}
-                                    {{--</li>--}}
-                                {{--@endif--}}
-                                {{--@if(can('kkgiathuemuanhaxh','index'))--}}
-                                    {{--<li>--}}
-                                        {{--<a href="{{url('thongtingiathuemuanhaxh')}}">Thông tin thuê mua nhà XH</a>--}}
-                                    {{--</li>--}}
-                                {{--@endif--}}
-                                {{--@if(can('thgiathuemuanhaxh','timkiem'))--}}
-                                    {{--<li>--}}
-                                        {{--<a href="{{url('timkiemthongtingiathuemuanhaxh')}}">Tìm kiếm thông tin</a>--}}
-                                    {{--</li>--}}
-                                {{--@endif--}}
-                            {{--</ul>--}}
+                        </li>
+                    @endif
+                @endif
+                @if(canGeneral('giathuenhacongvu','index'))
+                    @if(can('giathuenhacongvu','index'))
+                        <li class="tooltips" data-container="body" data-placement="right" data-html="true">
+                            @if(can('kkgiathuenhacongvu','index'))
+                                <a href="{{url('giathuenhacongvu')}}">
+                                    Giá thuê nhà công vụ
+                                </a>
+                            @endif
+                        </li>
+                    @endif
+                @endif
+                @if(canGeneral('bannhataidinhcu','index'))
+                    @if(can('bannhataidinhcu','index'))
+                        <li class="tooltips" data-container="body" data-placement="right" data-html="true">
+                            @if(can('kkbannhataidinhcu','index'))
+                                <a href="{{url('bannhataidinhcu')}}">
+                                    Giá bán nhà tái định cư
+                                    {{--<span class="arrow"></span>--}}
+                                </a>
+                            @endif
                         </li>
                     @endif
                 @endif
@@ -202,18 +182,6 @@
                             <a href="{{url('gianuocsachsinhhoat')}}">
                                 Giá nước sạch sinh hoạt
                             </a>
-                            {{--<ul class="sub-menu">--}}
-                                {{--@if(can('kkgianuocsh','index'))--}}
-                                    {{--<li>--}}
-                                        {{--<a href="">Thông tin giá nước sạch sinh hoạt</a>--}}
-                                    {{--</li>--}}
-                                {{--@endif--}}
-                                {{--@if(can('thgianuocsh','timkiem'))--}}
-                                    {{--<li>--}}
-                                        {{--<a href="{{url('timkiemthongtingianuocsinhhoat')}}">Tìm kiếm thông tin</a>--}}
-                                    {{--</li>--}}
-                                {{--@endif--}}
-                            {{--</ul>--}}
                         </li>
                     @endif
                 @endif
@@ -257,25 +225,7 @@
                             data-original-title="Giá dịch vụ khám bệnh, chữa bệnh đối với cơ sở khám bệnh, chữa bệnh của Nhà nước thuộc phạm vi quản lý của địa phương">
                             <a href="{{url('dichvukcb')}}">
                                 Giá dịch vụ khám chữa bệnh
-                                {{--<span class="arrow"></span>--}}
                             </a>
-                            {{--<ul class="sub-menu">--}}
-                                {{--@if(can('dmgiadvkcb','index'))--}}
-                                    {{--<li>--}}
-                                        {{--<a href="{{url('nhomdichvukcb')}}">Nhóm DV KCB</a>--}}
-                                    {{--</li>--}}
-                                {{--@endif--}}
-                                {{--@if(can('kkgiadvkcb','index'))--}}
-                                    {{--<li>--}}
-                                        {{--<a href="{{url('dichvukcb')}}">Thông tin DV KCB</a>--}}
-                                    {{--</li>--}}
-                                {{--@endif--}}
-                                {{--@if(can('thgiadvkcb','timkiem'))--}}
-                                    {{--<li>--}}
-                                        {{--<a href="{{url('timkiemdichvukcb')}}">Tìm kiếm thông tin</a>--}}
-                                    {{--</li>--}}
-                                {{--@endif--}}
-                            {{--</ul>--}}
                         </li>
                     @endif
                 @endif

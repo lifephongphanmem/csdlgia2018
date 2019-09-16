@@ -29,6 +29,7 @@ class GiaRungController extends Controller
                 $inputs['district'] = session('admin')->districts;
 
             $model  = GiaRung::join('diabanhd','diabanhd.district','=','giarung.district')
+                ->where('diabanhd.level','H')
                 ->join('dmgiarung','dmgiarung.manhom','=','giarung.manhom')
                 ->select('giarung.*','diabanhd.diaban','dmgiarung.tennhom');
             if($inputs['nam'] != 'all')
@@ -238,6 +239,7 @@ class GiaRungController extends Controller
                 $inputs['district'] = session('admin')->districts;
 
             $model  = GiaRung::join('diabanhd','diabanhd.district','=','giarung.district')
+                ->where('diabanhd.level','H')
                 ->join('dmgiarung','dmgiarung.manhom','=','giarung.manhom')
                 ->select('giarung.*','diabanhd.diaban','dmgiarung.tennhom');
             if($inputs['nam'] != 'all')

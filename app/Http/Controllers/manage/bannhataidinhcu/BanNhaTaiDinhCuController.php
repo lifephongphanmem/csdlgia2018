@@ -1,45 +1,48 @@
 <?php
 
-namespace App\Http\Controllers\manage\dvkcb;
+namespace App\Http\Controllers\manage\bannhataidinhcu;
 
 use App\DiaBanHd;
-use App\Model\manage\dinhgia\DvKcb;
+use App\Model\manage\dinhgia\BanNhaTaiDinhCu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\File;
 
-
-class DvKcbController extends Controller
+class BanNhaTaiDinhCuController extends Controller
 {
     public function index(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-            $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : 'all';
-            $inputs['tenbv'] = isset($inputs['tenbv']) ? $inputs['tenbv'] : '';
-            $inputs['mota'] = isset($inputs['mota']) ? $inputs['mota'] : '';
+            $inputs['manhom'] = isset($inputs['manhom']) ? $inputs['manhom'] : 'all';
+            $inputs['tenduan'] = isset($inputs['tenduan']) ? $inputs['tenduan'] : '';
             $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
             $districts = DiaBanHd::where('level','H')
                 ->get();
-            $model  = DvKcb::join('diabanhd','diabanhd.district','=','dvkcb.district')
+            if(session('admin')->level == 'T' || session('admin')->level == 'H')
+                $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : 'all';
+            else
+                $inputs['district'] = session('admin')->districts;
+
+            $model  = BanNhaTaiDinhCu::join('diabanhd','diabanhd.district','=','bannhataidinhcu.district')
                 ->where('diabanhd.level','H')
-                ->select('dvkcb.*','diabanhd.diaban');
+                ->select('bannhataidinhcu.*','diabanhd.diaban');
+
+            /*dd(BanNhaTaiDinhCu::pluck('thoidiemkc'));*/
             if($inputs['nam'] != 'all')
-                $model = $model->whereYear('dvkcb.thoidiem',$inputs['nam']);
+                $model = $model->whereYear('bannhataidinhcu.thoidiemht',$inputs['nam']);
             if($inputs['district'] !='all')
-                $model = $model->where('dvkcb.district',$inputs['district']);
-            if($inputs['tenbv'] != '')
-                $model = $model->where('dvkcb.tenbv','like', '%'.$inputs['tenbv'].'%');
-            if($inputs['mota'] != '')
-                $model = $model->where('dvkcb.mota','like', '%'.$inputs['mota'].'%');
+                $model = $model->where('bannhataidinhcu.district',$inputs['district']);
+            if($inputs['tenduan'] != '')
+                $model = $model->where('bannhataidinhcu.tenduan','like', '%'.$inputs['tenduan'].'%');
             $model = $model->paginate($inputs['paginate']);
-            return view('manage.dinhgia.dvkcb.index')
+            return view('manage.dinhgia.bannhataidinhcu.index')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
                 ->with('districts',$districts)
-                ->with('pageTitle','Thông tin giá dịch vụ khám chữa bệnh');
+                ->with('pageTitle','Thông tin giá bán, thuê mua nhà tái định cư');
 
         } else
             return view('errors.notlogin');
@@ -49,9 +52,9 @@ class DvKcbController extends Controller
         if (Session::has('admin')) {
             $districts = DiaBanHd::where('level','H')
                 ->get();
-            return view('manage.dinhgia.dvkcb.importexcel')
+            return view('manage.dinhgia.bannhataidinhcu.importexcel')
                 ->with('districts',$districts)
-                ->with('pageTitle','Nhận dữ liệu giá dịch vụ khám chữa bệnh từ file Excel');
+                ->with('pageTitle','Nhận dữ liệu giá bán - thuê mua nhà tái định cư từ file Excel');
 
         } else
             return view('errors.notlogin');
@@ -73,18 +76,19 @@ class DvKcbController extends Controller
 
             for ($i = $inputs['tudong']; $i <= $inputs['dendong']; $i++) {
 
-                $modelctnew = new DvKcb();
+                $modelctnew = new BanNhaTaiDinhCu();
                 $modelctnew->district = $inputs['district'];
-                $modelctnew->thoidiem = getDateToDb($data[$i][$inputs['thoidiem']]);
-                $modelctnew->tenbv = $data[$i][$inputs['tenbv']];
-                $modelctnew->dongia = (isset($data[$i][$inputs['dongia']]) && $data[$i][$inputs['dongia']] != '' ? chkDbl($data[$i][$inputs['dongia']]) : 0);
-                $modelctnew->dvt = $data[$i][$inputs['dvt']];
+                $modelctnew->thoidiemkc = getDateToDb($data[$i][$inputs['thoidiemkc']]);
+                $modelctnew->thoidiemht = getDateToDb($data[$i][$inputs['thoidiemht']]);
+                $modelctnew->tenduan = $data[$i][$inputs['tenduan']];
+                $modelctnew->dongiaban = (isset($data[$i][$inputs['dongiaban']]) && $data[$i][$inputs['dongiaban']] != '' ? chkDbl($data[$i][$inputs['dongiaban']]) : 0);
+                $modelctnew->dongiathuemua = (isset($data[$i][$inputs['dongiathuemua']]) && $data[$i][$inputs['dongiathuemua']] != '' ? chkDbl($data[$i][$inputs['dongiathuemua']]) : 0);
                 $modelctnew->ttqd = $data[$i][$inputs['ttqd']];
                 $modelctnew->ghichu = $data[$i][$inputs['ghichu']];
                 $modelctnew->save();
             }
             File::Delete($path);
-            return redirect('dichvukcb?&district='.$inputs['district']);
+            return redirect('bannhataidinhcu?&district='.$inputs['district']);
         }else
             return view('errors.notlogin');
     }
@@ -92,13 +96,13 @@ class DvKcbController extends Controller
     public function multidelete(Request $request){
         if(Session::has('admin')){
             $inputs=$request->all();
-            $model = DvKcb::whereYear('thoidiem',$inputs['namdel']);
+            $model = BanNhaTaiDinhCu::whereYear('thoidiem',$inputs['namdel']);
             if($inputs['districtdel'] != 'all')
                 $model = $model->where('district',$inputs['districtdel']);
 
             $model = $model->delete();
 
-            return redirect('dichvukcb?&nam='.$inputs['namdel'].'&district='.$inputs['districtdel']);
+            return redirect('bannhataidinhcu?&nam='.$inputs['namdel'].'&district='.$inputs['districtdel']);
         }else
             return view('errors.notlogin');
     }
@@ -107,10 +111,10 @@ class DvKcbController extends Controller
         if(Session::has('admin')){
             $inputs=$request->all();
             $id = $inputs['destroy_id'];
-            $model = DvKcb::findOrFail($id);
+            $model = BanNhaTaiDinhCu::findOrFail($id);
             $model->delete();
             $nam = $model->thoidiem != '' ? date('Y',strtotime($model->thoidiem)) :'all';
-            return redirect('dichvukcb?&nam='.$nam.'&district='.$model->district);
+            return redirect('bannhataidinhcu?&nam='.$nam.'&district='.$model->district);
         }else
             return view('errors.notlogin');
     }
@@ -130,26 +134,29 @@ class DvKcbController extends Controller
 
         $inputs = $request->all();
         $id = $inputs['id'];
-        $model = DvKcb::findOrFail($id);
-        $model->date = getDayVn($model->thoidiem);
+        $model = BanNhaTaiDinhCu::findOrFail($id);
+        $model->dateht = getDayVn($model->thoidiemht);
+        $model->datekc = getDayVn($model->thoidiemkc);
         die($model);
     }
 
     public function update(Request $request){
         if(Session::has('admin')){
             $inputs=$request->all();
-            $model = DvKcb::where('id',$inputs['edit_id'])->first();
+            $model = BanNhaTaiDinhCu::where('id',$inputs['edit_id'])->first();
             $model->district = $inputs['edit_district'];
-            $model->thoidiem = getDateToDb($inputs['edit_thoidiem']);
-            $model->tenbv = $inputs['edit_tenbv'];
-            $model->dongia = chkDbl($inputs['edit_dongia']);
-            $model->dvt = $inputs['edit_dvt'];
+            $model->thoidiemkc= getDateToDb($inputs['edit_thoidiemkc']);
+            $model->thoidiemht = getDateToDb($inputs['edit_thoidiemht']);
+            $model->tenduan = $inputs['edit_tenduan'];
+            $model->dongiaban = chkDbl($inputs['edit_dongiaban']);
+            $model->dongiathuemua = chkDbl($inputs['edit_dongiathuemua']);
             $model->ttqd = $inputs['edit_ttqd'];
             $model->ghichu = $inputs['edit_ghichu'];
             $model->save();
-            $nam = $inputs['edit_thoidiem'] != '' ? date('Y',strtotime(getDateToDb($inputs['edit_thoidiem']))) :'all';
+            /*dd($model->thoidiemkc);*/
+            $nam = $inputs['edit_thoidiemht'] != '' ? date('Y',strtotime(getDateToDb($inputs['edit_thoidiemht']))) :'all'; // lúc đầu là edit_thoidiem
 
-            return redirect('dichvukcb?&nam='.$nam.'&district='.$inputs['edit_district']);
+            return redirect('bannhataidinhcu?&nam='.$nam.'&district='.$inputs['edit_district']);
         }else
             return view('errors.notlogin');
     }
@@ -157,17 +164,19 @@ class DvKcbController extends Controller
     public function store(Request $request){
         if(Session::has('admin')){
             $inputs=$request->all();
-            $model = new DvKcb();
+            $model = new BanNhaTaiDinhCu();
             $model->district = $inputs['add_district'];
-            $model->thoidiem = getDateToDb($inputs['add_thoidiem']);
-            $model->tenbv = $inputs['add_tenbv'];
-            $model->dongia = chkDbl($inputs['add_dongia']);
-            $model->dvt = $inputs['add_dvt'];
+            $model->thoidiemkc = getDateToDb($inputs['add_thoidiemkc']);
+            $model->thoidiemht = getDateToDb($inputs['add_thoidiemht']);
+            $model->tenduan = $inputs['add_tenduan'];
+            $model->dongiaban = chkDbl($inputs['add_dongiaban']);
+            $model->dongiathuemua = chkDbl($inputs['add_dongiathuemua']);
             $model->ttqd = $inputs['add_ttqd'];
             $model->ghichu = $inputs['add_ghichu'];
             $model->save();
-            $nam = $inputs['add_thoidiem'] != '' ? date('Y',strtotime(getDateToDb($inputs['add_thoidiem']))) :'all';
-            return redirect('dichvukcb?&nam='.$nam.'&district='.$inputs['add_district']);
+            $nam = $inputs['add_thoidiemht'] != '' ? date('Y',strtotime(getDateToDb($inputs['add_thoidiemht']))) :'all';
+
+            return redirect('bannhataidinhcu?&nam='.$nam.'&district='.$inputs['add_district']);
         }else
             return view('errors.notlogin');
     }
@@ -176,11 +185,11 @@ class DvKcbController extends Controller
         if(Session::has('admin')){
             $inputs=$request->all();
             $id = $inputs['congbo_id'];
-            $model = DvKcb::findOrFail($id);
+            $model = BanNhaTaiDinhCu::findOrFail($id);
             $model->trangthai = 'CB';
             $model->save();
             $nam = $model->thoidiem != '' ? date('Y',strtotime($model->thoidiem)): 'all';
-            return redirect('dichvukcb?&nam='.$nam.'&district='.$model->district);
+            return redirect('bannhataidinhcu?&nam='.$nam.'&district='.$model->district);
         }else
             return view('errors.notlogin');
     }
@@ -189,11 +198,11 @@ class DvKcbController extends Controller
         if(Session::has('admin')){
             $inputs=$request->all();
             $id = $inputs['huycongbo_id'];
-            $model = DvKcb::findOrFail($id);
+            $model = BanNhaTaiDinhCu::findOrFail($id);
             $model->trangthai = 'HCB';
             $model->save();
             $nam = $model->thoidiem != '' ? date('Y',strtotime($model->thoidiem)): 'all';
-            return redirect('dichvukcb?&nam='.$nam.'&district='.$model->district);
+            return redirect('bannhataidinhcu?&nam='.$nam.'&district='.$model->district);
         }else
             return view('errors.notlogin');
     }
@@ -201,47 +210,50 @@ class DvKcbController extends Controller
     function checkmulti(Request $request){
         if(Session::has('admin')){
             $inputs=$request->all();
-            $model = DvKcb::whereYear('thoidiem',$inputs['namcheck']);
+            $model = BanNhaTaiDinhCu::whereYear('thoidiem',$inputs['namcheck']);
             if($inputs['districtcheck'] != 'all')
                 $model = $model->where('district',$inputs['districtcheck']);
 
             $model = $model->update(['trangthai' => $inputs['trangthaicheck']]);
 
-            return redirect('dichvukcb?&nam='.$inputs['namcheck'].'&district='.$inputs['districtcheck']);
+            return redirect('bannhataidinhcu?&nam='.$inputs['namcheck'].'&district='.$inputs['districtcheck']);
         }else
             return view('errors.notlogin');
     }
 
-    function BcGiaDvKcb(Request $request){
+    function BcBanNhaTaiDinhCu(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-            $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : 'all';
-            $inputs['tenbv'] = isset($inputs['tenbv']) ? $inputs['tenbv'] : '';
-            $inputs['mota'] = isset($inputs['mota']) ? $inputs['mota'] : '';
+            $inputs['manhom'] = isset($inputs['manhom']) ? $inputs['manhom'] : 'all';
+            $inputs['tenduan'] = isset($inputs['tenduan']) ? $inputs['tenduan'] : '';
             $districts = DiaBanHd::where('level','H')
                 ->get();
-            $model  = DvKcb::join('diabanhd','diabanhd.district','=','dvkcb.district')
+            if(session('admin')->level == 'T' || session('admin')->level == 'H')
+                $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : 'all';
+            else
+                $inputs['district'] = session('admin')->districts;
+
+            $model  = BanNhaTaiDinhCu::join('diabanhd','diabanhd.district','=','bannhataidinhcu.district')
                 ->where('diabanhd.level','H')
-                ->select('dvkcb.*','diabanhd.diaban');
+                ->select('bannhataidinhcu.*','diabanhd.diaban');
             if($inputs['nam'] != 'all')
-                $model = $model->whereYear('dvkcb.thoidiem',$inputs['nam']);
+                $model = $model->whereYear('bannhataidinhcu.thoidiemht',$inputs['nam']);
             if($inputs['district'] !='all') {
-                $model = $model->where('dvkcb.district', $inputs['district']);
+                $model = $model->where('bannhataidinhcu.district', $inputs['district']);
                 $districts = DiaBanHd::where('level','H')
                     ->where('district',$inputs['district'])
                     ->first();
             }
-            if($inputs['tenbv'] != '')
-                $model = $model->where('dvkcb.tenbv','like', '%'.$inputs['tenbv'].'%');
-            if($inputs['mota'] != '')
-                $model = $model->where('dvkcb.mota','like', '%'.$inputs['mota'].'%');
+            if($inputs['tenduan'] != '')
+                $model = $model->where('bannhataidinhcu.tenduan','like', '%'.$inputs['tenduan'].'%');
             $model = $model->get();
-            return view('manage.dinhgia.dvkcb.reports.BcGiaDvKcb')
+            return view('manage.dinhgia.bannhataidinhcu.reports.BcBanNhaTaiDinhCu')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
                 ->with('districts',$districts)
-                ->with('pageTitle','Báo cáo giá dịch vụ khám chữa bệnh');
+                ->with('pageTitle','Báo cáo giá bán - thuê mua nhà tái định cư');
+
 
         } else
             return view('errors.notlogin');

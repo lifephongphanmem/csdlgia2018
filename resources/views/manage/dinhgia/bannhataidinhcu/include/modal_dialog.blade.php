@@ -3,8 +3,9 @@
         $('#frm_deletemulti').submit();
     }
     function ClickUpdate(){
-        var str = "";
+        var str = '';
         var ok = true;
+
         if (!$('#edit_tenduan').val()) {
             str += '  - Tên dự án \n';
             $('#edit_tenduan').parent().addClass('has-error');
@@ -23,9 +24,9 @@
             ok = false;
         }
 
-        if (!$('#edit_dongiathue').val()) {
-            str += '  - Đơn giá thuê \n';
-            $('#edit_dongiathue').parent().addClass('has-error');
+        if (!$('#edit_dongiaban').val()) {
+            str += '  - Đơn giá bán \n';
+            $('#edit_dongiaban').parent().addClass('has-error');
             ok = false;
         }
 
@@ -42,6 +43,7 @@
         }
 
         if (ok == false) {
+            //alert('Các trường: \n' + str + 'Không được để trống');
             toastr.error('Thông tin: \n' + str + 'Không được để trống','Lỗi!.');
             $("#frm_update").submit(function (e) {
                 e.preventDefault();
@@ -49,14 +51,20 @@
         }
         else {
             $("#frm_update").unbind('submit').submit();
+            var btn = document.getElementById('submitform');
+            btn.disabled = true;
+            btn.innerText = 'Loading...'
         }
+
+        /*$('#frm_update').submit();*/
     }
     function ClickDestroy(){
         $('#frm_destroy').submit();
     }
     function ClickAdd(){
-        var str = "";
+        var str = '';
         var ok = true;
+
         if (!$('#add_tenduan').val()) {
             str += '  - Tên dự án \n';
             $('#add_tenduan').parent().addClass('has-error');
@@ -75,9 +83,9 @@
             ok = false;
         }
 
-        if (!$('#add_dongiathue').val()) {
+        if (!$('#add_dongiaban').val()) {
             str += '  - Đơn giá bán \n';
-            $('#add_dongiathue').parent().addClass('has-error');
+            $('#add_dongiaban').parent().addClass('has-error');
             ok = false;
         }
 
@@ -93,7 +101,14 @@
             ok = false;
         }
 
+//        if (!$('#add_ghichu').val()) {
+//            str += '  - Ghi chú \n';
+//            $('#add_ghichu').parent().addClass('has-error');
+//            ok = false;
+//        }
+
         if (ok == false) {
+            //alert('Các trường: \n' + str + 'Không được để trống');
             toastr.error('Thông tin: \n' + str + 'Không được để trống','Lỗi!.');
             $("#frm_add").submit(function (e) {
                 e.preventDefault();
@@ -102,6 +117,8 @@
         else {
             $("#frm_add").unbind('submit').submit();
         }
+
+        /*$('#frm_add').submit();*/
     }
     function ClickCongBo(){
         $('#frm_congbo').submit();
@@ -116,7 +133,7 @@
 
 <!--Modal Delete-->
 <div id="delete-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-    {!! Form::open(['url'=>'thuemuanhaxahoi/delete','id' => 'frm_deletemulti'])!!}
+    {!! Form::open(['url'=>'bannhataidinhcu/delete','id' => 'frm_deletemulti'])!!}
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header modal-header-primary">
@@ -146,7 +163,7 @@
                             <select class="form-control" name="districtdel" id="districtdel">
                                 <option value="all">--Tất cả các địa bàn--</option>
                                 @foreach($districts as $district)
-                                <option value="{{$district->district}}">{{$district->diaban}}</option>
+                                    <option value="{{$district->district}}">{{$district->diaban}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -164,12 +181,13 @@
 
 <!--Modal edit-->
 <div id="modal-edit-node" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-    {!! Form::open(['url'=>'thuemuanhaxahoi/update', 'id' => 'frm_update', 'class'=>'horizontal-form']) !!}
+    {!! Form::open(['url'=>'bannhataidinhcu/update', 'id' => 'frm_update', 'class'=>'horizontal-form']) !!}
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header modal-header-primary">
                 <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-                <h4 id="modal-header-primary-label" class="modal-title">Chỉnh sửa thông tin giá thuê - thuê mua nhà ở xã hội</h4>
+                <h4 id="modal-header-primary-label" class="modal-title">Chỉnh sửa thông tin giá bán - thuê mua nhà tái định cư</h4>
             </div>
             <div class="modal-body" id="edit_node">
                 <div class="row">
@@ -195,22 +213,22 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label">Thời điểm<span class="require">*</span></label>
-                            {!!Form::text('edit_thoidiemkc',null, array('id' => 'edit_thoidiemkc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
+                            <label class="control-label">Thời điểm khởi công<span class="require">*</span></label>
+                            {!!Form::text('edit_thoidiemkc',date('d/m/Y'), array('id' => 'edit_thoidiemkc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label">Thời điểm<span class="require">*</span></label>
-                            {!!Form::text('edit_thoidiemht',null, array('id' => 'edit_thoidiemht','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
+                            <label class="control-label">Thời điểm hoàn thành<span class="require">*</span></label>
+                            {!!Form::text('edit_thoidiemht',date('d/m/Y'), array('id' => 'edit_thoidiemht','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label">Đơn giá thuê<span class="require">*</span></label>
-                            <input type="text" name="edit_dongiathue" id="edit_dongiathue" class="form-control" data-mask="fdecimal" style="text-align: right; font-weight: bold">
+                            <label class="control-label">Đơn giá bán<span class="require">*</span></label>
+                            <input type="text" name="edit_dongiaban" id="edit_dongiaban" class="form-control" data-mask="fdecimal" style="text-align: right; font-weight: bold">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -249,7 +267,7 @@
 
 {{--Model del--}}
 <div id="destroy-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-    {!! Form::open(['url'=>'thuemuanhaxahoi/destroy','id' => 'frm_destroy'])!!}
+    {!! Form::open(['url'=>'bannhataidinhcu/destroy','id' => 'frm_destroy'])!!}
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header modal-header-primary">
@@ -271,13 +289,13 @@
 
 {{--Model add--}}
 <div id="add-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-    {!! Form::open(['url'=>'thuemuanhaxahoi/add','id' => 'frm_add'])!!}
+    {!! Form::open(['url'=>'bannhataidinhcu/add','id' => 'frm_add'])!!}
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header modal-header-primary">
                 <button type="button" data-dismiss="modal" aria-hidden="true"
                         class="close">&times;</button>
-                <h4 id="modal-header-primary-label" class="modal-title">Thêm mới giá thuê - thuê mua nhà ở xã hội</h4>
+                <h4 id="modal-header-primary-label" class="modal-title">Thêm mới giá bán - thuê mua nhà tái định cư</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -317,8 +335,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label">Đơn giá thuê<span class="require">*</span></label>
-                            <input type="text" name="add_dongiathue" id="add_dongiathue" class="form-control" data-mask="fdecimal" style="text-align: right; font-weight: bold">
+                            <label class="control-label">Đơn giá bán<span class="require">*</span></label>
+                            <input type="text" name="add_dongiaban" id="add_dongiaban" class="form-control" data-mask="fdecimal" style="text-align: right; font-weight: bold">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -356,7 +374,7 @@
 
 {{--Model công bố--}}
 <div id="congbo-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-    {!! Form::open(['url'=>'thuemuanhaxahoi/congbo','id' => 'frm_congbo'])!!}
+    {!! Form::open(['url'=>'bannhataidinhcu/congbo','id' => 'frm_congbo'])!!}
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header modal-header-primary">
@@ -378,7 +396,7 @@
 
 {{--Model công bố--}}
 <div id="huycongbo-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-    {!! Form::open(['url'=>'thuemuanhaxahoi/huycongbo','id' => 'frm_huycongbo'])!!}
+    {!! Form::open(['url'=>'bannhataidinhcu/huycongbo','id' => 'frm_huycongbo'])!!}
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header modal-header-primary">
@@ -400,7 +418,7 @@
 
 <!--Modal Check-->
 <div id="check-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-    {!! Form::open(['url'=>'thuemuanhaxahoi/checkmulti','id' => 'frm_checkmulti'])!!}
+    {!! Form::open(['url'=>'bannhataidinhcu/checkmulti','id' => 'frm_checkmulti'])!!}
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header modal-header-primary">
@@ -414,8 +432,8 @@
                         <div class="form-group">
                             <label class="control-label">Trạng thái<span class="require">*</span></label>
                             <select class="form-control" name="trangthaicheck" id="trangthaicheck">
-                               <option value="CB">Công bố</option>
-                               <option value="HCB">Hủy công bố</option>
+                                <option value="CB">Công bố</option>
+                                <option value="HCB">Hủy công bố</option>
                             </select>
                         </div>
                     </div>

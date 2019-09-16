@@ -125,6 +125,36 @@
                                 </tbody>
                             </table>
                         </div>
+                        {{--Giá thuê nhà công vụ--}}
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->giathuenhacongvu->index) && $setting->giathuenhacongvu->index == 1) ? 'checked' : '' }} value="1" name="roles[giathuenhacongvu][index]"/></td>
+                                    <td>Giá thuê nhà công vụ</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->giathuenhacongvu->congbo) && $setting->giathuenhacongvu->congbo == 1) ? 'checked' : '' }} value="1" name="roles[giathuenhacongvu][congbo]"/></td>
+                                    <td>Công bố giá thuê nhà công vụ</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        {{--Giá bán nhà tái định cư--}}
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->bannhataidinhcu->index) && $setting->bannhataidinhcu->index == 1) ? 'checked' : '' }} value="1" name="roles[bannhataidinhcu][index]"/></td>
+                                    <td>Giá bán nhà tái định cư</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->bannhataidinhcu->congbo) && $setting->bannhataidinhcu->congbo == 1) ? 'checked' : '' }} value="1" name="roles[bannhataidinhcu][congbo]"/></td>
+                                    <td>Công bố giá bán nhà tái định cư</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="col-md-3">
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>

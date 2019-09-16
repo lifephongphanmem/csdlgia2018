@@ -22,6 +22,8 @@
                     @include('system.users.include.perms.csdlmucgiahhdv.perdinhgia.giathuematdatnuoc')
                     @include('system.users.include.perms.csdlmucgiahhdv.perdinhgia.giarung')
                     @include('system.users.include.perms.csdlmucgiahhdv.perdinhgia.giathuemuanhaxh')
+                    @include('system.users.include.perms.csdlmucgiahhdv.perdinhgia.giathuenhacongvu')
+                    @include('system.users.include.perms.csdlmucgiahhdv.perdinhgia.bannhataidinhcu')
                     @include('system.users.include.perms.csdlmucgiahhdv.perdinhgia.gianuocsh')
                     @include('system.users.include.perms.csdlmucgiahhdv.perdinhgia.giathuetsc')
                     @include('system.users.include.perms.csdlmucgiahhdv.perdinhgia.giadvgddt')
