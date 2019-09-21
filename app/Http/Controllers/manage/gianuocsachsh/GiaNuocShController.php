@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\manage;
+namespace App\Http\Controllers\manage\gianuocsachsh;
 
 use App\Model\manage\dinhgia\GiaNuocSh;
 use Illuminate\Http\Request;

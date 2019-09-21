@@ -51,7 +51,7 @@
         </td>
     </tr>
     <tr>
-        <td colspan="2" style="font-weight: bold;font-size: 16px;text-transform: uppercase">THÔNG TIN VỀ GIÁ ĐẤU GIÁ ĐẤT</td>
+        <td colspan="2" style="font-weight: bold;font-size: 16px;text-transform: uppercase">THÔNG TIN VỀ GIÁ ĐẤU GIÁ ĐẤT VÀ TÀI SẢN GẮN LIỀN ĐẤT</td>
     </tr>
 </table>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
@@ -59,7 +59,8 @@
         <th style="text-align: center" rowspan="2">Tên dự án</th>
         <th style="text-align: center" rowspan="2">Xã/ phường</th>
         <th style="text-align: center" rowspan="2">Thời điểm<br> xác định</th>
-        <th style="text-align: center" rowspan="2">Diện<br> tích <br>(m2)</th>
+        <th style="text-align: center" rowspan="2">Diện<br> tích <br>đất<br>(m2)</th>
+        <th style="text-align: center" rowspan="2">Diện<br> tích <br>sàn xây dựng<br>(m2)</th>
         <th style="text-align: center" rowspan="2">Số quyết định phương án đấu giá</th>
         <th style="text-align: center" rowspan="2">Số quyết định đấu giá</th>
         <th style="text-align: center" rowspan="2">Số quyết định phê duyệt giá khởi điểm</th>
@@ -67,8 +68,10 @@
         <th style="text-align: center" colspan="4">Thông tin địa chính</th>
         <th style="text-align: center" colspan="6">Quyết định bảng giá đất của tỉnh</th>
         <th style="text-align: center" colspan="6">Quyết định phê duyệt giá đất của tỉnh</th>
-        <th style="text-align: center" rowspan="2">Giá khởi điểm</th>
-        <th style="text-align: center" rowspan="2">Giá đấu giá</th>
+        <th style="text-align: center" rowspan="2">Giá khởi điểm đất</th>
+        <th style="text-align: center" rowspan="2">Giá khởi điểm sàn xây dựng</th>
+        <th style="text-align: center" rowspan="2">Giá đấu giá đất</th>
+        <th style="text-align: center" rowspan="2">Giá đấu giá sàn xây dựng</th>
     </tr>
     <tr>
         <th style="text-align: center">Loại đất</th>
@@ -118,20 +121,26 @@
         <td style="text-align: center">24</td>
         <td style="text-align: center">25</td>
         <td style="text-align: center">26</td>
+        <td style="text-align: center">27</td>
+        <td style="text-align: center">28</td>
+        <td style="text-align: center">29</td>
     </tr>
     <tr>
         <td style="text-align: center;font-weight: bold;"></td>
-        <td colspan="26" style="font-weight: bold;">{{$modeldb->diaban}}</td>
+        <td colspan="28" style="font-weight: bold;">{{$modeldb->diaban}}</td>
     </tr>
     <tr>
         <td style="text-align: left">{{$model->tenduan}}</td>
         <td style="text-align: left">{{$modelxa->diaban}}</td>
         <td>{{getDayVn($model->thoidiem)}}</td>
-        <td style="text-align: right">{{dinhdangsothapphan($model->dientich,3)}}</td>
+        <td style="text-align: right">{{dinhdangsothapphan($model->dientichdat,3)}}</td>
+        <td style="text-align: right">{{dinhdangsothapphan($model->dientichsanxd,3)}}</td>
         <td>{{$model->soqdpagia}}</td>
         <td>{{$model->soqddaugia}}</td>
         <td>{{$model->soqdgiakhoidiem}}</td>
         <td>{{$model->soqdkqdaugia}}</td>
+        <td></td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -161,6 +170,7 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
 
             <td style="text-align: left">{{$tt->loaidat}}</td>
             <td style="text-align: left">{{$tt->tenduong}}</td>
@@ -179,8 +189,10 @@
             <td style="text-align: right">{{dinhdangsothapphan($tt->qdpddatnn,3)}}</td>
             <td style="text-align: right">{{dinhdangsothapphan($tt->qdpddatnuoits,3)}}</td>
             <td style="text-align: right">{{dinhdangsothapphan($tt->qdpddatmuoi,3)}}</td>
-            <td style="text-align: right">{{dinhdangsothapphan($tt->giakhoidiem,3)}}</td>
-            <td style="text-align: right">{{dinhdangsothapphan($tt->giadaugia,3)}}</td>
+            <td style="text-align: right">{{dinhdangsothapphan($tt->giakhoidiemdat,3)}}</td>
+            <td style="text-align: right">{{dinhdangsothapphan($tt->giakhoidiemsanxd,3)}}</td>
+            <td style="text-align: right">{{dinhdangsothapphan($tt->giadaugiadat,3)}}</td>
+            <td style="text-align: right">{{dinhdangsothapphan($tt->giadaugiasanxd,3)}}</td>
         </tr>
     @endforeach
 </table>

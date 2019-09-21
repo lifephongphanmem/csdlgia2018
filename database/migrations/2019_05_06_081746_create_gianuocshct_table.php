@@ -15,7 +15,8 @@ class CreateGianuocshctTable extends Migration
     {
         Schema::create('gianuocshct', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('doituong')->nullable();
+            $table->string('madoituong')->nullable();
+            $table->string('doituongsd')->nullable();
             $table->string('giachuathue')->nullable();
             $table->string('thuevat')->nullable();
             $table->string('giacothue')->nullable();
@@ -23,6 +24,7 @@ class CreateGianuocshctTable extends Migration
             $table->string('phibvmt')->nullable();
             $table->string('thanhtien')->nullable();
             $table->string('mahs')->nullable();
+            $table->string('trangthai')->nullable();
             $table->timestamps();
         });
     }

@@ -29,7 +29,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Hồ sơ đấu giá đất<small> chỉnh sửa</small>
+        Hồ sơ đấu giá đất và tài sản gắn liền đất<small> chỉnh sửa</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -37,7 +37,7 @@
     <div class="row center">
         <div class="col-md-12 center">
             <!-- BEGIN VALIDATION STATES-->
-            {!! Form::model($model, ['method' => 'PATCH', 'url'=>'thongtindaugiadat/'. $model->id, 'class'=>'horizontal-form','id'=>'update_thongtindaugiadat']) !!}
+            {!! Form::model($model, ['method' => 'PATCH', 'url'=>'thongtindaugiadatts/'. $model->id, 'class'=>'horizontal-form','id'=>'update_thongtindaugiadat']) !!}
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <div class="form-body">
@@ -71,10 +71,16 @@
                                 {!!Form::text('thoidiem',isset($model) ? date('d/m/Y',  strtotime($model->thoidiem)) : null , array('id' => 'thoidiem','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
-                                <label class="control-label">Diện tích<span class="require">*</span></label>
-                                {!!Form::text('dientich',null, array('id' => 'dientich','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                <label class="control-label">Diện tích đất<span class="require">*</span></label>
+                                {!!Form::text('dientichdat',null, array('id' => 'dientichdat','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Diện tích sàn xây dựng<span class="require">*</span></label>
+                                {!!Form::text('dientichsanxd',null, array('id' => 'dientichsanxd','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
                             </div>
                         </div>
                     </div>
@@ -121,7 +127,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12" style="text-align: center">
-                    <a href="{{url('thongtindaugiadat')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                    <a href="{{url('thongtindaugiadatts')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                     <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
                     <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
                 </div>

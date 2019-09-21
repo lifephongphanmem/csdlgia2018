@@ -20,7 +20,7 @@
         });
         $(function(){
             $('#paginate').change(function() {
-                var current_path_url = '/thongtindaugiadat?';
+                var current_path_url = '/thongtindaugiadatts?';
                 var namhs = '&nam='+$('#nam').val();
                 var mahuyen = '&mahuyen='+$('#mahuyen').val();
                 var maxa = '&maxa='+$('#maxa').val();
@@ -31,7 +31,7 @@
             });
         });
         function searchtt(){
-            var current_path_url = '/thongtindaugiadat?';
+            var current_path_url = '/thongtindaugiadatts?';
             var namhs = '&nam='+$('#nam').val();
             var mahuyen = '&mahuyen='+$('#mahuyen').val();
             var maxa = '&maxa='+$('#maxa').val();
@@ -41,7 +41,7 @@
             window.location.href = url;
         }
         function resettt(){
-            window.location.href = '/thongtindaugiadat';
+            window.location.href = '/thongtindaugiadatts';
         }
         function confirmDelete(id) {
             document.getElementById("iddelete").value=id;
@@ -82,7 +82,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin <small>&nbsp;giá đấu giá đất</small>
+        Thông tin <small>&nbsp;giá đấu giá đất và tài sản gắn liền đất</small>
     </h3>
 
     <!-- END PAGE HEADER-->
@@ -94,19 +94,19 @@
                     <div class="caption">
                     </div>
                     <div class="actions">
-                        @if(can('kkgiadaugiadat','create'))
+                        @if(can('kkdaugiadatts','create'))
                             @if($inputs['mahuyen'] != 'all')
-                                <a href="{{url('thongtindaugiadat/create?&mahuyen='.$inputs['mahuyen'])}}" class="btn btn-default btn-sm">
+                                <a href="{{url('thongtindaugiadatts/create?&mahuyen='.$inputs['mahuyen'])}}" class="btn btn-default btn-sm">
                                     <i class="fa fa-plus"></i> Thêm mới </a>
                             @endif
                             {{--<a href="{{url('thongtindaugiadat/nhandulieutuexcel')}}" class="btn btn-default btn-sm">--}}
                                 {{--<i class="fa fa-file-excel-o"></i> Nhận dữ liệu</a>--}}
                         @endif
 
-                        @if(can('thgiadaugiadat','congbo'))
+                        @if(can('thdaugiadatts','congbo'))
                             {{--<button type="button" class="btn btn-default btn-xs mbs" data-target="#check-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Công bố/ Hủy</button>--}}
                         @endif
-                        <a href="{{url('thongtindaugiadat/print?&mahuyen='.$inputs['mahuyen'].'&nam='.$inputs['nam'].'&tenduan='.$inputs['tenduan']).'&maxa='.$inputs['maxa']}}"
+                        <a href="{{url('thongtindaugiadatts/print?&mahuyen='.$inputs['mahuyen'].'&nam='.$inputs['nam'].'&tenduan='.$inputs['tenduan']).'&maxa='.$inputs['maxa']}}"
                            class="btn btn-default btn-sm" target="_blank"><i class="fa fa-print"></i> Print </a>
                     </div>
                 </div>
@@ -190,7 +190,8 @@
                                 <th style="text-align: center">Xã/phường</th>
                                 <th style="text-align: center">Tên dự án</th>
                                 <th style="text-align: center">Thời điểm <br>xác định</th>
-                                <th style="text-align: center">Diện tích</th>
+                                <th style="text-align: center">Diện tích đất</th>
+                                <th style="text-align: center">Diện tích sàn xây dựng</th>
                                 <th style="text-align: center">Trạng thái</th>
                                 <th style="text-align: center" width="20%">Thao tác</th>
                             </tr>
@@ -204,7 +205,8 @@
                                         <td style="text-align: center">{{$tt->tenxa}}</td>
                                         <td style="text-align: left">{{$tt->tenduan}}</td>
                                         <td style="text-align: center">{{getDayVn($tt->thoidiem)}}</td>
-                                        <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->dientich,3)}}</td>
+                                        <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->dientichdat,3)}}</td>
+                                        <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->dientichsanxd,3)}}</td>
                                         <td style="text-align: center">
                                             @if($tt->trangthai == 'CB')
                                                 <span class="badge badge-success">Công bố</span>
@@ -213,23 +215,23 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{url('thongtindaugiadat/'.$tt->id)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                            <a href="{{url('thongtindaugiadatts/'.$tt->id)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                             @if(session('admin')->level == 'T' || session('admin')->level == 'H')
                                                 @if($tt->trangthai == 'CB')
-                                                    @if(can('kkgiadaugiadat','congbo'))
+                                                    @if(can('kkdaugiadatts','congbo'))
                                                         <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
                                                             Hủy công bố</button>
                                                     @endif
                                                 @else
-                                                    @if(can('kkgiadaugiadat','edit'))
-                                                        <a href="{{url('thongtindaugiadat/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
-                                                        <a href="{{url('thongtindaugiadatct?&mahs='.$tt->mahs)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chi tiết</a>
+                                                    @if(can('kkdaugiadatts','edit'))
+                                                        <a href="{{url('thongtindaugiadatts/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                                        <a href="{{url('thongtindaugiadattsct?&mahs='.$tt->mahs)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chi tiết</a>
                                                     @endif
-                                                    @if(can('kkgiadaugiadat','delete'))
+                                                    @if(can('kkdaugiadatts','delete'))
                                                         <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                                             Xóa</button>
                                                     @endif
-                                                    @if(can('thgiadaugiadat','congbo'))
+                                                    @if(can('thdaugiadatts','congbo'))
                                                         <button type="button" onclick="confirmCB('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal-confirm" data-toggle="modal"><i class="fa fa-send"></i>&nbsp;
                                                             Công bố</button>
                                                     @endif
@@ -240,7 +242,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td style="text-align: center" colspan="8">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
+                                    <td style="text-align: center" colspan="9">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
                                 </tr>
                             @endif
                             </tbody>
@@ -278,7 +280,7 @@
         @include('includes.e.modal-attackfile')
         <!--Modal Delete-->
         <div id="delete-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-            {!! Form::open(['url'=>'thongtindaugiadat/delete','id' => 'frm_delete'])!!}
+            {!! Form::open(['url'=>'thongtindaugiadatts/delete','id' => 'frm_delete'])!!}
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header modal-header-primary">
@@ -327,7 +329,7 @@
         </div>
         <!--Modal Hủy Hoàn thành-->
         <div id="huyhoanthanh-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-            {!! Form::open(['url'=>'thongtindaugiadat/huyhoanthanh','id' => 'frm_huyhoanthanh'])!!}
+            {!! Form::open(['url'=>'thongtindaugiadatts/huyhoanthanh','id' => 'frm_huyhoanthanh'])!!}
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header modal-header-primary">
@@ -351,7 +353,7 @@
         </div>
         <!--Modal Hủy Hoàn thành-->
         <div id="congbo-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-            {!! Form::open(['url'=>'thongtindaugiadat/congbo','id' => 'frm_congbo'])!!}
+            {!! Form::open(['url'=>'thongtindaugiadatts/congbo','id' => 'frm_congbo'])!!}
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header modal-header-primary">

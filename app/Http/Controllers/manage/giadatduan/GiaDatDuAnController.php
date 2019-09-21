@@ -104,7 +104,6 @@ class GiaDatDuAnController extends Controller
     public function store(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
-            dd($inputs);
             $model = new GiaDatDuAn();
             $inputs['thoidiem'] = getDateToDb($inputs['thoidiem']);
             $inputs['dientich'] = getDoubleToDb($inputs['dientich']);

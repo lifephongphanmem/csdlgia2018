@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\manage\dinhgia;
+namespace App\Model\manage\dinhgia\gianuocsachsh;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,5 +25,6 @@ class GiaNuocSh extends Model
         'trangthai',
         'username',
         'thaotac',
+        'mahs'
     ];
 }

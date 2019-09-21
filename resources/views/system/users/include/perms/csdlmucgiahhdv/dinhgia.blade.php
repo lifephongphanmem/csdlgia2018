@@ -18,6 +18,7 @@
                     @include('system.users.include.perms.csdlmucgiahhdv.perdinhgia.giacldat')
                     @include('system.users.include.perms.csdlmucgiahhdv.giadatduan')
                     @include('system.users.include.perms.csdlmucgiahhdv.perdinhgia.giadaugiadat')
+                    @include('system.users.include.perms.csdlmucgiahhdv.perdinhgia.daugiadatts')
                     @include('system.users.include.perms.csdlmucgiahhdv.giathuetn')
                     @include('system.users.include.perms.csdlmucgiahhdv.perdinhgia.giathuematdatnuoc')
                     @include('system.users.include.perms.csdlmucgiahhdv.perdinhgia.giarung')

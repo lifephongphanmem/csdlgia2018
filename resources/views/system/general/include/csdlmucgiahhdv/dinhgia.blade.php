@@ -73,6 +73,20 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
                                 <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->daugiadatts->index) && $setting->daugiadatts->index == 1) ? 'checked' : '' }} value="1" name="roles[daugiadatts][index]"/></td>
+                                    <td>Giá đấu giá đất và tài sản gắn liền đất</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->daugiadatts->congbo) && $setting->daugiadatts->congbo == 1) ? 'checked' : '' }} value="1" name="roles[daugiadatts][congbo]"/></td>
+                                    <td>Công bố giá đấu giá đất và tài sản gắn liền đất</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
                                     <td width="2%"><input type="checkbox" {{ (isset($setting->giathuetn->index) && $setting->giathuetn->index == 1) ? 'checked' : '' }} value="1" name="roles[giathuetn][index]"/></td>
                                     <td>Giá thuế tài nguyên</td>
                                 </tr>

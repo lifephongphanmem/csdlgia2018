@@ -21,6 +21,5 @@ class GiaThueNhaCongVu extends Model
         'ttqd',
         'ghichu',
         'trangthai'
-
     ];
 }

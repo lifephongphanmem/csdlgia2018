@@ -58,11 +58,32 @@
                                         <a href="{{url('thongtindaugiadat')}}">Thông tin đấu giá đất</a>
                                     </li>
                                 @endif
-                                @if(can('thgiadaugiadat','timkiem'))
+                                {{--@if(can('thgiadaugiadat','timkiem'))--}}
+                                    {{--<li>--}}
+                                        {{--<a href="{{url('timkiemthongtindaugiadat')}}">Tìm kiếm thông tin</a>--}}
+                                    {{--</li>--}}
+                                {{--@endif--}}
+                            </ul>
+                        </li>
+                    @endif
+                @endif
+                @if(canGeneral('daugiadatts','index'))
+                    @if(can('daugiadatts','index'))
+                        <li>
+                            <a href="">
+                                Giá đấu giá đất và tài sản gắn liền đất <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                @if(can('kkdaugiadatts','index'))
                                     <li>
-                                        <a href="{{url('timkiemthongtindaugiadat')}}">Tìm kiếm thông tin</a>
+                                        <a href="{{url('thongtindaugiadatts')}}">Thông tin đấu giá đất và tài sản gắn liền đất</a>
                                     </li>
                                 @endif
+                                {{--@if(can('thgiadaugiadat','timkiem'))--}}
+                                    {{--<li>--}}
+                                        {{--<a href="{{url('timkiemthongtindaugiadat')}}">Tìm kiếm thông tin</a>--}}
+                                    {{--</li>--}}
+                                {{--@endif--}}
                             </ul>
                         </li>
                     @endif
@@ -258,8 +279,6 @@
                         </li>
                     @endif
                 @endif
-
-
                 @if(canGeneral('giaspdvci','index'))
                     @if(can('giaspdvci','index'))
                         <li>

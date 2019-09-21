@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDaugiadatctTable extends Migration
+class CreateDaugiadattsctTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateDaugiadatctTable extends Migration
      */
     public function up()
     {
-        Schema::create('daugiadatct', function (Blueprint $table) {
+        Schema::create('daugiadattsct', function (Blueprint $table) {
             $table->increments('id');
-//            $table->string('vitridiadiem')->nullable();
-//            $table->string('mucgiasan')->nullable();
-//            $table->string('mucgiadaugia')->nullable();
-//            $table->string('donvidaugia')->nullable();
             $table->string('loaidat')->nullable();
             $table->string('tenduong')->nullable();
             $table->string('loaiduong')->nullable();
@@ -38,8 +34,10 @@ class CreateDaugiadatctTable extends Migration
             $table->string('qdpddatnuoits')->nullable();
             $table->string('qdpddatmuoi')->nullable();
 
-            $table->string('giakhoidiem')->nullable();
-            $table->string('giadaugia')->nullable();
+            $table->string('giakhoidiemdat')->nullable();
+            $table->string('giakhoidiemsanxd')->nullable();
+            $table->string('giadaugiadat')->nullable();
+            $table->string('giadaugiasanxd')->nullable();
 
             $table->string('mahs')->nullable();
             $table->timestamps();
@@ -53,6 +51,6 @@ class CreateDaugiadatctTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('daugiadatct');
+        Schema::dropIfExists('daugiadattsct');
     }
 }

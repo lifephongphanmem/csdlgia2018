@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model\manage\dinhgia\gianuocsachsh;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,14 +9,15 @@ class GiaNuocShCt extends Model
     protected $table = 'gianuocshct';
     protected $fillable = [
         'id',
-        'mahuyen',
-        'doituong',
+        'madoituong',
+        'doituongsd',
         'giachuathue',
         'thuevat',
         'giacothue',
         'phibvmttyle',
         'phibvmt',
         'thanhtien',
-        'mahs'
+        'mahs',
+        'trangthai'
     ];
 }
