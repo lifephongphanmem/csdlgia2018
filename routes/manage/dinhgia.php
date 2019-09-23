@@ -266,10 +266,14 @@ Route::get('thongtinthuetaisancongct/update','GiaThueTsCongCtController@update')
 Route::get('thongtinthuetaisancongct/del','GiaThueTsCongCtController@destroy');
 
 //Giá Nước sạch sinh hoạt
-Route::get('gianuocsachsinhhoat','manage\gianuocsachsh\GiaNuocShController@index');
-Route::post('gianuocsachsinhhoat/add','manage\gianuocsachsh\GiaNuocShController@store');
-Route::get('gianuocsachsinhhoat/edittt','manage\gianuocsachsh\GiaNuocShController@edit');
-Route::post('gianuocsachsinhhoat/update','manage\gianuocsachsh\GiaNuocShController@update');
+
+Route::get('dmgianuocsachsinhhoat','manage\gianuocsachsh\GiaNuocSachShDmController@index');
+Route::post('dmgianuocsachsinhhoat/add','manage\gianuocsachsh\GiaNuocSachShDmController@store');
+Route::get('dmgianuocsachsinhhoat/edittt','manage\gianuocsachsh\GiaNuocSachShDmController@edit');
+Route::post('dmgianuocsachsinhhoat/update','manage\gianuocsachsh\GiaNuocSachShDmController@update');
+Route::post('dmgianuocsachsinhhoat/destroy','manage\gianuocsachsh\GiaNuocSachShDmController@destroy');
+
+Route::resource('gianuocsachsinhhoat','manage\gianuocsachsh\GiaNuocShController');
 Route::post('gianuocsachsinhhoat/destroy','manage\gianuocsachsh\GiaNuocShController@destroy');
 Route::post('gianuocsachsinhhoat/delete','manage\gianuocsachsh\GiaNuocShController@multidelete');
 Route::post('gianuocsachsinhhoat/congbo','manage\gianuocsachsh\GiaNuocShController@congbo');
@@ -277,6 +281,16 @@ Route::post('gianuocsachsinhhoat/huycongbo','manage\gianuocsachsh\GiaNuocShContr
 Route::post('gianuocsachsinhhoat/checkmulti','manage\gianuocsachsh\GiaNuocShController@checkmulti');
 Route::get('gianuocsachsinhhoat/nhandulieutuexcel','manage\gianuocsachsh\GiaNuocShController@nhandulieutuexcel');
 Route::post('gianuocsachsinhhoat/importexcel','manage\gianuocsachsh\GiaNuocShController@importexcel');
+
+Route::get('gianuocsachsinhhoatct/edittt','manage\gianuocsachsh\GiaNuocShCtController@edit');
+Route::get('gianuocsachsinhhoatct/update','manage\gianuocsachsh\GiaNuocShCtController@update');
+
+Route::get('tkgianuocsachsinhhoat/printf','manage\gianuocsachsh\GiaNuocShTkController@printf');
+Route::get('tkgianuocsachsinhhoat','manage\gianuocsachsh\GiaNuocShTkController@index');
+
+Route::get('bcgianuocsachsinhhoat','manage\gianuocsachsh\GiaNuocShBcController@index');
+Route::post('bcgianuocsachsinhhoat/baocaonuocsh1','manage\gianuocsachsh\GiaNuocShBcController@Bc1');
+
 
 
 //Giá DV GD-ĐT

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\manage\gianuocsachsh;
 
-use App\Model\manage\dinhgia\GiaNuocSh;
+use App\Model\manage\dinhgia\gianuocsachsh\GiaNuocSachShDm;
+use App\Model\manage\dinhgia\gianuocsachsh\GiaNuocSh;
+use App\Model\manage\dinhgia\gianuocsachsh\GiaNuocShCt;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -15,21 +17,11 @@ class GiaNuocShController extends Controller
         if(Session::has('admin')){
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-            $inputs['diaban'] = isset($inputs['diaban']) ? $inputs['diaban'] : 'All';
-            $inputs['doituong'] = isset($inputs['doituong']) ? $inputs['doituong'] : '';
-            $inputs['mota'] = isset($inputs['mota']) ? $inputs['mota'] : '';
             $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
             $model = new GiaNuocSh();
             if($inputs['nam'] != 'all')
                 $model = $model->whereYear('ngayapdung',$inputs['nam']);
-            if($inputs['diaban'] != 'All')
-                $model = $model->where('diaban',$inputs['diaban']);
-            if($inputs['doituong'] != '')
-                $model = $model->where('doituong','like', '%'.$inputs['doituong'].'%');
-            if($inputs['mota'] != '')
-                $model = $model->where('mota','like', '%'.$inputs['mota'].'%');
             $model = $model->paginate($inputs['paginate']);
-
             return view('manage.dinhgia.gianuocsh.index')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
@@ -39,60 +31,73 @@ class GiaNuocShController extends Controller
             return view('errors.notlogin');
     }
 
+    public function create(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $modeldel = GiaNuocShCt::where('trangthai','CXD')->delete();
+            $inputs['mahs'] = getdate()[0];
+            $dms = GiaNuocSachShDm::all();
+            foreach($dms as $dm){
+                $modeladd = new GiaNuocShCt();
+                $modeladd->doituongsd = $dm->doituongsd;
+                $modeladd->madoituong = $dm->madoituong;
+                $modeladd->mahs = $inputs['mahs'];
+                $modeladd->trangthai = 'CXD';
+                $modeladd->save();
+            }
+            $modelct = GiaNuocShCt::where('mahs',$inputs['mahs'])
+                ->get();
+            return view('manage.dinhgia.gianuocsh.create')
+                ->with('inputs', $inputs)
+                ->with('modeldel',$modeldel)
+                ->with('modelct',$modelct)
+                ->with('pageTitle', 'Thêm mới giá nước sinh hoạt');
+        }else
+            return view('errors.notlogin');
+    }
+
     public function store(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
             $model = new GiaNuocSh();
-            $model->ngayapdung = getDateToDb($inputs['add_ngayapdung']);
-            $model->diaban = $inputs['add_diaban'];
-            $model->doituong = $inputs['add_doituong'];
-            $model->mota = $inputs['add_mota'];
-            $model->thanhtien = chkDbl($inputs['add_thanhtien']);
-            $model->dvt = $inputs['add_dvt'];
+            $model->ngayapdung = getDateToDb($inputs['ngayapdung']);
+            $model->trangthai = 'CXD';
+            $model->soqd = $inputs['soqd'];
+            $model->ghichu = $inputs['ghichu'];
+            $model->mota = $inputs['mota'];
             $model->save();
-            $nam = date('Y',strtotime(getDateToDb($inputs['add_ngayapdung'])));
-            return redirect('gianuocsachsinhhoat?&nam='.$nam.'&diaban='.$inputs['add_diaban']);
+            $modelct = GiaNuocShCt::where('mahs',$inputs['mahs'])
+                ->update(['trangthai' => 'XD']);
+            $nam = date('Y',strtotime(getDateToDb($inputs['ngayapdung'])));
+            return redirect('gianuocsachsinhhoat?&nam='.$nam);
 
         }else
             return view('errors.notlogin');
     }
 
 
-    public function edit(Request $request){
-        $result = array(
-            'status' => 'fail',
-            'message' => 'error',
-        );
-        if (!Session::has('admin')) {
-            $result = array(
-                'status' => 'fail',
-                'message' => 'permission denied',
-            );
-            die(json_encode($result));
-        }
 
-        $inputs = $request->all();
-        $id = $inputs['id'];
-        $model = GiaNuocSh::findOrFail($id);
-        $model->date = getDayVn($model->ngayapdung);
-        die($model);
+    public function edit($id){
+        if(Session::has('admin')) {
+            $model = GiaNuocSh::find($id);
+            $modelct = GiaNuocShCt::where('mahs',$model->mahs)
+                ->get();
+            return view('manage.dinhgia.gianuocsh.edit')
+                ->with('model', $model)
+                ->with('modelct', $modelct)
+                ->with('pageTitle', 'Chỉnh sửa giá nước sinh hoạt');
+        }else
+            return view('errors.notlogin');
     }
 
-    public function update(Request $request){
-        if(Session::has('admin')){
+    public function update(Request $request,$id){
+        if(Session::has('admin')) {
             $inputs = $request->all();
-            $inputs['ngayapdung'] = getDateToDb($inputs['edit_ngayapdung']);
-            $inputs['diaban'] = $inputs['edit_diaban'];
-            $inputs['doituong'] = $inputs['edit_doituong'];
-            $inputs['mota'] = $inputs['edit_mota'];
-            $inputs['dvt'] = $inputs['edit_dvt'];
-            $inputs['thanhtien'] = chkDbl($inputs['edit_thanhtien']);
-
-            $model = GiaNuocSh::where('id',$inputs['edit_id'])->first();
+            $model = GiaNuocSh::findOrFail($id);
+            $inputs['ngayapdung'] = getDateToDb($inputs['ngayapdung']);
             $model->update($inputs);
-            $nam = date('Y',strtotime(getDateToDb($inputs['edit_ngayapdung'])));
-            return redirect('gianuocsachsinhhoat?&nam='.$nam.'&diaban='.$inputs['edit_diaban']);
-
+            $nam = date('Y',strtotime(getDateToDb($inputs['ngayapdung'])));
+            return redirect('gianuocsachsinhhoat?&nam='.$nam);
         }else
             return view('errors.notlogin');
     }
@@ -103,11 +108,12 @@ class GiaNuocShController extends Controller
             $id = $inputs['destroy_id'];
             $model = GiaNuocSh::findOrFail($id);
             $model->delete();
-            return redirect('gianuocsachsinhhoat?&nam='.$model->nam.'&diaban='.$model->diaban);
+            return redirect('gianuocsachsinhhoat');
 
         }else
             return view('errors.notlogin');
     }
+
 
     public function multidelete(Request $request){
         if(Session::has('admin')){
@@ -125,27 +131,24 @@ class GiaNuocShController extends Controller
 
     public function congbo(Request $request){
         if(Session::has('admin')){
-            $inputs=$request->all();
+            $inputs = $request->all();
             $id = $inputs['congbo_id'];
             $model = GiaNuocSh::findOrFail($id);
             $model->trangthai = 'CB';
             $model->save();
-            $nam = date('Y',strtotime($model->ngayapdung));
-            return redirect('gianuocsachsinhhoat?&nam='.$nam.'&diaban='.$model->diaban);
+            return redirect('gianuocsachsinhhoat');
         }else
             return view('errors.notlogin');
     }
 
     public function huycongbo(Request $request){
         if(Session::has('admin')){
-            $inputs=$request->all();
+            $inputs = $request->all();
             $id = $inputs['huycongbo_id'];
             $model = GiaNuocSh::findOrFail($id);
-            $model->trangthai = 'HCB';
+            $model->trangthai = 'CXD';
             $model->save();
-
-            $nam = date('Y',strtotime($model->ngayapdung));
-            return redirect('gianuocsachsinhhoat?&nam='.$nam.'&diaban='.$model->diaban);
+            return redirect('gianuocsachsinhhoat');
         }else
             return view('errors.notlogin');
     }
@@ -167,8 +170,7 @@ class GiaNuocShController extends Controller
     public function nhandulieutuexcel(){
         if (Session::has('admin')) {
             return view('manage.dinhgia.gianuocsh.importexcel')
-                ->with('pageTitle','Nhận dữ liệu giá dịch vụ giáo dục đào tạo từ file Excel');
-
+                ->with('pageTitle','Nhận dữ liệu giá nước sinh hoạt từ file Excel');
         } else
             return view('errors.notlogin');
     }
@@ -180,7 +182,6 @@ class GiaNuocShController extends Controller
             $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
             $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
             $data = [];
-
 
             Excel::load($path, function ($reader) use (&$data, $inputs) {
                 $obj = $reader->getExcel();
@@ -204,6 +205,19 @@ class GiaNuocShController extends Controller
             File::Delete($path);
             $nam = date('Y',strtotime(getDateToDb($inputs['ngayapdung'])));
             return redirect('gianuocsachsinhhoat?&nam='.$nam.'&diaban='.$inputs['diaban']);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function show($id){
+        if(Session::has('admin')) {
+            $model = GiaNuocSh::findOrFail($id);
+            $modelct = GiaNuocShCt::where('mahs',$model->mahs)
+                ->get();
+            return view('manage.dinhgia.gianuocsh.show')
+                ->with('model', $model)
+                ->with('modelct',$modelct)
+                ->with('pageTitle', 'Giá nước sinh hoạt chi tiết');
         }else
             return view('errors.notlogin');
     }

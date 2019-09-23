@@ -32,7 +32,7 @@
 
 @section('content')
 
-    <h3 class="page-title">Nhận dữ liệu giá nước sạch sinh hoạt<small> từ file Excel</small> </h3>
+    <h3 class="page-title">Nhận dữ liệu giá bán - thuê mua nhà tái định cư<small> từ file Excel</small> </h3>
     <!-- END PAGE HEADER-->
 
     <!-- BEGIN DASHBOARD STATS -->
@@ -42,82 +42,98 @@
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM -->
-                    {!! Form::open(['url'=>'/gianuocsachsinhhoat/importexcel', 'method'=>'post' , 'files'=>true, 'id' => 'create_hscb','enctype'=>'multipart/form-data']) !!}
-                        <meta name="csrf-token" content="{{ csrf_token() }}" />
-                        <div class="form-body">
-                            <!-- Thông tin chung-->
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <!-- BEGIN PORTLET-->
-                                        <div class="portlet-body" style="display: block;">
-                                            <div class="form-body">
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                        <label>Ngày áp dụng</label>
-                                                            {!!Form::text('ngayapdung',null, array('id' => 'ngayapdung','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                        <label>Địa bàn</label>
-                                                        <select class="form-control" name="diaban" id="diaban">
-                                                            <option value="Thành thị">Thành thị</option>
-                                                            <option value="Nông thôn">Nông thôn</option>
-                                                        </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Đối tượng<span class="require">*</span></label>
-                                                            {!!Form::text('doituong', 'B', array('id' => 'doituong','class' => 'form-control required'))!!}
-                                                        </div>
-                                                    </div>
+                    {!! Form::open(['url'=>'/bannhataidinhcu/importexcel', 'method'=>'post' , 'files'=>true, 'id' => 'create_hscb','enctype'=>'multipart/form-data']) !!}
+                    <meta name="csrf-token" content="{{ csrf_token() }}" />
+                    <div class="form-body">
+                        <!-- Thông tin chung-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- BEGIN PORTLET-->
+                                <div class="portlet-body" style="display: block;">
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Số quyết định<span class="require">*</span></label>
+                                                    {!!Form::text('soqd', 'A', array('id' => 'soqd','class' => 'form-control required'))!!}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Ngày áp dụng<span class="require">*</span></label>
+                                                    {!!Form::text('ngayapdung', 'B', array('id' => 'ngayapdung','class' => 'form-control required'))!!}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Địa bàn<span class="require">*</span></label>
+                                                    {!!Form::text('diaban', 'C', array('id' => 'diaban','class' => 'form-control required'))!!}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Mô tả<span class="require">*</span></label>
+                                                    {!!Form::text('mota', 'D', array('id' => 'mota','class' => 'form-control required'))!!}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Giá chưa thuế<span class="require">*</span></label>
+                                                    {!!Form::text('giachuathue', 'E', array('id' => 'giachuathue','class' => 'form-control required'))!!}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Thuế VAT<span class="require">*</span></label>
+                                                    {!!Form::text('thuevat', 'F', array('id' => 'thuevat','class' => 'form-control required'))!!}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Giá có thuế<span class="require">*</span></label>
+                                                    {!!Form::text('giacothue', 'G', array('id' => 'giacothue','class' => 'form-control required'))!!}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Đơn vị tính</label>
+                                                    {!!Form::text('dvt', 'H', array('id' => 'dvt','class' => 'form-control','data-mask'=>'fdecimal'))!!}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Phí bảo vệ môi trường tyle<span class="require">*</span></label>
+                                                    {!!Form::text('phibvmttyle', '111', array('id' => 'ghichu','class' => 'form-control required'))!!}
+                                                </div>
+                                            </div>
 
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Mô tả<span class="require">*</span></label>
-                                                            {!!Form::text('mota', 'C', array('id' => 'mota','class' => 'form-control required'))!!}
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Đơn giá<span class="require">*</span></label>
-                                                            {!!Form::text('thanhtien', 'D', array('id' => 'thanhtien','class' => 'form-control required'))!!}
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Đơn vị tính<span class="require">*</span></label>
-                                                            {!!Form::text('dvt', 'E', array('id' => 'dvt','class' => 'form-control required'))!!}
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Nhận từ dòng<span class="require">*</span></label>
-                                                            {!!Form::text('tudong', '4', array('id' => 'tudong','class' => 'form-control required','data-mask'=>'fdecimal'))!!}
-                                                        </div>
-                                                    </div>
-                                                    <!--/span-->
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Nhận đến dòng</label>
-                                                            {!!Form::text('dendong', '111', array('id' => 'dendong','class' => 'form-control','data-mask'=>'fdecimal'))!!}
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label class="control-label">File dữ liệu<span class="require">*</span></label>
-                                                            <input id="fexcel" name="fexcel" type="file"  accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                        </div>
-                                                    </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Phí bảo vệ môi trường<span class="require">*</span></label>
+                                                    {!!Form::text('phibvmt', '111', array('id' => 'phibvmt','class' => 'form-control required','data-mask'=>'fdecimal'))!!}
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Thành tiền</label>
+                                                    {!!Form::text('thanhtien', '111', array('id' => 'thanhtien','class' => 'form-control','data-mask'=>'fdecimal'))!!}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">File dữ liệu<span class="require">*</span></label>
+                                                    <input id="fexcel" name="fexcel" type="file"  accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
                                                 </div>
                                             </div>
                                         </div>
-                                    <!-- END PORTLET-->
+                                    </div>
                                 </div>
+                                <!-- END PORTLET-->
                             </div>
                         </div>
+                    </div>
 
 
                     <!-- END FORM-->
@@ -144,9 +160,9 @@
                 ok = false;
             }
 
-            if (!$('#doituong').val()) {
-                str += '  - Đối tượng \n';
-                $('#doituong').parent().addClass('has-error');
+            if (!$('#soqd').val()) {
+                str += '  - Số quyết định \n';
+                $('#soqd').parent().addClass('has-error');
                 ok = false;
             }
 
@@ -156,28 +172,15 @@
                 ok = false;
             }
 
-            if (!$('#thanhtien').val()) {
-                str += '  - Đơn giá \n';
-                $('#thanhtien').parent().addClass('has-error');
+            if (!$('#ghichu').val()) {
+                str += '  - Ghi chú \n';
+                $('#ghichu').parent().addClass('has-error');
                 ok = false;
             }
 
-            if (!$('#dvt').val()) {
-                str += '  - Đơn vị tính\n';
-                $('#dvt').parent().addClass('has-error');
-                ok = false;
-            }
-
-
-            if (!$('#tudong').val()) {
-                str += '  - Dòng bắt đầu nhận dữ liệu \n';
-                $('#tudong').parent().addClass('has-error');
-                ok = false;
-            }
-
-            if (!$('#dendong').val()) {
-                str += '  - Đến dòng dữ liệu \n';
-                $('#dendong').parent().addClass('has-error');
+            if (!$('#giacothue').val()) {
+                str += '  - Giá có thuế \n';
+                $('#giacothue').parent().addClass('has-error');
                 ok = false;
             }
 

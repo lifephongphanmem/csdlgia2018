@@ -87,6 +87,8 @@
                         <thead>
                         <tr>
                             <th style="text-align: center" width="2%">STT</th>
+                            <th style="text-align: center">Mã quận huyện</th>
+                            <th style="text-align: center">Mã xã phường</th>
                             <th style="text-align: center">Địa bàn</th>
                             <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
@@ -95,6 +97,8 @@
                         @foreach($model as $key=>$tt)
                         <tr class="odd gradeX">
                             <td style="text-align: center">{{$key + 1}}</td>
+                            <td>{{$tt->district}}</td>
+                            <td>{{$tt->town}}</td>
                             <td class="active" >{{$tt->diaban}}</td>
                             <td>
                                 <a href="{{url('danhmucdiadanh/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>

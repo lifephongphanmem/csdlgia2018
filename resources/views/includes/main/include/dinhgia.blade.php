@@ -191,7 +191,7 @@
                             @if(can('kkbannhataidinhcu','index'))
                                 <a href="{{url('bannhataidinhcu')}}">
                                     Giá bán nhà tái định cư
-                                    {{--<span class="arrow"></span>--}}
+
                                 </a>
                             @endif
                         </li>
@@ -200,9 +200,24 @@
                 @if(canGeneral('gianuocsh','index'))
                     @if(can('gianuocsh','index'))
                         <li>
-                            <a href="{{url('gianuocsachsinhhoat')}}">
+                            <a href="">
                                 Giá nước sạch sinh hoạt
+                                <span class="arrow"></span>
                             </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="{{url('dmgianuocsachsinhhoat')}}">Danh mục</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('gianuocsachsinhhoat')}}">Thông tin giá nước sạch</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('tkgianuocsachsinhhoat')}}">Tìm kiếm giá nước sạch sinh hoạt</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('bcgianuocsachsinhhoat')}}">Báo cáo tổng hợp</a>
+                                </li>
+                            </ul>
                         </li>
                     @endif
                 @endif
