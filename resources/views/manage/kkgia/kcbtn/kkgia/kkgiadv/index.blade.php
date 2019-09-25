@@ -111,7 +111,9 @@
 @stop
 
 @section('content')
-
+    <marquee>
+        <b style="color: #ff0000">{{$modeldv->tendv}} xin thông báo:</b> Ngày áp dụng hồ sơ kê khai giá Dịch vụ khám chữa bệnh cho người tại cơ sở khám chữa bệnh tư nhân; khám chữa bệnh theo yêu cầu tại cơ sở khám chữa bệnh của nhà nước phải sau {{$modeldv->songaylv}} ngày làm việc, tính từ thời điểm chuyển hồ sơ. Hồ sơ chuyển  trước 17h sẽ tính từ ngày gửi, sau 17h sẽ tính ngày hôm sau!!! (Ngày làm việc không tính thứ 7, CN và ngày nghỉ lể)
+    </marquee>
     <h3 class="page-title">
         Thông tin kê khai giá<small>&nbsp;Dịch vụ khám chữa bệnh cho người tại cơ sở khám chữa bệnh tư nhân; khám chữa bệnh theo yêu cầu tại cơ sở khám chữa bệnh của nhà nước</small>
         <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}} - Cơ quan chủ quản: {{$modeldv->tendv}}</h5></p>

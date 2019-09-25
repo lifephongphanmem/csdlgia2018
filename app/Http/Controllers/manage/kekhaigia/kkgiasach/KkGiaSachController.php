@@ -81,7 +81,7 @@ class KkGiaSachController extends Controller
                     ->get();
                 $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
                     ->where('company.maxa',$inputs['masothue'])
-                    ->where('companylvcc.manghe','TACN')
+                    ->where('companylvcc.manghe','SACH')
                     ->select('company.*','companylvcc.mahuyen')
                     ->first();
 

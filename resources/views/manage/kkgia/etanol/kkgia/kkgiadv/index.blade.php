@@ -124,10 +124,8 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
-                        @if(can('kketanol','create'))
                                 <a href="{{url('kekhaigiaetanol/create?&masothue='.$inputs['masothue'])}}" class="btn btn-default btn-sm">
                                     <i class="fa fa-plus"></i> Kê khai mới </a>
-                        @endif
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
                             <a href="{{url('thongtindnetanol?&maxa='.$modeldn->mahuyen)}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-reply"></i> Quay lại </a>
@@ -198,16 +196,12 @@
                                 <td>
                                     <a href="{{url('kekhaigiaetanol/prints?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                     @if(canEdit($tt->trangthai))
-                                        @if(can('kketanol','edit'))
                                             <a href="{{url('kekhaigiaetanol/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
-                                        @endif
                                         @if(canChuyenXoa($tt->trangthai))
-                                            @if(can('kketanol','delete'))
                                                 @if($tt->trangthai == 'CC')
                                                 <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                                     Xóa</button>
                                                 @endif
-                                            @endif
                                             @if(can('kketanol','approve'))
                                                 @if($tt->trangthai == 'CC' || $tt->trangthai == 'BTL')
                                                 <button type="button" onclick="confirmChuyen('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyen-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;

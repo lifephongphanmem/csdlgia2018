@@ -111,7 +111,7 @@ class KkGiaGiayController extends Controller
                 $inputs['masothue'] = session('admin')->maxa;
             $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
                 ->where('company.maxa',$inputs['masothue'])
-                ->where('companylvcc.manghe','TACN')
+                ->where('companylvcc.manghe','GIAY')
                 ->select('company.*','companylvcc.mahuyen')
                 ->first();
             if(isset($modeldn)) {

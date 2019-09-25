@@ -156,7 +156,7 @@ class KkGiaXmTxdController extends Controller
 
     public function store(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'XMTXD' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+            if (session('admin')->level == 'DN' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $model = new KkGiaXmTxd();
                 $inputs['mahs'] = $inputs['maxa'].getdate()[0];
