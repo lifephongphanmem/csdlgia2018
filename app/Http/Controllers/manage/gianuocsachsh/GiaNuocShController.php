@@ -59,12 +59,14 @@ class GiaNuocShController extends Controller
     public function store(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
+
             $model = new GiaNuocSh();
             $model->ngayapdung = getDateToDb($inputs['ngayapdung']);
             $model->trangthai = 'CXD';
             $model->soqd = $inputs['soqd'];
             $model->ghichu = $inputs['ghichu'];
             $model->mota = $inputs['mota'];
+            $model->mahs = $inputs['mahs'];
             $model->save();
             $modelct = GiaNuocShCt::where('mahs',$inputs['mahs'])
                 ->update(['trangthai' => 'XD']);
