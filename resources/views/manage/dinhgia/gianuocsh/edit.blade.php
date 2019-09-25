@@ -127,7 +127,7 @@
                                                 <tr class="odd gradeX">
                                                     <td style="text-align: center">{{$key + 1}}</td>
                                                     <td class="active" >{{$tt->doituongsd}}</td>
-                                                    <td class="active" >{{number_format($tt->dongia)}}</td>
+                                                    <td class="active" >{{number_format($tt->giachuathue)}}</td>
                                                     <td>
                                                         <button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#edit-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                                             Sửa</button>
@@ -182,7 +182,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="text" name="edit_id" id="edit_id">
+                        <input type="hidden" name="edit_id" id="edit_id">
                     </div>
                     <div class="modal-footer">
                         <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
