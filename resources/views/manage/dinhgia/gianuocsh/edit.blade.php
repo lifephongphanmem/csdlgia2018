@@ -109,7 +109,7 @@
                                 <hr>
                                 <b style="color: blue">Giá nước sinh hoạt</b>
 
-                                <input type="text" value="{{$model->mahs}}" name="mahs" id="mahs" class="form-control">
+                                <input type="hidden" value="{{$model->mahs}}" name="mahs" id="mahs" class="form-control">
                                 <!-- END PAGE HEADER-->
                                 <div class="row" id="dsts">
                                     <div class="col-md-12">
