@@ -287,7 +287,7 @@
                                 @endif
                                 @if(can('thtrogiatrocuoc','timkiem'))
                                     <li>
-                                        <a href="#">Sample Link 3</a>
+                                        <a href="#">Tìm kiếm thông tin mức trợ giá trợ cước</a>
                                     </li>
                                 @endif
                             </ul>

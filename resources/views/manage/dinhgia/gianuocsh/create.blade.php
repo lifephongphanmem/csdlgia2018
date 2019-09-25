@@ -110,7 +110,7 @@
                                 <hr>
                                 <b style="color: blue">Giá nước sinh hoạt</b>
                                 {{--{!!Form::text('mahs', $inputs['mahs'], array('id' => 'mahs','class' => 'form-control'))!!}--}}
-                                <input type="hidden" value="{{ $inputs['mahs'] }}" name="mahs" id="mahs" class="form-control">
+                                <input type="text" value="{{$inputs['mahs']}}" name="mahs" id="mahs" class="form-control">
                                 <!-- END PAGE HEADER-->
                                 <div class="row" id="dsts">
                                     <div class="col-md-12">
