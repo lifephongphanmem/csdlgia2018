@@ -218,7 +218,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Số quyết định phê duyệt giá khởi điểm<span class="require">*</span></label>
+                                    <label class="control-label">Số quyết định phương án đấu giá <span class="require">*</span></label>
                                     {!!Form::text('soqdpagia',null, array('id' => 'soqdpagia','class' => 'form-control required','autofocus'))!!}
                                 </div>
                             </div>
