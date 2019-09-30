@@ -51,12 +51,12 @@
     <thead>
         <tr>
             <th width="2%" style="text-align: center" rowspan="2">STT</th>
-            <th style="text-align: center" rowspan="2">Mã hàng hóa<br> dịch vụ</th>
-            <th style="text-align: center" rowspan="2">Tên hàng hóa dịch vụ</th>
-            <th style="text-align: center" rowspan="2">Đặc điểm kỹ thuật</th>
-            <th style="text-align: center" rowspan="2">Đơn vị tính</th>
-            <th style="text-align: center" width="10%" rowspan="2">Giá</th>
-            <th style="text-align: center" width="10%" rowspan="2">Ghi chú</th>
+            <th style="text-align: center">Mã hàng hóa<br> dịch vụ</th>
+            <th style="text-align: center" >Tên hàng hóa dịch vụ</th>
+            <th style="text-align: center" >Đặc điểm kỹ thuật</th>
+            <th style="text-align: center" >Đơn vị tính</th>
+            <th style="text-align: center" width="10%" >Giá</th>
+            <th style="text-align: center" width="10%" >Ghi chú</th>
         </tr>
         <tr style="font-size: 10px">
             <th>1</th>
