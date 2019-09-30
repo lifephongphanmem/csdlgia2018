@@ -77,7 +77,7 @@
             <td></td>
             <td colspan="7" style="font-weight: bold; text-align: left">{{$tennhom}}</td>
         </tr>
-        @foreach($modelct as $key=>$tt)
+        @foreach($model as $key=>$tt)
             <tr>
                 <td style="text-align: center">{{$key+1}}</td>
                 <td style="text-align: center">{{$tt->mahhdv}}</td>
