@@ -484,7 +484,7 @@
                 <div class="row">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <label>Phân loại nhóm tài nuyên</label>
+                            <label>Phân loại nhóm tài nguyên</label>
                             <select class="form-control" name="manhomex" id="manhomex">
                                 @foreach($nhoms as $nhom)
                                     <option value="{{$nhom->manhom}}">{{$nhom->tennhom}}</option>

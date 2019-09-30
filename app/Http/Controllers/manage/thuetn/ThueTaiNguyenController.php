@@ -211,7 +211,7 @@ class ThueTaiNguyenController extends Controller
                 $modelctnew = new ThueTaiNguyen();
                 $modelctnew->nam = $inputs['nam'];
                 $modelctnew->manhom = $inputs['manhom'];
-                $modelctnew->ttqd = $inputs['ttqd'];
+                $modelctnew->soqd = $inputs['soqd'];
                 $modelctnew->matn = $data[$i][$inputs['matn']];
                 $modelctnew->cap1 = $data[$i][$inputs['cap1']];
                 $modelctnew->cap2 = $data[$i][$inputs['cap2']];
