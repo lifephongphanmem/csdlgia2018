@@ -100,7 +100,7 @@ class GiaDvGdDtController extends Controller
         $result['message'] .= '<label class="control-label">Địa bàn<span class="require">*</span></label>';
         $result['message'] .= '<select class="form-control" id="edit_district" name="edit_district">';
         foreach($diabans as $diaban){
-            $result['message'] .= '<option value="'.$diaban->district.'"'.($model->district == "'.$diaban->district.'" ? "selected" : "") .'>'.$diaban->diaban.'</option>';
+            $result['message'] .= '<option value="'.$diaban->district.'"'.($model->district == $diaban->district ? "selected" : "") .'>'.$diaban->diaban.'</option>';
         }
 //        $result['message'] .= '<option value="Nông thôn"'.($model->diaban == "Nông thôn" ? "selected" : "") .'>Nông thôn</option>';
 //        $result['message'] .= '<option value="Miền núi"'.($model->diaban == "Miền núi" ? "selected" : "") .'>Miền núi</option>';

@@ -73,6 +73,7 @@
         <th style="text-align: center" rowspan="2">Giá khởi điểm sàn xây dựng</th>
         <th style="text-align: center" rowspan="2">Giá đấu giá đất</th>
         <th style="text-align: center" rowspan="2">Giá đấu giá sàn xây dựng</th>
+        <th style="text-align: center" rowspan="2">Ghi chú</th>
     </tr>
     <tr>
         <th style="text-align: center">Loại đất</th>
@@ -167,6 +168,7 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
         </tr>
             <?php
                 $modelct = $modelct->where('mahs',$tt->mahs);
@@ -205,6 +207,7 @@
                 <td style="text-align: right">{{dinhdangsothapphan($ct->giakhoidiemsanxd,3)}}</td>
                 <td style="text-align: right">{{dinhdangsothapphan($ct->giadaugiadat,3)}}</td>
                 <td style="text-align: right">{{dinhdangsothapphan($ct->giadaugiasanxd,3)}}</td>
+                <td style="text-align: right">{{$ct->ghichu)}}</td>
             </tr>
             @endforeach
         @endforeach
