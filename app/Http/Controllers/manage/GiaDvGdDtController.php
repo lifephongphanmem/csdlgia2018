@@ -21,6 +21,7 @@ class GiaDvGdDtController extends Controller
             $inputs['mota'] = isset($inputs['mota']) ? $inputs['mota'] : '';
             $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
             $model = GiaDvGdDt::join('diabanhd','diabanhd.district','=','giadvgddt.district')
+                ->where('diabanhd.level','H')
                 ->select('giadvgddt.*','diabanhd.diaban');
             if($inputs['nam'] != 'all')
                 $model = $model->where('giadvgddt.nam',$inputs['nam']);
