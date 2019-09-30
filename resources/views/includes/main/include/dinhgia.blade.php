@@ -9,11 +9,34 @@
             </a>
             <ul class="sub-menu" style="display: none;">
                 @if(canGeneral('giacldat','index'))
-                    @if(can('giacldat','index'))
+                    {{--Giá đất địa bàn--}}
+                    <li class="">
+                        <a href="">
+                            <span class="title">Giá đất theo địa bàn</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            @if(can('dmgiacldat','index'))
+                                <li>
+                                    <a href="{{url('thongtugiadatdiaban')}}">Thông tư giá đất địa bàn</a>
+                                </li>
+                            @endif
+                            @if(can('giacldat','index'))
+                                <li>
+                                    <a href="{{url('giadatdiaban')}}">
+                                        Giá đất theo địa bàn
+                                    </a>
+                                </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
+                @if(canGeneral('giacldatf','index'))
+                    @if(can('giacldatf','index'))
                         {{--Giá đất địa bàn--}}
                         <li class="tooltips" data-container="body" data-placement="right" data-html="true"
                             data-original-title="Giá đất theo địa bàn">
-                            <a href="{{url('giadatdiaban')}}">
+                            <a href="{{url('giadatdiabanfile')}}">
                                 Giá đất theo địa bàn
                             </a>
                         </li>

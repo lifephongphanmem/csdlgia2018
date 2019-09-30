@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\manage\thuetn;
 
+use App\Model\manage\dinhgia\thuetn\DmThueTn;
 use App\Model\manage\dinhgia\thuetn\NhomThueTn;
 use App\Model\manage\dinhgia\thuetn\ThueTaiNguyen;
 use Illuminate\Http\Request;
@@ -224,6 +225,32 @@ class ThueTaiNguyenController extends Controller
             File::Delete($path);
             return redirect('thuetainguyen?&nam='.$inputs['nam'].'&manhom='.$inputs['manhom']);
         }else
+            return view('errors.notlogin');
+    }
+
+    public function export(Request $request){
+        if (Session::has('admin')) {
+            if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+                $inputs = $request->all();
+                $model_nhom = NhomThueTn::where('manhom',$inputs['manhomex'])->first();
+                $model = DmThueTn::where('manhom',$inputs['manhomex'])->get();
+                Excel::create('DMTHUETN', function ($excel) use ($model,$model_nhom) {
+                    $excel->sheet('DMTHUETN', function ($sheet) use ($model,$model_nhom) {
+                        $sheet->loadView('manage.dinhgia.thuetn.excel.danhmuc')
+                            ->with('model', $model)
+                            ->with('model_nhom',$model_nhom)
+                            ->with('pageTitle', 'DMTHUETN');
+                        //$sheet->setPageMargin(0.25);
+                        $sheet->setAutoSize(false);
+                        $sheet->setFontFamily('Tahoma');
+                        $sheet->setFontBold(false);
+
+                        //$sheet->setColumnFormat(array('D' => '#,##0.00'));
+                    });
+                })->download('xls');
+            }else
+                return view('errors.perm');
+        } else
             return view('errors.notlogin');
     }
 

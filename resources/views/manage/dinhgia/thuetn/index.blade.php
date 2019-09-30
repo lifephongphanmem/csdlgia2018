@@ -129,6 +129,8 @@
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#check-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;
                             Công bố/ Hủy</button>
                         @endif
+                        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-filemau"><i class="fa fa-cloud-download"></i>
+                            &nbsp;Xuất dữ liệu</button>
                     </div>
                 </div>
                 <hr>

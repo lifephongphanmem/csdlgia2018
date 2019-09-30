@@ -34,14 +34,14 @@ class ReportsThueTnController extends Controller
             foreach($model as $tn){
                 $modellk = ThueTaiNguyen::where('manhom',$inputs['manhom'])
                     ->where('matn',$tn->matn)
-                    ->where('nam','namlk')
-                    ->firsT();
+                    ->where('nam',$inputs['namlk'])
+                    ->first();
                 $modelbc = ThueTaiNguyen::where('manhom',$inputs['manhom'])
                     ->where('matn',$tn->matn)
-                    ->where('nam','nambc')
-                    ->firsT();
+                    ->where('nam',$inputs['nambc'])
+                    ->first();
                 $tn->dongialk = isset($modellk) ? $modellk->dongia : 0;
-                $tn->dongiabc = isset($modelbc) ?$modelbc->dongia : 0;
+                $tn->dongiabc = isset($modelbc) ? $modelbc->dongia : 0;
             }
             return view('manage.dinhgia.thuetn.reports.Bc1')
                 ->with('model',$model)

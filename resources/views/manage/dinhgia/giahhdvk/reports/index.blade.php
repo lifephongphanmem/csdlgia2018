@@ -26,7 +26,10 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <ol>
+                                @if(can('thgiahhdvk','tonghop'))
                                 <li><a data-target="#pl1-thoai-confirm" data-toggle="modal" data-href="">Báo cáo giá bán lẻ hàng hóa thị trường</a> </li>
+                                @endif
+                                <li><a data-target="#pl2-thoai-confirm" data-toggle="modal" data-href="">Báo cáo giá hàng hóa thị trường theo tháng</a> </li>
                             </ol>
                         </div>
                     </div>

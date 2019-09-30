@@ -65,6 +65,9 @@
     function clickCheckMulti(){
         $('#frm_checkmulti').submit();
     }
+    function clickExport(){
+        $('#frm_export').submit();
+    }
 </script>
 <!--Modal Delete-->
 <div id="delete-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
@@ -448,7 +451,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="control-label">Địa bàn<span class="require">*</span></label>
+                            <label class="control-label">Nhóm thuế tài nguyên <span class="require">*</span></label>
                             <select class="form-control" name="manhomcheck" id="manhomcheck">
                                 <option value="All">--Tất cả các nhóm--</option>
                                 @foreach($nhoms as $nhom)
@@ -462,6 +465,38 @@
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
                 <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickCheckMulti()">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+    {!! Form::close() !!}
+</div>
+<!--Modal File mẫu-->
+<div id="modal-filemau" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade bs-modal-lg">
+    {!! Form::open(['url'=>'/thuetainguyen/export','id' => 'frm_export','method'=>'post'])!!}
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                <h4 id="modal-header-primary-label" class="modal-title">Xuất danh mục mặt hàng thuế tài nguyên</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label>Phân loại nhóm tài nuyên</label>
+                            <select class="form-control" name="manhomex" id="manhomex">
+                                @foreach($nhoms as $nhom)
+                                    <option value="{{$nhom->manhom}}">{{$nhom->tennhom}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickExport()">Đồng ý</button>
             </div>
         </div>
     </div>

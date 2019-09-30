@@ -96,6 +96,10 @@
                                 </thead>
                                 <tbody>
                                 <tr>
+                                    <td><input type="checkbox" {{ (isset($permission->thgiahhdvk->tonghop) && $permission->thgiahhdvk->tonghop == 1) ? 'checked' : '' }} value="1" name="roles[thgiahhdvk][tonghop]"/></td>
+                                    <td>Tổng hợp</td>
+                                </tr>
+                                <tr>
                                     <td><input type="checkbox" {{ (isset($permission->thgiahhdvk->baocao) && $permission->thgiahhdvk->baocao == 1) ? 'checked' : '' }} value="1" name="roles[thgiahhdvk][baocao]"/></td>
                                     <td>Báo cáo tổng hợp</td>
                                 </tr>

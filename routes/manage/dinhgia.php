@@ -32,6 +32,9 @@ Route::post('giadatdiaban/huycongbo','GiaDatDiaBanController@huycongbo');
 Route::post('giadatdiaban/checkmulti','GiaDatDiaBanController@checkmulti');
 Route::get('giadatdiaban/prints','GiaDatDiaBanController@bcgiadatdiaban');
 
+Route::resource('thongtugiadatdiaban','manage\giadatdiaban\TtGiaDatDiaBanController');
+Route::post('thongtugiadatdiaban/delete','manage\giadatdiaban\TtGiaDatDiaBanController@destroy');
+
 
 //Lệ phí trước bạ
 Route::resource('nhomlephitruocba','NhomLePhiTruocBaController');
@@ -119,6 +122,7 @@ Route::post('thuetainguyen/huycongbo','manage\thuetn\ThueTaiNguyenController@huy
 Route::post('thuetainguyen/checkmulti','manage\thuetn\ThueTaiNguyenController@checkmulti');
 Route::get('thuetainguyen/nhandulieutuexcel','manage\thuetn\ThueTaiNguyenController@nhandulieutuexcel');
 Route::post('thuetainguyen/import_excel','manage\thuetn\ThueTaiNguyenController@importexcel');
+Route::post('thuetainguyen/export','manage\thuetn\ThueTaiNguyenController@export');
 
 Route::get('baocaothuetainguyen','manage\thuetn\ReportsThueTnController@index');
 Route::post('/baocaothuetainguyen/bc1','manage\thuetn\ReportsThueTnController@Bc1');
@@ -168,6 +172,7 @@ Route::get('/giahhdvkhacct/update','GiaHhDvKCtController@update');
 
 Route::get('reportshanghoadichvukhac','ReportsHhDvKController@index');
 Route::post('reportshanghoadichvukhac/bc1','ReportsHhDvKController@bc1');
+Route::post('reportshanghoadichvukhac/bc2','ReportsHhDvKController@bc2');
         //Tổng hợp
 Route::resource('tonghopgiahhdvk','ThGiaHhDvKController');
 Route::post('tonghopgiahhdvk/create','ThGiaHhDvKController@create');

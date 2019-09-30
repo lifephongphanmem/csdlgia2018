@@ -25,7 +25,7 @@
                     </li>
                 @endif
                 @if(session('admin')->level == 'H' || session('admin')->level == 'T')
-                    @if(can('thgiahhdvk','baocao'))
+                    @if(can('thgiahhdvk','tonghop'))
                     <li>
                         <a href="{{url('tonghopgiahhdvk')}}">Tổng hợp giá HH-DV khác</a>
                     </li>

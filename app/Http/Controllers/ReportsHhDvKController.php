@@ -81,4 +81,33 @@ class ReportsHhDvKController extends Controller
         }else
             return view('errors.notlogin');
     }
+
+    public function bc2(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $model = DmHhDvK::where('manhom',$inputs['manhom'])
+                ->where('theodoi','TD')
+                ->get();
+            $modelhhdvk = GiaHhDvK::where('thang',$inputs['thang'])
+                ->where('nam',$inputs['nam'])
+                ->wherein('trangthai',['HT','CB'])
+                ->select('mahs')
+                ->get();
+
+            $ttgiahh = GiaHhDvKCt::wherein('mahs',$mahslk->toArray())
+                ->where('gia','<>',0)
+                ->get();
+            foreach($model as $ct){
+                $ttgia = $ttgiahh->where('mahhdv',$ct->mahhdv)->avg('gia');
+                $ct->gia = $ttgia;
+            }
+            $tennhom = NhomHhDvK::where('manhom',$inputs['manhom'])->first()->tennhom;
+            return view('manage.dinhgia.giahhdvk.reports.bc2')
+                ->with('tennhom',$tennhom)
+                ->with('inputs',$inputs)
+                ->with('model',$model)
+                ->with('pageTitle','Báo cáo giá hàng hóa, dịch vụ theo tháng');
+        }else
+            return view('errors.notlogin');
+    }
 }
