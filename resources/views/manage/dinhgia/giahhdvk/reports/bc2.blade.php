@@ -58,10 +58,6 @@
             <th style="text-align: center" width="10%" rowspan="2">Giá</th>
             <th style="text-align: center" width="10%" rowspan="2">Ghi chú</th>
         </tr>
-        <tr>
-            <th>Mức</th>
-            <th>%</th>
-        </tr>
         <tr style="font-size: 10px">
             <th>1</th>
             <th>2</th>
@@ -75,7 +71,7 @@
     <tbody>
         <tr>
             <td></td>
-            <td colspan="7" style="font-weight: bold; text-align: left">{{$tennhom}}</td>
+            <td colspan="6" style="font-weight: bold; text-align: left">{{$tennhom}}</td>
         </tr>
         @foreach($model as $key=>$tt)
             <tr>
