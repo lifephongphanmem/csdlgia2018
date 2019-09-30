@@ -10,6 +10,7 @@
             <ul class="sub-menu" style="display: none;">
                 @if(canGeneral('giacldat','index'))
                     {{--Giá đất địa bàn--}}
+                    @if(can('giacldat','index'))
                     <li class="">
                         <a href="">
                             <span class="title">Giá đất theo địa bàn</span>
@@ -21,7 +22,7 @@
                                     <a href="{{url('thongtugiadatdiaban')}}">Thông tư giá đất địa bàn</a>
                                 </li>
                             @endif
-                            @if(can('giacldat','index'))
+                            @if(can('kkgiacldat','index'))
                                 <li>
                                     <a href="{{url('giadatdiaban')}}">
                                         Giá đất theo địa bàn
@@ -30,6 +31,7 @@
                             @endif
                         </ul>
                     </li>
+                    @endif
                 @endif
                 @if(canGeneral('giacldatf','index'))
                     @if(can('giacldatf','index'))
