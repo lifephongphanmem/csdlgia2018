@@ -299,6 +299,7 @@ class GiaDvGdDtController extends Controller
             $diabans = DiaBanHd::where('level','H')
                 ->get();
             $model = GiaDvGdDt::join('diabanhd','diabanhd.district','=','giadvgddt.district')
+                ->where('diabanhd.level','H')
                 ->select('giadvgddt.*','diabanhd.diaban');
             if($inputs['nam'] != 'all')
                 $model = $model->where('giadvgddt.nam',$inputs['nam']);
