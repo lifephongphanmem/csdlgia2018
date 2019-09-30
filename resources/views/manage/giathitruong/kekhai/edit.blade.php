@@ -44,7 +44,7 @@
                     $('#edit_tenhh').val(data.tenhh);
                     $('#edit_dacdiemkt').val(data.dacdiemkt);
                     $('#edit_dvt').val(data.dvt);
-                    $('#edit_dongia').val(data.edit_dongia);
+                    $('#edit_dongia').val(data.dongia);
                     $('#edit_loaigia').val(data.loaigia);
                     $('#edit_nguontt').val(data.nguontt);
                     $('#edit_ghichu').val(data.ghichu);
@@ -193,7 +193,7 @@
                                             <td style="text-align: center">{{$tt->dacdiemkt}}</td>
                                             <td style="text-align: center">{{$tt->dvt}}</td>
                                             <td style="text-align: center">{{$tt->loaigia}}</td>
-                                            <td style="text-align: right;font-weight: bold">{{number_format($tt->gia)}}</td>
+                                            <td style="text-align: right;font-weight: bold">{{number_format($tt->dongia)}}</td>
                                             <td>{{$tt->nguontt}}</td>
                                             <td>{{$tt->ghichu}}</td>
                                             <td>
