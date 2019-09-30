@@ -85,6 +85,7 @@ class ReportsHhDvKController extends Controller
     public function bc2(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
+            dd($inputs);
             $model = DmHhDvK::where('manhom',$inputs['manhom'])
                 ->where('theodoi','TD')
                 ->get();
