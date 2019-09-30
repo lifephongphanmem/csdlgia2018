@@ -88,7 +88,7 @@ class ReportsHhDvKController extends Controller
             $model = DmHhDvK::where('manhom',$inputs['manhom'])
                 ->where('theodoi','TD')
                 ->get();
-            $modelhhdvk = GiaHhDvK::where('thang',$inputs['thang'])
+            $mahslk = GiaHhDvK::where('thang',$inputs['thang'])
                 ->where('nam',$inputs['nam'])
                 ->wherein('trangthai',['HT','CB'])
                 ->select('mahs')

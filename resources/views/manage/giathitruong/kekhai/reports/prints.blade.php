@@ -90,7 +90,7 @@
                 <td>{{$tt->dacdiemkt}}</td>
                 <td style="text-align: center">{{$tt->dvt}}</td>
                 <td style="text-align: center">{{$tt->loaigia}}</td>
-                <td style="text-align: right;font-weight: bold">{{number_format($tt->gia)}}</td>
+                <td style="text-align: right;font-weight: bold">{{number_format($tt->dongia)}}</td>
                 <td>{{$tt->nguontt}}</td>
                 <td>{{$tt->ghichu}}</td>
             </tr>
