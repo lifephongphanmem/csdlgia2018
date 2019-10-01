@@ -77,6 +77,7 @@ class DvKcbController extends Controller
                 $modelctnew->district = $inputs['district'];
                 $modelctnew->thoidiem = getDateToDb($data[$i][$inputs['thoidiem']]);
                 $modelctnew->tenbv = $data[$i][$inputs['tenbv']];
+                $modelctnew->mota = $data[$i][$inputs['mota']];
                 $modelctnew->dongia = (isset($data[$i][$inputs['dongia']]) && $data[$i][$inputs['dongia']] != '' ? chkDbl($data[$i][$inputs['dongia']]) : 0);
                 $modelctnew->dvt = $data[$i][$inputs['dvt']];
                 $modelctnew->ttqd = $data[$i][$inputs['ttqd']];
@@ -143,6 +144,7 @@ class DvKcbController extends Controller
             $model->thoidiem = getDateToDb($inputs['edit_thoidiem']);
             $model->tenbv = $inputs['edit_tenbv'];
             $model->dongia = chkDbl($inputs['edit_dongia']);
+            $model->mota = $inputs['edit_mota'];
             $model->dvt = $inputs['edit_dvt'];
             $model->ttqd = $inputs['edit_ttqd'];
             $model->ghichu = $inputs['edit_ghichu'];
@@ -162,6 +164,7 @@ class DvKcbController extends Controller
             $model->thoidiem = getDateToDb($inputs['add_thoidiem']);
             $model->tenbv = $inputs['add_tenbv'];
             $model->dongia = chkDbl($inputs['add_dongia']);
+            $model->mota = $inputs['add_mota'];
             $model->dvt = $inputs['add_dvt'];
             $model->ttqd = $inputs['add_ttqd'];
             $model->ghichu = $inputs['add_ghichu'];

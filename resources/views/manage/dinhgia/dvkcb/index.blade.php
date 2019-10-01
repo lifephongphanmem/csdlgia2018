@@ -63,7 +63,8 @@
                     $('#edit_thoidiem').val(data.date);
                     $('#edit_district').val(data.district);
                     $('#edit_mota').val(data.mota);
-                    $('#edit_dongia').val(data.thanhtien);
+                    $('#edit_tenbv').val(data.tenbv);
+                    $('#edit_dongia').val(data.dongia);
                     $('#edit_dvt').val(data.dvt);
                     $('#edit_ttqd').val(data.ttqd);
                     $('#edit_ghichu').val(data.ghichu);
