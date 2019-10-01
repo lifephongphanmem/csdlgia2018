@@ -50,7 +50,7 @@
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <thead>
         <tr>
-            <th width="2%" style="text-align: center" rowspan="2">STT</th>
+            <th width="2%" style="text-align: center">STT</th>
             <th style="text-align: center">Mã hàng hóa<br> dịch vụ</th>
             <th style="text-align: center" >Tên hàng hóa dịch vụ</th>
             <th style="text-align: center" >Đặc điểm kỹ thuật</th>

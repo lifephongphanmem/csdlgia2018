@@ -62,15 +62,22 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
+                                                            <label>Quận/ huyện</label>
+                                                            {!!Form::text('district', $district->diaban, array('id' => 'district','class' => 'form-control','disabled'))!!}
+                                                            {!!Form::hidden('district', $district->diaban, array('id' => 'district','class' => 'form-control'))!!}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
                                                         <label>Địa bàn</label>
-                                                        <select class="form-control" name="district" id="district">
-                                                            @foreach($districts as $district)
-                                                                <option value="{{$district->district}}">{{$district->diaban}}</option>
+                                                        <select class="form-control" name="town" id="town">
+                                                            @foreach($towns as $town)
+                                                                <option value="{{$town->town}}">{{$town->diaban}}</option>
                                                             @endforeach
                                                         </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                         <label>Phân loại</label>
                                                         <select class="form-control" name="manhomduan" id="manhomduan">
@@ -101,7 +108,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <h4>Thông tin quy định</h4>
+                                                    <h4>Thông tin địa chính</h4>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Loại đất<span class="require">*</span></label>
@@ -129,56 +136,80 @@
 
                                                 </div>
                                                 <div class="row">
-                                                    <h4>Thông tin địa chính</h4>
+                                                    <h4>Quyết định bảng giá đất của tỉnh</h4>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Đất ở<span class="require">*</span></label>
-                                                            {!!Form::text('qddato', 'H', array('id' => 'qddato','class' => 'form-control required'))!!}
+                                                            {!!Form::text('qdgiadato', 'H', array('id' => 'qdgiadato','class' => 'form-control required'))!!}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Đất TMDV<span class="require">*</span></label>
+                                                            {!!Form::text('qdgiadattmdv', 'I', array('id' => 'qdgiadattmdv','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Đất SXKD<span class="require">*</span></label>
-                                                            {!!Form::text('qddatsxkd', 'I', array('id' => 'qddatsxkd','class' => 'form-control required'))!!}
+                                                            {!!Form::text('qdgiadatsxkd', 'I', array('id' => 'qdgiadatsxkd','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Đất NN - KDC<span class="require">*</span></label>
-                                                            {!!Form::text('qddatnnkdc', 'J', array('id' => 'qddatnnkdc','class' => 'form-control required'))!!}
+                                                            <label class="control-label">Đất NN trổng cây lâu năm, hàng năm<span class="require">*</span></label>
+                                                            {!!Form::text('qdgiadatnn', 'J', array('id' => 'qdgiadatnn','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Đất NN - ngoài KDC<span class="require">*</span></label>
-                                                            {!!Form::text('qddatnnnkdc', 'K', array('id' => 'qddatnnnkdc','class' => 'form-control required'))!!}
+                                                            <label class="control-label">Đất nuôi trồng thủy sản<span class="require">*</span></label>
+                                                            {!!Form::text('qdgiadatnuoits', 'K', array('id' => 'qdgiadatnuoits','class' => 'form-control required'))!!}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Đất làm muối<span class="require">*</span></label>
+                                                            {!!Form::text('qdgiadatmuoi', 'K', array('id' => 'qdgiadatmuoi','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <h4>Thông tin kết quả thẩm định (sau khi giảm trừ)</h4>
+                                                    <h4>Quyết định phê duyệt giá đất của tỉnh</h4>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Đất ở<span class="require">*</span></label>
-                                                            {!!Form::text('tddato', 'L', array('id' => 'tddato','class' => 'form-control required'))!!}
+                                                            {!!Form::text('qdpddato', 'H', array('id' => 'qdpddato','class' => 'form-control required'))!!}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Đất TMDV<span class="require">*</span></label>
+                                                            {!!Form::text('qdpddattmdv', 'I', array('id' => 'qdpddattmdv','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Đất SXKD<span class="require">*</span></label>
-                                                            {!!Form::text('tddatsxkd', 'M', array('id' => 'tddatsxkd','class' => 'form-control required'))!!}
+                                                            {!!Form::text('qdpddatsxkd', 'I', array('id' => 'qdpddatsxkd','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Đất NN - KDC<span class="require">*</span></label>
-                                                            {!!Form::text('tddatnnkdc', 'N', array('id' => 'tddatnnkdc','class' => 'form-control required'))!!}
+                                                            <label class="control-label">Đất NN trổng cây lâu năm, hàng năm<span class="require">*</span></label>
+                                                            {!!Form::text('qdpddatnn', 'J', array('id' => 'qdpddatnn','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Đất NN - ngoài KDC<span class="require">*</span></label>
-                                                            {!!Form::text('tddatnnnkdc', 'O', array('id' => 'tddatnnnkdc','class' => 'form-control required'))!!}
+                                                            <label class="control-label">Đất nuôi trồng thủy sản<span class="require">*</span></label>
+                                                            {!!Form::text('qdpddatnuoits', 'K', array('id' => 'qdpddatnuoits','class' => 'form-control required'))!!}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Đất làm muối<span class="require">*</span></label>
+                                                            {!!Form::text('qdpddatmuoi', 'K', array('id' => 'qdpddatmuoi','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                 </div>

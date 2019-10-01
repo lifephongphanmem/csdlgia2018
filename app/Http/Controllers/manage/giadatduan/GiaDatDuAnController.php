@@ -341,15 +341,24 @@ class GiaDatDuAnController extends Controller
             return view('errors.notlogin');
     }
 
-    public function nhandulieutuexcel(){
+    public function nhandulieutuexcel(Request $request){
         if (Session::has('admin')) {
-            $districts =DiaBanHd::where('level','H')
-                ->get();
-            $modeldm = DmGiaDatDuAn::all();
-            return view('manage.dinhgia.giadatduan.importexcel')
-                ->with('districts',$districts)
-                ->with('modeldm',$modeldm)
-                ->with('pageTitle','Nhận dữ liệu giá đất cụ thể của dự án từ file Excel');
+            $inputs = $request->all();
+            $district = DiaBanHd::where('level','H')
+                ->where('district',$inputs['mahuyen'])
+                ->first();
+            if(isset($district)) {
+                $towns = DiaBanHd::where('level', 'X')
+                    ->where('district', $inputs['mahuyen'])
+                    ->get();
+                $modeldm = DmGiaDatDuAn::all();
+                return view('manage.dinhgia.giadatduan.importexcel')
+                    ->with('district', $district)
+                    ->with('towns', $towns)
+                    ->with('modeldm', $modeldm)
+                    ->with('pageTitle', 'Nhận dữ liệu giá đất cụ thể của dự án từ file Excel');
+            }else
+                dd('Thông tin về địa bàn không đúng!!!');
 
         } else
             return view('errors.notlogin');
@@ -374,6 +383,7 @@ class GiaDatDuAnController extends Controller
                 $modelctnew = new GiaDatDuAn();
                 $modelctnew->nam = $inputs['nam'];
                 $modelctnew->district = $inputs['district'];
+                $modelctnew->town = $inputs['town'];
                 $modelctnew->manhomduan = $inputs['manhomduan'];
                 $modelctnew->tenduan = $data[$i][$inputs['tenduan']];
                 $modelctnew->thoidiem = getDateToDb($data[$i][$inputs['thoidiem']]);
@@ -382,19 +392,46 @@ class GiaDatDuAnController extends Controller
                 $modelctnew->tenduong = $data[$i][$inputs['tenduong']];
                 $modelctnew->loaiduong = $data[$i][$inputs['loaiduong']];
                 $modelctnew->vitri = $data[$i][$inputs['vitri']];
-                $modelctnew->qddato = $data[$i][$inputs['qddato']];
-                $modelctnew->qddatsxkd = $data[$i][$inputs['qddatsxkd']];
-                $modelctnew->qddatnnkdc = $data[$i][$inputs['qddatnnkdc']];
-                $modelctnew->qddatnnnkdc = $data[$i][$inputs['qddatnnnkdc']];
-                $modelctnew->tddato = $data[$i][$inputs['tddato']];
-                $modelctnew->tddatsxkd = $data[$i][$inputs['tddatsxkd']];
-                $modelctnew->tddatnnkdc = $data[$i][$inputs['tddatnnkdc']];
-                $modelctnew->tddatnnnkdc = $data[$i][$inputs['tddatnnnkdc']];
+
+                $modelctnew->qdgiadato = $data[$i][$inputs['qdgiadato']];
+                $modelctnew->qdgiadattmdv = $data[$i][$inputs['qdgiadattmdv']];
+                $modelctnew->qdgiadatsxkd = $data[$i][$inputs['qdgiadatsxkd']];
+                $modelctnew->qdgiadatnn = $data[$i][$inputs['qdgiadatnn']];
+                $modelctnew->qdgiadatnuoits = $data[$i][$inputs['qdgiadatnuoits']];
+                $modelctnew->qdgiadatmuoi = $data[$i][$inputs['qdgiadatmuoi']];
+
+                $modelctnew->qdpddato = $data[$i][$inputs['qdpddato']];
+                $modelctnew->qdpddattmdv = $data[$i][$inputs['qdpddattmdv']];
+                $modelctnew->qdpddatsxkd = $data[$i][$inputs['qdpddatsxkd']];
+                $modelctnew->qdpddatnn = $data[$i][$inputs['qdpddatnn']];
+                $modelctnew->qdpddatnuoits = $data[$i][$inputs['qdpddatnuoits']];
+                $modelctnew->qdpddatmuoi = $data[$i][$inputs['qdpddatmuoi']];
                 $modelctnew->save();
             }
             File::Delete($path);
             return redirect('thongtingiadatduan?&nam='.$inputs['nam'].'&district='.$inputs['district'].'&manhomduan='.$inputs['manhomduan']);
         }else
+            return view('errors.notlogin');
+    }
+
+    public function export(){
+        if (Session::has('admin')) {
+            if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+                Excel::create('GiaDatDuAn', function ($excel)  {
+                    $excel->sheet('GiaDatDuAn', function ($sheet) {
+                        $sheet->loadView('manage.dinhgia.giadatduan.excel.mauexcel')
+                            ->with('pageTitle', 'GiaDatDuAn');
+                        //$sheet->setPageMargin(0.25);
+                        $sheet->setAutoSize(false);
+                        $sheet->setFontFamily('Tahoma');
+                        $sheet->setFontBold(false);
+
+                        //$sheet->setColumnFormat(array('D' => '#,##0.00'));
+                    });
+                })->download('xls');
+            }else
+                return view('errors.perm');
+        } else
             return view('errors.notlogin');
     }
 }

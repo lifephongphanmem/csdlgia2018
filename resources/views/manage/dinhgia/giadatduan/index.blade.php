@@ -100,9 +100,10 @@
                             @if($inputs['mahuyen'] != 'all')
                                 <a href="{{url('thongtingiadatduan/create?&mahuyen='.$inputs['mahuyen'])}}" class="btn btn-default btn-sm">
                                     <i class="fa fa-plus"></i> Thêm mới </a>
-                            @endif
-                            <a href="{{url('thongtingiadatduan/nhandulieutuexcel')}}" class="btn btn-default btn-sm">
+
+                            <a href="{{url('thongtingiadatduan/nhandulieutuexcel?&mahuyen='.$inputs['mahuyen'])}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-file-excel-o"></i> Nhận dữ liệu</a>
+                            @endif
                         @endif
 
                         @if(can('kkgiadatduan','congbo'))
@@ -110,6 +111,7 @@
                         @endif
                         <a href="{{url('thongtingiadatduan/print?&mahuyen='.$inputs['mahuyen'].'&nam='.$inputs['nam'].'&manhomduan='.$inputs['manhomduan'].'&tenduan='.$inputs['tenduan']).'&maxa='.$inputs['maxa']}}"
                            class="btn btn-default btn-sm" target="_blank"><i class="fa fa-print"></i> Print </a>
+                        <a href="{{url('thongtingiadatduan/export')}}" class="btn btn-default btn-sm"><i class="fa fa-cloud-download"></i> File Excel mẫu </a>
                     </div>
                 </div>
                 <hr>

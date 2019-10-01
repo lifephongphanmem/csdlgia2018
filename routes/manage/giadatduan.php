@@ -5,6 +5,8 @@ Route::get('thongtingiadatduan/print','manage\giadatduan\GiaDatDuAnController@pr
 Route::get('baocaogiadatduan','manage\giadatduan\GiaDatDuAnController@baocaotonghop');
 Route::post('baocaogiadatduan/phuluc08','manage\giadatduan\GiaDatDuAnController@phuluc08');
 Route::get('timkiemgiadatduan','manage\giadatduan\GiaDatDuAnController@search');
+Route::get('thongtingiadatduan/export','manage\giadatduan\GiaDatDuAnController@export');
+
 Route::resource('thongtingiadatduan','manage\giadatduan\GiaDatDuAnController');
 
 
