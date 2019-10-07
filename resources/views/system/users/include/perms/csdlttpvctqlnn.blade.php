@@ -34,7 +34,7 @@
                                     <tr>
                                         <th class="table-checkbox" width="5%">
                                         </th>
-                                        <th>TT phục vụ công tác QLNN về giá</th>
+                                        <th>DM TT phục vụ công tác QLNN về giá</th>
 
                                     </tr>
                                     </thead>
@@ -64,7 +64,7 @@
                                     <tr>
                                         <th class="table-checkbox" width="5%">
                                         </th>
-                                        <th>DM TT phục vụ công tác QLNN về giá</th>
+                                        <th>TT phục vụ công tác QLNN về giá</th>
 
                                     </tr>
                                     </thead>
