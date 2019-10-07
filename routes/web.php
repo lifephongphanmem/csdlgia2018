@@ -31,6 +31,7 @@ include('manage/muataisan.php');
 include('manage/chisogiatieudung.php');
 include('manage/giagocvlxd.php');
 include('manage/giadatduan.php');
+include('manage/ttpvctqlnn.php');
 
 //End Manage
 

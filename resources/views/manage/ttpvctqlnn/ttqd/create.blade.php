@@ -12,7 +12,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Văn bản quản lý nhà nước về giá, phí lệ phí<small> thêm mới</small>
+        {{$modeldm->mota}}<small> thêm mới</small>
     </h3>
     <!-- END PAGE HEADER-->
     <!-- BEGIN DASHBOARD STATS -->
@@ -22,30 +22,31 @@
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    {!! Form::open(['url'=>'vanbanqlnnvegia', 'files'=>true,'class'=>'horizontal-form','id'=>'create_ttttqd']) !!}
+                    {!! Form::open(['url'=>'ttpvctqlnn', 'files'=>true,'class'=>'horizontal-form','id'=>'create_ttttqd']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Phân loại văn bản<span class="require">*</span></label>
-                                        {!! Form::select(
-                                        'phanloai',
-                                        array(
-                                        'gia'=>'Văn bản về giá',
-                                        'philephi'=>'Văn bản phí, lệ phí')
-                                        ,null,
-                                        array('id' => 'phanloai', 'class' => 'form-control'))
-                                        !!}
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Loại văn bản<span class="require">*</span></label>
-                                        {!! Form::select('loaivb',getLoaiVbQlNn(),null, ['id' => 'loaivb','class' => 'form-control required']) !!}
-                                    </div>
-                                </div>
-                            </div>
+                            {{--<div class="row">--}}
+                                {{--<div class="col-md-6">--}}
+                                    {{--<div class="form-group">--}}
+                                        {{--<label class="control-label">Phân loại văn bản<span class="require">*</span></label>--}}
+                                        {{--{!! Form::select(--}}
+                                        {{--'phanloai',--}}
+                                        {{--array(--}}
+                                        {{--'gia'=>'Văn bản về giá',--}}
+                                        {{--'philephi'=>'Văn bản phí, lệ phí')--}}
+                                        {{--,null,--}}
+                                        {{--array('id' => 'phanloai', 'class' => 'form-control'))--}}
+                                        {{--!!}--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-md-6">--}}
+                                    {{--<div class="form-group">--}}
+                                        {{--<label class="control-label">Loại văn bản<span class="require">*</span></label>--}}
+                                        {{--{!! Form::select('loaivb',getLoaiVbQlNn(),null, ['id' => 'loaivb','class' => 'form-control required']) !!}--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {!!Form::text('phanloai',$inputs['phanloai'], array('id' => 'phanloai','class' => 'form-control'))!!}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -133,7 +134,7 @@
                 </div>
             </div>
             <div class="col-md-12" style="text-align: center">
-                <a href="{{url('vanbanqlnnvegia')}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('ttpvctqlnn?&phanloai='.$inputs['phanloai'])}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn default"> Hủy</button>
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Thêm mới</button>
             </div>

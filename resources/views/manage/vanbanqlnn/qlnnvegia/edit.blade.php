@@ -13,7 +13,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Văn bản quản lý nhà nước về giá, phí lệ phí<small> thêm mới</small>
+        Văn bản quản lý nhà nước về giá, phí lệ phí<small> chỉnh sửa</small>
     </h3>
     <!-- END PAGE HEADER-->
     <!-- BEGIN DASHBOARD STATS -->
@@ -29,7 +29,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Ký hiệu văn bản<span class="require">*</span></label>
+                                        <label class="control-label">Phân loại văn bản<span class="require">*</span></label>
                                         {!! Form::select(
                                         'phanloai',
                                         array(
