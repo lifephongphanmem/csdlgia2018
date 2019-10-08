@@ -1,0 +1,4 @@
+url: democsdlgia.phanmemcuocsong.com
+
+useradmin: admin
+pass: 123456
