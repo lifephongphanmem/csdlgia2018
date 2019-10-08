@@ -8,6 +8,19 @@ Route::get('dmhanghoacpi/addhanghoa','dmhanghoa_cpiController@addhanghoa');
 Route::get('dmhanghoacpi/editnhomhh','dmhanghoa_cpiController@editnhomhh');
 Route::post('dmhanghoacpi/delete','dmhanghoa_cpiController@destroy');
 
+Route::get('dmbaocaothvegia','manage\vanbanplvegia\baocaoth\BcThVeGiaDmController@index');
+Route::post('dmbaocaothvegia','manage\vanbanplvegia\baocaoth\BcThVeGiaDmController@store');
+Route::get('dmbaocaothvegia/edit','manage\vanbanplvegia\baocaoth\BcThVeGiaDmController@edit');
+Route::post('dmbaocaothvegia/update','manage\vanbanplvegia\baocaoth\BcThVeGiaDmController@update');
+
+Route::get('baocaothvegia','manage\vanbanplvegia\baocaoth\BcThVeGiaController@index');
+Route::get('baocaothvegia/create','manage\vanbanplvegia\baocaoth\BcThVeGiaController@create');
+Route::post('baocaothvegia','manage\vanbanplvegia\baocaoth\BcThVeGiaController@store');
+Route::get('baocaothvegia/{id}/edit','manage\vanbanplvegia\baocaoth\BcThVeGiaController@edit');
+Route::patch('baocaothvegia/{id}','manage\vanbanplvegia\baocaoth\BcThVeGiaController@update');
+Route::get('baocaothvegia/dinhkem','manage\vanbanplvegia\baocaoth\BcThVeGiaController@show');
+Route::post('baocaothvegia/delete','manage\vanbanplvegia\baocaoth\BcThVeGiaController@destroy');
+
 Route::get('hsgiacpi/danhsach','hsgia_cpiController@index');
 Route::get('hsgiacpi/create','hsgia_cpiController@create');
 Route::get('hsgiacpi/edit','hsgia_cpiController@edit');

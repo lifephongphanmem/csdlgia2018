@@ -28,6 +28,7 @@
                             </div>
                         </div>
                         <div class="row">
+                            @if(canGeneral('vbgia','index'))
                             <div class="col-md-3">
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead class="action">
@@ -59,6 +60,8 @@
                                     </tbody>
                                 </table>
                             </div>
+                            @endif
+                            @if(canGeneral('chisogiatieudung','index'))
                             <div class="col-md-3">
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead class="action">
@@ -90,6 +93,69 @@
                                     </tbody>
                                 </table>
                             </div>
+                            @endif
+                            @if(canGeneral('bcthvegia','index'))
+                            <div class="col-md-3">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead class="action">
+                                    <tr>
+                                        <th class="table-checkbox" width="5%">
+                                        </th>
+                                        <th>DM báo cáo tổng hợp về giá</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($permission->dmbcthvegia->index) && $permission->dmbcthvegia->index == 1) ? 'checked' : '' }} value="1" name="roles[dmbcthvegia][index]"/></td>
+                                        <td>Xem</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($permission->dmbcthvegia->create) && $permission->dmbcthvegia->create == 1) ? 'checked' : '' }} value="1" name="roles[dmbcthvegia][create]"/></td>
+                                        <td>Thêm mới</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($permission->dmbcthvegia->edit) && $permission->dmbcthvegia->edit == 1) ? 'checked' : '' }} value="1" name="roles[dmbcthvegia][edit]"/></td>
+                                        <td>Chỉnh sửa</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($permission->dmbcthvegia->delete) && $permission->dmbcthvegia->delete == 1) ? 'checked' : '' }} value="1" name="roles[dmbcthvegia][delete]"/></td>
+                                        <td>Xóa</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-3">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead class="action">
+                                    <tr>
+                                        <th class="table-checkbox" width="5%">
+                                        </th>
+                                        <th>Báo cáo tổng hợp về giá</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($permission->bcthvegia->index) && $permission->bcthvegia->index == 1) ? 'checked' : '' }} value="1" name="roles[bcthvegia][index]"/></td>
+                                        <td>Xem</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($permission->bcthvegia->create) && $permission->bcthvegia->create == 1) ? 'checked' : '' }} value="1" name="roles[bcthvegia][create]"/></td>
+                                        <td>Thêm mới</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($permission->bcthvegia->edit) && $permission->bcthvegia->edit == 1) ? 'checked' : '' }} value="1" name="roles[bcthvegia][edit]"/></td>
+                                        <td>Chỉnh sửa</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($permission->bcthvegia->delete) && $permission->bcthvegia->delete == 1) ? 'checked' : '' }} value="1" name="roles[bcthvegia][delete]"/></td>
+                                        <td>Xóa</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -59,3 +59,31 @@
     @endif
 @endif
 
+@if(canGeneral('bcthvegia','index'))
+    <li class="tooltips" data-container="body" data-placement="right" data-html="true"
+        data-original-title="Các báo cáo tổng hợp về giá">
+        <a href="">
+            <i class="icon-folder"></i>
+            <span class="title">Các báo cáo tổng hợp về giá</span>
+            <span class="arrow"></span>
+        </a>
+        <ul class="sub-menu" style="display: none;">
+            @if(can('dmbcthvegia','index'))
+                <li class="tooltips" data-container="body" data-placement="right" data-html="true"
+                    data-original-title="">
+                    <a href="{{url('dmbaocaothvegia')}}">Danh mục báo cáo tổng hợp</a>
+                </li>
+            @endif
+            @if(can('bcthvegia','index'))
+                <?php $modelbcthvegia = \App\Model\manage\vanbanplvegia\baocaoth\BcThVeGiaDm::where('theodoi','TD')->get();?>
+                @foreach($modelbcthvegia as $bcthvegia)
+                <li class="tooltips" data-container="body" data-placement="right" data-html="true"
+                    data-original-title="">
+                    <a href="{{url('baocaothvegia?&phanloai='.$bcthvegia->phanloai)}}">{{$bcthvegia->mota}}</a>
+                </li>
+                @endforeach
+            @endif
+        </ul>
+    </li>
+@endif
+
