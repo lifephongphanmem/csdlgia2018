@@ -126,10 +126,8 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
-                        @if(can('kkdvhdtm','create'))
-                                <a href="{{url('thongtinkkdvhoatdongthuongmai/create?&masothue='.$inputs['masothue'])}}" class="btn btn-default btn-sm">
-                                    <i class="fa fa-plus"></i> Kê khai mới </a>
-                        @endif
+                        <a href="{{url('thongtinkkdvhoatdongthuongmai/create?&masothue='.$inputs['masothue'])}}" class="btn btn-default btn-sm">
+                            <i class="fa fa-plus"></i> Kê khai mới </a>
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
                             <a href="{{url('thongtindnkkgiadvhdtm?&maxa='.$modeldn->mahuyen)}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-reply"></i> Quay lại </a>
@@ -199,23 +197,17 @@
                                 <td>
                                     <a href="{{url('thongtinkkdvhoatdongthuongmai/prints?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                     @if(canEdit($tt->trangthai))
-                                        @if(can('kkdvhdtm','edit'))
-                                            <a href="{{url('thongtinkkdvhoatdongthuongmai/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
-                                        @endif
+                                        <a href="{{url('thongtinkkdvhoatdongthuongmai/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                         @if(canChuyenXoa($tt->trangthai))
-                                            @if(can('kkdvhdtm','delete'))
-                                                @if($tt->trangthai == 'CC')
-                                            <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
-                                                Xóa</button>
-                                                @endif
+                                            @if($tt->trangthai == 'CC')
+                                                <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                                    Xóa</button>
                                             @endif
-                                            @if(can('kkdvhdtm','approve'))
                                             <button type="button" onclick="confirmChuyen('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyen-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
                                                 Chuyển</button>
-                                                @if(session('admin')->sadmin == 'ssa')
-                                                    <!--button type="button" onclick="confirmChuyenHSCham('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyenhscham-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
-                                                        Chuyển HS chậm</button-->
-                                                @endif
+                                            @if(session('admin')->sadmin == 'ssa')
+                                                <!--button type="button" onclick="confirmChuyenHSCham('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyenhscham-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
+                                                    Chuyển HS chậm</button-->
                                             @endif
                                         @endif
                                         @if(canShowLyDo($tt->trangthai))

@@ -127,8 +127,10 @@
                     <div class="actions">
                         <a href="{{url('kekhaigiadvlt/create?&macskd='.$inputs['macskd'].'&masothue='.$modeldn->maxa)}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Kê khai mới </a>
+                        @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
                         <a href="{{url('thongtincskdkkdvlt')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-reply"></i> Quay lại </a>
+                        @endif
                     </div>
                 <input type="hidden" name="macskd" id="macskd" value="{{$inputs['macskd']}}">
                 </div>
