@@ -60,4 +60,19 @@ include('kkgia/etanol.php');
 
 //Khám chữa bệnh tư nhân
 include('kkgia/kcbtn.php');
+
+//Dịch vụ cảng biển
+include('kkgia/dvcb.php');
+
+//Oto nhập khẩu, sx trong nước
+include('kkgia/otonksxtn.php');
+
+//Xe gắn máy nhập khẩu, sx trong nước
+include('kkgia/xemaynksxtn.php');
+
+//Dịch vụ du lịch bãi biển
+include('kkgia/dvdlbb.php');
+
+//Vé tham quan tại khu du lịch
+include('kkgia/vetqkdl.php');
 ?>

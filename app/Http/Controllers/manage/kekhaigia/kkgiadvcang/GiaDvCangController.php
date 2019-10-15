@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\manage\kekhaigia\kkgiasach;
+namespace App\Http\Controllers\manage\kekhaigia\kkgiadvcang;
 
 use App\District;
 use App\Jobs\SendMail;
-use App\Model\manage\kekhaigia\kkgiasach\KkGiaSach;
-use App\Model\manage\kekhaigia\kkgiasach\KkGiaSachCt;
-use App\Model\manage\kekhaigia\kkgiasach\KkGiaSachCtDf;
+use App\Model\manage\kekhaigia\kkgiadvcang\GiaDvCang;
+use App\Model\manage\kekhaigia\kkgiadvcang\GiaDvCangCt;
 use App\Model\system\company\Company;
 use App\Model\system\dmnganhnghekd\DmNgheKd;
 use App\NgayNghiLe;
@@ -14,17 +13,16 @@ use App\Town;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
-class KkGiaSachController extends Controller
+class GiaDvCangController extends Controller
 {
     public function ttdn(Request $request){
         if (Session::has('admin')) {
             if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
-                $modeldmnghe = DmNgheKd::where('manganh','SACH')
-                    ->where('manghe','SACH')
+                $modeldmnghe = DmNgheKd::where('manganh','DVCB')
+                    ->where('manghe','DVCB')
                     ->first();
                 if(session('admin')->level == 'T'){
                     $modeldv = Town::where('mahuyen',$modeldmnghe->mahuyen)->get();
@@ -43,7 +41,7 @@ class KkGiaSachController extends Controller
                         return view('errors.perm');
                 }
                 $model = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
-                    ->where('companylvcc.manghe','SACH')
+                    ->where('companylvcc.manghe','DVCB')
                     ->where('companylvcc.mahuyen',$inputs['maxa'])
                     ->join('town','town.maxa','=','companylvcc.mahuyen')
                     ->select('company.*','town.tendv')
@@ -51,12 +49,12 @@ class KkGiaSachController extends Controller
 
                 $ttql = District::where('mahuyen',$modeldmnghe->mahuyen)
                     ->first();
-                return view('manage.kkgia.sach.kkgia.kkgiadv.ttdn')
+                return view('manage.kkgia.dvcang.kkgia.kkgiadv.ttdn')
                     ->with('model', $model)
                     ->with('modeldv',$modeldv)
                     ->with('inputs',$inputs)
                     ->with('ttql',$ttql)
-                    ->with('pageTitle', 'Danh sách doanh nghiệp kê khai giá sách giáo khoa');
+                    ->with('pageTitle', 'Danh sách doanh nghiệp kê khai giá dịch vụ cảng biển');
 
             }else{
                 return view('errors.perm');
@@ -75,25 +73,25 @@ class KkGiaSachController extends Controller
                     $inputs['masothue'] = session('admin')->maxa;
                 $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
 
-                $model = KkGiaSach::where('maxa', $inputs['masothue'])
+                $model = GiaDvCang::where('maxa', $inputs['masothue'])
                     ->whereYear('ngaynhap', $inputs['nam'])
                     ->orderBy('id', 'desc')
                     ->get();
                 $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
                     ->where('company.maxa',$inputs['masothue'])
-                    ->where('companylvcc.manghe','SACH')
+                    ->where('companylvcc.manghe','DVCB')
                     ->select('company.*','companylvcc.mahuyen')
                     ->first();
 
                 if(isset($modeldn)) {
                     $modeldv = Town::where('maxa', $modeldn->mahuyen)
                         ->first();
-                    return view('manage.kkgia.sach.kkgia.kkgiadv.index')
+                    return view('manage.kkgia.dvcang.kkgia.kkgiadv.index')
                         ->with('model', $model)
                         ->with('modeldn', $modeldn)
                         ->with('modeldv', $modeldv)
                         ->with('inputs', $inputs)
-                        ->with('pageTitle', 'Danh sách hồ sơ kê khai sách giáo khoa');
+                        ->with('pageTitle', 'Danh sách hồ sơ kê khai giá dịch vụ tại cảng biển');
                 }else
                     return view('errors.perm');
 
@@ -111,39 +109,44 @@ class KkGiaSachController extends Controller
                 $inputs['masothue'] = isset($inputs['masothue']) ? $inputs['masothue'] : '';
             else
                 $inputs['masothue'] = session('admin')->maxa;
+            $inputs['mahs'] = $inputs['masothue'].getdate()[0];
             $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
                 ->where('company.maxa',$inputs['masothue'])
-                ->where('companylvcc.manghe','SACH')
+                ->where('companylvcc.manghe','DVCB')
                 ->select('company.*','companylvcc.mahuyen')
                 ->first();
+            $modellk = '';
             if(isset($modeldn)) {
-                $delctdf = KkGiaSachCtDf::where('maxa',$inputs['masothue'])->delete();
-                $idlk = KkGiaSach::where('maxa',$inputs['masothue'])
+                $delctdf = GiaDvCangCt::where('trangthai','CXD')->delete();
+                $idlk = GiaDvCang::where('maxa',$inputs['masothue'])
                     ->where('trangthai','DD')
                     ->max('id');
                 if(isset($idlk)){
-                    $modellk = KkGiaSach::where('id',$idlk)
+                    $modellk = GiaDvCang::where('id',$idlk)
                         ->first();
-                    $modellkct = KkGiaSachCt::where('mahs',$modellk->mahs)
+                    $modellkct = GiaDvCangCt::where('mahs',$modellk->mahs)
                         ->get();
                     foreach($modellkct as  $ctdf){
-                        $addct = new KkGiaSachCtDf();
+                        $addct = new GiaDvCangCt();
                         $addct->tthhdv = $ctdf->tthhdv;
                         $addct->qccl = $ctdf->qccl;
                         $addct->dvt = $ctdf->dvt;
                         $addct->dongialk = $ctdf->dongia;
-                        $addct->maxa = $ctdf->$inputs['masothue'];
+                        $addct->mahs = $inputs['mahs'];
+                        $addct->trangthai = 'CXD';
+
                         $addct->save();
                     }
                 }
-                $modelct = KkGiaSachCtDf::where('maxa',$inputs['masothue'])
+                $modelct = GiaDvCangCt::where('mahs',$inputs['mahs'])
                     ->get();
 
-                return view('manage.kkgia.sach.kkgia.kkgiadv.create')
+                return view('manage.kkgia.dvcang.kkgia.kkgiadv.create')
                     ->with('modeldn', $modeldn)
                     ->with('modelct',$modelct)
+                    ->with('modellk',$modellk)
                     ->with('inputs', $inputs)
-                    ->with('pageTitle', 'Kê khai giá sách giáo khoa thêm mới');
+                    ->with('pageTitle', 'Kê khai giá dịch vụ tại cảng biển thêm mới');
 
             }else
                 return view('errors.perm');
@@ -155,8 +158,7 @@ class KkGiaSachController extends Controller
         if (Session::has('admin')) {
             if (session('admin')->level == 'DN' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
-                $model = new KkGiaSach();
-                $inputs['mahs'] = $inputs['maxa'].getdate()[0];
+                $model = new GiaDvCang();
                 $inputs['ngaynhap'] = getDateToDb($inputs['ngaynhap']);
                 $inputs['ngayhieuluc'] = getDateToDb($inputs['ngayhieuluc']);
                 if($inputs['ngaycvlk'] != '')
@@ -165,18 +167,10 @@ class KkGiaSachController extends Controller
                     unset($inputs['ngaycvlk']);
                 $inputs['trangthai'] = 'CC';
                 if($model->create($inputs)){
-                    $modelctdf = KkGiaSachCtDf::where('maxa',$inputs['maxa']);
-
-                    foreach($modelctdf->geT() as $ctdf) {
-                        $modelct = new KkGiaSachCt();
-                        $arrays = $ctdf->toArray();
-                        unset($arrays['id']);
-                        $arrays['mahs'] = $inputs['mahs'];
-                        $modelct->create($arrays);
-                    }
-                    $modelctdf->delete();
+                    $modelctdf = GiaDvCangCt::where('mahs',$inputs['mahs'])
+                        ->update(['trangthai' => 'XD']);
                 }
-                return redirect('kekhaigiasach?&masothue='.$inputs['maxa']);
+                return redirect('kekhaigiadvcang?&masothue='.$inputs['maxa']);
             } else {
                 return view('errors.perm');
             }
@@ -188,19 +182,19 @@ class KkGiaSachController extends Controller
         if (Session::has('admin')) {
             $input = $request->all();
             $mahs = $input['mahs'];
-            $modelkk = KkGiaSach::where('mahs',$mahs)->first();
+            $modelkk = GiaDvCang::where('mahs',$mahs)->first();
             $modeldn = Company::where('maxa',$modelkk->maxa)
                 ->first();
-            $modelkkct = KkGiaSachCt::where('mahs',$modelkk->mahs)
+            $modelkkct = GiaDvCangCt::where('mahs',$modelkk->mahs)
                 ->get();
             $modelcqcq = Town::where('maxa',$modelkk->mahuyen)
                 ->first();
-            return view('manage.kkgia.sach.reports.print')
+            return view('manage.kkgia.dvcang.reports.print')
                 ->with('modelkk',$modelkk)
                 ->with('modeldn',$modeldn)
                 ->with('modelkkct',$modelkkct)
                 ->with('modelcqcq',$modelcqcq)
-                ->with('pageTitle','Kê khai giá sách giáo khoa');
+                ->with('pageTitle','Kê khai giá dịch vụ tại cảng biển');
 
         }else
             return view('errors.notlogin');
@@ -209,16 +203,17 @@ class KkGiaSachController extends Controller
     public function edit($id){
         if (Session::has('admin')) {
             if(session('admin')->level == 'DN' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X'){
-                $model = KkGiaSach::findOrFail($id);
-                $modelct = KkGiaSachCt::where('mahs',$model->mahs)->get();
+                $delctdf = GiaDvCangCt::where('trangthai','CXD')->delete();
+                $model = GiaDvCang::findOrFail($id);
+                $modelct = GiaDvCangCt::where('mahs',$model->mahs)->get();
                 $modeldn = Company::where('maxa', $model->maxa)
                     ->first();
 
-                return view('manage.kkgia.sach.kkgia.kkgiadv.edit')
+                return view('manage.kkgia.dvcang.kkgia.kkgiadv.edit')
                     ->with('modeldn', $modeldn)
                     ->with('modelct',$modelct)
                     ->with('model',$model)
-                    ->with('pageTitle', 'Kê khai giá sách giáo khoa chỉnh sửa');
+                    ->with('pageTitle', 'Kê khai giá dịch vụ tại cảng biển chỉnh sửa');
             }else
                 return view('errors.perm');
         }else
@@ -229,15 +224,17 @@ class KkGiaSachController extends Controller
         if (Session::has('admin')) {
             if (session('admin')->level == 'DN' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
-                $model = KkGiaSach::findOrFail($id);
+                $model = GiaDvCang::findOrFail($id);
                 $inputs['ngaynhap'] = getDateToDb($inputs['ngaynhap']);
                 $inputs['ngayhieuluc'] = getDateToDb($inputs['ngayhieuluc']);
                 if($inputs['ngaycvlk'] != '')
                     $inputs['ngaycvlk']= getDateToDb($inputs['ngaycvlk']);
                 else
                     unset($inputs['ngaycvlk']);
-                $model->update($inputs);
-                return redirect('kekhaigiasach?&masothue='.$model->maxa);
+                if($model->update($inputs))
+                    $modelctdf = GiaDvCangCt::where('mahs',$inputs['mahs'])
+                        ->update(['trangthai' => 'XD']);
+                return redirect('kekhaigiadvcang?&masothue='.$model->maxa);
             } else
                 return view('errors.perm');
         }else
@@ -249,12 +246,12 @@ class KkGiaSachController extends Controller
             if (session('admin')->level == 'DN' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $id = $inputs['iddelete'];
-                $model = KkGiaSach::findOrFail($id);
+                $model = GiaDvCang::findOrFail($id);
                 if($model->delete()){
-                    $modelct = KkGiaSachCt::where('mahs',$model->mahs)
+                    $modelct = GiaDvCangCt::where('mahs',$model->mahs)
                         ->delete();
                 }
-                return redirect('kekhaigiasach?&masothue='.$model->maxa);
+                return redirect('kekhaigiadvcang?&masothue='.$model->maxa);
             } else {
                 return view('errors.perm');
             }
@@ -278,7 +275,7 @@ class KkGiaSachController extends Controller
         $inputs = $request->all();
         $ngaychuyen = Carbon::now()->toDateTimeString();
         if(isset($inputs['id'])){
-            $model = KkGiaSach::where('id',$inputs['id'])
+            $model = GiaDvCang::where('id',$inputs['id'])
                 ->first();
             $date = date_create($ngaychuyen);
             if(date('H',strtotime($ngaychuyen)) >= '17')
@@ -328,7 +325,7 @@ class KkGiaSachController extends Controller
         if (Session::has('admin')) {
             if (session('admin')->level == 'DN' || session('admin')->level == 'T' || session('admin')->level == 'H') {
                 $inputs = $request->all();
-                $model = KkGiaSach::where('id',$inputs['idchuyen'])
+                $model = GiaDvCang::where('id',$inputs['idchuyen'])
                     ->first();
                 $inputs['trangthai'] = 'CD';
                 $inputs['ngaychuyen'] = Carbon::now()->toDateTimeString();
@@ -337,8 +334,8 @@ class KkGiaSachController extends Controller
                         ->first();
                     $modeldv = Town::where('maxa',$model->mahuyen)
                         ->first();
-                    $dmnghe = DmNgheKd::where('manghe','SACH')
-                        ->where('manganh','SACH')
+                    $dmnghe = DmNgheKd::where('manghe','DVCB')
+                        ->where('manganh','DVCB')
                         ->first();
                     $tg = getDateTime(Carbon::now()->toDateTimeString());
                     $contentdn = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận được hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp. Số công văn: '.$model->socv.
@@ -348,7 +345,7 @@ class KkGiaSachController extends Controller
                     $run = new SendMail($modeldn,$contentdn,$modeldv,$contentht);
                     $run->handle();
                 }
-                return redirect('kekhaigiasach?&masothue='.$model->maxa);
+                return redirect('kekhaigiadvcang?&masothue='.$model->maxa);
             }else
                 return view('errors.perm');
         }else
@@ -371,7 +368,7 @@ class KkGiaSachController extends Controller
         $inputs = $request->all();
 
         if(isset($inputs['id'])){
-            $model = KkGiaSach::where('id',$inputs['id'])
+            $model = GiaDvCang::where('id',$inputs['id'])
                 ->first();
             $modelql = Town::where('maxa',$model->mahuyen)->first();
             $modeldn = Company::where('maxa',$model->maxa)
