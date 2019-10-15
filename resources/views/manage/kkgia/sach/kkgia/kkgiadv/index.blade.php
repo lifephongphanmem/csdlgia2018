@@ -201,21 +201,17 @@
                                             <a href="{{url('kekhaigiasach/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                         @endif
                                         @if(canChuyenXoa($tt->trangthai))
-                                            @if(can('kksach','delete'))
-                                                @if($tt->trangthai == 'CC')
-                                                <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
-                                                    Xóa</button>
-                                                @endif
+                                            @if($tt->trangthai == 'CC')
+                                            <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                                Xóa</button>
                                             @endif
-                                            @if(can('kksach','approve'))
-                                                @if($tt->trangthai == 'CC' || $tt->trangthai == 'BTL')
-                                                <button type="button" onclick="confirmChuyen('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyen-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
-                                                    Chuyển</button>
-                                                @endif
-                                                @if(session('admin')->sadmin == 'ssa')
-                                                    <!--button type="button" onclick="confirmChuyenHSCham('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyenhscham-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
-                                                        Chuyển HS chậm</button-->
-                                                @endif
+                                            @if($tt->trangthai == 'CC' || $tt->trangthai == 'BTL')
+                                            <button type="button" onclick="confirmChuyen('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyen-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
+                                                Chuyển</button>
+                                            @endif
+                                            @if(session('admin')->sadmin == 'ssa')
+                                                <!--button type="button" onclick="confirmChuyenHSCham('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#chuyenhscham-modal" data-toggle="modal"><i class="fa fa-share-square-o"></i>&nbsp;
+                                                    Chuyển HS chậm</button-->
                                             @endif
                                         @endif
                                         @if(canShowLyDo($tt->trangthai))
