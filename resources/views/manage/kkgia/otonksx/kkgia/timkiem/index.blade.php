@@ -23,13 +23,13 @@
         $(function(){
             $('#nam').change(function() {
                 var namhs = $('#nam').val();
-                var url = '/timkiemgiadvcang?'+namhs;
+                var url = '/timkiemgiaotonksx?'+namhs;
                 window.location.href = url;
             });
             $('#tthhdv').change(function() {
                 var namhs = '&nam='+ $('#nam').val();
                 var tthhdv = '&tthhdv=' + $('#tthhdv').val();
-                var url = '/timkiemgiadvcang?'+namhs + tthhdv;
+                var url = '/timkiemgiaotonksx?'+namhs + tthhdv;
                 window.location.href = url;
             });
 
@@ -39,7 +39,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Tìm kiếm thông tin kê khai giá<small>&nbsp;dịch vụ tại cảng biển</small>
+        Tìm kiếm thông tin kê khai giá<small>&nbsp;ôtô nhập khẩu, sản xuất trong nước dưới 15 chỗ ngồi</small>
     </h3>
     <hr>
     <div class="row">

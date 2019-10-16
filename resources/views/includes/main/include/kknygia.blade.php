@@ -217,12 +217,12 @@
                             </a>
                             <ul class="sub-menu" style="display: none;">
                                 @if(session('admin')->level == 'DN')
-                                    <li><a href="{{url('')}}">Kê khai giá</a> </li>
+                                    <li><a href="{{url('kekhaigiaotonksx')}}">Kê khai giá</a> </li>
                                 @endif
                                 @if(session('admin')->level == 'X' || session('admin')->level == 'T' || session('admin')->level == 'H')
-                                    <li><a href="{{url('')}}">Kê khai giá </a> </li>
-                                    <li><a href="{{url('')}}">Thông tin hồ sơ xét duyệt</a></li>
-                                    <li><a href="{{url('')}}">Tìm kiếm thông tin</a> </li>
+                                    <li><a href="{{url('thongtindnotonksx')}}">Kê khai giá </a> </li>
+                                    <li><a href="{{url('xetduyetgiaotonksx')}}">Thông tin hồ sơ xét duyệt</a></li>
+                                    <li><a href="{{url('timkiemgiaotonksx')}}">Tìm kiếm thông tin</a> </li>
                                     <!--li><a href="{{url('')}}">Báo cáo thống kê</a></li-->
                                 @endif
                             </ul>
