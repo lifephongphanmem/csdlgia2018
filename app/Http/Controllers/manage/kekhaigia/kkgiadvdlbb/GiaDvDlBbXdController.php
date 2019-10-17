@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\manage\kekhaigia\kkgiadvcang;
+namespace App\Http\Controllers\manage\kekhaigia\kkgiadvdlbb;
 
 use App\Jobs\SendMail;
-use App\Model\manage\kekhaigia\kkgiadvcang\GiaDvCang;
+use App\Model\manage\kekhaigia\kkgiadvdlbb\GiaDvDlBb;
 use App\Model\system\company\Company;
 use App\Model\system\dmnganhnghekd\DmNgheKd;
 use App\Town;
@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
-class GiaDvCangXdController extends Controller
+class GiaDvDlBbXdController extends Controller
 {
     public function index(Request $request){
         if (Session::has('admin')) {
@@ -20,8 +20,8 @@ class GiaDvCangXdController extends Controller
                 $inputs = $request->all();
                 $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CD';
                 $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-                $modeldmnghe = DmNgheKd::where('manganh','DVCB')
-                    ->where('manghe','DVCB')
+                $modeldmnghe = DmNgheKd::where('manganh','DLBB')
+                    ->where('manghe','DLBB')
                     ->first();
                 if(session('admin')->level == 'T'){
                     $modeldv = Town::where('mahuyen',$modeldmnghe->mahuyen)->get();
@@ -39,16 +39,16 @@ class GiaDvCangXdController extends Controller
                     }else
                         return view('errors.perm');
                 }
-                $model = GiaDvCang::join('company','company.maxa','=','giadvcang.maxa')
-                    ->where('giadvcang.mahuyen',$inputs['mahuyen'])
-                    ->where('giadvcang.trangthai',$inputs['trangthai'])
-                    ->select('giadvcang.*','company.tendn')
+                $model = GiaDvDlBb::join('company','company.maxa','=','giadvdlbb.maxa')
+                    ->where('giadvdlbb.mahuyen',$inputs['mahuyen'])
+                    ->where('giadvdlbb.trangthai',$inputs['trangthai'])
+                    ->select('giadvdlbb.*','company.tendn')
                     ->get();
-                return view('manage.kkgia.dvcang.kkgia.xetduyet.index')
+                return view('manage.kkgia.dvdlbb.kkgia.xetduyet.index')
                     ->with('model', $model)
                     ->with('inputs',$inputs)
                     ->with('modeldv',$modeldv)
-                    ->with('pageTitle', 'Xét duyệt hồ sơ kê khai giá dịch vụ tại cảng biển');
+                    ->with('pageTitle', 'Xét duyệt hồ sơ kê khai giá dịch vụ du lịch tại bãi biển');
             }else
                 return view('errors.perm');
         }else
@@ -72,7 +72,7 @@ class GiaDvCangXdController extends Controller
 
         if(isset($inputs['id'])){
 
-            $modelhs = GiaDvCang::where('id',$inputs['id'])
+            $modelhs = GiaDvDlBb::where('id',$inputs['id'])
                 ->first();
             $modeldn = Company::where('maxa',$modelhs->maxa)->first();
 
@@ -91,14 +91,14 @@ class GiaDvCangXdController extends Controller
             if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $inputs['trangthai'] = 'BTL';
-                $model = GiaDvCang::where('id',$inputs['idtralai'])->first();
+                $model = GiaDvDlBb::where('id',$inputs['idtralai'])->first();
                 if($model->update($inputs)){
                     $modeldn = Company::where('maxa', $model->maxa)
                         ->first();
                     $modeldv = Town::where('maxa',$model->mahuyen)
                         ->first();
-                    $dmnghe = DmNgheKd::where('manghe','DVCB')
-                        ->where('manganh','DVCB')
+                    $dmnghe = DmNgheKd::where('manghe','DLBB')
+                        ->where('manganh','DLBB')
                         ->first();
                     $tg = getDateTime(Carbon::now()->toDateTimeString());
                     $contentdn = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã trả lại hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp. Số công văn: '.$model->socv.
@@ -109,7 +109,7 @@ class GiaDvCangXdController extends Controller
                     $run->handle();
                     //dispatch($run);
                 }
-                return redirect('xetduyetgiadvcang?&trangthai='.$inputs['trangthai'].'&maxa='.$model->mahuyen);
+                return redirect('xetduyetgiadvdlbb?&trangthai='.$inputs['trangthai'].'&maxa='.$model->mahuyen);
             }else
                 return view('errors.perm');
         }else
@@ -133,7 +133,7 @@ class GiaDvCangXdController extends Controller
 
         if(isset($inputs['id'])){
 
-            $modelhs =  GiaDvCang::where('id',$inputs['id'])
+            $modelhs =  GiaDvDlBb::where('id',$inputs['id'])
                 ->first();
             $model = Town::where('maxa',$modelhs->mahuyen)
                 ->first();
@@ -168,11 +168,11 @@ class GiaDvCangXdController extends Controller
     }
 
     public function getsohsnhan($mahuyen){
-        $idmax = GiaDvCang::where('trangthai', 'DD')
+        $idmax = GiaDvDlBb::where('trangthai', 'DD')
             ->where('mahuyen', $mahuyen)
             ->max('id');
         if (isset($idmax)) {
-            $model = GiaDvCang::where('id',$idmax)
+            $model = GiaDvDlBb::where('id',$idmax)
                 ->first();
             $stt = $model->sohsnhan + 1;
         } else
@@ -184,7 +184,7 @@ class GiaDvCangXdController extends Controller
         if (Session::has('admin')) {
             $inputs = $request->all();
             $id = $inputs['idnhanhs'];
-            $model = GiaDvCang::findOrFail($id);
+            $model = GiaDvDlBb::findOrFail($id);
             $inputs['trangthai'] = 'DD';
             $inputs['ngaynhan'] = getDateToDb($inputs['ngaynhan']);
             //$inputs['thoihan'] = getThXdHsDvLt($model->ngaychuyen,$inputs['ngaynhan']);
@@ -194,8 +194,8 @@ class GiaDvCangXdController extends Controller
                     ->first();
                 $modeldv = Town::where('maxa',$model->mahuyen)
                     ->first();
-                $dmnghe = DmNgheKd::where('manghe','DVCB')
-                    ->where('manganh','DVCB')
+                $dmnghe = DmNgheKd::where('manghe','DLBB')
+                    ->where('manganh','DLBB')
                     ->first();
                 $tg = getDateTime(Carbon::now()->toDateTimeString());
                 $contentdn = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã duyệt hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp. Số công văn: '.$model->socv.
@@ -206,7 +206,7 @@ class GiaDvCangXdController extends Controller
                 $run->handle();
                 //dispatch($run);
             }
-            return redirect('xetduyetgiadvcang?&trangthai=DD&maxa='.$model->mahuyen);
+            return redirect('xetduyetgiadvdlbb?&trangthai=DD&maxa='.$model->mahuyen);
         }else
             return view('errors.notlogin');
     }
@@ -216,19 +216,19 @@ class GiaDvCangXdController extends Controller
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
             $inputs['tthhdv'] = isset($inputs['tthhdv']) ? $inputs['tthhdv'] : '';
-            $model = GiaDvCang::leftJoin('giadvcangct','giadvcangct.mahs','=','giadvcang.mahs')
-                ->leftjoin('company','company.maxa','=','giadvcang.maxa')
-                ->whereYear('giadvcang.ngayhieuluc',$inputs['nam'])
-                ->select('giadvcangct.*','company.tendn','giadvcang.ngayhieuluc','giadvcang.maxa')
-                ->where('giadvcang.trangthai','DD');
+            $model = GiaDvDlBb::leftJoin('giadvdlbbct','giadvdlbbct.mahs','=','giadvdlbb.mahs')
+                ->leftjoin('company','company.maxa','=','giadvdlbb.maxa')
+                ->whereYear('giadvdlbb.ngayhieuluc',$inputs['nam'])
+                ->select('giadvdlbbct.*','company.tendn','giadvdlbb.ngayhieuluc','giadvdlbb.maxa')
+                ->where('giadvdlbb.trangthai','DD');
             if($inputs['tthhdv'] != '')
-                $model = $model->where('giadvcangct.tthhdv','like','%'.$inputs['tthhdv'].'%');
+                $model = $model->where('giadvdlbbct.tthhdv','like','%'.$inputs['tthhdv'].'%');
             $model = $model->get();
 
-            return view('manage.kkgia.dvcang.kkgia.timkiem.index')
+            return view('manage.kkgia.dvdlbb.kkgia.timkiem.index')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
-                ->with('pageTitle','Tìm kiếm thông tin kê khai giá dịch vụ tại cảng biển');
+                ->with('pageTitle','Tìm kiếm thông tin kê khai giá dịch vụ du lịch tại bãi biển');
         }else
             return view('errors.notlogin');
     }
