@@ -24,4 +24,10 @@ Route::get('/xetduyetkkgiadvhdtm/ttnhanhs','manage\kekhaigia\kkdvhdtmck\KkGiaDvH
 Route::post('/xetduyetkkgiadvhdtm/nhanhs','manage\kekhaigia\kkdvhdtmck\KkGiaDvHdTmXdController@nhanhs');
 
 Route::get('timkiemgiadvhdtm','manage\kekhaigia\kkdvhdtmck\KkGiaDvHdTmXdController@search');
+
+
+Route::get('baocaokkgiadvhdtm','manage\kekhaigia\kkdvhdtmck\KkGiaDvHdTmBcController@index');
+Route::post('baocaokkgiadvhdtm/bc1','manage\kekhaigia\kkdvhdtmck\KkGiaDvHdTmBcController@bc1');
+Route::post('baocaokkgiadvhdtm/bc2','manage\kekhaigia\kkdvhdtmck\KkGiaDvHdTmBcController@bc2');
+
 ?>

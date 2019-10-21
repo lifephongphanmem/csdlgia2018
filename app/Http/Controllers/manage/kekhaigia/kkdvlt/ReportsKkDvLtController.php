@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\manage\kekhaigia\kkdvlt;
 
-use App\CsKdDvLt;
-use App\KkGiaDvLt;
+use App\Model\manage\kekhaigia\kkdvlt\CsKdDvLt;
+use App\Model\manage\kekhaigia\kkdvlt\KkGiaDvLt;
+use App\Model\system\company\Company;
 use App\Town;
-use App\Company;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -31,7 +31,7 @@ class ReportsKkDvLtController extends Controller
     public function kkgdvlt($mahs){
         if (Session::has('admin')) {
             //dd($id);
-            $modelkk = KkGDvLt::where('mahs',$mahs)->first();
+            $modelkk = KkGiaDvLt::where('mahs',$mahs)->first();
             //dd($modelkk);
             $modeldn = DnDvLt::where('masothue',$modelkk->masothue)
                 ->first();

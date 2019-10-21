@@ -472,7 +472,7 @@
                                 <thead>
                                 <tr>
                                     <th style="text-align: center" width="2%">STT</th>
-                                    <th style="text-align: center">Tên xi măng, thép xây dựng</th>
+                                    <th style="text-align: center">Tên hàng hóa, dịch vụ</th>
                                     <th style="text-align: center">Quy cách, chất lượng</th>
                                     <th style="text-align: center">Đơn vị<br>tính</th>
                                     <th style="text-align: center">Giá<br>liền kề</th>

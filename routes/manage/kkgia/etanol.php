@@ -23,3 +23,7 @@ Route::post('xetduyetgiaetanol/tralai','manage\kekhaigia\kkgiaetanol\KkGiaEtanol
 Route::get('xetduyetgiaetanol/ttnhanhs','manage\kekhaigia\kkgiaetanol\KkGiaEtanolXdController@ttnhanhs');
 Route::post('xetduyetgiaetanol/nhanhs','manage\kekhaigia\kkgiaetanol\KkGiaEtanolXdController@nhanhs');
 Route::get('timkiemgiaetanol','manage\kekhaigia\kkgiaetanol\KkGiaEtanolXdController@search');
+
+Route::get('baocaokkgiaetanol','manage\kekhaigia\kkgiaetanol\KkGiaEtanolBcController@index');
+Route::post('baocaokkgiaetanol/bc1','manage\kekhaigia\kkgiaetanol\KkGiaEtanolBcController@bc1');
+Route::post('baocaokkgiaetanol/bc2','manage\kekhaigia\kkgiaetanol\KkGiaEtanolBcController@bc2');

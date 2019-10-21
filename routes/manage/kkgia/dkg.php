@@ -47,5 +47,9 @@ Route::get('timkiemkkdkg','manage\kekhaidkg\KkDkgController@search');
 //Ajax nhận trả
 Route::get('/ttdnkkdkg','manage\kekhaidkg\KkDkgXdController@ttdnkkdkg');
 
+Route::get('baocaokekhaidkg','manage\kekhaidkg\KkDkgBcController@index');
+Route::post('baocaokekhaidkg/bc1','manage\kekhaidkg\KkDkgBcController@bc1');
+Route::post('baocaokekhaidkg/bc2','manage\kekhaidkg\KkDkgBcController@bc2');
+
 
 ?>

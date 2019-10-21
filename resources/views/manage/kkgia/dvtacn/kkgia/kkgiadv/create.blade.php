@@ -618,7 +618,7 @@
                                         <td style="text-align: center">{{$tt->dvt}}</td>
                                         <td style="text-align: left">{{$tt->ghichu}}</td>
                                         <td style="text-align: right">{{number_format($tt->gbdctlk)}}</td>
-                                        <td style="text-align: right">{{number_format($tt->gbdctlk)}}</td>
+                                        <td style="text-align: right">{{number_format($tt->gbdct)}}</td>
                                         <td>
                                             <button type="button" data-target="#modal-kkgialk" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="kkgialk({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Kê khai giá liền kề</button>
                                             <button type="button" data-target="#modal-kkgia" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="kkgia({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Kê khai giá</button>

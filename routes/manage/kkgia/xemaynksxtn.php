@@ -21,3 +21,7 @@ Route::post('xetduyetgiaxemaynksx/tralai','manage\kekhaigia\kkgiaxemaynksx\GiaXe
 Route::get('xetduyetgiaxemaynksx/ttnhanhs','manage\kekhaigia\kkgiaxemaynksx\GiaXeMayNkSxXdController@ttnhanhs');
 Route::post('xetduyetgiaxemaynksx/nhanhs','manage\kekhaigia\kkgiaxemaynksx\GiaXeMayNkSxXdController@nhanhs');
 Route::get('timkiemgiaxemaynksx','manage\kekhaigia\kkgiaxemaynksx\GiaXeMayNkSxXdController@search');
+
+Route::get('baocaokkgiaxemaynksx','manage\kekhaigia\kkgiaxemaynksx\GiaXeMayNkSxBcController@index');
+Route::post('baocaokkgiaxemaynksx/bc1','manage\kekhaigia\kkgiaxemaynksx\GiaXeMayNkSxBcController@bc1');
+Route::post('baocaokkgiaxemaynksx/bc2','manage\kekhaigia\kkgiaxemaynksx\GiaXeMayNkSxBcController@bc2');

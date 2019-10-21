@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\manage\kekhaigia\kkgiakcbtn;
 
-use App\District;
 use App\Jobs\SendMail;
 use App\Model\manage\kekhaigia\kkgiakcbtn\KkGiaKcbTn;
 use App\Model\system\company\Company;
@@ -11,7 +10,6 @@ use App\Town;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class KkGiaKcbTnXdController extends Controller

@@ -23,3 +23,7 @@ Route::post('xetduyetgiasach/tralai','manage\kekhaigia\kkgiasach\KkGiaSachXdCont
 Route::get('xetduyetgiasach/ttnhanhs','manage\kekhaigia\kkgiasach\KkGiaSachXdController@ttnhanhs');
 Route::post('xetduyetgiasach/nhanhs','manage\kekhaigia\kkgiasach\KkGiaSachXdController@nhanhs');
 Route::get('timkiemgiasach','manage\kekhaigia\kkgiasach\KkGiaSachXdController@search');
+
+Route::get('baocaokkgiasach','manage\kekhaigia\kkgiasach\KkGiaSachBcController@index');
+Route::post('baocaokkgiasach/bc1','manage\kekhaigia\kkgiasach\KkGiaSachBcController@bc1');
+Route::post('baocaokkgiasach/bc2','manage\kekhaigia\kkgiasach\KkGiaSachBcController@bc2');

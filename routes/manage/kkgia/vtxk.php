@@ -42,4 +42,8 @@ Route::get('timkiemgiavantaixekhach','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkXdCo
 
 //Ajax
 Route::get('/ttdnkkvtxk','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkXdController@ttdnkkvtxk');
+
+Route::get('baocaogiavantaixekhach','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkBcController@index');
+Route::post('baocaogiavantaixekhach/bc1','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkBcController@bc1');
+Route::post('baocaogiavantaixekhach/bc2','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkBcController@bc2');
 ?>

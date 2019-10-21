@@ -44,8 +44,9 @@ Route::get('timkiemkekhaigiatacn','manage\kekhaigia\kkgiatacn\KkGiaTaCnXdControl
 //Ajax
 Route::get('/ttdnkktacn','manage\kekhaigia\kkgiatacn\KkGiaTaCnXdController@ttdnkktacn');
 
-/*Route::get('baocaokekhaigiatpcnte6t','ReportsKkGsController@index');
-Route::post('reports/kekhaigiasua/BC5','ReportsKkGsController@dvltbc5');
-Route::post('reports/kekhaigiasua/BC6','ReportsKkGsController@dvltbc6');*/
+Route::get('baocaokekhaitacn','manage\kekhaigia\kkgiatacn\KkGiaTaCnBcController@index');
+Route::post('baocaokekhaitacn/bc1','manage\kekhaigia\kkgiatacn\KkGiaTaCnBcController@bc1');
+Route::post('baocaokekhaitacn/bc2','manage\kekhaigia\kkgiatacn\KkGiaTaCnBcController@bc2');
+
 
 ?>

@@ -30,4 +30,8 @@
     Route::post('/xetduyetkkgiavlxd/nhanhs', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdXdController@nhanhs');
     Route::get('timkiemkkgiavlxd', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdXdController@search');
 
+    Route::get('baocaokekhaigiavlxd', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdBcController@index');
+    Route::post('baocaokekhaigiavlxd/bc1', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdBcController@bc1');
+    Route::post('baocaokekhaigiavlxd/bc2', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdBcController@bc2');
+
 ?>

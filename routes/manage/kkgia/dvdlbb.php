@@ -21,3 +21,7 @@ Route::post('xetduyetgiadvdlbb/tralai','manage\kekhaigia\kkgiadvdlbb\GiaDvDlBbXd
 Route::get('xetduyetgiadvdlbb/ttnhanhs','manage\kekhaigia\kkgiadvdlbb\GiaDvDlBbXdController@ttnhanhs');
 Route::post('xetduyetgiadvdlbb/nhanhs','manage\kekhaigia\kkgiadvdlbb\GiaDvDlBbXdController@nhanhs');
 Route::get('timkiemgiadvdlbb','manage\kekhaigia\kkgiadvdlbb\GiaDvDlBbXdController@search');
+
+Route::get('baocaokekhaidvdlbb','manage\kekhaigia\kkgiadvdlbb\GiaDvDlBbBcController@index');
+Route::post('baocaokekhaidvdlbb/bc1','manage\kekhaigia\kkgiadvdlbb\GiaDvDlBbBcController@bc1');
+Route::post('baocaokekhaidvdlbb/bc2','manage\kekhaigia\kkgiadvdlbb\GiaDvDlBbBcController@bc2');

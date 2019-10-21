@@ -36,4 +36,8 @@ Route::get('timkiemgiavantaixetaxi','manage\kekhaigia\kkdvvt\vtxtx\KkGiaVtXtxXdC
 
 //Ajax
 Route::get('/ttdnkkvtxtx','manage\kekhaigia\kkdvvt\vtxtx\KkGiaVtXtxXdController@ttdnkkvtxtx');
+
+Route::get('baocaogiavantaixetaxi','manage\kekhaigia\kkdvvt\vtxtx\KkGiaVtXtxBcController@index');
+Route::post('baocaogiavantaixetaxi/bc1','manage\kekhaigia\kkdvvt\vtxtx\KkGiaVtXtxBcController@bc1');
+Route::post('baocaogiavantaixetaxi/bc2','manage\kekhaigia\kkdvvt\vtxtx\KkGiaVtXtxBcController@bc2');
 ?>

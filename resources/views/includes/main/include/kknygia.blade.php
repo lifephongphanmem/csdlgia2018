@@ -33,7 +33,7 @@
                                 <li><a href="{{url('thongtindnkkgiavlxd')}}">Kê khai giá VLXD</a></li>
                                 <li><a href="{{url('xetduyetkkgiavlxd')}}">Thông tin hồ sơ xét duyệt</a></li>
                                 <li><a href="{{url('timkiemkkgiavlxd')}}">Tìm kiếm thông tin</a> </li>
-                                <!--li><a href="{{url('baocaokekhaigiavlxd')}}">Báo cáo thống kê</a></li-->
+                                <li><a href="{{url('baocaokekhaigiavlxd')}}">Báo cáo thống kê</a></li>
                             @endif
                         </ul>
                     </li>
@@ -54,14 +54,14 @@
                                     <li><a href="{{url('thongtindnkkgiaxmtxd')}}">Kê khai giá xi măng, thép xây dựng</a></li>
                                     <li><a href="{{url('xetduyetkkgiaxmtxd')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiaxmtxd')}}">Tìm kiếm thông tin</a> </li>
-                                    <!--li><a href="{{url('baocaokekhaigiaxmtxd')}}">Báo cáo thống kê</a></li-->
+                                    <li><a href="{{url('baocaokekhaigiaxmtxd')}}">Báo cáo thống kê</a></li>
                                 @endif
                             </ul>
                         </li>
                     @endif
                 @endif
-                @if(canKkGiaGr('DVHDTM'))
-                    @if(canKkGiaCt('DVHDTM','DVHDTM'))
+                @if(canKkGiaGr('DVHDTMCK'))
+                    @if(canKkGiaCt('DVHDTMCK','DVHDTMCK'))
                         <li class="tooltips" data-container="body" data-placement="right" data-html="true"
                             data-original-title="Giá dịch vụ hỗ trợ hoạt động thương mại tại cửa khẩu (kho,bến, bãi, bốc xếp hàng hóa tại cửa khẩu, dịch vụ khác">
                             <a href="">
@@ -76,7 +76,7 @@
                                     <li><a href="{{url('thongtindnkkgiadvhdtm')}}">Kê khai giá dịch vụ</a></li>
                                     <li><a href="{{url('xetduyetkkgiadvhdtm')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiadvhdtm')}}">Tìm kiếm thông tin</a> </li>
-                                    <!--li><a href="{{url('baocaokkgiadvhdtm')}}">Báo cáo thống kê</a></li-->
+                                    <li><a href="{{url('baocaokkgiadvhdtm')}}">Báo cáo thống kê</a></li>
                                 @endif
                             </ul>
                         </li>
@@ -97,7 +97,7 @@
                                 <li><a href="{{url('thongtindnthan')}}">Kê khai giá than</a> </li>
                                 <li><a href="{{url('xetduyetgiathan')}}">Thông tin hồ sơ xét duyệt</a></li>
                                 <li><a href="{{url('timkiemgiathan')}}">Tìm kiếm thông tin</a> </li>
-                                <!--li><a href="{{url('baocaogiathan')}}">Báo cáo thống kê</a></li-->
+                                <li><a href="{{url('baocaokkgiathan')}}">Báo cáo thống kê</a></li>
                             @endif
                         </ul>
                     </li>
@@ -118,7 +118,7 @@
                                 <li><a href="{{url('thontindntacn')}}">Kê khai giá TACN</a> </li>
                                 <li><a href="{{url('xetduyetkekhaigiatacn')}}">Thông tin hồ sơ xét duyệt</a></li>
                                 <li><a href="{{url('timkiemkekhaigiatacn')}}">Tìm kiếm thông tin</a> </li>
-                                <!--li><a href="{{url('baocaokekhaitacn')}}">Báo cáo thống kê</a></li-->
+                                <li><a href="{{url('baocaokekhaitacn')}}">Báo cáo thống kê</a></li>
                             @endif
                         </ul>
                     </li>
@@ -139,7 +139,7 @@
                                     <li><a href="{{url('thongtindngiay')}}">Kê khai giá </a> </li>
                                     <li><a href="{{url('xetduyetgiagiay')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiagiay')}}">Tìm kiếm thông tin</a> </li>
-                                    <!--li><a href="{{url('baocaogiagiay')}}">Báo cáo thống kê</a></li-->
+                                    <li><a href="{{url('baocaokkgiagiay')}}">Báo cáo thống kê</a></li>
                                 @endif
                             </ul>
                         </li>
@@ -160,7 +160,7 @@
                                     <li><a href="{{url('thongtindnsach')}}">Kê khai giá </a> </li>
                                     <li><a href="{{url('xetduyetgiasach')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiasach')}}">Tìm kiếm thông tin</a> </li>
-                                    <!--li><a href="{{url('baocaogiasach')}}">Báo cáo thống kê</a></li-->
+                                    <li><a href="{{url('baocaokkgiasach')}}">Báo cáo thống kê</a></li>
                                 @endif
                             </ul>
                         </li>
@@ -181,7 +181,7 @@
                                     <li><a href="{{url('thongtindnetanol')}}">Kê khai giá </a> </li>
                                     <li><a href="{{url('xetduyetgiaetanol')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiaetanol')}}">Tìm kiếm thông tin</a> </li>
-                                    <!--li><a href="{{url('baocaogiaetanol')}}">Báo cáo thống kê</a></li-->
+                                    <li><a href="{{url('baocaokkgiaetanol')}}">Báo cáo thống kê</a></li>
                                 @endif
                             </ul>
                         </li>
@@ -202,7 +202,7 @@
                                 <li><a href="{{url('thongtindndvcang')}}">Kê khai giá </a> </li>
                                 <li><a href="{{url('xetduyetgiadvcang')}}">Thông tin hồ sơ xét duyệt</a></li>
                                 <li><a href="{{url('timkiemgiadvcang')}}">Tìm kiếm thông tin</a> </li>
-                                <!--li><a href="{{url('')}}">Báo cáo thống kê</a></li-->
+                                <li><a href="{{url('baocaokkgiadvcang')}}">Báo cáo thống kê</a></li>
                             @endif
                         </ul>
                     </li>
@@ -223,7 +223,7 @@
                                     <li><a href="{{url('thongtindnotonksx')}}">Kê khai giá </a> </li>
                                     <li><a href="{{url('xetduyetgiaotonksx')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiaotonksx')}}">Tìm kiếm thông tin</a> </li>
-                                    <!--li><a href="{{url('')}}">Báo cáo thống kê</a></li-->
+                                    <li><a href="{{url('baocaokkgiaotonksx')}}">Báo cáo thống kê</a></li>
                                 @endif
                             </ul>
                         </li>
@@ -244,7 +244,7 @@
                                     <li><a href="{{url('thongtindnxemaynksx')}}">Kê khai giá </a> </li>
                                     <li><a href="{{url('xetduyetgiaxemaynksx')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiaxemaynksx')}}">Tìm kiếm thông tin</a> </li>
-                                    <!--li><a href="{{url('')}}">Báo cáo thống kê</a></li-->
+                                    <li><a href="{{url('baocaokkgiaxemaynksx')}}">Báo cáo thống kê</a></li>
                                 @endif
                             </ul>
                         </li>
@@ -285,7 +285,7 @@
                                     <li><a href="{{url('thongtindnkcbtn')}}">Kê khai giá </a> </li>
                                     <li><a href="{{url('xetduyetgiakcbtn')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiakcbtn')}}">Tìm kiếm thông tin</a> </li>
-                                    <!--li><a href="{{url('baocaogiakcbtn')}}">Báo cáo thống kê</a></li-->
+                                    <li><a href="{{url('baocaogiakcbtn')}}">Báo cáo thống kê</a></li>
                                 @endif
                             </ul>
                         </li>
@@ -312,7 +312,7 @@
                                             <li><a href="{{url('thongtindnvtxk')}}">Kê khai giá vận tải xe khách</a></li>
                                             <li><a href="{{url('xetduyetkekhaigiavtxk')}}">Xét duyệt hồ sơ kê khai</a></li>
                                             <li><a href="{{url('timkiemgiavantaixekhach')}}">Tìm kiếm hồ sơ kê khai</a></li>
-                                            <!--li><a href="">Báo cáo</a></li-->
+                                            <li><a href="{{url('baocaogiavantaixekhach')}}">Báo cáo thống kê</a></li>
                                         @endif
                                     </ul>
                                 </li>
@@ -331,7 +331,7 @@
                                             <li><a href="{{url('thongtindnvtxb')}}">Kê khai giá vận tải xe buýt</a></li>
                                             <li><a href="{{url('xetduyetkekhaigiavtxb')}}">Xét duyệt hồ sơ kê khai</a></li>
                                             <li><a href="{{url('timkiemgiavantaixebuyt')}}">Tìm kiếm hồ sơ kê khai</a></li>
-                                            <!--li><a href="">Báo cáo</a></li-->
+                                            <li><a href="{{url('baocaogiavantaixebuyt')}}">Báo cáo thống kê</a></li>
                                         @endif
                                     </ul>
                                 </li>
@@ -350,7 +350,7 @@
                                             <li><a href="{{url('thongtindnvtxtx')}}">Kê khai giá vận tải xe taxi</a></li>
                                             <li><a href="{{url('xetduyetkekhaigiavtxtx')}}">Xét duyệt hồ sơ kê khai</a></li>
                                             <li><a href="{{url('timkiemgiavantaixetaxi')}}">Tìm kiếm hồ sơ kê khai</a></li>
-                                            <!--li><a href="">Báo cáo</a></li-->
+                                            <li><a href="{{url('baocaogiavantaixetaxi')}}">Báo cáo thống kê</a></li>
                                         @endif
                                     </ul>
                                 </li>
@@ -369,7 +369,7 @@
                                             <li><a href="{{url('thongtindnvchk')}}">Kê khai giá</a></li>
                                             <li><a href="{{url('xetduyetkekhaicuocvchk')}}">Xét duyệt hồ sơ kê khai</a></li>
                                             <li><a href="{{url('timkiemcuocvchk')}}">Tìm kiếm hồ sơ kê khai</a></li>
-                                            <!--li><a href="">Báo cáo</a></li-->
+                                            <li><a href="{{url('baocaogiacuocvchk')}}">Báo cáo thống kê</a></li>
                                         @endif
                                     </ul>
                                 </li>
@@ -392,7 +392,7 @@
                                     <li><a href="{{url('thongtindntpcn6t')}}">Kê khai giá TPCN cho TE dưới 6 tuổi</a></li>
                                     <li><a href="{{url('xdkekhaigiatpcnte6t')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemkekhaigiatpcnte6t')}}">Tìm kiếm thông tin</a> </li>
-                                    <!--li><a href="{{url('baocaokekhaigiatpcnte6t')}}">Báo cáo thống kê</a></li-->
+                                    <li><a href="{{url('baocaokekhaigiatpcnte6t')}}">Báo cáo thống kê</a></li>
                                 @endif
                             </ul>
                         </li>
@@ -435,7 +435,7 @@
                                     <li><a href="{{url('thongtindndlbb')}}">Kê khai giá </a> </li>
                                     <li><a href="{{url('xetduyetgiadvdlbb')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiadvdlbb')}}">Tìm kiếm thông tin</a> </li>
-                                    <!--li><a href="{{url('')}}">Báo cáo thống kê</a></li-->
+                                    <li><a href="{{url('baocaokekhaidvdlbb')}}">Báo cáo thống kê</a></li>
                                 @endif
                             </ul>
                         </li>
@@ -456,7 +456,7 @@
                                     <li><a href="{{url('thongtindntqkdl')}}">Kê khai giá </a> </li>
                                     <li><a href="{{url('xetduyetgiavetqkdl')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiavetqkdl')}}">Tìm kiếm thông tin</a> </li>
-                                    <!--li><a href="{{url('')}}">Báo cáo thống kê</a></li-->
+                                    <li><a href="{{url('baocaokekhaigiavetqkdl')}}">Báo cáo thống kê</a></li>
                                 @endif
                             </ul>
                         </li>

@@ -45,7 +45,11 @@ Route::get('timkiemkekhaigiatpcnte6t','manage\kekhaigia\kkgiatpcnte6t\KkGsXdCont
 //Ajax
 Route::get('/ttdnkkdvgs','manage\kekhaigia\kkgiatpcnte6t\KkGsXdController@ttdnkkdvgs');
 
-Route::get('baocaokekhaigiatpcnte6t','manage\kekhaigia\kkgiatpcnte6t\ReportsKkGsController@index');
-Route::post('reports/kekhaigiasua/BC5','manage\kekhaigia\kkgiatpcnte6t\ReportsKkGsController@dvltbc5');
-Route::post('reports/kekhaigiasua/BC6','manage\kekhaigia\kkgiatpcnte6t\ReportsKkGsController@dvltbc6');
+//Route::get('baocaokekhaigiatpcnte6t','manage\kekhaigia\kkgiatpcnte6t\ReportsKkGsController@index');
+//Route::post('reports/kekhaigiasua/BC5','manage\kekhaigia\kkgiatpcnte6t\ReportsKkGsController@dvltbc5');
+//Route::post('reports/kekhaigiasua/BC6','manage\kekhaigia\kkgiatpcnte6t\ReportsKkGsController@dvltbc6');
+
+Route::get('baocaokekhaigiatpcnte6t','manage\kekhaigia\kkgiatpcnte6t\KkGsBcController@index');
+Route::post('baocaokekhaigiatpcnte6t/bc1','manage\kekhaigia\kkgiatpcnte6t\KkGsBcController@bc1');
+Route::post('baocaokekhaigiatpcnte6t/bc2','manage\kekhaigia\kkgiatpcnte6t\KkGsBcController@bc2');
 ?>

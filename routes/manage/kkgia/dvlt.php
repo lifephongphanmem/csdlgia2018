@@ -30,4 +30,5 @@ Route::get('timkiemkkgiadvlt','manage\kekhaigia\kkdvlt\KkGiaDvLtXdController@sea
 Route::get('baocaokekhaidvlt','manage\kekhaigia\kkdvlt\ReportsKkDvLtController@index');
 Route::post('reports/kekhaidvlt/BC5','manage\kekhaigia\kkdvlt\ReportsKkDvLtController@dvltbc5');
 Route::post('reports/kekhaidvlt/BC6','manage\kekhaigia\kkdvlt\ReportsKkDvLtController@dvltbc6');
+
 ?>
