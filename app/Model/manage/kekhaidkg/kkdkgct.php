@@ -18,5 +18,6 @@ class kkdkgct extends Model
         'gialk',
         'giakk',
         'ghichu',
+        'trangthai'
     ];
 }

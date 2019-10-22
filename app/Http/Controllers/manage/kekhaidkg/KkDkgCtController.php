@@ -27,6 +27,7 @@ class KkDkgCtController extends Controller
         if(isset($inputs['tenhh'])){
             $inputs['gialk'] = getDouble($inputs['gialk']);
             $inputs['giakk'] = getDouble($inputs['giakk']);
+            $inputs['trangthai'] = 'CXD';
             $modeladd = new kkdkgct();
 
             $modeladd->create($inputs);

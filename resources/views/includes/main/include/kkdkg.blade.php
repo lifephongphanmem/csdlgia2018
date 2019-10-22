@@ -22,8 +22,8 @@
                                 <li><a href="{{url('hosokkdkg?manghe='.$dm->manghe)}}">Đăng ký giá</a></li>
                             @else
                                 <li><a href="{{url('thongtindnkkgdk?manghe='.$dm->manghe)}}">Đăng ký giá</a></li>
-                                <li><a href="{{url('xetduyetkkdkg?manghe='.$dm->manghe)}}">Thông tin hồ sơ xét duyệt</a></li>
-                                <li><a href="{{url('timkiemkkdkg?manghe='.$dm->manghe)}}">Tìm kiếm thông tin đăng ký giá</a></li>
+                                <li><a href="{{url('xetduyetkkdkg?manghe='.$dm->manghe)}}">Xét duyệt hồ sơ</a></li>
+                                <li><a href="{{url('timkiemkkdkg?manghe='.$dm->manghe)}}">Tìm kiếm thông tin</a></li>
                                 <li><a href="{{url('baocaokekhaidkg?manghe='.$dm->manghe)}}">Báo cáo tổng hợp</a></li>
                             @endif
                         </ul>

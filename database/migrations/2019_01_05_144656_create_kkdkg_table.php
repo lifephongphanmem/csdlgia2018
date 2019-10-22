@@ -24,13 +24,16 @@ class CreateKkdkgTable extends Migration
             $table->string('socvlk')->nullable();
             $table->date('ngaycvlk')->nullable();
             $table->date('ngayhieuluc')->nullable();
-            $table->text('ttnguoinop')->nullable();
+            $table->string('nguoinop',20)->nullable();
+            $table->string('dtlh',15)->nullable();
+            $table->string('fax',15)->nullable();
             $table->date('ngaynhan')->nullable();
             $table->string('sohsnhan')->nullable();
             $table->dateTime('ngaychuyen')->nullable();
             $table->text('lydo')->nullable();
             $table->string('trangthai')->nullable();
             $table->string('plhs')->nullable();
+            $table->string('pldn')->nullable();
             $table->string('thoihan')->nullable();
             $table->string('phanloai')->nullable();
             $table->text('ghichu')->nullable();

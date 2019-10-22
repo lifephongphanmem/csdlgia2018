@@ -76,7 +76,7 @@
         }
 
         function ClickChuyen(){
-            if($('#ttnguoinop').val() != ''){
+            if($('#nguoinop').val() != '' && $('#dtlh').val() != ''){
                 toastr.success("Hồ sơ đã được chuyển!", "Thành công!");
                 $("#frm_chuyen").unbind('submit').submit();
                 var btn = document.getElementById('submitChuyen');
@@ -121,7 +121,7 @@
 
     </marquee>
     <h3 class="page-title">
-        Thông tin hồ sơ <small>&nbsp;{{$inputs['mh']}}</small>
+        Thông tin hồ sơ đăng ký<small>&nbsp;{{$inputs['mh']}}</small>
         <p><h5 style="color: blue">{{$modeldn->tendn}}&nbsp;- Mã số thuế: {{$modeldn->maxa}}</h5></p>
     </h3>
     <!-- END PAGE HEADER-->
@@ -132,7 +132,7 @@
                 <div class="portlet-title">
                     <div class="actions">
                         <a href="{{url('hosokkdkg/create?&manghe='.$inputs['manghe'].'&maxa='.$inputs['maxa'])}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-plus"></i> Kê khai mới </a>
+                            <i class="fa fa-plus"></i> Đăng ký giá mới </a>
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
                             <a href="{{url('thongtindnkkgdk?manghe='.$inputs['manghe'].'&maxa='.$modeldn->mahuyen)}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-reply"></i> Quay lại </a>
@@ -245,8 +245,16 @@
                         <div class="form-group" id="tthschuyen">
                         </div>
                         <div class="form-group">
-                            <label><b>Thông tin người nộp</b></label>
-                            <textarea id="ttnguoinop" class="form-control required" name="ttnguoinop" cols="30" rows="5" placeholder="Họ và tên người chuyển- Số ĐT liên lạc- Email lien lạc"></textarea>
+                            <label><b>Họ và tên người nộp</b></label>
+                            <input type="text" id="nguoinop" name="nguoinop" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label><b>Số điện thoại liên hệ</b></label>
+                            <input type="tel" id="dtlh" name="dtlh" class="form-control" maxlength="15">
+                        </div>
+                        <div class="form-group">
+                            <label><b>Số Fax</b></label>
+                            <input type="tel" id="fax" name="fax" class="form-control" maxlength="15">
                         </div>
                     </div>
                     <input type="hidden" name="idchuyen" id="idchuyen">

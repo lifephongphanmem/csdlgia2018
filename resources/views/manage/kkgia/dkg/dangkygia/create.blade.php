@@ -50,7 +50,7 @@
         function createmhbog(){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/kkkgctdf/add',
+                url: '/kkkgct/add',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -80,7 +80,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/kkkgctdf/show',
+                url: '/kkkgct/show',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -100,7 +100,7 @@
         function updatemhbog(){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/kkkgctdf/update',
+                url: '/kkkgct/update',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -134,7 +134,7 @@
         function delmhbog() {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/kkkgctdf/del',
+                url: '/kkkgct/del',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -197,16 +197,14 @@
                                 <div class="form-group">
                                     <label class="control-label">Ngày kê khai<span class="require">*</span></label>
                                     <!--input type="date" name="ngaynhap" id="ngaynhap" class="form-control required" autofocus-->
-                                    <label class="form-control required" >{{$ngaynhap}}</label>
-                                    {!!Form::hidden('ngaynhap',$ngaynhap, array('id' => 'ngaynhap','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required','onchange'=>"checkngaykk()"))!!}
+                                    {!!Form::text('ngaynhap',$ngaynhap, array('id' => 'ngaynhap','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                                 </div>
                             </div>
                             <!--/span-->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Ngày thực hiện mức giá kê khai<span class="require">*</span></label>
-                                    <!--input type="date" name="ngayhieuluc" id="ngayhieuluc" class="form-control required"-->
-                                    {!!Form::text('ngayhieuluc',null, array('id' => 'ngayhieuluc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required','onchange'=>"checkngay()"))!!}
+                                    {!!Form::text('ngayhieuluc',null, array('id' => 'ngayhieuluc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                                 </div>
                             </div>
                             <!--/span-->
@@ -231,22 +229,37 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Ngày nhập số công văn liền kề<span class="require">*</span></label>
+                                    <label class="control-label">Ngày nhập số công văn liền kề</label>
                                     <!--input type="date" name="ngaycvlk" id="ngaycvlk" class="form-control" value="{{isset($modelcb) ? $modelcb->ngaynhap : '' }}"-->
                                     {!!Form::text('ngaycvlk',(isset($modellk) ? date('d/m/Y',  strtotime($modellk->ngaynhap)) : ''), array('id' => 'ngaycvlk','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group"><label for="selGender" class="control-label">Phân tích nguyên nhân điều chỉnh tăng/giảm giá kê khai của từng mặt hàng</label>
-                                    <div>
-                                        <textarea id="ghichu" class="form-control" name="ghichu" cols="30" rows="5"
-                                        >{{isset($modellk) ? $modellk->ghichu : '' }}</textarea>
-                                    </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Doanh nghiệp là đơn vị<span class="require">*</span></label>
+                                    {!! Form::select('pldn',array('Sản xuất' => 'Sản xuất', 'Dịch vụ' => 'Dịch vụ'),null, ['id' => 'pldn','class' => 'form-control','required'=>'required']) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Đăng ký giá<span class="require">*</span></label>
+                                    <!--input type="date" name="ngaycvlk" id="ngaycvlk" class="form-control" value="{{isset($modelcb) ? $modelcb->ngaynhap : '' }}"-->
+                                    {!! Form::select('plhs',array('Nhập khẩu' => 'Nhập khẩu', 'Bán buôn' => 'Bán buôn', 'Bán lẻ' => 'Bán lẻ'),null, ['id' => 'plhs','class' => 'form-control','required'=>'required']) !!}
                                 </div>
                             </div>
                         </div>
+                        {{--<div class="row">--}}
+                            {{--<div class="col-md-12">--}}
+                                {{--<div class="form-group"><label for="selGender" class="control-label">Giải trình lý do điều chỉnh giá</label>--}}
+                                    {{--<div>--}}
+                                        {{--<textarea id="ghichu" class="form-control" name="ghichu" cols="30" rows="5"--}}
+                                        {{-->{{isset($modellk) ? $modellk->ghichu : '' }}</textarea>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">

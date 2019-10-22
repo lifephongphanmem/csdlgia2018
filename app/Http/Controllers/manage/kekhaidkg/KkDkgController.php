@@ -59,7 +59,7 @@ class KkDkgController extends Controller
                     ->with('modeldv',$modeldv)
                     ->with('ttql',$ttql)
                     ->with('inputs',$inputs)
-                    ->with('pageTitle', 'Danh sách thông tin kê khai giá');
+                    ->with('pageTitle', 'Danh sách thông tin doanh nghiệp đăng ký giá');
             } else {
                 return view('errors.perm');
             }
@@ -95,7 +95,7 @@ class KkDkgController extends Controller
                 ->with('modeldn', $modeldn)
                 ->with('inputs',$inputs)
                 ->with('modeldv',$modeldv)
-                ->with('pageTitle', 'Danh sách hồ sơ kê khai mặt hàng BOG');
+                ->with('pageTitle', 'Danh sách hồ sơ đăng ký giá mặt hàng BOG');
 
         }else
             return view('errors.notlogin');
@@ -103,6 +103,7 @@ class KkDkgController extends Controller
     public function create(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
+            $delct = kkdkgct::where('trangthai','CXD')->delete();
             $inputs['mahs'] = $inputs['manghe'].''.$inputs['maxa'].getdate()[0];
             $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
                 ->where('company.maxa',$inputs['maxa'])
@@ -118,15 +119,17 @@ class KkDkgController extends Controller
             $modellk = kkdkg::where('id',$idhslk)->first();
             if(isset($modellk)) {
                 $modelctlk = kkdkgct::where('mahs', $modellk->mahs)
+                    ->where('trangthai','XD')
                     ->get();
                 foreach ($modelctlk as $ctlk) {
-                    $modelctnew = new kkdkgctdf();
+                    $modelctnew = new kkdkgct();
                     $modelctnew->mahs = $inputs['mahs'];
                     $modelctnew->tenhh = $ctlk->tenhh;
                     $modelctnew->quycach = $ctlk->quycach;
                     $modelctnew->dvt = $ctlk->dvt;
                     $modelctnew->gialk = $ctlk->giakk;
                     $modelctnew->ghichu = $ct->ghichu;
+                    $modelctnew->trangthai = 'CXD';
                     $modelctnew->save();
                 }
             }
@@ -141,7 +144,7 @@ class KkDkgController extends Controller
                 ->with('ngaynhap', $ngaynhap)
                 ->with('modelct',$modelct)
                 ->with('dmnghe',$dmnghe)
-                ->with('pageTitle', 'Kê khai giá mặt hàng BOG');
+                ->with('pageTitle', 'Đăng ký giá mặt hàng BOG');
 
 
         }else
@@ -165,19 +168,8 @@ class KkDkgController extends Controller
             }
             $model = new kkdkg();
             if($model->create($inputs)){
-                $modelctdf = kkdkgctdf::where('mahs',$inputs['mahs']);
-                foreach($modelctdf->get() as $ctdf){
-                    $modelct = new kkdkgct();
-                    $modelct->mahs = $inputs['mahs'];
-                    $modelct->tenhh= $ctdf->tenhh;
-                    $modelct->quycach= $ctdf->quycach;
-                    $modelct->dvt= $ctdf->dvt;
-                    $modelct->gialk= $ctdf->gialk;
-                    $modelct->giakk= $ctdf->giakk;
-                    $modelct->ghichu= $ctdf->ghichu;
-                    $modelct->save();
-                }
-                $modelctdf->delete();
+                $modelct = kkdkgct::where('mahs',$inputs['mahs'])
+                    ->update(['trangthai' => 'XD']);
             }
             return redirect('hosokkdkg/?&manghe='.$inputs['phanloai'].'&maxa='.$inputs['maxa']);
 
@@ -187,7 +179,7 @@ class KkDkgController extends Controller
     public function edit($id){
         if (Session::has('admin')) {
             //Kiểm tra có thuộc sự quản lý hay k
-
+            $delct = kkdkgct::where('trangthai','CXD')->delete();
             $model = kkdkg::findOrFail($id);
             $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
                 ->where('company.maxa',$model->maxa)
@@ -204,13 +196,14 @@ class KkDkgController extends Controller
                 ->with('model',$model)
                 ->with('modelct',$modelct)
                 ->with('dmnghe',$dmnghe)
-                ->with('pageTitle', 'Chỉnh sửa hồ sơ kê khai giá mật hàng BOG');
+                ->with('pageTitle', 'Chỉnh sửa hồ sơ đăng ký giá mặt hàng BOG');
         }else
             return view('errors.notlogin');
     }
     public function update(Request $request,$id){
         if (Session::has('admin')) {
             $inputs = $request->all();
+            $inputs['ngaynhap'] = getDateToDb($inputs['ngaynhap']);
             $inputs['ngayhieuluc'] = getDateToDb($inputs['ngayhieuluc']);
             if($inputs['ngaycvlk'] != '')
                 $inputs['ngaycvlk']= getDateToDb($inputs['ngaycvlk']);
@@ -223,8 +216,10 @@ class KkDkgController extends Controller
                 $inputs['ipf1']= $inputs['ipt1'];
             }
             $model = kkdkg::findOrFail($id);
-            $model->update($inputs);
-//            return redirect('kkdkg/?&ma='.$inputs['ma'].'&masothue='.$inputs['maxa']);
+            if($model->update($inputs)){
+                $modelct = kkdkgct::where('mahs',$inputs['mahs'])
+                    ->update(['trangthai' => 'XD']);
+            }
             return redirect('hosokkdkg/?&manghe='.$inputs['phanloai'].'&maxa='.$inputs['maxa']);
         }else
             return view('errors.notlogin');
@@ -238,7 +233,6 @@ class KkDkgController extends Controller
                 $modelct = kkdkgct::where('mahs',$model->mahs)
                     ->delete();
             }
-//            return redirect('kkdkg/?&ma='.$model->phanloai.'&masothue='.$model->maxa);
             return redirect('hosokkdkg/?&manghe='.$model->phanloai.'&maxa='.$model->maxa);
         }else
             return view('errors.notlogin');
@@ -320,11 +314,15 @@ class KkDkgController extends Controller
                 ->get();
             $modelcqcq = Town::where('maxa',$modeldn->mahuyen)
                 ->first();
+            $modelnghe = DmNgheKd::where('manganh','BOG')
+                ->where('manghe',$modelkk->phanloai)
+                ->first();
             return view('manage.kkgia.dkg.reports.print')
                 ->with('modelkk',$modelkk)
                 ->with('modeldn',$modeldn)
                 ->with('modelkkct',$modelkkct)
                 ->with('modelcqcq',$modelcqcq)
+                ->with('modelnghe',$modelnghe)
                 ->with('pageTitle','Hồ sơ kê khai giá');
 
         }else
@@ -350,9 +348,9 @@ class KkDkgController extends Controller
                     ->first();
                 $tg = getDateTime(Carbon::now()->toDateTimeString());
                 $contentdn = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận được hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp. Số công văn: '.$model->socv.
-                    ' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['ttnguoinop'].'!!!';
+                    ' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['nguoinop'].'-Số điện thoại liên hệ: '.$inputs['dtlh'].'!!!';
                 $contentht = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận được hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp '.$modeldn->tendn.' - mã số thuế '.$modeldn->maxa.
-                    ' Số công văn: '.$model->socv.' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['ttnguoinop'].'!!!';
+                    ' Số công văn: '.$model->socv.' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['nguoinop'].'-Số điện thoại liên hệ: '.$inputs['dtlh'].'!!!';
                 $run = new SendMail($modeldn,$contentdn,$modeldv,$contentht);
                 $run->handle();
                 //dispatch($run);
