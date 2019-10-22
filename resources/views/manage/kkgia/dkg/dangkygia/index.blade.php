@@ -179,7 +179,7 @@
                                 <td style="text-align: center">{{getDayVn($tt->ngayhieuluc)}}</td>
                                 <td style="text-align: center" class="active">{{$tt->socv}}</td>
                                 <td style="text-align: center">{{$tt->socvlk}}</td>
-                                <td style="text-align: center">{{$tt->ttnguoinop}}</td>
+                                <td style="text-align: center">Họ và tên: {{$tt->nguoinop}}<br>Số điện thoại liên hệ: {{$tt->dtlh}}<br>Số Fax: {{$tt->fax}}</td>
                                 @if($tt->trangthai == "CC")
                                 <td align="center"><span class="badge badge-warning">Chờ chuyển</span></td>
                                 @elseif($tt->trangthai == 'CD')
