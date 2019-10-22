@@ -45,9 +45,10 @@ class KkDkgController extends Controller
                         return view('errors.perm');
                 }
                 $model = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
+                    ->join('town','town.maxa','=','companylvcc.mahuyen')
                     ->where('companylvcc.manghe',$inputs['manghe'])
                     ->where('companylvcc.mahuyen',$inputs['maxa'])
-                    ->join('town','town.maxa','=','companylvcc.mahuyen')
+                    ->where('company.trangthai','Kích hoạt')
                     ->select('company.*','town.tendv')
                     ->get();
 
