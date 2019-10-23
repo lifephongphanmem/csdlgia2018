@@ -104,7 +104,9 @@ class KkDkgController extends Controller
     public function create(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
-            $delct = kkdkgct::where('trangthai','CXD')->delete();
+            $delct = kkdkgct::where('trangthai','CXD')
+                ->where('maxa',$inputs['maxa'])
+                ->delete();
             $inputs['mahs'] = $inputs['manghe'].''.$inputs['maxa'].getdate()[0];
             $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
                 ->where('company.maxa',$inputs['maxa'])
@@ -180,7 +182,9 @@ class KkDkgController extends Controller
     public function edit($id){
         if (Session::has('admin')) {
             //Kiểm tra có thuộc sự quản lý hay k
-            $delct = kkdkgct::where('trangthai','CXD')->delete();
+            $delct = kkdkgct::where('trangthai','CXD')
+                ->where('maxa',$inputs['maxa'])
+                ->delete();
             $model = kkdkg::findOrFail($id);
             $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
                 ->where('company.maxa',$model->maxa)

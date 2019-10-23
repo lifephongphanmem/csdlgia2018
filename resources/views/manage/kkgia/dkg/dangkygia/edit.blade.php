@@ -59,6 +59,7 @@
                     gialk: $('#gialk').val(),
                     giakk: $('#giakk').val(),
                     dvt: $('#dvt').val(),
+                    maxa: $('#maxa').val(),
                     mahs: $('#mahs').val()
                 },
                 dataType: 'JSON',
