@@ -20,7 +20,6 @@
             TableManaged.init();
         });
         $(function(){
-
             $('#maxa').change(function() {
                 var maxa = '&maxa=' + $('#maxa').val();
                 var manghe = '&manghe=' + $('#manghe').val();
@@ -33,7 +32,6 @@
 @stop
 
 @section('content')
-
     <h3 class="page-title">
         Thông tin doanh nghiệp kê khai <small>&nbsp;{{$inputs['mh']}}</small>
         <p><h5 style="color: blue">Sở ban ngành quản lý {{$ttql->tendv}}</h5></p>

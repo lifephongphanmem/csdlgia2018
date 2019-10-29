@@ -302,10 +302,12 @@
                                             <td class="active">{{$tt->tenhh}}</td>
                                             <td style="text-align: left">{{$tt->quycach}}</td>
                                             <td style="text-align: center">{{$tt->dvt}}</td>
-                                            <td style="text-align: right">{{number_format($tt->gialk)}}</td>
-                                            <td style="text-align: right">{{number_format($tt->giakk)}}</td>
+                                            <td style="text-align: right">{{dinhdangsothapphan($tt->gialk,5)}}</td>
+                                            <td style="text-align: right">{{dinhdangsothapphan($tt->giakk,5)}}</td>
                                             <td>
                                                 <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editmhbog({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>
+                                                <button type="button" data-target="#modal-nhapkhau" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editnhapkhau({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Thuyết minh với MH nhập khẩu</button>
+                                                <button type="button" data-target="#modal-sanxuat" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editsanxuat({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Thuyết minh với MH sản xuất</button>
                                                 <button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid({{$tt->id}});" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                             </td>
                                         </tr>
@@ -431,4 +433,6 @@
     </div>
     @include('includes.script.create-header-scripts')
     @include('includes.script.inputmask-ajax-scripts')
+    @include('manage.kkgia.dkg.dangkygia.modal_nhapkhau')
+    @include('manage.kkgia.dkg.dangkygia.modal_sanxuat')
 @stop

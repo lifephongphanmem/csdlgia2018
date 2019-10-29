@@ -19,18 +19,16 @@ Route::post('hosokkdkg/chuyen','manage\kekhaidkg\KkDkgController@chuyen');
 Route::get('/hosokkdkg/kiemtra','manage\kekhaidkg\KkDkgController@kiemtra');
 //End Ajax chuyển
 
-//Ajax create
-Route::get('kkkgctdf/add','manage\kekhaidkg\KkDkgCtDfController@add');
-Route::get('kkkgctdf/show','manage\kekhaidkg\KkDkgCtDfController@show');
-Route::get('kkkgctdf/update','manage\kekhaidkg\KkDkgCtDfController@update');
-Route::get('kkkgctdf/del','manage\kekhaidkg\KkDkgCtDfController@destroy');
-//End Ajax create
-
 //Ajax edit
 Route::get('kkkgct/add','manage\kekhaidkg\KkDkgCtController@add');
 Route::get('kkkgct/show','manage\kekhaidkg\KkDkgCtController@show');
 Route::get('kkkgct/update','manage\kekhaidkg\KkDkgCtController@update');
 Route::get('kkkgct/del','manage\kekhaidkg\KkDkgCtController@destroy');
+
+Route::get('kkkgct/editnhapkhau','manage\kekhaidkg\KkDkgCtController@editnhapkhau');
+Route::post('kkkgct/updatenhapkhau','manage\kekhaidkg\KkDkgCtController@updatenhapkhau');
+Route::get('kkkgct/editsanxuat','manage\kekhaidkg\KkDkgCtController@editsanxuat');
+Route::post('kkkgct/updatesanxuat','manage\kekhaidkg\KkDkgCtController@updatesanxuat');
 //End Ajax edit
 
 //Xét duyệt kê khai giá

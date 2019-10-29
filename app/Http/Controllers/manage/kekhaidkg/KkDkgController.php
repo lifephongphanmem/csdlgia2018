@@ -182,10 +182,11 @@ class KkDkgController extends Controller
     public function edit($id){
         if (Session::has('admin')) {
             //Kiểm tra có thuộc sự quản lý hay k
-            $delct = kkdkgct::where('trangthai','CXD')
-                ->where('maxa',$inputs['maxa'])
-                ->delete();
+
             $model = kkdkg::findOrFail($id);
+            $delct = kkdkgct::where('trangthai','CXD')
+                ->where('maxa',$model->maxa)
+                ->delete();
             $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
                 ->where('company.maxa',$model->maxa)
                 ->where('companylvcc.manghe',$model->phanloai)

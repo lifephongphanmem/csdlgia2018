@@ -112,6 +112,7 @@
 
 <p style="page-break-before: always">
     <!--Trang2-->
+<hr class="in">
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 25px; text-align: center;">
     <tr>
         <td width="40%" style="text-transform: uppercase;">
@@ -121,6 +122,12 @@
         <td>
             <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>
             <b><i><u>Độc lập - Tự do - Hạnh phúc</u></i></b><br>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <i>{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i>
         </td>
     </tr>
 </table>
@@ -157,5 +164,195 @@
 </table>
 <p style="text-align: left; font-size: 16px;">Mức giá đăng ký này thực hiện từ ngày {{getDayVn($modelkk->ngayhieuluc)}}</p>
 <!--Trang3-->
+<hr class="in">
+<p style="page-break-before: always">
+@foreach($modelkkct as $nhapkhau)
+<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 25px; text-align: center;">
+    <tr>
+        <td width="40%" style="text-transform: uppercase;">
+            <b>{{$modeldn->tendn}}</b><br>
+            --------<br>
+        </td>
+        <td>
+            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>
+            <b><i><u>Độc lập - Tự do - Hạnh phúc</u></i></b><br>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <i>{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i>
+        </td>
+    </tr>
+</table>
+<p style="text-align: center; font-weight: bold; font-size: 16px;">THUYẾT MINH CƠ CẤU TÍNH GIÁ<br>HÀNG HÓA, DỊCH VỤ ĐĂNG KÝ GIÁ</p>
+<p style="text-align: center;"><i>(Kèm theo công văn số {{$modelkk->socv}}  ngày {{ date("d",strtotime($modelkk->ngaynhap))}} tháng {{ date("m",strtotime($modelkk->ngaynhap))}} năm {{ date("Y",strtotime($modelkk->ngaynhap))}} của {{$modeldn->tendn}})</i></p>
+<p style="text-align: center; font-weight: bold">(Đối với mặt hàng nhập khẩu)</p>
+<p style="text-align: left; font-size: 16px;">Tên hàng hóa, dịch vụ: {{$nhapkhau->tenhh}}</p>
+<p style="text-align: left; font-size: 16px;">Đơn vị sản xuất, kinh doanh {{$nhapkhau->nkdonvisxkd}}</p>
+<p style="text-align: left; font-size: 16px;">Quy cách phẩm chất, điều kiện bán hàng hoặc giao hàng; chính sách khuyến mại, giảm giá, chiết khấu cho các đối tượng khách hàng (nếu có)<br>{{$nhapkhau->nkqcpc}}</p>
+<p style="font-weight: bold"> I. BẢNG TỔNG HỢP TÍNH GÍ VỐN, GIÁ BÁN HÀNG HÓA NHẬP KHẨU CHO MỘT ĐƠN VỊ SẢN PHẨM HÀNG HÓA</p>
+<table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
+    <thead><tr>
+        <th width="5%">STT</th>
+        <th width="35%">Khoản mục chi phí</th>
+        <th width="10%">Đơn vị tính</th>
+        <th width="10%">Thành tiền</th>
+        <th >Ghi chú</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+        <td style="text-align: center;font-weight: bold">A</td>
+        <td style="font-weight: bold">Sản lượng nhập khẩu</td>
+        <td style="text-align: center; font-weight: bold">{{$nhapkhau->nksanluongdvt}}</td>
+        <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($nhapkhau->nksanluongtt,5)}}</td>
+        <td style="font-weight: bold">{{$nhapkhau->nksanluonggc}}</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;font-weight: bold">B</td>
+        <td style="font-weight: bold">Giá vốn nhập khẩu</td>
+        <td style="text-align: center"></td>
+        <td style="text-align: right"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td style="text-align: center">1</td>
+        <td>Giá mua tại cửa khẩu Việt Nam (giá CIF)</td>
+        <td style="text-align: center">{{$nhapkhau->nkgiamuackdvt}}</td>
+        <td style="text-align: right">{{dinhdangsothapphan($nhapkhau->nkgiamuacktt,5)}}</td>
+        <td>{{$nhapkhau->nkgiamuackgc}}</td>
+    </tr>
+    <tr>
+        <td style="text-align: center">2</td>
+        <td>Thuế nhập khẩu</td>
+        <td style="text-align: center">{{$nhapkhau->nkthuedvt}}</td>
+        <td style="text-align: right">{{dinhdangsothapphan($nhapkhau->nkthuett,5)}}</td>
+        <td>{{$nhapkhau->nkthueghichu}}</td>
+    </tr>
+    <tr>
+        <td style="text-align: center">3</td>
+        <td>Thuế tiêu thụ đặc biệt (nếu có)</td>
+        <td style="text-align: center">{{$nhapkhau->nkthuettdbdvt}}</td>
+        <td style="text-align: right">{{dinhdangsothapphan($nhapkhau->nkthuettdbtt,5)}}</td>
+        <td>{{$nhapkhau->nkthuettdbgc}}</td>
+    </tr>
+    <tr>
+        <td style="text-align: center">4</td>
+        <td>Các khoản thuế, phí khác (nếu có)</td>
+        <td style="text-align: center">{{$nhapkhau->nkthuephikdvt}}</td>
+        <td style="text-align: right">{{dinhdangsothapphan($nhapkhau->nkthuephiktt),5}}</td>
+        <td>{{$nhapkhau->nkthuephikgc}}</td>
+    </tr>
+    <tr>
+        <td style="text-align: center">5</td>
+        <td>Các khoản chi bằng tiền khác theo quy định (nếu có)</td>
+        <td style="text-align: center">{{$nhapkhau->nktienkdvt}}</td>
+        <td style="text-align: right">{{dinhdangsothapphan($nhapkhau->nktienktt,5)}}</td>
+        <td>{{$nhapkhau->nktienkgc}}</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;font-weight: bold">C</td>
+        <td style="font-weight: bold">Chi phí chung</td>
+        <td style="text-align: center"></td>
+        <td style="text-align: right"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td style="text-align: center">6</td>
+        <td>Chi phí tài chính (nếu có)</td>
+        <td style="text-align: center">{{$nhapkhau->nkchiphitcdvt}}</td>
+        <td style="text-align: right">{{dinhdangsothapphan($nhapkhau->nkchiphitctt,5)}}</td>
+        <td>{{$nhapkhau->nkchiphitcgc}}</td>
+    </tr>
+    <tr>
+        <td style="text-align: center">7</td>
+        <td>Chi phí bán hàng</td>
+        <td style="text-align: center">{{$nhapkhau->nkchiphibhdvt}}</td>
+        <td style="text-align: right">{{dinhdangsothapphan($nhapkhau->nkchiphibhtt,5)}}</td>
+        <td>{{$nhapkhau->nkchiphibhgc}}</td>
+    </tr>
+    <tr>
+        <td style="text-align: center">8</td>
+        <td>Chi phí quản lý</td>
+        <td style="text-align: center">{{$nhapkhau->nkchiphiqldvt}}</td>
+        <td style="text-align: right">{{dinhdangsothapphan($nhapkhau->nkchiphiqltt,5)}}</td>
+        <td>{{$nhapkhau->nkchiphiqlgc}}</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;font-weight: bold">D</td>
+        <td style="font-weight: bold">Tổng chi phí</td>
+        <td style="text-align: center"></td>
+        <td style="text-align: right; font-weight: bold">{{dinhdangsothapphan($nhapkhau->nkgiamuacktt+$nhapkhau->nkthuett+$nhapkhau->nkthuettdbtt+$nhapkhau->nkthuephiktt+$nhapkhau->nktienktt
+                +$nhapkhau->nkchiphitctt+$nhapkhau->nkchiphibhtt+$nhapkhau->nkchiphiqltt,5)}}</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td style="text-align: center;font-weight: bold">Đ</td>
+        <td style="font-weight: bold">Giá thành toàn bộ 01(một) đơn vị sản phẩm</td>
+        <td style="text-align: center; font-weight: bold">{{$nhapkhau->nkgiathanh1spdvt}}</td>
+        <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($nhapkhau->nkgiathanh1sptt,5)}}</td>
+        <td style="font-weight: bold">{{$nhapkhau->nkgiathanh1spgc}}</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;font-weight: bold">E</td>
+        <td style="font-weight: bold">Lợi nhuận dự kiến</td>
+        <td style="text-align: center; font-weight: bold">{{$nhapkhau->nkloinhuandkdvt}}</td>
+        <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($nhapkhau->nkloinhuandktt,5)}}</td>
+        <td style="font-weight: bold">{{$nhapkhau->nkloinhuandkgc}}</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;font-weight: bold">G</td>
+        <td style="font-weight: bold">Thuế giá trị gia tăng, thuế khác (nếu có) theo quy định</td>
+        <td style="text-align: center; font-weight: bold">{{$nhapkhau->nkthuegtgtkdvt}}</td>
+        <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($nhapkhau->nkthuegtgtktt,5)}}</td>
+        <td style="font-weight: bold">{{$nhapkhau->nkthuegtgtkgc}}</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;font-weight: bold">H</td>
+        <td style="font-weight: bold">Giá bán dự kiến</td>
+        <td style="text-align: center; font-weight: bold">{{$nhapkhau->nkgiabandkdvt}}</td>
+        <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($nhapkhau->nkgiabandktt,5)}}</td>
+        <td style="font-weight: bold">{{$nhapkhau->nkgiabandkgc}}</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-weight: bold">II. GIẢI TRÌNH CHI TIẾT CÁCH TÍNH CÁC KHOẢN MỤC CHI PHÍ CHO MỘT ĐƠN VỊ SẢN PHẨM HÀNG HÓA</p>
+<p>1. Giá mua tại cửa khẩu Việt Nam (giá CIF)<br>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$nhapkhau->nkgtgiamuack}}</p>
+
+<p>2. Thuế nhập khẩu<br>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$nhapkhau->nkgtthuenk}}</p>
+
+<p>3. Thuế tiêu thụ đặc biệt (nếu có)<br>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$nhapkhau->nkgtthuettdb}}</p>
+
+<p>4. Các khoản thuế, phí khác (nếu có)<br>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$nhapkhau->nkgtthuephik}}</p>
+
+<p>5. Các khoản chi bằng tiền khác theo quy định (nếu có)<br>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$nhapkhau->nkgttienk}}</p>
+
+<p>6. Chi phí tài chính (nếu có)<br>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$nhapkhau->nkgtchiphitc}}</p>
+
+<p>7. Chi phí bán hàng<br>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$nhapkhau->nkgtchiphibh}}</p>
+
+<p>8. Chi phí quản lý<br>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$nhapkhau->nkgtchiphiql}}</p>
+
+<p>9. Lợi nhuận dự kiến<br>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$nhapkhau->nkgtloinhuandk}}</p>
+
+<p>10. Thuế giá trị gia tăng, thuế khác (nếu có) theo quy định<br>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$nhapkhau->nkgtthuegtgt}}</p>
+
+<p>11. Giá bán dự kiến</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$nhapkhau->nkgtgiabandk}}</p>
+<!--Trang4-->
+<hr class="in">
+<p style="page-break-before: always">
+
+@endforeach
 </body>
 </html>
