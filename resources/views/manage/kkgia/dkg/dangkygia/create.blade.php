@@ -251,16 +251,16 @@
                                 </div>
                             </div>
                         </div>
-                        {{--<div class="row">--}}
-                            {{--<div class="col-md-12">--}}
-                                {{--<div class="form-group"><label for="selGender" class="control-label">Giải trình lý do điều chỉnh giá</label>--}}
-                                    {{--<div>--}}
-                                        {{--<textarea id="ghichu" class="form-control" name="ghichu" cols="30" rows="5"--}}
-                                        {{-->{{isset($modellk) ? $modellk->ghichu : '' }}</textarea>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group"><label for="selGender" class="control-label">Giải trình lý do điều chỉnh giá</label>
+                                    <div>
+                                        <textarea id="ghichu" class="form-control" name="ghichu" cols="30" rows="5"
+                                        >{{isset($modellk) ? $modellk->ghichu : '' }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">

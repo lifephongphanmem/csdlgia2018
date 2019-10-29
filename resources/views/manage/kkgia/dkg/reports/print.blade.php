@@ -66,7 +66,7 @@
 
 <p>1. Bảng đăng ký mức giá bán cụ thể</p>
 <p>2. Giải trình lý do điều chỉnh giá (trong đó có giải thích việc tính mức giá cụ thể áp dụng theo các hướng dẫn, quy định về phương pháp tính giá do cơ quan có thẩm quyền ban hành)</p>
-
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$modelkk->ghichu}}</p>
 <p>Mức giá đăng ký này thực hiện từ ngày {{getDayVn($modelkk->ngayhieuluc)}}</p>
 
 <p><b>{{$modeldn->tendn}}</b> xin chịu trách nhiệm trước pháp luật về tính đúng đắn của mức giá mà chúng tôi đã kê khai./.</p>
