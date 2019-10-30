@@ -207,7 +207,7 @@
                 <td style="text-align: right">{{dinhdangsothapphan($ct->giakhoidiemsanxd,3)}}</td>
                 <td style="text-align: right">{{dinhdangsothapphan($ct->giadaugiadat,3)}}</td>
                 <td style="text-align: right">{{dinhdangsothapphan($ct->giadaugiasanxd,3)}}</td>
-                <td style="text-align: right">{{$ct->ghichu)}}</td>
+                <td style="text-align: right">{{$ct->ghichu}}</td>
             </tr>
             @endforeach
         @endforeach
