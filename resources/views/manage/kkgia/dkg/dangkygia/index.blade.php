@@ -191,6 +191,9 @@
                                     @endif
                                     <td>
                                         <a href="{{url('hosokkdkg/show?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                        @if($tt->ipt1 != '')
+                                            <a onclick="window.open('{{url('data/kkdkg/'.$tt->ipt1)}}', 'newwindow', 'width=1000,height=700')" class="btn btn-default btn-xs mbs"><i class="fa fa-file"></i>&nbsp;File đính kèm</a>
+                                        @endif
                                         @if(canEdit($tt->trangthai))
                                             <a href="{{url('hosokkdkg/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                             @if(canChuyenXoa($tt->trangthai))

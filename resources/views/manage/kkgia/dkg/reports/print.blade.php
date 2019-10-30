@@ -35,25 +35,22 @@
 </head>
 
 <div class="in" style="margin-left: 20px;">
-    <input type="submit" onclick=" window.print()" value="In kê khai"  />
+    <input type="submit" onclick=" window.print()" value="In kê khai"/>
 </div>
 
 <body style="font:normal 14px Times, serif;">
 
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%" style="text-transform: uppercase;">
+        <td width="40%">
             <b>{{$modeldn->tendn}}</b><br>
             --------<br>
+            Số: {{$modelkk->socv}}<br>V/v đăng ký giá
         </td>
         <td>
-            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>
-            <b><i><u>Độc lập - Tự do - Hạnh phúc</u></i></b><br>
-        </td>
-    </tr>
-    <tr>
-        <td>Số: {{$modelkk->socv}}<br>V/v đăng ký giá</td>
-        <td>
+            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+            Độc lập - Tự do - Hạnh phúc</b><br>
+            -------------------<br>
             <i>{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i>
         </td>
     </tr>
@@ -113,20 +110,16 @@
 <p style="page-break-before: always">
     <!--Trang2-->
 <hr class="in">
-<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 25px; text-align: center;">
+<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%" style="text-transform: uppercase;">
+        <td width="40%">
             <b>{{$modeldn->tendn}}</b><br>
             --------<br>
         </td>
         <td>
-            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>
-            <b><i><u>Độc lập - Tự do - Hạnh phúc</u></i></b><br>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
+            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+                Độc lập - Tự do - Hạnh phúc</b><br>
+            -------------------<br>
             <i>{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i>
         </td>
     </tr>
@@ -352,20 +345,16 @@
 <!--Trang4-->
 <hr class="in">
 <p style="page-break-before: always">
-<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 25px; text-align: center;">
+<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%" style="text-transform: uppercase;">
+        <td width="40%">
             <b>{{$modeldn->tendn}}</b><br>
             --------<br>
         </td>
         <td>
-            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>
-            <b><i><u>Độc lập - Tự do - Hạnh phúc</u></i></b><br>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
+            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+                Độc lập - Tự do - Hạnh phúc</b><br>
+            -------------------<br>
             <i>{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i>
         </td>
     </tr>

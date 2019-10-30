@@ -348,6 +348,9 @@
                                 @endif
                                 <td>
                                     <a href="{{url('hosokkdkg/show?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                    @if($tt->ipt1 != '')
+                                        <a onclick="window.open('{{url('data/kkdkg/'.$tt->ipt1)}}', 'newwindow', 'width=1000,height=700')" class="btn btn-default btn-xs mbs"><i class="fa fa-file"></i>&nbsp;File đính kèm</a>
+                                    @endif
                                     @if(canApprove($tt->trangthai))
                                         <button type="button" onclick="ClickTraLai({{$tt->id}})" class="btn btn-default btn-xs mbs" data-target="#tralai-modal" data-toggle="modal"><i class="fa fa-reply"></i>&nbsp;
                                             Trả lại</button>
