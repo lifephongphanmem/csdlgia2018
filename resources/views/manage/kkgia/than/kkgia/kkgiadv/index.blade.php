@@ -72,7 +72,7 @@
         }
 
         function ClickChuyen(){
-            if($('#ttnguoinop').val() != '' && $('#dtll').val() != ''){
+            if($('#nguoinop').val() != '' && $('#dtll').val() != ''){
                 var btn = document.getElementById('submitChuyen');
                 btn.disabled = true;
                 btn.innerText = 'Loading...';

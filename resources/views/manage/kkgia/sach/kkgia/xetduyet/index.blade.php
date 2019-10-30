@@ -324,8 +324,8 @@
                                 <td style="text-align: center">{{getDayVn($tt->ngaynhap)}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->ngayhieuluc)}}</td>
                                 <td style="text-align: center" class="danger">{{$tt->socv}}</td>
-                                <td style="text-align: center">{{$tt->ttnguoinop}}</td>
-
+                                <td style="text-align: left">@if($tt->nguoinop != '')Họ và tên: {{$tt->nguoinop}}
+                                    <br>Số điện thoại liên hệ: {{$tt->dtll}}<br>Số Fax: {{$tt->fax}}@endif</td>
                                 @if($tt->trangthai == 'CD')
                                     <td align="center"><span class="badge badge-warning">Chờ duyệt</span>
                                         <br>Thời gian chuyển:<br><b>{{getDateTime($tt->ngaychuyen)}}</b>

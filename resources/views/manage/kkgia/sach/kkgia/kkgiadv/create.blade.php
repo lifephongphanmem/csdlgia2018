@@ -123,34 +123,6 @@
         // </editor-fold>
     </script>
     <script>
-        function checkngay(){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '/ajax/checkngay',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    ngaynhap: $('input[name="ngaynhap"]').val(),
-                    ngayhieuluc: $('input[name="ngayhieuluc"]').val(),
-                    plhs: $('select[name="plhs"]').val()
-
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        toastr.success("Ngày hiệu lực có thể sử dụng được", "Thành công!");
-                    }else {
-                        toastr.error("Bạn cần kiểm tra lại ngày có hiệu lực!", "Lỗi!");
-                        $('input[name="ngayhieuluc"]').val('');
-                    }
-                }
-            })
-
-        }
-        function clearngay(){
-            $('input[name="ngaynhap"]').val('');
-            $('input[name="ngayhieuluc"]').val('');
-        }
         function clearForm(){
             $('#tthhdv').val('');
             $('#qccl').val('');
@@ -163,7 +135,7 @@
         function createttp(){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/giasachctdf/storett',
+                url: '/giasachct/storett',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -173,7 +145,8 @@
                     dongialk: $('#dongialk').val(),
                     dongia: $('#dongia').val(),
                     ghichu: $('#ghichu').val(),
-                    maxa: $('input[name="maxa"]').val()
+                    maxa: $('input[name="maxa"]').val(),
+                    mahs: $('input[name="mahs"]').val()
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -193,7 +166,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/giasachctdf/edittt',
+                url: '/giasachct/edittt',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -214,7 +187,7 @@
         function updatets() {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/giasachctdf/updatett',
+                url: '/giasachct/updatett',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -225,7 +198,8 @@
                     ghichu: $('#ghichuedit').val(),
                     dongia: $('#dongiaedit').val(),
                     dongialk: $('#dongialkedit').val(),
-                    maxa: $('input[name="maxa"]').val()
+                    maxa: $('input[name="maxa"]').val(),
+                    mahs: $('input[name="mahs"]').val()
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -248,12 +222,13 @@
         function deleteRow() {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/giasachctdf/deletett',
+                url: '/giasachct/deletett',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
                     id: $('input[name="iddelete"]').val(),
-                    maxa: $('input[name="maxa"]').val()
+                    maxa: $('input[name="maxa"]').val(),
+                    mahs: $('input[name="mahs"]').val(),
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -270,34 +245,6 @@
                 }
             })
 
-        }
-        function checkngaykk(){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '/ajax/checkngaykk',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    ngaynhap: $('input[name="ngaynhap"]').val()
-
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        toastr.success("Ngày kê khai có thể sử dụng được", "Thành công!");
-                    }else {
-                        toastr.error("Bạn cần kiểm tra lại ngày có kê khai, ngày kê khai không được nhỏ hơn ngày hiện tại! ", "Lỗi!");
-                        var today = new Date();
-                        var dd = today.getDate();
-                        var mm = today.getMonth()+1;//January is 0!
-                        var yyyy = today.getFullYear();
-                        if(dd<10){dd='0'+dd}
-                        if(mm<10){mm='0'+mm}
-                        $('#ngaynhap').val(dd+'/'+mm+'/'+yyyy);
-                        $('input[name="ngayhieuluc"]').val('');
-                    }
-                }
-            })
         }
     </script>
     <script>
@@ -417,37 +364,40 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Số công văn liền kề</label>
-                                {!!Form::text('socvlk',(isset($modelcb) ? $modelcb->socv : ''), array('id' => 'socvlk','class' => 'form-control'))!!}
+                                {!!Form::text('socvlk',isset($inputs['socvlk']) ? $inputs['socvlk'] : '', array('id' => 'socvlk','class' => 'form-control'))!!}
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Ngày nhập số công văn liền kề<span class="require">*</span></label>
-                                {!!Form::text('ngaycvlk',(isset($modelcb) ? date('d/m/Y',  strtotime($modelcb->ngaynhap)) : ''), array('id' => 'ngaycvlk','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
+                                {!!Form::text('ngaycvlk',isset($inputs['ngaycvlk']) ? date('d/m/Y',strtotime($inputs['ngaycvlk'])) : '', array('id' => 'ngaycvlk','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label">Các yếu tố chi phí cấu thành giá (đối với kê khai lần đầu); phân tích nguyên nhân, nêu rõ biến động của các yếu tố hình thành giá tác động làm tăng hoặc giảm giá (đối với kê khai lại).</label>
+                            <div class="form-group"><label for="selGender" class="control-label">Phân tích nguyên nhân, nêu rõ biến động của các yếu tố hình thành giá tác động
+                                    làm tăng hoặc giảm giá hàng hóa, dịch vụ thực hiện kê khai giá</label>
                                 <div>
-                                        <textarea id="ytcauthanhgia" class="form-control" name="ytcauthanhgia" cols="30" rows="5"
-                                        ></textarea>
+                                        <textarea id="ptnguyennhan" class="form-control" name="ptnguyennhan" cols="30" rows="5"
+                                                ></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label">Các trường hợp ưu đãi, giảm giá; điều kiện áp dụng giá (nếu có).</label>
+                            <div class="form-group"><label for="selGender" class="control-label">Ghi rõ cách chính sách và mức khuyến mại, giảm giá hoặc chiết khấu đối với các đối
+                                    tượng khách hàng, các Điều kiện vận chuyển, giao hàng, bán hàng kèm theo mức giá kê khai (nếu có)</label>
                                 <div>
-                                        <textarea id="thydggadgia" class="form-control" name="thydggadgia" cols="30" rows="5"
-                                        ></textarea>
+                                        <textarea id="chinhsachkm" class="form-control" name="chinhsachkm" cols="30" rows="5"
+                                                ></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <input type="hidden" name="maxa" id="maxa" value="{{$inputs['masothue']}}">
+                    <input type="hidden" name="mahs" id="mahs" value="{{$inputs['mahs']}}">
                     <input type="hidden" name="mahuyen" id="mahuyen" value="{{$modeldn->mahuyen}}">
 
                     <!--/row-->

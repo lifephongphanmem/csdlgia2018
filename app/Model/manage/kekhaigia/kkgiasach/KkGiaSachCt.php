@@ -10,6 +10,7 @@ class KkGiaSachCt extends Model
     protected $fillable = [
         'id',
         'mahs',
+        'maxa',
         'tthhdv',
         'qccl',
         'dvt',
@@ -17,5 +18,6 @@ class KkGiaSachCt extends Model
         'dongia',
         'ghichu',
         'thuevat',
+        'trangthai',
     ];
 }
