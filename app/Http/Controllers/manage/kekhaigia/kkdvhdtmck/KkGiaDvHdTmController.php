@@ -43,6 +43,7 @@ class KkGiaDvHdTmController extends Controller
                         return view('errors.perm');
                 }
                 $model = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
+                    ->where('company.trangthai','Kích hoạt')
                     ->where('companylvcc.manghe','DVHDTMCK')
                     ->where('companylvcc.mahuyen',$inputs['maxa'])
                     ->join('town','town.maxa','=','companylvcc.mahuyen')
@@ -113,12 +114,15 @@ class KkGiaDvHdTmController extends Controller
                 else
                     $inputs['masothue'] = session('admin')->maxa;
                 $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
+                    ->where('company.trangthai','Kích hoạt')
                     ->where('company.maxa',$inputs['masothue'])
                     ->where('companylvcc.manghe','DVHDTMCK')
                     ->select('company.*','companylvcc.mahuyen')
                     ->first();
+                $inputs['mahs'] = $inputs['masothue'].getdate()[0];
                 if(isset($modeldn)) {
-                    $delctdf = KkGiaDvHdTmCtDf::where('maxa',$inputs['masothue'])->delete();
+                    $delctdf = KkGiaDvHdTmCt::where('maxa',$inputs['masothue'])
+                        ->where('trangthai','CXD')->delete();
                     $idlk = KkGiaDvHdTm::where('maxa',$inputs['masothue'])
                         ->where('trangthai','DD')
                         ->max('id');
@@ -127,17 +131,21 @@ class KkGiaDvHdTmController extends Controller
                             ->first();
                         $modellkct = KkGiaDvHdTmCt::where('mahs',$modellk->mahs)
                             ->get();
+                        $inputs['socvlk'] = $modellk->socv;
+                        $inputs['ngaycvlk'] = $modellk->ngaynhap;
                         foreach($modellkct as  $ctdf){
-                            $addct = new KkGiaDvHdTmCtDf();
-                            $addct->ten = $ctdf->ten;
+                            $addct = new KkGiaDvHdTmCt();
+                            $addct->tenhhdv = $ctdf->tenhhdv;
                             $addct->qccl = $ctdf->qccl;
                             $addct->dvt = $ctdf->dvt;
                             $addct->gialk = $ctdf->gia;
-                            $addct->maxa = $ctdf->$inputs['masothue'];
+                            $addct->maxa = $inputs['masothue'];
+                            $addct->mahs = $inputs['mahs'];
+                            $addct->trangthai = 'CXD';
                             $addct->save();
                         }
                     }
-                    $modelct = KkGiaDvHdTmCtDf::where('maxa',$inputs['masothue'])
+                    $modelct = KkGiaDvHdTmCt::where('mahs',$inputs['mahs'])
                         ->get();
                     return view('manage.kkgia.dvhdtm.kkgia.kkgiadv.create')
                         ->with('modeldn', $modeldn)
@@ -160,7 +168,6 @@ class KkGiaDvHdTmController extends Controller
             if (session('admin')->level == 'DN' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $model = new KkGiaDvHdTm();
-                $inputs['mahs'] = $inputs['maxa'].getdate()[0];
                 $inputs['ngaynhap'] = getDateToDb($inputs['ngaynhap']);
                 $inputs['ngayhieuluc'] = getDateToDb($inputs['ngayhieuluc']);
                 if($inputs['ngaycvlk'] != '')
@@ -169,16 +176,8 @@ class KkGiaDvHdTmController extends Controller
                     unset($inputs['ngaycvlk']);
                 $inputs['trangthai'] = 'CC';
                 if($model->create($inputs)){
-                    $modelctdf = KkGiaDvHdTmCtDf::where('maxa',$inputs['maxa']);
-
-                    foreach($modelctdf->geT() as $ctdf) {
-                        $modelct = new KkGiaDvHdTmCt();
-                        $arrays = $ctdf->toArray();
-                        unset($arrays['id']);
-                        $arrays['mahs'] = $inputs['mahs'];
-                        $modelct->create($arrays);
-                    }
-                    $modelctdf->delete();
+                    $modelctdf = KkGiaDvHdTmCt::where('mahs',$inputs['mahs'])
+                        ->update(['trangthai' => 'XD']);
                 }
                 return redirect('thongtinkkdvhoatdongthuongmai?&masothue='.$inputs['maxa']);
             } else {
@@ -242,7 +241,10 @@ class KkGiaDvHdTmController extends Controller
                     $inputs['ngaycvlk']= getDateToDb($inputs['ngaycvlk']);
                 else
                     unset($inputs['ngaycvlk']);
-                $model->update($inputs);
+                if($model->update($inputs)){
+                    $modelctdf = KkGiaDvHdTmCt::where('mahs',$inputs['mahs'])
+                        ->update(['trangthai' => 'XD']);
+                }
                 return redirect('thongtinkkdvhoatdongthuongmai?&masothue='.$model->maxa);
             } else {
                 return view('errors.perm');
@@ -347,9 +349,9 @@ class KkGiaDvHdTmController extends Controller
                         ->first();
                     $tg = getDateTime(Carbon::now()->toDateTimeString());
                     $contentdn = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận được hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp. Số công văn: '.$model->socv.
-                        ' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['ttnguoinop'].'!!!';
+                        ' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['nguoinop'].'-Số điện thoại liên lạc: '.$inputs['dtll'].'!!!';
                     $contentht = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận được hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp '.$modeldn->tendn.' - mã số thuế '.$modeldn->maxa.
-                        ' Số công văn: '.$model->socv.' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['ttnguoinop'].'!!!';
+                        ' Số công văn: '.$model->socv.' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['nguoinop'].'-Số điện thoại liên lạc: '.$inputs['dtll'].'!!!';
                     $run = new SendMail($modeldn,$contentdn,$modeldv,$contentht);
                     $run->handle();
                     //dispatch($run);

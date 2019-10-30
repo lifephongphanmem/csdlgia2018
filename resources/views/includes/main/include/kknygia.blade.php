@@ -38,6 +38,7 @@
                         </ul>
                     </li>
                     @endif
+                    {{--Ok--}}
                 @endif
                 @if(canKkGiaGr('XMTXD'))
                     @if(canKkGiaCt('XMTXD','XMTXD'))
@@ -59,6 +60,7 @@
                             </ul>
                         </li>
                     @endif
+                    {{--Ok--}}
                 @endif
                 @if(canKkGiaGr('DVHDTMCK'))
                     @if(canKkGiaCt('DVHDTMCK','DVHDTMCK'))
@@ -81,6 +83,7 @@
                             </ul>
                         </li>
                     @endif
+                    {{--OK--}}
                 @endif
                 @if(canKkGiaGr('THAN'))
                     @if(canKkGiaCt('THAN','THAN'))

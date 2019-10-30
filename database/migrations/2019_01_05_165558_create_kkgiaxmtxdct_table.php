@@ -16,11 +16,14 @@ class CreateKkgiaxmtxdctTable extends Migration
         Schema::create('kkgiaxmtxdct', function (Blueprint $table) {
             $table->increments('id');
             $table->string('mahs')->nullable();
-            $table->string('ten')->nullable();
+            $table->string('maxa')->nullable();
+            $table->string('tenhhdv')->nullable();
             $table->string('qccl')->nullable();
             $table->string('dvt')->nullable();
             $table->string('gialk')->nullable();
             $table->string('gia')->nullable();
+            $table->string('ghichu')->nullable();
+            $table->string('trangthai')->nullable();
             $table->timestamps();
         });
     }

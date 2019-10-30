@@ -25,7 +25,7 @@ class KkGiaDvHdTmCtController extends Controller
         $inputs = $request->all();
         $inputs['gialk'] = getMoneyToDb($inputs['gialk']);
         $inputs['gia'] = getMoneyToDb($inputs['gia']);
-        if(isset($inputs['ten'])){
+        if(isset($inputs['tenhhdv'])){
             $modelkkgia = new KkGiaDvHdTmCt();
             $modelkkgia->create($inputs);
             $model = KkGiaDvHdTmCt::where('mahs',$inputs['mahs'])
@@ -50,7 +50,7 @@ class KkGiaDvHdTmCtController extends Controller
                 foreach($model as $key=>$tt){
                     $result['message'] .= '<tr id="'.$tt->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
-                    $result['message'] .= '<td class="active">'.$tt->ten.'</td>';
+                    $result['message'] .= '<td class="active">'.$tt->tenhhdv.'</td>';
                     $result['message'] .= '<td style="text-align: left">'.$tt->qccl.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.$tt->dvt.'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tt->gialk).'</td>';
@@ -94,7 +94,7 @@ class KkGiaDvHdTmCtController extends Controller
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-12">';
             $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Tên hàng hóa dịch vụ</b><span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" name="tenedit" id="tenedit" class="form-control" value="'.$model->ten.'"></div>';
+            $result['message'] .= '<div><input type="text" name="tenhhdvedit" id="tenhhdvedit" class="form-control" value="'.$model->tenhhdv.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
@@ -160,7 +160,7 @@ class KkGiaDvHdTmCtController extends Controller
         $inputs = $request->all();
         $inputs['gialk'] = getMoneyToDb($inputs['gialk']);
         $inputs['gia'] = getMoneyToDb($inputs['gia']);
-        if(isset($inputs['ten'])){
+        if(isset($inputs['tenhhdv'])){
             $modelkkgia = KkGiaDvHdTmCt::where('id',$inputs['id'])->first();
             $modelkkgia->update($inputs);
             $model = KkGiaDvHdTmCt::where('mahs',$inputs['mahs'])
@@ -185,7 +185,7 @@ class KkGiaDvHdTmCtController extends Controller
                 foreach($model as $key=>$tt){
                     $result['message'] .= '<tr id="'.$tt->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
-                    $result['message'] .= '<td class="active">'.$tt->ten.'</td>';
+                    $result['message'] .= '<td class="active">'.$tt->tenhhdv.'</td>';
                     $result['message'] .= '<td style="text-align: left">'.$tt->qccl.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.$tt->dvt.'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tt->gialk).'</td>';
@@ -246,7 +246,7 @@ class KkGiaDvHdTmCtController extends Controller
                 foreach($model as $key=>$tt){
                     $result['message'] .= '<tr id="'.$tt->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
-                    $result['message'] .= '<td class="active">'.$tt->ten.'</td>';
+                    $result['message'] .= '<td class="active">'.$tt->tenhhdv.'</td>';
                     $result['message'] .= '<td style="text-align: left">'.$tt->qccl.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.$tt->dvt.'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tt->gialk).'</td>';

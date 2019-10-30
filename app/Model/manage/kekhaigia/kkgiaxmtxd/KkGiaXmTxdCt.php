@@ -11,9 +11,10 @@ class KkGiaXmTxdCt extends Model
         'id',
         'mahs',
         'qccl',
-        'ten',
+        'tenhhdv',
         'dvt',
         'gialk',
         'gia',
+        'ghichu',
     ];
 }

@@ -123,39 +123,12 @@
         // </editor-fold>
     </script>
     <script>
-        function checkngay(){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '/ajax/checkngay',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    ngaynhap: $('input[name="ngaynhap"]').val(),
-                    ngayhieuluc: $('input[name="ngayhieuluc"]').val(),
-                    plhs: $('select[name="plhs"]').val()
-
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        toastr.success("Ngày hiệu lực có thể sử dụng được", "Thành công!");
-                    }else {
-                        toastr.error("Bạn cần kiểm tra lại ngày có hiệu lực!", "Lỗi!");
-                        $('input[name="ngayhieuluc"]').val('');
-                    }
-                }
-            })
-
-        }
-        function clearngay(){
-            $('input[name="ngaynhap"]').val('');
-            $('input[name="ngayhieuluc"]').val('');
-        }
         function clearForm(){
             $('#ten').val('');
             $('#dvt').val('');
             $('#gialk').val('');
             $('#gia').val('');
+            $('#ghichu').val('');
         }
         function createttp(){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -165,11 +138,14 @@
                 data: {
                     _token: CSRF_TOKEN,
                     tennhom: $('#tennhom').val(),
-                    ten: $('#ten').val(),
+                    tenhhdv: $('#tenhhdv').val(),
+                    qccl: $('#qccl').val(),
                     dvt: $('#dvt').val(),
                     gialk: $('#gialk').val(),
                     gia: $('#gia').val(),
-                    mahs: $('input[name="mahs"]').val()
+                    ghichu: $('#ghichu').val(),
+                    mahs: $('input[name="mahs"]').val(),
+                    maxa: $('input[name="maxa"]').val(),
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -216,10 +192,12 @@
                     _token: CSRF_TOKEN,
                     id: $('input[name="idedit"]').val(),
                     tennhom: $('#tennhomedit').val(),
-                    ten: $('#tenedit').val(),
+                    tenhhdv: $('#tenhhdvedit').val(),
+                    qccl: $('#qccledit').val(),
                     dvt: $('#dvtedit').val(),
                     gialk: $('#gialkedit').val(),
                     gia: $('#giaedit').val(),
+                    ghichu: $('#ghichuedit').val(),
                     mahs: $('input[name="mahs"]').val()
                 },
                 dataType: 'JSON',
@@ -437,15 +415,28 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label">Phân tích nguyên nhân điều chỉnh tăng/giảm giá kê khai của từng mặt hàng</label>
+                            <div class="form-group"><label for="selGender" class="control-label">Phân tích nguyên nhân, nêu rõ biến động của các yếu tố hình thành giá tác động
+                                    làm tăng hoặc giảm giá hàng hóa, dịch vụ thực hiện kê khai giá</label>
                                 <div>
-                                        <textarea id="ghichu" class="form-control" name="ghichu" cols="30" rows="5"
-                                                >{{$model->ghichu}}</textarea>
+                                        <textarea id="ptnguyennhan" class="form-control" name="ptnguyennhan" cols="30" rows="5"
+                                                >{{$model->ptnguyennhan}}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group"><label for="selGender" class="control-label">Ghi rõ cách chính sách và mức khuyến mại, giảm giá hoặc chiết khấu đối với các đối
+                                    tượng khách hàng, các Điều kiện vận chuyển, giao hàng, bán hàng kèm theo mức giá kê khai (nếu có)</label>
+                                <div>
+                                        <textarea id="chinhsachkm" class="form-control" name="chinhsachkm" cols="30" rows="5"
+                                                >{{$model->chinhsachkm}}</textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}">
+                    <input type="hidden" name="maxa" id="maxa" value="{{$model->maxa}}">
                     {!! Form::close() !!}
                     <!--/row-->
                     <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
@@ -464,8 +455,8 @@
                                 <thead>
                                 <tr>
                                     <th style="text-align: center" width="2%">STT</th>
-                                    <th style="text-align: center">Tên nhóm <br>vật liệu xây dựng</th>
-                                    <th style="text-align: center">Tên vật liệu xây dựng</th>
+                                    <th style="text-align: center">Tên hàng hóa, dịch vụ</th>
+                                    <th style="text-align: center">Quy cách, chất lượng</th>
                                     <th style="text-align: center">Đơn vị<br>tính</th>
                                     <th style="text-align: center">Giá<br>liền kề</th>
                                     <th style="text-align: center">Giá <br>kê khai</th>
@@ -476,8 +467,8 @@
                                 @foreach($modelct as $key=>$tt)
                                     <tr>
                                         <td style="text-align: center">{{($key +1)}}</td>
-                                        <td class="active">{{$tt->tennhom}}</td>
-                                        <td style="text-align: left">{{$tt->ten}}</td>
+                                        <td class="active">{{$tt->tennhom}}- {{$tt->ten}}</td>
+                                        <td style="text-align: left">{{$tt->qccl}}</td>
                                         <td style="text-align: center">{{$tt->dvt}}</td>
                                         <td style="text-align: right">{{number_format($tt->gialk)}}</td>
                                         <td style="text-align: right">{{number_format($tt->gia)}}</td>
@@ -546,12 +537,18 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label"><b>Tên vật liệu xây dựng</b><span class="require">*</span></label>
-                                <div><input type="text" name="ten" id="ten" class="form-control" ></div>
+                            <div class="form-group"><label for="selGender" class="control-label"><b>Tên hàng hóa, dịch vụ</b><span class="require">*</span></label>
+                                <div><input type="text" name="tenhhdv" id="tenhhdv" class="form-control" ></div>
                             </div>
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group"><label for="selGender" class="control-label"><b>Quy cách chất lượng</b><span class="require">*</span></label>
+                                <div><input type="text" name="qccl" id="qccl" class="form-control" ></div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group"><label for="selGender" class="control-label"><b>Đơn vị tính</b><span class="require">*</span></label>
@@ -569,6 +566,13 @@
                         <div class="col-md-6">
                             <div class="form-group"><label for="selGender" class="control-label"><b>Giá kê khai</b><span class="require">*</span></label>
                                 <div><input type="text" name="gia" id="gia" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group"><label for="selGender" class="control-label"><b>Ghi chú</b><span class="require">*</span></label>
+                                <div><input type="text" name="ghichu" id="ghichu" class="form-control" ></div>
                             </div>
                         </div>
                     </div>

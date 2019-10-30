@@ -25,7 +25,8 @@ class KkGiaXmTxdCtController extends Controller
         $inputs = $request->all();
         $inputs['gialk'] = getMoneyToDb($inputs['gialk']);
         $inputs['gia'] = getMoneyToDb($inputs['gia']);
-        if(isset($inputs['ten'])){
+        $inputs['trangthai'] = 'CXD';
+        if(isset($inputs['tenhhdv'])){
             $modelkkgia = new KkGiaXmTxdCt();
             $modelkkgia->create($inputs);
             $model = KkGiaXmTxdCt::where('mahs',$inputs['mahs'])
@@ -36,7 +37,7 @@ class KkGiaXmTxdCtController extends Controller
             $result['message'] .= '<thead>';
             $result['message'] .= '<tr>';
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
-            $result['message'] .= '<th style="text-align: center">Tên xi măng, thép xây dựng</th>';
+            $result['message'] .= '<th style="text-align: center">Tên hàng hóa, dịch vụ</th>';
             $result['message'] .= '<th style="text-align: center">Quy cách, chất lượng</th>';
             $result['message'] .= '<th style="text-align: center">Đơn vị<br>tính</th>';
             $result['message'] .= '<th style="text-align: center">Giá liền kề</th>';
@@ -49,7 +50,7 @@ class KkGiaXmTxdCtController extends Controller
                 foreach($model as $key=>$tt){
                     $result['message'] .= '<tr id="'.$tt->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
-                    $result['message'] .= '<td class="active">'.$tt->ten.'</td>';
+                    $result['message'] .= '<td class="active">'.$tt->tenhhdv.'</td>';
                     $result['message'] .= '<td style="text-align: left">'.$tt->qccl.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.$tt->dvt.'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tt->gialk).'</td>';
@@ -91,8 +92,8 @@ class KkGiaXmTxdCtController extends Controller
             $result['message'] = '<div class="modal-body" id="ttpedit">';
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Tên xi măng, thép xây dựng</b><span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" name="tenedit" id="tenedit" class="form-control" value="'.$model->ten.'"></div>';
+            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Tên hàng hóa dịch vụ</b><span class="require">*</span></label>';
+            $result['message'] .= '<div><input type="text" name="tenhhdvedit" id="tenhhdvedit" class="form-control" value="'.$model->tenhhdv.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
@@ -126,6 +127,14 @@ class KkGiaXmTxdCtController extends Controller
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
 
+            $result['message'] .= '<div class="row">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Ghi chú</b><span class="require">*</span></label>';
+            $result['message'] .= '<div><input type="text" name="ghichuedit" id="ghichuedit" class="form-control" value="'.$model->ghichu.'"></div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+
             $result['message'] .= '<input type="hidden" id="idedit" name="idedit" value="'.$model->id.'">';
             $result['message'] .= '</div>';
             $result['status'] = 'success';
@@ -149,7 +158,7 @@ class KkGiaXmTxdCtController extends Controller
         $inputs = $request->all();
         $inputs['gialk'] = getMoneyToDb($inputs['gialk']);
         $inputs['gia'] = getMoneyToDb($inputs['gia']);
-        if(isset($inputs['ten'])){
+        if(isset($inputs['tenhhdv'])){
             $modelkkgia = KkGiaXmTxdCt::where('id',$inputs['id'])->first();
             $modelkkgia->update($inputs);
             $model = KkGiaXmTxdCt::where('mahs',$inputs['mahs'])
@@ -160,7 +169,7 @@ class KkGiaXmTxdCtController extends Controller
             $result['message'] .= '<thead>';
             $result['message'] .= '<tr>';
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
-            $result['message'] .= '<th style="text-align: center">Tên xi măng, thép xây dựng</th>';
+            $result['message'] .= '<th style="text-align: center">Tên hàng hóa, dịch vụ</th>';
             $result['message'] .= '<th style="text-align: center">Quy cách chất lượng</th>';
             $result['message'] .= '<th style="text-align: center">Đơn vị<br>tính</th>';
             $result['message'] .= '<th style="text-align: center">Giá liền kề</th>';
@@ -173,7 +182,7 @@ class KkGiaXmTxdCtController extends Controller
                 foreach($model as $key=>$tt){
                     $result['message'] .= '<tr id="'.$tt->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
-                    $result['message'] .= '<td class="active">'.$tt->ten.'</td>';
+                    $result['message'] .= '<td class="active">'.$tt->tenhhdv.'</td>';
                     $result['message'] .= '<td style="text-align: left">'.$tt->qccl.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.$tt->dvt.'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tt->gialk).'</td>';
@@ -219,7 +228,7 @@ class KkGiaXmTxdCtController extends Controller
             $result['message'] .= '<thead>';
             $result['message'] .= '<tr>';
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
-            $result['message'] .= '<th style="text-align: center">Tên xi măng, thép xây dựng</th>';
+            $result['message'] .= '<th style="text-align: center">Tên hàng hóa dịch vụ</th>';
             $result['message'] .= '<th style="text-align: center">Quy cách chất lượng</th>';
             $result['message'] .= '<th style="text-align: center">Đơn vị<br>tính</th>';
             $result['message'] .= '<th style="text-align: center">Giá liền kề</th>';
@@ -232,7 +241,7 @@ class KkGiaXmTxdCtController extends Controller
                 foreach($model as $key=>$tt){
                     $result['message'] .= '<tr id="'.$tt->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
-                    $result['message'] .= '<td class="active">'.$tt->ten.'</td>';
+                    $result['message'] .= '<td class="active">'.$tt->tenhhdv.'</td>';
                     $result['message'] .= '<td style="text-align: left">'.$tt->qccl.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.$tt->dvt.'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tt->gialk).'</td>';

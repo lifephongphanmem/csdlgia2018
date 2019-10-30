@@ -94,7 +94,7 @@
 <p>- Số điện thoại liên lạc : {{$modelkk->dtlh}}</p>
 <p>- Số Fax : {{$modelkk->fax}}</p>
 <p style="font-weight: bold; text-align: center">Ghi nhận ngày nộp Biểu mẫu đăng ký giá <br>của cơ quan tiếp nhận Biểu mẫu đăng ký giá</p>
-<table cellspacing="0" cellpadding="0" border="1" style="margin-top: 5px;; border-collapse: collapse;width:15%">
+<table cellspacing="0" cellpadding="0" border="1" style="margin-top: 5px;; border-collapse: collapse;width:30%">
     <td><b>{{$modelcqcq->tendv}}</b></td>
     <tr>
     </tr>
