@@ -127,11 +127,12 @@
         <th style="text-align: center">28</th>
         <th style="text-align: center">29</th>
         <th style="text-align: center">30</th>
+        <th style="text-align: center">31</th>
     </tr>
     @foreach($huyens as $gr1=>$huyen)
         <tr>
             <td style="text-align: center;font-weight: bold;text-transform: uppercase">{{toAlpha($gr1+1)}}</td>
-            <td colspan="29" style="font-weight: bold;">{{$huyen->diaban}}</td>
+            <td colspan="30" style="font-weight: bold;">{{$huyen->diaban}}</td>
         </tr>
         <?php
             $model = $model->where('mahuyen',$huyen->district);
