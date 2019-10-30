@@ -25,6 +25,7 @@ class KkGiaDvHdTmCtController extends Controller
         $inputs = $request->all();
         $inputs['gialk'] = getMoneyToDb($inputs['gialk']);
         $inputs['gia'] = getMoneyToDb($inputs['gia']);
+        $inputs['trangthai'] = 'CXD';
         if(isset($inputs['tenhhdv'])){
             $modelkkgia = new KkGiaDvHdTmCt();
             $modelkkgia->create($inputs);

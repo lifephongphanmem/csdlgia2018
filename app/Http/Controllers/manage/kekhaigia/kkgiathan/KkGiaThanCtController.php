@@ -23,9 +23,10 @@ class KkGiaThanCtController extends Controller
         }
         //dd($request);
         $inputs = $request->all();
-        $inputs['dongialk'] = getMoneyToDb($inputs['dongialk']);
-        $inputs['dongia'] = getMoneyToDb($inputs['dongia']);
-        if(isset($inputs['tthhdv'])){
+        $inputs['gialk'] = getMoneyToDb($inputs['gialk']);
+        $inputs['gia'] = getMoneyToDb($inputs['gia']);
+        $inputs['trangthai'] = 'CXD';
+        if(isset($inputs['tenhhdv'])){
             $modelkkgia = new KkGiaThanCt();
             $modelkkgia->create($inputs);
             $model = KkGiaThanCt::where('mahs',$inputs['mahs'])
@@ -49,11 +50,11 @@ class KkGiaThanCtController extends Controller
                 foreach($model as $key=>$tt){
                     $result['message'] .= '<tr id="'.$tt->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
-                    $result['message'] .= '<td class="active">'.$tt->tthhdv.'</td>';
+                    $result['message'] .= '<td class="active">'.$tt->tenhhdv.'</td>';
                     $result['message'] .= '<td style="text-align: left">'.$tt->qccl.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.$tt->dvt.'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tt->dongialk).'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tt->dongia).'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tt->gialk).'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tt->gia).'</td>';
                     $result['message'] .= '<td>'.
                         '<button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editTtPh('.$tt->id.');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa thông tin</button>'.
                         '<button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid('.$tt->id.');" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>'
@@ -93,7 +94,7 @@ class KkGiaThanCtController extends Controller
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-12">';
             $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Tên vật liệu xây dựng</b><span class="require">*</span></label>';
-            $result['message'] .= '<div><textarea id="tthhdvedit" class="form-control" name="tthhdvedit" cols="30" rows="3">'.$model->tthhdv.'</textarea></div>';
+            $result['message'] .= '<div><input type="text" id="tenhhdvedit" class="form-control" name="tenhhdvedit" value="'.$model->tenhhdv.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
@@ -101,7 +102,7 @@ class KkGiaThanCtController extends Controller
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-12">';
             $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Quy cách chất lượng</b><span class="require">*</span></label>';
-            $result['message'] .= '<div><textarea id="qccledit" class="form-control" name="qccledit" cols="30" rows="3">'.$model->qccl.'</textarea></div>';
+            $result['message'] .= '<div><input type="text" id="qccledit" class="form-control" name="qccledit" value="'.$model->qccl.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
@@ -118,12 +119,12 @@ class KkGiaThanCtController extends Controller
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-6">';
             $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Giá liền kề</b><span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" name="dongialkedit" id="dongialkedit" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold" value="'.$model->dongialk.'"></div>';
+            $result['message'] .= '<div><input type="text" name="gialkedit" id="gialkedit" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold" value="'.$model->gialk.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '<div class="col-md-6">';
             $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Mức giá kê khai</b><span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" name="dongiaedit" id="dongiaedit" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold" value="'.$model->dongia.'"></div>';
+            $result['message'] .= '<div><input type="text" name="giaedit" id="giaedit" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold" value="'.$model->gia.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
@@ -131,7 +132,7 @@ class KkGiaThanCtController extends Controller
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-12">';
             $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Ghi chú</b><span class="require">*</span></label>';
-            $result['message'] .= '<div><textarea id="ghichuedit" class="form-control" name="ghichuedit" cols="30" rows="3">'.$model->ghichu.'</textarea></div>';
+            $result['message'] .= '<div><input type="text" name="ghichuedit" id="ghichuedit" class="form-control" value="'.$model->ghichu.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
@@ -157,8 +158,8 @@ class KkGiaThanCtController extends Controller
         }
         //dd($request);
         $inputs = $request->all();
-        $inputs['dongialk'] = getMoneyToDb($inputs['dongialk']);
-        $inputs['dongia'] = getMoneyToDb($inputs['dongia']);
+        $inputs['gialk'] = getMoneyToDb($inputs['gialk']);
+        $inputs['gia'] = getMoneyToDb($inputs['gia']);
         if(isset($inputs['id'])){
             $modelkkgia = KkGiaThanCt::where('id',$inputs['id'])->first();
             $modelkkgia->update($inputs);
@@ -183,11 +184,11 @@ class KkGiaThanCtController extends Controller
                 foreach($model as $key=>$tt){
                     $result['message'] .= '<tr id="'.$tt->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
-                    $result['message'] .= '<td class="active">'.$tt->tthhdv.'</td>';
+                    $result['message'] .= '<td class="active">'.$tt->tenhhdv.'</td>';
                     $result['message'] .= '<td style="text-align: left">'.$tt->qccl.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.$tt->dvt.'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tt->dongialk).'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tt->dongia).'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tt->gialk).'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tt->gia).'</td>';
                     $result['message'] .= '<td>'.
                         '<button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editTtPh('.$tt->id.');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa thông tin</button>'.
                         '<button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid('.$tt->id.');" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>'
@@ -242,11 +243,11 @@ class KkGiaThanCtController extends Controller
                 foreach($model as $key=>$tt){
                     $result['message'] .= '<tr id="'.$tt->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
-                    $result['message'] .= '<td class="active">'.$tt->tthhdv.'</td>';
+                    $result['message'] .= '<td class="active">'.$tt->tenhhdv.'</td>';
                     $result['message'] .= '<td style="text-align: left">'.$tt->qccl.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.$tt->dvt.'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tt->dongialk).'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tt->dongia).'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tt->gialk).'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tt->gia).'</td>';
                     $result['message'] .= '<td>'.
                         '<button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editTtPh('.$tt->id.');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa thông tin</button>'.
                         '<button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid('.$tt->id.');" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>'

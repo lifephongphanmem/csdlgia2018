@@ -42,10 +42,10 @@
 
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%">
+        <td width="50%">
             <b>{{$modeldn->tendn}}</b><br>
             --------<br>
-            Số: {{$modelkk->socv}}<br>V/v kê khai giá hàng hóa, dịch<br>vụ bán trong nước hoặc xuất<br>khẩu
+            Số: {{$modelkk->socv}}<br>V/v kê khai giá hàng hóa, dịch vụ <br>bán trong nước hoặc xuất khẩu
         </td>
         <td>
             <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>

@@ -33,7 +33,7 @@
 <body style="font:normal 14px Times, serif;">
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%">
+        <td width="60%">
             <b style="text-transform: uppercase;">{{getGeneralConfigs()['tendonvi']}} </b><br>
             --------<br>
             Số:

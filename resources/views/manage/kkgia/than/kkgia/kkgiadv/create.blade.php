@@ -152,28 +152,29 @@
             $('input[name="ngayhieuluc"]').val('');
         }
         function clearForm(){
-            $('#tthhdv').val('');
+            $('#tenhhdv').val('');
             $('#qccl').val('');
             $('#dvt').val('');
-            $('#dongialk').val('');
-            $('#dongia').val('');
+            $('#gialk').val('');
+            $('#gia').val('');
             $('#ghichu').val('');
 
         }
         function createttp(){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/giathanctdf/storett',
+                url: '/giathanct/storett',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
-                    tthhdv: $('#tthhdv').val(),
+                    tenhhdv: $('#tenhhdv').val(),
                     qccl: $('#qccl').val(),
                     dvt: $('#dvt').val(),
-                    dongialk: $('#dongialk').val(),
-                    dongia: $('#dongia').val(),
+                    gialk: $('#gialk').val(),
+                    gia: $('#gia').val(),
                     ghichu: $('#ghichu').val(),
-                    maxa: $('input[name="maxa"]').val()
+                    maxa: $('input[name="maxa"]').val(),
+                    mahs: $('input[name="mahs"]').val(),
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -193,7 +194,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/giathanctdf/edittt',
+                url: '/giathanct/edittt',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -214,18 +215,19 @@
         function updatets() {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/giathanctdf/updatett',
+                url: '/giathanct/updatett',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
                     id: $('input[name="idedit"]').val(),
-                    tthhdv: $('#tthhdvedit').val(),
+                    tenhhdv: $('#tenhhdvedit').val(),
                     qccl: $('#qccledit').val(),
                     dvt: $('#dvtedit').val(),
                     ghichu: $('#ghichuedit').val(),
-                    dongia: $('#dongiaedit').val(),
-                    dongialk: $('#dongialkedit').val(),
-                    maxa: $('input[name="maxa"]').val()
+                    gia: $('#giaedit').val(),
+                    gialk: $('#gialkedit').val(),
+                    maxa: $('input[name="maxa"]').val(),
+                    mahs: $('input[name="mahs"]').val(),
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -248,12 +250,13 @@
         function deleteRow() {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/giathanctdf/deletett',
+                url: '/giathanct/deletett',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
                     id: $('input[name="iddelete"]').val(),
-                    maxa: $('input[name="maxa"]').val()
+                    maxa: $('input[name="maxa"]').val(),
+                    mahs: $('input[name="mahs"]').val(),
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -418,38 +421,41 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Số công văn liền kề</label>
-                                {!!Form::text('socvlk',(isset($modelcb) ? $modelcb->socv : ''), array('id' => 'socvlk','class' => 'form-control'))!!}
+                                {!!Form::text('socvlk',isset($inputs['socvlk']) ? $inputs['socvlk'] : '', array('id' => 'socvlk','class' => 'form-control'))!!}
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Ngày nhập số công văn liền kề<span class="require">*</span></label>
-                                {!!Form::text('ngaycvlk',(isset($modelcb) ? date('d/m/Y',  strtotime($modelcb->ngaynhap)) : ''), array('id' => 'ngaycvlk','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
+                                {!!Form::text('ngaycvlk',isset($inputs['ngaycvlk']) ? date('d/m/Y',strtotime($inputs['ngaycvlk'])) : '', array('id' => 'ngaycvlk','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label">Các yếu tố chi phí cấu thành giá (đối với kê khai lần đầu); phân tích nguyên nhân, nêu rõ biến động của các yếu tố hình thành giá tác động làm tăng hoặc giảm giá (đối với kê khai lại).</label>
+                            <div class="form-group"><label for="selGender" class="control-label">Phân tích nguyên nhân, nêu rõ biến động của các yếu tố hình thành giá tác động
+                                    làm tăng hoặc giảm giá hàng hóa, dịch vụ thực hiện kê khai giá</label>
                                 <div>
-                                        <textarea id="ytcauthanhgia" class="form-control" name="ytcauthanhgia" cols="30" rows="5"
-                                        ></textarea>
+                                        <textarea id="ptnguyennhan" class="form-control" name="ptnguyennhan" cols="30" rows="5"
+                                                ></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label">Các trường hợp ưu đãi, giảm giá; điều kiện áp dụng giá (nếu có).</label>
+                            <div class="form-group"><label for="selGender" class="control-label">Ghi rõ cách chính sách và mức khuyến mại, giảm giá hoặc chiết khấu đối với các đối
+                                    tượng khách hàng, các Điều kiện vận chuyển, giao hàng, bán hàng kèm theo mức giá kê khai (nếu có)</label>
                                 <div>
-                                        <textarea id="thydggadgia" class="form-control" name="thydggadgia" cols="30" rows="5"
-                                        ></textarea>
+                                        <textarea id="chinhsachkm" class="form-control" name="chinhsachkm" cols="30" rows="5"
+                                                ></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <input type="hidden" name="maxa" id="maxa" value="{{$inputs['masothue']}}">
                     <input type="hidden" name="mahuyen" id="mahuyen" value="{{$modeldn->mahuyen}}">
+                    <input type="hidden" name="mahs" id="mahs" value="{{$inputs['mahs']}}">
 
                     <!--/row-->
                     <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
@@ -481,11 +487,11 @@
                                 @foreach($modelct as $key=>$tt)
                                     <tr>
                                         <td style="text-align: center">{{($key +1)}}</td>
-                                        <td class="active">{{$tt->tthhdv}}</td>
+                                        <td class="active">{{$tt->tenhhdv}}</td>
                                         <td style="text-align: left">{{$tt->qccl}}</td>
                                         <td style="text-align: center">{{$tt->dvt}}</td>
-                                        <td style="text-align: right">{{number_format($tt->dongialk)}}</td>
-                                        <td style="text-align: right">{{number_format($tt->dongia)}}</td>
+                                        <td style="text-align: right">{{number_format($tt->gialk)}}</td>
+                                        <td style="text-align: right">{{number_format($tt->gia)}}</td>
                                         <td style="text-align: left">{{$tt->ghichu}}</td>
                                         <td>
                                             <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editTtPh({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa thông tin</button>
@@ -542,7 +548,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="form-control-label"><b>Tên Hàng hóa, dịch vụ</b></label>
-                                {!!Form::textarea('tthhdv', null, array('id' => 'tthhdv','class' => 'form-control','rows'=>'3'))!!}
+                                {!!Form::text('tenhhdv', null, array('id' => 'tenhhdv','class' => 'form-control'))!!}
                             </div>
                         </div>
                     </div>
@@ -551,7 +557,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="form-control-label"><b>Quy cách chất lượng dịch vụ</b></label>
-                                {!!Form::textarea('qccl', null, array('id' => 'qccl','class' => 'form-control','rows'=>'3'))!!}
+                                {!!Form::text('qccl', null, array('id' => 'qccl','class' => 'form-control'))!!}
                             </div>
                         </div>
                     </div>
@@ -566,12 +572,12 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group"><label for="selGender" class="control-label"><b>Giá liền kề</b><span class="require">*</span></label>
-                                <div><input type="text" name="dongialk" id="dongialk" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold"></div>
+                                <div><input type="text" name="gialk" id="gialk" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold"></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group"><label for="selGender" class="control-label"><b>Giá kê khai</b><span class="require">*</span></label>
-                                <div><input type="text" name="dongia" id="dongia" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold"></div>
+                                <div><input type="text" name="gia" id="gia" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold"></div>
                             </div>
                         </div>
                     </div>
@@ -579,7 +585,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="form-control-label"><b>Ghi chú</b></label>
-                                {!!Form::textarea('ghichu', null, array('id' => 'ghichu','class' => 'form-control','rows'=>'2'))!!}
+                                {!!Form::text('ghichu', null, array('id' => 'ghichu','class' => 'form-control'))!!}
                             </div>
                         </div>
                     </div>
