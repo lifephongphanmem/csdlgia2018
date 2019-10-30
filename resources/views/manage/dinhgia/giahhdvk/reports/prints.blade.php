@@ -33,25 +33,23 @@
     </style>
 </head>
 <body style="font:normal 14px Times, serif;">
-
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%" style="text-transform: uppercase;">
-            --------<br><br>
+        <td width="40%">
+            <b style="text-transform: uppercase;"> {{$diaban}}</b><br>
+            --------<br>
             Số: {{$model->soqd}}
         </td>
         <td>
-            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>
-            <b><i><u>Độc lập - Tự do - Hạnh phúc</u></i></b><br><br>
+            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+                Độc lập - Tự do - Hạnh phúc</b><br>
+            -------------------<br>
             <i>{{$diaban}}, Ngày {{date('d',strtotime($model->ngayapdung))}} tháng {{date('m',strtotime($model->ngayapdung))}}  năm {{date('Y',strtotime($model->ngayapdung))}}</i>
         </td>
     </tr>
 </table>
 
 <p style="text-align: center; font-weight: bold; font-size: 16px;">BÁO CÁO<br>GIÁ THỊ TRƯỜNG HÀNG HÓA, DỊCH VỤ</p>
-<p>Địa bàn: {{$diaban}}</p>
-<p>Số quyết định liền kề: {{$model->soqdlk}}</p>
-<p>Ngày báo cáo liền kề: {{getDayVn($model->ngayapdunglk)}}</p>
 
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <thead>
@@ -61,7 +59,7 @@
             <th style="text-align: center" rowspan="2">Tên hàng hóa dịch vụ</th>
             <th style="text-align: center" rowspan="2">Đặc điểm kỹ thuật</th>
             <th style="text-align: center" rowspan="2">Đơn vị tính</th>
-            <th style="text-align: center" width="10%" rowspan="2">Giá liền kề<br>({{getDayVn($model->ngayapdunglk)}})</th>
+            <th style="text-align: center" width="10%" rowspan="2">Giá liền kề<br>Số: {{$model->soqdlk}}<br>({{getDayVn($model->ngayapdunglk)}})</th>
             <th style="text-align: center" width="10%" rowspan="2">Giá<br>({{getDayVn($model->ngayapdung)}})</th>
             <th style="text-align: center" width="10%" colspan="2">Tăng, giảm</th>
             <th style="text-align: center" width="10%" rowspan="2">Ghi chú</th>

@@ -33,13 +33,16 @@
 <body style="font:normal 14px Times, serif;">
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%" style="text-transform: uppercase;">
-            --------<br><br>
+        <td width="40%">
+            <b style="text-transform: uppercase;">{{getGeneralConfigs()['tendonvi']}} </b><br>
+            --------<br>
             Số:
         </td>
         <td>
-            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>
-            <b><i><u>Độc lập - Tự do - Hạnh phúc</u></i></b><br><br>
+            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+                Độc lập - Tự do - Hạnh phúc</b><br>
+            -------------------<br>
+            <i>{{getGeneralConfigs()['diadanh']}}, Ngày .... tháng .... năm ....</i>
         </td>
     </tr>
 </table>
