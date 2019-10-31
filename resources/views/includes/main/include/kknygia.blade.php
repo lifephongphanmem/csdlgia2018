@@ -191,6 +191,7 @@
                             </ul>
                         </li>
                     @endif
+                    {{--OK--}}
                 @endif
                 @if(canKkGiaGr('DVCB'))
                     @if(canKkGiaCt('DVCB','DVCB'))
@@ -212,6 +213,7 @@
                         </ul>
                     </li>
                     @endif
+                    {{--Ok--}}
                 @endif
                 @if(canKkGiaGr('OTO'))
                     @if(canKkGiaCt('OTO','OTO'))

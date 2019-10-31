@@ -145,7 +145,8 @@
                     dongialk: $('#dongialk').val(),
                     dongia: $('#dongia').val(),
                     ghichu: $('#ghichu').val(),
-                    mahs: $('input[name="mahs"]').val()
+                    mahs: $('input[name="mahs"]').val(),
+                    maxa: $('input[name="maxa"]').val(),
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -374,25 +375,28 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label">Các yếu tố chi phí cấu thành giá (đối với kê khai lần đầu); phân tích nguyên nhân, nêu rõ biến động của các yếu tố hình thành giá tác động làm tăng hoặc giảm giá (đối với kê khai lại).</label>
+                            <div class="form-group"><label for="selGender" class="control-label">Phân tích nguyên nhân, nêu rõ biến động của các yếu tố hình thành giá tác động
+                                    làm tăng hoặc giảm giá hàng hóa, dịch vụ thực hiện kê khai giá</label>
                                 <div>
-                                        <textarea id="ytcauthanhgia" class="form-control" name="ytcauthanhgia" cols="30" rows="5"
-                                                >{{$model->ytcauthanhgia}}</textarea>
+                                        <textarea id="ptnguyennhan" class="form-control" name="ptnguyennhan" cols="30" rows="5"
+                                                >{{$model->ptnguyennhan}}</textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label">Các trường hợp ưu đãi, giảm giá; điều kiện áp dụng giá (nếu có).</label>
+                            <div class="form-group"><label for="selGender" class="control-label">Ghi rõ cách chính sách và mức khuyến mại, giảm giá hoặc chiết khấu đối với các đối
+                                    tượng khách hàng, các Điều kiện vận chuyển, giao hàng, bán hàng kèm theo mức giá kê khai (nếu có)</label>
                                 <div>
-                                        <textarea id="thydggadgia" class="form-control" name="thydggadgia" cols="30" rows="5"
-                                                >{{$model->thydggadgia}}</textarea>
+                                        <textarea id="chinhsachkm" class="form-control" name="chinhsachkm" cols="30" rows="5"
+                                                >{{$model->chinhsachkm}}</textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}">
+                    <input type="hidden" name="maxa" id="maxa" value="{{$model->maxa}}">
 
                     <!--/row-->
                     <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
