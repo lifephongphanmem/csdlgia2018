@@ -120,7 +120,8 @@ class GiaXeMayNkSxController extends Controller
                 ->first();
             $modellk = '';
             if(isset($modeldn)) {
-                $delctdf = GiaXeMayNkSxCt::where('trangthai','CXD')->delete();
+                $delctdf = GiaXeMayNkSxCt::where('trangthai','CXD')
+                    ->where('maxa',$inputs['masothue'])->delete();
                 $idlk = GiaXeMayNkSx::where('maxa',$inputs['masothue'])
                     ->where('trangthai','DD')
                     ->max('id');

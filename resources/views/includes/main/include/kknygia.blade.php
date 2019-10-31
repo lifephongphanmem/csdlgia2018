@@ -235,6 +235,7 @@
                             </ul>
                         </li>
                     @endif
+                    {{--Ok--}}
                 @endif
                 @if(canKkGiaGr('XEMAY'))
                     @if(canKkGiaCt('XEMAY','XEMAY'))
@@ -256,6 +257,7 @@
                             </ul>
                         </li>
                     @endif
+                            {{--OK--}}
                 @endif
                 <!--li>
                     <a href="javascript:;">

@@ -10,6 +10,7 @@ class GiaVeTqKdlCt extends Model
     protected $fillable = [
         'id',
         'mahs',
+        'maxa',
         'tthhdv',
         'qccl',
         'dvt',

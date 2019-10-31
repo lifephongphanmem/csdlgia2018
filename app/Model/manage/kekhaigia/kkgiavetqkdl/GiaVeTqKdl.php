@@ -19,7 +19,10 @@ class GiaVeTqKdl extends Model
         'ngaycvlk',
         'ytcauthanhgia',
         'thydggadgia',
-        'ttnguoinop',
+        'nguoinop',
+        'dtll',
+        'email',
+        'fax',
         'ngaynhan',
         'sohsnhan',
         'ngaychuyen',
@@ -30,5 +33,7 @@ class GiaVeTqKdl extends Model
         'dvt',
         'congbo',
         'ghichu',
+        'ptnguyennhan',
+        'chinhsachkm',
     ];
 }
