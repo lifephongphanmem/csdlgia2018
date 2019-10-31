@@ -41,6 +41,7 @@ class GiaOtoNkSxController extends Controller
                         return view('errors.perm');
                 }
                 $model = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
+                    ->where('company.trangthai','Kích hoạt')
                     ->where('companylvcc.manghe','OTO')
                     ->where('companylvcc.mahuyen',$inputs['maxa'])
                     ->join('town','town.maxa','=','companylvcc.mahuyen')
@@ -78,6 +79,7 @@ class GiaOtoNkSxController extends Controller
                     ->orderBy('id', 'desc')
                     ->get();
                 $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
+                    ->where('company.trangthai','Kích hoạt')
                     ->where('company.maxa',$inputs['masothue'])
                     ->where('companylvcc.manghe','OTO')
                     ->select('company.*','companylvcc.mahuyen')
@@ -111,13 +113,15 @@ class GiaOtoNkSxController extends Controller
                 $inputs['masothue'] = session('admin')->maxa;
             $inputs['mahs'] = $inputs['masothue'].getdate()[0];
             $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
+                ->where('company.trangthai','Kích hoạt')
                 ->where('company.maxa',$inputs['masothue'])
                 ->where('companylvcc.manghe','OTO')
                 ->select('company.*','companylvcc.mahuyen')
                 ->first();
             $modellk = '';
             if(isset($modeldn)) {
-                $delctdf = GiaOtoNkSxCt::where('trangthai','CXD')->delete();
+                $delctdf = GiaOtoNkSxCt::where('trangthai','CXD')
+                    ->where('maxa',$inputs['masothue'])->delete();
                 $idlk = GiaOtoNkSx::where('maxa',$inputs['masothue'])
                     ->where('trangthai','DD')
                     ->max('id');
@@ -126,6 +130,8 @@ class GiaOtoNkSxController extends Controller
                         ->first();
                     $modellkct = GiaOtoNkSxCt::where('mahs',$modellk->mahs)
                         ->get();
+                    $inputs['socvlk'] = $modellk->socv;
+                    $inputs['ngaycvlk'] = $modellk->ngaynhap;
                     foreach($modellkct as  $ctdf){
                         $addct = new GiaOtoNkSxCt();
                         $addct->tthhdv = $ctdf->tthhdv;
@@ -133,6 +139,7 @@ class GiaOtoNkSxController extends Controller
                         $addct->dvt = $ctdf->dvt;
                         $addct->dongialk = $ctdf->dongia;
                         $addct->mahs = $inputs['mahs'];
+                        $addct->maxa = $inputs['masothue'];
                         $addct->trangthai = 'CXD';
 
                         $addct->save();
@@ -339,9 +346,9 @@ class GiaOtoNkSxController extends Controller
                         ->first();
                     $tg = getDateTime(Carbon::now()->toDateTimeString());
                     $contentdn = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận được hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp. Số công văn: '.$model->socv.
-                        ' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['ttnguoinop'].'!!!';
+                        ' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['nguoinop'].'-Số điện thoại liên lạc: '.$inputs['dtll'].'!!!';
                     $contentht = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận được hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp '.$modeldn->tendn.' - mã số thuế '.$modeldn->maxa.
-                        ' Số công văn: '.$model->socv.' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['ttnguoinop'].'!!!';
+                        ' Số công văn: '.$model->socv.' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['nguoinop'].'-Số điện thoại liên lạc: '.$inputs['dtll'].'!!!';
                     $run = new SendMail($modeldn,$contentdn,$modeldv,$contentht);
                     $run->handle();
                 }
