@@ -52,10 +52,18 @@ class DauGiaDatTsCtController extends Controller
             $inputs['qdpddatnuoits'] = getMoneyToDb($inputs['qdpddatnuoits']);
             $inputs['qdpddatmuoi'] = getMoneyToDb($inputs['qdpddatmuoi']);
 
-            $inputs['giakhoidiemdat'] = getMoneyToDb($inputs['giakhoidiemdat']);
-            $inputs['giakhoidiemsanxd'] = getMoneyToDb($inputs['giakhoidiemsanxd']);
-            $inputs['giadaugiadat'] = getMoneyToDb($inputs['giadaugiadat']);
-            $inputs['giadaugiasanxd'] = getMoneyToDb($inputs['giadaugiasanxd']);
+//            $inputs['giakhoidiemdat'] = getMoneyToDb($inputs['giakhoidiemdat']);
+//            $inputs['giakhoidiemsanxd'] = getMoneyToDb($inputs['giakhoidiemsanxd']);
+//            $inputs['giadaugiadat'] = getMoneyToDb($inputs['giadaugiadat']);
+//            $inputs['giadaugiasanxd'] = getMoneyToDb($inputs['giadaugiasanxd']);
+
+            $inputs['qdpdgiatstd'] = getMoneyToDb($inputs['qdpddatmuoi']);
+
+            $inputs['kqgiadaugiadat'] = getMoneyToDb($inputs['qdpddatmuoi']);
+            $inputs['kqgiadaugiats'] = getMoneyToDb($inputs['qdpddatmuoi']);
+            $inputs['kqgiadaugiadatts'] = getMoneyToDb($inputs['qdpddatmuoi']);
+
+
             $modeladd = new DauGiaDatTsCt();
             $modeladd->create($inputs);
             return redirect('thongtindaugiadattsct?&mahs='.$inputs['mahs']);
@@ -107,10 +115,17 @@ class DauGiaDatTsCtController extends Controller
             $model->qdpddatnuoits = getMoneyToDb($inputs['edit_qdpddatnuoits']);
             $model->qdpddatmuoi = getMoneyToDb($inputs['edit_qdpddatmuoi']);
 
-            $model->giakhoidiemdat = getMoneyToDb($inputs['edit_giakhoidiemdat']);
-            $model->giakhoidiemsanxd = getMoneyToDb($inputs['edit_giakhoidiemsanxd']);
-            $model->giadaugiadat = getMoneyToDb($inputs['edit_giadaugiadat']);
-            $model->giadaugiasanxd = getMoneyToDb($inputs['edit_giadaugiasanxd']);
+//            $model->giakhoidiemdat = getMoneyToDb($inputs['edit_giakhoidiemdat']);
+//            $model->giakhoidiemsanxd = getMoneyToDb($inputs['edit_giakhoidiemsanxd']);
+//            $model->giadaugiadat = getMoneyToDb($inputs['edit_giadaugiadat']);
+//            $model->giadaugiasanxd = getMoneyToDb($inputs['edit_giadaugiasanxd']);
+
+            $model->qdpdgiatstd = getMoneyToDb($inputs['edit_qdpdgiatstd']);
+
+            $model->kqgiadaugiadat = getMoneyToDb($inputs['edit_kqgiadaugiadat']);
+            $model->kqgiadaugiats = getMoneyToDb($inputs['edit_kqgiadaugiats']);
+            $model->kqgiadaugiadatts = getMoneyToDb($inputs['edit_kqgiadaugiadatts']);
+            $model->ghichu = getMoneyToDb($inputs['edit_ghichu']);
 
             $model->save();
             return redirect('thongtindaugiadattsct?&mahs='.$inputs['mahs']);

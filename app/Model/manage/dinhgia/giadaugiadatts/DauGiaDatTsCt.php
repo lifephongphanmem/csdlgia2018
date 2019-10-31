@@ -28,10 +28,16 @@ class DauGiaDatTsCt extends Model
         'qdpddatnn',
         'qdpddatnuoits',
         'qdpddatmuoi',
+        'qdpdgiatstd', //
 
-        'giakhoidiemdat',
-        'giakhoidiemsanxd',
-        'giadaugiadat',
-        'giadaugiasanxd',
+        'kqgiadaugiadat',
+        'kqgiadaugiats',
+        'kqgiadaugiadatts',
+        'ghichu',
+
+//        'giakhoidiemdat',
+//        'giakhoidiemsanxd',
+//        'giadaugiadat',
+//        'giadaugiasanxd',
     ];
 }

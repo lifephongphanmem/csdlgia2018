@@ -8,24 +8,24 @@
 
 
 @section('custom-script')
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-
+    <script type="text/javascript" src="{{url('assets/global/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
     <script type="text/javascript" src="{{url('assets/global/plugins/select2/select2.min.js')}}"></script>
     <script type="text/javascript" src="{{url('assets/global/plugins/datatables/media/js/jquery.dataTables.min.js')}}"></script>
     <script type="text/javascript" src="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')}}"></script>
     <!-- END PAGE LEVEL PLUGINS -->
     <script src="{{url('assets/admin/pages/scripts/table-managed.js')}}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            TableManaged.init();
+        });
+    </script>
     <script src="{{url('minhtran/jquery.inputmask.bundle.min.js')}}"></script>
-
     <script>
         $(document).ready(function(){
             $(":input").inputmask();
         });
     </script>
     <script>
-        jQuery(document).ready(function() {
-            TableManaged.init();
-        });
         function ClickCreate(){
             $('#frm_create').submit();
         }
@@ -58,10 +58,18 @@
                     $('#edit_qdpddatnn').val(data.qdpddatnn);
                     $('#edit_qdpddatnuoits').val(data.qdpddatnuoits);
                     $('#edit_qdpddatmuoi').val(data.qdpddatmuoi);
-                    $('#edit_giakhoidiemdat').val(data.giakhoidiemdat);
-                    $('#edit_giakhoidiemsanxd').val(data.giakhoidiemsanxd);
-                    $('#edit_giadaugiadat').val(data.giadaugiadat);
-                    $('#edit_giadaugiasanxd').val(data.giadaugiasanxd);
+
+                    $('#edit_qdpdgiatstd').val(data.qdpdgiatstd);
+
+                    $('#edit_kqgiadaugiadat').val(data.kqgiadaugiadat);
+                    $('#edit_kqgiadaugiats').val(data.kqgiadaugiats);
+                    $('#edit_kqgiadaugiadatts').val(data.kqgiadaugiadatts);
+                    $('#edit_ghichu').val(data.ghichu);
+
+//                    $('#edit_giakhoidiemdat').val(data.giakhoidiemdat);
+//                    $('#edit_giakhoidiemsanxd').val(data.giakhoidiemsanxd);
+//                    $('#edit_giadaugiadat').val(data.giadaugiadat);
+//                    $('#edit_giadaugiasanxd').val(data.giadaugiasanxd);
                     $('#edit_id').val(data.id);
                 },
                 error: function (message) {
@@ -281,9 +289,10 @@
                                 {!!Form::text('qdgiadatmuoi', 0, array('id' => 'qdgiadatmuoi','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
                             </div>
                         </div>
+
                     </div>
 
-                    <h4 style="color: blue">Quyết định phê duyệt giá khởi điểm của tỉnh</h4>
+                    <h4 style="color: blue">Quyết định phê duyệt giá khởi điểm đất và tài sản trên đất của tỉnh</h4>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
@@ -321,30 +330,39 @@
                                 {!!Form::text('qdpddatmuoi',0, array('id' => 'qdpddatmuoi','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Giá trị tài sản trên đất<span class="require">*</span></label>
+                                {!!Form::text('qdpdgiatstd', 0, array('id' => 'qdpdgiatstd','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                            </div>
+                        </div>
                     </div>
+                    <h4 style="color: blue">Kết quả trúng đấu giá</h4>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="control-label">Giá khởi điểm đất<span class="require">*</span></label>
-                                {!!Form::text('giakhoidiemdat',0, array('id' => 'giakhoidiemdat','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                <label class="control-label">Giá đấu giá đất<span class="require">*</span></label>
+                                {!!Form::text('kqgiadaugiadat',0, array('id' => 'kqgiadaugiadat','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="control-label">Giá khởi điểm sàn xây dựng<span class="require">*</span></label>
-                                {!!Form::text('giakhoidiemsanxd',0, array('id' => 'giakhoidiemsanxd','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                <label class="control-label">Giá đấu giá tài sản<span class="require">*</span></label>
+                                {!!Form::text('kqgiadaugiats',0, array('id' => 'kqgiadaugiats','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="control-label">Giá trúng đấu giá đất<span class="require">*</span></label>
-                                {!!Form::text('giadaugiadat',0, array('id' => 'giadaugiadat','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                <label class="control-label">Giá đấu giá đất và tài sản<span class="require">*</span></label>
+                                {!!Form::text('kqgiadaugiadatts',0, array('id' => 'kqgiadaugiadatts','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
                             </div>
                         </div>
-                        <div class="col-md-3">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label class="control-label">Giá trúng đấu giá<span class="require">*</span></label>
-                                {!!Form::text('giadaugiasanxd',0, array('id' => 'giadaugiasanxd','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                <label class="control-label">Ghi chú<span class="require">*</span></label>
+                                {!!Form::text('ghichu',null, array('id' => 'ghichu','class' => 'form-control required','style'=>'font-weight: bold'))!!}
                             </div>
                         </div>
                     </div>
@@ -479,30 +497,39 @@
                                     {!!Form::text('edit_qdpddatmuoi',0, array('id' => 'edit_qdpddatmuoi','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label">Giá trị tài sản trên đất<span class="require">*</span></label>
+                                    {!!Form::text('edit_qdpdgiatstd', 0, array('id' => 'edit_qdpdgiatstd','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                </div>
+                            </div>
                         </div>
+                        <h4 style="color: blue">Kết quả trúng đấu giá</h4>
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="control-label">Giá khởi điểm đất<span class="require">*</span></label>
-                                    {!!Form::text('edit_giakhoidiemdat',0, array('id' => 'edit_giakhoidiemdat','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                    <label class="control-label">Giá đấu giá đất<span class="require">*</span></label>
+                                    {!!Form::text('edit_kqgiadaugiadat',0, array('id' => 'edit_kqgiadaugiadat','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="control-label">Giá khởi điểm sàn xây dựng<span class="require">*</span></label>
-                                    {!!Form::text('edit_giakhoidiemsanxd',0, array('id' => 'edit_giakhoidiemsanxd','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                    <label class="control-label">Giá đấu giá tài sản<span class="require">*</span></label>
+                                    {!!Form::text('edit_kqgiadaugiats',0, array('id' => 'edit_kqgiadaugiats','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="control-label">Giá trúng đấu giá đất<span class="require">*</span></label>
-                                    {!!Form::text('edit_giadaugiadat',0, array('id' => 'edit_giadaugiadat','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                    <label class="control-label">Giá đấu giá đất và tài sản<span class="require">*</span></label>
+                                    {!!Form::text('edit_kqgiadaugiadatts',0, array('id' => 'edit_kqgiadaugiadatts','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="control-label">Giá trúng đấu giá sàn xây dựng<span class="require">*</span></label>
-                                    {!!Form::text('edit_giadaugiasanxd',0, array('id' => 'edit_giadaugiasanxd','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                    <label class="control-label">Ghi chú<span class="require">*</span></label>
+                                    {!!Form::text('edit_ghichu',null, array('id' => 'edit_ghichu','class' => 'form-control required','style'=>'font-weight: bold'))!!}
                                 </div>
                             </div>
                         </div>
@@ -521,4 +548,5 @@
         <!-- /.modal-dialog -->
     </div>
     @include('includes.script.inputmask-ajax-scripts')
+    @include('includes.script.create-header-scripts')
 @stop
