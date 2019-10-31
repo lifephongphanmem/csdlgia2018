@@ -16,6 +16,7 @@ class CreateGiaxemaynksxctTable extends Migration
         Schema::create('giaxemaynksxct', function (Blueprint $table) {
             $table->increments('id');
             $table->string('mahs')->nullable();
+            $table->string('maxa')->nullable();
             $table->text('tthhdv')->nullable();
             $table->string('qccl')->nullable();
             $table->string('dvt')->nullable();
