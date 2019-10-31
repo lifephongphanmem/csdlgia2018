@@ -449,6 +449,7 @@
                             </ul>
                         </li>
                     @endif
+                    {{--OK--}}
                 @endif
                 @if(canKkGiaGr('TQKDL'))
                     @if(canKkGiaCt('TQKDL','TQKDL'))
@@ -470,6 +471,7 @@
                             </ul>
                         </li>
                     @endif
+                    {{--OK--}}
                 @endif
                 @include('includes.main.include.kkdkg')
                 </ul>

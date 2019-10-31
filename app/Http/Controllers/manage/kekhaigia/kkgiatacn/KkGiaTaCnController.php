@@ -43,6 +43,7 @@ class KkGiaTaCnController extends Controller
                         return view('errors.perm');
                 }
                 $model = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
+                    ->where('company.trangthai','Kích hoạt')
                     ->where('companylvcc.manghe','TACN')
                     ->where('companylvcc.mahuyen',$inputs['maxa'])
                     ->join('town','town.maxa','=','companylvcc.mahuyen')
@@ -81,6 +82,7 @@ class KkGiaTaCnController extends Controller
                     ->orderBy('id', 'desc')
                     ->get();
                 $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
+                    ->where('company.trangthai','Kích hoạt')
                     ->where('company.maxa',$inputs['masothue'])
                     ->where('companylvcc.manghe','TACN')
                     ->select('company.*','companylvcc.mahuyen')
@@ -114,12 +116,15 @@ class KkGiaTaCnController extends Controller
             else
                 $inputs['masothue'] = session('admin')->maxa;
             $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
+                ->where('company.trangthai','Kích hoạt')
                 ->where('company.maxa',$inputs['masothue'])
                 ->where('companylvcc.manghe','TACN')
                 ->select('company.*','companylvcc.mahuyen')
                 ->first();
+            $inputs['mahs'] = $inputs['masothue'].getdate()[0];
             if(isset($modeldn)) {
-                $delctdf = KkGiaTaCnCtDf::where('maxa',$inputs['masothue'])->delete();
+                $delctdf = KkGiaTaCnCt::where('maxa',$inputs['masothue'])
+                    ->where('trangthai','CXD')->delete();
                 $idlk = KkGiaTaCn::where('maxa',$inputs['masothue'])
                     ->where('trangthai','DD')
                     ->max('id');
@@ -128,38 +133,41 @@ class KkGiaTaCnController extends Controller
                         ->first();
                     $modellkct = KkGiaTaCnCt::where('mahs',$modellk->mahs)
                         ->get();
+                    $inputs['socvlk'] = $modellk->socv;
+                    $inputs['ngaycvlk'] = $modellk->ngaynhap;
                     foreach($modellkct as  $ctdf){
                         $addct = new KkGiaTaCnCtDf();
                         $addct->tenhh = $ctdf->tenhh;
                         $addct->qccl = $ctdf->qccl;
                         $addct->dvt = $ctdf->dvt;
-
-                        $addct->cpnvlttlk= $ctdf->cpnvltt;
-                        $addct->cpncttlk= $ctdf->cpnctt;
-                        $addct->cpsxclk= $ctdf->cpsxc;
-                        $addct->cpnvpxlk= $ctdf->cpnvpx;
-                        $addct->cpvllk= $ctdf->cpvl;
-                        $addct->cpdcsxlk= $ctdf->cpdcsx;
-                        $addct->cpkhtscdlk= $ctdf->cpkhtscd;
-                        $addct->cpdvmnlk= $ctdf->cpdvmn;
-                        $addct->cpbtklk= $ctdf->cpbtk;
-                        $addct->cpklk= $ctdf->cpk;
-                        $addct->tcpsxlk= $ctdf->tcpsx;
-                        $addct->cpbhlk= $ctdf->cpbh;
-                        $addct->cpqldnlk= $ctdf->cpqldn;
-                        $addct->cptclk= $ctdf->cptc;
-                        $addct->tgttblk= $ctdf->tgttb;
-                        $addct->lndklk= $ctdf->lndk;
-                        $addct->gbctlk= $ctdf->gbct;
-                        $addct->thuettdblk= $ctdf->thuettdb;
-                        $addct->thuegtgtlk= $ctdf->thuegtgt;
-                        $addct->gbdctlk= $ctdf->gbdct;
-
-                        $addct->maxa = $ctdf->$inputs['masothue'];
+                        $addct->dongialk = $ctdf->dongia;
+                        $addct->maxa = $inputs['masothue'];
+                        $addct->mahs = $inputs['mahs'];
+                        $addct->trangthai = 'CXD';
+//                        $addct->cpnvlttlk= $ctdf->cpnvltt;
+//                        $addct->cpncttlk= $ctdf->cpnctt;
+//                        $addct->cpsxclk= $ctdf->cpsxc;
+//                        $addct->cpnvpxlk= $ctdf->cpnvpx;
+//                        $addct->cpvllk= $ctdf->cpvl;
+//                        $addct->cpdcsxlk= $ctdf->cpdcsx;
+//                        $addct->cpkhtscdlk= $ctdf->cpkhtscd;
+//                        $addct->cpdvmnlk= $ctdf->cpdvmn;
+//                        $addct->cpbtklk= $ctdf->cpbtk;
+//                        $addct->cpklk= $ctdf->cpk;
+//                        $addct->tcpsxlk= $ctdf->tcpsx;
+//                        $addct->cpbhlk= $ctdf->cpbh;
+//                        $addct->cpqldnlk= $ctdf->cpqldn;
+//                        $addct->cptclk= $ctdf->cptc;
+//                        $addct->tgttblk= $ctdf->tgttb;
+//                        $addct->lndklk= $ctdf->lndk;
+//                        $addct->gbctlk= $ctdf->gbct;
+//                        $addct->thuettdblk= $ctdf->thuettdb;
+//                        $addct->thuegtgtlk= $ctdf->thuegtgt;
+//                        $addct->gbdctlk= $ctdf->gbdct;
                         $addct->save();
                     }
                 }
-                $modelct = KkGiaTaCnCt::where('maxa',$inputs['masothue'])
+                $modelct = KkGiaTaCnCt::where('mahs',$inputs['mahs'])
                     ->get();
 
                 return view('manage.kkgia.dvtacn.kkgia.kkgiadv.create')
@@ -177,7 +185,6 @@ class KkGiaTaCnController extends Controller
         if (Session::has('admin')) {
             if (session('admin')->level == 'DN' || session('admin')->level == 'T' || session('admin')->level == 'H'  || session('admin')->level == 'X') {
                 $inputs = $request->all();
-                $inputs['mahs'] = $inputs['maxa'].getdate()[0];
                 $inputs['ngaynhap'] = getDateToDb($inputs['ngaynhap']);
                 $inputs['ngayhieuluc'] = getDateToDb($inputs['ngayhieuluc']);
                 if($inputs['ngaycvlk'] != '')
@@ -187,61 +194,8 @@ class KkGiaTaCnController extends Controller
                 $inputs['trangthai'] = 'CC';
                 $model = new KkGiaTaCn();
                 if($model->create($inputs)){
-                    $modelctdf = KkGiaTaCnCtDf::where('maxa',$inputs['maxa']);
-                    foreach($modelctdf->get() as $ctdf){
-                        $modelct = new KkGiaTaCnCt();
-                        $modelct->maxa = $inputs['maxa'];
-                        $modelct->mahuyen = $inputs['mahuyen'];
-                        $modelct->mahs = $inputs['mahs'];
-                        $modelct->tenhh= $ctdf->tenhh;
-                        $modelct->qccl= $ctdf->qccl;
-                        $modelct->dvt= $ctdf->dvt;
-                        $modelct->ghichu= $ctdf->ghichu;
-
-                        $modelct->cpnvlttlk= $ctdf->cpnvlttlk;
-                        $modelct->cpncttlk= $ctdf->cpncttlk;
-                        $modelct->cpsxclk= $ctdf->cpsxclk;
-                        $modelct->cpnvpxlk= $ctdf->cpnvpxlk;
-                        $modelct->cpvllk= $ctdf->cpvllk;
-                        $modelct->cpdcsxlk= $ctdf->cpdcsxlk;
-                        $modelct->cpkhtscdlk= $ctdf->cpkhtscdlk;
-                        $modelct->cpdvmnlk= $ctdf->cpdvmnlk;
-                        $modelct->cpbtklk= $ctdf->cpbtklk;
-                        $modelct->cpklk= $ctdf->cpklk;
-                        $modelct->tcpsxlk= $ctdf->tcpsxlk;
-                        $modelct->cpbhlk= $ctdf->cpbhlk;
-                        $modelct->cpqldnlk= $ctdf->cpqldnlk;
-                        $modelct->cptclk= $ctdf->cptclk;
-                        $modelct->tgttblk= $ctdf->tgttblk;
-                        $modelct->lndklk= $ctdf->lndklk;
-                        $modelct->gbctlk= $ctdf->gbctlk;
-                        $modelct->thuettdblk= $ctdf->thuettdblk;
-                        $modelct->thuegtgtlk= $ctdf->thuegtgtlk;
-                        $modelct->gbdctlk= $ctdf->gbdctlk;
-
-                        $modelct->cpnvltt= $ctdf->cpnvltt;
-                        $modelct->cpnctt= $ctdf->cpnctt;
-                        $modelct->cpsxc= $ctdf->cpsxc;
-                        $modelct->cpnvpx= $ctdf->cpnvpx;
-                        $modelct->cpvl= $ctdf->cpvl;
-                        $modelct->cpdcsx= $ctdf->cpdcsx;
-                        $modelct->cpkhtscd= $ctdf->cpkhtscd;
-                        $modelct->cpdvmn= $ctdf->cpdvmn;
-                        $modelct->cpbtk= $ctdf->cpbtk;
-                        $modelct->cpk= $ctdf->cpk;
-                        $modelct->tcpsx= $ctdf->tcpsx;
-                        $modelct->cpbh= $ctdf->cpbh;
-                        $modelct->cpqldn= $ctdf->cpqldn;
-                        $modelct->cptc= $ctdf->cptc;
-                        $modelct->tgttb= $ctdf->tgttb;
-                        $modelct->lndk= $ctdf->lndk;
-                        $modelct->gbct= $ctdf->gbct;
-                        $modelct->thuettdb= $ctdf->thuettdb;
-                        $modelct->thuegtgt= $ctdf->thuegtgt;
-                        $modelct->gbdct= $ctdf->gbdct;
-                        $modelct->save();
-                    }
-                    $modelctdf->delete();
+                    $modelctdf = KkGiaTaCnCt::where('mahs',$inputs['mahs'])
+                        ->update(['trangthai' => 'XD']);
                 }
                 return redirect('kekhaigiathucanchannuoi?&masothue='.$inputs['maxa']);
             }else
@@ -281,7 +235,10 @@ class KkGiaTaCnController extends Controller
                 else
                     unset($inputs['ngaycvlk']);
                 $model = KkGiaTaCn::findOrFail($id);
-                $model->update($inputs);
+                if($model->update($inputs)){
+                    $modelctdf = KkGiaTaCnCt::where('mahs',$inputs['mahs'])
+                        ->update(['trangthai' => 'XD']);
+                }
                 return redirect('kekhaigiathucanchannuoi?&masothue='.$model->maxa);
             }else
                 return view('errors.perm');
@@ -391,9 +348,9 @@ class KkGiaTaCnController extends Controller
                         ->first();
                     $tg = getDateTime(Carbon::now()->toDateTimeString());
                     $contentdn = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận được hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp. Số công văn: '.$model->socv.
-                        ' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['ttnguoinop'].'!!!';
+                        ' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['nguoinop'].'-Số điện thoại liên lạc: '.$inputs['dtll'].'!!!';
                     $contentht = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận được hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp '.$modeldn->tendn.' - mã số thuế '.$modeldn->maxa.
-                        ' Số công văn: '.$model->socv.' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['ttnguoinop'].'!!!';
+                        ' Số công văn: '.$model->socv.' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['nguoinop'].'-Số điện thoại liên lạc: '.$inputs['dtll'].'!!!';
                     $run = new SendMail($modeldn,$contentdn,$modeldv,$contentht);
                     $run->handle();
                 }
