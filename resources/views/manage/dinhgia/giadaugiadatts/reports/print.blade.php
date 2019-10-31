@@ -174,9 +174,9 @@
             <td></td>
         </tr>
             <?php
-                $modelct = $modelct->where('mahs',$tt->mahs);
+                $modeltt = $modelct->where('mahs',$tt->mahs);
             ?>
-            @foreach($modelct as $gr3=>$ct)
+            @foreach($modeltt as $gr3=>$ct)
             <tr>
                 <td>{{$gr3+1}}</td>
                 <td></td>
