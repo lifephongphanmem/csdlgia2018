@@ -16,12 +16,14 @@ class CreateKkgiaetanolctTable extends Migration
         Schema::create('kkgiaetanolct', function (Blueprint $table) {
             $table->increments('id');
             $table->string('mahs')->nullable();
+            $table->string('maxa')->nullable();
             $table->text('tthhdv')->nullable();
             $table->string('qccl')->nullable();
             $table->string('dvt')->nullable();
             $table->string('dongialk')->nullable();
             $table->string('dongia')->nullable();
             $table->string('ghichu')->nullable();
+            $table->string('trangthai')->nullable();
             $table->string('thuevat')->nullable();
             $table->timestamps();
         });

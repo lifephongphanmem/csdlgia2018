@@ -169,6 +169,7 @@
                             </ul>
                         </li>
                     @endif
+                    {{--OK--}}
                 @endif
                 @if(canKkGiaGr('ETANOL'))
                     @if(canKkGiaCt('ETANOL','ETANOL'))

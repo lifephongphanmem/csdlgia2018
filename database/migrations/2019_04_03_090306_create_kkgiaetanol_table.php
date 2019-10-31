@@ -25,7 +25,10 @@ class CreateKkgiaetanolTable extends Migration
             $table->string('ngaycvlk')->nullable();
             $table->text('ytcauthanhgia')->nullable();
             $table->text('thydggadgia')->nullable();
-            $table->text('ttnguoinop')->nullable();
+            $table->string('nguoinop')->nullable();
+            $table->string('dtll')->nullable();
+            $table->string('email')->nullable();
+            $table->string('fax')->nullable();
             $table->date('ngaynhan')->nullable();
             $table->string('sohsnhan')->nullable();
             $table->dateTime('ngaychuyen')->nullable();
@@ -36,6 +39,8 @@ class CreateKkgiaetanolTable extends Migration
             $table->string('dvt')->nullable();
             $table->string('congbo')->nullable();
             $table->text('ghichu')->nullable();
+            $table->text('ptnguyennhan')->nullable();
+            $table->text('chinhsachkm')->nullable();
             $table->timestamps();
         });
     }

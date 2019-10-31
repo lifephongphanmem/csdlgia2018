@@ -10,12 +10,14 @@ class KkGiaEtanolCt extends Model
     protected $fillable = [
         'id',
         'mahs',
+        'maxa',
         'tthhdv',
         'qccl',
         'dvt',
         'dongialk',
         'dongia',
         'ghichu',
+        'trangthai',
         'thuevat',
     ];
 }

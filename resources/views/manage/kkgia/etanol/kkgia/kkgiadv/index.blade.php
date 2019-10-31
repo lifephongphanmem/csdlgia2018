@@ -72,7 +72,7 @@
         }
 
         function ClickChuyen(){
-            if($('#ttnguoinop').val() != ''){
+            if($('#nguoinop').val() != '' && $('#dtll').val() != ''){
                 var btn = document.getElementById('submitChuyen');
                 btn.disabled = true;
                 btn.innerText = 'Loading...';
@@ -171,7 +171,8 @@
                                 <td style="text-align: center">{{getDayVn($tt->ngayhieuluc)}}</td>
                                 <td style="text-align: center" class="active">{{$tt->socv}}</td>
                                 <td style="text-align: center">{{$tt->socvlk}}</td>
-                                <td style="text-align: center">{{$tt->ttnguoinop}}</td>
+                                <td style="text-align: left">@if($tt->nguoinop != '')Họ và tên: {{$tt->nguoinop}}
+                                    <br>Số điện thoại liên hệ: {{$tt->dtll}}<br>Số Fax: {{$tt->fax}}@endif</td>
                                 @if($tt->trangthai == "CC")
                                     <td align="center"><span class="badge badge-warning">Chờ chuyển</span></td>
                                 @elseif($tt->trangthai == 'CD')
@@ -243,8 +244,20 @@
                         <div class="form-group" id="tthschuyen">
                         </div>
                         <div class="form-group">
-                            <label><b>Thông tin người nộp</b></label>
-                            <textarea id="ttnguoinop" class="form-control required" name="ttnguoinop" cols="30" rows="5" placeholder="Họ và tên người chuyển- Số ĐT liên lạc- Email lien lạc"></textarea>
+                            <label><b>Họ và tên người nộp</b></label>
+                            <input type="text" id="nguoinop" name="nguoinop" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label><b>Số điện thoại liên hệ</b></label>
+                            <input type="tel" id="dtll" name="dtll" class="form-control" maxlength="15">
+                        </div>
+                        <div class="form-group">
+                            <label><b>Email</b></label>
+                            <input type="email" id="email" name="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label><b>Số Fax</b></label>
+                            <input type="tel" id="fax" name="fax" class="form-control" maxlength="15">
                         </div>
                     </div>
                     <input type="hidden" name="idchuyen" id="idchuyen">

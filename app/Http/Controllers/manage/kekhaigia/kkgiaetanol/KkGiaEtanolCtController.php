@@ -25,6 +25,7 @@ class KkGiaEtanolCtController extends Controller
         $inputs = $request->all();
         $inputs['dongialk'] = getMoneyToDb($inputs['dongialk']);
         $inputs['dongia'] = getMoneyToDb($inputs['dongia']);
+        $inputs['trangthai'] = 'CXD';
         if(isset($inputs['tthhdv'])){
             $modelkkgia = new KkGiaEtanolCt();
             $modelkkgia->create($inputs);
