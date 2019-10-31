@@ -166,7 +166,6 @@ class KkGiaTaCnCtController extends Controller
         $inputs = $request->all();
         $inputs['dongialk'] = getMoneyToDb($inputs['dongialk']);
         $inputs['dongia'] = getMoneyToDb($inputs['dongia']);
-        $inputs['trangthai'] = 'CXD';
         if(isset($inputs['id'])){
             $modelkkgia = KkGiaTaCnCt::where('id',$inputs['id'])->first();
             $modelkkgia->update($inputs);

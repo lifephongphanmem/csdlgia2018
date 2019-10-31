@@ -136,7 +136,7 @@ class KkGiaTaCnController extends Controller
                     $inputs['socvlk'] = $modellk->socv;
                     $inputs['ngaycvlk'] = $modellk->ngaynhap;
                     foreach($modellkct as  $ctdf){
-                        $addct = new KkGiaTaCnCtDf();
+                        $addct = new KkGiaTaCnCt();
                         $addct->tenhh = $ctdf->tenhh;
                         $addct->qccl = $ctdf->qccl;
                         $addct->dvt = $ctdf->dvt;

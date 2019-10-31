@@ -123,180 +123,29 @@
         // </editor-fold>
     </script>
     <script>
-        function kkgia(id){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            //alert(id);
-            $.ajax({
-                url: '/kkgdvgs/kkgiahh',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    id: id,
-                    maxa: $('input[name="maxa"]').val()
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        $('#ttkkgia').replaceWith(data.message);
-                        InputMask();
-                    }
-                    else
-                        toastr.error("Không thể chỉnh sửa thông tin giá!", "Lỗi!");
-                }
-            })
-        }
-        function kkgialk(id){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            //alert(id);
-            $.ajax({
-                url: '/kkgdvgs/kkgiahhlk',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    id: id,
-                    maxa: $('input[name="maxa"]').val()
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        $('#ttkkgialk').replaceWith(data.message);
-                        InputMask();
-                    }
-                    else
-                        toastr.error("Không thể chỉnh sửa thông tin giá phòng nghỉ!", "Lỗi!");
-                }
-            })
-        }
-        function upkkgia(){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '/kkgdvgs/upkkgia',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    id: $('input[name="idkkgia"]').val(),
-                    giaQ: $('input[name="giaQ"]').val(),
-                    giaC: $('input[name="giaC"]').val(),
-                    giaCtt: $('input[name="giaCtt"]').val(),
-                    giaCvt: $('input[name="giaCvt"]').val(),
-                    giaCnc: $('input[name="giaCnc"]').val(),
-                    giaCkh: $('input[name="giaCkh"]').val(),
-                    giaCk: $('input[name="giaCk"]').val(),
-                    giaCc: $('input[name="giaCc"]').val(),
-                    giaCcm: $('input[name="giaCcm"]').val(),
-                    giaCtc: $('input[name="giaCtc"]').val(),
-                    giaCbh: $('input[name="giaCbh"]').val(),
-                    giaCql: $('input[name="giaCql"]').val(),
-                    giaTC: $('input[name="giaTC"]').val(),
-                    giaCP: $('input[name="giaCP"]').val(),
-                    giaZ: $('input[name="giaZ"]').val(),
-                    giaZdv: $('input[name="giaZdv"]').val(),
-                    maxa: $('input[name="maxa"]').val()
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        toastr.success("Cập nhật giá thành công", "Thành công!");
-                        $('#dsts').replaceWith(data.message);
-                        jQuery(document).ready(function() {
-                            TableManaged.init();
-                        });
-                        $('#modal-kkgia').modal("hide");
-
-                    } else
-                        toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
-                }
-            })
-
-        }
-        function upkkgialk(){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '/kkgdvgs/upkkgialk',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    id: $('input[name="idkkgialk"]').val(),
-                    giaQlk: $('input[name="giaQlk"]').val(),
-                    giaClk: $('input[name="giaClk"]').val(),
-                    giaCttlk: $('input[name="giaCttlk"]').val(),
-                    giaCvtlk: $('input[name="giaCvtlk"]').val(),
-                    giaCnclk: $('input[name="giaCnclk"]').val(),
-                    giaCkhlk: $('input[name="giaCkhlk"]').val(),
-                    giaCklk: $('input[name="giaCklk"]').val(),
-                    giaCclk: $('input[name="giaCclk"]').val(),
-                    giaCcmlk: $('input[name="giaCcmlk"]').val(),
-                    giaCtclk: $('input[name="giaCtclk"]').val(),
-                    giaCbhlk: $('input[name="giaCbhlk"]').val(),
-                    giaCqllk: $('input[name="giaCqllk"]').val(),
-                    giaTClk: $('input[name="giaTClk"]').val(),
-                    giaCPlk: $('input[name="giaCPlk"]').val(),
-                    giaZlk: $('input[name="giaZlk"]').val(),
-                    giaZdvlk: $('input[name="giaZdvlk"]').val(),
-                    maxa: $('input[name="maxa"]').val()
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        toastr.success("Cập nhật thông tin giá thành công", "Thành công!");
-                        $('#dsts').replaceWith(data.message);
-                        jQuery(document).ready(function() {
-                            TableManaged.init();
-                        });
-                        $('#modal-kkgialk').modal("hide");
-
-                    } else
-                        toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
-                }
-            })
-
-        }
-        function checkngay(){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '/ajax/checkngay',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    ngaynhap: $('input[name="ngaynhap"]').val(),
-                    ngayhieuluc: $('input[name="ngayhieuluc"]').val(),
-                    plhs: $('select[name="plhs"]').val()
-
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        toastr.success("Ngày hiệu lực có thể sử dụng được", "Thành công!");
-                    }else {
-                        toastr.error("Bạn cần kiểm tra lại ngày có hiệu lực!", "Lỗi!");
-                        $('input[name="ngayhieuluc"]').val('');
-                    }
-                }
-            })
-
-        }
-        function clearngay(){
-            $('input[name="ngaynhap"]').val('');
-            $('input[name="ngayhieuluc"]').val('');
-        }
         function clearForm(){
             $('#tenhhcreate').val('');
             $('#qcclcreate').val('');
             $('#dvtcreate').val('');
+            $('#dongialkcreate').val('');
+            $('#dongiacreate').val('');
             $('#ghichucreate').val('');
         }
         function createttp(){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/kkgdvgs/storett',
+                url: '/kkgdvgs/boxungtt',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
                     tenhh: $('input[name="tenhhcreate"]').val(),
                     qccl: $('textarea[name="qcclcreate"]').val(),
                     dvt: $('input[name="dvtcreate"]').val(),
+                    dongialk: $('input[name="dongialkcreate"]').val(),
+                    dongia: $('input[name="dongiacreate"]').val(),
                     ghichu: $('textarea[name="ghichucreate"]').val(),
-                    maxa: $('input[name="maxa"]').val()
+                    maxa: $('input[name="maxa"]').val(),
+                    mahs: $('input[name="mahs"]').val(),
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -316,7 +165,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/kkgdvgs/edittt',
+                url: '/kkgdvgs/chinhsuatt',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -326,6 +175,7 @@
                 success: function (data) {
                     if (data.status == 'success') {
                         $('#ttpedit').replaceWith(data.message);
+                        InputMask();
                     }
                     else
                         toastr.error("Không thể chỉnh sửa thông tin!", "Lỗi!");
@@ -336,7 +186,7 @@
         function updatets() {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/kkgdvgs/updatett',
+                url: '/kkgdvgs/capnhattt',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -344,8 +194,11 @@
                     tenhh: $('input[name="tenhhedit"]').val(),
                     qccl: $('textarea[name="qccledit"]').val(),
                     dvt: $('input[name="dvtedit"]').val(),
+                    dongialk: $('input[name="dongialkedit"]').val(),
+                    dongia: $('input[name="dongiaedit"]').val(),
                     ghichu: $('textarea[name="ghichuedit"]').val(),
-                    maxa: $('input[name="maxa"]').val()
+                    maxa: $('input[name="maxa"]').val(),
+                    mahs: $('input[name="mahs"]').val(),
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -368,12 +221,13 @@
         function deleteRow() {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/kkgdvgs/deletett',
+                url: '/kkgdvgs/xoatt',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
                     id: $('input[name="iddelete"]').val(),
-                    maxa: $('input[name="maxa"]').val()
+                    maxa: $('input[name="maxa"]').val(),
+                    mahs: $('input[name="mahs"]').val(),
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -390,34 +244,6 @@
                 }
             })
 
-        }
-        function checkngaykk(){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '/ajax/checkngaykk',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    ngaynhap: $('input[name="ngaynhap"]').val()
-
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        toastr.success("Ngày kê khai có thể sử dụng được", "Thành công!");
-                    }else {
-                        toastr.error("Bạn cần kiểm tra lại ngày có kê khai, ngày kê khai không được nhỏ hơn ngày hiện tại! ", "Lỗi!");
-                        var today = new Date();
-                        var dd = today.getDate();
-                        var mm = today.getMonth()+1;//January is 0!
-                        var yyyy = today.getFullYear();
-                        if(dd<10){dd='0'+dd}
-                        if(mm<10){mm='0'+mm}
-                        $('#ngaynhap').val(dd+'/'+mm+'/'+yyyy);
-                        $('input[name="ngayhieuluc"]').val('');
-                    }
-                }
-            })
         }
     </script>
     <script>
@@ -554,27 +380,40 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Số công văn liền kề</label>
-                                {!!Form::text('socvlk',(isset($modelcb) ? $modelcb->socv : ''), array('id' => 'socvlk','class' => 'form-control'))!!}
+                                {!!Form::text('socvlk',isset($inputs['socvlk']) ? $inputs['socvlk'] : '', array('id' => 'socvlk','class' => 'form-control'))!!}
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Ngày nhập số công văn liền kề<span class="require">*</span></label>
-                                {!!Form::text('ngaycvlk',(isset($modelcb) ? date('d/m/Y',  strtotime($modelcb->ngaynhap)) : ''), array('id' => 'ngaycvlk','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
+                                {!!Form::text('ngaycvlk',isset($inputs['ngaycvlk']) ? date('d/m/Y',strtotime($inputs['ngaycvlk'])) : '', array('id' => 'ngaycvlk','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label">Phân tích nguyên nhân điều chỉnh tăng/giảm giá kê khai của từng mặt hàng</label>
+                            <div class="form-group"><label for="selGender" class="control-label">Phân tích nguyên nhân, nêu rõ biến động của các yếu tố hình thành giá tác động
+                                    làm tăng hoặc giảm giá hàng hóa, dịch vụ thực hiện kê khai giá</label>
                                 <div>
-                                        <textarea id="ghichu" class="form-control" name="ghichu" cols="30" rows="5"
-                                        >{{isset($modelcb) ? $modelcb->ghichu : '' }}</textarea>
+                                        <textarea id="ptnguyennhan" class="form-control" name="ptnguyennhan" cols="30" rows="5"
+                                                ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group"><label for="selGender" class="control-label">Ghi rõ cách chính sách và mức khuyến mại, giảm giá hoặc chiết khấu đối với các đối
+                                    tượng khách hàng, các Điều kiện vận chuyển, giao hàng, bán hàng kèm theo mức giá kê khai (nếu có)</label>
+                                <div>
+                                        <textarea id="chinhsachkm" class="form-control" name="chinhsachkm" cols="30" rows="5"
+                                                ></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <input type="hidden" name="maxa" id="maxa" value="{{$inputs['masothue']}}">
+                    <input type="hidden" name="mahs" id="mahs" value="{{$inputs['mahs']}}">
                     <input type="hidden" name="mahuyen" id="mahuyen" value="{{$modeldn->mahuyen}}">
                     <input type="hidden" name="tendn" id="tendn" value="{{$modeldn->tendn}}">
                     {!! Form::close() !!}
@@ -612,11 +451,11 @@
                                             <td style="text-align: left">{{$tt->qccl}}</td>
                                             <td style="text-align: center">{{$tt->dvt}}</td>
                                             <td style="text-align: left">{{$tt->ghichu}}</td>
-                                            <td style="text-align: right">{{number_format($tt->giaZdvlk)}}</td>
-                                            <td style="text-align: right">{{number_format($tt->giaZdv)}}</td>
+                                            <td style="text-align: right">{{number_format($tt->dongialk)}}</td>
+                                            <td style="text-align: right">{{number_format($tt->dongia)}}</td>
                                             <td>
-                                                <button type="button" data-target="#modal-kkgialk" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="kkgialk({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Kê khai giá liền kề</button>
-                                                <button type="button" data-target="#modal-kkgia" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="kkgia({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Kê khai giá</button>
+                                                {{--<button type="button" data-target="#modal-kkgialk" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="kkgialk({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Kê khai giá liền kề</button>--}}
+                                                {{--<button type="button" data-target="#modal-kkgia" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="kkgia({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Kê khai giá</button>--}}
                                                 <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editTtPh({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa thông tin</button>
                                                 <button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid({{$tt->id}});" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
 
@@ -726,11 +565,22 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group"><label for="selGender" class="control-label"><b>Quy cách chất lượng</b><span class="require">*</span></label>
                                 <div><textarea id="qcclcreate" class="form-control" name="qcclcreate" cols="30" rows="3"></textarea></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group"><label for="selGender" class="control-label"><b>Giá liền kề</b><span class="require">*</span></label>
+                                <div><input type="text" name="dongialkcreate" id="dongialkcreate" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group"><label for="selGender" class="control-label"><b>Giá kê khai</b><span class="require">*</span></label>
+                                <div><input type="text" name="dongiacreate" id="dongiacreate" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold"></div>
                             </div>
                         </div>
                     </div>

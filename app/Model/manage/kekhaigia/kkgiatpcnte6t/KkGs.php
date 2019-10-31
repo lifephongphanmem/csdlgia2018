@@ -18,7 +18,10 @@ class KkGs extends Model
         'socvlk',
         'ngaycvlk',
         'ngayhieuluc',
-        'ttnguoinop',
+        'nguoinop',
+        'dtll',
+        'email',
+        'fax',
         'ngaynhan',
         'sohsnhan',
         'ghichu',
@@ -27,5 +30,7 @@ class KkGs extends Model
         'trangthai',
         'plhs',
         'thoihan',
+        'ptnguyennhan',
+        'chinhsachkm',
     ];
 }
