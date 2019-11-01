@@ -53,7 +53,7 @@
             <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
                 Độc lập - Tự do - Hạnh phúc</b><br>
             -------------------<br>
-            <i>{{$inputs['diadanh']}}, Ngày .... tháng .... năm ....</i>
+            <i>{{$inputs['diadanh']}}, ngày .... tháng .... năm ....</i>
         </td>
     </tr>
 </table>
