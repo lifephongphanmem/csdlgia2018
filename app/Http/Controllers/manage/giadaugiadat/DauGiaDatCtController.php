@@ -52,8 +52,13 @@ class DauGiaDatCtController extends Controller
             $inputs['qdpddatnuoits'] = getMoneyToDb($inputs['qdpddatnuoits']);
             $inputs['qdpddatmuoi'] = getMoneyToDb($inputs['qdpddatmuoi']);
 
-            $inputs['giakhoidiem'] = getMoneyToDb($inputs['giakhoidiem']);
-            $inputs['giadaugia'] = getMoneyToDb($inputs['giadaugia']);
+            $inputs['kqdgdato'] = getMoneyToDb($inputs['kqdgdato']);
+            $inputs['kqdgdattmdv'] = getMoneyToDb($inputs['kqdgdattmdv']);
+            $inputs['kqdgdatsxkd'] = getMoneyToDb($inputs['kqdgdatsxkd']);
+            $inputs['kqdgdatnn'] = getMoneyToDb($inputs['kqdgdatnn']);
+            $inputs['kqdgdatnuoits'] = getMoneyToDb($inputs['kqdgdatnuoits']);
+            $inputs['kqdgdatmuoi'] = getMoneyToDb($inputs['kqdgdatmuoi']);
+
             $modeladd = new DauGiaDatCt();
             $modeladd->create($inputs);
             return redirect('thongtindaugiadatct?&mahs='.$inputs['mahs']);
@@ -107,6 +112,13 @@ class DauGiaDatCtController extends Controller
 
             $model->giakhoidiem = getMoneyToDb($inputs['edit_giakhoidiem']);
             $model->giadaugia = getMoneyToDb($inputs['edit_giadaugia']);
+
+            $model->kqdgdato = getMoneyToDb($inputs['edit_kqdgdato']);
+            $model->kqdgdattmdv = getMoneyToDb($inputs['edit_kqdgdattmdv']);
+            $model->kqdgdatsxkd = getMoneyToDb($inputs['edit_kqdgdatsxkd']);
+            $model->kqdgdatnn = getMoneyToDb($inputs['edit_kqdgdatnn']);
+            $model->kqdgdatnuoits = getMoneyToDb($inputs['edit_kqdgdatnuoits']);
+            $model->kqdgdatmuoi = getMoneyToDb($inputs['edit_kqdgdatmuoi']);
 
             $model->save();
             return redirect('thongtindaugiadatct?&mahs='.$inputs['mahs']);

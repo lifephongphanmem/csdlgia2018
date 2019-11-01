@@ -38,8 +38,15 @@ class CreateDaugiadatctTable extends Migration
             $table->string('qdpddatnuoits')->nullable();
             $table->string('qdpddatmuoi')->nullable();
 
-            $table->string('giakhoidiem')->nullable();
-            $table->string('giadaugia')->nullable();
+            $table->string('kqdgdato')->nullable();
+            $table->string('kqdgdattmdv')->nullable();
+            $table->string('kqdgdatsxkd')->nullable();
+            $table->string('kqdgdatnn')->nullable();
+            $table->string('kqdgdatnuoits')->nullable();
+            $table->string('kqdgdatmuoi')->nullable();
+
+//            $table->string('giakhoidiem')->nullable();
+//            $table->string('giadaugia')->nullable();
 
             $table->string('mahs')->nullable();
             $table->timestamps();

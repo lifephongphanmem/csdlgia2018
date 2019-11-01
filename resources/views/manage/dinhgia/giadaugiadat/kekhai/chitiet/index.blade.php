@@ -58,8 +58,14 @@
                     $('#edit_qdpddatnn').val(data.qdpddatnn);
                     $('#edit_qdpddatnuoits').val(data.qdpddatnuoits);
                     $('#edit_qdpddatmuoi').val(data.qdpddatmuoi);
-                    $('#edit_giakhoidiem').val(data.giakhoidiem);
-                    $('#edit_giadaugia').val(data.giadaugia);
+
+                    $('#edit_kqdgdato').val(data.kqdgdato);
+                    $('#edit_kqdgdattmdv').val(data.kqdgdattmdv);
+                    $('#edit_kqdgdatsxkd').val(data.kqdgdatsxkd);
+                    $('#edit_kqdgdatnn').val(data.kqdgdatnn);
+                    $('#edit_kqdgdatnuoits').val(data.kqdgdatnuoits);
+                    $('#edit_kqdgdatmuoi').val(data.kqdgdatmuoi);
+
                     $('#edit_id').val(data.id);
                 },
                 error: function (message) {
@@ -317,17 +323,42 @@
                             </div>
                         </div>
                     </div>
+                    <h4 style="color: blue">Kết quả trúng đấu giá</h4>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
-                                <label class="control-label">Giá khởi điểm<span class="require">*</span></label>
-                                {!!Form::text('giakhoidiem',0, array('id' => 'giakhoidiem','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                <label class="control-label">Đất ở<span class="require">*</span></label>
+                                {!!Form::text('kqdgdato', 0, array('id' => 'kqdgdato','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
-                                <label class="control-label">Giá trúng đấu giá<span class="require">*</span></label>
-                                {!!Form::text('giadaugia',0, array('id' => 'giadaugia','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                <label class="control-label">Đất TMDV<span class="require">*</span></label>
+                                {!!Form::text('kqdgdattmdv',0, array('id' => 'kqdgdattmdv','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Đất SXKD<span class="require">*</span></label>
+                                {!!Form::text('kqdgdatsxkd', 0, array('id' => 'kqdgdatsxkd','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Đất NN trổng cây <span class="require">*</span></label>
+                                {!!Form::text('kqdgdatnn',0, array('id' => 'kqdgdatnn','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Đất nuôi trồng thủy sản<span class="require">*</span></label>
+                                {!!Form::text('kqdgdatnuoits', 0, array('id' => 'kqdgdatnuoits','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Đất làm muối<span class="require">*</span></label>
+                                {!!Form::text('kqdgdatmuoi',0, array('id' => 'kqdgdatmuoi','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
                             </div>
                         </div>
                     </div>
@@ -463,20 +494,44 @@
                                 </div>
                             </div>
                         </div>
+                        <h4 style="color: blue">Kết quả trúng đấu giá</h4>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="control-label">Giá khởi điểm<span class="require">*</span></label>
-                                    {!!Form::text('edit_giakhoidiem',0, array('id' => 'edit_giakhoidiem','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                    <label class="control-label">Đất ở<span class="require">*</span></label>
+                                    {!!Form::text('edit_kqdgdato', 0, array('id' => 'edit_kqdgdato','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="control-label">Giá trúng đấu giá<span class="require">*</span></label>
-                                    {!!Form::text('edit_giadaugia',0, array('id' => 'edit_giadaugia','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                    <label class="control-label">Đất TMDV<span class="require">*</span></label>
+                                    {!!Form::text('edit_kqdgdattmdv',0, array('id' => 'edit_kqdgdattmdv','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
                                 </div>
                             </div>
-                        </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label">Đất SXKD<span class="require">*</span></label>
+                                    {!!Form::text('edit_kqdgdatsxkd', 0, array('id' => 'edit_kqdgdatsxkd','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label">Đất NN trổng cây <span class="require">*</span></label>
+                                    {!!Form::text('edit_kqdgdatnn',0, array('id' => 'edit_kqdgdatnn','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label">Đất nuôi trồng thủy sản<span class="require">*</span></label>
+                                    {!!Form::text('edit_kqdgdatnuoits', 0, array('id' => 'edit_kqdgdatnuoits','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label">Đất làm muối<span class="require">*</span></label>
+                                    {!!Form::text('edit_kqdgdatmuoi',0, array('id' => 'edit_kqdgdatmuoi','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                </div>
+                            </div>
                         {!!Form::hidden('mahs',$inputs['mahs'], array('id' => 'mahs','class' => 'form-control required'))!!}
                         {!!Form::hidden('edit_id',null, array('id' => 'edit_id','class' => 'form-control'))!!}
                     </div>

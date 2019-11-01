@@ -29,7 +29,14 @@ class DauGiaDatCt extends Model
         'qdpddatnuoits',
         'qdpddatmuoi',
 
-        'giakhoidiem',
-        'giadaugia',
+        'kqdgdato',
+        'kqdgdattmdv',
+        'kqdgdatsxkd',
+        'kqdgdatnn',
+        'kqdgdatnuoits',
+        'kqdgdatmuoi',
+
+//        'giakhoidiem',
+//        'giadaugia',
     ];
 }
