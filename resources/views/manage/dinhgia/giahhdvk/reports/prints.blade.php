@@ -33,18 +33,18 @@
     </style>
 </head>
 <body style="font:normal 14px Times, serif;">
+
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
         <td width="40%">
             <b style="text-transform: uppercase;"> {{$diaban}}</b><br>
-            --------<br>
             Số: {{$model->soqd}}
         </td>
         <td>
             <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
                 Độc lập - Tự do - Hạnh phúc</b><br>
-            -------------------<br>
-            <i>{{$diaban}}, Ngày {{date('d',strtotime($model->ngayapdung))}} tháng {{date('m',strtotime($model->ngayapdung))}}  năm {{date('Y',strtotime($model->ngayapdung))}}</i>
+            <hr style="width: 15%"><br>
+            <i>{{$diaban}}, ngày {{date('d',strtotime($model->ngayapdung))}} tháng {{date('m',strtotime($model->ngayapdung))}}  năm {{date('Y',strtotime($model->ngayapdung))}}</i>
         </td>
     </tr>
 </table>
@@ -104,16 +104,19 @@
     </tbody>
 
 </table>
-<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:20px auto; text-align: center;">
+<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td style="text-align: left;" width="30%">
-
+        <td width="40%" style="text-align: left">
+            <span style="font-weight: bold;font-style: italic">Nơi nhận:</span><br>
+            - UBND tỉnh;<br>
+            - Bộ tài chính;<br>
+            - Lưu: VT, QLGCS.
         </td>
-        <td style="text-align: center;text-transform: uppercase; " width="70%">
-            <b></b><br>
+        <td>
+            <b>THỦ TRƯỞNG ĐƠN VỊ</b><br>
+            <i>(Ký tên, đóng dấu)</i><br><br><br><br><br><br><br>
         </td>
     </tr>
-
 </table>
 </body>
 </html>

@@ -25,10 +25,6 @@
         tr{
             padding: 20px;
         }
-        span {
-            text-transform: uppercase;
-            font-weight: bold;
-        }
         @media print {
             .in{
                 display: none !important;
@@ -43,32 +39,24 @@
 
 <body style="font:normal 14px Times, serif;">
 
-<div class="row">
-    <div class="col-md-12">
-        <table cellspacing="0" cellpadding="0" border="0" style="  border-collapse: collapse;font:normal 16px Times, serif;" >
-            <tr>
-                <th width="50%">  </td>
-                <th width="" style="text-align: center">Cộng hòa xã hội chủ nghĩa Việt Nam </td>
-            </tr>
-            <tr>
-                <th style="padding-top: 1px">Số quyết định: {{$model->soqd}} </td>
-                <th style="padding-top: 1px">Độc lập - Tự do - Hạnh phúc</td>
-            </tr>
-        </table>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <table cellspacing="0" cellpadding="0" border="0" style="margin: 10px auto; border-collapse: collapse;font:normal 16px Times, serif;" >
-            <tr>
-                <th style="text-transform: uppercase">GIÁ NƯỚC SINH HOẠT {{$model->diaban}} </td>
-            </tr>
-            <tr>
-                <td>Ngày áp dụng: {{getDayVn($model->ngayapdung)}} </td>
-            </tr>
-        </table>
-    </div>
-</div>
+<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
+    <tr>
+        <td width="40%">
+            <span style="text-transform: uppercase">{{$inputs['dvcaptren']}}</span><br>
+            <span style="text-transform: uppercase;font-weight: bold">{{$inputs['dv']}}</span><br>
+            <hr style="width: 10%"> <br>
+            Số: {{$model->soqd}}
+        </td>
+        <td>
+            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+                Độc lập - Tự do - Hạnh phúc</b><br>
+            <hr style="width: 15%"><br>
+            <i>{{$inputs['diadanh']}}, ngày .... tháng .... năm ....</i>
+        </td>
+    </tr>
+</table>
+<p style="text-transform: uppercase;font-weight: bold;text-align: center">GIÁ NƯỚC SINH HOẠT {{$model->diaban}} </p>
+<p style="text-align: center">Ngày áp dụng: {{getDayVn($model->ngayapdung)}} </p>
 <div class="row">
     <div class="col-md-12">
         <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
@@ -86,3 +74,17 @@
         </table>
     </div>
 </div>
+<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
+    <tr>
+        <td width="40%" style="text-align: left">
+            <span style="font-weight: bold;font-style: italic">Nơi nhận:</span><br>
+            - UBND tỉnh;<br>
+            - Bộ tài chính;<br>
+            - Lưu: VT, QLGCS.
+        </td>
+        <td>
+            <b>THỦ TRƯỞNG ĐƠN VỊ</b><br>
+            <i>(Ký tên, đóng dấu)</i><br><br><br><br><br><br><br>
+        </td>
+    </tr>
+</table>

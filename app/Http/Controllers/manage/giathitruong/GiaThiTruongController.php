@@ -168,12 +168,30 @@ class GiaThiTruongController extends Controller
                 ->select('manhom','tennhom')
                 ->groupBy('manhom','tennhom')
                 ->get();
+
+            if(session('admin')->level == 'T'){
+                $inputs['dvcaptren'] = '';
+                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }elseif(session('admin')->level == 'H'){
+                $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }else{
+                $modeldv = Town::where('maxa',session('admin')->maxa)
+                    ->where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }
             return view('manage.giathitruong.kekhai.reports.prints')
                 ->with('model',$model)
                 ->with('modelgr',$modelgr)
                 ->with('modeltt',$modeltt)
                 ->with('modeldv',$modeldv)
                 ->with('modelct',$modelct)
+                ->with('inputs',$inputs)
                 ->with('pageTitle','Báo cáo giá thị trường');
         }else
             return view('errors.notlogin');

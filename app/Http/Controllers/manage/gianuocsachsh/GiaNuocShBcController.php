@@ -37,10 +37,28 @@ class GiaNuocShBcController extends Controller
             }
             $ttlk = GiaNuocSh::where('mahs',$inputs['mahslk'])->first();
             $ttbc = GiaNuocSh::where('mahs',$inputs['mahsbc'])->first();
+
+            if(session('admin')->level == 'T'){
+                $inputs['dvcaptren'] = '';
+                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }elseif(session('admin')->level == 'H'){
+                $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }else{
+                $modeldv = Town::where('maxa',session('admin')->maxa)
+                    ->where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }
             return view('manage.dinhgia.gianuocsh.reports.BcGiaNuocSh1')
                 ->with('model',$model)
                 ->with('ttlk',$ttlk)
                 ->with('ttbc',$ttbc)
+                ->with('inputs',$inputs)
                 ->with('pageTitle','Báo cáo giá nước sạch sinh hoạt');
         }else
             return view('errors.notlogin');

@@ -206,10 +206,27 @@ class GiaDatDuAnController extends Controller
             $xa = DiaBanHd::where('town',$model->maxa)
                 ->where('level','X')
                 ->first();
+            if(session('admin')->level == 'T'){
+                $inputs['dvcaptren'] = '';
+                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }elseif(session('admin')->level == 'H'){
+                $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }else{
+                $modeldv = Town::where('maxa',session('admin')->maxa)
+                    ->where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }
             return view('manage.dinhgia.giadatduan.show')
                 ->with('model',$model)
                 ->with('huyen',$huyen)
                 ->with('xa',$xa)
+                ->with('inputs',$inputs)
                 ->with('pageTitle','Thông tin gia đất cụ thể của dự án ');
 
         } else
@@ -254,6 +271,22 @@ class GiaDatDuAnController extends Controller
                         ->first();
                     $tt->tenxa = $tenxa->diaban;
                 }
+                if(session('admin')->level == 'T'){
+                    $inputs['dvcaptren'] = '';
+                    $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                    $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+                }elseif(session('admin')->level == 'H'){
+                    $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
+                    $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                    $inputs['dv'] = $modeldv->tendvhienthi;
+                    $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+                }else{
+                    $modeldv = Town::where('maxa',session('admin')->maxa)
+                        ->where('mahuyen',session('admin')->mahuyen)->first();
+                    $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                    $inputs['dv'] = $modeldv->tendvhienthi;
+                    $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+                }
 
                 return view('manage.dinhgia.giadatduan.reports.phuluc08a')
                     ->with('model', $model)
@@ -269,6 +302,22 @@ class GiaDatDuAnController extends Controller
                         ->where('town',$tt->maxa)
                         ->first();
                     $tt->tenxa = $tenxa->diaban;
+                }
+                if(session('admin')->level == 'T'){
+                    $inputs['dvcaptren'] = '';
+                    $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                    $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+                }elseif(session('admin')->level == 'H'){
+                    $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
+                    $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                    $inputs['dv'] = $modeldv->tendvhienthi;
+                    $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+                }else{
+                    $modeldv = Town::where('maxa',session('admin')->maxa)
+                        ->where('mahuyen',session('admin')->mahuyen)->first();
+                    $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                    $inputs['dv'] = $modeldv->tendvhienthi;
+                    $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
                 }
                 return view('manage.dinhgia.giadatduan.reports.phuluc08')
                     ->with('model', $model)

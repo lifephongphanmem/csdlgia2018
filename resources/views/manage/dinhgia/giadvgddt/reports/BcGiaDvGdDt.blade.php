@@ -39,16 +39,19 @@
 </div>
 
 <body style="font:normal 14px Times, serif;">
-
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%" style="text-transform: uppercase;">
-            <b></b><br>
-            --------<br>
+        <td width="40%">
+            <span style="text-transform: uppercase">{{$inputs['dvcaptren']}}</span><br>
+            <span style="text-transform: uppercase;font-weight: bold">{{$inputs['dv']}}</span><br>
+            <hr style="width: 10%"> <br>
+            Số: ..............
         </td>
         <td>
-            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>
-            <b><i><u>Độc lập - Tự do - Hạnh phúc</u></i></b><br>
+            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+                Độc lập - Tự do - Hạnh phúc</b><br>
+            <hr style="width: 15%"><br>
+            <i>{{$inputs['diadanh']}}, ngày .... tháng .... năm ....</i>
         </td>
     </tr>
 </table>
@@ -86,20 +89,19 @@
     @endif
     </tbody>
 </table>
-<table width="96%" border="0" cellspacing="0" cellpadding="0" style="margin:10px auto; text-align: center;">
+<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td></td>
-        <td style="text-align: center;text-transform: uppercase; " width="60%">
-            <b></b><br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <b style="text-transform: uppercase;"></b>
-
+        <td width="40%" style="text-align: left">
+            <span style="font-weight: bold;font-style: italic">Nơi nhận:</span><br>
+            - UBND tỉnh;<br>
+            - Bộ tài chính;<br>
+            - Lưu: VT, QLGCS.
+        </td>
+        <td>
+            <b>THỦ TRƯỞNG ĐƠN VỊ</b><br>
+            <i>(Ký tên, đóng dấu)</i><br><br><br><br><br><br><br>
         </td>
     </tr>
 </table>
+</body>
+</html>

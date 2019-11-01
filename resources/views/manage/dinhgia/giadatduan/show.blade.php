@@ -23,10 +23,6 @@
             padding: 5px;
             font-size: 16px;
         }
-        span {
-            text-transform: uppercase;
-            font-weight: bold;
-        }
         @media print {
             .in{
                 display: none !important;
@@ -40,20 +36,23 @@
 </div>
 
 <body style="font:normal 14px Times, serif;">
-
-<table width="96%" border="0" cellspacing="0" cellpadding="0" style="margin:0 auto 20px; text-align: center;">
+<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%" style="text-transform: uppercase;">
+        <td width="40%">
+            <span style="text-transform: uppercase">{{$inputs['dvcaptren']}}</span><br>
+            <span style="text-transform: uppercase;font-weight: bold">{{$inputs['dv']}}</span><br>
+            <hr style="width: 10%"> <br>
+            Số: ..............
         </td>
         <td>
-            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>
-            <b><i><u>Độc lập - Tự do - Hạnh phúc</u></i></b><br>
+            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+                Độc lập - Tự do - Hạnh phúc</b><br>
+            <hr style="width: 15%"><br>
+            <i>{{$inputs['diadanh']}}, ngày .... tháng .... năm ....</i>
         </td>
     </tr>
-    <tr>
-        <td colspan="2" style="font-weight: bold;font-size: 16px">THÔNG TIN VỀ GIÁ ĐẤT CỤ THỂ CỦA DỰ ÁN</td>
-    </tr>
 </table>
+<p style="font-weight: bold;text-transform: uppercase;text-align: center">THÔNG TIN VỀ GIÁ ĐẤT CỤ THỂ CỦA DỰ ÁN</p>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <tr>
         <th style="text-align: center" rowspan="2">STT</th>
@@ -165,3 +164,19 @@
         <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($model->qdpddatmuoi/$model->qdgiadatmuoi,3)}}</td>
     </tr>
 </table>
+<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
+    <tr>
+        <td width="40%" style="text-align: left">
+            <span style="font-weight: bold;font-style: italic">Nơi nhận:</span><br>
+            - UBND tỉnh;<br>
+            - Bộ tài chính;<br>
+            - Lưu: VT, QLGCS.
+        </td>
+        <td>
+            <b>THỦ TRƯỞNG ĐƠN VỊ</b><br>
+            <i>(Ký tên, đóng dấu)</i><br><br><br><br><br><br><br>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
