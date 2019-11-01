@@ -42,16 +42,16 @@
 <body style="font:normal 14px Times, serif;">
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%" style="text-transform: uppercase;">
-            {{$inputs['dvcaptren']}}<br>
-            <b>{{$inputs['dv']}}</b><br>
-            -------------------<br>
+        <td width="40%">
+            <span style="text-transform: uppercase">{{$inputs['dvcaptren']}}</span><br>
+            <span style="text-transform: uppercase;font-weight: bold">{{$inputs['dv']}}</span><br>
+            <hr style="width: 10%"> <br>
             Số: ..............
         </td>
         <td>
             <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
                 Độc lập - Tự do - Hạnh phúc</b><br>
-            -------------------<br>
+            <hr style="width: 15%"><br>
             <i>{{$inputs['diadanh']}}, ngày .... tháng .... năm ....</i>
         </td>
     </tr>
