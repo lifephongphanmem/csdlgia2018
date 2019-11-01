@@ -67,7 +67,7 @@
         <th style="text-align: center" rowspan="2">Số quyết định công nhận kết quả trúng đấu giá</th>
         <th style="text-align: center" colspan="4">Thông tin địa chính</th>
         <th style="text-align: center" colspan="6">Quyết định bảng giá đất của tỉnh</th>
-        <th style="text-align: center" colspan="6">Quyết định phê duyệt giá đất của tỉnh</th>
+        <th style="text-align: center" colspan="6">Quyết định phê duyệt giá khởi điểm đất của tỉnh</th>
         <th style="text-align: center" colspan="6">Kết quả trúng đấu giá</th>
     </tr>
     <tr>
