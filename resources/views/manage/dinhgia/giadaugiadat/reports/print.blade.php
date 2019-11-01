@@ -43,17 +43,21 @@
 
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%">
+        <td width="40%" style="text-transform: uppercase;">
+            {{$inputs['dvcaptren']}}<br>
+            <b>{{$inputs['dv']}}</b><br>
+            -------------------<br>
+            Số: ..............
         </td>
         <td>
             <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
                 Độc lập - Tự do - Hạnh phúc</b><br>
             -------------------<br>
+            <i>{{$inputs['diadanh']}}, Ngày .... tháng .... năm ....</i>
         </td>
     </tr>
 </table>
 <p style="font-weight: bold;font-size: 16px;text-transform: uppercase;text-align: center">THÔNG TIN VỀ GIÁ ĐẤU GIÁ ĐẤT</p>
-</table>
 
 <table width="96%" cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <tr>

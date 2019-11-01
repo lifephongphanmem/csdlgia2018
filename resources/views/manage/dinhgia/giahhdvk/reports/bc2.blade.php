@@ -33,19 +33,17 @@
 <body style="font:normal 14px Times, serif;">
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%" style="text-transform: uppercase;font-weight: bold">
+        <td width="40%" style="font-weight: bold">
             {{session('admin')->name}}<br>
             --------<br><br>
-            Số:
         </td>
         <td>
-            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>
-            <b><i><u>Độc lập - Tự do - Hạnh phúc</u></i></b><br><br>
-            <i>....., Ngày ..... tháng ..... năm .....</i>
+            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+                Độc lập - Tự do - Hạnh phúc</b><br>
+            -------------------<br>
         </td>
     </tr>
 </table>
-
 <p style="text-align: center; font-weight: bold; font-size: 16px;">BÁO CÁO<br>GIÁ THỊ TRƯỜNG HÀNG HÓA, DỊCH VỤ</p>
 <p style="text-align: center">Tháng {{$inputs['thang']}} Năm {{$inputs['nam']}}</p>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
