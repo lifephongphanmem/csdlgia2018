@@ -53,11 +53,13 @@
     </tr>
 </table>
 <p style="font-weight: bold;font-size: 16px;text-transform: uppercase;text-align: center">THÔNG TIN VỀ GIÁ ĐẤU GIÁ ĐẤT</p>
-<table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
+</table>
+
+<table width="96%" cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <tr>
-        <th style="text-align: center" rowspan="2">STT</th>
+        <th style="text-align: center;width: 1%" rowspan="2" >STT</th>
         <th style="text-align: center" rowspan="2">Tên dự án</th>
-        <th style="text-align: center" rowspan="2">Xã/ phường</th>
+        <th style="text-align: center; width: 5%" rowspan="2">Xã/ phường</th>
         <th style="text-align: center" rowspan="2">Thời điểm<br> xác định</th>
         <th style="text-align: center" rowspan="2">Diện<br> tích <br>(m2)</th>
         <th style="text-align: center" rowspan="2">Số quyết định phương án đấu giá</th>
@@ -95,7 +97,6 @@
         <th style="text-align: center">Đất NN<br>(trồng cây <br>lâu năm,<br> hàng năm)</th>
         <th style="text-align: center">Đất nuôi trổng thủy sản</th>
         <th style="text-align: center">Đất làm muối</th>
-
     </tr>
     <tr>
         <th style="text-align: center">1</th>
@@ -187,30 +188,30 @@
                 <td></td>
                 <td></td>
 
-                <td style="text-align: left">{{$ct->loaidat}}</td>
-                <td style="text-align: left">{{$ct->tenduong}}</td>
-                <td style="text-align: left">{{$ct->loaiduong}}</td>
-                <td style="text-align: left">{{$ct->vitri}}</td>
-                <td style="text-align: right">{{dinhdangsothapphan($ct->qdgiadato,3)}}</td>
-                <td style="text-align: right">{{dinhdangsothapphan($ct->qdgiadattmdv,3)}}</td>
-                <td style="text-align: right">{{dinhdangsothapphan($ct->qdgiadatsxkd,3)}}</td>
-                <td style="text-align: right">{{dinhdangsothapphan($ct->qdgiadatnn,3)}}</td>
-                <td style="text-align: right">{{dinhdangsothapphan($ct->qdgiadatnuoits,3)}}</td>
-                <td style="text-align: right">{{dinhdangsothapphan($ct->qdgiadatmuoi,3)}}</td>
+                <td style="text-align: left;font-size: 12px">{{$ct->loaidat}}</td>
+                <td style="text-align: left;font-size: 12px">{{$ct->tenduong}}</td>
+                <td style="text-align: left;font-size: 12px">{{$ct->loaiduong}}</td>
+                <td style="text-align: left;font-size: 12px">{{$ct->vitri}}</td>
+                <td style="text-align: right;font-size: 12px">{{dinhdangsothapphan($ct->qdgiadato,3)}}</td>
+                <td style="text-align: right;font-size: 12px">{{dinhdangsothapphan($ct->qdgiadattmdv,3)}}</td>
+                <td style="text-align: right;font-size: 12px">{{dinhdangsothapphan($ct->qdgiadatsxkd,3)}}</td>
+                <td style="text-align: right;font-size: 12px">{{dinhdangsothapphan($ct->qdgiadatnn,3)}}</td>
+                <td style="text-align: right;font-size: 12px">{{dinhdangsothapphan($ct->qdgiadatnuoits,3)}}</td>
+                <td style="text-align: right;font-size: 12px">{{dinhdangsothapphan($ct->qdgiadatmuoi,3)}}</td>
 
-                <td style="text-align: right">{{dinhdangsothapphan($ct->qdpddato,3)}}</td>
-                <td style="text-align: right">{{dinhdangsothapphan($ct->qdpddattmdv,3)}}</td>
-                <td style="text-align: right">{{dinhdangsothapphan($ct->qdpddatsxkd,3)}}</td>
-                <td style="text-align: right">{{dinhdangsothapphan($ct->qdpddatnn,3)}}</td>
-                <td style="text-align: right">{{dinhdangsothapphan($ct->qdpddatnuoits,3)}}</td>
-                <td style="text-align: right">{{dinhdangsothapphan($ct->qdpddatmuoi,3)}}</td>
+                <td style="text-align: right;font-size: 12px">{{dinhdangsothapphan($ct->qdpddato,3)}}</td>
+                <td style="text-align: right;font-size: 12px">{{dinhdangsothapphan($ct->qdpddattmdv,3)}}</td>
+                <td style="text-align: right;font-size: 12px">{{dinhdangsothapphan($ct->qdpddatsxkd,3)}}</td>
+                <td style="text-align: right;font-size: 12px">{{dinhdangsothapphan($ct->qdpddatnn,3)}}</td>
+                <td style="text-align: right;font-size: 12px">{{dinhdangsothapphan($ct->qdpddatnuoits,3)}}</td>
+                <td style="text-align: right;font-size: 12px">{{dinhdangsothapphan($ct->qdpddatmuoi,3)}}</td>
 
-                <td style="text-align: right">{{dinhdangsothapphan($ct->kqdgdato,3)}}</td>
-                <td style="text-align: right">{{dinhdangsothapphan($ct->kqdgdattmdv,3)}}</td>
-                <td style="text-align: right">{{dinhdangsothapphan($ct->kqdgdatsxkd,3)}}</td>
-                <td style="text-align: right">{{dinhdangsothapphan($ct->kqdgdatnn,3)}}</td>
-                <td style="text-align: right">{{dinhdangsothapphan($ct->kqdgdatnuoits,3)}}</td>
-                <td style="text-align: right">{{dinhdangsothapphan($ct->kqdgdatmuoi,3)}}</td>
+                <td style="text-align: right;font-size: 12px">{{dinhdangsothapphan($ct->kqdgdato,3)}}</td>
+                <td style="text-align: right;font-size: 12px">{{dinhdangsothapphan($ct->kqdgdattmdv,3)}}</td>
+                <td style="text-align: right;font-size: 12px">{{dinhdangsothapphan($ct->kqdgdatsxkd,3)}}</td>
+                <td style="text-align: right;font-size: 12px">{{dinhdangsothapphan($ct->kqdgdatnn,3)}}</td>
+                <td style="text-align: right;font-size: 12px">{{dinhdangsothapphan($ct->kqdgdatnuoits,3)}}</td>
+                <td style="text-align: right;font-size: 12px">{{dinhdangsothapphan($ct->kqdgdatmuoi,3)}}</td>
             </tr>
             @endforeach
         @endforeach
