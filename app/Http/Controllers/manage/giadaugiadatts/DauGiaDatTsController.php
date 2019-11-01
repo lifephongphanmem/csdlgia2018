@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\manage\giadaugiadatts;
 
 use App\DiaBanHd;
+use App\District;
 use App\Model\manage\dinhgia\giadaugiadat\DauGiaDatCt;
 use App\Model\manage\dinhgia\giadaugiadatts\DauGiaDatTs;
 use App\Model\manage\dinhgia\giadaugiadatts\DauGiaDatTsCt;
+use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
