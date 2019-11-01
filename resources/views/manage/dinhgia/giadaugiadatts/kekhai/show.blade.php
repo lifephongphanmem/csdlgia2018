@@ -207,8 +207,8 @@
     <tr>
         <td width="40%" style="text-align: left">
             <span style="font-weight: bold;font-style: italic">Nơi nhận:</span><br>
-            - UBND tỉnh<br>
-            - Bộ tài chính<br>
+            - UBND tỉnh;<br>
+            - Bộ tài chính;<br>
             - Lưu: VT, QLGCS.
         </td>
         <td>
