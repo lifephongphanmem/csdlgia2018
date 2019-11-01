@@ -140,11 +140,28 @@ class DauGiaDatTsController extends Controller
             $modelxa = DiaBanHd::where('level','X')
                 ->where('town',$model->maxa)
                 ->first();
+            if(session('admin')->level == 'T'){
+                $inputs['dvcaptren'] = '';
+                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }elseif(session('admin')->level == 'H'){
+                $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }else{
+                $modeldv = Town::where('maxa',session('admin')->maxa)
+                    ->where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }
             return view('manage.dinhgia.giadaugiadatts.kekhai.show')
                 ->with('model',$model)
                 ->with('modelct',$modelct)
                 ->with('modeldb',$modeldb)
                 ->with('modelxa',$modelxa)
+                ->with('inputs',$inputs)
                 ->with('pageTitle','Hồ sơ đấu giá đất và tài sản gắn liền đất');
         }else
             return view('errors.notlogin');
@@ -229,6 +246,22 @@ class DauGiaDatTsController extends Controller
             }
             $modelct = DauGiaDatTsCt::whereIn('mahs',explode(',',$array))
                 ->get();
+            if(session('admin')->level == 'T'){
+                $inputs['dvcaptren'] = '';
+                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }elseif(session('admin')->level == 'H'){
+                $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }else{
+                $modeldv = Town::where('maxa',session('admin')->maxa)
+                    ->where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }
             return view('manage.dinhgia.giadaugiadatts.reports.print')
                 ->with('model',$model)
                 ->with('modelct',$modelct)
