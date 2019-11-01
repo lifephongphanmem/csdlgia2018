@@ -23,10 +23,6 @@
             padding: 5px;
             font-size: 16px;
         }
-        span {
-            text-transform: uppercase;
-            font-weight: bold;
-        }
         @media print {
             .in{
                 display: none !important;
@@ -219,4 +215,18 @@
             @endforeach
         @endforeach
     @endforeach
+</table>
+<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
+    <tr>
+        <td width="40%" style="text-align: left">
+            <span style="font-weight: bold;font-style: italic">Nơi nhận:</span><br>
+            - UBND tỉnh
+            - Bộ tài chính<br>
+            - Lưu: VT, QLGCS.
+        </td>
+        <td>
+            <b>THỦ TRƯỞNG ĐƠN VỊ</b><br>
+            <i>(Ký tên, đóng dấu)</i><br><br><br><br><br><br><br>
+        </td>
+    </tr>
 </table>
