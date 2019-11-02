@@ -71,6 +71,30 @@
                         </li>
                     @endif
                 @endif
+                    <!-- làm đất theo phân loại (lấy phân quyền theo giá đất theo địa bàn -->
+                @if(canGeneral('giacldat','index'))
+                        {{--Giá đất địa bàn--}}
+                        @if(can('giacldat','index'))
+                            <li class="">
+                                <a href="">
+                                    <span class="title">Giá đất phân loại</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    @if(can('kkgiacldat','index'))
+                                        <li>
+                                            <a href="{{url('giadatphanloaidm')}}">
+                                                Danh mục các loại đất
+                                            </a>
+                                            <a href="{{url('giadatphanloai')}}">
+                                                Giá đất theo phân loại
+                                            </a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </li>
+                        @endif
+                    @endif
                 @if(canGeneral('giadaugiadat','index'))
                     @if(can('giadaugiadat','index'))
                         <li>

@@ -35,7 +35,18 @@ Route::get('giadatdiaban/prints','GiaDatDiaBanController@bcgiadatdiaban');
 Route::resource('thongtugiadatdiaban','manage\giadatdiaban\TtGiaDatDiaBanController');
 Route::post('thongtugiadatdiaban/delete','manage\giadatdiaban\TtGiaDatDiaBanController@destroy');
 
+//danh mục đất theo phân loại
+Route::resource('giadatphanloaidm','manage\giadatphanloai\GiaDatPhanLoaiDmController');
+Route::post('giadatphanloaidm/delete','manage\giadatphanloai\GiaDatPhanLoaiDmController@destroy');
 
+//giá đất theo phân loại
+Route::get('giadatphanloai/print','manage\giadatphanloai\GiaDatPhanLoaiController@ketxuat');
+Route::resource('giadatphanloai','manage\giadatphanloai\GiaDatPhanLoaiController');
+Route::post('giadatphanloai/delete','manage\giadatphanloai\GiaDatPhanLoaiController@destroy');
+Route::post('giadatphanloai/hoanthanh','manage\giadatphanloai\GiaDatPhanLoaiController@hoanthanh');
+Route::post('giadatphanloai/huyhoanthanh','manage\giadatphanloai\GiaDatPhanLoaiController@huyhoanthanh');
+Route::post('giadatphanloai/congbo','manage\giadatphanloai\GiaDatPhanLoaiController@congbo');
+Route::get('timkiemgiadatphanloai','manage\giadatphanloai\GiaDatPhanLoaiController@search');
 //Lệ phí trước bạ
 Route::resource('nhomlephitruocba','NhomLePhiTruocBaController');
 Route::get('nhomlephitruocba/edit','NhomLePhiTruocBaController@edit');

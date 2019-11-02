@@ -1,23 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\manage\giadaugiadat;
+namespace App\Http\Controllers\manage\giadatphanloai;
 
 use App\DiaBanHd;
-use App\District;
-use App\Model\manage\dinhgia\giadaugiadat\DauGiaDat;
-use App\Model\manage\dinhgia\giadaugiadat\DauGiaDatCt;
-use App\Town;
+use App\Model\manage\dinhgia\giadatphanloai\GiaDatPhanLoai;
+use App\Model\manage\dinhgia\giadatphanloai\GiaDatPhanLoaiDm;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
-class DauGiaDatController extends Controller
+class GiaDatPhanLoaiController extends Controller
 {
     public function index(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
             $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
-            $inputs['tenduan'] = isset($inputs['tenduan']) ? $inputs['tenduan'] : '';
+            $inputs['tenphanloai'] = isset($inputs['tenphanloai']) ? $inputs['tenphanloai'] : '';
             $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : 'all';
             $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : 'all';
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
@@ -25,7 +23,7 @@ class DauGiaDatController extends Controller
                 ->get();
             $xas = DiaBanHd::where('level','X')
                 ->get();
-            $model = new DauGiaDat();
+            $model = new GiaDatPhanLoai();
             if($inputs['nam'] != 'all')
                 $model = $model->whereYear('thoidiem',$inputs['nam']);
             if($inputs['mahuyen'] != 'all') {
@@ -36,10 +34,10 @@ class DauGiaDatController extends Controller
             }
             if($inputs['maxa'] != 'all')
                 $model = $model->where('maxa', $inputs['maxa']);
-            if($inputs['tenduan'] != '')
-                $model = $model->where('tenduan','like', '%'.$inputs['tenduan'].'%');
+            if($inputs['tenphanloai'] != '')
+                $model = $model->where('tenphanloai','like', '%'.$inputs['tenduan'].'%');
             $model = $model->paginate($inputs['paginate']);
-
+            $a_dm = array_column(GiaDatPhanLoaiDm::all()->toArray(),'tenvitri','mavitri');
             foreach($model as $tt){
                 $tenhuyen = DiaBanHd::where('level','H')
                     ->where('district',$tt->mahuyen)
@@ -47,15 +45,16 @@ class DauGiaDatController extends Controller
                 $tenxa = DiaBanHd::where('level','X')
                     ->where('town',$tt->maxa)
                     ->first();
+                $tt->tenvitri = isset($a_dm[$tt->mavitri])? $a_dm[$tt->mavitri] : '';
                 $tt->tenhuyen = $tenhuyen->diaban;
                 $tt->tenxa = $tenxa->diaban;
             }
-            return view('manage.dinhgia.giadaugiadat.kekhai.index')
+            return view('manage.dinhgia.giadatphanloai.kekhai.index')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
                 ->with('huyens',$huyens)
                 ->with('xas',$xas)
-                ->with('pageTitle','Thông tin hồ sơ đấu giá đất');
+                ->with('pageTitle','Thông tin hồ sơ giá đất');
         }else
             return view('errors.notlogin');
     }
@@ -73,11 +72,12 @@ class DauGiaDatController extends Controller
             $xas = array();
             foreach ($modelxas as $xa)
                 $xas[$xa->town] = $xa->diaban;
-            return view('manage.dinhgia.giadaugiadat.kekhai.create')
+            $model_dm = GiaDatPhanLoaiDm::all();
+            return view('manage.dinhgia.giadatphanloai.kekhai.create')
                 ->with('modeldb',$modeldb)
                 ->with('xas',$xas)
-
-                ->with('pageTitle','Thông tin hồ sơ đấu giá đất thêm mới');
+                ->with('a_dm',array_column($model_dm->toArray(),'tenvitri','mavitri'))
+                ->with('pageTitle','Thông tin hồ sơ giá đất');
         }else
             return view('errors.notlogin');
     }
@@ -88,17 +88,15 @@ class DauGiaDatController extends Controller
             $inputs['mahs'] = $inputs['mahuyen'].getdate()[0];
             $inputs['trangthai'] = 'CHT';
             $inputs['thoidiem'] = getDateToDb($inputs['thoidiem']);
-            $inputs['dientich'] = getMoneyToDb($inputs['dientich']);
-            $model = new DauGiaDat();
-            $model->create($inputs);
-            return redirect('thongtindaugiadat?&mahuyen='.$inputs['mahuyen']);
+            GiaDatPhanLoai::create($inputs);
+            return redirect('giadatphanloai?&mahuyen='.$inputs['mahuyen']);
         }else
             return view('errors.notlogin');
     }
 
     public function edit($id){
         if(Session::has('admin')){
-            $model = DauGiaDat::findOrFail($id);
+            $model = GiaDatPhanLoai::findOrFail($id);
             $modeldb = DiaBanHd::where('district',$model->mahuyen)
                 ->where('level','H')
                 ->first();
@@ -108,11 +106,13 @@ class DauGiaDatController extends Controller
             $xas = array();
             foreach ($modelxas as $xa)
                 $xas[$xa->town] = $xa->diaban;
-            return view('manage.dinhgia.giadaugiadat.kekhai.edit')
+            $model_dm = GiaDatPhanLoaiDm::all();
+            return view('manage.dinhgia.giadatphanloai.kekhai.edit')
                 ->with('model',$model)
                 ->with('modeldb',$modeldb)
                 ->with('xas',$xas)
-                ->with('pageTitle','Thông tin hồ sơ đấu giá đất thêm mới');
+                ->with('a_dm',array_column($model_dm->toArray(),'tenvitri','mavitri'))
+                ->with('pageTitle','Thông tin hồ sơ giá đất thêm mới');
         }else
             return view('errors.notlogin');
     }
@@ -120,22 +120,22 @@ class DauGiaDatController extends Controller
     public function update(Request $request,$id){
         if(Session::has('admin')){
             $inputs = $request->all();
-
             $inputs['thoidiem'] = getDateToDb($inputs['thoidiem']);
-            $inputs['dientich'] = getMoneyToDb($inputs['dientich']);
-            $model = DauGiaDat::findOrFail($id);
+            $model = GiaDatPhanLoai::findOrFail($id);
             $model->update($inputs);
 
-            return redirect('thongtindaugiadat?&mahuyen='.$model->mahuyen);
+            return redirect('giadatphanloai?&mahuyen='.$model->mahuyen);
         }else
             return view('errors.notlogin');
     }
 
     public function show($id){
         if(Session::has('admin')){
-            $model = DauGiaDat::findOrFail($id);
-            $modelct = DauGiaDatCt::where('mahs',$model->mahs)
-                ->get();
+            $model = GiaDatPhanLoai::findOrFail($id);
+            $m_dm = GiaDatPhanLoaiDm::where('mavitri',$model->mavitri)->first();
+            $model->tenvitri = $m_dm->tenvitri;
+            $model->giatri = $m_dm->giatri;
+            $modelct = GiaDatPhanLoaiDm::all();
             $modeldb = DiaBanHd::where('level','H')
                 ->where('district',$model->mahuyen)
                 ->first();
@@ -158,13 +158,14 @@ class DauGiaDatController extends Controller
                 $inputs['dv'] = $modeldv->tendvhienthi;
                 $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
             }
-            return view('manage.dinhgia.giadaugiadat.kekhai.show')
+
+            return view('manage.dinhgia.giadatphanloai.kekhai.show')
                 ->with('model',$model)
                 ->with('modelct',$modelct)
                 ->with('modeldb',$modeldb)
                 ->with('modelxa',$modelxa)
                 ->with('inputs',$inputs)
-                ->with('pageTitle','Hồ sơ đấu giá đất');
+                ->with('pageTitle','Hồ sơ giá đất');
         }else
             return view('errors.notlogin');
     }
@@ -173,11 +174,10 @@ class DauGiaDatController extends Controller
         if(Session::has('admin')){
             $inputs = $request->all();
             $id = $inputs['iddelete'];
-            $model = DauGiaDat::findOrFail($id);
+            $model = GiaDatPhanLoai::findOrFail($id);
             $district = $model->district;
-            $modelct = DauGiaDatCt::where('mahs',$model->mahs)->delete();
             $model->delete();
-            return redirect('thongtindaugiadat?&mahuyen='.$district);
+            return redirect('giadatphanloai?&mahuyen='.$district);
         }else
             return view('errors.notlogin');
     }
@@ -186,10 +186,10 @@ class DauGiaDatController extends Controller
         if(Session::has('admin')){
             $inputs = $request->all();
             $id = $inputs['idhoanthanh'];
-            $model = DauGiaDat::findOrFail($id);
+            $model = GiaDatPhanLoai::findOrFail($id);
             $model->trangthai = 'HT';
             $model->save();
-            return redirect('thongtindaugiadath');
+            return redirect('giadatphanloai');
         }else
             return view('errors.notlogin');
     }
@@ -198,10 +198,10 @@ class DauGiaDatController extends Controller
         if(Session::has('admin')){
             $inputs = $request->all();
             $id = $inputs['idhuyhoanthanh'];
-            $model = DauGiaDat::findOrFail($id);
+            $model = GiaDatPhanLoai::findOrFail($id);
             $model->trangthai = 'HHT';
             $model->save();
-            return redirect('thongtindaugiadat');
+            return redirect('giadatphanloai');
         }else
             return view('errors.notlogin');
     }
@@ -210,10 +210,10 @@ class DauGiaDatController extends Controller
         if(Session::has('admin')){
             $inputs = $request->all();
             $id = $inputs['idcongbo'];
-            $model = DauGiaDat::findOrFail($id);
+            $model = GiaDatPhanLoai::findOrFail($id);
             $model->trangthai = 'CB';
             $model->save();
-            return redirect('thongtindaugiadat');
+            return redirect('giadatphanloai');
         }else
             return view('errors.notlogin');
     }
@@ -233,9 +233,7 @@ class DauGiaDatController extends Controller
                 $model = $model->where('daugiadatct.vitridiadiem','like','%'.$inputs['vitridiadiem'].'%');
             $model = $model->get();
 
-
-
-            return view('manage.dinhgia.giadaugiadat.timkiem.index')
+            return view('manage.dinhgia.giadatphanloai.timkiem.index')
                 ->with('inputs',$inputs)
                 ->with('model',$model)
                 ->with('pageTitle','Tìm kiếm thông tin đấu giá đất');
@@ -246,13 +244,13 @@ class DauGiaDatController extends Controller
     public function ketxuat(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
-            $inputs['tenduan'] = isset($inputs['tenduan']) ? $inputs['tenduan'] : '';
+            $inputs['tenphanloai'] = isset($inputs['tenphanloai']) ? $inputs['tenphanloai'] : '';
             $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : 'all';
             $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : 'all';
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
             $huyens = DiaBanHd::where('level','H')
                 ->get();
-            $model = new DauGiaDat();
+            $model = new GiaDatPhanLoai();
             if($inputs['nam'] != 'all')
                 $model = $model->whereYear('thoidiem',$inputs['nam']);
             if($inputs['mahuyen'] != 'all') {
@@ -260,8 +258,8 @@ class DauGiaDatController extends Controller
             }
             if($inputs['maxa'] != 'all')
                 $model = $model->where('maxa', $inputs['maxa']);
-            if($inputs['tenduan'] != '')
-                $model = $model->where('tenduan','like', '%'.$inputs['tenduan'].'%');
+            if($inputs['tenphanloai'] != '')
+                $model = $model->where('tenphanloai','like', '%'.$inputs['tenphanloai'].'%');
             $model = $model->get();
             $array = '';
             foreach($model as $tt){
@@ -271,8 +269,7 @@ class DauGiaDatController extends Controller
                 $tt->tenxa = $tenxa->diaban;
                 $array = $array.$tt->mahs.',';
             }
-            $modelct = DauGiaDatCt::whereIn('mahs',explode(',',$array))
-                ->get();
+
             if(session('admin')->level == 'T'){
                 $inputs['dvcaptren'] = '';
                 $inputs['dv'] = getGeneralConfigs()['tendonvi'];
@@ -291,7 +288,6 @@ class DauGiaDatController extends Controller
             }
             return view('manage.dinhgia.giadaugiadat.reports.print')
                 ->with('model',$model)
-                ->with('modelct',$modelct)
                 ->with('inputs',$inputs)
                 ->with('huyens',$huyens)
                 ->with('pageTitle','Thông tin hồ sơ đấu giá đất');
