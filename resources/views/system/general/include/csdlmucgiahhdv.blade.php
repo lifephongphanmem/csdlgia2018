@@ -137,7 +137,7 @@
                             </table>
                         </div>
                     </div>
-                    @include('system.general.include.csdlmucgiahhdv.bog')
+                    {{--@include('system.general.include.csdlmucgiahhdv.bog')--}}
                     @include('system.general.include.csdlmucgiahhdv.kknygia')
                 </div>
             </div>

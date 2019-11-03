@@ -45,6 +45,20 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
                                 <tr>
+                                    <td width="2%"><input type="checkbox" {{ (isset($setting->giadatpl->index) && $setting->giadatpl->index == 1) ? 'checked' : '' }} value="1" name="roles[giadatpl][index]"/></td>
+                                    <td>Giá đất phân loại</td>
+                                </tr>
+                                <tr>
+                                    <td width="2"><input type="checkbox" {{ (isset($setting->giadatpl->congbo) && $setting->giadatpl->congbo == 1) ? 'checked' : '' }} value="1" name="roles[giadatpl][congbo]"/></td>
+                                    <td>Công bố giá đất phân loại</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-3">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                <tr>
                                     <td width="2%"><input type="checkbox" {{ (isset($setting->giadatduan->index) && $setting->giadatduan->index == 1) ? 'checked' : '' }} value="1" name="roles[giadatduan][index]"/></td>
                                     <td>Giá đất cụ thể của dự án</td>
                                 </tr>

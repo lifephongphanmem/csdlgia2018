@@ -16,6 +16,7 @@
             <div class="portlet-body form" style="display: none;">
                 <div class="form-body">
                     @include('system.users.include.perms.csdlmucgiahhdv.perdinhgia.giacldat')
+                    @include('system.users.include.perms.csdlmucgiahhdv.perdinhgia.giadatpl')
                     @include('system.users.include.perms.csdlmucgiahhdv.giadatduan')
                     @include('system.users.include.perms.csdlmucgiahhdv.perdinhgia.giadaugiadat')
                     @include('system.users.include.perms.csdlmucgiahhdv.perdinhgia.daugiadatts')
