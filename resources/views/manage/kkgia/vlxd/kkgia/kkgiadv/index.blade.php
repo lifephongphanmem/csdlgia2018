@@ -75,11 +75,15 @@
 
         function ClickChuyen(){
             if($('#nguoinop').val() != '' && $('#dtll').val() != ''){
-                var btn = document.getElementById('submitChuyen');
-                btn.disabled = true;
-                btn.innerText = 'Loading...';
-                toastr.success("Hồ sơ đã được chuyển!", "Thành công!");
-                $("#frm_chuyen").unbind('submit').submit();
+                if($('#ipf1').val()!= '') {
+                    var btn = document.getElementById('submitChuyen');
+                    btn.disabled = true;
+                    btn.innerText = 'Loading...';
+                    toastr.success("Hồ sơ đã được chuyển!", "Thành công!");
+                    $("#frm_chuyen").unbind('submit').submit();
+                }
+                else
+                    toastr.error("Bạn cần cập nhật file hồ sơ có chữ ký số của doanh nghiệp vào chương trình", "Lỗi!!!");
             }else{
                 toastr.error("Bạn cần nhập thông tin người chuyển", "Lỗi!!!");
                 $("#frm_chuyen").submit(function (e) {
@@ -184,10 +188,6 @@
                                     <td align="center"><span class="badge badge-blue">Chờ duyệt</span>
                                         <br>Thời gian chuyển:<br><b>{{getDateTime($tt->ngaychuyen)}}</b>
                                     </td>
-                                @elseif($tt->trangthai == 'CN')
-                                    <td align="center"><span class="badge badge-warning">Chờ nhận</span>
-                                        <br>Thời gian chuyển:<br><b>{{getDateTime($tt->ngaychuyen)}}</b>
-                                    </td>
                                 @elseif($tt->trangthai == 'BTL')
                                     <td align="center">
                                         <span class="badge badge-danger">Bị trả lại</span><br>&nbsp;
@@ -200,6 +200,9 @@
                                 @endif
                                 <td>
                                     <a href="{{url('thongtinkekhaigiavatlieuxaydung/prints?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                    @if($tt->trangthai == 'DD' || $tt->trangthai == 'CD')
+                                        <a onclick="window.open('{{url('data/kekhaigia/vlxd/'.$tt->ipt1)}}', 'newwindow', 'width=1000,height=700')" class="btn btn-default btn-xs mbs"><i class="fa fa-file"></i>&nbsp;File hồ sơ chữ ký số</a>
+                                    @endif
                                     @if(canEdit($tt->trangthai))
                                             <a href="{{url('thongtinkekhaigiavatlieuxaydung/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                         @if(canChuyenXoa($tt->trangthai))
@@ -219,6 +222,7 @@
                                         @if(canShowLyDo($tt->trangthai))
                                         <button type="button" data-target="#lydo-modal" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="viewLyDo({{$tt->id}})"><i class="fa fa-search"></i>&nbsp;Lý do trả lại</button>
                                         @endif
+
                                     @endif
                                     <!--a href="{{url('kkthucanchannuoi/'.$tt->mahs.'/history')}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Lịch sử</a-->
                                 </td>
@@ -241,7 +245,7 @@
         <div class="modal fade" id="chuyen-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    {!! Form::open(['url'=>'thongtinkekhaigiavatlieuxaydung/chuyen','id' => 'frm_chuyen'])!!}
+                    {!! Form::open(['url'=>'thongtinkekhaigiavatlieuxaydung/chuyen','id' => 'frm_chuyen','files'=>true,])!!}
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                         <h4 class="modal-title">Đồng ý chuyển hồ sơ?</h4>
@@ -264,6 +268,10 @@
                         <div class="form-group">
                             <label><b>Số Fax</b></label>
                             <input type="tel" id="fax" name="fax" class="form-control" maxlength="15">
+                        </div>
+                        <div class="form-group">
+                            <label><b>File hồ sơ kê khai đã có chữ ký số</b></label>
+                            <input name="ipf1" id="ipf1" type="file">
                         </div>
                     </div>
                     <input type="hidden" name="idchuyen" id="idchuyen">

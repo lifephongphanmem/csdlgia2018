@@ -238,4 +238,32 @@ class KkGiaVlXdXdController extends Controller
             return view('errors.notlogin');
     }
 
+    public function congbo(Request $request){
+        if (Session::has('admin')) {
+            if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+                $inputs = $request->all();
+                $inputs['congbo'] = 'CB';
+                $model = KkGiaVlXd::where('id',$inputs['idcongbo'])->first();
+                $model->update($inputs);
+                return redirect('xetduyetkkgiavlxd?&trangthai=DD'.'&mahuyen='.$model->mahuyen);
+            }else
+                return view('errors.perm');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huycongbo(Request $request){
+        if (Session::has('admin')) {
+            if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+                $inputs = $request->all();
+                $inputs['congbo'] = 'HCB';
+                $model = KkGiaVlXd::where('id',$inputs['idhuycongbo'])->first();
+                $model->update($inputs);
+                return redirect('xetduyetkkgiavlxd?&trangthai=DD'.'&mahuyen='.$model->mahuyen);
+            }else
+                return view('errors.perm');
+        }else
+            return view('errors.notlogin');
+    }
+
 }

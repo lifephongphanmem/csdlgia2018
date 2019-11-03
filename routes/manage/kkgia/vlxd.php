@@ -28,6 +28,8 @@
     Route::get('ttdnkkvlxd', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdXdController@ttdnkkvlxd');
     Route::get('/xetduyetkkgiavlxd/ttnhanhs', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdXdController@ttnhanhs');
     Route::post('/xetduyetkkgiavlxd/nhanhs', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdXdController@nhanhs');
+    Route::post('/xetduyetkkgiavlxd/congbo', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdXdController@congbo');
+    Route::post('/xetduyetkkgiavlxd/huycongbo', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdXdController@huycongbo');
     Route::get('timkiemkkgiavlxd', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdXdController@search');
 
     Route::get('baocaokekhaigiavlxd', 'manage\kekhaigia\kkgiavlxd\KkGiaVlXdBcController@index');

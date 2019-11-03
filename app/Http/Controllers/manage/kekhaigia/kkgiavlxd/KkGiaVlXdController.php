@@ -346,24 +346,32 @@ class KkGiaVlXdController extends Controller
                     ->first();
                 $inputs['trangthai'] = 'CD';
                 $inputs['ngaychuyen'] = Carbon::now()->toDateTimeString();
-                if($model->update($inputs)){
-                    $modeldn = Company::where('maxa', $model->maxa)
-                        ->first();
-                    $modeldv = Town::where('maxa',$model->mahuyen)
-                        ->first();
-                    $dmnghe = DmNgheKd::where('manghe','VLXD')
-                        ->where('manganh','VLXD')
-                        ->first();
-                    $tg = getDateTime(Carbon::now()->toDateTimeString());
-                    $contentdn = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận được hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp. Số công văn: '.$model->socv.
-                        ' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['nguoinop'].'-Số điện thoại liên lạc: '.$inputs['dtll'].'!!!';
-                    $contentht = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận được hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp '.$modeldn->tendn.' - mã số thuế '.$modeldn->maxa.
-                        ' Số công văn: '.$model->socv.' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['nguoinop'].'-Số điện thoại liên lạc: '.$inputs['dtll'].'!!!';
-                    $run = new SendMail($modeldn,$contentdn,$modeldv,$contentht);
-                    $run->handle();
-                    //dispatch($run);
-                }
-                return redirect('thongtinkekhaigiavatlieuxaydung?&masothue='.$model->maxa);
+                if(isset($inputs['ipf1'])){
+                    $ipf1 = $request->file('ipf1');
+                    $inputs['ipt1'] = $model->mahs .'&1.'.$ipf1->getClientOriginalExtension();
+                    $ipf1->move(public_path() . '/data/kekhaigia/vlxd/', $inputs['ipt1']);
+                    $inputs['ipf1']= $inputs['ipt1'];
+                    if($model->update($inputs)){
+                        $modeldn = Company::where('maxa', $model->maxa)
+                            ->first();
+                        $modeldv = Town::where('maxa',$model->mahuyen)
+                            ->first();
+                        $dmnghe = DmNgheKd::where('manghe','VLXD')
+                            ->where('manganh','VLXD')
+                            ->first();
+                        $tg = getDateTime(Carbon::now()->toDateTimeString());
+                        $contentdn = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận được hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp. Số công văn: '.$model->socv.
+                            ' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['nguoinop'].'-Số điện thoại liên lạc: '.$inputs['dtll'].'!!!';
+                        $contentht = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận được hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp '.$modeldn->tendn.' - mã số thuế '.$modeldn->maxa.
+                            ' Số công văn: '.$model->socv.' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['nguoinop'].'-Số điện thoại liên lạc: '.$inputs['dtll'].'!!!';
+                        $run = new SendMail($modeldn,$contentdn,$modeldv,$contentht);
+                        $run->handle();
+                        //dispatch($run);
+                    }
+                    return redirect('thongtinkekhaigiavatlieuxaydung?&masothue='.$model->maxa);
+                }else
+                    return redirect('thongtinkekhaigiavatlieuxaydung?&masothue='.$model->maxa);
+
             }else
                 return view('errors.perm');
         }else

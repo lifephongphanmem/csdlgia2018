@@ -39,6 +39,8 @@ class CreateKkgiavlxdTable extends Migration
             $table->string('plhs')->nullable();
             $table->string('thoihan')->nullable();
             $table->string('congbo')->nullable();
+            $table->string('ipt1')->nullable();
+            $table->string('ipf1')->nullable();
             $table->timestamps();
         });
     }

@@ -178,6 +178,55 @@
             btn.innerText = 'Loading...';
         }
 
+        function confirmCongBo(id){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            //alert(id);
+            $.ajax({
+                url: '/ttdnkkvlxd',
+                type: 'GET',
+                data: {
+                    _token: CSRF_TOKEN,
+                    id: id
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.status == 'success') {
+                        $('#tthscongbo').replaceWith(data.message);
+                        document.getElementById("idcongbo").value=id;
+                    }
+                }
+            })
+        }
+
+        function ClickHuyCongBo(){
+            $('#frm_huycongbo').submit();
+        }
+
+
+        function confirmHuyCongBo(id){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            //alert(id);
+            $.ajax({
+                url: '/ttdnkkvlxd',
+                type: 'GET',
+                data: {
+                    _token: CSRF_TOKEN,
+                    id: id
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.status == 'success') {
+                        $('#tthshuycongbo').replaceWith(data.message);
+                        document.getElementById("idhuycongbo").value=id;
+                    }
+                }
+            })
+        }
+
+        function ClickCongBo(){
+            $('#frm_congbo').submit();
+        }
+
         function confirmNhanHsedit(mahs){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(mahs);
@@ -339,11 +388,15 @@
                                 @else
                                     <td align="center">
                                         <span class="badge badge-success">Đã duyệt</span>
-                                        <br>Thời gian chuyển:<br><b>{{getDateTime($tt->ngaychuyen)}}</b>
+                                        <br>Thời gian chuyển:<br><b>{{getDateTime($tt->ngaychuyen)}}</b><br>
+                                        @if($tt->congbo == 'CB')<b style="color: #0000ff">Đang công bố</b>@endif
                                     </td>
                                 @endif
                                 <td>
                                     <a href="{{url('thongtinkekhaigiavatlieuxaydung/prints?&mahs='.$tt->mahs)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                    @if($tt->trangthai == 'DD' || $tt->trangthai == 'CD')
+                                        <a onclick="window.open('{{url('data/kekhaigia/vlxd/'.$tt->ipt1)}}', 'newwindow', 'width=1000,height=700')" class="btn btn-default btn-xs mbs"><i class="fa fa-file"></i>&nbsp;File hồ sơ chữ ký số</a>
+                                    @endif
                                     @if(canApprove($tt->trangthai))
                                         <button type="button" onclick="ClickTraLai({{$tt->id}})" class="btn btn-default btn-xs mbs" data-target="#tralai-modal" data-toggle="modal"><i class="fa fa-reply"></i>&nbsp;
                                             Trả lại</button>
@@ -353,9 +406,16 @@
                                     @if(canShowLyDo($tt->trangthai))
                                         <button type="button" data-target="#lydo-modal" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="viewLyDo({{$tt->id}})"><i class="fa fa-search"></i>&nbsp;Lý do trả lại</button>
                                     @endif
+                                    @if($tt->trangthai == 'DD')
+                                        @if($tt->congbo != 'CB')
+                                        <button type="button" onclick="confirmCongBo({{$tt->id}})" class="btn btn-default btn-xs mbs" data-target="#congbo-modal" data-toggle="modal"><i class="fa fa-share"></i>&nbsp;
+                                            Công bố</button>
+                                        @else
+                                            <button type="button" onclick="confirmHuyCongBo({{$tt->id}})" class="btn btn-default btn-xs mbs" data-target="#huycongbo-modal" data-toggle="modal"><i class="fa fa-reply"></i>&nbsp;
+                                                Hủy công bố</button>
+                                        @endif
+                                    @endif
                                         <!--a href="{{url('ke_khai_dich_vu_luu_tru/'.$tt->mahs.'/history')}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Lịch sử</a-->
-
-
                                 </td>
                             </tr>
                         @endforeach
@@ -489,6 +549,57 @@
                 <div class="modal-footer">
                     <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
                 </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!--Model congbo-->
+    <div class="modal fade" id="congbo-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                {!! Form::open(['url'=>'xetduyetkkgiavlxd/congbo','id' => 'frm_congbo'])!!}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Đồng ý công bố hồ sơ?</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group" id="tthscongbo">
+                    </div>
+                    <input type="hidden" name="idcongbo" id="idcongbo">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn blue" onclick="ClickCongBo()" id="submitCongBo">Đồng ý</button>
+                </div>
+                {!! Form::close() !!}
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <!--Model congbo-->
+    <div class="modal fade" id="huycongbo-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                {!! Form::open(['url'=>'xetduyetkkgiavlxd/huycongbo','id' => 'frm_huycongbo'])!!}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Đồng ý hủy công bố hồ sơ?</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group" id="tthshuycongbo">
+                    </div>
+                    <input type="hidden" name="idhuycongbo" id="idhuycongbo">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn blue" onclick="ClickHuyCongBo()" id="submitHuyCongBo">Đồng ý</button>
+                </div>
+                {!! Form::close() !!}
             </div>
             <!-- /.modal-content -->
         </div>

@@ -33,5 +33,7 @@ class KkGiaVlXd extends Model
         'plhs',
         'thoihan',
         'congbo',
+        'ipt1',
+        'ipf1'
     ];
 }
