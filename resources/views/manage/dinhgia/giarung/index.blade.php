@@ -85,6 +85,22 @@
         function getIdHcb(id) {
             document.getElementById("huycongbo_id").value=id;
         }
+
+        function clickhoanthanh(){
+            $('#frm_hoanthanh').submit();
+        }
+
+        function clickhuyhoanthanh(){
+            $('#frm_huyhoanthanh').submit();
+        }
+
+        function confirmHoanthanh(id) {
+            document.getElementById("idhoanthanh").value=id;
+        }
+
+        function confirmHHT(id){
+            document.getElementById("idhuyhoanthanh").value=id;
+        }
     </script>
 @stop
 
@@ -113,7 +129,8 @@
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                             Xóa</button>
                         @endif
-                        @if(can('thgiarung','congbo'))
+
+                        @if(can('thgiarung','congbo') && (session('admin')->level == 'T' || session('admin')->level == 'H'))
                         <button type="button" class="btn btn-default btn-xs mbs" data-target="#check-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;
                             Công bố/ Hủy</button>
                         @endif
@@ -205,7 +222,7 @@
                                 <th style="text-align: center">Tên dự án</th>
                                 <th style="text-align: center" >Đơn giá</th>
                                 <th style="text-align: center" >Thông tin quyết định</th>
-                                <th style="text-align: center" >Ghi chú</th>
+{{--                                <th style="text-align: center" >Ghi chú</th>--}}
                                 <th style="text-align: center"  width="5%"> Trạng thái</th>
                                 <th style="text-align: center"> Thao tác</th>
                             </tr>
@@ -221,30 +238,75 @@
                                             <td style="text-align: left" class="active">{{$tt->tenduan}}</td>
                                             <td style="text-align: center">{{dinhdangsothapphan($tt->dongia,2)}}</td>
                                             <td style="text-align: center">{{$tt->ttqd}}</td>
-                                            <td style="text-align: center">{{$tt->ghichu}}</td>
+{{--                                            <td style="text-align: center">{{$tt->ghichu}}</td>--}}
                                             <td style="text-align: center">
-                                                @if($tt->trangthai == 'CB')
-                                                    <span class="badge badge-warning">Công bố</span>
+                                                @if ($tt->trangthai == "CHT")
+                                                    <span class="badge badge-default">Chưa hoàn thành</span>
+                                                @elseif ($tt->trangthai == "HHT")
+                                                    <span class="badge badge-danger">Hủy hoàn thành</span>
+                                                @elseif ($tt->trangthai == "HT")
+                                                    <span class="badge badge-info">Hoàn thành</span>
+                                                @elseif ($tt->trangthai == "CB")
+                                                    <span class="badge badge-success">Công bố</span>
                                                 @else
-                                                    <span class="badge badge-danger">Chưa công bố</span>
+                                                    <span class="badge badge-warning">Chưa công bố</span>
                                                 @endif
                                             </td>
                                             <td>
+                                                @if(session('admin')->level == 'T' || session('admin')->level == 'H')
+                                                    @if($tt->trangthai == 'CB')
+                                                        @if(can('thgiarung','congbo'))
+                                                            <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
+                                                                Hủy công bố</button>
+                                                        @endif
+                                                    @elseif($tt->trangthai == 'HT')
+                                                        @if(can('thgiarung','congbo'))
+                                                            <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
+                                                                Hủy hoàn thành</button>
+                                                        @endif
+                                                    @else
+                                                        @if(can('kkgiarung','edit'))
+                                                            <button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                        @endif
+                                                        @if(can('kkgiarung','delete'))
+                                                                <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                        @endif
+                                                    @endif
+                                                @else
+                                                    @if($tt->trangthai == 'CHT' || $tt->trangthai == 'HHT')
+                                                        @if($tt->district == session('admin')->district)
+                                                            @if(can('kkgiarung','edit'))
+                                                                <button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                            @endif
+
+                                                            @if(can('kkgiarung','approve'))
+                                                                <button type="button" onclick="confirmHoanthanh('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn thành</button>
+                                                            @endif
+
+                                                            @if(can('kkgiarung','delete'))
+                                                                    <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                            @endif
+                                                        @endif
+                                                    @endif
+                                                @endif
+
+                                                <!-- cũ ngày 03.11.19
                                                 @if($tt->trangthai == 'CB')
                                                     @if(can('thgiarung','congbo'))
-                                                    <button type="button" onclick="getIdHcb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huycongbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-times"></i>&nbsp;Hủy công bố</button>
+                                                        <button type="button" onclick="getIdHcb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huycongbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-times"></i>&nbsp;Hủy công bố</button>
                                                     @endif
                                                 @else
                                                     @if(can('kkgiarung','edit'))
-                                                    <button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                        <button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
                                                     @endif
                                                     @if(can('kkgiarung','delete'))
-                                                    <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                        <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                                     @endif
                                                     @if(can('thgiarung','congbo'))
-                                                    <button type="button" onclick="getIdCb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Công bố</button>
+                                                        <button type="button" onclick="getIdCb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Công bố</button>
                                                     @endif
                                                 @endif
+                                                        -->
                                             </td>
                                         </tr>
                                     @endforeach
@@ -288,6 +350,55 @@
         <div class="clearfix"></div>
 
     </div>
+    <!--Modal Hoàn thành-->
+    <div id="hoanthanh-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+        {!! Form::open(['url'=>'giarung/hoanthanh','id' => 'frm_hoanthanh'])!!}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true"
+                            class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Đồng ý hoàn thành hồ sơ?</h4>
+
+                    <input type="hidden" name="idhoanthanh" id="idhoanthanh">
+
+                </div>
+                <div class="modal-body">
+                    <p style="color: #0000FF">Hồ sơ đã hoàn thành sẽ không được phép chỉnh sửa và xóa hồ sơ nữa!Bạn cần liên hệ cơ quan chủ quản để chỉnh sửa hồ sơ nếu cần!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickhoanthanh()">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+        {!! Form::close() !!}
+    </div>
+    <!--Modal Hủy Hoàn thành-->
+    <div id="huyhoanthanh-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+        {!! Form::open(['url'=>'giarung/huyhoanthanh','id' => 'frm_huyhoanthanh'])!!}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true"
+                            class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Đồng ý hủy hoàn thành hồ sơ?</h4>
+
+                    <input type="hidden" name="idhuyhoanthanh" id="idhuyhoanthanh">
+
+                </div>
+                <div class="modal-body">
+                    <p style="color: #0000FF">Hồ sơ Bị hủy sẽ chuyển lại cho cơ quan nhập chủ quản có thể chỉnh sửa hồ sơ!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickhuyhoanthanh()">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+        {!! Form::close() !!}
+    </div>
+
     @include('manage.dinhgia.giarung.include.modal_dialog')
     @include('includes.script.inputmask-ajax-scripts')
     @include('includes.script.create-header-scripts')

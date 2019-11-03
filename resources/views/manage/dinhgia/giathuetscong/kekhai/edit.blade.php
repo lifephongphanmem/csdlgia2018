@@ -229,7 +229,7 @@
                                             <td style="text-align: center">{{($key +1)}}</td>
                                             <td class="active" style="font-weight: bold">{{$tt->tents}}</td>
                                             <td style="text-align: center;" >{{number_format($tt->soluong)}}</td>
-                                            <td style="text-align: center;" >{{number_format($tt->dvt)}}</td>
+                                            <td style="text-align: center;" >{{$tt->dvt}}</td>
                                             <td style="text-align: right;font-weight: bold">{{number_format($tt->dongiathue)}}</td>
                                             <td style="text-align: left;">{{$tt->dvthue}}</td>
                                             <td style="text-align: left;">{{$tt->hdthue}}</td>

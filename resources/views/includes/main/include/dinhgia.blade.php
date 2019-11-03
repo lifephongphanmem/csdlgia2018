@@ -72,16 +72,22 @@
                     @endif
                 @endif
                     <!-- làm đất theo phân loại (lấy phân quyền theo giá đất theo địa bàn -->
-                @if(canGeneral('giacldat','index'))
+{{--                @if(canGeneral('giacldat','index'))--}}
+{{--                    @if(canGeneral('giadatpl','index'))--}}
+{{--                        --}}{{--Giá đất địa bàn--}}
+{{--                        @if(can('giadatpl','index'))--}}
+{{--                            @if(can('kkgiadatpl','index'))--}}
+{{--                                @if(can('thgiadatpl','index'))--}}
+                @if(canGeneral('giadatpl','index'))
                         {{--Giá đất địa bàn--}}
-                        @if(can('giacldat','index'))
+                        @if(can('giadatpl','index'))
                             <li class="">
                                 <a href="">
                                     <span class="title">Giá đất phân loại</span>
                                     <span class="arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
-                                    @if(can('kkgiacldat','index'))
+                                    @if(can('kkgiadatpl','index'))
                                         <li>
                                             <a href="{{url('giadatphanloaidm')}}">
                                                 Danh mục các loại đất

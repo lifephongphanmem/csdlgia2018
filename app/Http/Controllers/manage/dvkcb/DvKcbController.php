@@ -4,6 +4,7 @@ namespace App\Http\Controllers\manage\dvkcb;
 
 use App\DiaBanHd;
 use App\Model\manage\dinhgia\DvKcb;
+use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -168,6 +169,7 @@ class DvKcbController extends Controller
             $model->dvt = $inputs['add_dvt'];
             $model->ttqd = $inputs['add_ttqd'];
             $model->ghichu = $inputs['add_ghichu'];
+            $model->trangthai = 'CHT';
             $model->save();
             $nam = $inputs['add_thoidiem'] != '' ? date('Y',strtotime(getDateToDb($inputs['add_thoidiem']))) :'all';
             return redirect('dichvukcb?&nam='.$nam.'&district='.$inputs['add_district']);
@@ -264,6 +266,33 @@ class DvKcbController extends Controller
                 ->with('pageTitle','Báo cáo giá dịch vụ khám chữa bệnh');
 
         } else
+            return view('errors.notlogin');
+    }
+
+    public function hoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $id = $inputs['idhoanthanh'];
+            $model = DvKcb::findOrFail($id);
+            $model->trangthai = 'HT';
+            $model->save();
+
+            $nam = $model->thoidiem != '' ? date('Y',strtotime($model->thoidiem)): 'all';
+            return redirect('dichvukcb?&nam='.$nam.'&district='.$model->district);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huyhoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $id = $inputs['idhuyhoanthanh'];
+            $model = DvKcb::findOrFail($id);
+            $model->trangthai = 'HHT';
+            $model->save();
+            $nam = $model->thoidiem != '' ? date('Y',strtotime($model->thoidiem)): 'all';
+            return redirect('dichvukcb?&nam='.$nam.'&district='.$model->district);
+        }else
             return view('errors.notlogin');
     }
 }

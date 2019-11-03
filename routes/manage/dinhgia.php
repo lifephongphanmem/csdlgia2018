@@ -72,12 +72,12 @@ Route::get('lephitruocbact/del','LePhiTruocBaCtController@destroy');
 Route::get('timkiemlephitruocba','LePhiTruocBaController@search');
 
 //Giá thuê mặt đất-nước
+Route::get('giathuematdatmatnuoc/ketxuat','GiaThueDatNuocController@ketxuat');
 Route::resource('giathuematdatmatnuoc','GiaThueDatNuocController');
 Route::post('giathuematdatmatnuoc/delete','GiaThueDatNuocController@destroy');
 Route::post('giathuematdatmatnuoc/hoanthanh','GiaThueDatNuocController@hoanthanh');
 Route::post('giathuematdatmatnuoc/huyhoanthanh','GiaThueDatNuocController@huyhoanthanh');
 Route::post('giathuematdatmatnuoc/congbo','GiaThueDatNuocController@congbo');
-
 Route::get('timkiemgiathuematdatmatnuoc','GiaThueDatNuocController@search');
 
 Route::get('giathuematdatmatnuocctdf/store','GiaThueDatNuocCtDfController@store');
@@ -108,6 +108,9 @@ Route::post('giarung/checkmulti','manage\giarung\GiaRungController@checkmulti');
 Route::get('giarung/prints','manage\giarung\GiaRungController@BcGiaRung');
 Route::get('giarung/nhandulieutuexcel','manage\giarung\GiaRungController@nhandulieutuexcel');
 Route::post('giarung/importexcel','manage\giarung\GiaRungController@importexcel');
+
+Route::post('giarung/hoanthanh','manage\giarung\GiaRungController@hoanthanh');
+Route::post('giarung/huyhoanthanh','manage\giarung\GiaRungController@huyhoanthanh');
 
 //Thuế tài nguyên
 
@@ -152,7 +155,8 @@ Route::post('dichvukcb/checkmulti','manage\dvkcb\DvKcbController@checkmulti');
 Route::get('dichvukcb/nhandulieutuexcel','manage\dvkcb\DvKcbController@nhandulieutuexcel');
 Route::post('dichvukcb/importexcel','manage\dvkcb\DvKcbController@importexcel');
 Route::get('dichvukcb/prints','manage\dvkcb\DvKcbController@BcGiaDvKcb');
-
+Route::post('dichvukcb/huyhoanthanh','manage\dvkcb\DvKcbController@huyhoanthanh');
+Route::post('dichvukcb/hoanthanh','manage\dvkcb\DvKcbController@hoanthanh');
 
 
 //Giá HH-DV khác
@@ -264,6 +268,7 @@ Route::post('thongtindaugiadattsct/update','manage\giadaugiadatts\DauGiaDatTsCtC
 Route::post('thongtindaugiadattsct/delete','manage\giadaugiadatts\DauGiaDatTsCtController@destroy');
 
 //Giá thuê tài sản công
+Route::get('thongtinthuetaisancong/ketxuat','GiaThueTsCongController@ketxuat');
 Route::resource('thongtinthuetaisancong','GiaThueTsCongController');
 Route::post('thongtinthuetaisancong/delete','GiaThueTsCongController@destroy');
 Route::post('thongtinthuetaisancong/hoanthanh','GiaThueTsCongController@hoanthanh');
@@ -298,6 +303,9 @@ Route::post('gianuocsachsinhhoat/checkmulti','manage\gianuocsachsh\GiaNuocShCont
 Route::get('gianuocsachsinhhoat/nhandulieutuexcel','manage\gianuocsachsh\GiaNuocShController@nhandulieutuexcel');
 Route::post('gianuocsachsinhhoat/importexcel','manage\gianuocsachsh\GiaNuocShController@importexcel');
 
+Route::post('gianuocsachsinhhoat/huyhoanthanh','manage\gianuocsachsh\GiaNuocShController@huyhoanthanh');
+Route::post('gianuocsachsinhhoat/hoanthanh','manage\gianuocsachsh\GiaNuocShController@hoanthanh');
+
 Route::get('gianuocsachsinhhoatct/edittt','manage\gianuocsachsh\GiaNuocShCtController@edit');
 Route::get('gianuocsachsinhhoatct/update','manage\gianuocsachsh\GiaNuocShCtController@update');
 
@@ -323,7 +331,8 @@ Route::post('giadvgiaoducdaotao/checkmulti','manage\GiaDvGdDtController@checkmul
 Route::get('giadvgiaoducdaotao/nhandulieutuexcel','manage\GiaDvGdDtController@nhandulieutuexcel');
 Route::post('giadvgiaoducdaotao/import_excel','manage\GiaDvGdDtController@importexcel');
 Route::get('giadvgiaoducdaotao/prints','manage\GiaDvGdDtController@BcGiaDvGdDt');
-
+Route::post('giadvgiaoducdaotao/hoanthanh','manage\GiaDvGdDtController@hoanthanh');
+Route::post('giadvgiaoducdaotao/huyhoanthanh','manage\GiaDvGdDtController@huyhoanthanh');
 //Giá thuê mua nhà XH
 Route::get('thuemuanhaxahoi','manage\thuemuanhaxh\GiaThueMuaNhaXhController@index');
 Route::post('thuemuanhaxahoi/add','manage\thuemuanhaxh\GiaThueMuaNhaXhController@store');
@@ -338,6 +347,8 @@ Route::get('thuemuanhaxahoi/nhandulieutuexcel','manage\thuemuanhaxh\GiaThueMuaNh
 Route::post('thuemuanhaxahoi/import_excel','manage\thuemuanhaxh\GiaThueMuaNhaXhController@importexcel');
 Route::get('thuemuanhaxahoi/prints','manage\thuemuanhaxh\GiaThueMuaNhaXhController@BcGiaThueMuaNhaXh');
 
+Route::post('thuemuanhaxahoi/hoanthanh','manage\thuemuanhaxh\GiaThueMuaNhaXhController@hoanthanh');
+Route::post('thuemuanhaxahoi/huyhoanthanh','manage\thuemuanhaxh\GiaThueMuaNhaXhController@huyhoanthanh');
 //Giá thị trường
 Route::get('thongtugiathitruong','manage\giathitruong\GiaThiTruongTtController@index');
 Route::post('thongtugiathitruong','manage\giathitruong\GiaThiTruongTtController@store');

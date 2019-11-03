@@ -64,6 +64,15 @@
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box wi">
+                <div class="portlet-title">
+                    <div class="caption">
+                    </div>
+                    <div class="actions">
+                        <a href="{{url('/giathuematdatmatnuoc/ketxuat?diaban='.$diaban.'&nam='.$nam.'&vitri='.$vitri)}}"
+                           class="btn btn-default btn-sm" target="_blank"><i class="fa fa-print"></i> Print </a>
+                    </div>
+
+                </div>
                 <div class="portlet-body">
                     <div class="row">
                         <div class="col-md-3">

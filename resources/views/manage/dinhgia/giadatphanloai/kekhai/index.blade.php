@@ -186,10 +186,16 @@
                                         <td style="text-align: center">{{getDayVn($tt->thoidiem)}}</td>
                                         <td style="text-align: left">{{$tt->tenvitri}}</td>
                                         <td style="text-align: center">
-                                            @if($tt->trangthai == 'CB')
+                                            @if ($tt->trangthai == "CHT")
+                                                <span class="badge badge-default">Chưa hoàn thành</span>
+                                            @elseif ($tt->trangthai == "HHT")
+                                                <span class="badge badge-danger">Hủy hoàn thành</span>
+                                            @elseif ($tt->trangthai == "HT")
+                                                <span class="badge badge-info">Hoàn thành</span>
+                                            @elseif ($tt->trangthai == "CB")
                                                 <span class="badge badge-success">Công bố</span>
                                             @else
-                                                <span class="badge badge-warning">Chưa công bố</span>
+                                             <span class="badge badge-warning">Chưa công bố</span>
                                             @endif
                                         </td>
                                         <td>
@@ -200,18 +206,38 @@
                                                         <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
                                                             Hủy công bố</button>
                                                     @endif
+                                                @elseif($tt->trangthai == 'HT')
+                                                    @if(can('kkgiacldat','congbo'))
+                                                        <button type="button" onclick="confirmCB('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal-confirm" data-toggle="modal"><i class="fa fa-send"></i>&nbsp;
+                                                            Công bố</button>
+                                                    @endif
                                                 @else
                                                     @if(can('kkgiacldat','edit'))
                                                         <a href="{{url('giadatphanloai/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
-                                                        <a href="{{url('giadatphanloaict?&mahs='.$tt->mahs)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chi tiết</a>
+
                                                     @endif
                                                     @if(can('kkgiacldat','delete'))
                                                         <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                                             Xóa</button>
                                                     @endif
-                                                    @if(can('kkgiacldat','congbo'))
-                                                        <button type="button" onclick="confirmCB('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal-confirm" data-toggle="modal"><i class="fa fa-send"></i>&nbsp;
-                                                            Công bố</button>
+                                                @endif
+                                            @else
+                                                <!-- 03.11.19 làm để giới thiệu (chưa phân quyền) -->
+                                                @if($tt->trangthai == 'CHT' || $tt->trangthai == 'HHT')
+                                                    @if($tt->mahuyen == session('admin')->district)
+                                                        @if(can('kkgiacldat','edit'))
+                                                            <!--đúng địa bàn quản lý thì đc sửa-->
+                                                                <a href="{{url('giadatphanloai/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                                        @endif
+
+                                                        @if(can('kkgiacldat','approve'))
+                                                            <button type="button" onclick="confirmHoanthanh('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn thành</button>
+                                                        @endif
+
+                                                        @if(can('kkgiacldat','delete'))
+                                                            <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                                                Xóa</button>
+                                                        @endif
                                                     @endif
                                                 @endif
                                             @endif
@@ -283,7 +309,7 @@
         </script>
         <!--Modal Hoàn thành-->
         <div id="hoanthanh-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-            {!! Form::open(['url'=>'thamdinhgia/hoanthanh','id' => 'frm_hoanthanh'])!!}
+            {!! Form::open(['url'=>'giadatphanloai/hoanthanh','id' => 'frm_hoanthanh'])!!}
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header modal-header-primary">

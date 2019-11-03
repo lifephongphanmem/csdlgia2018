@@ -4,6 +4,7 @@ namespace App\Http\Controllers\manage;
 
 use App\DiaBanHd;
 use App\Model\manage\dinhgia\GiaDvGdDt;
+use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -55,6 +56,7 @@ class GiaDvGdDtController extends Controller
             $model->dongia = chkDbl($inputs['add_dongia']);
             $model->ttqd = $inputs['add_ttqd'];
             $model->ghichu = $inputs['add_ghichu'];
+            $model->trangthai = 'CHT';
             $model->save();
             return redirect('giadvgiaoducdaotao?&nam='.$inputs['add_nam'].'&district='.$inputs['add_district']);
         }else
@@ -337,6 +339,32 @@ class GiaDvGdDtController extends Controller
                 ->with('inputs',$inputs)
                 ->with('diabans',$diabans)
                 ->with('pageTitle', 'Giá dịch vụ giáo dục đào tạo');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function hoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $id = $inputs['idhoanthanh'];
+            $model = GiaDvGdDt::findOrFail($id);
+            $model->trangthai = 'HT';
+            $model->save();
+
+            return redirect('giadvgiaoducdaotao?&nam='.$model->nam.'&district='.$model->district);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huyhoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $id = $inputs['idhuyhoanthanh'];
+            $model = GiaDvGdDt::findOrFail($id);
+            $model->trangthai = 'HHT';
+            $model->save();
+
+            return redirect('giadvgiaoducdaotao?&nam='.$model->nam.'&district='.$model->district);
         }else
             return view('errors.notlogin');
     }

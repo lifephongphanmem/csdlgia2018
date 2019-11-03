@@ -103,7 +103,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12" style="text-align: center">
-                    <a href="{{url('giathuematdatmatnuoc?trangthai='.$model->trangthai.'&diaban='.$model->district)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                    <a href="{{url('thongtinthuetaisancong?trangthai='.$model->trangthai.'&diaban='.$model->district)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 </div>
             </div>
             {!! Form::close() !!}

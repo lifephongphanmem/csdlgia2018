@@ -4,6 +4,7 @@ namespace App\Http\Controllers\manage\thuemuanhaxh;
 
 use App\DiaBanHd;
 use App\Model\manage\dinhgia\GiaThueMuaNhaXh;
+use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -24,7 +25,7 @@ class GiaThueMuaNhaXhController extends Controller
             if(session('admin')->level == 'T' || session('admin')->level == 'H')
                 $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : 'all';
             else
-                $inputs['district'] = session('admin')->districts;
+                $inputs['district'] = session('admin')->district;
 
             $model  = GiaThueMuaNhaXh::join('diabanhd','diabanhd.district','=','giathuemuanhaxh.district')
                 ->where('diabanhd.level','H')
@@ -170,6 +171,7 @@ class GiaThueMuaNhaXhController extends Controller
             $model->dongiathuemua = chkDbl($inputs['add_dongiathuemua']);
             $model->ttqd = $inputs['add_ttqd'];
             $model->ghichu = $inputs['add_ghichu'];
+            $model->trangthai = 'CHT';
             $model->save();
             $nam = $inputs['add_thoidiemht'] != '' ? date('Y',strtotime(getDateToDb($inputs['add_thoidiemht']))) :'all';
 
@@ -207,7 +209,7 @@ class GiaThueMuaNhaXhController extends Controller
     function checkmulti(Request $request){
         if(Session::has('admin')){
             $inputs=$request->all();
-            $model = GiaThueMuaNhaXh::whereYear('thoidiem',$inputs['namcheck']);
+            $model = GiaThueMuaNhaXh::whereYear('thoidiemht',$inputs['namcheck']);
             if($inputs['districtcheck'] != 'all')
                 $model = $model->where('district',$inputs['districtcheck']);
 
@@ -229,7 +231,7 @@ class GiaThueMuaNhaXhController extends Controller
             if(session('admin')->level == 'T' || session('admin')->level == 'H')
                 $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : 'all';
             else
-                $inputs['district'] = session('admin')->districts;
+                $inputs['district'] = session('admin')->district;
 
             $model  = GiaThueMuaNhaXh::join('diabanhd','diabanhd.district','=','giathuemuanhaxh.district')
                 ->where('diabanhd.level','H')
@@ -270,6 +272,32 @@ class GiaThueMuaNhaXhController extends Controller
 
 
         } else
+            return view('errors.notlogin');
+    }
+
+    public function hoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $id = $inputs['idhoanthanh'];
+            $model = GiaThueMuaNhaXh::findOrFail($id);
+            $model->trangthai = 'HT';
+            $model->save();
+            $nam = date('Y',strtotime($model->thoidiemht));
+            return redirect('thuemuanhaxahoi?&nam='.$nam.'&district='.$model->district);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huyhoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $id = $inputs['idhuyhoanthanh'];
+            $model = GiaThueMuaNhaXh::findOrFail($id);
+            $model->trangthai = 'HHT';
+            $model->save();
+            $nam = date('Y',strtotime($model->thoidiemht));
+            return redirect('thuemuanhaxahoi?&nam='.$nam.'&district='.$model->district);
+        }else
             return view('errors.notlogin');
     }
 }

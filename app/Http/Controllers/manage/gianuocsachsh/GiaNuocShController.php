@@ -62,7 +62,7 @@ class GiaNuocShController extends Controller
 
             $model = new GiaNuocSh();
             $model->ngayapdung = getDateToDb($inputs['ngayapdung']);
-            $model->trangthai = 'CXD';
+            $model->trangthai = 'CHT';
             $model->soqd = $inputs['soqd'];
             $model->ghichu = $inputs['ghichu'];
             $model->mota = $inputs['mota'];
@@ -76,8 +76,6 @@ class GiaNuocShController extends Controller
         }else
             return view('errors.notlogin');
     }
-
-
 
     public function edit($id){
         if(Session::has('admin')) {
@@ -238,6 +236,32 @@ class GiaNuocShController extends Controller
                 ->with('modelct',$modelct)
                 ->with('inputs',$inputs)
                 ->with('pageTitle', 'Giá nước sinh hoạt chi tiết');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function hoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $id = $inputs['idhoanthanh'];
+            $model = GiaNuocSh::findOrFail($id);
+            $model->trangthai = 'HT';
+            $model->save();
+            $nam = date('Y',strtotime($model->ngayapdung));
+            return redirect('gianuocsachsinhhoat?&nam='.$nam);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huyhoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $id = $inputs['idhuyhoanthanh'];
+            $model = GiaNuocSh::findOrFail($id);
+            $model->trangthai = 'HHT';
+            $model->save();
+            $nam = date('Y',strtotime($model->ngayapdung));
+            return redirect('gianuocsachsinhhoat?&nam='.$nam);
         }else
             return view('errors.notlogin');
     }

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\manage\giarung;
 
 use App\DiaBanHd;
+use App\District;
 use App\DmGiaRung;
 use App\Model\manage\dinhgia\GiaRung;
+use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -26,20 +28,25 @@ class GiaRungController extends Controller
             if(session('admin')->level == 'T' || session('admin')->level == 'H')
                 $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : 'all';
             else
-                $inputs['district'] = session('admin')->districts;
+                $inputs['district'] = session('admin')->district;
 
             $model  = GiaRung::join('diabanhd','diabanhd.district','=','giarung.district')
                 ->where('diabanhd.level','H')
                 ->join('dmgiarung','dmgiarung.manhom','=','giarung.manhom')
                 ->select('giarung.*','diabanhd.diaban','dmgiarung.tennhom');
+
             if($inputs['nam'] != 'all')
                 $model = $model->whereYear('giarung.thoidiem',$inputs['nam']);
+
             if($inputs['district'] !='all')
                 $model = $model->where('giarung.district',$inputs['district']);
+
             if($inputs['manhom'] != 'all')
                 $model = $model->where('giarung.manhom',$inputs['manhom']);
+
             if($inputs['tenduan'] != '')
                 $model = $model->where('giarung.tenduan','like', '%'.$inputs['tenduan'].'%');
+
             $model = $model->paginate($inputs['paginate']);
             return view('manage.dinhgia.giarung.index')
                 ->with('model',$model)
@@ -176,6 +183,7 @@ class GiaRungController extends Controller
             $model->dongia = chkDbl($inputs['add_dongia']);
             $model->ttqd = $inputs['add_ttqd'];
             $model->ghichu = $inputs['add_ghichu'];
+            $model->trangthai = 'CHT';
             $model->save();
             $nam = date('Y',strtotime(getDateToDb($inputs['add_thoidiem'])));
 
@@ -236,7 +244,7 @@ class GiaRungController extends Controller
             if(session('admin')->level == 'T' || session('admin')->level == 'H')
                 $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : 'all';
             else
-                $inputs['district'] = session('admin')->districts;
+                $inputs['district'] = session('admin')->district;
 
             $model  = GiaRung::join('diabanhd','diabanhd.district','=','giarung.district')
                 ->where('diabanhd.level','H')
@@ -275,6 +283,7 @@ class GiaRungController extends Controller
                 $inputs['dv'] = $modeldv->tendvhienthi;
                 $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
             }
+//            dd($inputs);
             return view('manage.dinhgia.giarung.reports.BcGiaRung')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
@@ -286,4 +295,31 @@ class GiaRungController extends Controller
         } else
             return view('errors.notlogin');
     }
+
+    public function hoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $id = $inputs['idhoanthanh'];
+            $model = GiaRung::findOrFail($id);
+            $model->trangthai = 'HT';
+            $model->save();
+            $nam = date('Y',strtotime($model->thoidiem));
+            return redirect('giarung?&nam='.$nam.'&district='.$model->district.'&manhom='.$model->manhom);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huyhoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $id = $inputs['idhuyhoanthanh'];
+            $model = GiaRung::findOrFail($id);
+            $model->trangthai = 'HHT';
+            $model->save();
+            $nam = date('Y',strtotime($model->thoidiem));
+            return redirect('giarung?&nam='.$nam.'&district='.$model->district.'&manhom='.$model->manhom);
+        }else
+            return view('errors.notlogin');
+    }
+
 }

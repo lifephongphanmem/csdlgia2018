@@ -5,6 +5,7 @@ namespace App\Http\Controllers\manage\giadatphanloai;
 use App\DiaBanHd;
 use App\Model\manage\dinhgia\giadatphanloai\GiaDatPhanLoai;
 use App\Model\manage\dinhgia\giadatphanloai\GiaDatPhanLoaiDm;
+use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -218,29 +219,6 @@ class GiaDatPhanLoaiController extends Controller
             return view('errors.notlogin');
     }
 
-    public function search(Request $request){
-        if(Session::has('admin')){
-            $inputs = $request->all();
-            $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-            $inputs['vitridiadiem'] = isset($inputs['vitridiadiem']) ? $inputs['vitridiadiem'] : '';
-            $model = DauGiaDatCt::join('daugiadat','daugiadat.mahs','=','daugiadatct.mahs')
-                ->select('daugiadatct.*','daugiadat.soqd','daugiadat.donvi','daugiadat.trangthai','daugiadat.thdaugia','daugiadat.created_at','daugiadat.diadiem')
-                ->whereIn('daugiadat.trangthai',['HT','CB']);
-
-            if($inputs['nam'] != '')
-                $model = $model->whereYear('daugiadat.created_at',$inputs['nam']);
-            if($inputs['vitridiadiem'] != '')
-                $model = $model->where('daugiadatct.vitridiadiem','like','%'.$inputs['vitridiadiem'].'%');
-            $model = $model->get();
-
-            return view('manage.dinhgia.giadatphanloai.timkiem.index')
-                ->with('inputs',$inputs)
-                ->with('model',$model)
-                ->with('pageTitle','Tìm kiếm thông tin đấu giá đất');
-        }else
-            return view('errors.notlogin');
-    }
-
     public function ketxuat(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
@@ -286,7 +264,14 @@ class GiaDatPhanLoaiController extends Controller
                 $inputs['dv'] = $modeldv->tendvhienthi;
                 $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
             }
-            return view('manage.dinhgia.giadaugiadat.reports.print')
+            $m_dm = GiaDatPhanLoaiDm::all();
+            foreach ($model as $ct){
+                $dm = $m_dm->where('mavitri',$ct->mavitri)->first();
+                $ct->tenvitri = $dm->tenvitri;
+                $ct->giatri = $dm->giatri;
+            }
+
+            return view('manage.dinhgia.giadatphanloai.reports.print')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
                 ->with('huyens',$huyens)

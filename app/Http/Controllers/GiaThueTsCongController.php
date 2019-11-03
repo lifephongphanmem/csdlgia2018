@@ -193,6 +193,7 @@ class GiaThueTsCongController extends Controller
                 ->join('town','town.maxa','=','giathuetscong.maxa')
                 ->select('giathuetscongct.*','giathuetscong.nam','giathuetscong.maxa','town.tendv','giathuetscong.trangthai')
                 ->whereIn('giathuetscong.trangthai',['HT','CB']);
+
             if($inputs['nam']!= '')
                 $model = $model->where('giathuetscong.nam',$inputs['nam']);
             if($inputs['tents'] != '')
@@ -209,5 +210,33 @@ class GiaThueTsCongController extends Controller
             return view('errors.notlogin');
     }
 
+    public function ketxuat(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
+            $modeldv = Town::all();
 
+            $inputs['tents'] = isset($inputs['tents']) ? $inputs['tents'] : '';
+            $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : '';
+
+            $model = GiaThueTsCongCt::join('giathuetscong','giathuetscong.mahs','=','giathuetscongct.mahs')
+                ->join('town','town.maxa','=','giathuetscong.maxa')
+                ->select('giathuetscongct.*','giathuetscong.nam','giathuetscong.maxa','town.tendv','giathuetscong.trangthai')
+                ->whereIn('giathuetscong.trangthai',['HT','CB']);
+
+            if($inputs['nam']!= '')
+                $model = $model->where('giathuetscong.nam',$inputs['nam']);
+            if($inputs['tents'] != '')
+                $model = $model->where('giathuetscongct.tents','like','%'.$inputs['tents'].'%');
+            if($inputs['maxa'] != '')
+                $model = $model->where('giathuetscong.maxa',$inputs['maxa']);
+            $modelct = $model->get();
+            return view('manage.dinhgia.giathuetscong.reports.baocao')
+                ->with('model',$model)
+                ->with('modeldv',$modeldv)
+                ->with('modelct',$modelct)
+                ->with('pageTitle','Hồ sơ thuê tài sản công chi tiết');
+        }else
+            return view('errors.notlogin');
+    }
 }

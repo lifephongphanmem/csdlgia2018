@@ -56,9 +56,7 @@
 <p style="text-align: center;font-weight: bold;font-size: 20px">
     HỒ SƠ THUÊ TÀI SẢN CÔNG
 </p>
-<p><b>Thông tin hồ sơ: </b>{{$model->thongtinhs}}</p>
-<p><b>Đơn vị: </b>{{$modeldv->tendv}}</p>
-<p><b>Ghi chú: </b>{{$model->ghichu}}</p>
+
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <tr>
         <th width="2%" style="text-align: center">STT</th>

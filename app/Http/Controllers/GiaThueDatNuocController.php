@@ -197,4 +197,47 @@ class GiaThueDatNuocController extends Controller
             return view('errors.notlogin');
     }
 
+    public function ketxuat(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
+            $inputs['diaban'] = isset($inputs['diaban']) ? $inputs['diaban'] : '';
+            $inputs['vitri'] = isset($inputs['vitri']) ? $inputs['vitri'] : '';
+            $model = GiaThueDatNuocCt::join('giathuedatnuoc','giathuedatnuoc.mahs','=','giathuedatnuocct.mahs')
+                ->select('giathuedatnuocct.*','giathuedatnuoc.soqd','giathuedatnuoc.ngayapdung','giathuedatnuoc.trangthai','giathuedatnuoc.ghichu','giathuedatnuoc.district')
+                ->whereIn('giathuedatnuoc.trangthai',['HT','CB']);
+            if($inputs['nam']!= '')
+                $model = $model->whereYear('giathuedatnuoc.ngayapdung',$inputs['nam']);
+            if($inputs['vitri'] != '')
+                $model = $model->where('giathuedatnuocct.vitri','like','%'.$inputs['vitri'].'%');
+            if($inputs['diaban'] != '')
+                $model = $model->where('giathuedatnuoc.district',$inputs['diaban']);
+            $model = $model->get();
+
+            if(session('admin')->level == 'T'){
+                $inputs['dvcaptren'] = '';
+                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }elseif(session('admin')->level == 'H'){
+                $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }else{
+                $modeldv = Town::where('maxa',session('admin')->maxa)
+                    ->where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }
+            $huyens = DiaBanHd::where('level','H')->get();
+            //dd($model);
+            return view('manage.dinhgia.thuematdatmatnuoc.reports.print')
+                ->with('model',$model)
+                ->with('inputs',$inputs)
+                ->with('huyens',$huyens)
+                ->with('pageTitle','Thông tin hồ sơ đấu giá đất, mặt nước');
+        }else
+            return view('errors.notlogin');
+    }
 }

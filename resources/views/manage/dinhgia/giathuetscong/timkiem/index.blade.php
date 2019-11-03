@@ -64,6 +64,14 @@
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box wi">
+                <div class="portlet-title">
+                    <div class="caption">
+                    </div>
+                    <div class="actions">
+                        <a href="{{url('thongtinthuetaisancong/ketxuat?nam='.$inputs['nam'].'&tents='.$inputs['tents']).'&maxa='.$inputs['maxa']}}"
+                           class="btn btn-default btn-sm" target="_blank"><i class="fa fa-print"></i> Print </a>
+                    </div>
+                </div>
                 <div class="portlet-body">
                     <div class="row">
                         <div class="col-md-3">
@@ -118,7 +126,7 @@
                                 <td style="text-align: left">{{$key + 1}}</td>
                                 <td class="active" style="font-weight: bold">{{$tt->tents}}</td>
                                 <td style="text-align: center;" >{{number_format($tt->soluong)}}</td>
-                                <td style="text-align: center;" >{{number_format($tt->dvt)}}</td>
+                                <td style="text-align: center;" >{{$tt->dvt}}</td>
                                 <td style="text-align: right;font-weight: bold">{{number_format($tt->dongiathue)}}</td>
                                 <td style="text-align: left;">{{$tt->dvthue}}</td>
                                 <td style="text-align: left;">{{$tt->hdthue}}</td>
