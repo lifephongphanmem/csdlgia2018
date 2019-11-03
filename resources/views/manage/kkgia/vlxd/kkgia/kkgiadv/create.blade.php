@@ -547,7 +547,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label"><b>Quy cách chất lượng</b><span class="require">*</span></label>
+                            <div class="form-group"><label for="selGender" class="control-label"><b>Ghi chú</b><span class="require">*</span></label>
                                 <div><input type="text" name="ghichu" id="ghichu" class="form-control" ></div>
                             </div>
                         </div>
