@@ -343,7 +343,7 @@
                                     </td>
                                 @else
                                     <td align="center">
-                                        <span class="badge badge-success">{{$tt->trangthai}}</span>
+                                        <span class="badge badge-success">Đã duyệt</span>
                                         <br>Thời gian chuyển:<br><b>{{getDateTime($tt->ngaychuyen)}}</b>
                                     </td>
                                 @endif

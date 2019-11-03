@@ -33,7 +33,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Thông tin doanh nghiệp kê khai <small>&nbsp;{{$inputs['mh']}}</small>
+        Thông tin doanh nghiệp đăng ký  <small>&nbsp;{{$inputs['mh']}}</small>
         <p><h5 style="color: blue">Sở ban ngành quản lý {{$ttql->tendv}}</h5></p>
     </h3>
     <!-- END PAGE HEADER-->

@@ -18,7 +18,7 @@
             <div class="modal-header modal-header-primary">
                 <button type="button" data-dismiss="modal" aria-hidden="true"
                         class="close">&times;</button>
-                <h4 id="modal-header-primary-label" class="modal-title">Báo cáo tổng hợp {{$modeldmnghe->tennghe}}</h4>
+                <h4 id="modal-header-primary-label" class="modal-title">Báo cáo tổng hợp {{$modeldmnghe->tennghe}} đăng ký</h4>
             </div>
             <div class="modal-body">
                 <div class="form-horizontal">

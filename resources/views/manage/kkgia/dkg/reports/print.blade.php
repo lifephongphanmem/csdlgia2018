@@ -44,13 +44,13 @@
     <tr>
         <td width="40%">
             <b>{{$modeldn->tendn}}</b><br>
-            --------<br>
+            <hr style="width: 10%"><br>
             Số: {{$modelkk->socv}}<br>V/v đăng ký giá
         </td>
         <td>
             <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
             Độc lập - Tự do - Hạnh phúc</b><br>
-            -------------------<br>
+            <hr style="width: 15%"> <br>
             <i>{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i>
         </td>
     </tr>
@@ -114,12 +114,12 @@
     <tr>
         <td width="40%">
             <b>{{$modeldn->tendn}}</b><br>
-            --------<br>
+            <hr style="width: 10%"> <br>
         </td>
         <td>
             <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
                 Độc lập - Tự do - Hạnh phúc</b><br>
-            -------------------<br>
+            <hr style="width: 15%"> <br>
             <i>{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i>
         </td>
     </tr>
@@ -160,20 +160,16 @@
 <hr class="in">
 <p style="page-break-before: always">
 @foreach($modelkkct as $nhapkhau)
-<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 25px; text-align: center;">
+<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%" style="text-transform: uppercase;">
+        <td width="40%">
             <b>{{$modeldn->tendn}}</b><br>
-            --------<br>
+            <hr style="width: 10%"><br>
         </td>
         <td>
-            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>
-            <b><i><u>Độc lập - Tự do - Hạnh phúc</u></i></b><br>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
+            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+                Độc lập - Tự do - Hạnh phúc</b><br>
+            <hr style="width: 15%"> <br>
             <i>{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i>
         </td>
     </tr>
@@ -345,16 +341,17 @@
 <!--Trang4-->
 <hr class="in">
 <p style="page-break-before: always">
+
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
         <td width="40%">
             <b>{{$modeldn->tendn}}</b><br>
-            --------<br>
+            <hr style="width: 10%"><br>
         </td>
         <td>
             <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
                 Độc lập - Tự do - Hạnh phúc</b><br>
-            -------------------<br>
+            <hr style="width: 15%"> <br>
             <i>{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i>
         </td>
     </tr>

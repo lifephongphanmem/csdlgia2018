@@ -31,21 +31,25 @@
     </style>
 </head>
 <body style="font:normal 14px Times, serif;">
+
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%" style="text-transform: uppercase;">
-            --------<br><br>
-            Số:
+        <td width="40%">
+            <span style="text-transform: uppercase">{{$inputs['dvcaptren']}}</span><br>
+            <span style="text-transform: uppercase;font-weight: bold">{{$inputs['dv']}}</span><br>
+            <hr style="width: 10%"> <br>
+            Số: ..............
         </td>
         <td>
-            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>
-            <b><i><u>Độc lập - Tự do - Hạnh phúc</u></i></b><br><br>
-            <i>....., Ngày ..... tháng ..... năm .....</i>
+            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+                Độc lập - Tự do - Hạnh phúc</b><br>
+            <hr style="width: 15%"><br>
+            <i>{{$inputs['diadanh']}}, ngày .... tháng .... năm ....</i>
         </td>
     </tr>
 </table>
 
-<p style="text-align: center; font-weight: bold; font-size: 16px;text-transform: uppercase;">BÁO CÁO KÊ KHAI {{$modeldmnghe->tennghe}}</p>
+<p style="text-align: center; font-weight: bold; font-size: 16px;text-transform: uppercase;">BÁO CÁO ĐĂNG KÝ {{$modeldmnghe->tennghe}}</p>
 <p style="text-align: center; font-size: 14px;">
     Thời điểm: @if($inputs['time'] == 'ngay')
                    Từ ngày {{$inputs['tungay']}} đến ngày {{$inputs['denngay']}}
@@ -91,24 +95,28 @@
                 <tr>
                     <td></td>
                     <td style="text-align: center">{{($key2 +1)}}</td>
-                    <<td class="active">{{$tt->tthhdv}}</td>
-                    <td style="text-align: left">{{$tt->qccl}}</td>
+                    <<td class="active">{{$tt->tenhh}}</td>
+                    <td style="text-align: left">{{$tt->quycach}}</td>
                     <td style="text-align: center">{{$tt->dvt}}</td>
-                    <td style="text-align: right">{{number_format($tt->dongialk)}}</td>
-                    <td style="text-align: right">{{number_format($tt->dongia)}}</td>
+                    <td style="text-align: right">{{number_format($tt->gialk)}}</td>
+                    <td style="text-align: right">{{number_format($tt->giakk)}}</td>
                 </tr>
             @endforeach
         @endforeach
     @endforeach
     </tbody>
 </table>
-<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:20px auto; text-align: center;">
+<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td style="text-align: left;" width="30%">
-
+        <td width="40%" style="text-align: left">
+            <span style="font-weight: bold;font-style: italic">Nơi nhận:</span><br>
+            - UBND tỉnh;<br>
+            - Bộ tài chính;<br>
+            - Lưu: VT, QLGCS.
         </td>
-        <td style="text-align: center;text-transform: uppercase; " width="70%">
-            <b></b><br>
+        <td>
+            <b>THỦ TRƯỞNG ĐƠN VỊ</b><br>
+            <i>(Ký tên, đóng dấu)</i><br><br><br><br><br><br><br>
         </td>
     </tr>
 </table>

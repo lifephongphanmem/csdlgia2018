@@ -20,6 +20,7 @@ class CreateDmnghekdTable extends Migration
             $table->string('tennghe')->nullable();
             $table->string('mahuyen')->nullable();
             $table->string('theodoi')->nullable();
+            $table->string('phanloai')->nullable();
             $table->timestamps();
         });
     }

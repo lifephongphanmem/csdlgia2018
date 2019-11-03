@@ -329,7 +329,7 @@ class KkDkgController extends Controller
                 ->with('modelkkct',$modelkkct)
                 ->with('modelcqcq',$modelcqcq)
                 ->with('modelnghe',$modelnghe)
-                ->with('pageTitle','Hồ sơ kê khai giá');
+                ->with('pageTitle','Hồ sơ đăng ký giá');
 
         }else
             return view('errors.notlogin');
@@ -386,7 +386,7 @@ class KkDkgController extends Controller
             return view('manage.kkgia.dkg.timkiem.index')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
-                ->with('pageTitle','Tìm kiếm thông tin kê khai giá ' .$inputs['mh']);
+                ->with('pageTitle','Tìm kiếm thông tin đăng ký giá ' .$inputs['mh']);
         }else
             return view('errors.notlogin');
     }

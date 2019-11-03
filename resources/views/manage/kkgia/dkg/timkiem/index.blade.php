@@ -25,14 +25,14 @@
                 var manghe = '&manghe='+ $('#manghe').val();
                 var namhs = '&nam='+ $('#nam').val();
                 var tenhh = '&tenhh=' + $('#tenhh').val();
-                var url = '/timkiemkkdkg?'+ma+namhs + tenhh;
+                var url = '/timkiemkkdkg?'+manghe+namhs + tenhh;
                 window.location.href = url;
             });
             $('#tenhh').change(function() {
-                var ma = '&ma='+ $('#ma').val();
+                var manghe = '&manghe='+ $('#manghe').val();
                 var namhs = '&nam='+ $('#nam').val();
                 var tenhh = '&tenhh=' + $('#tenhh').val();
-                var url = '/timkiemkkdkg?'+ma+namhs + tenhh;
+                var url = '/timkiemkkdkg?'+manghe+namhs + tenhh;
                 window.location.href = url;
             });
 
@@ -43,7 +43,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Tìm kiếm thông tin kê khai giá<small>&nbsp;{{$inputs['mh']}}</small>
+        Tìm kiếm thông tin đăng ký<small>&nbsp;{{$inputs['mh']}}</small>
     </h3>
     <div class="row">
         <div class="col-md-2">
@@ -85,7 +85,6 @@
                             <th style="text-align: center" >Quy cách chất lượng</th>
                             <th style="text-align: center" >Đơn vị tính</th>
                             <th style="text-align: center" >Mức giá kê khai</th>
-
                         </tr>
                         </thead>
                         <tbody>
@@ -96,7 +95,7 @@
                                     <br><b>Mã số thuế:</b> {{$tt->maxa}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->ngayhieuluc)}}</td>
                                 <td style="text-align: left">{{$tt->tenhh}}</td>
-                                <td style="text-align: left">{{$tt->qccl}}</td>
+                                <td style="text-align: left">{{$tt->quycach}}</td>
                                 <td style="text-align: left">{{$tt->dvt}}</td>
                                 <td style="text-align: right;font-weight: bold">{{number_format($tt->giakk)}}</td>
 

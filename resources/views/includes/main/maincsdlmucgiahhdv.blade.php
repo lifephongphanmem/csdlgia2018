@@ -209,5 +209,4 @@
 @endif
 
 
-@include('includes.main.include.bog')
 @include('includes.main.include.kknygia')
