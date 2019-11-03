@@ -183,7 +183,7 @@ class GiaThueNhaCongVuController extends Controller
             $model->trangthai = 'CB';
             $model->save();
             $nam = $model->thoidiem != '' ? date('Y',strtotime($model->thoidiem)): 'all';
-            return redirect('thuenhacongvu?&nam='.$nam.'&district='.$model->district);
+            return redirect('giathuenhacongvu?&nam='.$nam.'&district='.$model->district);
         }else
             return view('errors.notlogin');
     }
