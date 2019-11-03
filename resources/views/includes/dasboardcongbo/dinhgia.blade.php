@@ -22,11 +22,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php $modelmhbinhongia = \App\DmMhBinhOnGia::all()?>
-                    @foreach($modelmhbinhongia as $key=>$binhongia)
+                    <?php $model = \App\GiaDatDiaBan::all();
+                            $key = 0;
+                    ?>
+                    @foreach($model as $ct)
                         <tr>
                             <td align="center">{{$key+1}}</td>
-                            <td>{{$binhongia->hienthi != '' ? $binhongia->hienthi : $binhongia->tenmh}}</td>
+                            <td>{{$ct->khuvuc.' - '. $ct->mota}}</td>
                             <td><a href="{{url('')}}">Xem báo cáo</a></td>
                         </tr>
                     @endforeach

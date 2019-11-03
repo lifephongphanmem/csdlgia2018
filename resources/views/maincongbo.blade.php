@@ -144,11 +144,11 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN BODY -->
 <!-- DOC: Apply "page-header-menu-fixed" class to set the mega menu fixed  -->
 <!-- DOC: Apply "page-header-top-fixed" class to set the top menu fixed  -->
-<body style="background-image: url(../assets/app/media/img/bg/bg-3.jpg)" class="page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo page-container-bg-solid" onload="time()">
+<body style="" class="page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo page-container-bg-solid" onload="time()">
 <!-- BEGIN HEADER -->
 <div class="page-header">
     <!-- BEGIN HEADER TOP -->
-    <div class="page-header-top" style="background-image: url(../assets/app/media/img/bg/bg-3.jpg)">
+    <div class="page-header-top" style="">
         <div class="container">
             <!-- BEGIN LOGO -->
             <div class="page-logo">
@@ -195,40 +195,52 @@ License: You must have a valid license purchased only from themeforest(the above
                                     &nbsp;Định giá</a>
                                 <ul class="dropdown-menu">
                                     <li class="">
-                                        <a href="{{url('coming')}}">
-                                            Giá các loại đất</a>
+                                        <a href="{{url('cbgiadatdiaban')}}">
+                                            Giá đất theo địa bàn</a>
                                     </li>
                                     <li class="">
-                                        <a href="{{url('coming')}}">
+                                        <a href="{{url('cbgiadaugiadat')}}">
                                             Giá đấu giá đất</a>
                                     </li>
                                     <li class="">
-                                        <a href="{{url('coming')}}">
+                                        <a href="{{url('cbgiathuedatnuoc')}}">
                                             Giá thuê mặt đất-nước</a>
                                     </li>
                                     <li class="">
-                                        <a href="{{url('coming')}}">
+                                        <a href="{{url('cbgiarung')}}">
                                             Giá rừng</a>
                                     </li>
                                     <li class="">
-                                        <a href="{{url('coming')}}">
+                                        <a href="{{url('cbthuemuanhaxh')}}">
                                             Giá thuê mua nhà XH</a>
                                     </li>
                                     <li class="">
-                                        <a href="{{url('coming')}}">
+                                        <a href="{{url('cbgiathuenhacongvu')}}">
+                                            Giá thuê nhà công vụ</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="{{url('cbgianuocsachsinhhoat')}}">
                                             Giá nước sạch sinh hoạt</a>
                                     </li>
                                     <li class="">
-                                        <a href="{{url('coming')}}">
+                                        <a href="{{url('cbgiathuetaisan')}}">
                                             Giá thuê tài sản công</a>
                                     </li>
                                     <li class="">
-                                        <a href="{{url('coming')}}">
+                                        <a href="{{url('cbgiadvgiaoducdaotao')}}">
                                             Giá dịch vụ GD-ĐT</a>
                                     </li>
                                     <li class="">
-                                        <a href="{{url('coming')}}">
+                                        <a href="{{url('cbdichvukcb')}}">
                                             Giá dịch vụ KCB</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="{{url('coming')}}">
+                                            Mức trợ giá, trợ cước</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="{{url('coming')}}">
+                                            Giá hàng hóa dịch vụ khác</a>
                                     </li>
                                 </ul>
                             </li>
@@ -243,31 +255,14 @@ License: You must have a valid license purchased only from themeforest(the above
                                     &nbsp;Giá thuế tài nguyên</a>
                             </li>
                             <li>
-                                <a href="">
+                                <a href="{{url('cbgialephitruocba')}}">
                                     <i class="icon-folder"></i>
                                     &nbsp;Giá lệ phí trước bạ</a>
                             </li>
                             <li>
-                                <a href="">
+                                <a href="cbphilephi">
                                     <i class="icon-folder"></i>
                                     &nbsp;Phí, lệ phí</a>
-                            </li>
-                            <li class=" dropdown-submenu">
-                                <a href="">
-                                    <i class="icon-folder"></i>
-                                    &nbsp;Bình ổn giá</a>
-                                <ul class="dropdown-menu">
-                                    <li class="">
-                                        <a href="{{url('coming')}}">
-                                            <i class="icon-settings"></i>
-                                            Biện pháp bình ổn giá</a>
-                                    </li>
-                                    <li class="">
-                                        <a href="{{url('coming')}}">
-                                            <i class="icon-settings"></i>
-                                            Đăng ký giá</a>
-                                    </li>
-                                </ul>
                             </li>
                             <li class=" dropdown-submenu">
                                 <a href="">
@@ -275,7 +270,15 @@ License: You must have a valid license purchased only from themeforest(the above
                                     &nbsp;Kê khai - niêm yết giá</a>
                                 <ul class="dropdown-menu">
                                     <li class="">
-                                        <a href="{{url('coming')}}">
+                                        <a href="{{url('cbkkgiavlxd')}}">
+                                            Vật liệu xây dựng</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="{{url('cbkkgiaxmtxd')}}">
+                                            Xi măng, thép xây dựng</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="{{url('cbphilephi')}}">
                                             Thức ăn chăn nuôi</a>
                                     </li>
                                     <li class="">
@@ -332,7 +335,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN PAGE HEAD -->
     <!-- END PAGE HEAD -->
     <!-- BEGIN PAGE CONTENT -->
-    <div class="page-content" style="background-image: url(../assets/app/media/img/bg/bg-3.jpg)">
+    <div class="page-content" style="">
         @yield('content-cb')
     </div>
     <!-- END PAGE CONTENT -->
@@ -367,7 +370,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END FOOTER -->
 <!-- BEGIN JAVASCRIPTS (Load javascripts at bottom, this will reduce page load time) -->
 <!-- BEGIN CORE PLUGINS -->
-<!--[if lt IE 9]>
+<!--[if lt IE 9]-->
 
 </body>
 <!-- END BODY -->
