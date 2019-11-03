@@ -540,15 +540,15 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group"><label for="selGender" class="control-label"><b>Ghi chú</b><span class="require">*</span></label>
-                                <div><input type="text" name="ghichu" id="ghichu" class="form-control"></div>
+                            <div class="form-group"><label for="selGender" class="control-label"><b>Giá</b><span class="require">*</span></label>
+                                <div><input type="text" name="gia" id="gia" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold"></div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group"><label for="selGender" class="control-label"><b>Quy cách chất lượng</b><span class="require">*</span></label>
-                                <div><input type="text" name="qccl" id="qccl" class="form-control" ></div>
+                                <div><input type="text" name="ghichu" id="ghichu" class="form-control" ></div>
                             </div>
                         </div>
                     </div>
