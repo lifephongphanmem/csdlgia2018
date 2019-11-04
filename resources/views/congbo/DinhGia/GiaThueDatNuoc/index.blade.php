@@ -55,7 +55,7 @@
     <div class="row margin-top-10">
         <div class=" col-sm-12">
             <!-- BEGIN PORTLET-->
-            <div class="portlet light">
+            <!--div class="portlet light"-->
                 <div class="portlet-title">
                     <div class="row">
                     <div class="caption caption-md">
@@ -111,14 +111,20 @@
                         <th style="text-align: center">Ghi chú</th>
                     </tr>
                     </thead>
-                    @foreach($model as $key=>$tt)
+                    @if(count($model) != 0)
+                        @foreach($model as $key=>$tt)
+                            <tr>
+                                <td style="text-align: center">{{$key + 1}}</td>
+                                <td style="text-align: center">{{$tt->soqd}}</td>
+                                <td style="text-align: center">{{getDayVn($tt->ngayapdung)}}</td>
+                                <td>{{$tt->ghichu}}</td>
+                            </tr>
+                        @endforeach
+                    @else
                         <tr>
-                            <td style="text-align: center">{{$key + 1}}</td>
-                            <td style="text-align: center">{{$tt->soqd}}</td>
-                            <td style="text-align: center">{{getDayVn($tt->ngayapdung)}}</td>
-                            <td>{{$tt->ghichu}}</td>
+                            <td style="text-align: center" colspan="10">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
                         </tr>
-                    @endforeach
+                    @endif
                 </table>
                 <div class="row">
                     @if(count($model) != 0)
@@ -129,7 +135,7 @@
                         </div>
                     @endif
                 </div>
-            </div>
+            <!--/div-->
             <!-- END PORTLET-->
         </div>
     </div>

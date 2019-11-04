@@ -18,6 +18,14 @@ Route::get('cbphilephi','congbo\philephi\CongboPhiLePhiController@index');
 //Kê khai giá
 Route::get('cbkkgiavlxd','congbo\kekhaigia\CongboVatLieuXayDungController@index');
 Route::get('cbkkgiaxmtxd','congbo\kekhaigia\CongboGiaXMTXDController@index');
+Route::get('cbkkgiadvhdtm','congbo\kekhaigia\CongboGiaHDTMController@index');
+Route::get('cbkkgiatacn','congbo\kekhaigia\CongboGiaTACNController@index');
+Route::get('cbgiagiay','congbo\kekhaigia\CongboGiaGiayController@index');
+Route::get('cbgiasach','congbo\kekhaigia\CongboGiaSachController@index');
+Route::get('cbgiaetanol','congbo\kekhaigia\CongboGiaEtanolController@index');
+Route::get('cbthamdinhgia','congbo\kekhaigia\CongboThamDinhGiaController@index');
+Route::get('cbvanbanqlnnvegia','congbo\vanbanqlnn\CongboVanBanQLNNController@index');
+
 
 
 ?>

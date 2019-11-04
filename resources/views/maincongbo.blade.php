@@ -278,40 +278,40 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Xi măng, thép xây dựng</a>
                                     </li>
                                     <li class="">
-                                        <a href="{{url('cbphilephi')}}">
+                                        <a href="{{url('cbkkgiadvhdtm')}}">
+                                            Giá Dv hỗ trợ HĐTM tại cửa khẩu</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="{{url('cbkkgiatacn')}}">
                                             Thức ăn chăn nuôi</a>
                                     </li>
                                     <li class="">
-                                        <a href="{{url('coming')}}">
-                                            Vận tải xe khách</a>
+                                        <a href="{{url('cbgiagiay')}}">
+                                            Giấy in, viết, giấy in báo sản xuất trong nước</a>
                                     </li>
                                     <li class="">
-                                        <a href="{{url('coming')}}">
-                                            Vận tải xe taxi</a>
+                                        <a href="{{url('cbgiasach')}}">
+                                            Sách giáo khoa</a>
                                     </li>
                                     <li class="">
-                                        <a href="{{url('coming')}}">
-                                            TPCN dành cho TE dưới 6 tuổi</a>
+                                        <a href="{{url('cbgiaetanol')}}">
+                                            Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG)</a>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
                     <li class="menu-dropdown classic-menu-dropdown ">
-                        <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
-                            CSDL Thẩm định giá tại địa phương<i class="fa fa-angle-down"></i>
+                        <a data-hover="megamenu-dropdown" data-close-others="true"  href="cbthamdinhgia">
+                            CSDL Thẩm định giá tại địa phương
                         </a>
-                        <ul class="dropdown-menu pull-left">
-                            <li><a href="{{url('coming')}}"><i class="icon-folder"></i>&nbsp;Thẩm định giá tài sản</a></li>
-                            <li><a href="{{url('coming')}}"><i class="icon-folder"></i> &nbsp;Thẩm định giá HH - DV</a></li>
-                        </ul>
                     </li>
                     <li class="menu-dropdown classic-menu-dropdown ">
                         <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
-                           &nbsp;Văn bản quản lý NN về giá <i class="fa fa-angle-down"></i>
+                           &nbsp;Văn bản quản lý NN về giá
                         </a>
                         <ul class="dropdown-menu pull-left">
-                            <li><a href="{{url('coming')}}"><i class="icon-folder"></i> &nbsp;Văn bản QLNN về giá</a></li>
+                            <li><a href="{{url('cbvanbanqlnnvegia')}}"><i class="icon-folder"></i> &nbsp;Văn bản QLNN về giá, phí lệ phí</a></li>
                         </ul>
                     </li>
                     <!--li class="menu-dropdown classic-menu-dropdown ">

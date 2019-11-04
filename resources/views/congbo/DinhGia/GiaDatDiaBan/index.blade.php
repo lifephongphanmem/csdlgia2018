@@ -165,6 +165,7 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @if(count($model) != 0)
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key+1}}</td>
@@ -182,6 +183,11 @@
                                 <td style="text-align: center">{{dinhdangsothapphan($tt->giavt5,2)}}</td>
                             </tr>
                         @endforeach
+                        @else
+                            <tr>
+                                <td style="text-align: center" colspan="15">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
                 <div class="row">
