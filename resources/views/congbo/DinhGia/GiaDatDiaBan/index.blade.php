@@ -61,7 +61,7 @@
     <div class="row margin-top-10">
         <div class=" col-sm-12">
             <!-- BEGIN PORTLET-->
-            <div class="portlet light">
+            {{--<div class="portlet light">--}}
                 <div class="portlet-title">
                     <div class="row">
                     <div class="caption caption-md">
@@ -143,48 +143,47 @@
                         </div>
                     </div></br>
                 </div>
-
-                        <table class="table table-striped table-bordered table-hover">
-                            <thead>
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th style="text-align: center" width="2%" rowspan="2">STT</th>
+                        <th style="text-align: center" width="2%" rowspan="2">Năm</th>
+                        <th style="text-align: center" rowspan="2" width="10%">Địa bàn</th>
+                        <th style="text-align: center" rowspan="2" width="10%">Loại đất</th>
+                        <th style="text-align: center" rowspan="2">Khu vực</th>
+                        <th style="text-align: center" rowspan="2">Mô tả</th>
+                        <th style="text-align: center" rowspan="2" width="5%">MĐSD</th>
+                        <th style="text-align: center" rowspan="2" width="5%">Hệ số K (so với bảng giá đất)</th>
+                        <th style="text-align: center" colspan="5">Giá đất</th>
+                    </tr>
+                    <tr>
+                        <th style="text-align: center">VT1</th>
+                        <th style="text-align: center">VT2</th>
+                        <th style="text-align: center">VT3</th>
+                        <th style="text-align: center">VT4</th>
+                        <th style="text-align: center">VT5</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($model as $key=>$tt)
                             <tr>
-                                <th style="text-align: center" width="2%" rowspan="2">STT</th>
-                                <th style="text-align: center" width="2%" rowspan="2">Năm</th>
-                                <th style="text-align: center" rowspan="2" width="10%">Địa bàn</th>
-                                <th style="text-align: center" rowspan="2" width="10%">Loại đất</th>
-                                <th style="text-align: center" rowspan="2">Khu vực</th>
-                                <th style="text-align: center" rowspan="2">Mô tả</th>
-                                <th style="text-align: center" rowspan="2" width="5%">MĐSD</th>
-                                <th style="text-align: center" rowspan="2" width="5%">Hệ số K (so với bảng giá đất)</th>
-                                <th style="text-align: center" colspan="5">Giá đất</th>
+                                <td style="text-align: center">{{$key+1}}</td>
+                                <td><b>{{$tt->nam}}</b></td>
+                                <td><b>{{$tt->diaban}}</b><br>{{$tt->soqd}}</td>
+                                <td style="text-align: left"><b>{{$tt->loaidat}}</b></td>
+                                <td style="text-align: left;"><b>{{$tt->khuvuc}}</b></td>
+                                <td style="text-align: left" class="active">{{$tt->mota}}</td>
+                                <td style="text-align: center">{{$tt->mdsd}}</td>
+                                <td style="text-align: center">{{$tt->hesok}}</td>
+                                <td style="text-align: center">{{dinhdangsothapphan($tt->giavt1,2)}}</td>
+                                <td style="text-align: center">{{dinhdangsothapphan($tt->giavt2,2)}}</td>
+                                <td style="text-align: center">{{dinhdangsothapphan($tt->giavt3,2)}}</td>
+                                <td style="text-align: center">{{dinhdangsothapphan($tt->giavt4,2)}}</td>
+                                <td style="text-align: center">{{dinhdangsothapphan($tt->giavt5,2)}}</td>
                             </tr>
-                            <tr>
-                                <th style="text-align: center">VT1</th>
-                                <th style="text-align: center">VT2</th>
-                                <th style="text-align: center">VT3</th>
-                                <th style="text-align: center">VT4</th>
-                                <th style="text-align: center">VT5</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($model as $key=>$tt)
-                                    <tr>
-                                        <td style="text-align: center">{{$key+1}}</td>
-                                        <td><b>{{$tt->nam}}</b></td>
-                                        <td><b>{{$tt->diaban}}</b><br>{{$tt->soqd}}</td>
-                                        <td style="text-align: left"><b>{{$tt->loaidat}}</b></td>
-                                        <td style="text-align: left;"><b>{{$tt->khuvuc}}</b></td>
-                                        <td style="text-align: left" class="active">{{$tt->mota}}</td>
-                                        <td style="text-align: center">{{$tt->mdsd}}</td>
-                                        <td style="text-align: center">{{$tt->hesok}}</td>
-                                        <td style="text-align: center">{{dinhdangsothapphan($tt->giavt1,2)}}</td>
-                                        <td style="text-align: center">{{dinhdangsothapphan($tt->giavt2,2)}}</td>
-                                        <td style="text-align: center">{{dinhdangsothapphan($tt->giavt3,2)}}</td>
-                                        <td style="text-align: center">{{dinhdangsothapphan($tt->giavt4,2)}}</td>
-                                        <td style="text-align: center">{{dinhdangsothapphan($tt->giavt5,2)}}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        @endforeach
+                    </tbody>
+                </table>
                 <div class="row">
                     @if(count($model) != 0)
                         <div class="col-md-5 col-sm-12">
@@ -194,7 +193,7 @@
                         </div>
                     @endif
                 </div>
-            </div>
+            {{--</div>--}}
             <!-- END PORTLET-->
         </div>
     </div>
