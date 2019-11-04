@@ -202,21 +202,23 @@
                                             <a href="{{url('giadatphanloai/'.$tt->id)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                             @if(session('admin')->level == 'T' || session('admin')->level == 'H')
                                                 @if($tt->trangthai == 'CB')
-                                                    @if(can('kkgiacldat','congbo'))
+                                                    @if(can('thkkgiadatpl','congbo'))
                                                         <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
                                                             Hủy công bố</button>
                                                     @endif
                                                 @elseif($tt->trangthai == 'HT')
-                                                    @if(can('kkgiacldat','congbo'))
+                                                    @if(can('thkkgiadatpl','congbo'))
                                                         <button type="button" onclick="confirmCB('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal-confirm" data-toggle="modal"><i class="fa fa-send"></i>&nbsp;
                                                             Công bố</button>
+                                                        <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
+                                                            Hủy hoàn thành</button>
                                                     @endif
                                                 @else
-                                                    @if(can('kkgiacldat','edit'))
+                                                    @if(can('kkgiadatpl','edit'))
                                                         <a href="{{url('giadatphanloai/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
 
                                                     @endif
-                                                    @if(can('kkgiacldat','delete'))
+                                                    @if(can('kkgiadatpl','delete'))
                                                         <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                                             Xóa</button>
                                                     @endif
@@ -225,16 +227,17 @@
                                                 <!-- 03.11.19 làm để giới thiệu (chưa phân quyền) -->
                                                 @if($tt->trangthai == 'CHT' || $tt->trangthai == 'HHT')
                                                     @if($tt->mahuyen == session('admin')->district)
-                                                        @if(can('kkgiacldat','edit'))
+                                                        @if(can('kkgiadatpl','edit'))
                                                             <!--đúng địa bàn quản lý thì đc sửa-->
                                                                 <a href="{{url('giadatphanloai/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                                         @endif
 
-                                                        @if(can('kkgiacldat','approve'))
-                                                            <button type="button" onclick="confirmHoanthanh('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn thành</button>
+                                                        @if(can('kkgiadatpl','approve'))
+                                                            <button type="button" onclick="confirmHoanthanh('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>
+                                                                &nbsp;Hoàn thành</button>
                                                         @endif
 
-                                                        @if(can('kkgiacldat','delete'))
+                                                        @if(can('kkgiadatpl','delete'))
                                                             <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                                                 Xóa</button>
                                                         @endif
