@@ -298,6 +298,32 @@
                         </li>
                     @endif
                 @endif
+                    <!-- lấy theo phân quyền thuê tài sản -->
+                @if(canGeneral('giathuetscong','index'))
+                        @if(can('giathuetscong','index'))
+                            <li class="tooltips" data-container="body" data-placement="right" data-html="true"
+                                data-original-title="Giá cho thuê tài sản Nhà nước là công trình kết cấu hạ tầng đầu tư từ nguồn ngân sách địa phương">
+                                <a href="">
+                                    Giá tài sản công<span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li>
+                                        <a href="{{url('giataisancongdm')}}">
+                                            Danh mục tài sản công
+                                        </a>
+                                    </li>
+                                    @if(can('kkgiathuetscong','index'))
+                                        <li>
+                                            <a href="{{url('giataisancong')}}">
+                                                Hồ sơ giá tài sản công
+                                            </a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </li>
+                        @endif
+                    @endif
+
                 @if(canGeneral('giadvgddt','index'))
                     @if(can('giadvgddt','index'))
 

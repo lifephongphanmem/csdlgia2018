@@ -286,6 +286,19 @@ Route::get('thongtinthuetaisancongct/show','GiaThueTsCongCtController@show');
 Route::get('thongtinthuetaisancongct/update','GiaThueTsCongCtController@update');
 Route::get('thongtinthuetaisancongct/del','GiaThueTsCongCtController@destroy');
 
+//danh mục tài sản công
+Route::resource('giataisancongdm','manage\giataisancong\GiaTaiSanCongDmController');
+Route::post('giataisancongdm/delete','manage\giataisancong\GiaTaiSanCongDmController@destroy');
+
+//giá tài sản công
+Route::get('giataisancong/print','manage\giataisancong\GiaTaiSanCongController@ketxuat');
+Route::resource('giataisancong','manage\giataisancong\GiaTaiSanCongController');
+Route::post('giataisancong/delete','manage\giataisancong\GiaTaiSanCongController@destroy');
+Route::post('giataisancong/hoanthanh','manage\giataisancong\GiaTaiSanCongController@hoanthanh');
+Route::post('giataisancong/huyhoanthanh','manage\giataisancong\GiaTaiSanCongController@huyhoanthanh');
+Route::post('giataisancong/congbo','manage\giataisancong\GiaTaiSanCongController@congbo');
+Route::get('timkiemgiataisancong','manage\giataisancong\GiaTaiSanCongController@search');
+
 //Giá Nước sạch sinh hoạt
 
 Route::get('dmgianuocsachsinhhoat','manage\gianuocsachsh\GiaNuocSachShDmController@index');
