@@ -7,6 +7,7 @@ use App\DmHhDvK;
 use App\GiaHhDvK;
 use App\GiaHhDvKCt;
 use App\NhomHhDvK;
+use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;

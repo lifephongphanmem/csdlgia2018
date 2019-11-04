@@ -6,6 +6,7 @@ use App\KkGs;
 use App\KkGsCt;
 use App\Town;
 use App\Company;
+use App\DiaBanHd;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
