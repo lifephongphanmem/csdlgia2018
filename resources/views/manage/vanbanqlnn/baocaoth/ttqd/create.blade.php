@@ -134,7 +134,7 @@
                 </div>
             </div>
             <div class="col-md-12" style="text-align: center">
-                <a href="{{url('ttpvctqlnn?&phanloai='.$inputs['phanloai'])}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('baocaothvegia?&phanloai='.$inputs['phanloai'])}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 <button type="reset" class="btn default"> Hủy</button>
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Thêm mới</button>
             </div>
