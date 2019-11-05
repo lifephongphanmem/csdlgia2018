@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\manage\kekhaigia\kkgiasach;
 
+use App\District;
 use App\Model\manage\kekhaigia\kkgiasach\KkGiaSach;
 use App\Model\manage\kekhaigia\kkgiasach\KkGiaSachCt;
 use App\Model\system\dmnganhnghekd\DmNgheKd;
@@ -90,6 +91,23 @@ class KkGiaSachBcController extends Controller
             $model = $model->get();
 //            dd($model);
             $inputs['counths'] = count($model);
+            if(session('admin')->level == 'T'){
+                $inputs['dvcaptren'] = '';
+                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }elseif(session('admin')->level == 'H'){
+                $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }else{
+                $modeldv = Town::where('maxa',session('admin')->maxa)
+                    ->where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }
+
             return view('manage.kkgia.sach.reports.bc1')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
@@ -168,6 +186,23 @@ class KkGiaSachBcController extends Controller
             }
             $modelct = KkGiaSachCt::whereIn('mahs',explode(',',$mahss))
                 ->get();
+            if(session('admin')->level == 'T'){
+                $inputs['dvcaptren'] = '';
+                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }elseif(session('admin')->level == 'H'){
+                $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }else{
+                $modeldv = Town::where('maxa',session('admin')->maxa)
+                    ->where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }
+
             return view('manage.kkgia.sach.reports.bc2')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
