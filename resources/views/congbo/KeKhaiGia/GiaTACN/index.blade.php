@@ -24,11 +24,15 @@
         });
 
         $(function(){
-
-            $('#namhs').change(function() {
-                var nam = $('#namhs').val();
-                var url = '/cbkkgiavlxd?nam='+nam;
-
+            $('#nam').change(function() {
+                var namhs = $('#nam').val();
+                var url = '/cbkkgiatacn?'+namhs;
+                window.location.href = url;
+            });
+            $('#tenhh').change(function() {
+                var namhs = '&nam='+ $('#nam').val();
+                var tenhh = '&tenhh=' + $('#tenhh').val();
+                var url = '/cbkkgiatacn?'+namhs + tenhh;
                 window.location.href = url;
             });
 
@@ -46,28 +50,29 @@
                     <div class="row">
                     <div class="caption caption-md">
                         <i class="icon-bar-chart theme-font hide"></i>
-                        <span class="caption-subject theme-font bold uppercase">Giá đất theo địa bàn</span>
+                        <span class="caption-subject theme-font bold uppercase">Giá thức ăn chăn nuôi</span>
                     </div>
                     </div>
                     <div class="row">
-                        <div class="portlet-body form" id="form_wizard">
-                            <div class="form-body">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label>Năm hồ sơ</label>
-                                            <select name="namhs" id="namhs" class="form-control">
-                                                @if ($nam_start = intval(date('Y')) - 5 ) @endif
-                                                @if ($nam_stop = intval(date('Y')) + 1 ) @endif
-                                                @for($i = $nam_start; $i <= $nam_stop; $i++)
-                                                    <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
-                                                @endfor
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Năm</label>
+                                <select name="nam" id="nam" class="form-control">
+                                    @if ($nam_start = intval(date('Y')) - 5 ) @endif
+                                    @if ($nam_stop = intval(date('Y')) + 1 ) @endif
+                                    @for($i = $nam_start; $i <= $nam_stop; $i++)
+                                        <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
+                                    @endfor
+                                </select>
                             </div>
                         </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label>Tên mặt hàng</label>
+                                <input type="text" class="form-control" id="tenhh" name="tenhh" value="{{$inputs['tenhh']}}">
+                            </div>
+                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-md-12">
@@ -87,37 +92,41 @@
                     </div></br>
                 </div>
 
-                <table class="table table-striped table-bordered table-hover" >
-                    <thead>
-                    <tr>
-                        <th style="text-align: center" width="2%">STT</th>
-                        <th style="text-align: center">Ngày kê khai</th>
-                        <th style="text-align: center">Ngày thực hiện<br>mức giá kê khai</th>
-                        <th style="text-align: center">Số công văn</th>
-                        <th style="text-align: center">Số công văn<br> liền kề</th>
-                        <th style="text-align: center">Người chuyển</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @if(count($model) != 0)
-                        @foreach($model as $key=>$tt)
-                            <tr>
-                                <td style="text-align: center">{{$key+1}}</td>
-                                <td style="text-align: center">{{getDayVn($tt->ngaynhap)}}</td>
-                                <td style="text-align: center">{{getDayVn($tt->ngayhieuluc)}}</td>
-                                <td style="text-align: center" class="active">{{$tt->socv}}</td>
-                                <td style="text-align: center">{{$tt->socvlk}}</td>
-                                <td style="text-align: left">@if($tt->nguoinop != '')Họ và tên: {{$tt->nguoinop}}
-                                    <br>Số điện thoại liên hệ: {{$tt->dtll}}<br>Số Fax: {{$tt->fax}}@endif</td>
-                            </tr>
-                        @endforeach
-                    @else
+            <table class="table table-striped table-bordered table-hover" >
+                <thead>
+                <tr>
+                    <th style="text-align: center ; margin: auto" width="2%">STT</th>
+                    <th style="text-align: center" width="20%">Doanh nghiệp</th>
+                    <th style="text-align: center" width="8%">Ngày thực hiện<br>mức giá</th>
+                    <th style="text-align: center" >Tên hàng hóa dịch vụ</th>
+                    <th style="text-align: center" >Quy cách chất lượng</th>
+                    <th style="text-align: center" >Đơn vị tính</th>
+                    <th style="text-align: center" >Mức giá kê khai</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                @if(count($model) != 0)
+                    @foreach($model as $key=>$tt)
                         <tr>
-                            <td style="text-align: center" colspan="10">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
+                            <td style="text-align: center">{{$key+1}}</td>
+                            <td class="active"><b>Tên DN: </b> {{$tt->tendn}}
+                                <br><b>Mã số thuế:</b> {{$tt->maxa}}</td>
+                            <td style="text-align: center">{{getDayVn($tt->ngayhieuluc)}}</td>
+                            <td style="text-align: left">{{$tt->tenhh}}</td>
+                            <td style="text-align: left">{{$tt->qccl}}</td>
+                            <td style="text-align: left">{{$tt->dvt}}</td>
+                            <td style="text-align: right;font-weight: bold">{{number_format($tt->gbdct)}}</td>
+
                         </tr>
-                    @endif
-                    </tbody>
-                </table>
+                    @endforeach
+                @else
+                    <tr>
+                        <td style="text-align: center" colspan="10">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
+                    </tr>
+                @endif
+                </tbody>
+            </table>
                 <div class="row">
                     @if(count($model) != 0)
                         <div class="col-md-5 col-sm-12">

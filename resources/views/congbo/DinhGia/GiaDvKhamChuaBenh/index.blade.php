@@ -55,7 +55,7 @@
     <div class="row margin-top-10">
         <div class=" col-sm-12">
             <!-- BEGIN PORTLET-->
-            <div class="portlet light">
+            <!--div class="portlet light"-->
                 <div class="portlet-title">
                     <div class="row">
                     <div class="caption caption-md">
@@ -170,7 +170,7 @@
                         </div>
                     @endif
                 </div>
-            </div>
+            <!--/div-->
             <!-- END PORTLET-->
         </div>
     </div>

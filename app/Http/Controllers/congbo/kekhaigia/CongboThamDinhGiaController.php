@@ -1,0 +1,105 @@
+<?php
+
+namespace App\Http\Controllers\congbo\kekhaigia;
+
+use App\ThamDinhGiaCt;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+class CongboThamDinhGiaController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $inputs = $request->all();
+        $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
+        $inputs['tents'] = isset($inputs['tents']) ? $inputs['tents'] : '';
+        $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
+        $model = ThamDinhGiaCt::join('thamdinhgia','thamdinhgiact.mahs','=','thamdinhgia.mahs')
+            ->join('town','thamdinhgia.maxa','=','town.maxa')
+            ->select('thamdinhgiact.*','thamdinhgia.thoidiem','thamdinhgia.thuevat','thamdinhgia.sotbkl','thamdinhgia.thaotac','thamdinhgia.dvyeucau',
+                'thamdinhgia.thoihan','thamdinhgia.ppthamdinh','town.tendv')
+            ->whereYear('thamdinhgia.thoidiem',$inputs['nam'])
+            ->where('thamdinhgia.congbo','CB');
+        if($inputs['tents'] != '')
+            $model = $model->where('thamdinhgiact.tents','like','%'.$inputs['tents'].'%');
+        $model = $model->paginate($inputs['paginate']);
+
+        return view('congbo.ThamDinhGia.index')
+            ->with('nam',$inputs['nam'])
+            ->with('tents',$inputs['tents'])
+            ->with('inputs',$inputs)
+            ->with('model',$model)
+            ->with('pageTitle','Tìm kiếm thông tin thẩm định giá tài sản NN');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}
