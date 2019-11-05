@@ -7,6 +7,7 @@ use App\Model\manage\dinhgia\giathitruong\GiaThiTruong;
 use App\Model\manage\dinhgia\giathitruong\GiaThiTruongCt;
 use App\Model\manage\dinhgia\giathitruong\GiaThiTruongDm;
 use App\Model\manage\dinhgia\giathitruong\GiaThiTruongTt;
+use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -169,9 +170,10 @@ class GiaThiTruongController extends Controller
                 ->groupBy('manhom','tennhom')
                 ->get();
 
+
             if(session('admin')->level == 'T'){
-                $inputs['dvcaptren'] = '';
-                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
                 $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
             }elseif(session('admin')->level == 'H'){
                 $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();

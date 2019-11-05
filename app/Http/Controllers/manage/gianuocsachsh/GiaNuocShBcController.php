@@ -39,8 +39,8 @@ class GiaNuocShBcController extends Controller
             $ttbc = GiaNuocSh::where('mahs',$inputs['mahsbc'])->first();
 
             if(session('admin')->level == 'T'){
-                $inputs['dvcaptren'] = '';
-                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
                 $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
             }elseif(session('admin')->level == 'H'){
                 $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();

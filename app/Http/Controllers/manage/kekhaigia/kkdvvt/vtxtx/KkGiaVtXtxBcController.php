@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\manage\kekhaigia\kkdvvt\vtxtx;
 
+use App\District;
 use App\Model\manage\kekhaigia\kkdvvt\vtxtx\KkGiaVtXtx;
 use App\Model\manage\kekhaigia\kkdvvt\vtxtx\KkGiaVtXtxCt;
 use App\Model\system\dmnganhnghekd\DmNgheKd;
@@ -90,6 +91,22 @@ class KkGiaVtXtxBcController extends Controller
             $model = $model->get();
 //            dd($model);
             $inputs['counths'] = count($model);
+            if(session('admin')->level == 'T'){
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }elseif(session('admin')->level == 'H'){
+                $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }else{
+                $modeldv = Town::where('maxa',session('admin')->maxa)
+                    ->where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }
             return view('manage.kkgia.vtxtx.reports.bc1')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
@@ -168,6 +185,22 @@ class KkGiaVtXtxBcController extends Controller
             }
             $modelct = KkGiaVtXtxCt::whereIn('mahs',explode(',',$mahss))
                 ->get();
+            if(session('admin')->level == 'T'){
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }elseif(session('admin')->level == 'H'){
+                $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }else{
+                $modeldv = Town::where('maxa',session('admin')->maxa)
+                    ->where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }
             return view('manage.kkgia.vtxtx.reports.bc2')
                 ->with('model',$model)
                 ->with('inputs',$inputs)

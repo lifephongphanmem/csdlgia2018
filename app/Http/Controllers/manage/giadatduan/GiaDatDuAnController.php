@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\manage\giadatduan;
 
 use App\DiaBanHd;
+use App\District;
 use App\Model\manage\dinhgia\giadatduan\DmGiaDatDuAn;
 use App\Model\manage\dinhgia\giadatduan\GiaDatDuAn;
+use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -206,9 +208,10 @@ class GiaDatDuAnController extends Controller
             $xa = DiaBanHd::where('town',$model->maxa)
                 ->where('level','X')
                 ->first();
+
             if(session('admin')->level == 'T'){
-                $inputs['dvcaptren'] = '';
-                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
                 $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
             }elseif(session('admin')->level == 'H'){
                 $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
@@ -271,9 +274,10 @@ class GiaDatDuAnController extends Controller
                         ->first();
                     $tt->tenxa = $tenxa->diaban;
                 }
+
                 if(session('admin')->level == 'T'){
-                    $inputs['dvcaptren'] = '';
-                    $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                    $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                    $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
                     $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
                 }elseif(session('admin')->level == 'H'){
                     $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
@@ -303,9 +307,10 @@ class GiaDatDuAnController extends Controller
                         ->first();
                     $tt->tenxa = $tenxa->diaban;
                 }
+
                 if(session('admin')->level == 'T'){
-                    $inputs['dvcaptren'] = '';
-                    $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                    $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                    $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
                     $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
                 }elseif(session('admin')->level == 'H'){
                     $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();

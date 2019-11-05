@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\manage\giadatphanloai;
 
 use App\DiaBanHd;
+use App\District;
 use App\Model\manage\dinhgia\giadatphanloai\GiaDatPhanLoai;
 use App\Model\manage\dinhgia\giadatphanloai\GiaDatPhanLoaiDm;
 use App\Town;
@@ -143,9 +144,10 @@ class GiaDatPhanLoaiController extends Controller
             $modelxa = DiaBanHd::where('level','X')
                 ->where('town',$model->maxa)
                 ->first();
+
             if(session('admin')->level == 'T'){
-                $inputs['dvcaptren'] = '';
-                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
                 $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
             }elseif(session('admin')->level == 'H'){
                 $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
@@ -249,8 +251,8 @@ class GiaDatPhanLoaiController extends Controller
             }
 
             if(session('admin')->level == 'T'){
-                $inputs['dvcaptren'] = '';
-                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
                 $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
             }elseif(session('admin')->level == 'H'){
                 $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();

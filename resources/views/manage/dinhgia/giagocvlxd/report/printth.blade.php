@@ -45,6 +45,26 @@
     </td>
 </tr>
 </table>
+<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
+    <tr>
+        <td width="40%" style="vertical-align: top;">
+            <span style="text-transform: uppercase">{{$inputs['dvcaptren']}}</span><br>
+            <span style="text-transform: uppercase;font-weight: bold">{{$inputs['dv']}}</span>
+            <hr style="width: 10%;vertical-align: top;  margin-top: 2px">
+
+        </td>
+        <td style="vertical-align: top;">
+            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+                Độc lập - Tự do - Hạnh phúc</b>
+            <hr style="width: 15%;vertical-align: top; margin-top: 2px">
+
+        </td>
+    </tr>
+    <tr>
+        <td>Số: ..............</td>
+        <td style="text-align: right"><i style="margin-right: 25%;">{{$inputs['diadanh']}}, ngày .... tháng .... năm ....</i></td>
+    </tr>
+</table>
 <p style="text-align: center; font-weight: bold;font-size: 20px"> <b>CÔNG BỐ</b></p>
 <bR>
 <p style="text-align: center; font-weight: bold;font-size: 20px">Giá gốc vật liệu xây dựng {{$model->tendiaban}}</p>

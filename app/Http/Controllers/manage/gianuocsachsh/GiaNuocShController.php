@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\manage\gianuocsachsh;
 
+use App\District;
 use App\Model\manage\dinhgia\gianuocsachsh\GiaNuocSachShDm;
 use App\Model\manage\dinhgia\gianuocsachsh\GiaNuocSh;
 use App\Model\manage\dinhgia\gianuocsachsh\GiaNuocShCt;
+use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -216,8 +218,8 @@ class GiaNuocShController extends Controller
                 ->get();
 
             if(session('admin')->level == 'T'){
-                $inputs['dvcaptren'] = '';
-                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
                 $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
             }elseif(session('admin')->level == 'H'){
                 $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();

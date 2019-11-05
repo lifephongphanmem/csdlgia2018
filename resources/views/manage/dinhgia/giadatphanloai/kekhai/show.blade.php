@@ -87,17 +87,17 @@
     </tr>
 
 </table>
-<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
+<table width="96%" border="0" cellspacing="0" height cellpadding="0" style="margin: 20px auto;text-align: center; height:200px">
     <tr>
-        <td width="40%" style="text-align: left">
+        <td width="40%" style="text-align: left; vertical-align: top;">
             <span style="font-weight: bold;font-style: italic">Nơi nhận:</span><br>
             - UBND tỉnh;<br>
             - Bộ tài chính;<br>
             - Lưu: VT, QLGCS.
         </td>
-        <td>
+        <td style="vertical-align: top;">
             <b>THỦ TRƯỞNG ĐƠN VỊ</b><br>
-            <i>(Ký tên, đóng dấu)</i><br><br><br><br><br><br><br>
+            <i>(Ký tên, đóng dấu)</i>
         </td>
     </tr>
 </table>

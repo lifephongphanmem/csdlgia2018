@@ -21,6 +21,7 @@ class CompanyLvCcController extends Controller
         );
         $inputs = $request->all();
         $model = DmNgheKd::where('manganh', $inputs['manganh'])
+            ->where('theodoi','TD')
             ->get();
 
 

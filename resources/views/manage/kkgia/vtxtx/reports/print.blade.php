@@ -22,10 +22,6 @@
         p{
             padding: 5px;
         }
-        span {
-            text-transform: uppercase;
-            font-weight: bold;
-        }
         @media print {
             .in{
                 display: none !important;
@@ -41,17 +37,21 @@
 <body style="font:normal 14px Times, serif;">
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%">
-            <b>{{$modeldn->tendn}}</b><br>
-            <hr style="width: 10%"> <br>
-            Số: {{$modelkk->socv}}<br>V/v kê khai giá hàng hóa, dịch<br>vụ bán trong nước hoặc xuất<br>khẩu
+        <td width="40%" style="vertical-align: top;">
+            <span style="text-transform: uppercase;font-weight: bold">{{$modeldn->tendn}}</span>
+            <hr style="width: 10%;vertical-align: top;  margin-top: 2px">
+
         </td>
-        <td>
+        <td style="vertical-align: top;">
             <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
-                Độc lập - Tự do - Hạnh phúc</b><br>
-            <hr style="width: 15%"> <br>
-            <i>{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i>
+                Độc lập - Tự do - Hạnh phúc</b>
+            <hr style="width: 15%;vertical-align: top; margin-top: 2px">
+
         </td>
+    </tr>
+    <tr>
+        <td>Số: {{$modelkk->socv}}<br>V/v kê khai giá hàng hóa, dịch<br>vụ bán trong nước hoặc xuất<br>khẩu</td>
+        <td style="text-align: right"><i style="margin-right: 25%;">{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i></td>
     </tr>
 </table>
 <p style="text-align: center; font-weight: bold; font-size: 16px;"><i><u>Kính gửi</u></i>: {{$modelcqcq->tendv}}</p>
@@ -64,58 +64,56 @@
 
 <p><b>{{$modeldn->tendn}}</b> xin chịu trách nhiệm trước pháp luật về tính đúng đắn của mức giá mà chúng tôi đã kê khai./.</p>
 
-<table width="96%" border="0" cellspacing="0" cellpadding="0" style="margin:10px auto;">
+<table width="96%" border="0" cellspacing="0" height cellpadding="0" style="margin: 20px auto;text-align: center; height:200px">
     <tr>
-        <td style="text-align: left" width="40%">
-            <b style="padding-top:0px;"><i>Nơi nhận:</i></b><br>
+        <td width="40%" style="text-align: left; vertical-align: top;">
+            <span style="font-weight: bold;font-style: italic">Nơi nhận:</span><br>
             - Như trên:<br>
             - Lưu.
-            <br>
-            @if($modelkk->sohsnhan != '')
-                <table  cellspacing="0" cellpadding="0" border="1" style="margin-top: 5px;; border-collapse: collapse;">
-                    <td><b>{{$modelcqcq->tendv}}</b></td>
-                    <tr>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <b>Số:</b> {{$modelkk->sohsnhan}}<br>
-                            <b>Ngày nhận hồ sơ:</b> {{getDateTime($modelkk->ngaychuyen)}}<br>
-                            <b>Ngày duyệt hồ sơ:</b> {{getDayVn($modelkk->ngaynhan)}}
-                        </td>
-                    </tr>
-                </table>
-            @endif
         </td>
-
-        <td style="text-align: center; text-transform: uppercase;" width="60%">
-            <b>{{$modeldn->chucdanhky != '' ? $modeldn->chucdanhky : 'Giám đốc'}}</b>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <b style="text-transform: uppercase;">{{$modeldn->nguoiky}}</b>
+        <td style="vertical-align: top;">
+            <b>THỦ TRƯỞNG ĐƠN VỊ</b><br>
+            <i>(Ký tên, đóng dấu)</i>
         </td>
     </tr>
 </table>
+<p>- Họ và tên người nộp biểu mẫu : {{$modelkk->nguoinop}}</p>
+<p>- Địa chỉ đơn vị thực hiện kê khai: {{$modeldn->diachi}}</p>
+<p>- Số điện thoại liên lạc : {{$modelkk->dtll}}</p>
+<p>- Email : {{$modelkk->email}}</p>
+<p>- Số Fax : {{$modelkk->fax}}</p>
+<p style="font-weight: bold; text-align: center">Ghi nhận ngày nộp Văn bản kê khai giá <br>của cơ quan tiếp nhận</p>
+<table cellspacing="0" cellpadding="0" border="1" style="margin-top: 5px;; border-collapse: collapse;width:30%">
+    <td><b>{{$modelcqcq->tendv}}</b></td>
+    <tr>
+    </tr>
+    <tr>
+        <td style="text-align: left;">
+            <b>Số:</b> {{$modelkk->sohsnhan}}<br>
+            <b>Ngày nhận hồ sơ:</b> {{getDateTime($modelkk->ngaychuyen)}}<br>
+            <b>Ngày duyệt hồ sơ:</b> {{getDayVn($modelkk->ngaynhan)}}
+        </td>
+    </tr>
+</table>
+<hr class="in">
 <p style="page-break-before: always">
     <!--Trang2-->
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%">
-            <b>{{$modeldn->tendn}}</b><br>
-            <hr style="width: 10%"> <br>
+        <td width="40%" style="vertical-align: top;">
+            <span style="text-transform: uppercase;font-weight: bold">{{$modeldn->tendn}}</span>
+            <hr style="width: 10%;vertical-align: top;  margin-top: 2px">
+
         </td>
-        <td>
+        <td style="vertical-align: top;">
             <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
-                Độc lập - Tự do - Hạnh phúc</b><br>
-            <hr style="width: 15%"> <br>
-            <i>{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i>
+                Độc lập - Tự do - Hạnh phúc</b>
+            <hr style="width: 15%;vertical-align: top; margin-top: 2px">
         </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td style="text-align: right"><i style="margin-right: 25%;">{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i></td>
     </tr>
 </table>
 <p style="text-align: center; font-weight: bold; font-size: 16px;">BẢNG KÊ KHAI MỨC GIÁ</p>
@@ -153,23 +151,16 @@
     </tr>
     @endforeach
 </table>
-
-<table width="96%" border="0" cellspacing="0" cellpadding="0" style="margin:10px auto; text-align: center;">
+<table width="96%" border="0" cellspacing="0" height cellpadding="0" style="margin: 20px auto;text-align: center; height:200px">
     <tr>
-        <td></td>
-        <td style="text-align: center;text-transform: uppercase; " width="60%">
-            <b>{{$modeldn->chucdanhky != '' ? $modeldn->chucdanhky : 'Giám đốc'}}</b><br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <b style="text-transform: uppercase;">{{$modeldn->nguoiky}}</b>
-
+        <td width="40%" style="text-align: left; vertical-align: top;">
+            <span style="font-weight: bold;font-style: italic">Nơi nhận:</span><br>
+            - Như trên:<br>
+            - Lưu.
+        </td>
+        <td style="vertical-align: top;">
+            <b>THỦ TRƯỞNG ĐƠN VỊ</b><br>
+            <i>(Ký tên, đóng dấu)</i>
         </td>
     </tr>
 </table>

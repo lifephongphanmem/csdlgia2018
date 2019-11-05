@@ -90,9 +90,10 @@ class GiaVeTqKdlBcController extends Controller
             $model = $model->get();
 //            dd($model);
             $inputs['counths'] = count($model);
+
             if(session('admin')->level == 'T'){
-                $inputs['dvcaptren'] = '';
-                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
                 $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
             }elseif(session('admin')->level == 'H'){
                 $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
@@ -186,9 +187,10 @@ class GiaVeTqKdlBcController extends Controller
             }
             $modelct = GiaVeTqKdl::whereIn('mahs', explode(',', $mahss))
                 ->get();
+
             if(session('admin')->level == 'T'){
-                $inputs['dvcaptren'] = '';
-                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
                 $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
             }elseif(session('admin')->level == 'H'){
                 $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
@@ -202,7 +204,6 @@ class GiaVeTqKdlBcController extends Controller
                 $inputs['dv'] = $modeldv->tendvhienthi;
                 $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
             }
-
             return view('manage.kkgia.vetqkdl.reports.bc2')
                 ->with('model', $model)
                 ->with('inputs', $inputs)

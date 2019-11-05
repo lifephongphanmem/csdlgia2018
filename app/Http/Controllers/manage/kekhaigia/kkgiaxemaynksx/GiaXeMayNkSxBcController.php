@@ -91,9 +91,10 @@ class GiaXeMayNkSxBcController extends Controller
             $model = $model->get();
 //            dd($model);
             $inputs['counths'] = count($model);
+
             if(session('admin')->level == 'T'){
-                $inputs['dvcaptren'] = '';
-                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
                 $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
             }elseif(session('admin')->level == 'H'){
                 $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
@@ -107,7 +108,6 @@ class GiaXeMayNkSxBcController extends Controller
                 $inputs['dv'] = $modeldv->tendvhienthi;
                 $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
             }
-
             return view('manage.kkgia.xemaynksx.reports.bc1')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
@@ -186,9 +186,10 @@ class GiaXeMayNkSxBcController extends Controller
             }
             $modelct = GiaXeMayNkSxCt::whereIn('mahs',explode(',',$mahss))
                 ->get();
+
             if(session('admin')->level == 'T'){
-                $inputs['dvcaptren'] = '';
-                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
                 $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
             }elseif(session('admin')->level == 'H'){
                 $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
@@ -202,7 +203,6 @@ class GiaXeMayNkSxBcController extends Controller
                 $inputs['dv'] = $modeldv->tendvhienthi;
                 $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
             }
-
             return view('manage.kkgia.xemaynksx.reports.bc2')
                 ->with('model',$model)
                 ->with('inputs',$inputs)

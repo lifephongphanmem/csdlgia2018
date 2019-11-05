@@ -38,18 +38,22 @@
 <body style="font:normal 14px Times, serif;">
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%">
+        <td width="40%" style="vertical-align: top;">
             <span style="text-transform: uppercase">{{$inputs['dvcaptren']}}</span><br>
-            <span style="text-transform: uppercase;font-weight: bold">{{$inputs['dv']}}</span><br>
-            <hr style="width: 10%"> <br>
-            Số: ..............
+            <span style="text-transform: uppercase;font-weight: bold">{{$inputs['dv']}}</span>
+            <hr style="width: 10%;vertical-align: top;  margin-top: 2px">
+
         </td>
-        <td>
+        <td style="vertical-align: top;">
             <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
-                Độc lập - Tự do - Hạnh phúc</b><br>
-            <hr style="width: 15%"><br>
-            <i>{{$inputs['diadanh']}}, ngày .... tháng .... năm ....</i>
+                Độc lập - Tự do - Hạnh phúc</b>
+            <hr style="width: 15%;vertical-align: top; margin-top: 2px">
+
         </td>
+    </tr>
+    <tr>
+        <td>Số: ..............</td>
+        <td style="text-align: right"><i style="margin-right: 25%;">{{$inputs['diadanh']}}, ngày .... tháng .... năm ....</i></td>
     </tr>
 </table>
 <p style="font-weight: bold;text-transform: uppercase;text-align: center">THÔNG TIN VỀ GIÁ ĐẤT CỤ THỂ CỦA DỰ ÁN</p>

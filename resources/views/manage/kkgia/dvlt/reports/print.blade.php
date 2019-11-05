@@ -22,10 +22,6 @@
         p{
             padding: 5px;
         }
-        span {
-            text-transform: uppercase;
-            font-weight: bold;
-        }
         @media print {
             .in{
                 display: none !important;
@@ -39,23 +35,26 @@
 </div>
 
 <body style="font:normal 14px Times, serif;">
-
-
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%">
-            <b>{{$modeldn->tendn}}</b><br>
-            <hr style="width: 10%"> <br>
-            Số: {{$modelkk->socv}}<br>V/v kê khai giá hàng hóa, dịch<br>vụ bán trong nước hoặc xuất<br>khẩu
+        <td width="40%" style="vertical-align: top;">
+            <span style="text-transform: uppercase;font-weight: bold">{{$modeldn->tendn}}</span>
+            <hr style="width: 10%;vertical-align: top;  margin-top: 2px">
+
         </td>
-        <td>
+        <td style="vertical-align: top;">
             <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
-                Độc lập - Tự do - Hạnh phúc</b><br>
-            <hr style="width: 15%"> <br>
-            <i>{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i>
+                Độc lập - Tự do - Hạnh phúc</b>
+            <hr style="width: 15%;vertical-align: top; margin-top: 2px">
+
         </td>
     </tr>
+    <tr>
+        <td>Số: {{$modelkk->socv}}<br>V/v kê khai giá hàng hóa, dịch<br>vụ bán trong nước hoặc xuất khẩu</td>
+        <td style="text-align: right"><i style="margin-right: 25%;">{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i></td>
+    </tr>
 </table>
+
 <p style="text-align: center; font-weight: bold; font-size: 16px;"><i><u>Kính gửi</u></i>: {{$modelcqcq->tendv}}</p>
 
 <p>Doanh nghiệp chúng tôi tự xây dựng và kê khai giá dịch vụ lưu trú như sau:</p>
@@ -126,19 +125,23 @@
 </table>
 <p style="page-break-before: always">
 <!--Trang2-->
-
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%">
-            <b>{{$modeldn->tendn}}</b><br>
-            <hr style="width: 10%"> <br>
+        <td width="40%" style="vertical-align: top;">
+            <span style="text-transform: uppercase;font-weight: bold">{{$modeldn->tendn}}</span>
+            <hr style="width: 10%;vertical-align: top;  margin-top: 2px">
+
         </td>
-        <td>
+        <td style="vertical-align: top;">
             <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
-                Độc lập - Tự do - Hạnh phúc</b><br>
-            <hr style="width:;15%"> <br>
-            <i>{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i>
+                Độc lập - Tự do - Hạnh phúc</b>
+            <hr style="width: 15%;vertical-align: top; margin-top: 2px">
+
         </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td style="text-align: right"><i style="margin-right: 25%;">{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i></td>
     </tr>
 </table>
 <p style="text-align: center; font-weight: bold; font-size: 16px;">BẢNG KÊ KHAI GIÁ DỊCH VỤ LƯU TRÚ</p>
@@ -208,16 +211,21 @@
 <!--Trang3-->
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%">
-            <b>{{$modeldn->tendn}}</b><br>
-            <hr style="width: 10%"> <br>
+        <td width="40%" style="vertical-align: top;">
+            <span style="text-transform: uppercase;font-weight: bold">{{$modeldn->tendn}}</span>
+            <hr style="width: 10%;vertical-align: top;  margin-top: 2px">
+
         </td>
-        <td>
+        <td style="vertical-align: top;">
             <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
-                Độc lập - Tự do - Hạnh phúc</b><br>
-            <hr style="width: 15%"> <br>
-            <i>{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i>
+                Độc lập - Tự do - Hạnh phúc</b>
+            <hr style="width: 15%;vertical-align: top; margin-top: 2px">
+
         </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td style="text-align: right"><i style="margin-right: 25%;">{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i></td>
     </tr>
 </table>
 <p style="text-align: center; font-weight: bold; font-size: 16px;">BẢNG GIÁ PHÒNG</p>
@@ -225,7 +233,7 @@
 <p style="text-align: right; font-size: 16px;"><i>Đơn vị tính: {{$modelkk->dvt}}</i></p>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <tr>
-        <<th width="20%">Đối tượng áp dụng</th>
+        <th width="20%">Đối tượng áp dụng</th>
         <th width="30%" style="text-align: center">Loại phòng/ Quy<br>cách chất lượng<br>phòng</th>
         <th width="20%" style="text-align: center">Số hiệu<br>Phòng</th>
         <th width="15%">Mức giá niêm<br>yết</th>

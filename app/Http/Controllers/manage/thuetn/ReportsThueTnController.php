@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\manage\thuetn;
 
+use App\District;
 use App\Model\manage\dinhgia\thuetn\DmThueTn;
 use App\Model\manage\dinhgia\thuetn\NhomThueTn;
 use App\Model\manage\dinhgia\thuetn\ThueTaiNguyen;
+use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -44,9 +46,10 @@ class ReportsThueTnController extends Controller
                 $tn->dongiabc = isset($modelbc) ? $modelbc->dongia : 0;
             }
 
+
             if(session('admin')->level == 'T'){
-                $inputs['dvcaptren'] = '';
-                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
                 $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
             }elseif(session('admin')->level == 'H'){
                 $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();

@@ -4,6 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>{{$pageTitle}}</title>
+    <link rel="shortcut icon" href="{{ url('images/LIFESOFT.png')}}" type="image/x-icon">
     <style type="text/css">
         body {
             font: normal 14px/16px time, serif;
@@ -24,11 +25,6 @@
         p{
             padding: 5px;
         }
-        span {
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-
         @media print {
             .in{
                 display: none !important;
@@ -42,23 +38,24 @@
 </div>
 
 <body style="font:normal 14px Times, serif;">
-
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td colspan="3" style="text-transform: uppercase;">
-            <b>{{(isset($modelcqcq)? $modelcqcq->tendv : '')}}</b>
+        <td width="40%" style="vertical-align: top;">
+            <span style="text-transform: uppercase">{{$inputs['dvcaptren']}}</span><br>
+            <span style="text-transform: uppercase;font-weight: bold">{{$inputs['dv']}}</span>
+            <hr style="width: 10%;vertical-align: top;  margin-top: 2px">
+
         </td>
-        <td colspan="6">
-            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>
+        <td style="vertical-align: top;">
+            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+                Độc lập - Tự do - Hạnh phúc</b>
+            <hr style="width: 15%;vertical-align: top; margin-top: 2px">
+
         </td>
     </tr>
     <tr>
-        <td colspan="3" style="text-transform: uppercase;">
-            --------
-        </td>
-        <td colspan="6">
-            <b><i><u>Độc lập - Tự do - Hạnh phúc</u></i></b>
-        </td>
+        <td>Số: ..............</td>
+        <td style="text-align: right"><i style="margin-right: 25%;">{{$inputs['diadanh']}}, ngày .... tháng .... năm ....</i></td>
     </tr>
 </table>
 
@@ -125,25 +122,17 @@
         </th>
     </tr>
 </table>
-
-<table width="96%" border="0" cellspacing="0" cellpadding="8">
+<table width="96%" border="0" cellspacing="0" height cellpadding="0" style="margin: 20px auto;text-align: center; height:200px">
     <tr>
-        <td style="text-align: left;" width="50%">
-
+        <td width="40%" style="text-align: left; vertical-align: top;">
+            <span style="font-weight: bold;font-style: italic">Nơi nhận:</span><br>
+            - UBND tỉnh;<br>
+            - Bộ tài chính;<br>
+            - Lưu: VT, QLGCS.
         </td>
-
-        <td style="text-align: center;" width="50%">
-            <b>GIÁM ĐỐC</b></br>(Ký tên và đóng dấu)
-        </td>
-    </tr>
-
-    <tr>
-        <td style="text-align: left;" width="50%">
-
-        </td>
-
-        <td style="text-align: center;text-transform: uppercase; " width="50%">
-            </br></br></br></br></br>
+        <td style="vertical-align: top;">
+            <b>THỦ TRƯỞNG ĐƠN VỊ</b><br>
+            <i>(Ký tên, đóng dấu)</i>
         </td>
     </tr>
 </table>

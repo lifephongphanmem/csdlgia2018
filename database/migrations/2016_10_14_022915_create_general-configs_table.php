@@ -31,6 +31,8 @@ class CreateGeneralConfigsTable extends Migration
             $table->double('thoihantacn')->default(0);
             $table->double('sodvvt')->default(0); //không để vào bảng kê khai như DVLT dc do có 4 loại hình vận tải
             $table->string('emailql')->nullable();
+            $table->string('tendvhienthi')->nullable();
+            $table->string('tendvcqhienthi')->nullable();
             $table->timestamps();
         });
     }

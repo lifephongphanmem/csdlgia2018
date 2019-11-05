@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\manage\thuenhacongvu;
 
+use App\District;
 use App\Model\manage\dinhgia\GiaThueNhaCongVu;
+use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -244,8 +246,8 @@ class GiaThueNhaCongVuController extends Controller
             $model = $model->get();
 
             if(session('admin')->level == 'T'){
-                $inputs['dvcaptren'] = '';
-                $inputs['dv'] = getGeneralConfigs()['tendonvi'];
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
                 $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
             }elseif(session('admin')->level == 'H'){
                 $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();

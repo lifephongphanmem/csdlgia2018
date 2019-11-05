@@ -27,22 +27,24 @@
 </head>
 <body>
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
-<tr>
-    <td width="40%" style="text-transform: uppercase;">
-        <b></b><br>
-        --------<br>
-    </td>
-    <td>
-        <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>
-        <b><i><u>Độc lập - Tự do - Hạnh phúc</u></i></b><br>
-    </td>
-</tr>
-<tr>
-    <td>Số: {{$model->soqd}}</td>
-    <td>
-        <i>, ngày..{{ date("d",strtotime($model->ngaybc))}}..tháng..{{ date("m",strtotime($model->ngaybc))}}..năm..{{ date("Y",strtotime($model->ngaybc))}}..</i>
-    </td>
-</tr>
+    <tr>
+        <td width="40%" style="vertical-align: top;">
+            <span style="text-transform: uppercase">{{$inputs['dvcaptren']}}</span><br>
+            <span style="text-transform: uppercase;font-weight: bold">{{$inputs['dv']}}</span>
+            <hr style="width: 10%;vertical-align: top;  margin-top: 2px">
+
+        </td>
+        <td style="vertical-align: top;">
+            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+                Độc lập - Tự do - Hạnh phúc</b>
+            <hr style="width: 15%;vertical-align: top; margin-top: 2px">
+
+        </td>
+    </tr>
+    <tr>
+        <td>Số: {{$model->soqd}}</td>
+        <td style="text-align: right"><i>, ngày..{{ date("d",strtotime($model->ngaybc))}}..tháng..{{ date("m",strtotime($model->ngaybc))}}..năm..{{ date("Y",strtotime($model->ngaybc))}}..</i></td>
+    </tr>
 </table>
 <p style="text-align: center; font-weight: bold;font-size: 20px"> <b>CÔNG BỐ</b></p>
 <bR>
