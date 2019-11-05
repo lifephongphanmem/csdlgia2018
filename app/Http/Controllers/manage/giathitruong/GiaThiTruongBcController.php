@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\manage\giathitruong;
 
+use App\District;
 use App\Model\manage\dinhgia\giathitruong\GiaThiTruong;
 use App\Model\manage\dinhgia\giathitruong\GiaThiTruongDm;
 use App\Model\manage\dinhgia\giathitruong\GiaThiTruongTt;
+use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
