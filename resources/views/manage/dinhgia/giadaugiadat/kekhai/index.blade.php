@@ -234,6 +234,8 @@
                                                             Công bố</button>
                                                     @endif
                                                 @endif
+                                            @else
+
                                             @endif
                                         </td>
                                     </tr>
