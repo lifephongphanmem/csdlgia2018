@@ -24,10 +24,6 @@
         p{
             padding: 5px;
         }
-        span{
-            text-transform: uppercase;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body style="font:normal 14px Times, serif;">
