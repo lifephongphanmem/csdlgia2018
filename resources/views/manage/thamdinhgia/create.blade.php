@@ -407,7 +407,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Địa điểm thẩm định<span class="require">*</span></label>
-                                    {!!Form::text('diadiem',$modeldb->diaban, array('id' => 'diadiem','class' => 'form-control required'))!!}
+                                    {!!Form::text('diadiem',null, array('id' => 'diadiem','class' => 'form-control required'))!!}
                                 </div>
                             </div>
                             <div class="col-md-6">
