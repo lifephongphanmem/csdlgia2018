@@ -105,12 +105,12 @@
                     @if(can('giadaugiadat','index'))
                         <li>
                             <a href="">
-                                Giá đấu giá đất <span class="arrow"></span>
+                                Giá giao dịch bất động sản <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
                                 @if(can('kkgiadaugiadat','index'))
                                     <li>
-                                        <a href="{{url('thongtindaugiadat')}}">Thông tin đấu giá đất</a>
+                                        <a href="{{url('thongtindaugiadat')}}">Thông tin giá giao dịch bất động sản</a>
                                     </li>
                                 @endif
                                 {{--@if(can('thgiadaugiadat','timkiem'))--}}
