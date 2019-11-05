@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DiaBanHd;
+use App\District;
 use App\DmHhDvK;
 use App\GiaHhDvK;
 use App\GiaHhDvKCt;
