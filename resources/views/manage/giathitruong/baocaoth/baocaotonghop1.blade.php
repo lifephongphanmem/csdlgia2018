@@ -44,11 +44,12 @@
     </tr>
     <tr>
         <td>Số: ..............</td>
-        <td style="text-align: right"><i style="margin-right: 25%;">{{$inputs['diadanh']}}, ngày .... tháng .... năm ....</i></td>
+        <td style="text-align: right"><i style="margin-right: 25%;">{{$inputs['diadanh']}}, ngày .... tháng {{$inputs['thang']}} năm {{$inputs['nam']}}</i></td>
     </tr>
 </table>
 
 <p style="text-align: center; font-weight: bold; font-size: 16px;">BÁO CÁO GIÁ THỊ TRƯỜNG THÁNG {{$inputs['thang']}} NĂM {{$inputs['nam']}}</p>
+<p style="font-style: italic; text-align: center">(Ban hành kèm theo Thông tư số 116/2018/TT-BTC ngày 28/11/2018 của Bộ Tài Chính quy định chế độ báo cáo giá thị trường)</p>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <thead>
         <tr>

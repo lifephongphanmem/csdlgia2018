@@ -44,11 +44,10 @@
     </tr>
     <tr>
         <td>Số: ..............</td>
-        <td style="text-align: right"><i style="margin-right: 25%;">{{$inputs['diadanh']}}, ngày .... tháng .... năm ....</i></td>
+        <td style="text-align: right"><i style="margin-right: 25%;">{{$inputs['diadanh']}}, ngày .... tháng {{$inputs['thang']}} năm {{$inputs['nam']}}</i></td>
     </tr>
 </table>
-<p style="text-align: center; font-weight: bold; font-size: 16px;">BÁO CÁO<br>GIÁ THỊ TRƯỜNG HÀNG HÓA, DỊCH VỤ</p>
-<p style="text-align: center">Tháng {{$inputs['thang']}} Năm {{$inputs['nam']}}</p>
+<p style="text-align: center; font-weight: bold; font-size: 16px;">BẢNG GIÁ LƯƠNG THỰC, THỰC PHẨM THÁNG {{$inputs['thang']}} NĂM {{$inputs['nam']}}</p>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <thead>
         <tr>
@@ -71,10 +70,6 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td></td>
-            <td colspan="6" style="font-weight: bold; text-align: left">{{$tennhom}}</td>
-        </tr>
         @foreach($model as $key=>$tt)
             <tr>
                 <td style="text-align: center">{{$key+1}}</td>
