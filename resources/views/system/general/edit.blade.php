@@ -95,6 +95,21 @@
                             <!--/span-->
                         </div>
                         <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Tên đơn vị chủ quản hiển thị<span class="require">*</span></label>
+                                    {!!Form::text('tendvcqhienthi', null , array('id' => 'tendvcqhienthi','class' => 'form-control required'))!!}
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Tên đơn vị hiển thị<span class="require">*</span></label>
+                                    {!!Form::text('tendvhienthi', null , array('id' => 'tendvhienthi','class' => 'form-control required'))!!}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="control-label">Thông tin hợp đồng</label>

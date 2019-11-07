@@ -188,6 +188,7 @@ Route::get('/giahhdvkhacct/update','GiaHhDvKCtController@update');
 Route::get('reportshanghoadichvukhac','ReportsHhDvKController@index');
 Route::post('reportshanghoadichvukhac/bc1','ReportsHhDvKController@bc1');
 Route::post('reportshanghoadichvukhac/bc2','ReportsHhDvKController@bc2');
+Route::post('reportshanghoadichvukhac/exWordBc2','ReportsHhDvKController@exWordBc2');
         //Tổng hợp
 Route::resource('tonghopgiahhdvk','ThGiaHhDvKController');
 Route::post('tonghopgiahhdvk/create','ThGiaHhDvKController@create');

@@ -8,6 +8,10 @@
         $('#frm_bc2').attr('action',url);
         $('#frm_bc2').submit();
     }
+    function ClickBc2Word(url){
+        $('#frm_bc2').attr('action',url);
+        $('#frm_bc2').submit();
+    }
 </script>
 
 <!--Modal Thoại PL1-->
@@ -103,7 +107,7 @@
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
                 <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickBC2('/reportshanghoadichvukhac/bc2')">Đồng ý</button>
-                <!--button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickBCExcel('/reports/thuetn/bcgiathuetnexcel')">Xuất Excel</button-->
+                {{--<button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickBc2Word('/reportshanghoadichvukhac/exWordBc2')">Xuất Word</button>--}}
             </div>
             {!! Form::close() !!}
         </div>

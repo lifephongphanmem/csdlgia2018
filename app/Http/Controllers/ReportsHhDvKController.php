@@ -12,6 +12,7 @@ use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use PhpOffice\PhpWord\PhpWord;
 
 class ReportsHhDvKController extends Controller
 {
@@ -126,6 +127,54 @@ class ReportsHhDvKController extends Controller
                 ->with('inputs',$inputs)
                 ->with('model',$model)
                 ->with('pageTitle','Báo cáo giá hàng hóa, dịch vụ theo tháng');
+        }else
+            return view('errors.notlogin');
+    }
+    public function exWordBc2(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $model = DmHhDvK::where('manhom',$inputs['manhom'])
+                ->where('theodoi','TD')
+                ->get();
+            $mahslk = GiaHhDvK::where('thang',$inputs['thang'])
+                ->where('nam',$inputs['nam'])
+                ->wherein('trangthai',['HT','CB'])
+                ->select('mahs')
+                ->get();
+
+            $ttgiahh = GiaHhDvKCt::wherein('mahs',$mahslk->toArray())
+                ->where('gia','<>',0)
+                ->get();
+            foreach($model as $ct){
+                $ttgia = $ttgiahh->where('mahhdv',$ct->mahhdv)->avg('gia');
+                $ct->gia = $ttgia;
+            }
+            $tennhom = NhomHhDvK::where('manhom',$inputs['manhom'])->first()->tennhom;
+
+            if(session('admin')->level == 'T'){
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }elseif(session('admin')->level == 'H'){
+                $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }else{
+                $modeldv = Town::where('maxa',session('admin')->maxa)
+                    ->where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }
+
+            $phpWord = new PhpWord();
+            return view('manage.dinhgia.giahhdvk.reports.bc2')
+                ->with('tennhom',$tennhom)
+                ->with('inputs',$inputs)
+                ->with('model',$model)
+                ->with('pageTitle','Báo cáo giá hàng hóa, dịch vụ theo tháng');
+
         }else
             return view('errors.notlogin');
     }

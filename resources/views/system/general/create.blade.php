@@ -93,6 +93,21 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Tên đơn vị chủ quản hiển thị<span class="require">*</span></label>
+                                        <input type="text" class="form-control required" name="tendvcqhienthi" id="tendvcqhienthi"/>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Tên đơn vị hiển thị<span class="require">*</span></label>
+                                        <input type="text" class="form-control required" name="tendvhienthi" id="tendvhienthi"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label">Thông tin hợp đồng</label>

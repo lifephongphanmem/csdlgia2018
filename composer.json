@@ -10,7 +10,8 @@
         "laravelcollective/html": "5.3.*",
         "maatwebsite/excel": "^2.1",
         "milon/barcode": "^5.2",
-        "anhskohbo/no-captcha": "^2.3"
+        "anhskohbo/no-captcha": "^2.3",
+        "phpoffice/phpword": "^0.17.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -485,4 +485,6 @@ class ThGiaHhDvKController extends Controller
         }else
             return view('errors.notlogin');
     }
+
+
 }
