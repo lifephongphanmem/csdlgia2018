@@ -16,14 +16,14 @@ class CreateKkgiadvltctTable extends Migration
         Schema::create('kkgiadvltct', function (Blueprint $table) {
             $table->increments('id');
             $table->string('mahs')->nullable();
-            $table->string('loaip')->nullable();
+            $table->string('macskd')->nullable();
+            $table->text('tenhhdv')->nullable();
             $table->text('qccl')->nullable();
-            $table->text('sohieu')->nullable();
-            $table->text('ghichu')->nullable();
+            $table->string('dvt')->nullable();
             $table->string('mucgialk')->nullable();
             $table->string('mucgiakk')->nullable();
-            $table->text('madtad')->nullable();
-            $table->text('apdung')->nullable();
+            $table->string('trangthai')->nullable();
+            $table->text('ghichu')->nullable();
             $table->timestamps();
         });
     }

@@ -27,6 +27,7 @@ class KkGiaDvLtController extends Controller
                     ->where('manghe','DVLT')
                     ->first();
                 $model = CsKdDvLt::join('company','company.maxa','=','cskddvlt.maxa')
+                    ->where('company.trangthai','Kích hoạt')
                     ->join('town','town.maxa','=','cskddvlt.mahuyen')
                     ->select('cskddvlt.*','company.tendn','town.tendv');
 
@@ -104,14 +105,17 @@ class KkGiaDvLtController extends Controller
                 $inputs['masothue'] = isset($inputs['masothue']) ? $inputs['masothue'] : '';
             else
                 $inputs['masothue'] = session('admin')->maxa;
+            $inputs['mahs'] = $inputs['macskd'].getdate()[0];
             $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
+                ->where('company.trangthai','Kích hoạt')
                 ->where('company.maxa',$inputs['masothue'])
                 ->where('companylvcc.manghe','DVLT')
                 ->select('company.*','companylvcc.mahuyen')
                 ->first();
             if(isset($modeldn)) {
                 $modelcskd = CsKdDvLt::where('macskd', $inputs['macskd'])->first();
-                $delctdf = KkGiaDvLtCtDf::where('maxa',$inputs['masothue'])->delete();
+                $delctdf = KkGiaDvLtCt::where('macskd',$inputs['macskd'])
+                    ->where('trangthai','CXD')->delete();
                 $idlk = KkGiaDvLt::where('maxa',$inputs['masothue'])
                     ->where('trangthai','DD')
                     ->max('id');
@@ -120,14 +124,16 @@ class KkGiaDvLtController extends Controller
                         ->first();
                     $modellkct = KkGiaDvLtCt::where('mahs',$modellk->mahs)
                         ->get();
+                    $inputs['socvlk'] = $modellk->socv;
+                    $inputs['ngaycvlk'] = $modellk->ngaynhap;
                     foreach($modellkct as  $ctdf){
-                        $addct = new KkGiaDvLtCtDf();
-                        $addct->loaip = $ctdf->loaip;
+                        $addct = new KkGiaDvLtCt();
+                        $addct->tenhhdv = $ctdf->tenhhdv;
                         $addct->qccl = $ctdf->qccl;
-                        $addct->sohieu = $ctdf->sohieu;
+                        $addct->dvt = $ctdf->dvt;
                         $addct->mucgialk = $ctdf->mucgia;
-                        $addct->madtad = $ctdf->madtad;
-                        $addct->maxa = $ctdf->$inputs['masothue'];
+                        $addct->macskd = $inputs['macskd'];
+                        $addct->trangthai = 'CXD';
                         $addct->save();
                     }
                 }
@@ -151,7 +157,6 @@ class KkGiaDvLtController extends Controller
         if (Session::has('admin')) {
             if (session('admin')->level == 'DN' || session('admin')->level == 'T' || session('admin')->level == 'H'|| session('admin')->level == 'X') {
                 $inputs = $request->all();
-                $inputs['mahs'] = $inputs['macskd'].getdate()[0];
                 $inputs['ngaynhap'] = getDateToDb($inputs['ngaynhap']);
                 $inputs['ngayhieuluc'] = getDateToDb($inputs['ngayhieuluc']);
                 if($inputs['ngaycvlk'] != '')
@@ -161,20 +166,8 @@ class KkGiaDvLtController extends Controller
                 $inputs['trangthai'] = 'CC';
                 $model = new KkGiaDvLt();
                 if($model->create($inputs)){
-                    $modelctdf = KkGiaDvLtCtDf::where('maxa',$inputs['maxa'])->get();
-                    foreach($modelctdf as $ctdf){
-                        $modelct = new KkGiaDvLtCt();
-                        $modelct->mahs = $inputs['mahs'];
-                        $modelct->madtad = $ctdf->madtad;
-                        $modelct->loaip = $ctdf->loaip;
-                        $modelct->qccl = $ctdf->qccl;
-                        $modelct->sohieu = $ctdf->sohieu;
-                        $modelct->ghichu = $ctdf->ghichu;
-                        $modelct->mucgialk = $ctdf->mucgialk;
-                        $modelct->mucgiakk = $ctdf->mucgiakk;
-                        $modelct->save();
-                    }
-
+                    $modelctdf = KkGiaDvLtCt::where('mahs',$inputs['mahs'])
+                        ->update(['trangthai' => 'XD']);
                 }
                 return redirect('kekhaigiadvlt?&macskd='.$inputs['macskd']);
             }else{
@@ -194,9 +187,7 @@ class KkGiaDvLtController extends Controller
                 ->first();
             $modelcskd = CsKdDvLt::where('macskd',$modelkk->macskd)
                 ->first();
-            $modelkkct = KkGiaDvLtCt::leftjoin('dtapdungdvlt','dtapdungdvlt.madtad','=','kkgiadvltct.madtad')
-                ->select('kkgiadvltct.*','dtapdungdvlt.tendtad')
-                ->where('kkgiadvltct.mahs',$modelkk->mahs)
+            $modelkkct = KkGiaDvLtCt::where('mahs',$modelkk->mahs)
                 ->get();
             $modelcqcq = Town::where('maxa',$modelkk->mahuyen)
                 ->first();
@@ -220,8 +211,6 @@ class KkGiaDvLtController extends Controller
                 $modeldn = Company::where('maxa',$model->maxa)
                     ->first();
                 $modelct = KkGiaDvLtCt::where('mahs',$model->mahs)
-                    ->leftJoin('dtapdungdvlt','dtapdungdvlt.madtad','=','kkgiadvltct.madtad')
-                    ->select('kkgiadvltct.*','dtapdungdvlt.tendtad')
                     ->get();
                 return view('manage.kkgia.dvlt.kkgia.kkgiadv.edit')
                     ->with('model', $model)
@@ -248,7 +237,9 @@ class KkGiaDvLtController extends Controller
                     $inputs['ngaycvlk']= getDateToDb($inputs['ngaycvlk']);
                 else
                     unset($inputs['ngaycvlk']);
-                $model->update($inputs);
+                if($model->update($inputs))
+                    $modelctdf = KkGiaDvLtCt::where('mahs',$inputs['mahs'])
+                        ->update(['trangthai' => 'XD']);
                 return redirect('kekhaigiadvlt?&macskd='.$model->macskd);
             }else{
                 return view('errors.perm');
@@ -338,9 +329,9 @@ class KkGiaDvLtController extends Controller
                         ->first();
                     $tg = getDateTime(Carbon::now()->toDateTimeString());
                     $contentdn = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận được hồ sơ '.$dmnghe->tennghe.' của '.$modelcskd->tencskd.'. Số công văn: '.$model->socv.
-                        ' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['ttnguoinop'].'!!!';
+                        ' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['nguoinop'].'-Số điện thoại liên lạc: '.$inputs['dtll'].'!!!';
                     $contentht = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận được hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp '.$modeldn->tendn.' - mã số thuế '.$modeldn->maxa.
-                        ' -  '.$modelcskd->tencskd.' - Số công văn: '.$model->socv.' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['ttnguoinop'].'!!!';
+                        ' -  '.$modelcskd->tencskd.' - Số công văn: '.$model->socv.' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['nguoinop'].'-Số điện thoại liên lạc: '.$inputs['dtll'].'!!!';
                     $run = new SendMail($modeldn,$contentdn,$modeldv,$contentht);
                     $run->handle();
                 }

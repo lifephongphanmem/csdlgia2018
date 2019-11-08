@@ -234,21 +234,29 @@ class KkGiaDvLtXdController extends Controller
         if (Session::has('admin')) {
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
+            $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 20;
+            $inputs['tencskd'] = isset($inputs['tencskd']) ? $inputs['tencskd'] : '';
+            $inputs['tenhhdv'] = isset($inputs['tenhhdv']) ? $inputs['tenhhdv'] : '';
 
-            $model = KkGiaDvLtCt::leftjoin('dtapdungdvlt','dtapdungdvlt.madtad','=','kkgiadvltct.madtad')
-                ->leftjoin('kkgiadvlt','kkgiadvlt.mahs','=','kkgiadvltct.mahs')
-                ->whereYear('kkgiadvlt.ngayhieuluc',$inputs['nam'])
+            $model = KkGiaDvLtCt::leftjoin('kkgiadvlt','kkgiadvlt.mahs','=','kkgiadvltct.mahs')
                 ->leftJoin('cskddvlt','cskddvlt.macskd','=','kkgiadvlt.macskd')
                 ->leftJoin('company','company.maxa','=','kkgiadvlt.maxa')
-                ->select('kkgiadvltct.*','cskddvlt.tencskd','company.tendn','kkgiadvlt.ngayhieuluc','kkgiadvlt.socv','dtapdungdvlt.tendtad')
+                ->select('kkgiadvltct.*','cskddvlt.tencskd','company.tendn','kkgiadvlt.ngayhieuluc','kkgiadvlt.socv')
+                ->whereYear('kkgiadvlt.ngayhieuluc',$inputs['nam'])
                 ->where('kkgiadvlt.trangthai','DD');
+//            dd($model->get());
+            if($inputs['tencskd'] != '')
+                $model = $model->where('tencskd','like','%'.$inputs['tencskd'].'%');
+            if($inputs['tenhhdv'] != '')
+                $model = $model->where('tenhhdv','like','%'.$inputs['tenhhdv'].'%');
 
 
-            $model= $model->get();
+            $model= $model->paginate($inputs['paginate']);
+
 
             return view('manage.kkgia.dvlt.kkgia.timkiem.index')
                 ->with('model', $model)
-                ->with('nam',$inputs['nam'])
+                ->with('inputs',$inputs)
                 ->with('pageTitle', 'Tìm kiếm thông tin hồ sơ kê khai giá dịch vụ lưu trú');
         }else
             return view('errors.notlogin');

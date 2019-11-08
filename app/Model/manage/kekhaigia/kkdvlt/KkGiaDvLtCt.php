@@ -10,16 +10,13 @@ class KkGiaDvLtCt extends Model
     protected $fillable = [
         'id',
         'mahs',
-        'loaip',
+        'macskd',
+        'tenhhdv',
         'qccl',
-        'sohieu',
-        'ghichu',
+        'dvt',
         'mucgialk',
-        'mucgialkct',
         'mucgiakk',
-        'mucgiakkct',
-        'tendoituong',
-        'apdung',
-        'madtad'
+        'trangthai',
+        'ghichu',
     ];
 }

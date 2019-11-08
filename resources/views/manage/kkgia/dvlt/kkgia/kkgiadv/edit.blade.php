@@ -123,39 +123,12 @@
         // </editor-fold>
     </script>
     <script>
-        function checkngay(){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '/ajax/checkngay',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    ngaynhap: $('input[name="ngaynhap"]').val(),
-                    ngayhieuluc: $('input[name="ngayhieuluc"]').val(),
-                    plhs: $('select[name="plhs"]').val()
-
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        toastr.success("Ngày hiệu lực có thể sử dụng được", "Thành công!");
-                    }else {
-                        toastr.error("Bạn cần kiểm tra lại ngày có hiệu lực!", "Lỗi!");
-                        $('input[name="ngayhieuluc"]').val('');
-                    }
-                }
-            })
-
-        }
-        function clearngay(){
-            $('input[name="ngaynhap"]').val('');
-            $('input[name="ngayhieuluc"]').val('');
-        }
         function clearForm(){
-            $('#madtad').val('00');
-            $('#loaip').val('');
+            $('#tenhhdv').val('');
             $('#qccl').val('');
-            $('#sohieu').val('');
+            $('#dvt').val('');
+            $('#mucgialk').val('0');
+            $('#mucgiakk').val('0');
             $('#ghichu').val('');
         }
         function createttp(){
@@ -165,14 +138,14 @@
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
-                    madtad: $('#madtad').val(),
-                    loaip: $('input[name="loaip"]').val(),
+                    tenhhdv: $('#tenhhdv').val(),
                     mucgialk: $('#mucgialk').val(),
                     mucgiakk: $('#mucgiakk').val(),
-                    qccl: $('textarea[name="qccl"]').val(),
-                    sohieu: $('textarea[name="sohieu"]').val(),
-                    ghichu: $('textarea[name="ghichuc"]').val(),
-                    mahs: $('input[name="mahs"]').val()
+                    qccl: $('#qccl').val(),
+                    dvt: $('#dvt').val(),
+                    ghichu: $('#ghichu').val(),
+                    macskd: $('#macskd').val(),
+                    mahs: $('#mahs').val()
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -217,15 +190,15 @@
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
-                    id: $('input[name="idedit"]').val(),
-                    madtad: $('#madtadedit').val(),
+                    id: $('#idedit').val(),
+                    tenhhdv: $('#tenhhdvedit').val(),
                     mucgialk: $('#mucgialkedit').val(),
                     mucgiakk: $('#mucgiakkedit').val(),
-                    loaip: $('input[name="loaipedit"]').val(),
-                    qccl: $('textarea[name="qccledit"]').val(),
-                    sohieu: $('textarea[name="sohieuedit"]').val(),
-                    ghichu: $('textarea[name="ghichuedit"]').val(),
-                    mahs: $('input[name="mahs"]').val()
+                    qccl: $('#qccledit').val(),
+                    dvt: $('#dvtedit').val(),
+                    ghichu: $('#ghichuedit').val(),
+                    macskd: $('#macskd').val(),
+                    mahs: $('#mahs').val()
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -248,12 +221,12 @@
         function deleteRow() {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/kekhaigiadvltctdf/delete',
+                url: '/kekhaigiadvltct/delete',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
-                    id: $('input[name="iddelete"]').val(),
-                    maxa: $('input[name="maxa"]').val()
+                    id: $('#iddelete').val(),
+                    mahs: $('#mahs').val()
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -270,34 +243,6 @@
                 }
             })
 
-        }
-        function checkngaykk(){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '/ajax/checkngaykk',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    ngaynhap: $('input[name="ngaynhap"]').val()
-
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        toastr.success("Ngày kê khai có thể sử dụng được", "Thành công!");
-                    }else {
-                        toastr.error("Bạn cần kiểm tra lại ngày có kê khai, ngày kê khai không được nhỏ hơn ngày hiện tại! ", "Lỗi!");
-                        var today = new Date();
-                        var dd = today.getDate();
-                        var mm = today.getMonth()+1;//January is 0!
-                        var yyyy = today.getFullYear();
-                        if(dd<10){dd='0'+dd}
-                        if(mm<10){mm='0'+mm}
-                        $('#ngaynhap').val(dd+'/'+mm+'/'+yyyy);
-                        $('input[name="ngayhieuluc"]').val('');
-                    }
-                }
-            })
         }
     </script>
 @stop
@@ -346,13 +291,6 @@
                             </div>
                         </div>
                         <!--/span-->
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Đơn vị tính<span class="require">*</span></label>
-                                {!! Form::select('dvt',getDvtDvLt(),null, ['id' => 'dvt','class' => 'form-control','required'=>'required']) !!}
-                            </div>
-                        </div>
-                        <!--/span-->
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -364,22 +302,34 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Ngày nhập số công văn liền kề<span class="require">*</span></label>
-                                {!!Form::text('ngaycvlk',null, array('id' => 'ngaycvlk','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
+                                {!!Form::text('ngaycvlk',$model->ngaycvlk != '' ? date('d/m/Y',  strtotime($model->ngaycvlk)) : '', array('id' => 'ngaycvlk','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label">Thông tin kê khai</label>
+                            <div class="form-group"><label for="selGender" class="control-label">Phân tích nguyên nhân, nêu rõ biến động của các yếu tố hình thành giá tác động
+                                    làm tăng hoặc giảm giá hàng hóa, dịch vụ thực hiện kê khai giá</label>
                                 <div>
-                                    <textarea id="ghichu" class="form-control" name="ghichu" cols="30" rows="5"
-                                              placeholder="-Phụ thu, Thuế VAT">{{$model->ghichu != '' ? $model->ghichu : '- Mức giá nêu trên đã bao gồm thuế giá GTGT' }}</textarea>
+                                        <textarea id="ptnguyennhan" class="form-control" name="ptnguyennhan" cols="30" rows="5"
+                                                >{{$model->ptnguyennhan}}</textarea>
                                 </div>
                             </div>
                         </div>
-
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group"><label for="selGender" class="control-label">Ghi rõ cách chính sách và mức khuyến mại, giảm giá hoặc chiết khấu đối với các đối
+                                    tượng khách hàng, các Điều kiện vận chuyển, giao hàng, bán hàng kèm theo mức giá kê khai (nếu có)</label>
+                                <div>
+                                        <textarea id="chinhsachkm" class="form-control" name="chinhsachkm" cols="30" rows="5"
+                                                >{{$model->chinhsachkm}}</textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}">
+                    <input type="hidden" name="macskd" id="macskd" value="{{$model->macskd}}">
                     {!! Form::close() !!}
                     <!--/row-->
                     <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
@@ -398,12 +348,12 @@
                                 <thead>
                                 <tr>
                                     <th style="text-align: center">STT</th>
-                                    <th style="text-align: center">Đối tượng áp dụng</th>
-                                    <th style="text-align: center">Loại phòng<br>Quy cách chất lượng</th>
-                                    <th style="text-align: center">Số hiệu phòng</th>
-                                    <th style="text-align: center">Ghi chú</th>
+                                    <th style="text-align: center">Tên hàng hóa dịch vụ</th>
+                                    <th style="text-align: center">Quy cách chất lượng</th>
+                                    <th style="text-align: center">Đơn vị tính</th>
                                     <th style="text-align: center">Mức giá <br>liền kề</th>
                                     <th style="text-align: center">Mức giá <br>kê khai</th>
+                                    <th style="text-align: center">Ghi chú</th>
                                     <th style="text-align: center">Thao tác</th>
                                 </tr>
                                 </thead>
@@ -411,12 +361,12 @@
                                 @foreach($modelct as $key=>$tt)
                                     <tr>
                                         <td style="text-align: center">{{$key+1}}</td>
-                                        <td class="success">{{$tt->tendtad}}</td>
-                                        <td class="active">{{$tt->loaip}}-{{$tt->qccl}}</td>
-                                        <td>{{$tt->sohieu}}</td>
-                                        <td>{{$tt->ghichu}}</td>
+                                        <td class="success">{{$tt->tenhhdv}}</td>
+                                        <td class="active">{{$tt->qccl}}</td>
+                                        <td>{{$tt->dvt}}</td>
                                         <td style="text-align: right;font-weight: bold">{{number_format($tt->mucgialk)}}</td>
                                         <td style="text-align: right;font-weight: bold">{{number_format($tt->mucgiakk)}}</td>
+                                        <td>{{$tt->ghichu}}</td>
                                         <td>
                                             <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editTtPh({{$tt->id}})"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa thông tin</button>
                                             <button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid({{$tt->id}})" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
@@ -465,48 +415,31 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Thêm mới thông tin phòng nghỉ- quy cách chất lượng</h4>
+                    <h4 class="modal-title">Thêm mới thông tin hàng hóa dịch vụ</h4>
                 </div>
                 <div class="modal-body" id="ttpthemmoi">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label"><b>Đối tượng áp dụng</b><span class="require">*</span></label>
-                                <div>
-                                    {!! Form::select('madtad',getDtapdungdvlt(),null, ['id' => 'madtad','class' => 'form-control','required'=>'required']) !!}
-                                </div>
-
+                            <div class="form-group"><label for="selGender" class="control-label"><b>Tên hàng hóa dịch vụ</b><span class="require">*</span></label>
+                                <div><input type="text" name="tenhhdv" id="tenhhdv" class="form-control"></div>
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label"><b>Loại phòng</b><span class="require">*</span></label>
-                                <div><input type="text" name="loaip" id="loaip" class="form-control" ></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
                             <div class="form-group"><label for="selGender" class="control-label"><b>Quy cách chất lượng</b><span class="require">*</span></label>
                                 <div><textarea id="qccl" class="form-control" name="qccl" cols="30" rows="3"></textarea></div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group"><label for="selGender" class="control-label"><b>Số hiệu phòng</b><span class="require">*</span></label>
-                                <div><textarea id="sohieu" class="form-control" name="sohieu" cols="30" rows="3"></textarea></div>
-                            </div>
-                        </div>
                     </div>
-
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label"><b>Ghi chú</b><span class="require">*</span></label>
-                                <div><textarea id="ghichu" class="form-control" name="ghichu" cols="30" rows="3"></textarea></div>
+                        <div class="col-md-6">
+                            <div class="form-group"><label for="selGender" class="control-label"><b>Đơn vị tính</b><span class="require">*</span></label>
+                                <div><input type="text" name="dvt" id="dvt" class="form-control" ></div>
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group"><label for="selGender" class="control-label"><b>Mức giá liền kề</b><span class="require">*</span></label>
@@ -519,8 +452,13 @@
                             </div>
                         </div>
                     </div>
-
-
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group"><label for="selGender" class="control-label"><b>Ghi chú</b><span class="require">*</span></label>
+                                <div><textarea id="ghichu" class="form-control" name="ghichu" cols="30" rows="3"></textarea></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
@@ -537,7 +475,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Chỉnh sửa thông tin phòng nghỉ</h4>
+                    <h4 class="modal-title">Chỉnh sửa thông tin hàng hóa dịch vụ</h4>
                 </div>
                 <div class="modal-body" id="ttpedit">
                 </div>
@@ -568,6 +506,7 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+
 
     @include('includes.script.create-header-scripts')
 @stop
