@@ -9,56 +9,59 @@ class GiaVtXkCt extends Model
     protected $table = 'giavtxkct';
     protected $fillable = [
         'id',
+
         'mahs',
-        'madichvu',
-        'loaixe',
-        'diemdau',
-        'diemcuoi',
-        'mota',
+        'maxa',
+        'tendvcu',
         'qccl',
         'dvt',
-        'sokm',
+        'gialk',
+        'giakk',
+        'ghichu',
+        'trangthai',
 
-        'sltglk',
-        'chiphisxkdlk',
-        'chiphittlk',
-        'chiphinllk',
-        'chiphinclk',
-        'chiphikhlk',
-        'chiphisxkddtlk',
-        'chiphiclk',
-        'chiphisxclk',
-        'chiphitclk',
-        'chiphibhlk',
-        'chiphiqllk',
-        'tchiphisxkdlk',
-        'chiphidvklk',
-        'giathanhtblk',
-        'giathanhlk',
+        'dvcu',
 
-        'sltg',
-        'chiphisxkd',
-        'chiphitt',
-        'chiphinl',
-        'chiphinc',
-        'chiphikh',
-        'chiphisxkddt',
-        'chiphic',
-        'chiphisxc',
-        'chiphitc',
-        'chiphibh',
-        'chiphiql',
-        'tchiphisxkd',
-        'chiphidvk',
-        'giathanhtb',
-        'giathanh',
+        'sltgdvt',
+        'sltgtt',
+        'sltggc',
+
+        'chiphinldvt',
+        'chiphinltt',
+        'chiphinlgc',
+
+        'chiphincdvt',
+        'chiphinctt',
+        'chiphincgc',
+
+        'chiphikhdvt',
+        'chiphikhtt',
+        'chiphikhdv',
+
+        'chiphisxkddtdvt',
+        'chiphisxkddttt',
+        'chiphisxkddtgc',
+
+        'chiphisxcdvt',
+        'chiphisxctt',
+        'chiphisxcgc',
+
+        'chiphitcdvt',
+        'chiphitctt',
+        'chiphitcgc',
+
+        'chiphibhdvt',
+        'chiphibhtt',
+        'chiphibhgc',
+
+        'chiphiqldvt',
+        'chiphiqltt',
+        'chiphiqlgc',
+
+        'chiphidvkdvt',
+        'chiphidvktt',
+        'chiphidvkgc',
 
         'giaitrinhctcp',
-
-        'giahllk',
-        'giahl',
-
-        'ghichu',
-        'thuevat',
     ];
 }

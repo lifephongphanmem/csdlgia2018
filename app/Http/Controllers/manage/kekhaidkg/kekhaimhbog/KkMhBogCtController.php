@@ -289,7 +289,7 @@ class KkMhBogCtController extends Controller
 
         $inputs = $request->all();
         $id = $inputs['id'];
-        $model = kkdkgct::findOrFail($id);
+        $model = KkMhBogCt::findOrFail($id);
 
         die($model);
     }
@@ -322,9 +322,9 @@ class KkMhBogCtController extends Controller
             $inputs['nkloinhuandktt'] = getDoubleToDb($inputs['nkloinhuandktt']);
             $inputs['nkthuegtgtktt'] = getDoubleToDb($inputs['nkthuegtgtktt']);
             $inputs['nkgiabandktt'] = getDoubleToDb($inputs['nkgiabandktt']);
-            $modelup = kkdkgct::where('id',$inputs['id'])->first()->update($inputs);
+            $modelup = KkMhBogCt::where('id',$inputs['id'])->first()->update($inputs);
 
-            $model = kkdkgct::where('mahs',$inputs['mahs'])
+            $model = KkMhBogCt::where('mahs',$inputs['mahs'])
                 ->get();
 
             $result['message'] = '<div class="row" id="dsts">';

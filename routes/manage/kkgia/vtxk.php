@@ -1,4 +1,7 @@
 <?php
+
+
+
 Route::get('thongtindnvtxk','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkController@ttdn');
 Route::resource('kekhaigiavantaixekhach','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkController');
 Route::post('kekhaigiavantaixekhach/chuyen','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkController@chuyen');
@@ -28,8 +31,8 @@ Route::get('/giavtxkct/updatett','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkCtContro
 Route::get('/giavtxkct/deletett','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkCtController@delete');
 Route::get('/giavtxkct/kkgiahh','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkCtController@kkgia');
 Route::get('/giavtxkct/upkkgia','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkCtController@upkkgia');
-Route::get('/giavtxkct/kkgiahhlk','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkCtController@kkgialk');
-Route::get('/giavtxkct/upkkgialk','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkCtController@upkkgialk');
+//Route::get('/giavtxkct/kkgiahhlk','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkCtController@kkgialk');
+//Route::get('/giavtxkct/upkkgialk','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkCtController@upkkgialk');
 //End Ajax edit
 
 //Xét duyệt kk
@@ -46,4 +49,7 @@ Route::get('/ttdnkkvtxk','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkXdController@ttd
 Route::get('baocaogiavantaixekhach','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkBcController@index');
 Route::post('baocaogiavantaixekhach/bc1','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkBcController@bc1');
 Route::post('baocaogiavantaixekhach/bc2','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkBcController@bc2');
+
+Route::get('/giavtxkct/editpag','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkCtController@editpag');
+Route::post('/giavtxkct/updatepag','manage\kekhaigia\kkdvvt\vtxk\KkGiaVtXkCtController@updatepag');
 ?>

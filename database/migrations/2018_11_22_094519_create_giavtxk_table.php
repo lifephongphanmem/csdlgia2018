@@ -25,7 +25,9 @@ class CreateGiavtxkTable extends Migration
             $table->string('ngaycvlk')->nullable();
             $table->text('ytcauthanhgia')->nullable();
             $table->text('thydggadgia')->nullable();
-            $table->text('ttnguoinop')->nullable();
+            $table->string('nguoinop')->nullable();
+            $table->string('dtll')->nullable();
+            $table->string('fax')->nullable();
             $table->date('ngaynhan')->nullable();
             $table->string('sohsnhan')->nullable();
             $table->dateTime('ngaychuyen')->nullable();
