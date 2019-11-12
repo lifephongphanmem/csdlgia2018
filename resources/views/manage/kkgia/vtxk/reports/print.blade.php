@@ -1,6 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html lang="vi">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>{{$pageTitle}}</title>
@@ -170,8 +169,81 @@
         </td>
     </tr>
 </table>
-<!--Trang3-->
+
 @foreach($modelkkct as $ttpag)
+    <!--Trang3-->
+    <hr class="in">
+    <p style="page-break-before: always">
+    <div style="height:700px; margin: 0;overflow: auto; padding: 8px; border: 2px solid #000000; word-wrap: break-word;">
+        <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
+            <tr>
+                <td width="40%" style="vertical-align: top;">
+                    <span style="text-transform: uppercase;font-weight: bold">{{$modeldn->tendn}}</span>
+                    <hr style="width: 10%;vertical-align: top;  margin-top: 2px">
+
+                </td>
+                <td style="vertical-align: top;">
+                    <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+                        Độc lập - Tự do - Hạnh phúc</b>
+                    <hr style="width: 15%;vertical-align: top; margin-top: 2px">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align: right"><i style="margin-right: 25%;">{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i></td>
+            </tr>
+        </table>
+        <p style="text-align: center; font-weight: bold; font-size: 16px; margin-top: 100px; margin-bottom: 100px "><b>HỒ SƠ PHƯƠNG ÁN GIÁ</b></p>
+        <p style="text-align: left">Tên dịch vụ: {{$ttpag->tendvcu}}</p>
+        <p style="text-align: left">Tên đơn vị kinh doanh {{$modeldn->tendn}}</p>
+        <p style="text-align: left">Địa chỉ: {{$modeldn->diachi}}</p>
+        <p style="text-align: left">Số điện thoại: {{$modeldn->tel}}</p>
+        <p style="text-align: left">Số fax: {{$modeldn->fax}}</p>
+    </div>
+    {{--Trang 4--}}
+    <hr class="in">
+    <p style="page-break-before: always">
+    <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
+        <tr>
+            <td width="40%" style="vertical-align: top;">
+                <span style="text-transform: uppercase;font-weight: bold">{{$modeldn->tendn}}</span>
+                <hr style="width: 10%;vertical-align: top;  margin-top: 2px">
+
+            </td>
+            <td style="vertical-align: top;">
+                <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+                    Độc lập - Tự do - Hạnh phúc</b>
+                <hr style="width: 15%;vertical-align: top; margin-top: 2px">
+
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;">Số: {{$modelkk->socv}}<br>V/v thẩm định phương án giá <br> vận tải hành khách bằng xe chạy tuyến cố định</td>
+            <td style="text-align: right;vertical-align: top;"><i style="margin-right: 25%;">{{$modeldn->diadanh}}, ngày..{{ date("d",strtotime($modelkk->ngaynhap))}}..tháng..{{ date("m",strtotime($modelkk->ngaynhap))}}..năm..{{ date("Y",strtotime($modelkk->ngaynhap))}}..</i></td>
+        </tr>
+    </table>
+    <p style="text-align: center; font-weight: bold; font-size: 16px;">Kính gửi: {{$modelcqcq->tendv}}</p>
+    <br><br>
+    <p>Thực hiện quy định tại Thông tư liên tịch số 152/2014?TTLT-BTC-BGTVT ngày 15 tháng 10 năm 2014
+        của Bộ trưởng Bộ Tài chính và Bộ trưởng Bộ Giao thông vận tải hướng dẫn thực hiện giá cước vận tải bằng xe ô tô và giá dịch vụ hỗ trợ vận tải đường bộ;</p>
+
+    <p><b>{{$modeldn->tendn}}</b> đã lập phương án giá dịch vụ vận tải hành khách bằng xe chạy tuyến cố định (có phương án giá kèm theo).</p>
+    <p>Đề nghị {{$modelcqcq->tendv}} xem xét phê duyệt giá dịch vụ vận tải hành khách bằng xe chạy tuyến cố định theo quy định của pháp luật./.</p>
+
+    <table width="96%" border="0" cellspacing="0" height cellpadding="0" style="margin: 20px auto;text-align: center; height:200px">
+        <tr>
+            <td width="40%" style="text-align: left; vertical-align: top;">
+                <span style="font-weight: bold;font-style: italic">Nơi nhận:</span><br>
+                - Như trên:<br>
+                - Lưu VT, {{$modeldn->tendn}}
+            </td>
+            <td style="vertical-align: top;">
+                <b>THỦ TRƯỞNG ĐƠN VỊ</b><br>
+                <i>(Ký tên, đóng dấu)</i>
+            </td>
+        </tr>
+    </table>
+    <!--Trang4-->
     <hr class="in">
     <p style="page-break-before: always">
     <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
