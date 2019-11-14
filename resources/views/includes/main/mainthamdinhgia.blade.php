@@ -9,12 +9,12 @@
     @endif
 @if(can('thamdinhgia','index'))
 <li class="">
-    <a href="">
+    <a href="javascript:;">
         <i class="icon-folder"></i>
         <span class="title">Thẩm định giá</span>
         <span class="arrow"></span>
     </a>
-    <ul class="sub-menu" style="display: none;">
+    <ul class="sub-menu">
         @if(can('kkthamdinhgia','index'))
         <li>
             <a href="{{url('thamdinhgia')}}">Hồ sơ thẩm định giá</a>
@@ -39,12 +39,12 @@
         <!--i class="tooltips" data-container="body" data-placement="right" data-html="true"
             data-original-title="Giá trị tài sản được thẩm định giá(đất đai, nhà công trình xây dựng, máy thiết bị, phương tiện vận tải, dây truyền công nghệ, tài sản khác)
             và thông tin, tài liệu liên quan đến kết quả thẩm định giá của Hội đồng Thẩm định giá">
-            <a href="">
+            <a href="javascript:;">
                 <i class="icon-folder"></i>
                 <span class="title">Giá hàng hóa</span>
                 <span class="arrow"></span>
             </a>
-            <ul class="sub-menu" style="display: none;">
+            <ul class="sub-menu">
                 @if(can('dmthamdinhgiahh','index'))
                     <li>
                         <a href="{{url('dmthamdinhgiahh')}}">DM hàng hóa</a>
@@ -59,8 +59,7 @@
                     <li>
                         <a href="{{url('timkiemthamdinhgiahanghoa')}}">Tìm kiếm thông tin</a>
                     </li>
-                    @endif
-                            <!--li>
+                @endif
             <a href="{{url('baocaoththamdinhgiahanghoa')}}">Báo cáo tổng hợp</a>
         </li
             </ul>
@@ -71,12 +70,12 @@
     @if(can('cungcapgia','index'))
 <li class="tooltips" data-container="body" data-placement="right" data-html="true"
     data-original-title="">
-    <a href="">
+    <a href="javascript:;">
         <i class="icon-folder"></i>
         <span class="title">DN cung cấp giá</span>
         <span class="arrow"></span>
     </a>
-    <ul class="sub-menu" style="display: none;">
+    <ul class="sub-menu">
         @if(session('admin')->level == 'CCG')
             @if(can('kkcungcapgia','index'))
             <li>
@@ -102,7 +101,7 @@
             @endif
             @if(can('thcungcapgia','baocao'))
             <li>
-                <a href="">Báo cáo tổng hợp</a>
+                <a href="javascript:;">Báo cáo tổng hợp</a>
             </li>
             @endif
         @endif

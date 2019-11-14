@@ -32,6 +32,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
+use PhpOffice\PhpWord\Exception\Exception;
+use PhpOffice\PhpWord\PhpWord;
 
 class HomeController extends Controller
 {
@@ -60,6 +62,42 @@ User email: hainv@outlook.com
 License code: PRO4-69G6Q4M-8YGNXX-M2N8-KCHVWYK
 
      * */
+    /*11.11.19 thử test word*/
+    public function testword(){
+        /*
+         Excel::create('BANGLUONG_01',function($excel) use($m_dv,$thongtin,$model,$col,$model_congtac,$a_phucap){
+                $excel->sheet('New sheet', function($sheet) use($m_dv,$thongtin,$model,$col,$model_congtac,$a_phucap){
+                    $sheet->loadView('reports.bangluong.donvi.maubangluong_excel')
+                        ->with('pageTitle','Bảng lương chi tiết');
+                    //$sheet->setPageMargin(0.25);
+                    $sheet->setAutoSize(false);
+                    $sheet->setFontFamily('Tahoma');
+                    $sheet->setFontBold(false);
+
+                    //$sheet->setColumnFormat(array('D' => '#,##0.00'));
+                });
+            })->download('xls');
+         * */
+        $phpWord = new PhpWord();
+        $phpWord->loadTemplate('word')->save('word.doc', 'Word2007', true);
+        dd();
+        $section = $phpWord->addSection();
+
+        // Adding Text element to the Section having font styled by default...
+        $section->addText(
+            htmlspecialchars(
+                '"Learn from yesterday, live for today, hope for tomorrow. '
+                . 'The important thing is not to stop questioning." '
+                . '(Albert Einstein)'
+            )
+        );
+        try {
+            return $phpWord->loadTemplate('word.blade.php')->save('word.doc', 'Word2007', true);
+        } catch (Exception $e) {
+            return $phpWord->save('word.doc', 'Word2007', true);
+        }
+    }
+
     public function index(){
         if (Session::has('admin')) {
             //dd(session('admin'));

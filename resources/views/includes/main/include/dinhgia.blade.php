@@ -2,17 +2,17 @@
     @if(can('dinhgia','index'))
         <li class="tooltips" data-container="body" data-placement="right" data-html="true"
             data-original-title="Giá hàng hóa, dịch vụ do UBND định giá">
-            <a href="">
+            <a href="javascript:;">
                 <i class="icon-folder"></i>
                 <span class="title">Định giá</span>
                 <span class="arrow"></span>
             </a>
-            <ul class="sub-menu" style="display: none;">
+            <ul class="sub-menu">
                 @if(canGeneral('giacldat','index'))
                     {{--Giá đất địa bàn--}}
                     @if(can('giacldat','index'))
                     <li class="">
-                        <a href="">
+                        <a href="javascript:;">
                             <span class="title">Giá đất theo địa bàn</span>
                             <span class="arrow"></span>
                         </a>
@@ -47,7 +47,7 @@
                 @if(canGeneral('giadatduan','index'))
                     @if(can('giadatduan','index'))
                         <li class="">
-                            <a href="">
+                            <a href="javascript:;">
                                 <span class="title">Giá đất cụ thể dự án</span>
                                 <span class="arrow"></span>
                             </a>
@@ -82,7 +82,7 @@
                         {{--Giá đất địa bàn--}}
                         @if(can('giadatpl','index'))
                             <li class="">
-                                <a href="">
+                                <a href="javascript:;">
                                     <span class="title">Giá đất phân loại</span>
                                     <span class="arrow"></span>
                                 </a>
@@ -92,6 +92,8 @@
                                             <a href="{{url('giadatphanloaidm')}}">
                                                 Danh mục các loại đất
                                             </a>
+                                        </li>
+                                        <li>
                                             <a href="{{url('giadatphanloai')}}">
                                                 Giá đất theo phân loại
                                             </a>
@@ -104,7 +106,7 @@
                 @if(canGeneral('giadaugiadat','index'))
                     @if(can('giadaugiadat','index'))
                         <li>
-                            <a href="">
+                            <a href="javascript:;">
                                 Giá giao dịch bất động sản <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
@@ -125,7 +127,7 @@
                 @if(canGeneral('daugiadatts','index'))
                     @if(can('daugiadatts','index'))
                         <li>
-                            <a href="">
+                            <a href="javascript:;">
                                 Giá đấu giá đất và tài sản gắn liền đất <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
@@ -146,7 +148,7 @@
                 @if(canGeneral('giathuetn','index'))
                     @if(can('giathuetn','index'))
                         <li class="">
-                            <a href="">
+                            <a href="javascript:;">
                                 <span class="title">Giá thuế tài nguyên</span>
                                 <span class="arrow"></span>
                             </a>
@@ -174,7 +176,7 @@
                     @if(can('giathuedatnuoc','index'))
                         <li class="tooltips" data-container="body" data-placement="right" data-html="true"
                             data-original-title="Giá cho thuê mặt đất, mặt nước">
-                            <a href="">
+                            <a href="javascript:;">
                                 Giá thuê đất, nước<span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
@@ -196,7 +198,7 @@
                     @if(can('giarung','index'))
                         <li class="tooltips" data-container="body" data-placement="right" data-html="true"
                             data-original-title="Giá rừng bao gồm rừng sản xuất, rừng phòng hộ và rừng đặc dụng thuộc sở hữu toàn dân do Nhà nước làm đại diện chủ sở hữu">
-                            <a href="">
+                            <a href="javascript:;">
                                 Giá thuê MT rừng
                                 <span class="arrow"></span>
                             </a>
@@ -255,7 +257,7 @@
                 @if(canGeneral('gianuocsh','index'))
                     @if(can('gianuocsh','index'))
                         <li>
-                            <a href="">
+                            <a href="javascript:;">
                                 Giá nước sạch sinh hoạt
                                 <span class="arrow"></span>
                             </a>
@@ -280,7 +282,7 @@
                     @if(can('giathuetscong','index'))
                         <li class="tooltips" data-container="body" data-placement="right" data-html="true"
                             data-original-title="Giá cho thuê tài sản Nhà nước là công trình kết cấu hạ tầng đầu tư từ nguồn ngân sách địa phương">
-                            <a href="">
+                            <a href="javascript:;">
                                 Giá thuê tài sản công<span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
@@ -303,7 +305,7 @@
                         @if(can('giathuetscong','index'))
                             <li class="tooltips" data-container="body" data-placement="right" data-html="true"
                                 data-original-title="Giá cho thuê tài sản Nhà nước là công trình kết cấu hạ tầng đầu tư từ nguồn ngân sách địa phương">
-                                <a href="">
+                                <a href="javascript:;">
                                     Giá tài sản công<span class="arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
@@ -352,18 +354,18 @@
                             data-original-title="Mức trợ giá, trợ cước vận chuyển hàng hóa thuộc danh mục được trợ giá, trợ cước vận chuyển chỉ từ ngân sách địa phương và trung ương;
                             mức giá hoặc khung giá bán lẻ hàng hóa được trợ giá, trợ cước vận chuyển; giá cước vận chuyển cung ứng hàng hóa,
                             dịch vụ thiết yếu thuộc dnah mục được trợ giá phục vụ đồng bào miền núi, vùng sâu, vùng xa và hải đảo">
-                            <a href="">
+                            <a href="javascript:;">
                                 Mức trợ giá, trợ cước<span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
                                 @if(can('dmtrogiatrocuoc','index'))
                                     <li>
-                                        <a href="">Danh mục mức trợ giá, trợ cước</a>
+                                        <a href="javascript:;">Danh mục mức trợ giá, trợ cước</a>
                                     </li>
                                 @endif
                                 @if(can('kktrogiatrocuoc','index'))
                                     <li>
-                                        <a href="">Thông tin mức trợ giá trợ cước</a>
+                                        <a href="javascript:;">Thông tin mức trợ giá trợ cước</a>
                                     </li>
                                 @endif
                                 @if(can('thtrogiatrocuoc','timkiem'))
@@ -378,23 +380,23 @@
                 @if(canGeneral('giaspdvci','index'))
                     @if(can('giaspdvci','index'))
                         <li>
-                            <a href="">
+                            <a href="javascript:;">
                                 Giá SP, DVCI, DVSNC, HH-DV đặt hàng <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
                                 @if(can('dmgiaspdvci','index'))
                                     <li>
-                                        <a href="">Danh mục SP, DVCI, DVSNC, HH-DV đặt hàng</a>
+                                        <a href="javascript:;">Danh mục SP, DVCI, DVSNC, HH-DV đặt hàng</a>
                                     </li>
                                 @endif
                                 @if(can('kkgiaspdvci','index'))
                                     <li>
-                                        <a href="">Thông tin giá SP, DVCI, DVSNC, HH-DV đặt hàng</a>
+                                        <a href="javascript:;">Thông tin giá SP, DVCI, DVSNC, HH-DV đặt hàng</a>
                                     </li>
                                 @endif
                                 @if(can('thgiaspdvci','timkiem'))
                                     <li>
-                                        <a href="">Tìm kiếm thông tin</a>
+                                        <a href="javascript:;">Tìm kiếm thông tin</a>
                                     </li>
                                 @endif
                             </ul>

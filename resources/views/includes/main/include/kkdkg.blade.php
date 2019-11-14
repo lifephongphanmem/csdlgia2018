@@ -1,11 +1,11 @@
 @if(canKkGiaGr('BOG'))
     <li class="tooltips" data-container="body" data-placement="right" data-html="true"
         data-original-title="Tổ chức, cá nhận đăng ký giá theo yêu cầu của Sở Tài chính, sở quản lý ngành">
-        <a href="">
+        <a href="javascript:;">
             <span class="title">Mặt hàng trong danh mục bình ổn giá</span>
             <span class="arrow"></span>
         </a>
-        <ul class="sub-menu" style="display: none;">
+        <ul class="sub-menu">
             @if($modeldm = \App\Model\system\dmnganhnghekd\DmNgheKd::where('manganh','BOG')
                     ->where('theodoi','TD')
                     ->get())@endif
@@ -13,11 +13,11 @@
                 @if(canKkGiaCt('BOG',$dm->manghe))
                     @if($dm->mahuyen != '')
                     <li>
-                        <a href="">
+                        <a href="javascript:;">
                             <span class="title">{{$dm->tennghe}}</span>
                             <span class="arrow"></span>
                         </a>
-                        <ul class="sub-menu" style="display: none;">
+                        <ul class="sub-menu">
                             @if(session('admin')->level == 'DN')
                                 @if($dm->phanloai == 'DK')
                                     <li><a href="{{url('hosokkdkg?manghe='.$dm->manghe)}}">Đăng ký giá</a></li>

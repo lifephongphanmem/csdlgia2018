@@ -3,12 +3,12 @@
     @if(can('vbqlnn','index'))
     <li class="tooltips" data-container="body" data-placement="right" data-html="true"
         data-original-title="Văn bản quản lý nhà nước về giá, các báo cáo tổng hợp">
-        <a href="">
+        <a href="javascript:;">
             <i class="icon-folder"></i>
             <span class="title">Văn bản QLNN về giá - phí, lệ phí</span>
             <span class="arrow"></span>
         </a>
-        <ul class="sub-menu" style="display: none;">
+        <ul class="sub-menu">
             @if(canGeneral('vbgia','index'))
                 @if(can('vbgia','index'))
                 <li class="tooltips" data-container="body" data-placement="right" data-html="true"
@@ -21,8 +21,8 @@
                 @if(can('giacpi','index'))
                     <!--li class="tooltips" data-container="body" data-placement="right" data-html="true"
                         data-original-title="Giá CPI">
-                        <a href="">Giá CPI</a>
-                        <ul class="sub-menu" style="display: none;">
+                        <a href="javascript:;">Giá CPI</a>
+                        <ul class="sub-menu">
                             <li>
                                 <a href="{{url('/dmhanghoacpi/danhsach')}}">Danh mục hàng hóa</a>
                             </li>
@@ -42,12 +42,12 @@
     @if(can('chisogiatieudung','index'))
     <li class="tooltips" data-container="body" data-placement="right" data-html="true"
         data-original-title="Chỉ số giá tiêu dùng (CPI)">
-        <a href="">
+        <a href="javascript:;">
             <i class="icon-folder"></i>
             <span class="title">Chỉ số giá tiêu dùng (CPI)</span>
             <span class="arrow"></span>
         </a>
-        <ul class="sub-menu" style="display: none;">
+        <ul class="sub-menu">
             @if(can('chisogiatieudung','index'))
                 <li class="tooltips" data-container="body" data-placement="right" data-html="true"
                     data-original-title="">
@@ -62,12 +62,12 @@
 @if(canGeneral('bcthvegia','index'))
     <li class="tooltips" data-container="body" data-placement="right" data-html="true"
         data-original-title="Các báo cáo tổng hợp về giá">
-        <a href="">
+        <a href="javascript:;">
             <i class="icon-folder"></i>
             <span class="title">Các báo cáo tổng hợp về giá</span>
             <span class="arrow"></span>
         </a>
-        <ul class="sub-menu" style="display: none;">
+        <ul class="sub-menu">
             @if(can('dmbcthvegia','index'))
                 <li class="tooltips" data-container="body" data-placement="right" data-html="true"
                     data-original-title="">

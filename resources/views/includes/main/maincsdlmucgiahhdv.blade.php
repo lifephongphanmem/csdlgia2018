@@ -3,7 +3,7 @@
     @if(can('giahhdvk','index'))
         <li class="tooltips" data-container="body" data-placement="right" data-html="true"
             data-original-title="Giá thị trường hàng hóa dịch vụ khác do UBND tỉnh, thành phố trực thuộc trung ương và các Bộ quản lý ngành, lĩnh vực tự quy định thuộc nội dung CSDL giá của mình">
-            <a href="">
+            <a href="javascript:;">
                 <i class="icon-folder"></i>
                 <span class="title">Giá HH-DV khác </span>
                 <span class="arrow"></span>
@@ -45,7 +45,7 @@
     @if(can('giathitruong','index'))
         <li class="tooltips" data-container="body" data-placement="right" data-html="true"
             data-original-title="Giá thị trường hàng hóa dịch vụ khác do UBND tỉnh, thành phố trực thuộc trung ương và các Bộ quản lý ngành, lĩnh vực tự quy định thuộc nội dung CSDL giá của mình">
-            <a href="">
+            <a href="javascript:;">
                 <i class="icon-folder"></i>
                 <span class="title">Giá thị trường </span>
                 <span class="arrow"></span>
@@ -80,7 +80,7 @@
     @if(can('gialephitruocba','index'))
         <li class="tooltips" data-container="body" data-placement="right" data-html="true"
             data-original-title="Giá tính lệ phí trước bạ do UBND tỉnh, thành phố trực thuộc trung ương ban hành">
-            <a href="">
+            <a href="javascript:;">
                 <i class="icon-folder"></i>
                 <span class="title">Giá lệ phí trước bạ </span>
                 <span class="arrow"></span>
@@ -108,7 +108,7 @@
 @if(canGeneral('giaphilephi','index'))
     @if(can('giaphilephi','index'))
         <li class="">
-            <a href="">
+            <a href="javascript:;">
                 <i class="icon-folder"></i>
                 <span class="title">Phí, lệ phí</span>
                 <span class="arrow"></span>
@@ -136,7 +136,7 @@
 @if(canGeneral('thanhlytaisan','index'))
     @if(can('thanhlytaisan','index'))
     <li class="">
-        <a href="">
+        <a href="javascript:;">
             <i class="icon-folder"></i>
             <span class="title">Giá đấu thầu bán TS</span>
             <span class="arrow"></span>
@@ -159,7 +159,7 @@
 @if(canGeneral('muataisan','index'))
     @if(can('muataisan','index'))
     <li class="">
-        <a href="">
+        <a href="javascript:;">
             <i class="icon-folder"></i>
             <span class="title">Giá trúng thầu của HH-DV được mua sắm theo QĐ của PL về đấu thầu</span>
             <span class="arrow"></span>
@@ -182,7 +182,7 @@
 @if(canGeneral('giagocvlxd','index'))
     @if(can('giagocvlxd','index'))
         <li class="">
-            <a href="">
+            <a href="javascript:;">
                 <i class="icon-folder"></i>
                 <span class="title">Giá gốc vật liệu xây dựng</span>
                 <span class="arrow"></span>

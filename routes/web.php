@@ -1,5 +1,6 @@
 <?php
 Route::get('','HomeController@index');
+//Route::get('/testword', 'HomeController@testword');
 //Route::get('/ajax/checkngay','AjaxController@checkngay');
 //Route::get('/ajax/checkngaykk','AjaxController@checkngaykk');
 //Route::get('/ajax/checkusername','AjaxController@checkusername');

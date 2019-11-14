@@ -99,18 +99,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="{{url('assets/admin/layout/scripts/demo.js')}}" type="text/javascript"></script>
     <script src="{{url('assets/admin/pages/scripts/index.js')}}" type="text/javascript"></script>
     <script src="{{url('assets/admin/pages/scripts/tasks.js')}}" type="text/javascript"></script>
-
     <!-- END PAGE LEVEL SCRIPTS -->
-
-    <script>
-        jQuery(document).ready(function() {
-            Metronic.init(); // init metronic core componets
-            Layout.init(); // init layout
-            QuickSidebar.init(); // init quick sidebar
-            Demo.init(); // init demo features
-
-        });
-    </script>
     <script type="text/javascript">
         function time() {
             var today = new Date();
@@ -276,31 +265,13 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                     <!-- END SIDEBAR TOGGLER BUTTON -->
                 </li>
-                <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
-                <!--li class="sidebar-search-wrapper">
-                    <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
-                    <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
-                    <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
-                    <form class="sidebar-search " action="extra_search.html" method="POST">
-                        <!--a href="javascript:;" class="remove">
-                            <i class="icon-close"></i>
-                        </a>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search...">
-							<span class="input-group-btn">
-							<a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
-							</span>
-                        </div-->
-                    </form>
-                    <!-- END RESPONSIVE QUICK SEARCH FORM -->
-
-                <li class="start active open">
-                    <a href="">
-                        <i class="fa fa-folder-open-o"></i>
-                        <span class="title">{{$pageTitle}}</span>
-                        <span class="selected"></span>
-                    </a>
-                </li>
+{{--                <li class="start active open">--}}
+{{--                    <a href="">--}}
+{{--                        <i class="fa fa-folder-open-o"></i>--}}
+{{--                        <span class="title">{{$pageTitle}}</span>--}}
+{{--                        <span class="selected"></span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <!--Manager-->
                 @if(canGeneral('csdlmucgiahhdv','index'))
                     @if(can('csdlmucgiahhdv','index'))
@@ -494,6 +465,16 @@ License: You must have a valid license purchased only from themeforest(the above
     </div>
 </div>
 <!-- END FOOTER -->
+<script src="{{ url('js/main.js') }}" type="text/javascript"></script>
+<script>
+    jQuery(document).ready(function() {
+        Metronic.init(); // init metronic core componets
+        Layout.init(); // init layout
+        QuickSidebar.init(); // init quick sidebar
+        Demo.init(); // init demo features
+
+    });
+</script>
 
 </body>
 <!-- END BODY -->
