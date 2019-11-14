@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\manage\gianuocsachsh;
 
+use App\District;
 use App\Model\manage\dinhgia\gianuocsachsh\GiaNuocSachShDm;
 use App\Model\manage\dinhgia\gianuocsachsh\GiaNuocSh;
 use App\Model\manage\dinhgia\gianuocsachsh\GiaNuocShCt;

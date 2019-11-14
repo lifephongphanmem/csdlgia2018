@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\manage\bannhataidinhcu;
 
 use App\DiaBanHd;
+use App\District;
 use App\Model\manage\dinhgia\BanNhaTaiDinhCu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
