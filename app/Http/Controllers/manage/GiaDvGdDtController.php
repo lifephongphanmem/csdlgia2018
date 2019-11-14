@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\manage;
 
 use App\DiaBanHd;
+use App\District;
 use App\Model\manage\dinhgia\GiaDvGdDt;
 use App\Town;
 use Illuminate\Http\Request;
