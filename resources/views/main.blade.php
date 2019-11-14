@@ -266,7 +266,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!-- END SIDEBAR TOGGLER BUTTON -->
                 </li>
 {{--                <li class="start active open">--}}
-{{--                    <a href="">--}}
+{{--                    <a href="javascript:;">--}}
 {{--                        <i class="fa fa-folder-open-o"></i>--}}
 {{--                        <span class="title">{{$pageTitle}}</span>--}}
 {{--                        <span class="selected"></span>--}}
@@ -311,7 +311,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <h3 class="uppercase">System</h3>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="javascript:;">
                             <i class="icon-settings"></i>
                             <span class="title">Quản trị hệ thống</span>
                             <span class="arrow "></span>
@@ -337,7 +337,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             @endif
                             @if(can('users','index'))
                                 <li>
-                                    <a href="">
+                                    <a href="javascript:;">
                                         <span class="title">Danh sách tài khoản</span>
                                         <span class="arrow "></span>
                                     </a>
