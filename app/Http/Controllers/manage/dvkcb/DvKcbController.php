@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\manage\dvkcb;
 
 use App\DiaBanHd;
+use App\District;
 use App\Model\manage\dinhgia\DvKcb;
 use App\Town;
 use Illuminate\Http\Request;
