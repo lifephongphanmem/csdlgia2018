@@ -8,11 +8,11 @@
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu">
-                @if(session('admin')->level != 'T' && session('admin')->level != 'H' && session('admin')->level != 'X')
+                @if(session('admin')->level == 'DN')
                     @if(can('ttdn','index'))
                         <li><a href="{{url('thongtindoanhnghiep')}}">Thông tin doanh nghiệp</a></li>
                     @endif
-                @else
+                @elseif(session('admin')->level == 'T')
                     @if(can('ttdn','approve'))
                         <li><a href="{{url('xetduyettdttdn')}}"> Xét duyệt thay đổi thông tin doanh nghiệp</a></li>
                     @endif
