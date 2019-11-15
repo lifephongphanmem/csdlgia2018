@@ -1,46 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html lang="vi">
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>{{$pageTitle}}</title>
-    <link rel="shortcut icon" href="{{ url('images/LIFESOFT.png')}}" type="image/x-icon">
-    <style type="text/css">
-        body {
-            font: normal 14px/16px time, serif;
-        }
-        table, p {
-            width: 98%;
-            margin: auto;
-        }
-        table tr td:first-child {
-            text-align: center;
-        }
-        td, th {
-            padding: 10px;
-        }
-        p{
-            padding: 5px;
-        }
-        tr{
-            padding: 20px;
-        }
-        span {
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-        @media print {
-            .in{
-                display: none !important;
-            }
-        }
-    </style>
-</head>
+@extends('reports.main_rps')
+@section('custom-style')
+@stop
 
 
+@section('custom-script')
 
-<body style="font:normal 14px Times, serif;">
+@stop
 
+@section('content')
 
 <div class="row">
     <div class="col-md-12">
@@ -81,7 +48,7 @@
                     </div>
                 </div>
                 <div class="portlet-body">
-                    <table class="table table-striped table-bordered table-hover" border="1" cellspacing="0" cellpadding="0">
+                    <table class="table table-striped table-bordered table-hover" border="1" cellspacing="0" cellpadding="0" id="data">
                         <thead>
                         <tr>
                             <th style="text-align: center">Ngày áp<br>dụng</th>
@@ -114,3 +81,4 @@
         </div>
     </div>
 </div>
+@stop

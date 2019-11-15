@@ -1,48 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html lang="vi">
+@extends('reports.main_rps')
+@section('custom-style')
+@stop
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>{{$pageTitle}}</title>
-    <style type="text/css">
-        body {
-            font: normal 14px/16px time, serif;
-        }
 
-        table, p {
-            width: 98%;
-            margin: auto;
-        }
+@section('custom-script')
 
-        table tr td:first-child {
-            text-align: center;
-        }
+@stop
 
-        td, th {
-            padding: 10px;
-        }
-        p{
-            padding: 5px;
-        }
-        span {
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-
-        @media print {
-            .in{
-                display: none !important;
-            }
-        }
-    </style>
-</head>
-
-<div class="in" style="margin-left: 20px;">
-    <input type="submit" onclick=" window.print()" value="In kê khai"  />
-</div>
-
-<body style="font:normal 14px Times, serif;">
-
+@section('content')
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
         <td width="40%">
@@ -229,7 +194,7 @@
 </table>
 <p style="text-align: center; font-weight: bold; font-size: 16px;">BẢNG GIÁ PHÒNG</p>
 <p style="text-align: center;">Thực hiện từ ngày {{ date("d",strtotime($modelkk->ngayhieuluc))}} tháng {{ date("m",strtotime($modelkk->ngayhieuluc))}} năm {{ date("Y",strtotime($modelkk->ngayhieuluc))}} <br>(Theo bảng giá đã kê khai với cơ quan tài chính  ngày {{ date("d",strtotime($modelkk->ngaynhap))}} tháng {{ date("m",strtotime($modelkk->ngaynhap))}} năm {{ date("Y",strtotime($modelkk->ngaynhap))}} )</p>
-<table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
+<table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;" id="data">
     <tr>
         <th style="text-align: center">Loại phòng/ Quy<br>cách chất lượng<br>phòng</th>
         <th style="text-align: center">Số hiệu<br>Phòng</th>
@@ -273,5 +238,4 @@
         </td>
     </tr>
 </table>
-</body>
-</html>
+@stop

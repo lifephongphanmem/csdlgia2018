@@ -105,7 +105,8 @@
 
 <p>-Địa chỉ: {{$modelcskd->diachikd}}    -      Điện thoại: {{$modelcskd->telkd}}</p>
 <p>1. Mức giá kê khai bán trong nước hoặc xuất khẩu (bán buôn, bán lẻ):  Các mức giá tại cửa kho/ nhà máy, tại các địa bàn, khu vực khác (nếu có)</p>
-<table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
+<table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;" id="data" style="font:normal 14px Times, serif;">
+    <thead>
     <tr>
         <th width="2%">STT</th>
         <th>Tên hàng hóa, dịch vụ</th>
@@ -117,6 +118,8 @@
         <th>Tỷ lệ % tăng giảm</th>
         <th>Ghi chú</th>
     </tr>
+    </thead>
+    <tbody>
     @foreach($modelkkct as $key=>$tt)
         <tr>
             <td style="text-align: center">{{$key+1}}</td>
@@ -130,6 +133,7 @@
             <td>{{$tt->ghichu}}</td>
         </tr>
     @endforeach
+    </tbody>
 </table>
 <p>2. Phân tích nguyên nhân, nêu rõ biến động của các yếu tố hình thành giá tác động làm tăng hoặc giảm giá hàng hóa dịch vụ thực hiện kê khai giá</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$modelkk->ptnguyennhan}}</p>

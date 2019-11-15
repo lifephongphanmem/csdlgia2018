@@ -1,32 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html lang="vi">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>{{$pageTitle}}</title>
-    <link rel="shortcut icon" href="{{ url('images/LIFESOFT.png')}}" type="image/x-icon">
-    <style type="text/css">
-        body {
-            font: normal 14px/16px time, serif;
-        }
+@extends('reports.main_rps')
+@section('custom-style')
+@stop
 
-        table, p {
-            width: 98%;
-            margin: auto;
-        }
 
-        table tr td:first-child {
-            text-align: center;
-        }
+@section('custom-script')
 
-        td, th {
-            padding: 10px;
-        }
-        p{
-            padding: 5px;
-        }
-    </style>
-</head>
-<body style="font:normal 14px Times, serif;">
+@stop
+
+@section('content')
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
         <td width="40%" style="vertical-align: top;">
@@ -50,7 +31,7 @@
 
 <p style="text-align: center; font-weight: bold; font-size: 16px;">BÁO CÁO GIÁ THỊ TRƯỜNG THÁNG {{$inputs['thang']}} NĂM {{$inputs['nam']}}</p>
 <p style="font-style: italic; text-align: center">(Ban hành kèm theo Thông tư số 116/2018/TT-BTC ngày 28/11/2018 của Bộ Tài Chính quy định chế độ báo cáo giá thị trường)</p>
-<table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
+<table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;" id="data">
     <thead>
         <tr>
             <th width="2%" style="text-align: center" >STT</th>
@@ -124,5 +105,4 @@
         </td>
     </tr>
 </table>
-</body>
-</html>
+@stop

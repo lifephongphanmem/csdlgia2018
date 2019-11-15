@@ -1,42 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html lang="vi">
+@extends('reports.main_rps')
+@section('custom-style')
+@stop
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>{{$pageTitle}}</title>
-    <link rel="shortcut icon" href="{{ url('images/LIFESOFT.png')}}" type="image/x-icon">
-    <style type="text/css">
-        body {
-            font: normal 14px/16px time, serif;
-        }
-        table, p {
-            width: 98%;
-            margin: auto;
-        }
-        table tr td:first-child {
-            text-align: center;
-        }
-        td, th {
-            padding: 10px;
-        }
-        p{
-            padding: 5px;
-        }
-        @media print {
-            .in{
-                display: none !important;
-            }
-        }
-    </style>
-</head>
 
-<div class="in" style="margin-left: 20px;">
-    <input type="submit" onclick=" window.print()" value="In kê khai"  />
-</div>
+@section('custom-script')
 
-<body style="font:normal 14px Times, serif;">
+@stop
 
-<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
+@section('content')
+
+<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;" id="data">
     <tr>
         <td width="40%" style="vertical-align: top;">
             <span style="text-transform: uppercase">{{$inputs['dvcaptren']}}</span><br>
@@ -111,3 +84,4 @@
         </td>
     </tr>
 </table>
+@stop

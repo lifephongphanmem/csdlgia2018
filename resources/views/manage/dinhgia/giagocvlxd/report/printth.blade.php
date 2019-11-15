@@ -1,31 +1,13 @@
+@extends('reports.main_rps')
+@section('custom-style')
+@stop
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>{{$pageTitle}}</title>
-    <link rel="shortcut icon" href="{{ url('images/LIFESOFT.png')}}" type="image/x-icon">
-    <style type="text/css">
-        body {
-            font: normal 12px/16px time, serif;
-        }
 
-        table, p {
-            width: 98%;
-            margin: auto;
-        }
+@section('custom-script')
 
-        table tr td:first-child {
-            text-align: center;
-        }
+@stop
 
-        td, th {
-            padding: 2px;
-        }
-    </style>
-</head>
-<body>
+@section('content')
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
 <tr>
     <td width="40%" style="text-transform: uppercase;">
@@ -71,7 +53,7 @@
 <br>
 <p style="text-align: center;font-size: 16px; font-weight: bold" ><u>Thời điểm: Quý {{romanNumerals($model->quy)}} / {{$model->nam}}</u></p>
 
-<table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
+<table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;" id="data">
     <p style="padding-left: 50px;font-weight: bold">Bảng giá gốc vật liệu xây dựng Quý {{romanNumerals($model->quy)}} / {{$model->nam}}</p>
     <thead>
     <tr height="40px">
@@ -104,5 +86,4 @@
     @endforeach
     </tbody>
 </table>
-</body>
-</html>
+@stop
