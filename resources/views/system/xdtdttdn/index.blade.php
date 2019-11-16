@@ -35,6 +35,7 @@
     <h3 class="page-title">
         Quản lý thay đổi <small>&nbsp;thông tin doanh nghiệp</small>
     </h3>
+    <hr>
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">

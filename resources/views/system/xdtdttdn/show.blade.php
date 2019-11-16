@@ -52,6 +52,7 @@
                         @endif
                     </div>
                 </div>
+                <hr>
                 <div class="portlet-body">
                     @if($modeltttd->trangthai == 'BTL')
                         <div class="row">

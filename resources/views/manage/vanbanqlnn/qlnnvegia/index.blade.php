@@ -82,6 +82,7 @@
                                 <i class="fa fa-print"></i> Print </a-->
                         </div>
                     </div>
+                <hr>
                 <div class="portlet-body">
                     <div class="row">
                         <div class="col-md-3">

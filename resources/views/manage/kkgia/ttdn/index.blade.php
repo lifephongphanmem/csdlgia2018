@@ -57,6 +57,7 @@
                             <i class="fa fa-print"></i> Print </a-->
                     </div>
                 </div>
+                <hr>
                 <div class="portlet-body">
                     @if(isset($modeltttd))
                         @if($modeltttd->trangthai == 'BTL')

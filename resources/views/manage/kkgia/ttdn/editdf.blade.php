@@ -28,7 +28,7 @@
         Thông tin doanh nghiệp<small> chỉnh sửa</small>
     </h3>
     <!-- END PAGE HEADER-->
-
+<hr>
     <!-- BEGIN DASHBOARD STATS -->
     <div class="row center">
         <div class="col-md-12 center">

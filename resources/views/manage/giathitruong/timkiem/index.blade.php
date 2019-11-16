@@ -59,6 +59,7 @@
     <h3 class="page-title">
         Tìm kiếm thông tin <small>&nbsp;giá hàng hóa dịch vụ thị trường</small>
     </h3>
+    <hr>
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">

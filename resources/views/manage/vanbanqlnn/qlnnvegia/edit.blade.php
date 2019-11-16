@@ -15,6 +15,7 @@
     <h3 class="page-title">
         Văn bản quản lý nhà nước về giá, phí lệ phí<small> chỉnh sửa</small>
     </h3>
+    <hr>
     <!-- END PAGE HEADER-->
     <!-- BEGIN DASHBOARD STATS -->
     <div class="row center">
