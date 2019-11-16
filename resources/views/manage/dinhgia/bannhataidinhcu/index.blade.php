@@ -243,9 +243,7 @@
                                                 {{--Hoàn thành--}}
                                                 @if(can('thbannhataidinhcu','congbo'))
                                                     <button type="button" onclick="getIdCb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Công bố</button>
-                                                @endif
-                                                @if(can('kkbannhataidinhcu','approve'))
-                                                    <button type="button" onclick="getIdHHt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Hủy Hoàn thành</button>
+                                                    <button type="button" onclick="getIdHHt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-times"></i>&nbsp;Hủy Hoàn thành</button>
                                                 @endif
                                             @endif
                                         </td>
