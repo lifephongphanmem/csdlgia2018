@@ -250,11 +250,11 @@
                                                     <a href="{{url('thongtindaugiadat/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                                     <a href="{{url('thongtindaugiadatct?&mahs='.$tt->mahs)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chi tiết</a>
                                                 @endif
-                                                @if(can('kkbannhataidinhcu','delete'))
+                                                @if(can('kkgiadaugiadat','delete'))
                                                     <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                                         Xóa</button>
                                                 @endif
-                                                @if(can('kkbannhataidinhcu','approve'))
+                                                @if(can('kkgiadaugiadat','approve'))
                                                     <button type="button" onclick="getIdHt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Hoàn thành</button>
                                                 @endif
                                             @else
