@@ -257,20 +257,19 @@
                             <input type="tel" id="fax" name="fax" class="form-control" maxlength="15">
                         </div>
                     </div>
-                    </div>
                     <input type="hidden" name="idchuyen" id="idchuyen">
                     <div class="modal-footer">
                         <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
                         <button type="submit" class="btn blue" onclick="ClickChuyen()" id="submitChuyen">Đồng ý</button>
 
                     </div>
-                    {!! Form::close() !!}
+                {!! Form::close() !!}
                 </div>
+
                 <!-- /.modal-content -->
             </div>
             <!-- /.modal-dialog -->
-        </div>
-
+    </div>
     <!--Model chuyển hs chậm-->
         <div class="modal fade" id="chuyenhscham-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
