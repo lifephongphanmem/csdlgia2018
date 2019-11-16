@@ -223,7 +223,7 @@
                                 <td style="text-align: center">{{getDayVn($tt->thoidiem)}}</td>
                                 <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->dientich,3)}}</td>
                                 <td style="text-align: center">
-                                    @if($tt->congbo == 'congbo')
+                                    @if($tt->trangthai == 'CB')
                                         <span class="badge badge-success">Công bố</span>
                                     @else
                                         <span class="badge badge-warning">Chưa công bố</span>
@@ -232,23 +232,24 @@
                                 <td>
                                     <a href="{{url('thongtingiadatduan/'.$tt->id)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                     @if(session('admin')->level == 'T' || session('admin')->level == 'H')
-                                        @if($tt->congbo == 'congbo')
-                                            @if(can('giadatduan','congbo'))
+                                        @if($tt->trangthai == 'CB')
+                                            @if(can('thgiadatduan','congbo'))
                                             <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
                                                 Hủy công bố</button>
                                             @endif
                                         @else
-                                            @if(can('giadatduan','edit'))
+                                            @if(can('kkgiadatduan','edit'))
                                                 <a href="{{url('thongtingiadatduan/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                             @endif
-                                            @if(can('giadatduan','delete'))
+                                            @if(can('kkgiadatduan','delete'))
                                                 <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                                     Xóa</button>
                                             @endif
-                                            @if(can('giadatduan','congbo'))
+                                            @if(can('kkgiadatduan','congbo'))
                                                 <button type="button" onclick="confirmCB('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal-confirm" data-toggle="modal"><i class="fa fa-send"></i>&nbsp;
                                                     Công bố</button>
                                             @endif
+
                                         @endif
                                     @endif
 

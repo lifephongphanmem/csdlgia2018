@@ -73,7 +73,7 @@ class GiaDatDuAnController extends Controller
 
     public function create(Request $request){
         if (Session::has('admin')) {
-            if(can('giadatduan','index')) {
+            if(can('giadatduan','create')) {
                 $inputs = $request->all();
                 $modeldb = DiaBanHd::where('district',$inputs['mahuyen'])
                     ->where('level','H')
@@ -107,6 +107,7 @@ class GiaDatDuAnController extends Controller
         if (Session::has('admin')) {
             $inputs = $request->all();
             $model = new GiaDatDuAn();
+            $inputs['trangthai'] = 'CCB';
             $inputs['thoidiem'] = getDateToDb($inputs['thoidiem']);
             $inputs['dientich'] = getDoubleToDb($inputs['dientich']);
 
