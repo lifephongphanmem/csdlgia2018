@@ -84,6 +84,12 @@
         function getIdHcb(id) {
             document.getElementById("huycongbo_id").value=id;
         }
+        function getIdHt(id) {
+            document.getElementById("hoanthanh_id").value=id;
+        }
+        function getIdHHt(id) {
+            document.getElementById("huyhoanthanh_id").value=id;
+        }
     </script>
 @stop
 
@@ -190,7 +196,7 @@
                                 <th style="text-align: center" >Đơn giá thuê mua</th>
                                 <th style="text-align: center" >Số QĐ phê duyệt giá</th>
                                 <th style="text-align: center" >Ghi chú</th>
-                                <th style="text-align: center"  width="5%"> Trạng thái</th>
+                                <th style="text-align: center"  width="10%"> Trạng thái</th>
                                 <th style="text-align: center"> Thao tác</th>
                             </tr>
                             </thead>
@@ -201,8 +207,8 @@
                                         <td style="text-align: center">{{$key+1}}</td>
                                         <td style="text-align: left" class="active">{{$tt->tenduan}}</td>
                                         <td><b>{{$tt->diaban}}</b></td>
-                                        <td><b>{{getDayVn($tt->thoidiemkc)}}</b></td>
-                                        <td><b>{{getDayVn($tt->thoidiemht)}}</b></td>
+                                        <td style="text-align: center"><b>{{getDayVn($tt->thoidiemkc)}}</b></td>
+                                        <td style="text-align: center"><b>{{getDayVn($tt->thoidiemht)}}</b></td>
                                         <td style="text-align: center">{{dinhdangsothapphan($tt->dongiaban,2)}}</td>
                                         <td style="text-align: center">{{dinhdangsothapphan($tt->dongiathuemua,2)}}</td>
                                         <td style="text-align: center">{{$tt->ttqd}}</td>
@@ -210,24 +216,36 @@
                                         <td style="text-align: center">
                                             @if($tt->trangthai == 'CB')
                                                 <span class="badge badge-warning">Công bố</span>
+                                            @elseif($tt->trangthai == 'CHT')
+                                                <span class="badge badge-danger">Chưa hoàn thành</span>
                                             @else
-                                                <span class="badge badge-danger">Chưa công bố</span>
+                                                <span class="badge badge-blue">Hoàn thành</span>
                                             @endif
                                         </td>
                                         <td>
                                             @if($tt->trangthai == 'CB')
+                                                {{--Công bố--}}
                                                 @if(can('thbannhataidinhcu','congbo'))
                                                     <button type="button" onclick="getIdHcb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huycongbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-times"></i>&nbsp;Hủy công bố</button>
                                                 @endif
-                                            @else
+                                            @elseif($tt->trangthai == 'CHT')
+                                                {{--Chưa hoàn thành--}}
                                                 @if(can('kkbannhataidinhcu','edit'))
                                                     <button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
                                                 @endif
                                                 @if(can('kkbannhataidinhcu','delete'))
                                                     <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                                 @endif
+                                                @if(can('kkbannhataidinhcu','approve'))
+                                                    <button type="button" onclick="getIdHt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Hoàn thành</button>
+                                                @endif
+                                            @else
+                                                {{--Hoàn thành--}}
                                                 @if(can('thbannhataidinhcu','congbo'))
                                                     <button type="button" onclick="getIdCb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Công bố</button>
+                                                @endif
+                                                @if(can('kkbannhataidinhcu','approve'))
+                                                    <button type="button" onclick="getIdHHt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Hủy Hoàn thành</button>
                                                 @endif
                                             @endif
                                         </td>

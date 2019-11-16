@@ -86,6 +86,7 @@ class BanNhaTaiDinhCuController extends Controller
                 $modelctnew->dongiathuemua = (isset($data[$i][$inputs['dongiathuemua']]) && $data[$i][$inputs['dongiathuemua']] != '' ? chkDbl($data[$i][$inputs['dongiathuemua']]) : 0);
                 $modelctnew->ttqd = $data[$i][$inputs['ttqd']];
                 $modelctnew->ghichu = $data[$i][$inputs['ghichu']];
+                $modelctnew->trangthai = 'CHT';
                 $modelctnew->save();
             }
             File::Delete($path);
@@ -174,6 +175,7 @@ class BanNhaTaiDinhCuController extends Controller
             $model->dongiathuemua = chkDbl($inputs['add_dongiathuemua']);
             $model->ttqd = $inputs['add_ttqd'];
             $model->ghichu = $inputs['add_ghichu'];
+            $model->trangthai = 'CHT';
             $model->save();
             $nam = $inputs['add_thoidiemht'] != '' ? date('Y',strtotime(getDateToDb($inputs['add_thoidiemht']))) :'all';
 
@@ -200,7 +202,33 @@ class BanNhaTaiDinhCuController extends Controller
             $inputs=$request->all();
             $id = $inputs['huycongbo_id'];
             $model = BanNhaTaiDinhCu::findOrFail($id);
-            $model->trangthai = 'HCB';
+            $model->trangthai = 'HT';
+            $model->save();
+            $nam = $model->thoidiem != '' ? date('Y',strtotime($model->thoidiem)): 'all';
+            return redirect('bannhataidinhcu?&nam='.$nam.'&district='.$model->district);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function hoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs=$request->all();
+            $id = $inputs['hoanthanh_id'];
+            $model = BanNhaTaiDinhCu::findOrFail($id);
+            $model->trangthai = 'HT';
+            $model->save();
+            $nam = $model->thoidiem != '' ? date('Y',strtotime($model->thoidiem)): 'all';
+            return redirect('bannhataidinhcu?&nam='.$nam.'&district='.$model->district);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huyhoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs=$request->all();
+            $id = $inputs['huyhoanthanh_id'];
+            $model = BanNhaTaiDinhCu::findOrFail($id);
+            $model->trangthai = 'CHT';
             $model->save();
             $nam = $model->thoidiem != '' ? date('Y',strtotime($model->thoidiem)): 'all';
             return redirect('bannhataidinhcu?&nam='.$nam.'&district='.$model->district);

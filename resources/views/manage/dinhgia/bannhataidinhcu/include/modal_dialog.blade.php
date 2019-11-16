@@ -126,6 +126,12 @@
     function ClickHuyCongBo(){
         $('#frm_huycongbo').submit();
     }
+    function ClickHoanThanh(){
+        $('#frm_hoanthanh').submit();
+    }
+    function ClickHuyHoanThanh(){
+        $('#frm_huyhoanthanh').submit();
+    }
     function clickCheckMulti(){
         $('#frm_checkmulti').submit();
     }
@@ -394,7 +400,7 @@
     {!! Form::close() !!}
 </div>
 
-{{--Model công bố--}}
+{{--Model hủy công bố--}}
 <div id="huycongbo-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
     {!! Form::open(['url'=>'bannhataidinhcu/huycongbo','id' => 'frm_huycongbo'])!!}
     <div class="modal-dialog">
@@ -410,6 +416,48 @@
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
                 <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickHuyCongBo()">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+    {!! Form::close() !!}
+</div>
+{{--Modal Hoàn thành--}}
+<div id="hoanthanh-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    {!! Form::open(['url'=>'bannhataidinhcu/hoanthanh','id' => 'frm_hoanthanh'])!!}
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <button type="button" data-dismiss="modal" aria-hidden="true"
+                        class="close">&times;</button>
+                <h4 id="modal-header-primary-label" class="modal-title">Đồng ý hoàn thnahf?</h4>
+
+                <input type="hidden" name="hoanthanh_id" id="hoanthanh_id">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickHoanThanh()">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+    {!! Form::close() !!}
+</div>
+{{--Modal Hủy Hoàn thành--}}
+<div id="huyhoanthanh-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    {!! Form::open(['url'=>'bannhataidinhcu/huyhoanthanh','id' => 'frm_huyhoanthanh'])!!}
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <button type="button" data-dismiss="modal" aria-hidden="true"
+                        class="close">&times;</button>
+                <h4 id="modal-header-primary-label" class="modal-title">Đồng ý hủy hoàn thành?</h4>
+
+                <input type="hidden" name="huyhoanthanh_id" id="huyhoanthanh_id">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickHuyHoanThanh()">Đồng ý</button>
             </div>
         </div>
     </div>
