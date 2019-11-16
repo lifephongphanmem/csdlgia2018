@@ -105,23 +105,23 @@
                     @endif
                 @if(canGeneral('giadaugiadat','index'))
                     @if(can('giadaugiadat','index'))
+                        @if(can('kkgiadaugiadat','index'))
                         <li>
-                            <a href="javascript:;">
-                                Giá giao dịch bất động sản <span class="arrow"></span>
-                            </a>
-                            <ul class="sub-menu">
-                                @if(can('kkgiadaugiadat','index'))
-                                    <li>
-                                        <a href="{{url('thongtindaugiadat')}}">Thông tin giá giao dịch bất động sản</a>
-                                    </li>
-                                @endif
+                            <a href="{{url('thongtindaugiadat')}}">Giá đấu giá đất</a>
+                            {{--<ul class="sub-menu">--}}
+                                {{--@if(can('kkgiadaugiadat','index'))--}}
+                                    {{--<li>--}}
+                                        {{--<a href="{{url('thongtindaugiadat')}}">Thông tin giá đấu giá đất</a>--}}
+                                    {{--</li>--}}
+                                {{--@endif--}}
                                 {{--@if(can('thgiadaugiadat','timkiem'))--}}
                                     {{--<li>--}}
                                         {{--<a href="{{url('timkiemthongtindaugiadat')}}">Tìm kiếm thông tin</a>--}}
                                     {{--</li>--}}
                                 {{--@endif--}}
-                            </ul>
+                            {{--</ul>--}}
                         </li>
+                        @endif
                     @endif
                 @endif
                 @if(canGeneral('daugiadatts','index'))
