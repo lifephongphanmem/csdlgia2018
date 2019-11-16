@@ -264,6 +264,7 @@ Route::post('thongtindaugiadatts/delete','manage\giadaugiadatts\DauGiaDatTsContr
 Route::post('thongtindaugiadatts/hoanthanh','manage\giadaugiadatts\DauGiaDatTsController@hoanthanh');
 Route::post('thongtindaugiadatts/huyhoanthanh','manage\giadaugiadatts\DauGiaDatTsController@huyhoanthanh');
 Route::post('thongtindaugiadatts/congbo','manage\giadaugiadatts\DauGiaDatTsController@congbo');
+Route::post('thongtindaugiadatts/huycongbo','manage\giadaugiadatts\DauGiaDatTsController@huycongbo');
 
 Route::get('thongtindaugiadattsct','manage\giadaugiadatts\DauGiaDatTsCtController@index');
 Route::post('thongtindaugiadattsct/store','manage\giadaugiadatts\DauGiaDatTsCtController@store');

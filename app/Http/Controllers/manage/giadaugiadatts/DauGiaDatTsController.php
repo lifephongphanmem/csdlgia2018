@@ -186,8 +186,8 @@ class DauGiaDatTsController extends Controller
     public function hoanthanh(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
-            $id = $inputs['idhoanthanh'];
-            $model = DauGiaDatCt::findOrFail($id);
+            $id = $inputs['hoanthanh_id'];
+            $model = DauGiaDatTs::findOrFail($id);
             $model->trangthai = 'HT';
             $model->save();
             return redirect('thongtindaugiadatts');
@@ -198,9 +198,9 @@ class DauGiaDatTsController extends Controller
     public function huyhoanthanh(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
-            $id = $inputs['idhuyhoanthanh'];
+            $id = $inputs['huyhoanthanh_id'];
             $model = DauGiaDatTs::findOrFail($id);
-            $model->trangthai = 'HHT';
+            $model->trangthai = 'CHT';
             $model->save();
             return redirect('thongtindaugiadatts');
         }else
@@ -210,9 +210,21 @@ class DauGiaDatTsController extends Controller
     public function congbo(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
-            $id = $inputs['idcongbo'];
+            $id = $inputs['congbo_id'];
             $model = DauGiaDatTs::findOrFail($id);
             $model->trangthai = 'CB';
+            $model->save();
+            return redirect('thongtindaugiadatts');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huycongbo(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $id = $inputs['huycongbo_id'];
+            $model = DauGiaDatTs::findOrFail($id);
+            $model->trangthai = 'HT';
             $model->save();
             return redirect('thongtindaugiadatts');
         }else
