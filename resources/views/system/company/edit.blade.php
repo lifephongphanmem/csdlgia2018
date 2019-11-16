@@ -236,109 +236,109 @@
             <!-- END VALIDATION STATES-->
         </div>
     </div>
-    <!--Model Create-->
-    <div class="modal fade bs-modal-lg" id="modal-create" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Thêm mới lĩnh vực kinh doanh</h4>
-                </div>
-                <div class="modal-body" id="ttmhbog">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label">Ngành</label>
-                                <select class="form-control" name="add_manganh" id="add_manganh">
-                                    <option>-Chọn ngành kinh doanh--</option>
-                                    @foreach($nganhs as $nganh)
-                                        <option value="{{$nganh->manganh}}">{{$nganh->tennganh}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label">Nghề</label>
-                                <select class="form-control" name="add_manghe" id="add_manghe">
-                                    <option>-Chọn ngành kinh doanh--</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label">Đơn vị nhận hồ sơ</label>
-                                <select class="form-control" name="add_mahuyen" id="add_mahuyen">
-                                    <option>-Chọn đơn vị nhận hồ sơ--</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
-                    <button type="button" class="btn btn-primary" onclick="capnhatts()">Thêm mới</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!--Model Create-->
-    <div class="modal fade bs-modal-lg" id="modal-edit" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Chỉnh sửa lĩnh vực kinh doanh</h4>
-                </div>
-                <div class="modal-body" id="ttmhbog">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label">Ngành</label>
-                                <select class="form-control" name="add_manganh" id="add_manganh">
-                                    <option>-Chọn ngành kinh doanh--</option>
-                                    @foreach($nganhs as $nganh)
-                                        <option value="{{$nganh->manganh}}">{{$nganh->tennganh}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label">Nghề</label>
-                                <select class="form-control" name="add_manghe" id="add_manghe">
-                                    <option>-Chọn ngành kinh doanh--</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label">Đơn vị nhận hồ sơ</label>
-                                <select class="form-control" name="add_mahuyen" id="add_mahuyen">
-                                    <option>-Chọn đơn vị nhận hồ sơ--</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
-                    <button type="button" class="btn btn-primary" onclick="capnhatts()">Thêm mới</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-    </div>
+    {{--<!--Model Create-->--}}
+    {{--<div class="modal fade bs-modal-lg" id="modal-create" tabindex="-1" role="dialog" aria-hidden="true">--}}
+        {{--<div class="modal-dialog modal-lg">--}}
+            {{--<div class="modal-content">--}}
+                {{--<div class="modal-header">--}}
+                    {{--<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>--}}
+                    {{--<h4 class="modal-title">Thêm mới lĩnh vực kinh doanh</h4>--}}
+                {{--</div>--}}
+                {{--<div class="modal-body" id="ttmhbog">--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="col-md-12">--}}
+                            {{--<div class="form-group">--}}
+                                {{--<label class="control-label">Ngành</label>--}}
+                                {{--<select class="form-control" name="add_manganh" id="add_manganh">--}}
+                                    {{--<option>-Chọn ngành kinh doanh--</option>--}}
+                                    {{--@foreach($nganhs as $nganh)--}}
+                                        {{--<option value="{{$nganh->manganh}}">{{$nganh->tennganh}}</option>--}}
+                                    {{--@endforeach--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="col-md-12">--}}
+                            {{--<div class="form-group">--}}
+                                {{--<label class="control-label">Nghề</label>--}}
+                                {{--<select class="form-control" name="add_manghe" id="add_manghe">--}}
+                                    {{--<option>-Chọn ngành kinh doanh--</option>--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="col-md-12">--}}
+                            {{--<div class="form-group">--}}
+                                {{--<label class="control-label">Đơn vị nhận hồ sơ</label>--}}
+                                {{--<select class="form-control" name="add_mahuyen" id="add_mahuyen">--}}
+                                    {{--<option>-Chọn đơn vị nhận hồ sơ--</option>--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="modal-footer">--}}
+                    {{--<button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>--}}
+                    {{--<button type="button" class="btn btn-primary" onclick="capnhatts()">Thêm mới</button>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            {{--<!-- /.modal-content -->--}}
+        {{--</div>--}}
+        {{--<!-- /.modal-dialog -->--}}
+    {{--</div>--}}
+    {{--<!--Model Create-->--}}
+    {{--<div class="modal fade bs-modal-lg" id="modal-edit" tabindex="-1" role="dialog" aria-hidden="true">--}}
+        {{--<div class="modal-dialog modal-lg">--}}
+            {{--<div class="modal-content">--}}
+                {{--<div class="modal-header">--}}
+                    {{--<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>--}}
+                    {{--<h4 class="modal-title">Chỉnh sửa lĩnh vực kinh doanh</h4>--}}
+                {{--</div>--}}
+                {{--<div class="modal-body" id="ttmhbog">--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="col-md-12">--}}
+                            {{--<div class="form-group">--}}
+                                {{--<label class="control-label">Ngành</label>--}}
+                                {{--<select class="form-control" name="add_manganh" id="add_manganh">--}}
+                                    {{--<option>-Chọn ngành kinh doanh--</option>--}}
+                                    {{--@foreach($nganhs as $nganh)--}}
+                                        {{--<option value="{{$nganh->manganh}}">{{$nganh->tennganh}}</option>--}}
+                                    {{--@endforeach--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="col-md-12">--}}
+                            {{--<div class="form-group">--}}
+                                {{--<label class="control-label">Nghề</label>--}}
+                                {{--<select class="form-control" name="add_manghe" id="add_manghe">--}}
+                                    {{--<option>-Chọn ngành kinh doanh--</option>--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="col-md-12">--}}
+                            {{--<div class="form-group">--}}
+                                {{--<label class="control-label">Đơn vị nhận hồ sơ</label>--}}
+                                {{--<select class="form-control" name="add_mahuyen" id="add_mahuyen">--}}
+                                    {{--<option>-Chọn đơn vị nhận hồ sơ--</option>--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="modal-footer">--}}
+                    {{--<button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>--}}
+                    {{--<button type="button" class="btn btn-primary" onclick="capnhatts()">Thêm mới</button>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            {{--<!-- /.modal-content -->--}}
+        {{--</div>--}}
+    {{--</div>--}}
     <!--Modal Wide Width-->
     <div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog ">
@@ -520,4 +520,5 @@
 
     </script>
     @include('includes.script.create-header-scripts')
+    @include('system.company.include.js-modal')
 @stop

@@ -205,6 +205,7 @@
 
     function getidedit(id){
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        alert(id);
         $.ajax({
             url: '/companylvcc/edit',
             type: 'GET',
@@ -212,7 +213,7 @@
                 _token: CSRF_TOKEN,
                 id: id,
                 mahs: $('#mahs').val(),
-                maxa: $('#maxa').val(),
+                maxa: $('#maxa').val()
 
             },
             dataType: 'JSON',

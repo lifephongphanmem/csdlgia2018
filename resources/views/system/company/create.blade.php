@@ -470,4 +470,5 @@
 
     </script>
     @include('includes.script.create-header-scripts')
+    @include('system.company.include.js-modal')
 @stop
