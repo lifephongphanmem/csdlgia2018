@@ -245,7 +245,7 @@
                                                 <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                                     Xóa</button>
                                             @endif
-                                            @if(can('kkgiadatduan','congbo'))
+                                            @if(can('thgiadatduan','congbo'))
                                                 <button type="button" onclick="confirmCB('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal-confirm" data-toggle="modal"><i class="fa fa-send"></i>&nbsp;
                                                     Công bố</button>
                                             @endif
