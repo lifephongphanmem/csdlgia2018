@@ -50,7 +50,7 @@ class KkGiaDvLtXdController extends Controller
                         $modeldv = Town::where('mahuyen',$dmnghe->mahuyen)
                             ->where('maxa',session('admin')->maxa)
                             ->get();
-                        $$inputs['maxa'] = session('admin')->maxa;
+                        $inputs['maxa'] = session('admin')->maxa;
                         $model = $model->where('kkgiadvlt.mahuyen', $inputs['maxa']);
                     }else
                         return view('errors.perm');
