@@ -298,7 +298,7 @@
     @include('includes.e.modal-attackfile')
     <!--Modal Delete-->
     <div id="delete-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-        {!! Form::open(['url'=>'thamdinhgia/delete','id' => 'frm_delete'])!!}
+        {!! Form::open(['url'=>'thongtingiadatduan/delete','id' => 'frm_delete'])!!}
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
@@ -347,7 +347,7 @@
     </div>
     <!--Modal Hủy Hoàn thành-->
     <div id="huyhoanthanh-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-        {!! Form::open(['url'=>'thamdinhgia/huyhoanthanh','id' => 'frm_huyhoanthanh'])!!}
+        {!! Form::open(['url'=>'thongtingiadatduan/huyhoanthanh','id' => 'frm_huyhoanthanh'])!!}
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
@@ -371,14 +371,13 @@
     </div>
     <!--Modal Hủy Hoàn thành-->
     <div id="congbo-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-        {!! Form::open(['url'=>'thamdinhgia/congbo','id' => 'frm_congbo'])!!}
+        {!! Form::open(['url'=>'thongtingiadatduan/congbo','id' => 'frm_congbo'])!!}
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
                     <button type="button" data-dismiss="modal" aria-hidden="true"
                             class="close">&times;</button>
                     <h4 id="modal-header-primary-label" class="modal-title">Đồng ý công bố hồ sơ?</h4>
-
                     <input type="hidden" name="idcongbo" id="idcongbo">
 
                 </div>

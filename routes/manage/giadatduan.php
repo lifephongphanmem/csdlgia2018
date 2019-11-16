@@ -8,6 +8,9 @@ Route::get('timkiemgiadatduan','manage\giadatduan\GiaDatDuAnController@search');
 Route::get('thongtingiadatduan/export','manage\giadatduan\GiaDatDuAnController@export');
 
 Route::resource('thongtingiadatduan','manage\giadatduan\GiaDatDuAnController');
+Route::post('thongtingiadatduan/congbo','manage\giadatduan\GiaDatDuAnController@congbo');
+Route::post('thongtingiadatduan/huyhoanthanh','manage\giadatduan\GiaDatDuAnController@huyhoanthanh');
+Route::post('thongtingiadatduan/delete','manage\giadatduan\GiaDatDuAnController@destroy');
 
 
 ?>

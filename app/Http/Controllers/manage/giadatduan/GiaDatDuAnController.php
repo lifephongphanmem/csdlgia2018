@@ -73,7 +73,7 @@ class GiaDatDuAnController extends Controller
 
     public function create(Request $request){
         if (Session::has('admin')) {
-            if(can('giadatduan','create')) {
+            if(can('kkgiadatduan','create')) {
                 $inputs = $request->all();
                 $modeldb = DiaBanHd::where('district',$inputs['mahuyen'])
                     ->where('level','H')
@@ -136,7 +136,7 @@ class GiaDatDuAnController extends Controller
 
     public function edit($id){
         if (Session::has('admin')) {
-            if(can('giadatduan','edit')) {
+            if(can('kkgiadatduan','edit')) {
                 $model = GiaDatDuAn::findOrFail($id);
                 $modeldb = DiaBanHd::where('district',$model->mahuyen)
                     ->where('level','H')
@@ -337,6 +337,53 @@ class GiaDatDuAnController extends Controller
         } else
             return view('errors.notlogin');
     }
+
+    public function destroy(Request $request){
+        if (Session::has('admin')) {
+            if (can('kkgiadatduan', 'delete')) {
+                $inputs = $request->all();
+                $model = GiaDatDuAn::where('id',$inputs['iddelete'])
+                    ->delete();
+                return redirect('thongtingiadatduan');
+            }else
+                return view('errors.noperm');
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function congbo(Request $request){
+        if (Session::has('admin')) {
+            if (can('thgiadatduan', 'congbo')) {
+                $inputs = $request->all();
+                $model = GiaDatDuAn::where('id',$inputs['idcongbo'])
+                    ->first();
+                $model->trangthai = 'CB';
+                $model->save();
+                return redirect('thongtingiadatduan');
+            }else
+                return view('errors.noperm');
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huyhoanthanh(Request $request){
+        if (Session::has('admin')) {
+            if (can('thgiadatduan', 'congbo')) {
+                $inputs = $request->all();
+                $model = GiaDatDuAn::where('id',$inputs['idhuyhoanthanh'])
+                    ->first();
+                $model->trangthai = 'CCB';
+                $model->save();
+                return redirect('thongtingiadatduan');
+            }else
+                return view('errors.noperm');
+
+        }else
+            return view('errors.notlogin');
+    }
+
 
     public function baocaotonghop(){
         if (Session::has('admin')) {
