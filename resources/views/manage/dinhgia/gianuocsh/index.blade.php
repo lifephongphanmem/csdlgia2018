@@ -174,6 +174,10 @@
                                                     @if(can('kkgianuocsh','delete'))
                                                         <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                                     @endif
+                                                    @if(can('kkgianuocsh','approve'))
+                                                        <button type="button" onclick="confirmHoanthanh('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;
+                                                            Hoàn thành</button>
+                                                    @endif
                                                 @endif
                                             @else
                                                 @if($tt->trangthai == 'CHT' || $tt->trangthai == 'HHT'||$tt->trangthai == 'CXD')
@@ -182,11 +186,11 @@
                                                             <a href="{{url('gianuocsachsinhhoat/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;
                                                                 Chỉnh sửa</a>
                                                         @endif
-
                                                         @if(can('kkgianuocsh','approve'))
                                                             <button type="button" onclick="confirmHoanthanh('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;
                                                                 Hoàn thành</button>
                                                         @endif
+
 
                                                         @if(can('kkgianuocsh','delete'))
                                                                 <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;
