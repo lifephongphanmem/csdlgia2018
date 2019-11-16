@@ -17,7 +17,6 @@
         jQuery(document).ready(function() {
             TableManaged.init();
         });
-
         $(function(){
             $('#level').change(function() {
                 var level = '&level=' + $('#level').val();
@@ -31,10 +30,10 @@
 @section('content-cb')
 
     <div class="container">
-    <div class="row margin-top-10">
-        <div class=" col-sm-12">
-            <!-- BEGIN PORTLET-->
-            <!--div class="portlet light"-->
+        <div class="row margin-top-10">
+            <div class=" col-sm-12">
+                <!-- BEGIN PORTLET-->
+                <!--div class="portlet light"-->
                 <div class="portlet-title">
                     <div class="row">
 
@@ -65,29 +64,29 @@
 
                 </div>
 
-            <table class="table table-striped table-bordered table-hover" id="sample_3">
-                <thead>
-                <tr>
-                    <th style="text-align: center" width="2%">STT</th>
-                    <th style="text-align: center">Tên đơn vị/ Doanh nghiệp</th>
-                    <th style="text-align: center">Username</th>
-                    <th style="text-align: center" width="10%">Thao tác</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($model as $key=>$tt)
-                    <tr class="odd gradeX">
-                        <td style="text-align: center">{{$key + 1}}</td>
-                        <td>{{$tt->name}}</td>
-                        <td class="active">{{$tt->username}}</td>
-                        <td><a href="{{url('login?&username='.$tt->username)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Login</a></td>
+                <table class="table table-striped table-bordered table-hover" id="sample_3">
+                    <thead>
+                    <tr>
+                        <th style="text-align: center" width="2%">STT</th>
+                        <th style="text-align: center">Tên đơn vị/ Doanh nghiệp</th>
+                        <th style="text-align: center">Username</th>
+                        <th style="text-align: center" width="10%">Thao tác</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
-            <!--/div-->
-            <!-- END PORTLET-->
+                    </thead>
+                    <tbody>
+                    @foreach($model as $key=>$tt)
+                        <tr class="odd gradeX">
+                            <td style="text-align: center">{{$key + 1}}</td>
+                            <td>{{$tt->name}}</td>
+                            <td class="active">{{$tt->username}}</td>
+                            <td><a href="{{url('login?&username='.$tt->username)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Login</a></td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                <!--/div-->
+                <!-- END PORTLET-->
+            </div>
         </div>
-    </div>
     </div>
 @stop
