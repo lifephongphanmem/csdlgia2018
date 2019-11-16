@@ -156,6 +156,16 @@ class GiaThiTruongController extends Controller
             return view('errors.notlogin');
     }
 
+    public function destroy(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $model = GiaThiTruong::where('id',$inputs['iddelete'])->delete();
+
+            return redirect('kekhaigiathitruong');
+        }else
+            return view('errors.notlogin');
+    }
+
     public function show($id){
         if (Session::has('admin')) {
             $model = GiaThiTruong::findOrFail($id);

@@ -384,6 +384,7 @@ Route::patch('kekhaigiathitruong/{id}','manage\giathitruong\GiaThiTruongControll
 Route::get('kekhaigiathitruong/{id}','manage\giathitruong\GiaThiTruongController@show');
 Route::post('kekhaigiathitruong/hoanthanh','manage\giathitruong\GiaThiTruongController@hoanthanh');
 Route::post('kekhaigiathitruong/huyhoanthanh','manage\giathitruong\GiaThiTruongController@huyhoanthanh');
+Route::post('kekhaigiathitruong/delete','manage\giathitruong\GiaThiTruongController@destroy');
 
 Route::get('giathitruongct/edit','manage\giathitruong\GiaThiTruongCtController@edit');
 Route::get('giathitruongct/update','manage\giathitruong\GiaThiTruongCtController@update');
