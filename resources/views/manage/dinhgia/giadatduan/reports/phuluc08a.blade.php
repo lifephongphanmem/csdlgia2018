@@ -140,12 +140,12 @@
                         <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddatnuoits,3)}}</td>
                         <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddatmuoi,3)}}</td>
 
-                        <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddato/$tt->qdgiadato,3)}}</td>
-                        <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddattmdv/$tt->qdgiadattmdv,3)}}</td>
-                        <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddatsxkd/$tt->qdgiadatsxkd,3)}}</td>
-                        <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddatnn/$tt->qdgiadatnn,3)}}</td>
-                        <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddatnuoits/$tt->qdgiadatnuoits,3)}}</td>
-                        <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->qdpddatmuoi/$tt->qdgiadatmuoi,3)}}</td>
+                        <td style="text-align: right;font-weight: bold">{{$tt->qdgiadato == 0 ? 0 : dinhdangsothapphan($tt->qdpddato/$tt->qdgiadato,3)}}</td>
+                        <td style="text-align: right;font-weight: bold">{{$tt->qdgiadattmdv == 0 ? 0 : dinhdangsothapphan($tt->qdpddattmdv/$tt->qdgiadattmdv,3)}}</td>
+                        <td style="text-align: right;font-weight: bold">{{$tt->qdgiadatsxkd == 0 ? 0 : dinhdangsothapphan($tt->qdpddatsxkd/$tt->qdgiadatsxkd,3)}}</td>
+                        <td style="text-align: right;font-weight: bold">{{$tt->qdgiadatnn == 0 ? 0 : dinhdangsothapphan($tt->qdpddatnn/$tt->qdgiadatnn,3)}}</td>
+                        <td style="text-align: right;font-weight: bold">{{$tt->qdgiadatnuoits == 0 ? 0 : dinhdangsothapphan($tt->qdpddatnuoits/$tt->qdgiadatnuoits,3)}}</td>
+                        <td style="text-align: right;font-weight: bold">{{$tt->qdgiadatmuoi == 0 ? 0 : dinhdangsothapphan($tt->qdpddatmuoi/$tt->qdgiadatmuoi,3)}}</td>
                     </tr>
                 @endforeach
             @endif
