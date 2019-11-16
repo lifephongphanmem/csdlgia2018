@@ -239,44 +239,44 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @if(session('admin')->level == 'T' || session('admin')->level == 'H')
-                                                    @if($tt->trangthai == 'CB')
-                                                        @if(can('thgiadvgddt','congbo'))
-                                                            <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
-                                                                Hủy công bố</button>
-                                                        @endif
-                                                    @elseif($tt->trangthai == 'HT')
-                                                        @if(can('thgiadvgddt','congbo'))
-                                                            <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
-                                                                Hủy hoàn thành</button>
-                                                        @endif
-                                                    @else
-                                                        @if(can('kkgiadvgddt','edit'))
-                                                            <button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
-                                                        @endif
-                                                        @if(can('kkgiadvgddt','delete'))
-                                                            <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
-                                                        @endif
-                                                    @endif
-                                                @else
-                                                    @if($tt->trangthai == 'CHT' || $tt->trangthai == 'HHT'|| $tt->trangthai == null)
-                                                        @if($tt->district == session('admin')->district)
-                                                            @if(can('kkgiadvgddt','edit'))
-                                                                <button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
-                                                            @endif
+                                                {{--@if(session('admin')->level == 'T' || session('admin')->level == 'H')--}}
+                                                    {{--@if($tt->trangthai == 'CB')--}}
+                                                        {{--@if(can('thgiadvgddt','congbo'))--}}
+                                                            {{--<button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;--}}
+                                                                {{--Hủy công bố</button>--}}
+                                                        {{--@endif--}}
+                                                    {{--@elseif($tt->trangthai == 'HT')--}}
+                                                        {{--@if(can('thgiadvgddt','congbo'))--}}
+                                                            {{--<button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;--}}
+                                                                {{--Hủy hoàn thành</button>--}}
+                                                        {{--@endif--}}
+                                                    {{--@else--}}
+                                                        {{--@if(can('kkgiadvgddt','edit'))--}}
+                                                            {{--<button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>--}}
+                                                        {{--@endif--}}
+                                                        {{--@if(can('kkgiadvgddt','delete'))--}}
+                                                            {{--<button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>--}}
+                                                        {{--@endif--}}
+                                                    {{--@endif--}}
+                                                {{--@else--}}
+                                                    {{--@if($tt->trangthai == 'CHT' || $tt->trangthai == 'HHT'|| $tt->trangthai == null)--}}
+                                                        {{--@if($tt->district == session('admin')->district)--}}
+                                                            {{--@if(can('kkgiadvgddt','edit'))--}}
+                                                                {{--<button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>--}}
+                                                            {{--@endif--}}
 
-                                                            @if(can('kkgiadvgddt','approve'))
-                                                                <button type="button" onclick="confirmHoanthanh('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn thành</button>
-                                                            @endif
+                                                            {{--@if(can('kkgiadvgddt','approve'))--}}
+                                                                {{--<button type="button" onclick="confirmHoanthanh('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn thành</button>--}}
+                                                            {{--@endif--}}
 
-                                                            @if(can('kkgiadvgddt','delete'))
-                                                                <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
-                                                        @endif
-                                                    @endif
-                                                @endif
-                                            @endif
+                                                            {{--@if(can('kkgiadvgddt','delete'))--}}
+                                                                {{--<button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>--}}
+                                                        {{--@endif--}}
+                                                    {{--@endif--}}
+                                                {{--@endif--}}
+                                            {{--@endif--}}
 
-                                                <!--
+
                                                 @if($tt->trangthai == 'CB')
                                                     @if(can('thgiadvgddt','congbo'))
                                                     <button type="button" onclick="getIdHcb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huycongbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-times"></i>&nbsp;Hủy công bố</button>
@@ -292,7 +292,6 @@
                                                     <button type="button" onclick="getIdCb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Công bố</button>
                                                     @endif
                                                 @endif
-                                                -->
                                             </td>
                                         </tr>
                                     @endforeach

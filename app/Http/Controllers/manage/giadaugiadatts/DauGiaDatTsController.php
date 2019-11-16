@@ -178,7 +178,7 @@ class DauGiaDatTsController extends Controller
             $district = $model->district;
             $modelct = DauGiaDatTsCt::where('mahs',$model->mahs)->delete();
             $model->delete();
-            return redirect('thongtindaugiadatts?&mahuyen='.$district);
+            return redirect('thongtindaugiadatts');
         }else
             return view('errors.notlogin');
     }
