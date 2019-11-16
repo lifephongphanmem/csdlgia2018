@@ -20,7 +20,7 @@ class GiaNuocShTkController extends Controller
 
                 $model = GiaNuocSh::join('gianuocshct','gianuocshct.mahs','=','gianuocsh.mahs')
                     ->select('gianuocsh.*','gianuocshct.doituongsd','gianuocshct.giachuathue')
-                    ->where('gianuocsh.trangthai','CB');
+                    ->whereIn('gianuocsh.trangthai',['HT','CB']);
 
 
                 if($inputs['nam'] != 'All')
@@ -47,16 +47,10 @@ class GiaNuocShTkController extends Controller
             $inputs['soqd']= isset($inputs['soqd']) ? $inputs['soqd'] : '';
             $inputs['mota'] = isset($inputs['mota']) ? $inputs['mota'] : '';
             if( $inputs['nam'] == 'All' && $inputs['soqd'] == '' && $inputs['mota'] == '' ){
-                $model = GiaNuocSh::where('trangthai','khong')
+                $model = GiaNuocSh::whereIn('trangthai',['HT','CB'])
                     ->get();
             }else{
-                /*$model = HdCongChung::join('towns', function($join){
-                    $join->on('hdcongchung.mahuyen', '=', 'towns.mahuyen');
-                    $join->on('hdcongchung.maxa', '=', 'towns.maxa');
-                })
-                    ->select('hdcongchung.*','towns.tendv')
-                    ->where('hdcongchung.trangthai','DD');*/
-                $model = GiaNuocSh::where('gianuocsh.trangthai','CXD');
+                $model =GiaNuocSh::whereIn('trangthai',['HT','CB']);
 
                 if($inputs['nam'] != 'All')
                     $model = $model->whereYear('gianuocsh.ngayapdung',$inputs['nam']);

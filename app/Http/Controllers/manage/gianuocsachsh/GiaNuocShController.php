@@ -69,6 +69,7 @@ class GiaNuocShController extends Controller
             $model->ghichu = $inputs['ghichu'];
             $model->mota = $inputs['mota'];
             $model->mahs = $inputs['mahs'];
+            $model->trangthai = 'CHT';
             $model->save();
             $modelct = GiaNuocShCt::where('mahs',$inputs['mahs'])
                 ->update(['trangthai' => 'XD']);
@@ -120,7 +121,8 @@ class GiaNuocShController extends Controller
     public function multidelete(Request $request){
         if(Session::has('admin')){
             $inputs=$request->all();
-            $model = GiaNuocSh::whereYear('ngayapdung',$inputs['namdel']);
+            $model = GiaNuocSh::whereYear('ngayapdung',$inputs['namdel'])
+                ->where('trangthai','CHT');
             if($inputs['diabandel'] != 'All')
                 $model = $model->where('diaban',$inputs['diabandel']);
 
@@ -148,7 +150,7 @@ class GiaNuocShController extends Controller
             $inputs = $request->all();
             $id = $inputs['huycongbo_id'];
             $model = GiaNuocSh::findOrFail($id);
-            $model->trangthai = 'CXD';
+            $model->trangthai = 'HT';
             $model->save();
             return redirect('gianuocsachsinhhoat');
         }else
@@ -202,6 +204,7 @@ class GiaNuocShController extends Controller
                 $modelctnew->dvt = $data[$i][$inputs['dvt']];
                 $modelctnew->username = session('admin')->name.'('.session('admin')->username.')' ;
                 $modelctnew->thaotac = 'Import';
+                $modelctnew->trangthai = 'CHT';
                 $modelctnew->save();
             }
             File::Delete($path);
@@ -260,7 +263,7 @@ class GiaNuocShController extends Controller
             $inputs = $request->all();
             $id = $inputs['idhuyhoanthanh'];
             $model = GiaNuocSh::findOrFail($id);
-            $model->trangthai = 'HHT';
+            $model->trangthai = 'CHT';
             $model->save();
             $nam = date('Y',strtotime($model->ngayapdung));
             return redirect('gianuocsachsinhhoat?&nam='.$nam);

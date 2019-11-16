@@ -481,7 +481,7 @@
                             <label class="control-label">Trạng thái<span class="require">*</span></label>
                             <select class="form-control" name="trangthaicheck" id="trangthaicheck">
                                 <option value="CB">Công bố</option>
-                                <option value="HCB">Hủy công bố</option>
+                                <option value="HT">Hủy công bố</option>
                             </select>
                         </div>
                     </div>

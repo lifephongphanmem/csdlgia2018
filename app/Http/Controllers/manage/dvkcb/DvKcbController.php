@@ -84,6 +84,7 @@ class DvKcbController extends Controller
                 $modelctnew->dvt = $data[$i][$inputs['dvt']];
                 $modelctnew->ttqd = $data[$i][$inputs['ttqd']];
                 $modelctnew->ghichu = $data[$i][$inputs['ghichu']];
+                $modelctnew->trangthai = 'CHT';
                 $modelctnew->save();
             }
             File::Delete($path);
@@ -97,7 +98,8 @@ class DvKcbController extends Controller
             $inputs=$request->all();
             $model = DvKcb::whereYear('thoidiem',$inputs['namdel']);
             if($inputs['districtdel'] != 'all')
-                $model = $model->where('district',$inputs['districtdel']);
+                $model = $model->where('district',$inputs['districtdel'])
+                    ->where('trangthai','CHT');
 
             $model = $model->delete();
 
@@ -196,7 +198,7 @@ class DvKcbController extends Controller
             $inputs=$request->all();
             $id = $inputs['huycongbo_id'];
             $model = DvKcb::findOrFail($id);
-            $model->trangthai = 'HCB';
+            $model->trangthai = 'HT';
             $model->save();
             $nam = $model->thoidiem != '' ? date('Y',strtotime($model->thoidiem)): 'all';
             return redirect('dichvukcb?&nam='.$nam.'&district='.$model->district);
@@ -209,7 +211,8 @@ class DvKcbController extends Controller
             $inputs=$request->all();
             $model = DvKcb::whereYear('thoidiem',$inputs['namcheck']);
             if($inputs['districtcheck'] != 'all')
-                $model = $model->where('district',$inputs['districtcheck']);
+                $model = $model->where('district',$inputs['districtcheck'])
+                    ->whereIn('trangthai',['HT','CB']);
 
             $model = $model->update(['trangthai' => $inputs['trangthaicheck']]);
 
@@ -289,7 +292,7 @@ class DvKcbController extends Controller
             $inputs = $request->all();
             $id = $inputs['idhuyhoanthanh'];
             $model = DvKcb::findOrFail($id);
-            $model->trangthai = 'HHT';
+            $model->trangthai = 'CHT';
             $model->save();
             $nam = $model->thoidiem != '' ? date('Y',strtotime($model->thoidiem)): 'all';
             return redirect('dichvukcb?&nam='.$nam.'&district='.$model->district);

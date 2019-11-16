@@ -194,7 +194,8 @@ class GiaDvGdDtController extends Controller
     public function multidelete(Request $request){
         if(Session::has('admin')){
             $inputs=$request->all();
-            $model = GiaDvGdDt::where('nam',$inputs['namdel']);
+            $model = GiaDvGdDt::where('nam',$inputs['namdel'])
+                ->where('trangthai','CHT');
             if($inputs['districtdel'] != 'All')
                 $model = $model->where('district',$inputs['districtdel']);
 
@@ -223,7 +224,7 @@ class GiaDvGdDtController extends Controller
             $inputs=$request->all();
             $id = $inputs['huycongbo_id'];
             $model = GiaDvGdDt::findOrFail($id);
-            $model->trangthai = 'HCB';
+            $model->trangthai = 'HT';
             $model->save();
 
             return redirect('giadvgiaoducdaotao?&nam='.$model->nam.'&district='.$model->district);
@@ -236,7 +237,8 @@ class GiaDvGdDtController extends Controller
             $inputs=$request->all();
             $model = GiaDvGdDt::where('nam',$inputs['namcheck']);
             if($inputs['districtcheck'] != 'All')
-                $model = $model->where('district',$inputs['districtcheck']);
+                $model = $model->where('district',$inputs['districtcheck'])
+                    ->whereIn('trangthai',['HT','CB']);
 
             $model = $model->update(['trangthai' => $inputs['trangthaicheck']]);
 
@@ -284,6 +286,7 @@ class GiaDvGdDtController extends Controller
                 $modelctnew->ghichu = $data[$i][$inputs['ghichu']];
                 $modelctnew->username = session('admin')->name.'('.session('admin')->username.')' ;
                 $modelctnew->thaotac = 'Import';
+                $modelctnew->trangthai = 'CHT';
                 $modelctnew->save();
             }
             File::Delete($path);
@@ -362,7 +365,7 @@ class GiaDvGdDtController extends Controller
             $inputs = $request->all();
             $id = $inputs['idhuyhoanthanh'];
             $model = GiaDvGdDt::findOrFail($id);
-            $model->trangthai = 'HHT';
+            $model->trangthai = 'CHT';
             $model->save();
 
             return redirect('giadvgiaoducdaotao?&nam='.$model->nam.'&district='.$model->district);
