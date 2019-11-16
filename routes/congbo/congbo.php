@@ -25,6 +25,7 @@ Route::get('cbgiasach','congbo\kekhaigia\CongboGiaSachController@index');
 Route::get('cbgiaetanol','congbo\kekhaigia\CongboGiaEtanolController@index');
 Route::get('cbthamdinhgia','congbo\kekhaigia\CongboThamDinhGiaController@index');
 Route::get('cbvanbanqlnnvegia','congbo\vanbanqlnn\CongboVanBanQLNNController@index');
+Route::get('danhsachusertaphuan','congbo\taphuan\DanhSachUserTapHuanController@index');
 
 
 

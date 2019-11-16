@@ -23,9 +23,11 @@ use Illuminate\Support\Facades\Mail;
 
 class UsersController extends Controller
 {
-    public function login()
+    public function login(Request $request)
     {
+        $inputs = $request->all();
         return view('system.users.login')
+            ->with('inputs',$inputs)
             ->with('pageTitle', 'Đăng nhập hệ thống');
     }
 
