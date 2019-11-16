@@ -29,6 +29,8 @@ Route::post('giadatdiaban/destroy','GiaDatDiaBanController@destroy');
 Route::post('giadatdiaban/add','GiaDatDiaBanController@store');
 Route::post('giadatdiaban/congbo','GiaDatDiaBanController@congbo');
 Route::post('giadatdiaban/huycongbo','GiaDatDiaBanController@huycongbo');
+Route::post('giadatdiaban/hoanthanh','GiaDatDiaBanController@hoanthanh');
+Route::post('giadatdiaban/huyhoanthanh','GiaDatDiaBanController@huyhoanthanh');
 Route::post('giadatdiaban/checkmulti','GiaDatDiaBanController@checkmulti');
 Route::get('giadatdiaban/prints','GiaDatDiaBanController@bcgiadatdiaban');
 
@@ -240,6 +242,7 @@ Route::post('thongtindaugiadat/delete','manage\giadaugiadat\DauGiaDatController@
 Route::post('thongtindaugiadat/hoanthanh','manage\giadaugiadat\DauGiaDatController@hoanthanh');
 Route::post('thongtindaugiadat/huyhoanthanh','manage\giadaugiadat\DauGiaDatController@huyhoanthanh');
 Route::post('thongtindaugiadat/congbo','manage\giadaugiadat\DauGiaDatController@congbo');
+Route::post('thongtindaugiadat/huycongbo','manage\giadaugiadat\DauGiaDatController@huycongbo');
 
 Route::get('timkiemthongtindaugiadat','manage\giadaugiadat\DauGiaDatController@search');
 

@@ -124,6 +124,7 @@ class GiaDatDuAnController extends Controller
             $inputs['qdpddatnn'] = getDoubleToDb($inputs['qdpddatnn']);
             $inputs['qdpddatnuoits'] = getDoubleToDb($inputs['qdpddatnuoits']);
             $inputs['qdpddatmuoi'] = getDoubleToDb($inputs['qdpddatmuoi']);
+            $inputs['trangthai'] = 'CHT';
 
             $model->create($inputs);
 
@@ -367,14 +368,44 @@ class GiaDatDuAnController extends Controller
         }else
             return view('errors.notlogin');
     }
+    public function huycongbo(Request $request){
+        if (Session::has('admin')) {
+            if (can('thgiadatduan', 'congbo')) {
+                $inputs = $request->all();
+                $model = GiaDatDuAn::where('id',$inputs['huycongbo_id'])
+                    ->first();
+                $model->trangthai = 'HT';
+                $model->save();
+                return redirect('thongtingiadatduan');
+            }else
+                return view('errors.noperm');
+
+        }else
+            return view('errors.notlogin');
+    }
 
     public function huyhoanthanh(Request $request){
         if (Session::has('admin')) {
             if (can('thgiadatduan', 'congbo')) {
                 $inputs = $request->all();
-                $model = GiaDatDuAn::where('id',$inputs['idhuyhoanthanh'])
+                $model = GiaDatDuAn::where('id',$inputs['huyhoanthanh_id'])
                     ->first();
-                $model->trangthai = 'CCB';
+                $model->trangthai = 'CHT';
+                $model->save();
+                return redirect('thongtingiadatduan');
+            }else
+                return view('errors.noperm');
+
+        }else
+            return view('errors.notlogin');
+    }
+    public function hoanthanh(Request $request){
+        if (Session::has('admin')) {
+            if (can('kkgiadatduan', 'approve')) {
+                $inputs = $request->all();
+                $model = GiaDatDuAn::where('id',$inputs['hoanthanh_id'])
+                    ->first();
+                $model->trangthai = 'HT';
                 $model->save();
                 return redirect('thongtingiadatduan');
             }else

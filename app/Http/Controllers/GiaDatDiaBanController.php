@@ -30,6 +30,7 @@ class GiaDatDiaBanController extends Controller
                 $inputs['district'] = session('admin')->districts;
 
             $model  = GiaDatDiaBan::join('diabanhd','diabanhd.district','=','giadatdiaban.district')
+                ->where('diabanhd.level','H')
                 ->join('giadatdiabandm','giadatdiaban.maloaidat','=','giadatdiabandm.maloaidat')
                 ->select('giadatdiaban.*','diabanhd.diaban','giadatdiabandm.loaidat');
             if($inputs['nam'] != 'all')
@@ -100,6 +101,7 @@ class GiaDatDiaBanController extends Controller
                 $modelctnew->soqd = $inputs['soqd'];
                 $modelctnew->username = session('admin')->name.'('.session('admin')->username.')' ;
                 $modelctnew->thaotac = 'Import';
+                $modelctnew->trangthai = 'CHT';
                 $modelctnew->save();
             }
             File::Delete($path);
@@ -313,8 +315,8 @@ class GiaDatDiaBanController extends Controller
             $model->giavt5 = chkDbl($inputs['add_giavt5']);
             $model->hesok = chkDbl($inputs['add_hesok']);
             $model->soqd = $inputs['add_soqd'];
+            $model->trangthai = 'CHT';
             $model->save();
-
 
             return redirect('giadatdiaban?&nam='.$inputs['add_nam'].'&district='.$inputs['add_district'].'&maloaidat='.$inputs['add_maloaidat']);
         }else
@@ -339,7 +341,32 @@ class GiaDatDiaBanController extends Controller
             $inputs=$request->all();
             $id = $inputs['huycongbo_id'];
             $model = GiaDatDiaBan::findOrFail($id);
-            $model->trangthai = 'HCB';
+            $model->trangthai = 'HT';
+            $model->save();
+
+            return redirect('giadatdiaban?&nam='.$model->nam.'&district='.$model->district.'&maloaidat='.$model->maloaidat);
+        }else
+            return view('errors.notlogin');
+    }
+    public function hoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs=$request->all();
+            $id = $inputs['hoanthanh_id'];
+            $model = GiaDatDiaBan::findOrFail($id);
+            $model->trangthai = 'HT';
+            $model->save();
+
+            return redirect('giadatdiaban?&nam='.$model->nam.'&district='.$model->district.'&maloaidat='.$model->maloaidat);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huyhoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs=$request->all();
+            $id = $inputs['huyhoanthanh_id'];
+            $model = GiaDatDiaBan::findOrFail($id);
+            $model->trangthai = 'CHT';
             $model->save();
 
             return redirect('giadatdiaban?&nam='.$model->nam.'&district='.$model->district.'&maloaidat='.$model->maloaidat);

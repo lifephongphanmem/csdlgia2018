@@ -80,6 +80,12 @@
         function getIdHcb(id) {
             document.getElementById("huycongbo_id").value=id;
         }
+        function getIdHt(id) {
+            document.getElementById("hoanthanh_id").value=id;
+        }
+        function getIdHHt(id) {
+            document.getElementById("huyhoanthanh_id").value=id;
+        }
     </script>
 @stop
 
@@ -235,24 +241,34 @@
                                             <td style="text-align: center">
                                                 @if($tt->trangthai == 'CB')
                                                     <span class="badge badge-warning">Công bố</span>
+                                                @elseif($tt->trangthai == 'CHT')
+                                                    <span class="badge badge-danger">Chưa hoàn thành</span>
                                                 @else
-                                                    <span class="badge badge-danger">Chưa công bố</span>
+                                                    <span class="badge badge-blue">Hoàn thành</span>
                                                 @endif
                                             </td>
                                             <td>
                                                 @if($tt->trangthai == 'CB')
+                                                    {{--Công bố--}}
                                                     @if(can('thgiacldat','congbo'))
                                                         <button type="button" onclick="getIdHcb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huycongbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-times"></i>&nbsp;Hủy công bố</button>
                                                     @endif
-                                                @else
+                                                @elseif($tt->trangthai == 'CHT')
+                                                    {{--Chưa hoàn thành--}}
                                                     @if(can('kkgiacldat','edit'))
                                                         <button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
                                                     @endif
                                                     @if(can('kkgiacldat','delete'))
                                                         <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                                     @endif
+                                                    @if(can('kkgiacldat','approve'))
+                                                        <button type="button" onclick="getIdHt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Hoàn thành</button>
+                                                    @endif
+                                                @else
+                                                    {{--Hoàn thành--}}
                                                     @if(can('thgiacldat','congbo'))
                                                         <button type="button" onclick="getIdCb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Công bố</button>
+                                                        <button type="button" onclick="getIdHHt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-times"></i>&nbsp;Hủy Hoàn thành</button>
                                                     @endif
                                                 @endif
                                             </td>
