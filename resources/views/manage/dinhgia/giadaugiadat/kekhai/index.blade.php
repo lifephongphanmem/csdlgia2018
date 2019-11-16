@@ -216,7 +216,7 @@
                                             <a href="{{url('thongtindaugiadat/'.$tt->id)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                             @if(session('admin')->level == 'T' || session('admin')->level == 'H')
                                                 @if($tt->trangthai == 'CB')
-                                                    @if(can('kkgiadaugiadat','congbo'))
+                                                    @if(can('thgiadaugiadat','congbo'))
                                                         <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
                                                             Hủy công bố</button>
                                                     @endif
