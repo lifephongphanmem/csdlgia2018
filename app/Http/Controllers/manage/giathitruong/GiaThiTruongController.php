@@ -251,6 +251,7 @@ class GiaThiTruongController extends Controller
             if($inputs['tenhh'] != '')
                 $model = $model->where('giathitruongct.tenhh','like', '%'.$inputs['tenhh'].'%');
             $model = $model->get();
+
             return view('manage.giathitruong.timkiem.index')
                 ->with('model',$model)
                 ->with('modeltt',$modeltt)
