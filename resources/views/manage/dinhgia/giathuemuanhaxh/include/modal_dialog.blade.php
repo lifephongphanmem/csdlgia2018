@@ -109,6 +109,12 @@
     function ClickHuyCongBo(){
         $('#frm_huycongbo').submit();
     }
+    function ClickHht(){
+        $('#frm_huyhoanthanh').submit();
+    }
+    function ClickHt(){
+        $('#frm_hoanthanh').submit();
+    }
     function clickCheckMulti(){
         $('#frm_checkmulti').submit();
     }
@@ -451,6 +457,54 @@
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
                 <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickCheckMulti()">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+    {!! Form::close() !!}
+</div>
+<!--Modal Hoàn thành-->
+<div id="hoanthanh-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    {!! Form::open(['url'=>'thuemuanhaxahoi/hoanthanh','id' => 'frm_hoanthanh'])!!}
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <button type="button" data-dismiss="modal" aria-hidden="true"
+                        class="close">&times;</button>
+                <h4 id="modal-header-primary-label" class="modal-title">Đồng ý hoàn thành hồ sơ?</h4>
+
+                <input type="hidden" name="hoanthanh_id" id="hoanthanh_id">
+
+            </div>
+            <div class="modal-body">
+                <p style="color: #0000FF">Hồ sơ đã hoàn thành sẽ không được phép chỉnh sửa và xóa hồ sơ nữa!Bạn cần liên hệ cơ quan chủ quản để chỉnh sửa hồ sơ nếu cần!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickHt()">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+    {!! Form::close() !!}
+</div>
+<!--Modal Hủy Hoàn thành-->
+<div id="huyhoanthanh-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    {!! Form::open(['url'=>'thuemuanhaxahoi/huyhoanthanh','id' => 'frm_huyhoanthanh'])!!}
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <button type="button" data-dismiss="modal" aria-hidden="true"
+                        class="close">&times;</button>
+                <h4 id="modal-header-primary-label" class="modal-title">Đồng ý hủy hoàn thành hồ sơ?</h4>
+
+                <input type="hidden" name="huyhoanthanh_id" id="huyhoanthanh_id">
+
+            </div>
+            <div class="modal-body">
+                <p style="color: #0000FF">Hồ sơ Bị hủy sẽ chuyển lại cho cơ quan nhập chủ quản có thể chỉnh sửa hồ sơ!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickHht()">Đồng ý</button>
             </div>
         </div>
     </div>

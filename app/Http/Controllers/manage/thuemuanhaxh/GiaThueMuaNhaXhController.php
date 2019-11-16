@@ -85,6 +85,7 @@ class GiaThueMuaNhaXhController extends Controller
                 $modelctnew->dongiathuemua = (isset($data[$i][$inputs['dongiathuemua']]) && $data[$i][$inputs['dongiathuemua']] != '' ? chkDbl($data[$i][$inputs['dongiathuemua']]) : 0);
                 $modelctnew->ttqd = $data[$i][$inputs['ttqd']];
                 $modelctnew->ghichu = $data[$i][$inputs['ghichu']];
+                $modelctnew->trangthai = 'CHT';
                 $modelctnew->save();
             }
             File::Delete($path);
@@ -199,7 +200,33 @@ class GiaThueMuaNhaXhController extends Controller
             $inputs=$request->all();
             $id = $inputs['huycongbo_id'];
             $model = GiaThueMuaNhaXh::findOrFail($id);
-            $model->trangthai = 'HCB';
+            $model->trangthai = 'HT';
+            $model->save();
+            $nam = $model->thoidiem != '' ? date('Y',strtotime($model->thoidiem)): 'all';
+            return redirect('thuemuanhaxahoi?&nam='.$nam.'&district='.$model->district);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function hoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs=$request->all();
+            $id = $inputs['hoanthanh_id'];
+            $model = GiaThueMuaNhaXh::findOrFail($id);
+            $model->trangthai = 'HT';
+            $model->save();
+            $nam = $model->thoidiem != '' ? date('Y',strtotime($model->thoidiem)): 'all';
+            return redirect('thuemuanhaxahoi?&nam='.$nam.'&district='.$model->district);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huyhoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs=$request->all();
+            $id = $inputs['huyhoanthanh_id'];
+            $model = GiaThueMuaNhaXh::findOrFail($id);
+            $model->trangthai = 'CHT';
             $model->save();
             $nam = $model->thoidiem != '' ? date('Y',strtotime($model->thoidiem)): 'all';
             return redirect('thuemuanhaxahoi?&nam='.$nam.'&district='.$model->district);
@@ -276,29 +303,4 @@ class GiaThueMuaNhaXhController extends Controller
             return view('errors.notlogin');
     }
 
-    public function hoanthanh(Request $request){
-        if(Session::has('admin')){
-            $inputs = $request->all();
-            $id = $inputs['idhoanthanh'];
-            $model = GiaThueMuaNhaXh::findOrFail($id);
-            $model->trangthai = 'HT';
-            $model->save();
-            $nam = date('Y',strtotime($model->thoidiemht));
-            return redirect('thuemuanhaxahoi?&nam='.$nam.'&district='.$model->district);
-        }else
-            return view('errors.notlogin');
-    }
-
-    public function huyhoanthanh(Request $request){
-        if(Session::has('admin')){
-            $inputs = $request->all();
-            $id = $inputs['idhuyhoanthanh'];
-            $model = GiaThueMuaNhaXh::findOrFail($id);
-            $model->trangthai = 'HHT';
-            $model->save();
-            $nam = date('Y',strtotime($model->thoidiemht));
-            return redirect('thuemuanhaxahoi?&nam='.$nam.'&district='.$model->district);
-        }else
-            return view('errors.notlogin');
-    }
 }

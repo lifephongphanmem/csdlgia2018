@@ -419,6 +419,8 @@ Route::post('giathuenhacongvu/destroy','manage\thuenhacongvu\GiaThueNhaCongVuCon
 Route::post('giathuenhacongvu/delete','manage\thuenhacongvu\GiaThueNhaCongVuController@multidelete');
 Route::post('giathuenhacongvu/congbo','manage\thuenhacongvu\GiaThueNhaCongVuController@congbo');
 Route::post('giathuenhacongvu/huycongbo','manage\thuenhacongvu\GiaThueNhaCongVuController@huycongbo');
+Route::post('giathuenhacongvu/hoanthanh','manage\thuenhacongvu\GiaThueNhaCongVuController@hoanthanh');
+Route::post('giathuenhacongvu/huyhoanthanh','manage\thuenhacongvu\GiaThueNhaCongVuController@huyhoanthanh');
 Route::post('giathuenhacongvu/checkmulti','manage\thuenhacongvu\GiaThueNhaCongVuController@checkmulti');
 Route::get('giathuenhacongvu/nhandulieutuexcel','manage\thuenhacongvu\GiaThueNhaCongVuController@nhandulieutuexcel');
 Route::post('giathuenhacongvu/import_excel','manage\thuenhacongvu\GiaThueNhaCongVuController@importexcel');
