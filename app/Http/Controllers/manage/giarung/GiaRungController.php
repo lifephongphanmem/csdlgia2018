@@ -97,6 +97,7 @@ class GiaRungController extends Controller
                 $modelctnew->dongia = (isset($data[$i][$inputs['dongia']]) && $data[$i][$inputs['dongia']] != '' ? chkDbl($data[$i][$inputs['dongia']]) : 0);
                 $modelctnew->ttqd = $data[$i][$inputs['ttqd']];
                 $modelctnew->ghichu = $data[$i][$inputs['ghichu']];
+                $modelctnew->trangthai = 'CHT';
                 $modelctnew->save();
             }
             File::Delete($path);
@@ -110,7 +111,8 @@ class GiaRungController extends Controller
             $inputs=$request->all();
             $model = GiaRung::whereYear('thoidiem',$inputs['namdel']);
             if($inputs['districtdel'] != 'all')
-                $model = $model->where('district',$inputs['districtdel']);
+                $model = $model->where('district',$inputs['districtdel'])
+                    ->where('trangthai','CHT');
 
             $model = $model->delete();
 
@@ -210,7 +212,33 @@ class GiaRungController extends Controller
             $inputs=$request->all();
             $id = $inputs['huycongbo_id'];
             $model = GiaRung::findOrFail($id);
-            $model->trangthai = 'HCB';
+            $model->trangthai = 'HT';
+            $model->save();
+            $nam = date('Y',strtotime($model->thoidiem));
+            return redirect('giarung?&nam='.$nam.'&district='.$model->district.'&manhom='.$model->manhom);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function hoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs=$request->all();
+            $id = $inputs['hoanthanh_id'];
+            $model = GiaRung::findOrFail($id);
+            $model->trangthai = 'HT';
+            $model->save();
+            $nam = date('Y',strtotime($model->thoidiem));
+            return redirect('giarung?&nam='.$nam.'&district='.$model->district.'&manhom='.$model->manhom);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huyhoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs=$request->all();
+            $id = $inputs['huyhoanthanh_id'];
+            $model = GiaRung::findOrFail($id);
+            $model->trangthai = 'CHT';
             $model->save();
             $nam = date('Y',strtotime($model->thoidiem));
             return redirect('giarung?&nam='.$nam.'&district='.$model->district.'&manhom='.$model->manhom);
@@ -223,7 +251,8 @@ class GiaRungController extends Controller
             $inputs=$request->all();
             $model = GiaRung::whereYear('thoidiem',$inputs['namcheck']);
             if($inputs['districtcheck'] != 'all')
-                $model = $model->where('district',$inputs['districtcheck']);
+                $model = $model->where('district',$inputs['districtcheck'])
+                    ->whereIn('trangthai',['HT','CB']);
 
             $model = $model->update(['trangthai' => $inputs['trangthaicheck']]);
 
@@ -292,32 +321,6 @@ class GiaRungController extends Controller
 
 
         } else
-            return view('errors.notlogin');
-    }
-
-    public function hoanthanh(Request $request){
-        if(Session::has('admin')){
-            $inputs = $request->all();
-            $id = $inputs['idhoanthanh'];
-            $model = GiaRung::findOrFail($id);
-            $model->trangthai = 'HT';
-            $model->save();
-            $nam = date('Y',strtotime($model->thoidiem));
-            return redirect('giarung?&nam='.$nam.'&district='.$model->district.'&manhom='.$model->manhom);
-        }else
-            return view('errors.notlogin');
-    }
-
-    public function huyhoanthanh(Request $request){
-        if(Session::has('admin')){
-            $inputs = $request->all();
-            $id = $inputs['idhuyhoanthanh'];
-            $model = GiaRung::findOrFail($id);
-            $model->trangthai = 'HHT';
-            $model->save();
-            $nam = date('Y',strtotime($model->thoidiem));
-            return redirect('giarung?&nam='.$nam.'&district='.$model->district.'&manhom='.$model->manhom);
-        }else
             return view('errors.notlogin');
     }
 

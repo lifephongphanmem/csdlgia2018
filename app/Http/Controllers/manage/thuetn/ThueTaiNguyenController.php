@@ -67,6 +67,7 @@ class ThueTaiNguyenController extends Controller
             $model->dongia = chkDbl($inputs['add_dongia']);
             $model->soqd = $inputs['add_soqd'];
             $model->nam = $inputs['add_nam'];
+            $model->trangthai = 'CHT';
             $model->save();
             return redirect('thuetainguyen?&nam='.$inputs['add_nam'].'&manhom='.$inputs['add_manhom']);
 
@@ -158,7 +159,31 @@ class ThueTaiNguyenController extends Controller
             $inputs=$request->all();
             $id = $inputs['huycongbo_id'];
             $model = ThueTaiNguyen::findOrFail($id);
-            $model->trangthai = 'HCB';
+            $model->trangthai = 'HT';
+            $model->save();
+            return redirect('thuetainguyen?&nam='.$model->nam.'&manhom='.$model->manhom);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function hoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs=$request->all();
+            $id = $inputs['hoanthanh_id'];
+            $model = ThueTaiNguyen::findOrFail($id);
+            $model->trangthai = 'HT';
+            $model->save();
+            return redirect('thuetainguyen?&nam='.$model->nam.'&manhom='.$model->manhom);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huyhoanthanh(Request $request){
+        if(Session::has('admin')){
+            $inputs=$request->all();
+            $id = $inputs['huyhoanthanh_id'];
+            $model = ThueTaiNguyen::findOrFail($id);
+            $model->trangthai = 'CHT';
             $model->save();
             return redirect('thuetainguyen?&nam='.$model->nam.'&manhom='.$model->manhom);
         }else
@@ -170,7 +195,8 @@ class ThueTaiNguyenController extends Controller
             $inputs=$request->all();
             $model = ThueTaiNguyen::where('nam',$inputs['namcheck']);
             if($inputs['manhomcheck'] != 'All')
-                $model = $model->where('manhom',$inputs['manhomcheck']);
+                $model = $model->where('manhom',$inputs['manhomcheck'])
+                ->whereIn('trangthai',['HT','CB']);
 
             $model = $model->update(['trangthai' => $inputs['trangthaicheck']]);
 
@@ -220,6 +246,7 @@ class ThueTaiNguyenController extends Controller
                 $modelctnew->cap5 = $data[$i][$inputs['cap5']];
                 $modelctnew->dvt = $data[$i][$inputs['dvt']];
                 $modelctnew->dongia = (isset($data[$i][$inputs['dongia']]) && $data[$i][$inputs['dongia']] != '' ? chkDbl($data[$i][$inputs['dongia']]) : 0);
+                $modelctnew->trangthai = 'CHT';
                 $modelctnew->save();
             }
             File::Delete($path);
