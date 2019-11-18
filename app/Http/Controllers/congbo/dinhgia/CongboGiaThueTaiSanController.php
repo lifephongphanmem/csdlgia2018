@@ -24,7 +24,8 @@ class CongboGiaThueTaiSanController extends Controller
         $inputs['maxa'] = isset($inputs['maxa']) ? $inputs['maxa'] : $modeldv->first()->maxa;
 
 
-        $model = GiaThueTsCong::where('nam',$inputs['nam'])
+        $model = GiaThueTsCong::join('giathuetscongct','giathuetscongct.mahs','GiaThueTsCong.mahs')
+        ->where('nam',$inputs['nam'])
         ->where('trangthai','CB');
         if($inputs['maxa']!= '')
             $model = $model->where('maxa',$inputs['maxa']);

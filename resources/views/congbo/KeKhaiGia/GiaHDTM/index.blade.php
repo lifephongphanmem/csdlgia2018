@@ -112,7 +112,7 @@
                             <td class="active"><b>Tên DN: </b> {{$tt->tendn}}
                                 <br><b>Mã số thuế:</b> {{$tt->maxa}}</td>
                             <td style="text-align: center">{{getDayVn($tt->ngayhieuluc)}}</td>
-                            <td style="text-align: left">{{$tt->ten}}</td>
+                            <td style="text-align: left">{{$tt->tenhhdv}}</td>
                             <td style="text-align: left">{{$tt->qccl}}</td>
                             <td style="text-align: left">{{$tt->dvt}}</td>
                             <td style="text-align: right;font-weight: bold">{{number_format($tt->gia)}}</td>

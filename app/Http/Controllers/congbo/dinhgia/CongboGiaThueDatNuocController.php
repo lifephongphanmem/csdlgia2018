@@ -21,7 +21,8 @@ class CongboGiaThueDatNuocController extends Controller
         $modeldb = DiaBanHd::where('level','H')->get();
         $inputs['diaban'] = isset($inputs['diaban']) ? $inputs['diaban'] : $modeldb->first()->district;
         $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
-        $model = GiaThueDatNuoc::whereYear('ngayapdung',$inputs['nam']);
+        $model = GiaThueDatNuoc::join('giathuedatnuocct','giathuedatnuocct.mahs','GiaThueDatNuoc.mahs')
+            ->whereYear('ngayapdung',$inputs['nam']);
         if($inputs['diaban'] != '')
             $model = $model->where('district',$inputs['diaban']);
 

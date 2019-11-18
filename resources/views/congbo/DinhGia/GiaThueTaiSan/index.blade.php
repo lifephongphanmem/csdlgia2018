@@ -84,6 +84,14 @@
                     <tr>
                         <th width="2%" style="text-align: center">STT</th>
                         <th style="text-align: center">Thông tin hồ sơ</th>
+                        <th style="text-align: center">Tên tài sản</th>
+                        <th style="text-align: center">Số lượng/Diện tích</th>
+                        <th style="text-align: center">Đơn vị tính</th>
+                        <th style="text-align: center">Đơn giá thuê</th>
+                        <th style="text-align: center">Đơn vị thuê</th>
+                        <th style="text-align: center">Hợp đồng số</th>
+                        <th style="text-align: center">Thời hạn</th>
+                        <th style="text-align: center">Thành tiền</th>
                         <th style="text-align: center">Ghi chú</th>
                     </tr>
                     </thead>
@@ -93,6 +101,14 @@
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
                                 <td style="text-align: left">{{$tt->thongtinhs}}</td>
+                                <td style="text-align: left">{{$tt->tents}}</td>
+                                <td style="text-align: left">{{dinhdangso($tt->soluong)}}</td>
+                                <td style="text-align: left">{{$tt->dvt}}</td>
+                                <td style="text-align: left">{{dinhdangso($tt->dongiathue)}}</td>
+                                <td style="text-align: left">{{$tt->dvthue}}</td>
+                                <td style="text-align: left">{{$tt->hdthue}}</td>
+                                <td style="text-align: left">{{$tt->ththue}}</td>
+                                <td style="text-align: left">{{dinhdangso($tt->sotienthuenam)}}</td>
                                 <td style="text-align: left">{{$tt->ghichu}}</td>
                             </tr>
                         @endforeach

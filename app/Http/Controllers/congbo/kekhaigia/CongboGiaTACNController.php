@@ -19,8 +19,8 @@ class CongboGiaTACNController extends Controller
         $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
         $inputs['tenhh'] = isset($inputs['tenhh']) ? $inputs['tenhh'] : '';
         $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
-        $model = KkGiaTaCnCt::leftJoin('kkgiatacn','kkgiatacn.mahs','=','kkgiatacnct.mahs')
-            ->leftjoin('company','company.maxa','=','kkgiatacn.maxa')
+        $model = KkGiaTaCnCt::Join('kkgiatacn','kkgiatacn.mahs','=','kkgiatacnct.mahs')
+            ->join('company','company.maxa','=','kkgiatacn.maxa')
             ->whereYear('kkgiatacn.ngayhieuluc',$inputs['nam'])
             ->select('kkgiatacnct.*','company.tendn','kkgiatacn.ngayhieuluc')
             ->where('kkgiatacn.trangthai','CB');

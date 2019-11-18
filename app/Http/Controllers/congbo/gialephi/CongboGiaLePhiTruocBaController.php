@@ -17,7 +17,8 @@ class CongboGiaLePhiTruocBaController extends Controller
     {
         $inputs = $request->all();
         $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-        $model = LePhiTruocBa::whereYear('ngayapdung',$inputs['nam'])
+        $model = LePhiTruocBa::join('lephitruocbact','lephitruocbact.mahs','LePhiTruocBa.mahs')
+            ->whereYear('ngayapdung',$inputs['nam'])
             ->where('trangthai','CB')->get();
         return view('congbo.GiaLePhi.index')
             ->with('model',$model)

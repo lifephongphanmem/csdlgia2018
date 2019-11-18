@@ -42,7 +42,7 @@
                     <div class="row">
                     <div class="caption caption-md">
                         <i class="icon-bar-chart theme-font hide"></i>
-                        <span class="caption-subject theme-font bold uppercase">Giá đất theo địa bàn</span>
+                        <span class="caption-subject theme-font bold uppercase">Giá phí lệ phí</span>
                     </div>
                     </div>
                     <div class="row">
@@ -79,6 +79,8 @@
                         <th style="text-align: center" width="20%">Mô tả</th>
                         <th style="text-align: center" width="10%">Số quyết định</th>
                         <th style="text-align: center">Ngày áp dụng</th>
+                        <th style="text-align: center">Phương tiện chịu phí</th>
+                        <th style="text-align: center">Mức thu phí</th>
                         <th style="text-align: center">Ghi chú</th>
                     </tr>
                     </thead>
@@ -91,6 +93,8 @@
                                 <td class="active">{{$tt->mota}}</td>
                                 <td>{{$tt->soqd}}</td>
                                 <td class="text-center" style="font-weight: bold">{{getDayVn($tt->ngayapdung)}}</td>
+                                <td>{{$tt->ptcp}}</td>
+                                <td style="text-align: right">{{dinhdangso($tt->mucthuphi)}}</td>
                                 <td>{{$tt->ghichu}}</td>
                             </tr>
                         @endforeach

@@ -116,7 +116,7 @@
                             <td style="text-align: left">{{$tt->tenhh}}</td>
                             <td style="text-align: left">{{$tt->qccl}}</td>
                             <td style="text-align: left">{{$tt->dvt}}</td>
-                            <td style="text-align: right;font-weight: bold">{{number_format($tt->gbdct)}}</td>
+                            <td style="text-align: right;font-weight: bold">{{number_format($tt->dongia)}}</td>
 
                         </tr>
                     @endforeach

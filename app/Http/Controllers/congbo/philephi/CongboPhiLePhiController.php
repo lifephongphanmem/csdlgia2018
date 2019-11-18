@@ -19,8 +19,9 @@ class CongboPhiLePhiController extends Controller
         $inputs = $request->all();
         $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
         $model = PhiLePhi::join('dmphilephi','dmphilephi.manhom','=','philephi.manhom')
+            ->join('philephict','philephict.mahs','PhiLePhi.mahs')
             ->whereYear('philephi.ngayapdung',$inputs['nam'])
-            ->select('philephi.*','dmphilephi.tennhom','dmphilephi.dvt')
+            ->select('philephi.*','philephict.*','dmphilephi.tennhom','dmphilephi.dvt')
             ->where('trangthai','CB')->get();
         $m_nhomphilephi = DmPhiLePhi::all();
         return view('congbo.PhiLePhi.index')

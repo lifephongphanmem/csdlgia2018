@@ -43,7 +43,7 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <!-- BEGIN PORTLET-->
                 <div class="portlet light bordered">
                     <div class="portlet-title">

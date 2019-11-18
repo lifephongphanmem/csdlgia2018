@@ -22,7 +22,9 @@ class CongboVatLieuXayDungController extends Controller
         $inputs = $request->all();
         $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
         $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
-        $model = KkGiaVlXd::whereYear('ngaynhap', $inputs['nam'])
+        $model = KkGiaVlXd::join('kkgiavlxdct','kkgiavlxdct.mahs','KkGiaVlXd.mahs')
+            ->join('company','company.maxa','KkGiaVlXd.maxa')
+            ->whereYear('ngaynhap', $inputs['nam'])
             ->where('congbo','CB')
             ->paginate($inputs['paginate']);
         return view('congbo.KeKhaiGia.VatLieuXayDung.index')

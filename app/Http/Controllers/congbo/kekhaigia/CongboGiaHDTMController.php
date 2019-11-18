@@ -26,9 +26,10 @@ class CongboGiaHDTMController extends Controller
             ->first();
         $modeldv = Town::where('mahuyen',$modeldmnghe->mahuyen)->get();
         $inputs['mahuyen'] = isset($inputs['mahuyen']) ? $inputs['mahuyen'] : $modeldv->first()->maxa;
-        $model = KkGiaDvHdTm::join('company','company.maxa','=','kkgiadvhdtm.maxa')
+        $model = KkGiaDvHdTm::join('kkgiadvhdtmct','kkgiadvhdtmct.mahs','KkGiaDvHdTm.mahs')
+            ->join('company','company.maxa','=','kkgiadvhdtm.maxa')
             ->where('kkgiadvhdtm.mahuyen',$inputs['mahuyen'])
-            ->select('kkgiadvhdtm.*','company.tendn')
+            ->select('kkgiadvhdtm.*','kkgiadvhdtmct.*','company.tendn')
             ->where('KkGiaDvHdTm.trangthai','CB');
             $model = $model->paginate($inputs['paginate']);
         return view('congbo.KeKhaiGia.GiaHDTM.index')

@@ -57,7 +57,7 @@
                     <div class="row">
                     <div class="caption caption-md">
                         <i class="icon-bar-chart theme-font hide"></i>
-                        <span class="caption-subject theme-font bold uppercase">Giá đấu giá đất</span>
+                        <span class="caption-subject theme-font bold uppercase">Giá nước sinh hoạt</span>
                     </div>
                     </div>
                     <div class="row">
@@ -110,6 +110,8 @@
                         <th style="text-align: center" width="10%">Số Quyết định</th>
                         <th style="text-align: center">Ngày áp dụng</th>
                         <th style="text-align: center">Mô tả</th>
+                        <th style="text-align: center">Đối tượng áp dụng</th>
+                        <th style="text-align: center">Đơn giá</th>
                         <th style="text-align: center" >Ghi chú</th>
                     </tr>
                     </thead>
@@ -121,6 +123,8 @@
                                 <td style="text-align: center">{{$tt->soqd}}</td>
                                 <td style="text-align: center;"><b>{{getDayVn($tt->ngayapdung)}}</b></td>
                                 <td style="text-align: center">{{$tt->mota}}</td>
+                                <td style="text-align: left">{{$tt->doituongsd}}</td>
+                                <td style="text-align: right">{{dinhdangso($tt->giachuathue)}}</td>
                                 <td style="text-align: center">{{$tt->ghichu}}</td>
                             </tr>
                         @endforeach

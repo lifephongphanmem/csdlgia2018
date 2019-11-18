@@ -50,7 +50,7 @@
                     <div class="row">
                     <div class="caption caption-md">
                         <i class="icon-bar-chart theme-font hide"></i>
-                        <span class="caption-subject theme-font bold uppercase">Giá đất theo địa bàn</span>
+                        <span class="caption-subject theme-font bold uppercase">Xi măng, thép xây dựng</span>
                     </div>
                     </div>
                     <div class="row">

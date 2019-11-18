@@ -46,7 +46,7 @@
                     <div class="row">
                     <div class="caption caption-md">
                         <i class="icon-bar-chart theme-font hide"></i>
-                        <span class="caption-subject theme-font bold uppercase">Giá đất theo địa bàn</span>
+                        <span class="caption-subject theme-font bold uppercase">Kê khai vật liệu xây dựng</span>
                     </div>
                     </div>
                     <div class="row">
@@ -91,10 +91,15 @@
                     <thead>
                     <tr>
                         <th style="text-align: center" width="2%">STT</th>
+                        <th style="text-align: center">Tên doanh nghiệp</th>
                         <th style="text-align: center">Ngày kê khai</th>
                         <th style="text-align: center">Ngày thực hiện<br>mức giá kê khai</th>
                         <th style="text-align: center">Số công văn</th>
                         <th style="text-align: center">Số công văn<br> liền kề</th>
+                        <th style="text-align: center">Nhóm vật liệu xây dựng</th>
+                        <th style="text-align: center">Tên vật liệu xây dựng</th>
+                        <th style="text-align: center">Đơn vị tính</th>
+                        <th style="text-align: center">Mức kê khai</th>
                         <th style="text-align: center">Người chuyển</th>
                     </tr>
                     </thead>
@@ -103,10 +108,15 @@
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key+1}}</td>
+                                <td style="text-align: center" class="active">{{$tt->tendn}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->ngaynhap)}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->ngayhieuluc)}}</td>
                                 <td style="text-align: center" class="active">{{$tt->socv}}</td>
                                 <td style="text-align: center">{{$tt->socvlk}}</td>
+                                <td style="text-align: center">{{$tt->tennhom}}</td>
+                                <td style="text-align: center">{{$tt->tenhhdv}}</td>
+                                <td style="text-align: center">{{$tt->dvt}}</td>
+                                <td style="text-align: center">{{dinhdangso($tt->gia)}}</td>
                                 <td style="text-align: left">@if($tt->nguoinop != '')Họ và tên: {{$tt->nguoinop}}
                                     <br>Số điện thoại liên hệ: {{$tt->dtll}}<br>Số Fax: {{$tt->fax}}@endif</td>
                             </tr>

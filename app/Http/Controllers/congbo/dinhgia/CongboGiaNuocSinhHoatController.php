@@ -18,10 +18,10 @@ class CongboGiaNuocSinhHoatController extends Controller
         $inputs = $request->all();
         $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
         $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
-        $model = new GiaNuocSh();
+        $model = GiaNuocSh::join('gianuocshct','gianuocshct.mahs','GiaNuocSh.mahs')
+            ->where('GiaNuocSh.trangthai','CB');
         if($inputs['nam'] != 'all')
-            $model = $model->whereYear('ngayapdung',$inputs['nam'])
-            ->where('trangthai','CB');
+            $model = $model->whereYear('ngayapdung',$inputs['nam']);
         $model = $model->paginate($inputs['paginate']);
         return view('congbo.DinhGia.GiaNuocSinhHoat.index')
             ->with('model',$model)

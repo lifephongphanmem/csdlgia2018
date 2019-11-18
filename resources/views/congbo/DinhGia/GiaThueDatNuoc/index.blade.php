@@ -107,7 +107,10 @@
                     <tr>
                         <th width="2%" style="text-align: center">STT</th>
                         <th style="text-align: center">Số quyết định</th>
+                        <th style="text-align: center">Vị trí</th>
                         <th style="text-align: center">Ngày áp dụng</th>
+                        <th style="text-align: center">Diện tích</th>
+                        <th style="text-align: center">Đơn giá</th>
                         <th style="text-align: center">Ghi chú</th>
                     </tr>
                     </thead>
@@ -116,7 +119,10 @@
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
                                 <td style="text-align: center">{{$tt->soqd}}</td>
+                                <td style="text-align: left">{{$tt->vitri}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->ngayapdung)}}</td>
+                                <td style="text-align: right">{{dinhdangso($tt->dientich)}}</td>
+                                <td style="text-align: right">{{dinhdangso($tt->dongia)}}</td>
                                 <td>{{$tt->ghichu}}</td>
                             </tr>
                         @endforeach
