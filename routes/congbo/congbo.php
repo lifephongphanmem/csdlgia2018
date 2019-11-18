@@ -1,6 +1,6 @@
 <?php
 //Định giá
-Route::get('giahanghoadichvu','HomeController@congbo');
+Route::get('congbo','HomeController@congbo');
 Route::get('coming','HomeController@coming');
 Route::get('cbgiadatdiaban','congbo\dinhgia\CongboGiaDatDiaBanController@index');
 Route::get('cbgiadaugiadat','congbo\dinhgia\CongboGiaDauGiaDatController@index');

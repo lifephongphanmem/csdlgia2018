@@ -16,13 +16,86 @@
         jQuery(document).ready(function() {
             TableManaged.init();
         });
+        function get_attack(id){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '/vanbanqlnnvegia/dinhkem',
+                type: 'GET',
+                data: {
+                    _token: CSRF_TOKEN,
+                    id: id
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.status == 'success') {
+                        $('#dinh_kem').replaceWith(data.message);
+                    }
+                },
+                error: function (message) {
+                    toastr.error(message, 'Lỗi!');
+                }
+            });
+        }
     </script>
 @stop
 
 @section('content-cb')
     <div class="container">
 
+        <div class="row">
+            <div class="col-md-6">
+                <!-- BEGIN PORTLET-->
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption caption-md font-blue">
+                            <i class="icon-share font-blue"></i>
+                            <span class="caption-subject theme-font bold uppercase">DANH MỤC VĂN BẢN PHÁP LUẬT</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="scroller" style="height: 308px;" data-always-visible="1" data-rail-visible="0">
+                            <ul class="feeds">
+                                @foreach($model as $tt)
+                                    <ul class="feeds">
+                                        <li>
+                                            <div class="col1">
+                                                <div class="cont">
+                                                    <div class="cont-col1">
+                                                        <div class="label label-sm label-success">
+                                                            <i class="fa fa-bar-chart-o"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cont-col2">
+                                                        <div class="desc" id="tentb" name="tentb">
+                                                            <button onclick="get_attack('{{$tt->id}}')"  style="color: #ff0000;border: none;background-color: #fafafa" data-target="#dinhkem-modal-confirm" data-toggle="modal">&nbsp;{{$tt->tieude}} &emsp; </button><br>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
+                                            <div class="col2">
+                                                <div class="date" style="color: #808080">
+                                                    {{getDayVn($tt->ngaybanhanh)}}
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                    </ul>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="scroller-footer">
+                            <div class="btn-arrow-link pull-right">
+                                <a href="cbvanbanqlnnvegia">Xem tất cả</a>
+                                <i class="icon-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PORTLET-->
+            </div>
+
+        </div>
         <div class="col-md-12">
             <div class="col-md-6"></div>
             <div class="col-md-6" style="text-align: right">Tổng cộng&nbsp;
@@ -30,4 +103,5 @@
             </div>
         </div>
     </div>
+    @include('includes.e.modal-attackfile')
 @stop 

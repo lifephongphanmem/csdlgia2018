@@ -24,6 +24,7 @@ use App\Register;
 use App\TtDn;
 use App\TtQd;
 use App\Users;
+use App\VanBanQlNn;
 use App\ViewPage;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User;
@@ -116,14 +117,16 @@ License code: PRO4-69G6Q4M-8YGNXX-M2N8-KCHVWYK
                 $model->session = $session;
                 $model->save();
             }
-            return redirect('giahanghoadichvu');
+            return redirect('congbo');
         }
     }
 
     public function congbo(){
         $viewpage = ViewPage::count();
+        $model = VanBanQlNn::paginate(5);
         return view('dashboardcb')
             ->with('viewpage', $viewpage)
+            ->with('model', $model)
             ->with('pageTitle', 'Cơ sở dữ liệu về giá');
     }
 
