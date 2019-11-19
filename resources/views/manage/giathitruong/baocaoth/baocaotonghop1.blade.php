@@ -58,8 +58,8 @@
             <th>8</th>
             <th>9=8-7</th>
             <th>10=8/7</th>
-            <th>10</th>
             <th>11</th>
+            <th>12</th>
         </tr>
     </thead>
     <tbody>
