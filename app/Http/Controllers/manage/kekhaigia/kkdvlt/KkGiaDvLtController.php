@@ -312,7 +312,7 @@ class KkGiaDvLtController extends Controller
 
     public function chuyen(Request $request){
         if (Session::has('admin')) {
-            if (session('admin')->level == 'DN' || session('admin')->level == 'T' || session('admin')->level == 'H' ) {
+            if (session('admin')->level == 'DN' || session('admin')->level == 'T' || session('admin')->level == 'H'|| session('admin')->level == 'X' ) {
                 $inputs = $request->all();
                 $model = KkGiaDvLt::where('id',$inputs['idchuyen'])
                     ->first();
