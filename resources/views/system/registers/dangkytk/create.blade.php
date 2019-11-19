@@ -128,7 +128,8 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="control-label">Email</label>
-                        {!!Form::text('email', null, array('id' => 'email','class' => 'form-control required','data-mask'=>'email'))!!}
+                        {!!Form::text('email', null, array('id' => 'email','class' => 'form-control required'))!!}
+                        {{--{!!Form::text('email', null, array('id' => 'email','class' => 'form-control required','data-mask'=>'email'))!!}--}}
                         @if ($errors->any())
                             <em class="invalid">{{ $errors->first('email') }}</em>
                         @endif
