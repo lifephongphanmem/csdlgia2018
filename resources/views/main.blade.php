@@ -192,15 +192,15 @@ License: You must have a valid license purchased only from themeforest(the above
                     <ul>
                     </ul>
                 </li>
-                <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
-                    <a href="http://help.csdlgia.vn" class="dropdown-toggle" target="_blank">
-                        <i class="fa fa-folder-open-o"></i>
-					<span class="badge badge-default">
-					Help</span>
-                    </a>
-                    <ul>
-                    </ul>
-                </li>
+                {{--<li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">--}}
+                    {{--<a href="http://help.csdlgia.vn" class="dropdown-toggle" target="_blank">--}}
+                        {{--<i class="fa fa-folder-open-o"></i>--}}
+					{{--<span class="badge badge-default">--}}
+					{{--Help</span>--}}
+                    {{--</a>--}}
+                    {{--<ul>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
                 <li class="dropdown dropdown-user">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" >
                         <img alt="" class="img-circle" src="{{url('/images/avatar/default-user.png')}}"/>

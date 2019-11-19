@@ -117,7 +117,7 @@ License code: PRO4-69G6Q4M-8YGNXX-M2N8-KCHVWYK
                 $model->session = $session;
                 $model->save();
             }
-            return redirect('congbo');
+            return redirect('giahanghoadichvu');
         }
     }
 
