@@ -46,6 +46,9 @@ class ReportsThueTnController extends Controller
                 $tn->dongiabc = isset($modelbc) ? $modelbc->dongia : 0;
             }
 
+//            $group1 = $model->groupby('cap1');
+//            $group2 = $model->groupby('cap2');
+
 
             if(session('admin')->level == 'T'){
                 $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
@@ -67,6 +70,7 @@ class ReportsThueTnController extends Controller
                 ->with('model',$model)
                 ->with('m_nhomthuetn',$m_nhomthuetn)
                 ->with('inputs',$inputs)
+//                ->with('group1',$group2)
                 ->with('pageTitle','Báo cáo tổng hợp thuế tài nguyên');
 
         }else

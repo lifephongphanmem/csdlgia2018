@@ -4011,7 +4011,7 @@ function trim_zeros($str) {
 }
 
 function dinhdangsothapphan ($number , $decimals = 0) {
-    if(!is_numeric($number) || $number == 0){return 0;}
+    if(!is_numeric($number) || $number == 0){return '';}
     $number = round($number , $decimals);
     $str_kq = trim_zeros(number_format($number, $decimals ));
     /*for ($i = 0; $i < strlen($str_kq); $i++){

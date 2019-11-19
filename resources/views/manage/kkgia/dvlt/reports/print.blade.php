@@ -128,10 +128,10 @@
             <td>{{$tt->tenhhdv}}</td>
             <td>{{$tt->qccl}}</td>
             <td style="text-align: center">{{$tt->dvt}}</td>
-            <td style="text-align: right">{{number_format($tt->mucgialk)}}</td>
-            <td style="text-align: right">{{number_format($tt->mucgiakk)}}</td>
-            <td style="text-align: right">{{number_format($tt->mucgiakk - $tt->mucgialk)}}</td>
-            <td style="text-align: right">{{$tt->mucgialk == 0 ? '' : number_format(($tt->mucgiakk - $tt->mucgialk)/$tt->mucgialk*100)}}%</td>
+            <td style="text-align: right">{{dinhdangsothapphan($tt->mucgialk)}}</td>
+            <td style="text-align: right">{{dinhdangsothapphan($tt->mucgiakk)}}</td>
+            <td style="text-align: right">{{$tt->mucgialk == 0 ? '' :dinhdangsothapphan($tt->mucgiakk - $tt->mucgialk)}}</td>
+            <td style="text-align: right">{{$tt->mucgialk == 0 ? '' : number_format(($tt->mucgiakk - $tt->mucgialk)/$tt->mucgialk*100).'%'}}</td>
             <td>{{$tt->ghichu}}</td>
         </tr>
     @endforeach
