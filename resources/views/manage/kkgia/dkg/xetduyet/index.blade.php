@@ -352,12 +352,10 @@
                                     @if($tt->ipt1 != '')
                                         <a onclick="window.open('{{url('data/kkdkg/'.$tt->ipt1)}}', 'newwindow', 'width=1000,height=700')" class="btn btn-default btn-xs mbs"><i class="fa fa-file"></i>&nbsp;File đính kèm</a>
                                     @endif
-                                    @if(canApprove($tt->trangthai))
                                         <button type="button" onclick="ClickTraLai({{$tt->id}})" class="btn btn-default btn-xs mbs" data-target="#tralai-modal" data-toggle="modal"><i class="fa fa-reply"></i>&nbsp;
                                             Trả lại</button>
                                         <button type="button" onclick="confirmNhanHs({{$tt->id}})" class="btn btn-default btn-xs mbs" data-target="#nhanhs-modal" data-toggle="modal"><i class="fa fa-share"></i>&nbsp;
                                             Nhận hồ sơ</button>
-                                    @endif
                                     @if(canShowLyDo($tt->trangthai))
                                         <button type="button" data-target="#lydo-modal" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="viewLyDo({{$tt->id}})"><i class="fa fa-search"></i>&nbsp;Lý do trả lại</button>
                                     @endif
