@@ -242,6 +242,7 @@
                                                 {{--Chưa hoàn thành--}}
                                                 @if(can('kkdaugiadatts','edit'))
                                                     <button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                    <a href="{{url('thongtindaugiadattsct?&mahs='.$tt->mahs)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chi tiết</a>
                                                 @endif
                                                 @if(can('kkdaugiadatts','delete'))
                                                     <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;

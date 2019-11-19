@@ -248,6 +248,7 @@
                                                 {{--Chưa hoàn thành--}}
                                                 @if(can('kkgiadaugiadat','edit'))
                                                     <a href="{{url('thongtindaugiadat/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+
                                                     <a href="{{url('thongtindaugiadatct?&mahs='.$tt->mahs)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chi tiết</a>
                                                 @endif
                                                 @if(can('kkgiadaugiadat','delete'))
