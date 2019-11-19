@@ -112,8 +112,8 @@
         <th>Tên hàng hóa, dịch vụ</th>
         <th>Quy cách, <br>chất lượng</th>
         <th>Đơn vị<br>tính</th>
-        <th width="10%">Mức giá <br>đăng ký hiện<br>hành</th>
-        <th width="10%">Mức giá <br>đăng ký mới</th>
+        <th width="10%">Mức giá <br>kê khai hiện<br>hành</th>
+        <th width="10%">Mức giá <br>kê khai mới</th>
         <th>Mức tăng giảm</th>
         <th>Tỷ lệ % tăng giảm</th>
         <th>Ghi chú</th>
@@ -129,7 +129,7 @@
             <td style="text-align: right">{{number_format($tt->mucgialk)}}</td>
             <td style="text-align: right">{{number_format($tt->mucgiakk)}}</td>
             <td style="text-align: right">{{number_format($tt->mucgiakk - $tt->mucgialk)}}</td>
-            <td style="text-align: right">{{$tt->mucgialk == 0 ? '100' : number_format(($tt->mucgiakk - $tt->mucgialk)/$tt->mucgialk*100)}}%</td>
+            <td style="text-align: right">{{$tt->mucgialk == 0 ? '' : number_format(($tt->mucgiakk - $tt->mucgialk)/$tt->mucgialk*100)}}%</td>
             <td>{{$tt->ghichu}}</td>
         </tr>
     @endforeach
