@@ -247,7 +247,7 @@
                                     @elseif($tt->trangthai == 'CHT')
                                         {{--Chưa hoàn thành--}}
                                         @if(can('kkgiadatduan','edit'))
-                                            <button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                            <a href="{{url('thongtingiadatduan/'.$tt->id.'/edit')}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Sửa</a>
                                         @endif
                                         @if(can('kkgiadatduan','delete'))
                                             <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
