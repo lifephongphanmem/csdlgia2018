@@ -103,8 +103,8 @@
         <th width="30%">Tên hàng hóa, dịch vụ</th>
         <th>Quy cách, <br>chất lượng</th>
         <th>Đơn vị<br>tính</th>
-        <th width="10%">Mức giá kê<br>khai hiện<br>hành</th>
-        <th width="10%">Mức giá kê<br>khai mới</th>
+        <th width="10%">Mức giá đăng<br>ky hiện<br>hành</th>
+        <th width="10%">Mức giá đăng<br>ky mới</th>
         <th>Mức<br> tăng<br>/ giảm</th>
         <th>Tỷ lệ<br> tăng<br>/ giảm</th>
         <th>Ghi chú</th>
