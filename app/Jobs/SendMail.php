@@ -41,10 +41,10 @@ class SendMail implements ShouldQueue
     public function handle()
     {
         $emaildn = new MailDoanhNghiep($this->modeldn,$this->contentdn);
-        if(isset($modeldn) && $this->modeldn->email != '' && emailValid($this->modeldn->email))
+        if(isset($this->modeldn) && $this->modeldn->email != '' && emailValid($this->modeldn->email))
             Mail::to($this->modeldn->email)->send($emaildn);
         $emailht = new MailHeThong($this->contentht,$this->modeldv);
-        if(isset($modeldv) && $this->modeldv->emailql != '' && emailValid($this->modeldv->emailql))
+        if(isset($this->modeldv) && $this->modeldv->emailql != '' && emailValid($this->modeldv->emailql))
             Mail::to($this->modeldv->emailql)->send($emailht);
     }
 }

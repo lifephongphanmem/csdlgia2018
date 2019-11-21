@@ -9,7 +9,9 @@ class GiaThiTruong extends Model
     protected $table = 'giathitruong';
     protected $fillable = [
         'id',
+        'thanglk',
         'thang',
+        'namlk',
         'nam',
         'sobc',
         'ngaybc',

@@ -68,6 +68,7 @@
                     nguontt: $('#edit_nguontt').val(),
                     loaigia: $('#edit_loaigia').val(),
                     ghichu: $('#edit_ghichu').val(),
+                    dacdiemkt: $('#edit_dacdiemkt').val(),
                     mahs: $('#mahs').val()
                 },
                 dataType: 'JSON',
@@ -130,6 +131,31 @@
                                 <div class="form-group">
                                     <label class="control-label">Năm báo cáo: </label>
                                     <label class="control-label" style="color: blue;font-weight: bold">{{$model->nam}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Tháng báo cáo liền kề: </label>
+                                    {!! Form::select(
+                                    'thanglk',
+                                    getThang()
+                                    ,$model->thanglk,
+                                    array('id' => 'thanglk', 'class' => 'form-control'))
+                                    !!}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Năm báo cáo liền kề: </label>
+                                    <select name="namlk" id="namlk" class="form-control">
+                                        @if ($nam_start = intval(date('Y')) - 5 ) @endif
+                                        @if ($nam_stop = intval(date('Y')) + 1) @endif
+                                        @for($i = $nam_start; $i <= $nam_stop; $i++)
+                                            <option value="{{$i}}" {{$i == $model->namlk ? 'selected' : ''}}>Năm {{$i}}</option>
+                                        @endfor
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -279,7 +305,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="control-label">Đặc điểm kỹ thuật</label>
-                                <input type="text" id="edit_dacdiemkt" name="edit_dacdiemkt" class="form-control" disabled>
+                                <input type="text" id="edit_dacdiemkt" name="edit_dacdiemkt" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -332,7 +358,7 @@
                             </div>
                         </div>
                     </div>
-                    <input type="text" id="edit_id" name="edit_id">
+                    <input type="hidden" id="edit_id" name="edit_id">
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>

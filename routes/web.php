@@ -38,6 +38,7 @@ include('manage/ttpvctqlnn.php');
 
 //View
 include('congbo/congbo.php');
+
 //End view
 
 

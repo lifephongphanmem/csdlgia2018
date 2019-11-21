@@ -136,6 +136,31 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label class="control-label">Tháng báo cáo liền kề: </label>
+                                    {!! Form::select(
+                                    'thanglk',
+                                    getThang()
+                                    ,null,
+                                    array('id' => 'thanglk', 'class' => 'form-control'))
+                                    !!}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Năm báo cáo liền kề: </label>
+                                    <select name="namlk" id="namlk" class="form-control">
+                                        @if ($nam_start = intval(date('Y')) - 5 ) @endif
+                                        @if ($nam_stop = intval(date('Y')) + 1) @endif
+                                        @for($i = $nam_start; $i <= $nam_stop; $i++)
+                                            <option value="{{$i}}" {{$i == date('Y') ? 'selected' : ''}}>Năm {{$i}}</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label class="control-label">Số báo cáo<span class="require">*</span></label>
                                     {!!Form::text('sobc',null, array('id' => 'sobc','class' => 'form-control required','autofocus'))!!}
                                 </div>
@@ -280,7 +305,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="control-label">Đặc điểm kỹ thuật</label>
-                                <input type="text" id="edit_dacdiemkt" name="edit_dacdiemkt" class="form-control" disabled>
+                                <input type="text" id="edit_dacdiemkt" name="edit_dacdiemkt" class="form-control">
                             </div>
                         </div>
                     </div>

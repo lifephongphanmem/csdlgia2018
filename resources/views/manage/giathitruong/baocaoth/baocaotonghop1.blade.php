@@ -8,6 +8,7 @@
 @stop
 
 @section('content')
+<p style="text-align: center; font-weight: bold">PHỤ LỤC SỐ 1</p>
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
         <td width="40%" style="vertical-align: top;">
@@ -29,7 +30,7 @@
     </tr>
 </table>
 
-<p style="text-align: center; font-weight: bold; font-size: 16px;">BÁO CÁO GIÁ THỊ TRƯỜNG THÁNG {{$inputs['thang']}} NĂM {{$inputs['nam']}}</p>
+<p style="text-align: center; font-weight: bold; font-size: 16px;">BẢNG GIÁ THỊ TRƯỜNG THÁNG {{$inputs['thang']}} NĂM {{$inputs['nam']}}</p>
 <p style="font-style: italic; text-align: center">(Ban hành kèm theo Thông tư số 116/2018/TT-BTC ngày 28/11/2018 của Bộ Tài Chính quy định chế độ báo cáo giá thị trường)</p>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;" id="data">
     <thead>
@@ -78,11 +79,11 @@
                 <td>{{$tt->dacdiemkt}}</td>
                 <td style="text-align: center">{{$tt->dvt}}</td>
                 <td style="text-align: center">KT: {{$tt->loaigiakt}} <br> KN: {{$tt->loaigia}}</td>
-                <td style="text-align: right;font-weight: bold">{{number_format($tt->dongialk)}}</td>
-                <td style="text-align: right;font-weight: bold">{{number_format($tt->dongia)}}</td>
-                <td style="text-align: right;font-weight: bold">{{number_format($tt->dongia - $tt->dongialk)}}</td>
-                <td style="text-align: right;font-weight: bold">{{number_format($tt->dongialk) == 0 ? number_format($tt->dongia) == 0 ? 0 : 100
-                                : round(number_format($tt->dongia)/number_format($tt->dongialk),2)}}</td>
+                <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->dongialk,5)}}</td>
+                <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->dongia,5)}}</td>
+                <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->dongia - $tt->dongialk,5)}}</td>
+                <td style="text-align: right;font-weight: bold">{{number_format($tt->dongialk) == 0 ? ''
+                                : dinhdangsothapphan($tt->dongia/$tt->dongialk,2)}}</td>
                 <td>KT: {{$tt->nguonttkt}}<br>KN: {{$tt->nguontt}}</td>
                 <td>KT: {{$tt->ghichukt}}<br>KN: {{$tt->ghichu}}</td>
             </tr>

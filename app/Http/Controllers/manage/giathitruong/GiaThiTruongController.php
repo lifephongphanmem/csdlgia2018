@@ -179,6 +179,22 @@ class GiaThiTruongController extends Controller
                 ->select('manhom','tennhom')
                 ->groupBy('manhom','tennhom')
                 ->get();
+            $modellk = GiaThiTruong::where('thang',$model->thanglk)
+                ->where('nam',$model->namlk)
+                ->where('mahuyen',$model->mahuyen)
+                ->where('trangthai','HT')
+                ->first();
+            if(isset($modellk)){
+                foreach($modelct as $ct){
+                    $modelctlk = GiaThiTruongCt::where('mahs',$modellk->mahs)
+                        ->where('mahh',$ct->mahh)
+                        ->first();
+                    $ct->loaigiakt = $modelctlk->loaigia;
+                    $ct->dongialk = $modelctlk->dongialk;
+                    $ct->nguonttkt = $modelctlk->nguontt;
+                    $ct->ghichukt = $modelctlk->ghichu;
+                }
+            }
 
 
             if(session('admin')->level == 'T'){
