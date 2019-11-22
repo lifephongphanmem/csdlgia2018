@@ -47,6 +47,7 @@
                         <thead>
                         <tr>
                             <th style="text-align: center" width="2%">STT</th>
+                            <th style="text-align: center">Level</th>
                             <th style="text-align: center">Cấp I</th>
                             <th style="text-align: center">Cấp II</th>
                             <th style="text-align: center">Cấp III</th>
@@ -62,6 +63,7 @@
                         @foreach($model as $key=>$tt)
                         <tr class="odd gradeX">
                             <td style="text-align: center">{{$key + 1}}</td>
+                            <td>{{$tt->level}}</td>
                             <td>{{$tt->cap1}}</td>
                             <td>{{$tt->cap2}}</td>
                             <td>{{$tt->cap3}}</td>
