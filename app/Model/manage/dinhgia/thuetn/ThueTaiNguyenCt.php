@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model\manage\dinhgia\thuetn;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,15 +10,15 @@ class ThueTaiNguyenCt extends Model
     protected $fillable = [
         'id',
         'mahs',
-        'maxa',
-        'mahuyen',
-        'district',
-        'manhom',
-        'magoc',
-        'mahh',
-        'capdo',
-        'tenhh',
+        'level',
+        'cap1',
+        'cap2',
+        'cap3',
+        'cap4',
+        'cap5',
+        'ten',
         'dvt',
-        'giatttn',
+        'gia',
+        'trangthai',
     ];
 }

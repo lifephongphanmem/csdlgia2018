@@ -43,7 +43,7 @@
                                 @if ($nam_start = 2015 ) @endif
                                 @if ($nam_stop = intval(date('Y')) + 1) @endif
                                 @for($i = $nam_start; $i <= $nam_stop; $i++)
-                                    <option value="{{$i}}">Năm {{$i}}</option>
+                                    <option value="{{$i}}" {{date('Y') == $i ? 'selected' : ''}}>Năm {{$i}}</option>
                                 @endfor
                             </select>
                         </div>

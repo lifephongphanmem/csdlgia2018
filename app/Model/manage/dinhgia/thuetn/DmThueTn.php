@@ -9,7 +9,8 @@ class DmThueTn extends Model
     protected $table = 'dmthuetn';
     protected $fillable = [
         'id',
-        'matn',
+        'level',
+        'ten',
         'manhom',
         'cap1',
         'cap2',

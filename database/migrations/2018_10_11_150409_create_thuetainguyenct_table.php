@@ -16,16 +16,16 @@ class CreateThuetainguyenctTable extends Migration
         Schema::create('thuetainguyenct', function (Blueprint $table) {
             $table->increments('id');
             $table->string('mahs')->nullable();
-            $table->string('maxa')->nullable();
-            $table->string('mahuyen')->nullable();
-            $table->string('district')->nullable();
-            $table->string('manhom')->nullable();
-            $table->string('magoc')->nullable();
-            $table->string('mahh')->nullable();
-            $table->string('capdo')->nullable();
-            $table->string('tenhh')->nullable();
+            $table->string('level')->nullable();
+            $table->string('cap1')->nullable();
+            $table->string('cap2')->nullable();
+            $table->string('cap3')->nullable();
+            $table->string('cap4')->nullable();
+            $table->string('cap5')->nullable();
+            $table->string('ten')->nullable();
             $table->string('dvt')->nullable();
-            $table->string('giatttn')->nullable();
+            $table->string('gia')->nullable();
+            $table->string('trangthai')->nullable();
             $table->timestamps();
         });
     }

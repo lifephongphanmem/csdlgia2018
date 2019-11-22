@@ -47,12 +47,12 @@
                         <thead>
                         <tr>
                             <th style="text-align: center" width="2%">STT</th>
-                            <th style="text-align: center">Mã tài nguyên</th>
-                            <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp I</th>
-                            <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp II</th>
-                            <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp III</th>
-                            <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp IV</th>
-                            <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp V</th>
+                            <th style="text-align: center">Cấp I</th>
+                            <th style="text-align: center">Cấp II</th>
+                            <th style="text-align: center">Cấp III</th>
+                            <th style="text-align: center">Cấp IV</th>
+                            <th style="text-align: center">Cấp V</th>
+                            <th style="text-align: center">Tên nhóm, loại tài nguyên</th>
                             <th style="text-align: center">Đơn vi<br>tính</th>
                             <th style="text-align: center">Theo dõi</th>
                             <th style="text-align: center" width="15%">Thao tác</th>
@@ -62,12 +62,12 @@
                         @foreach($model as $key=>$tt)
                         <tr class="odd gradeX">
                             <td style="text-align: center">{{$key + 1}}</td>
-                            <td class="active" >{{$tt->matn}}</td>
                             <td>{{$tt->cap1}}</td>
                             <td>{{$tt->cap2}}</td>
                             <td>{{$tt->cap3}}</td>
                             <td>{{$tt->cap4}}</td>
                             <td>{{$tt->cap5}}</td>
+                            <td class="active" >{{$tt->ten}}</td>
                             <td style="text-align: center">{{$tt->dvt}}</td>
                             <td style="text-align: center">
                                 @if($tt->theodoi == 'KTD')

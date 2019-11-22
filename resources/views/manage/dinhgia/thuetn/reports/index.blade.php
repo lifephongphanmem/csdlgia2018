@@ -16,7 +16,7 @@
        Báo cáo giá tính thuế<small> tài nguyên</small>
     </h3>
     <!-- END PAGE HEADER-->
-
+<hr>
     <!-- BEGIN DASHBOARD STATS -->
     <div class="row">
         <div class="col-md-12">

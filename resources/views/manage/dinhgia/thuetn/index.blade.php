@@ -3,8 +3,6 @@
 @section('custom-style')
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
-    <!-- END THEME STYLES -->
-    <link type="text/css" rel="stylesheet" href="{{ url('vendors/bootstrap-datepicker/css/datepicker.css') }}">
 @stop
 
 
@@ -16,331 +14,323 @@
     <script type="text/javascript" src="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')}}"></script>
     <!-- END PAGE LEVEL PLUGINS -->
     <script src="{{url('assets/admin/pages/scripts/table-managed.js')}}"></script>
-    <script src="{{url('minhtran/jquery.inputmask.bundle.min.js')}}"></script>
     <script>
         jQuery(document).ready(function() {
             TableManaged.init();
-            $(":input").inputmask();
         });
-
-        function searchtt(){
-            var current_path_url = '/thuetainguyen?';
-            var nam = '&nam='+$('#nam').val();
-            var manhom = '&manhom='+$('#manhom').val();
-            var cap1 = '&cap1='+$('#cap1').val();
-            var cap2 = '&cap2='+$('#cap2').val();
-            var cap3 = '&cap3='+$('#cap3').val();
-            var cap4 = '&cap4='+$('#cap4').val();
-            var cap5 = '&cap5='+$('#cap5').val();
-            var paginate = '&paginate='+$('#paginate').val();
-            var url = current_path_url+nam+manhom+cap1+cap2+cap3+cap4+cap5+paginate;
-            window.location.href = url;
+        function getId(id) {
+            document.getElementById("iddelete").value=id;
+        }
+        function getIdHt(id) {
+            document.getElementById("idhoanthanh").value=id;
+        }
+        function getIdHHt(id){
+            document.getElementById("idhuyhoanthanh").value=id;
+        }
+        function getIdCb(id){
+            document.getElementById("idcongbo").value=id;
+        }
+        function getIdHcb(id){
+            document.getElementById("idhuycongbo").value=id;
         }
 
         $(function(){
-            $('#paginate').change(function() {
-                var current_path_url = '/thuetainguyen?';
-                var nam = '&nam='+$('#nam').val();
-                var manhom = '&manhom='+$('#manhom').val();
-                var cap1 = '&cap1='+$('#cap1').val();
-                var cap2 = '&cap2='+$('#cap2').val();
-                var cap3 = '&cap3='+$('#cap3').val();
-                var cap4 = '&cap4='+$('#cap4').val();
-                var cap5 = '&cap5='+$('#cap5').val();
-                var paginate = '&paginate='+$('#paginate').val();
-                var url = current_path_url+nam+manhom+cap1+cap2+cap3+cap4+cap5+paginate;
+            $('#manhom').change(function() {
+                var manhom = '&manhom='+ $('#manhom').val();
+                var url = '/thuetainguyen?' + manhom;
                 window.location.href = url;
             });
         });
-
-        function resettt(){
-            window.location.href = '/thuetainguyen';
-        }
-
-        function ShowDialogAdd(){
-            $('#add-modal').modal('show');
-        }
-
-        function edittt(id) {
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: 'thuetainguyen/edit',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    id: id
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    $('#edit_matn').val(data.matn);
-                    $('#edit_dvt').val(data.dvt);
-                    $('#edit_cap1').val(data.cap1);
-                    $('#edit_cap2').val(data.cap2);
-                    $('#edit_cap3').val(data.cap3);
-                    $('#edit_cap4').val(data.cap4);
-                    $('#edit_cap5').val(data.cap5);
-                    $('#edit_dongia').val(data.dongia);
-                    $('#edit_nam').val(data.nam);
-                    $('#edit_soqd').val(data.soqd);
-                    $('#edit_id').val(data.id);
-                }
-            });
-        }
-        function getId(id) {
-            document.getElementById("destroy_id").value=id;
-        }
-        function getIdCb(id) {
-            document.getElementById("congbo_id").value=id;
-        }
-        function getIdHcb(id) {
-            document.getElementById("huycongbo_id").value=id;
-        }
-        function getIdHt(id) {
-            document.getElementById("hoanthanh_id").value=id;
-        }
-        function getIdHHt(id) {
-            document.getElementById("huyhoanthanh_id").value=id;
-        }
     </script>
 @stop
 
 @section('content')
 
     <h3 class="page-title">
-        Giá thuế tài nguyên<small>&nbsp;trên địa bàn</small>
+        Thông tin Bảng giá<small style="color: blue;font-weight: bold"> tính thuế tài nguyên trên địa bàn</small>
     </h3>
-    {{--<h3 class="page-title">
-        <small> <b style="color: blue">{{$dvql->tendv}}</b><b style="color: blue"> - </b><b style="color: blue">{{$dv->tendv}}</b> - Người soạn thảo: <b style="color: blue">{{isset($model) ? $model->cvsoanthao : session('admin')->name}}</b> </small>
-    </h3>--}}
+
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box">
                 <div class="portlet-title">
+                    <div class="caption">
+                    </div>
                     <div class="actions">
                         @if(can('kkgiathuetn','create'))
-                        {{--<button type="button" class="btn btn-default btn-xs mbs" data-target="#add-modal" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;--}}
-                            {{--Thêm mới</button>--}}
-                            <button type="button" class="btn btn-default btn-xs mbs" onclick="ShowDialogAdd()"><i class="fa fa-plus"></i>&nbsp;
+                            <button type="button" class="btn btn-default btn-sm" data-target="#create-modal" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;
                                 Thêm mới</button>
-                        <a href="{{url('thuetainguyen/nhandulieutuexcel')}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-file-excel-o"></i> Nhận dữ liệu</a>
                         @endif
-                        @if(can('kkgiathuetn','delete'))
-                        <button type="button" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
-                            Xóa</button>
-                        @endif
-                        @if(can('thgiathuetn','congbo'))
-                        <button type="button" class="btn btn-default btn-xs mbs" data-target="#check-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;
-                            Công bố/ Hủy</button>
-                        @endif
-                        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-filemau"><i class="fa fa-cloud-download"></i>
-                            &nbsp;Xuất dữ liệu</button>
                     </div>
                 </div>
                 <hr>
                 <div class="portlet-body">
                     <div class="row">
-                        <div class="portlet-body form" id="form_wizard">
-                            <div class="form-body">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label style="font-weight: bold">Năm</label>
-                                            <select class="form-control" name="nam" id="nam">
-                                                <option value="all">--Tất cả các năm--</option>
-                                                @if ($nam_start = 2015 ) @endif
-                                                @if ($nam_stop = intval(date('Y')) + 1) @endif
-                                                @for($i = $nam_start; $i <= $nam_stop; $i++)
-                                                    <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
-                                                @endfor
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label style="font-weight: bold">Nhóm tài nguyên</label>
-                                            <select class="form-control" name="manhom" id="manhom">
-                                                <option value="All">--Tất cả--</option>
-                                                @foreach($nhoms as $nhom)
-                                                <option value="{{$nhom->manhom}}" {{$inputs['manhom'] == $nhom->manhom ? 'selected' : ''}}>{{$nhom->tennhom}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label"><b>Tên nhóm, loại tài nguyên Cấp I </b><span class="require">*</span></label>
-                                            {!! Form::text('cap1', $inputs['cap1'], ['id' => 'cap1', 'class' => 'form-control']) !!}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label"><b>Tên nhóm, loại tài nguyên Cấp II </b><span class="require">*</span></label>
-                                            {!! Form::text('cap2', $inputs['cap2'], ['id' => 'cap2', 'class' => 'form-control']) !!}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label"><b>Tên nhóm, loại tài nguyên Cấp III </b><span class="require">*</span></label>
-                                            {!! Form::text('cap3', $inputs['cap3'], ['id' => 'cap3', 'class' => 'form-control']) !!}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label"><b>Tên nhóm, loại tài nguyên Cấp IV </b><span class="require">*</span></label>
-                                            {!! Form::text('cap4', $inputs['cap4'], ['id' => 'cap4', 'class' => 'form-control']) !!}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label"><b>Tên nhóm, loại tài nguyên Cấp V </b><span class="require">*</span></label>
-                                            {!! Form::text('cap5', $inputs['cap5'], ['id' => 'cap5', 'class' => 'form-control']) !!}
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label>Nhóm tài nguyên</label>
+                                <select name="manhom" id="manhom" class="form-control">
+                                    <option value="all">--Tất cả các nhóm tài nguyên--</option>
+                                    @foreach($modeldm as $dm)
+                                        <option value="{{$dm->manhom}}" {{$dm->manhom == $inputs['manhom'] ? 'selected' : ''}}>{{$dm->tennhom}}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                        </div>
-                        <div style="text-align: center">
-                            <button type="reset" class="btn btn-circle" onclick="resettt()"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
-                            <button type="submit" class="btn btn-circle green" onclick="searchtt()"><i class="fa fa-search"></i>Tìm kiếm</button>
                         </div>
                     </div>
-                    <div class="portlet-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label>
-                                    Hiển thị
-                                    <div class="select2-container form-control input-xsmall input-inline" >
-                                        <select class="form-control" name="paginate" id="paginate" >
-                                            <option value="5" {{$inputs['paginate'] == 5 ? 'selected' : ''}}>5</option>
-                                            <option value="20" {{$inputs['paginate'] == 20 ? 'selected' : ''}}>20</option>
-                                            <option value="50" {{$inputs['paginate'] == 50 ? 'selected' : ''}}>50</option>
-                                            <option value="100" {{$inputs['paginate'] == 100? 'selected' : ''}}>100</option>
-                                        </select>
-                                    </div>
-                                    thông tin
-                                </label>
-                            </div>
-                        </div></br>
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover">
-                            <thead>
+                    <table class="table table-striped table-bordered table-hover" id="sample_3">
+                        <thead>
+                        <tr>
+                            <th width="2%" style="text-align: center">STT</th>
+                            <th style="text-align: center">Năm ban hành</th>
+                            <th style="text-align: center">Số quyết định</th>
+                            <th style="text-align: center">Ngày quyết định</th>
+                            <th style="text-align: center">Nhóm tài nguyên</th>
+                            <th style="text-align: center" width="10%">Trạng thái</th>
+                            <th style="text-align: center">Thao tác</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($model as $key=>$tt)
                             <tr>
-                                <th style="text-align: center" width="2%">STT</th>
-                                <th style="text-align: center">Năm/<br> Thông tin quyết định</th>
-                                <th style="text-align: center">Nhóm tài nguyên</th>
-                                <th style="text-align: center">Mã tài nguyên</th>
-                                <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp I</th>
-                                <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp II</th>
-                                <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp III</th>
-                                <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp IV</th>
-                                <th style="text-align: center">Tên nhóm, loại tài nguyên<br>Cấp V</th>
-                                <th style="text-align: center">Đơn vi<br>tính</th>
-                                <th style="text-align: center" >Đơn giá</th>
-                                <th style="text-align: center"  width="5%"> Trạng thái</th>
-                                <th style="text-align: center"> Thao tác</th>
+                                <td style="text-align: center">{{$key+1}}</td>
+                                <td style="text-align: center">{{$tt->nam}}</td>
+                                <td style="text-align: center">{{$tt->soqd}}</td>
+                                <td style="text-align: center">{{getDayVn($tt->ngayqd)}}</td>
+                                <td style="text-align: left">{{$tt->tennhom}}</td>
+                                <td style="text-align: center">
+                                    @if($tt->trangthai == 'CB')
+                                        <span class="badge badge-warning">Công bố</span>
+                                    @elseif($tt->trangthai == 'CHT')
+                                        <span class="badge badge-danger">Chưa hoàn thành</span>
+                                    @else
+                                        <span class="badge badge-blue">Hoàn thành</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{url('thuetainguyen/'.$tt->id)}}" class="btn btn-default btn-xs mbs" target="_blank"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                    @if($tt->trangthai == 'CB')
+                                        {{--Công bố--}}
+                                        @if(can('kkgiathuetn','congbo'))
+                                            <button type="button" onclick="getIdHcb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huycongbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-times"></i>&nbsp;Hủy công bố</button>
+                                        @endif
+                                    @elseif($tt->trangthai == 'CHT')
+                                        {{--Chưa hoàn thành--}}
+                                        @if(can('kkgiathuetn','edit'))
+                                            <a href="{{url('thuetainguyen/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs" target="_blank"><i class="fa fa-edit"></i>&nbsp;Sửa</a>
+                                        @endif
+                                        @if(can('kkgiathuetn','delete'))
+                                            <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                        @endif
+                                        @if(can('kkgiathuetn','approve'))
+                                            <button type="button" onclick="getIdHt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Hoàn thành</button>
+                                        @endif
+                                    @else
+                                        {{--Hoàn thành--}}
+                                        @if(can('kkgiathuetn','congbo'))
+                                            <button type="button" onclick="getIdCb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Công bố</button>
+                                            <button type="button" onclick="getIdHHt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-times"></i>&nbsp;Hủy Hoàn thành</button>
+                                        @endif
+                                    @endif
+                                </td>
                             </tr>
-                            </thead>
-                            <tbody>
-                                @if($model->count() != 0)
-                                    @foreach($model as $key => $tt)
-                                        <tr>
-                                            <td style="text-align: center">{{$key+1}}</td>
-                                            <td><b>{{$tt->nam}}</b><br>{{$tt->soqd}}</td>
-                                            <td>{{$tt->tennhom}}</td>
-                                            <td class="active" >{{$tt->matn}}</td>
-                                            <td>{{$tt->cap1}}</td>
-                                            <td>{{$tt->cap2}}</td>
-                                            <td>{{$tt->cap3}}</td>
-                                            <td>{{$tt->cap4}}</td>
-                                            <td>{{$tt->cap5}}</td>
-                                            <td style="text-align: center">{{$tt->dvt}}</td>
-                                            <td style="text-align: center">{{dinhdangsothapphan($tt->dongia,2)}}</td>
-                                            <td style="text-align: center">
-                                                @if($tt->trangthai == 'CB')
-                                                    <span class="badge badge-warning">Công bố</span>
-                                                @elseif($tt->trangthai == 'CHT')
-                                                    <span class="badge badge-danger">Chưa hoàn thành</span>
-                                                @else
-                                                    <span class="badge badge-blue">Hoàn thành</span>
-                                                @endif
-                                            </td>
-                                            <td>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+        </div>
+    </div>
 
+    <!-- BEGIN DASHBOARD STATS -->
 
-                                                    @if($tt->trangthai == 'CB')
-                                                        {{--Công bố--}}
-                                                        @if(can('thgiathuetn','congbo'))
-                                                            <button type="button" onclick="getIdHcb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huycongbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-times"></i>&nbsp;Hủy công bố</button>
-                                                        @endif
-                                                    @elseif($tt->trangthai == 'CHT')
-                                                        {{--Chưa hoàn thành--}}
-                                                        @if(can('kkgiathuetn','edit'))
-                                                            <button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
-                                                        @endif
-                                                        @if(can('kkgiathuetn','delete'))
-                                                            <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#destroy-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
-                                                        @endif
-                                                        @if(can('kkgiathuetn','approve'))
-                                                            <button type="button" onclick="getIdHt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Hoàn thành</button>
-                                                        @endif
-                                                    @else
-                                                        {{--Hoàn thành--}}
-                                                        @if(can('thgiathuetn','congbo'))
-                                                            <button type="button" onclick="getIdCb('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-send"></i>&nbsp;Công bố</button>
-                                                            <button type="button" onclick="getIdHHt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal" data-toggle="modal" style="margin: 2px"><i class="fa fa-times"></i>&nbsp;Hủy Hoàn thành</button>
-                                                        @endif
-                                                    @endif
-                                            </td>
-                                        </tr>
+    <!-- END DASHBOARD STATS -->
+    <div class="clearfix">
+    </div>
+    <div id="create-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade bs-modal-lg">
+        {!! Form::open(['url'=>'thuetainguyen/create','id' => 'frm_create','method'=>'post'])!!}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Thêm mới bảng giá tính thuế tài nguyên trên địa bàn</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>Nhóm tài nguyên</label>
+                                <select name="add_manhom" id="add_manhom" class="form-control">
+                                    @foreach($modeldm as $dm)
+                                        <option value="{{$dm->manhom}}">{{$dm->tennhom}}</option>
                                     @endforeach
-                                @else
-                                    <tr>
-                                        <td style="text-align: center" colspan="13">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
-                                    </tr>
-                                @endif
-                            </tbody>
-                        </table>
+                                </select>
+                            </div>
                         </div>
-                        <div class="row">
-                            @if(count($model) != 0)
-                            <div class="col-md-5 col-sm-12">
-                                <div class="dataTables_info" id="sample_3_info" role="status" aria-live="polite">
-                                        Hiển thị 1 đến {{$model->count()}} trên {{$model->total()}} thông tin
-                                </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label>Năm báo cáo</label>
+                                <select name="add_nam" id="add_nam" class="form-control">
+                                    @if ($nam_start = intval(date('Y')) - 5 ) @endif
+                                    @if ($nam_stop = intval(date('Y')) + 1) @endif
+                                    @for($i = $nam_start; $i <= $nam_stop; $i++)
+                                        <option value="{{$i}}" {{$i == date('Y') ? 'selected' : ''}}>Năm {{$i}}</option>
+                                    @endfor
+                                </select>
                             </div>
-                            <div class="col-md-7 col-sm-12">
-                                <div class="dataTables_paginate paging_simple_numbers" id="sample_3_paginate">
-                                    {{$model->appends([
-                                                   'nam'=>$inputs['nam'],
-                                                   'manhom'=>$inputs['manhom'],
-                                                   'cap1'=>$inputs['cap1'],
-                                                   'cap2'=>$inputs['cap2'],
-                                                   'cap3'=>$inputs['cap3'],
-                                                   'cap4'=>$inputs['cap4'],
-                                                   'cap5'=>$inputs['cap5'],
-                                                   'paginate'=>$inputs['paginate'],
-                                ])->links()}}
-                                </div>
-                            </div>
-                            @endif
                         </div>
                     </div>
                 </div>
 
-                <!-- END EXAMPLE TABLE PORTLET-->
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickcreate()">Đồng ý</button>
+                </div>
             </div>
         </div>
-
-        <!-- BEGIN DASHBOARD STATS -->
-
-        <!-- END DASHBOARD STATS -->
-        <div class="clearfix"></div>
-
+        {!! Form::close() !!}
     </div>
-    @include('manage.dinhgia.thuetn.include.modal_dialog')
-    @include('includes.script.inputmask-ajax-scripts')
-    @include('includes.script.create-header-scripts')
+    <!--Modal Delete-->
+    <div id="destroy-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+        {!! Form::open(['url'=>'thuetainguyen/delete','id' => 'frm_delete'])!!}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true"
+                            class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Đồng ý xoá?</h4>
+                    <input type="hidden" name="iddelete" id="iddelete">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickdelete()">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+        {!! Form::close() !!}
+    </div>
+    <script>
+        function clickdelete(){
+            $('#frm_delete').submit();
+        }
+    </script>
+    <!--Modal Hoàn thành-->
+    <div id="hoanthanh-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+        {!! Form::open(['url'=>'thuetainguyen/hoanthanh','id' => 'frm_hoanthanh'])!!}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true"
+                            class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Đồng ý hoàn thành hồ sơ?</h4>
+
+                    <input type="hidden" name="idhoanthanh" id="idhoanthanh">
+
+                </div>
+                <div class="modal-body">
+                    <p style="color: #0000FF">Hồ sơ đã hoàn thành sẽ không được phép chỉnh sửa và xóa hồ sơ nữa!Bạn cần liên hệ cơ quan chủ quản để chỉnh sửa hồ sơ nếu cần!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickhoanthanh()">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+        {!! Form::close() !!}
+    </div>
+    <!--Modal Hủy Hoàn thành-->
+    <div id="huyhoanthanh-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+        {!! Form::open(['url'=>'thuetainguyen/huyhoanthanh','id' => 'frm_huyhoanthanh'])!!}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true"
+                            class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Đồng ý hủy hoàn thành hồ sơ?</h4>
+
+                    <input type="hidden" name="idhuyhoanthanh" id="idhuyhoanthanh">
+
+                </div>
+                <div class="modal-body">
+                    <p style="color: #0000FF">Hồ sơ Bị hủy sẽ chuyển lại cho cơ quan nhập chủ quản có thể chỉnh sửa hồ sơ!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickhuyhoanthanh()">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+        {!! Form::close() !!}
+    </div>
+    <!--Modal Công bố-->
+    <div id="congbo-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+        {!! Form::open(['url'=>'thuetainguyen/congbo','id' => 'frm_congbo'])!!}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true"
+                            class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Đồng ý công bố hồ sơ?</h4>
+
+                    <input type="hidden" name="idcongbo" id="idcongbo">
+
+                </div>
+                <div class="modal-body">
+                    <p style="color: #0000FF">Hồ sơ sẽ được công bố lên trang công bố của tỉnh!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickcongbo()">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+        {!! Form::close() !!}
+    </div>
+    <div id="huycongbo-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+        {!! Form::open(['url'=>'thuetainguyen/huycongbo','id' => 'frm_huycongbo'])!!}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true"
+                            class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Đồng ý hủy công bố hồ sơ?</h4>
+
+                    <input type="hidden" name="idhuycongbo" id="idhuycongbo">
+
+                </div>
+                <div class="modal-body">
+                    <p style="color: #0000FF">Hồ sơ sẽ được hủy công bố lên trang công bố của tỉnh!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickhuycongbo()">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+        {!! Form::close() !!}
+    </div>
+    <script>
+        function clickhoanthanh(){
+            $('#frm_hoanthanh').submit();
+        }
+        function clickcongbo(){
+            $('#frm_congbo').submit();
+        }
+        function clickhuyhoanthanh(){
+            $('#frm_huyhoanthanh').submit();
+        }
+        function clickhuycongbo(){
+            $('#frm_huycongbo').submit();
+        }
+        function clickcreate(){
+            $('#frm_create').submit();
+        }
+
+    </script>
+
 @stop

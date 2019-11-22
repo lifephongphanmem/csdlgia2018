@@ -130,19 +130,23 @@ Route::post('dmthuetn/delete','manage\thuetn\DmThueTnController@destroy');
 Route::post('dmthuetn/importexcel','manage\thuetn\DmThueTnController@importexcel');
 
 Route::get('thuetainguyen','manage\thuetn\ThueTaiNguyenController@index');
-Route::post('thuetainguyen/add','manage\thuetn\ThueTaiNguyenController@store');
-Route::get('thuetainguyen/edit','manage\thuetn\ThueTaiNguyenController@edit');
-Route::post('thuetainguyen/update','manage\thuetn\ThueTaiNguyenController@update');
-Route::post('thuetainguyen/destroy','manage\thuetn\ThueTaiNguyenController@destroy');
+Route::post('thuetainguyen/create','manage\thuetn\ThueTaiNguyenController@create');
+Route::post('thuetainguyen','manage\thuetn\ThueTaiNguyenController@store');
+Route::get('thuetainguyen/{id}/edit','manage\thuetn\ThueTaiNguyenController@edit');
+Route::patch('thuetainguyen/{id}','manage\thuetn\ThueTaiNguyenController@update');
 Route::post('thuetainguyen/delete','manage\thuetn\ThueTaiNguyenController@delete');
 Route::post('thuetainguyen/hoanthanh','manage\thuetn\ThueTaiNguyenController@hoanthanh');
 Route::post('thuetainguyen/huyhoanthanh','manage\thuetn\ThueTaiNguyenController@huyhoanthanh');
 Route::post('thuetainguyen/congbo','manage\thuetn\ThueTaiNguyenController@congbo');
 Route::post('thuetainguyen/huycongbo','manage\thuetn\ThueTaiNguyenController@huycongbo');
-Route::post('thuetainguyen/checkmulti','manage\thuetn\ThueTaiNguyenController@checkmulti');
+Route::get('thuetainguyen/{id}','manage\thuetn\ThueTaiNguyenController@show');
+
 Route::get('thuetainguyen/nhandulieutuexcel','manage\thuetn\ThueTaiNguyenController@nhandulieutuexcel');
 Route::post('thuetainguyen/import_excel','manage\thuetn\ThueTaiNguyenController@importexcel');
 Route::post('thuetainguyen/export','manage\thuetn\ThueTaiNguyenController@export');
+
+Route::get('thuetainguyenct/edit','manage\thuetn\ThueTaiNguyenCtController@edit');
+Route::get('thuetainguyenct/update','manage\thuetn\ThueTaiNguyenCtController@update');
 
 Route::get('baocaothuetainguyen','manage\thuetn\ReportsThueTnController@index');
 Route::post('/baocaothuetainguyen/bc1','manage\thuetn\ReportsThueTnController@Bc1');

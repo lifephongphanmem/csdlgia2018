@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\manage\thuetn;
 
+use App\District;
 use App\Model\manage\dinhgia\thuetn\DmThueTn;
 use App\Model\manage\dinhgia\thuetn\NhomThueTn;
 use App\Model\manage\dinhgia\thuetn\ThueTaiNguyen;
+use App\Model\manage\dinhgia\thuetn\ThueTaiNguyenCt;
+use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -16,38 +19,60 @@ class ThueTaiNguyenController extends Controller
     public function index(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
-            $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-            $inputs['manhom'] = isset($inputs['manhom']) ? $inputs['manhom'] : 'All';
-            $inputs['cap1'] = isset($inputs['cap1']) ? $inputs['cap1'] : '';
-            $inputs['cap2'] = isset($inputs['cap2']) ? $inputs['cap2'] : '';
-            $inputs['cap3'] = isset($inputs['cap3']) ? $inputs['cap3'] : '';
-            $inputs['cap4'] = isset($inputs['cap4']) ? $inputs['cap4'] : '';
-            $inputs['cap5'] = isset($inputs['cap5']) ? $inputs['cap5'] : '';
-            $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
-            $nhoms = NhomThueTn::where('theodoi','TD')->get();
+            $inputs['manhom'] = isset($inputs['manhom']) ? $inputs['manhom'] : 'all';
+            $modeldm = NhomThueTn::where('theodoi','TD')->get();
             $model = ThueTaiNguyen::join('nhomthuetn','nhomthuetn.manhom','=','thuetainguyen.manhom')
                 ->select('thuetainguyen.*','nhomthuetn.tennhom');
-            if($inputs['nam'] != 'all')
-                $model = $model->where('thuetainguyen.nam',$inputs['nam']);
-            if($inputs['manhom'] != 'All')
+            if($inputs['manhom'] != 'all')
                 $model = $model->where('thuetainguyen.manhom',$inputs['manhom']);
-            if($inputs['cap1'] != '')
-                $model = $model->where('thuetainguyen.cap1','like', '%'.$inputs['cap1'].'%');
-            if($inputs['cap2'] != '')
-                $model = $model->where('thuetainguyen.cap2','like', '%'.$inputs['cap2'].'%');
-            if($inputs['cap3'] != '')
-                $model = $model->where('thuetainguyen.cap3','like', '%'.$inputs['cap3'].'%');
-            if($inputs['cap4'] != '')
-                $model = $model->where('thuetainguyen.cap4','like', '%'.$inputs['cap4'].'%');
-            if($inputs['cap5'] != '')
-                $model = $model->where('thuetainguyen.cap5','like', '%'.$inputs['cap5'].'%');
-            $model = $model->paginate($inputs['paginate']);
+            $model = $model->get();
             return view('manage.dinhgia.thuetn.index')
                 ->with('model',$model)
-                ->with('nhoms',$nhoms)
+                ->with('modeldm',$modeldm)
                 ->with('inputs',$inputs)
                 ->with('pageTitle','Thông tin giá thuế tài nguyên');
 
+        }else
+            return view('errors.notlogin');
+    }
+    public function create(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $check = ThueTaiNguyen::where('manhom',$inputs['add_manhom'])
+                ->where('nam',$inputs['add_nam'])
+                ->count();
+            if($check > 0)
+                return view();
+            else{
+                $del = ThueTaiNguyenCt::where('trangthai','CXD')->delete();
+                $modelnhom = NhomThueTn::where('manhom',$inputs['add_manhom'])
+                    ->first();
+                $inputs['mahs'] = getdate()[0];
+                $modeldm = DmThueTn::where('manhom',$inputs['add_manhom'])
+                    ->where('theodoi','TD')
+                    ->get();
+                foreach($modeldm as $dm){
+                    $modelctadd = new ThueTaiNguyenCt();
+                    $modelctadd->cap1 = $dm->cap1;
+                    $modelctadd->cap2 = $dm->cap2;
+                    $modelctadd->cap3 = $dm->cap3;
+                    $modelctadd->cap4 = $dm->cap4;
+                    $modelctadd->cap5 = $dm->cap5;
+                    $modelctadd->ten = $dm->ten;
+                    $modelctadd->dvt = $dm->dvt;
+                    $modelctadd->level = $dm->level;
+                    $modelctadd->mahs = $inputs['mahs'];
+                    $modelctadd->trangthai = 'CXD';
+                    $modelctadd->save();
+                }
+                $modelct = ThueTaiNguyenCt::where('mahs',$inputs['mahs'])
+                    ->get();
+                return view('manage.dinhgia.thuetn.create')
+                    ->with('modelct',$modelct)
+                    ->with('modelnhom',$modelnhom)
+                    ->with('inputs',$inputs)
+                    ->with('pageTitle','Bảng giá tính thuế tài nguyên thêm mới');
+            }
         }else
             return view('errors.notlogin');
     }
@@ -55,75 +80,41 @@ class ThueTaiNguyenController extends Controller
     public function store(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
+            $inputs['ngayqd'] = getDateToDb($inputs['ngayqd']);
+            $inputs['trangthai'] = 'CHT';
             $model = new ThueTaiNguyen();
-            $model->matn = $inputs['add_matn'];
-            $model->manhom = $inputs['add_manhom'];
-            $model->cap1 = $inputs['add_cap1'];
-            $model->cap2 = $inputs['add_cap2'];
-            $model->cap3 = $inputs['add_cap3'];
-            $model->cap4 = $inputs['add_cap4'];
-            $model->cap5 = $inputs['add_cap5'];
-            $model->dvt = $inputs['add_dvt'];
-            $model->dongia = chkDbl($inputs['add_dongia']);
-            $model->soqd = $inputs['add_soqd'];
-            $model->nam = $inputs['add_nam'];
-            $model->trangthai = 'CHT';
-            $model->save();
-            return redirect('thuetainguyen?&nam='.$inputs['add_nam'].'&manhom='.$inputs['add_manhom']);
+            if($model->create($inputs))
+                $modelct = ThueTaiNguyenCt::where('mahs',$inputs['mahs'])
+                    ->update(['trangthai' => 'XD']);
+            return redirect('thuetainguyen?&manhom='.$inputs['manhom']);
 
         }else
             return view('errors.notlogin');
     }
 
-    public function edit(Request $request){
-        $result = array(
-            'status' => 'fail',
-            'message' => 'error',
-        );
-        if (!Session::has('admin')) {
-            $result = array(
-                'status' => 'fail',
-                'message' => 'permission denied',
-            );
-            die(json_encode($result));
-        }
-        $inputs = $request->all();
-        $id = $inputs['id'];
-        $model = ThueTaiNguyen::findOrFail($id);
-        die($model);
-    }
-
-    public function update(Request $request){
+    public function edit($id){
         if(Session::has('admin')){
-            $inputs = $request->all();
-            $id = $inputs['edit_id'];
             $model = ThueTaiNguyen::findOrFail($id);
-            $model->matn = $inputs['edit_matn'];
-            $model->manhom = $inputs['edit_manhom'];
-            $model->cap1 = $inputs['edit_cap1'];
-            $model->cap2 = $inputs['edit_cap2'];
-            $model->cap3 = $inputs['edit_cap3'];
-            $model->cap4 = $inputs['edit_cap4'];
-            $model->cap5 = $inputs['edit_cap5'];
-            $model->dvt = $inputs['edit_dvt'];
-            $model->dongia = chkDbl($inputs['edit_dongia']);
-            $model->soqd = $inputs['edit_soqd'];
-            $model->nam = $inputs['edit_nam'];
-            $model->save();
-            return redirect('thuetainguyen?&nam='.$inputs['edit_nam'].'&manhom='.$inputs['edit_manhom']);
+            $modelct = ThueTaiNguyenCt::where('mahs',$model->mahs)
+                ->get();
+            $modelnhom = NhomThueTn::where('manhom',$model->manhom)
+                ->first();
+            return view('manage.dinhgia.thuetn.edit')
+                ->with('modelct',$modelct)
+                ->with('modelnhom',$modelnhom)
+                ->with('model',$model)
+                ->with('pageTitle','Bảng giá tính thuế tài nguyên chỉnh sửa');
         }else
             return view('errors.notlogin');
     }
 
-    public function destroy(Request $request){
+    public function update($id,Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
-            $id = $inputs['destroy_id'];
+            $inputs['ngayqd'] = getDateToDb($inputs['ngayqd']);
             $model = ThueTaiNguyen::findOrFail($id);
-            $nam = $model->nam;
-            $manhom = $model->manhom;
-            $model->delete();
-            return redirect('thuetainguyen?&nam='.$nam.'&manhom='.$manhom);
+            $model->update($inputs);
+            return redirect('thuetainguyen?&manhom='.$inputs['manhom']);
         }else
             return view('errors.notlogin');
     }
@@ -131,13 +122,10 @@ class ThueTaiNguyenController extends Controller
     public function delete(Request $request){
         if(Session::has('admin')){
             $inputs=$request->all();
-            $model = ThueTaiNguyen::where('nam',$inputs['namdel']);
-            if($inputs['manhomdel'] != 'All')
-                $model = $model->where('manhom',$inputs['manhomdel']);
-
+            $model = ThueTaiNguyen::where('id',$inputs['iddelete']);
             $model = $model->delete();
 
-            return redirect('thuetainguyen?&nam='.$inputs['namdel'].'&manhom='.$inputs['manhomdel']);
+            return redirect('thuetainguyen');
         }else
             return view('errors.notlogin');
     }
@@ -145,11 +133,11 @@ class ThueTaiNguyenController extends Controller
     public function congbo(Request $request){
         if(Session::has('admin')){
             $inputs=$request->all();
-            $id = $inputs['congbo_id'];
+            $id = $inputs['idcongbo'];
             $model = ThueTaiNguyen::findOrFail($id);
             $model->trangthai = 'CB';
             $model->save();
-            return redirect('thuetainguyen?&nam='.$model->nam.'&manhom='.$model->manhom);
+            return redirect('thuetainguyen?&manhom='.$model->manhom);
         }else
             return view('errors.notlogin');
     }
@@ -157,11 +145,11 @@ class ThueTaiNguyenController extends Controller
     public function huycongbo(Request $request){
         if(Session::has('admin')){
             $inputs=$request->all();
-            $id = $inputs['huycongbo_id'];
+            $id = $inputs['idhuycongbo'];
             $model = ThueTaiNguyen::findOrFail($id);
             $model->trangthai = 'HT';
             $model->save();
-            return redirect('thuetainguyen?&nam='.$model->nam.'&manhom='.$model->manhom);
+            return redirect('thuetainguyen?&manhom='.$model->manhom);
         }else
             return view('errors.notlogin');
     }
@@ -169,11 +157,11 @@ class ThueTaiNguyenController extends Controller
     public function hoanthanh(Request $request){
         if(Session::has('admin')){
             $inputs=$request->all();
-            $id = $inputs['hoanthanh_id'];
+            $id = $inputs['idhoanthanh'];
             $model = ThueTaiNguyen::findOrFail($id);
             $model->trangthai = 'HT';
             $model->save();
-            return redirect('thuetainguyen?&nam='.$model->nam.'&manhom='.$model->manhom);
+            return redirect('thuetainguyen?&manhom='.$model->manhom);
         }else
             return view('errors.notlogin');
     }
@@ -181,26 +169,44 @@ class ThueTaiNguyenController extends Controller
     public function huyhoanthanh(Request $request){
         if(Session::has('admin')){
             $inputs=$request->all();
-            $id = $inputs['huyhoanthanh_id'];
+            $id = $inputs['idhuyhoanthanh'];
             $model = ThueTaiNguyen::findOrFail($id);
             $model->trangthai = 'CHT';
             $model->save();
-            return redirect('thuetainguyen?&nam='.$model->nam.'&manhom='.$model->manhom);
+            return redirect('thuetainguyen?&manhom='.$model->manhom);
         }else
             return view('errors.notlogin');
     }
 
-    function checkmulti(Request $request){
+    public function show($id){
         if(Session::has('admin')){
-            $inputs=$request->all();
-            $model = ThueTaiNguyen::where('nam',$inputs['namcheck']);
-            if($inputs['manhomcheck'] != 'All')
-                $model = $model->where('manhom',$inputs['manhomcheck'])
-                ->whereIn('trangthai',['HT','CB']);
-
-            $model = $model->update(['trangthai' => $inputs['trangthaicheck']]);
-
-            return redirect('thuetainguyen?&nam='.$inputs['namcheck'].'&manhom='.$inputs['manhomcheck']);
+            $model = ThueTaiNguyen::findOrFail($id);
+            $modelct = ThueTaiNguyenCt::where('mahs',$model->mahs)
+                ->get();
+            $modelnhom = NhomThueTn::where('manhom',$model->manhom)
+                ->first();
+            if(session('admin')->level == 'T'){
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }elseif(session('admin')->level == 'H'){
+                $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }else{
+                $modeldv = Town::where('maxa',session('admin')->maxa)
+                    ->where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }
+            return view('manage.dinhgia.thuetn.reports.prints')
+                ->with('modelct',$modelct)
+                ->with('modelnhom',$modelnhom)
+                ->with('model',$model)
+                ->with('inputs',$inputs)
+                ->with('pageTitle','Bảng giá tính thuế tài nguyên ');
         }else
             return view('errors.notlogin');
     }

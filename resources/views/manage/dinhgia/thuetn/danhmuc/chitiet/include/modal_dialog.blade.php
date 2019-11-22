@@ -11,11 +11,11 @@
     function ClickCreate(){
         var valid=true;
         var message='';
-        var matn = $('#matn').val();
+        var ten = $('#ten').val();
 
-        if(matn == ''){
+        if(ten == ''){
             valid=false;
-            message +='Mã tài nguyên không được bỏ trống \n';
+            message +='Tên nhóm, loại tài nguyên không được bỏ trống \n';
         }
         if(valid){
             $("#frm_create").unbind('submit').submit();
@@ -61,13 +61,14 @@
             },
             dataType: 'JSON',
             success: function (data) {
-                $('#edit_matn').val(data.matn);
+                $('#edit_ten').val(data.ten);
                 $('#edit_dvt').val(data.dvt);
                 $('#edit_cap1').val(data.cap1);
                 $('#edit_cap2').val(data.cap2);
                 $('#edit_cap3').val(data.cap3);
                 $('#edit_cap4').val(data.cap4);
                 $('#edit_cap5').val(data.cap5);
+                $('#edit_level').val(data.level);
                 $('#edit_theodoi').val(data.theodoi);
                 $('#edit_id').val(data.id);
             }
@@ -77,8 +78,8 @@
         var str = '';
         var ok = true;
 
-        if (!$('#imex_matn').val()) {
-            str += '  - Mã tài nguyên \n';
+        if (!$('#imex_ten').val()) {
+            str += '  - Tên nhóm, loại tài nguyên \n';
             $('#imex_matn').parent().addClass('has-error');
             ok = false;
         }
@@ -114,6 +115,11 @@
         if (!$('#imex_dvt').val()) {
             str += '  - Đơn vị tính\n';
             $('#imex_dvt').parent().addClass('has-error');
+            ok = false;
+        }
+        if (!$('#imex_level').val()) {
+            str += '  - Level\n';
+            $('#imex_level').parent().addClass('has-error');
             ok = false;
         }
 
@@ -164,8 +170,50 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label">Mã tài nguyên<span class="require">*</span></label>
-                            <input type="text" name="matn" id="matn" class="form-control">
+                            <label class="control-label">Level<span class="require">*</span></label>
+                            <select id="level" name="level" class="form-control">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Cấp I<span class="require">*</span></label>
+                            <input type="text" name="cap1" id="cap1" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Cấp II<span class="require">*</span></label>
+                            <input type="text" name="cap2" id="cap2" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Cấp III<span class="require">*</span></label>
+                            <input type="text" name="cap3" id="cap3" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Cấp IV<span class="require">*</span></label>
+                            <input type="text" name="cap4" id="cap4" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Cấp V<span class="require">*</span></label>
+                            <input type="text" name="cap5" id="cap5" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -178,40 +226,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="control-label">Tên nhóm, loại tài nguyên cấp I<span class="require">*</span></label>
-                            <input type="text" name="cap1" id="cap1" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label">Tên nhóm, loại tài nguyên cấp II<span class="require">*</span></label>
-                            <input type="text" name="cap2" id="cap2" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label">Tên nhóm, loại tài nguyên cấp III<span class="require">*</span></label>
-                            <input type="text" name="cap3" id="cap3" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label">Tên nhóm, loại tài nguyên cấp IV<span class="require">*</span></label>
-                            <input type="text" name="cap4" id="cap4" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label">Tên nhóm, loại tài nguyên cấp V<span class="require">*</span></label>
-                            <input type="text" name="cap5" id="cap5" class="form-control">
+                            <label class="control-label">Tên nhóm, loại tài nguyên<span class="require">*</span></label>
+                            <input type="text" name="ten" id="ten" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -240,8 +256,50 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label">Mã tài nguyên<span class="require">*</span></label>
-                            <input type="text" name="edit_matn" id="edit_matn" class="form-control">
+                            <label class="control-label">Level<span class="require">*</span></label>
+                            <select id="edit_level" name="edit_level" class="form-control">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Cấp I<span class="require">*</span></label>
+                            <input type="text" name="edit_cap1" id="edit_cap1" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Cấp II<span class="require">*</span></label>
+                            <input type="text" name="edit_cap2" id="edit_cap2" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Cấp III<span class="require">*</span></label>
+                            <input type="text" name="edit_cap3" id="edit_cap3" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Cấp IV<span class="require">*</span></label>
+                            <input type="text" name="edit_cap4" id="edit_cap4" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Cấp V<span class="require">*</span></label>
+                            <input type="text" name="edit_cap5" id="edit_cap5" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -254,40 +312,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="control-label">Tên nhóm, loại tài nguyên cấp I<span class="require">*</span></label>
-                            <input type="text" name="edit_cap1" id="edit_cap1" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label">Tên nhóm, loại tài nguyên cấp II<span class="require">*</span></label>
-                            <input type="text" name="edit_cap2" id="edit_cap2" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label">Tên nhóm, loại tài nguyên cấp III<span class="require">*</span></label>
-                            <input type="text" name="edit_cap3" id="edit_cap3" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label">Tên nhóm, loại tài nguyên cấp IV<span class="require">*</span></label>
-                            <input type="text" name="edit_cap4" id="edit_cap4" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label">Tên nhóm, loại tài nguyên cấp V<span class="require">*</span></label>
-                            <input type="text" name="edit_cap5" id="edit_cap5" class="form-control">
+                            <label class="control-label">Tên nhóm, loại tài nguyên<span class="require">*</span></label>
+                            <input type="text" name="edit_ten" id="edit_ten" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -353,38 +379,44 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label">Mã tài nguyên<span class="require">*</span></label>
-                            <input type="text" name="imex_matn" id="imex_matn" class="form-control" value="B">
+                            <label class="control-label">Level<span class="require">*</span></label>
+                            <input type="text" name="imex_level" id="imex_level" class="form-control" value="A">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label">Tên nhóm, loại tài nguyên cấp I<span class="require">*</span></label>
-                            <input type="text" name="imex_cap1" id="imex_cap1" class="form-control" value="C">
+                            <label class="control-label">Cấp I<span class="require">*</span></label>
+                            <input type="text" name="imex_cap1" id="imex_cap1" class="form-control" value="B">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label">Tên nhóm, loại tài nguyên cấp II<span class="require">*</span></label>
-                            <input type="text" name="imex_cap2" id="imex_cap2" class="form-control" value="D">
+                            <label class="control-label">Cấp II<span class="require">*</span></label>
+                            <input type="text" name="imex_cap2" id="imex_cap2" class="form-control" value="C">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label">Tên nhóm, loại tài nguyên cấp III<span class="require">*</span></label>
-                            <input type="text" name="imex_cap3" id="imex_cap3" class="form-control" value="E">
+                            <label class="control-label">Cấp III<span class="require">*</span></label>
+                            <input type="text" name="imex_cap3" id="imex_cap3" class="form-control" value="D">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label">Tên nhóm, loại tài nguyên cấp IV<span class="require">*</span></label>
-                            <input type="text" name="imex_cap4" id="imex_cap4" class="form-control" value="F">
+                            <label class="control-label">Cấp IV<span class="require">*</span></label>
+                            <input type="text" name="imex_cap4" id="imex_cap4" class="form-control" value="E">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label">Tên nhóm, loại tài nguyên cấp V<span class="require">*</span></label>
-                            <input type="text" name="imex_cap5" id="imex_cap5" class="form-control" value="G">
+                            <label class="control-label">Cấp V<span class="require">*</span></label>
+                            <input type="text" name="imex_cap5" id="imex_cap5" class="form-control" value="F">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Tên tài nguyên<span class="require">*</span></label>
+                            <input type="dvt" name="imex_ten" id="imex_ten" class="form-control" value="G">
                         </div>
                     </div>
                     <div class="col-md-6">

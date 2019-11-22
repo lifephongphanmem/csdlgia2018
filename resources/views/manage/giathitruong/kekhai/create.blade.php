@@ -44,7 +44,7 @@
                     $('#edit_tenhh').val(data.tenhh);
                     $('#edit_dacdiemkt').val(data.dacdiemkt);
                     $('#edit_dvt').val(data.dvt);
-                    $('#edit_dongia').val(data.edit_dongia);
+                    $('#edit_dongia').val(data.dongia);
                     $('#edit_loaigia').val(data.loaigia);
                     $('#edit_nguontt').val(data.nguontt);
                     $('#edit_ghichu').val(data.ghichu);

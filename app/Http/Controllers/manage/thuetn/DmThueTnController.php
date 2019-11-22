@@ -33,13 +33,9 @@ class DmThueTnController extends Controller
     public function store(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
-            $check = DmThueTn::where('matn',$inputs['matn'])
-                ->count();
-            if($check == 0){
-                $inputs['theodoi'] = 'TD';
-                $model = new DmThueTn();
-                $model->create($inputs);
-            }
+            $inputs['theodoi'] = 'TD';
+            $model = new DmThueTn();
+            $model->create($inputs);
             return redirect('dmthuetn?&manhom='.$inputs['manhom']);
         }else
             return view('errors.notlogin');
@@ -69,13 +65,14 @@ class DmThueTnController extends Controller
         if (Session::has('admin')) {
             $inputs = $request->all();
             $id = $inputs['edit_id'];
-            $inputs['matn'] = $inputs['edit_matn'];
+            $inputs['ten'] = $inputs['edit_ten'];
             $inputs['dvt'] = $inputs['edit_dvt'];
             $inputs['cap1'] = $inputs['edit_cap1'];
             $inputs['cap2'] = $inputs['edit_cap2'];
             $inputs['cap3'] = $inputs['edit_cap3'];
             $inputs['cap4'] = $inputs['edit_cap4'];
             $inputs['cap5'] = $inputs['edit_cap5'];
+            $inputs['level'] = $inputs['edit_level'];
             $inputs['theodoi'] = $inputs['edit_theodoi'];
             $model = DmThueTn::findOrFail($id);
             $model->update($inputs);
@@ -113,7 +110,8 @@ class DmThueTnController extends Controller
 
                 $modelctnew = new DmThueTn();
                 $modelctnew->manhom = $inputs['imex_manhom'];
-                $modelctnew->matn = $data[$i][$inputs['imex_matn']];
+                $modelctnew->level = $data[$i][$inputs['imex_level']];
+                $modelctnew->ten = $data[$i][$inputs['imex_ten']];
                 $modelctnew->dvt = $data[$i][$inputs['imex_dvt']];
                 $modelctnew->cap1 = $data[$i][$inputs['imex_cap1']];
                 $modelctnew->cap2 = $data[$i][$inputs['imex_cap2']];
