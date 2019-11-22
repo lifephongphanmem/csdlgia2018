@@ -22,7 +22,7 @@ class CreateThuetainguyenctTable extends Migration
             $table->string('cap3')->nullable();
             $table->string('cap4')->nullable();
             $table->string('cap5')->nullable();
-            $table->string('ten')->nullable();
+            $table->text('ten')->nullable();
             $table->string('dvt')->nullable();
             $table->string('gia')->nullable();
             $table->string('trangthai')->nullable();

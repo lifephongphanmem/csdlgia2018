@@ -55,44 +55,64 @@ class ReportsThueTnController extends Controller
                 }elseif($tn->level == 2){
                     if(isset($modellk))
                         $modelctlk = ThueTaiNguyenCt::where('mahs', $modellk->mahs)
-                        ->where('cap2', $tn->cap2)
-                        ->where('level', 2)
-                        ->first();
+                            ->where('cap1', $tn->cap1)
+                            ->where('cap2', $tn->cap2)
+                            ->where('level', 2)
+                            ->first();
                     if(isset($modelbc))
                         $modelctbc = ThueTaiNguyenCt::where('mahs', $modelbc->mahs)
+                            ->where('cap1', $tn->cap1)
                             ->where('cap2', $tn->cap2)
                             ->where('level', 2)
                             ->first();
                 }elseif($tn->level == 3){
                     if(isset($modellk))
                         $modelctlk = ThueTaiNguyenCt::where('mahs', $modellk->mahs)
+                            ->where('cap1', $tn->cap1)
+                            ->where('cap2', $tn->cap2)
                             ->where('cap3', $tn->cap3)
                             ->where('level', 3)
                             ->first();
                     if(isset($modelbc))
                         $modelctbc = ThueTaiNguyenCt::where('mahs', $modelbc->mahs)
+                            ->where('cap1', $tn->cap1)
+                            ->where('cap2', $tn->cap2)
                             ->where('cap3', $tn->cap3)
                             ->where('level', 3)
                             ->first();
                 }elseif($tn->level == 4){
                     if(isset($modellk))
                         $modelctlk = ThueTaiNguyenCt::where('mahs', $modellk->mahs)
+                            ->where('cap1', $tn->cap1)
+                            ->where('cap2', $tn->cap2)
+                            ->where('cap3', $tn->cap3)
                             ->where('cap4', $tn->cap4)
                             ->where('level', 4)
                             ->first();
                     if(isset($modelbc))
                         $modelctbc = ThueTaiNguyenCt::where('mahs', $modelbc->mahs)
+                            ->where('cap1', $tn->cap1)
+                            ->where('cap2', $tn->cap2)
+                            ->where('cap3', $tn->cap3)
                             ->where('cap4', $tn->cap4)
                             ->where('level', 4)
                             ->first();
                 }elseif($tn->level == 5){
                     if(isset($modellk))
                         $modelctlk = ThueTaiNguyenCt::where('mahs', $modellk->mahs)
+                            ->where('cap1', $tn->cap1)
+                            ->where('cap2', $tn->cap2)
+                            ->where('cap3', $tn->cap3)
+                            ->where('cap4', $tn->cap4)
                             ->where('cap5', $tn->cap5)
                             ->where('level', 5)
                             ->first();
                     if(isset($modelbc))
                         $modelctbc = ThueTaiNguyenCt::where('mahs', $modelbc->mahs)
+                            ->where('cap1', $tn->cap1)
+                            ->where('cap2', $tn->cap2)
+                            ->where('cap3', $tn->cap3)
+                            ->where('cap4', $tn->cap4)
                             ->where('cap5', $tn->cap5)
                             ->where('level', 5)
                             ->first();

@@ -16,7 +16,7 @@ class CreateDmthuetnTable extends Migration
         Schema::create('dmthuetn', function (Blueprint $table) {
             $table->increments('id');
             $table->string('level')->nullable();
-            $table->string('ten')->nullable();
+            $table->text('ten')->nullable();
             $table->string('manhom')->nullable();
             $table->string('cap1')->nullable();
             $table->string('cap2')->nullable();
