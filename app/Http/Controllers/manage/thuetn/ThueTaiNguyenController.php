@@ -122,7 +122,9 @@ class ThueTaiNguyenController extends Controller
     public function delete(Request $request){
         if(Session::has('admin')){
             $inputs=$request->all();
-            $model = ThueTaiNguyen::where('id',$inputs['iddelete']);
+            $model = ThueTaiNguyen::where('id',$inputs['iddelete'])
+                ->first();
+            $modelct = ThueTaiNguyenCt::where('mahs',$model->mahs)->delete();
             $model = $model->delete();
 
             return redirect('thuetainguyen');

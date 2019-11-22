@@ -118,9 +118,7 @@
                                                 <td style="text-align: center">{{$tt->dvt}}</td>
                                                 <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->gia,5)}}</td>
                                                 <td>
-                                                    @if($tt->dvt != '')
-                                                        <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem({{$tt->id}})"><i class="fa fa-edit"></i>&nbsp;Nhập giá</button>
-                                                    @endif
+                                                    <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem({{$tt->id}})"><i class="fa fa-edit"></i>&nbsp;Nhập giá</button>
                                                 </td>
                                             </tr>
                                         @endforeach

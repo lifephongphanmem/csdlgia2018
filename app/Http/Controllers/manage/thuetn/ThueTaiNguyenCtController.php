@@ -82,9 +82,7 @@ class ThueTaiNguyenCtController extends Controller
                     $result['message'] .= '<td style="text-align: center">'.$tents->dvt.'</td>';
                     $result['message'] .= '<td style="text-align: right;font-weight: bold">'. dinhdangsothapphan($tents->gia,5).'</td>';
                     $result['message'] .= '<td>';
-                    if($tents->dvt != '') {
-                        $result['message'] .= '<button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem(' . $tents->id . ');"><i class="fa fa-edit"></i>&nbsp;Nhập giá</button>';
-                    }
+                    $result['message'] .= '<button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem(' . $tents->id . ');"><i class="fa fa-edit"></i>&nbsp;Nhập giá</button>';
                     $result['message'] .= '</td>';
                     $result['message'] .= '</tr>';
                 }
