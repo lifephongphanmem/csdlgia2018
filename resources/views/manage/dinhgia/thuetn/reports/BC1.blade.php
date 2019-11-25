@@ -58,7 +58,7 @@
         <td style="text-align: right">{{dinhdangsothapphan($tt->dongialk,2)}}</td>
         <td style="text-align: right">{{dinhdangsothapphan($tt->dongiabc,2)}}</td>
         <td style="text-align: right">{{(dinhdangsothapphan($tt->dongiabc,2) == 0 || $tt->dongiabc == '') ? '' :
-        ((dinhdangsothapphan($tt->dongialk,2) == 0 || $tt->dongialk == '') ? '' : (dinhdangsothapphan($tt->dongiabc/$tt->dongialk,2)))}}</td>
+        ((dinhdangsothapphan($tt->dongialk,2) == 0 || $tt->dongialk == '') ? '' : (dinhdangsothapphan(($tt->dongiabc-$tt->dongialk)/$tt->dongialk,2)))}}</td>
         </tr>
     @endforeach
 </table>

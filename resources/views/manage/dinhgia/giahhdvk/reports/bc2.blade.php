@@ -28,7 +28,8 @@
         <td style="text-align: right"><i style="margin-right: 25%;">{{$inputs['diadanh']}}, ngày .... tháng {{$inputs['thang']}} năm {{$inputs['nam']}}</i></td>
     </tr>
 </table>
-<p style="text-align: center; font-weight: bold; font-size: 16px;">BẢNG GIÁ LƯƠNG THỰC, THỰC PHẨM THÁNG {{$inputs['thang']}} NĂM {{$inputs['nam']}}</p>
+<p style="text-align: center; font-weight: bold; font-size: 16px;">BẢNG GIÁ THỊ TRƯỜNG THÁNG {{$inputs['thang']}} NĂM {{$inputs['nam']}}</p>
+<p style="font-style: italic; text-align: center">(Ban hành kèm theo Thông tư số 116/2018/TT-BTC ngày 28/11/2018 của Bộ Tài Chính quy định chế độ báo cáo giá thị trường)</p>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;" id="data">
     <thead>
         <tr>
@@ -37,7 +38,12 @@
             <th style="text-align: center" >Tên hàng hóa dịch vụ</th>
             <th style="text-align: center" >Đặc điểm kỹ thuật</th>
             <th style="text-align: center" >Đơn vị tính</th>
-            <th style="text-align: center" width="10%" >Giá</th>
+            <th style="text-align: center" >Loại giá</th>
+            <th style="text-align: center" width="10%" >Giá kỳ trước</th>
+            <th style="text-align: center" width="10%" >Giá kỳ này</th>
+            <th style="text-align: center" width="10%" >Mức tăng giảm</th>
+            <th style="text-align: center" width="10%" >Tỷ lệ tăng (giảm)(%)</th>
+            <th style="text-align: center" width="10%" >Nguồn thông tin</th>
             <th style="text-align: center" width="10%" >Ghi chú</th>
         </tr>
         <tr style="font-size: 10px">
@@ -48,6 +54,11 @@
             <th>5</th>
             <th>6</th>
             <th>7</th>
+            <th>8</th>
+            <th>9=8-7</th>
+            <th>10=9/7</th>
+            <th>11</th>
+            <th>12</th>
         </tr>
     </thead>
     <tbody>
@@ -58,7 +69,12 @@
                 <td class="active" style="font-weight: bold">{{$tt->tenhhdv}}</td>
                 <td>{{$tt->dacdiemkt}}</td>
                 <td style="text-align: center">{{$tt->dvt}}</td>
-                <td style="text-align: right;font-weight: bold">{{number_format($tt->gia)}}</td>
+                <td style="text-align: center">{{$tt->loaigia}}</td>
+                <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->gialk,5)}}</td>
+                <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->gia,5)}}</td>
+                <td>{{dinhdangsothapphan($tt->gia-$tt->gialk,5)}}</td>
+                <td>{{$tt->gialk == 0 ? '' : dinhdangsothapphan(($tt->gia-$tt->gialk)/$tt->gialk,5)}}</td>
+                <td></td>
                 <td></td>
             </tr>
         @endforeach

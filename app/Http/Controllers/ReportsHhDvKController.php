@@ -91,18 +91,27 @@ class ReportsHhDvKController extends Controller
             $model = DmHhDvK::where('manhom',$inputs['manhom'])
                 ->where('theodoi','TD')
                 ->get();
-            $mahslk = GiaHhDvK::where('thang',$inputs['thang'])
+            $mahs = GiaHhDvK::where('thang',$inputs['thang'])
                 ->where('nam',$inputs['nam'])
                 ->wherein('trangthai',['HT','CB'])
                 ->select('mahs')
                 ->get();
-
-            $ttgiahh = GiaHhDvKCt::wherein('mahs',$mahslk->toArray())
+            $mahslk = GiaHhDvK::where('thang',$inputs['thanglk'])
+                ->where('nam',$inputs['namlk'])
+                ->wherein('trangthai',['HT','CB'])
+                ->select('mahs')
+                ->get();
+            $ttgiahh = GiaHhDvKCt::wherein('mahs',$mahs->toArray())
+                ->where('gia','<>',0)
+                ->get();
+            $ttgiahhlk = GiaHhDvKCt::wherein('mahs',$mahslk->toArray())
                 ->where('gia','<>',0)
                 ->get();
             foreach($model as $ct){
                 $ttgia = $ttgiahh->where('mahhdv',$ct->mahhdv)->avg('gia');
+                $ttgialk = $ttgiahhlk->where('mahhdv',$ct->mahhdv)->avg('gia');
                 $ct->gia = $ttgia;
+                $ct->gialk = $ttgialk;
             }
             $tennhom = NhomHhDvK::where('manhom',$inputs['manhom'])->first()->tennhom;
 

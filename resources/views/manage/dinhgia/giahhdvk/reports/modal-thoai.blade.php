@@ -83,6 +83,27 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-6">
+                            <label><b>Tháng liền kề</b></label>
+                            {!! Form::select(
+                            'thanglk',
+                            getThang()
+                            ,null,
+                            array('id' => 'thanglk', 'class' => 'form-control'))
+                            !!}
+                        </div>
+                        <div class="col-md-6">
+                            <label><b>Năm liền kề</b></label>
+                            <select name="namlk" id="namlk" class="form-control">
+                                @if ($nam_start = intval(date('Y')) - 5 ) @endif
+                                @if ($nam_stop = intval(date('Y')) + 1) @endif
+                                @for($i = $nam_start; $i <= $nam_stop; $i++)
+                                    <option value="{{$i}}" {{$i == date('Y') ? 'selected' : ''}}>Năm {{$i}}</option>
+                                @endfor
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
                             <label><b>Tháng</b></label>
                             {!! Form::select(
                             'thang',
