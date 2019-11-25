@@ -19,33 +19,32 @@
 <body>
     <table>
         <tr>
-            <th colspan="8" style="text-align: center; font-weight: bold; font-size: 20px;">
-                DANH MỤC HÀNG HÓA THUẾ TÀI NGUYÊN {{$model_nhom->tennhom}}
+            <th colspan="9" style="text-align: center; font-weight: bold; font-size: 20px;">
+                {{$model_nhom->tennhom}}
             </th>
         </tr>
     </table>
-
     <table>
         <tr>
-            <td>STT</td>
-            <td>Mã Tài nguyên</td>
-            <td>Tên nhóm loại tài nguyên cấp I</td>
-            <td>Tên nhóm loại tài nguyên cấp II</td>
-            <td>Tên nhóm loại tài nguyên cấp III</td>
-            <td>Tên nhóm loại tài nguyên cấp IV</td>
-            <td>Tên nhóm loại tài nguyên cấp V</td>
+            <td>Level</td>
+            <td>Mã nhóm loại tài nguyên cấp I</td>
+            <td>Mã nhóm loại tài nguyên cấp II</td>
+            <td>Mã nhóm loại tài nguyên cấp III</td>
+            <td>Mã nhóm loại tài nguyên cấp IV</td>
+            <td>Mã nhóm loại tài nguyên cấp V</td>
+            <td>Tên nhóm loại tài nguyên </td>
             <td>Đơn vị tính</td>
             <td>Đơn giá</td>
         </tr>
-        @foreach($model as $key=>$ct)
+        @foreach($model as $ct)
             <tr>
-                <td>{{$key+1}}</td>
-                <td>{{$ct->matn}}</td>
+                <td>{{$ct->level}}</td>
                 <td>{{$ct->cap1}}</td>
                 <td>{{$ct->cap2}}</td>
                 <td>{{$ct->cap3}}</td>
                 <td>{{$ct->cap4}}</td>
                 <td>{{$ct->cap5}}</td>
+                <td>{{$ct->ten}}</td>
                 <td>{{$ct->dvt}}</td>
                 <td>{{$ct->gia}}</td>
             </tr>

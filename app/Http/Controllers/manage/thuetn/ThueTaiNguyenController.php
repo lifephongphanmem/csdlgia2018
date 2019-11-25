@@ -38,15 +38,18 @@ class ThueTaiNguyenController extends Controller
     public function create(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
+            $modelnhom = NhomThueTn::where('manhom',$inputs['add_manhom'])
+                ->first();
             $check = ThueTaiNguyen::where('manhom',$inputs['add_manhom'])
                 ->where('nam',$inputs['add_nam'])
                 ->count();
-            if($check > 0)
-                return view();
-            else{
+            if($check > 0) {
+                return view('manage.dinhgia.thuetn.errors.nodata')
+                    ->with('nam', $inputs['add_nam'])
+                    ->with('nhomtn', $modelnhom->tennhom);
+            }else{
                 $del = ThueTaiNguyenCt::where('trangthai','CXD')->delete();
-                $modelnhom = NhomThueTn::where('manhom',$inputs['add_manhom'])
-                    ->first();
+
                 $inputs['mahs'] = getdate()[0];
                 $modeldm = DmThueTn::where('manhom',$inputs['add_manhom'])
                     ->where('theodoi','TD')
@@ -227,38 +230,58 @@ class ThueTaiNguyenController extends Controller
 
     public function importexcel(Request $request){
         if(Session::has('admin')){
-            $inputs=$request->all();
-            $filename = $inputs['nam'] . '_' . getdate()[0];
-            $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
-            $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
-            $data = [];
+            $inputs = $request->all();
+            $modelnhom = NhomThueTn::where('manhom',$inputs['manhom'])
+                ->first();
+            $check = ThueTaiNguyen::where('manhom',$inputs['manhom'])
+                ->where('nam',$inputs['nam'])
+                ->count();
+            if($check > 0) {
+                return view('manage.dinhgia.thuetn.errors.nodata')
+                    ->with('nam', $inputs['nam'])
+                    ->with('nhomtn', $modelnhom->tennhom);
+            }else{
+                $del = ThueTaiNguyenCt::where('trangthai','CXD')->delete();
+                $inputs['add_nam'] = $inputs['nam'];
+                $inputs['add_manhom'] = $inputs['manhom'];
+                $inputs['mahs'] = getdate()[0];
+                $filename = $inputs['nam'] . '_' . getdate()[0];
+                $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
+                $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
+                $data = [];
 
-
-            Excel::load($path, function ($reader) use (&$data, $inputs) {
-                $obj = $reader->getExcel();
-                $sheet = $obj->getSheet(0);
-                $data = $sheet->toArray(null, true, true, true);// giữ lại tiêu đề A=>'val';
-            });
-
-            for ($i = $inputs['tudong']; $i <= $inputs['dendong']; $i++) {
-
-                $modelctnew = new ThueTaiNguyen();
-                $modelctnew->nam = $inputs['nam'];
-                $modelctnew->manhom = $inputs['manhom'];
-                $modelctnew->soqd = $inputs['soqd'];
-                $modelctnew->matn = $data[$i][$inputs['matn']];
-                $modelctnew->cap1 = $data[$i][$inputs['cap1']];
-                $modelctnew->cap2 = $data[$i][$inputs['cap2']];
-                $modelctnew->cap3 = $data[$i][$inputs['cap3']];
-                $modelctnew->cap4 = $data[$i][$inputs['cap4']];
-                $modelctnew->cap5 = $data[$i][$inputs['cap5']];
-                $modelctnew->dvt = $data[$i][$inputs['dvt']];
-                $modelctnew->dongia = (isset($data[$i][$inputs['dongia']]) && $data[$i][$inputs['dongia']] != '' ? chkDbl($data[$i][$inputs['dongia']]) : 0);
-                $modelctnew->trangthai = 'CHT';
-                $modelctnew->save();
+                Excel::load($path, function ($reader) use (&$data, $inputs) {
+                    $obj = $reader->getExcel();
+                    $sheet = $obj->getSheet(0);
+                    $data = $sheet->toArray(null, true, true, true);// giữ lại tiêu đề A=>'val';
+                });
+                for ($i = $inputs['tudong']; $i <= $inputs['dendong']; $i++) {
+                    if(isset($data[$i][$inputs['level']]) &&  $data[$i][$inputs['level']] != '') {
+                        $modelctnew = new ThueTaiNguyenCt();
+                        $modelctnew->level = $data[$i][$inputs['level']];
+                        $modelctnew->cap1 = $data[$i][$inputs['cap1']];
+                        $modelctnew->cap2 = $data[$i][$inputs['cap2']];
+                        $modelctnew->cap3 = $data[$i][$inputs['cap3']];
+                        $modelctnew->cap4 = $data[$i][$inputs['cap4']];
+                        $modelctnew->cap5 = $data[$i][$inputs['cap5']];
+                        $modelctnew->ten = $data[$i][$inputs['ten']];
+                        $modelctnew->dvt = $data[$i][$inputs['dvt']];
+                        $modelctnew->gia = (isset($data[$i][$inputs['gia']]) && $data[$i][$inputs['gia']] != '' ? chkDbl($data[$i][$inputs['gia']]) : 0);
+                        $modelctnew->trangthai = 'CXD';
+                        $modelctnew->mahs = $inputs['mahs'];
+                        $modelctnew->save();
+                    }else
+                        continue;
+                }
+                File::Delete($path);
+                $modelct = ThueTaiNguyenCt::where('mahs',$inputs['mahs'])
+                    ->get();
+                return view('manage.dinhgia.thuetn.create')
+                    ->with('modelct',$modelct)
+                    ->with('modelnhom',$modelnhom)
+                    ->with('inputs',$inputs)
+                    ->with('pageTitle','Bảng giá tính thuế tài nguyên thêm mới');
             }
-            File::Delete($path);
-            return redirect('thuetainguyen?&nam='.$inputs['nam'].'&manhom='.$inputs['manhom']);
         }else
             return view('errors.notlogin');
     }

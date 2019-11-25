@@ -72,39 +72,45 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Mã tài nguyên<span class="require">*</span></label>
-                                                            {!!Form::text('matn', 'B', array('id' => 'matn','class' => 'form-control required'))!!}
+                                                            <label class="control-label">Level<span class="require">*</span></label>
+                                                            {!!Form::text('level', 'A', array('id' => 'level','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Tên nhóm, loại tài nguyên cấp I <span class="require">*</span></label>
-                                                            {!!Form::text('cap1', 'C', array('id' => 'cap1','class' => 'form-control required'))!!}
+                                                            <label class="control-label">Mã nhóm, loại tài nguyên cấp I <span class="require">*</span></label>
+                                                            {!!Form::text('cap1', 'B', array('id' => 'cap1','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Tên nhóm, loại tài nguyên cấp II<span class="require">*</span></label>
-                                                            {!!Form::text('cap2', 'D', array('id' => 'cap2','class' => 'form-control required'))!!}
+                                                            <label class="control-label">Mã nhóm, loại tài nguyên cấp II<span class="require">*</span></label>
+                                                            {!!Form::text('cap2', 'C', array('id' => 'cap2','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Tên nhóm, loại tài nguyên cấp III<span class="require">*</span></label>
-                                                            {!!Form::text('cap3', 'E', array('id' => 'cap3','class' => 'form-control required'))!!}
+                                                            <label class="control-label">Mã nhóm, loại tài nguyên cấp III<span class="require">*</span></label>
+                                                            {!!Form::text('cap3', 'D', array('id' => 'cap3','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Tên nhóm, loại tài nguyên cấp IV<span class="require">*</span></label>
-                                                            {!!Form::text('cap4', 'F', array('id' => 'cap4','class' => 'form-control required'))!!}
+                                                            <label class="control-label">Mã nhóm, loại tài nguyên cấp IV<span class="require">*</span></label>
+                                                            {!!Form::text('cap4', 'E', array('id' => 'cap4','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Tên nhóm, loại tài nguyên cấp V<span class="require">*</span></label>
-                                                            {!!Form::text('cap5', 'G', array('id' => 'cap5','class' => 'form-control required'))!!}
+                                                            <label class="control-label">Mã nhóm, loại tài nguyên cấp V<span class="require">*</span></label>
+                                                            {!!Form::text('cap5', 'F', array('id' => 'cap5','class' => 'form-control required'))!!}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Tên nhóm, loại tài nguyên <span class="require">*</span></label>
+                                                            {!!Form::text('ten', 'G', array('id' => 'ten','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -116,13 +122,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Đơn giá<span class="require">*</span></label>
-                                                            {!!Form::text('dongia', 'I', array('id' => 'dongia','class' => 'form-control required'))!!}
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Thông tin quyết định<span class="require">*</span></label>
-                                                            {!!Form::text('soqd', null, array('id' => 'soqd','class' => 'form-control required'))!!}
+                                                            {!!Form::text('gia', 'I', array('id' => 'gia','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -171,35 +171,40 @@
             var str = '';
             var ok = true;
 
-            if (!$('#matn').val()) {
-                str += '  - Mã tài nguyên \n';
-                $('#matn').parent().addClass('has-error');
+            if (!$('#level').val()) {
+                str += '  - Level tài nguyên \n';
+                $('#level').parent().addClass('has-error');
                 ok = false;
             }
 
             if (!$('#cap1').val()) {
-                str += '  - Tên nhóm, loại tài nguyên cấp I \n';
+                str += '  - Mã nhóm, loại tài nguyên cấp I \n';
                 $('#cap1').parent().addClass('has-error');
                 ok = false;
             }
             if (!$('#cap2').val()) {
-                str += '  - Tên nhóm, loại tài nguyên cấp II \n';
+                str += '  - Mã nhóm, loại tài nguyên cấp II \n';
                 $('#cap2').parent().addClass('has-error');
                 ok = false;
             }
             if (!$('#cap3').val()) {
-                str += '  - Tên nhóm, loại tài nguyên cấp III \n';
+                str += '  - Mã nhóm, loại tài nguyên cấp III \n';
                 $('#cap3').parent().addClass('has-error');
                 ok = false;
             }
             if (!$('#cap4').val()) {
-                str += '  - Tên nhóm, loại tài nguyên  cấp IV\n';
+                str += '  - Mã nhóm, loại tài nguyên  cấp IV\n';
                 $('#cap4').parent().addClass('has-error');
                 ok = false;
             }
             if (!$('#cap5').val()) {
-                str += '  - Tên nhóm, loại tài nguyên cấp V\n';
+                str += '  - Mã nhóm, loại tài nguyên cấp V\n';
                 $('#cap5').parent().addClass('has-error');
+                ok = false;
+            }
+            if (!$('#ten').val()) {
+                str += '  - Tên nhóm, loại tài nguyên \n';
+                $('#ten').parent().addClass('has-error');
                 ok = false;
             }
             if (!$('#dvt').val()) {
@@ -207,17 +212,11 @@
                 $('#dvt').parent().addClass('has-error');
                 ok = false;
             }
-            if (!$('#dongia').val()) {
+            if (!$('#gia').val()) {
                 str += '  - Đơn giá \n';
-                $('#dongia').parent().addClass('has-error');
+                $('#gia').parent().addClass('has-error');
                 ok = false;
             }
-            if (!$('#soqd').val()) {
-                str += '  - Thông tin quyết định \n';
-                $('#soqd').parent().addClass('has-error');
-                ok = false;
-            }
-
             if (!$('#tudong').val()) {
                 str += '  - Dòng bắt đầu nhận dữ liệu \n';
                 $('#tudong').parent().addClass('has-error');

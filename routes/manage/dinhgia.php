@@ -129,6 +129,7 @@ Route::post('dmthuetn/update','manage\thuetn\DmThueTnController@update');
 Route::post('dmthuetn/delete','manage\thuetn\DmThueTnController@destroy');
 Route::post('dmthuetn/importexcel','manage\thuetn\DmThueTnController@importexcel');
 
+Route::get('thuetainguyen/nhandulieutuexcel','manage\thuetn\ThueTaiNguyenController@nhandulieutuexcel');
 Route::get('thuetainguyen','manage\thuetn\ThueTaiNguyenController@index');
 Route::post('thuetainguyen/create','manage\thuetn\ThueTaiNguyenController@create');
 Route::post('thuetainguyen','manage\thuetn\ThueTaiNguyenController@store');
@@ -141,7 +142,7 @@ Route::post('thuetainguyen/congbo','manage\thuetn\ThueTaiNguyenController@congbo
 Route::post('thuetainguyen/huycongbo','manage\thuetn\ThueTaiNguyenController@huycongbo');
 Route::get('thuetainguyen/{id}','manage\thuetn\ThueTaiNguyenController@show');
 
-Route::get('thuetainguyen/nhandulieutuexcel','manage\thuetn\ThueTaiNguyenController@nhandulieutuexcel');
+
 Route::post('thuetainguyen/import_excel','manage\thuetn\ThueTaiNguyenController@importexcel');
 Route::post('thuetainguyen/export','manage\thuetn\ThueTaiNguyenController@export');
 
