@@ -63,7 +63,7 @@
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <tr>
         <th width="2%">STT</th>
-        <th width="80%">Tên loại phí</th>
+        <th>Tên loại phí</th>
         <th>Mức thu phí<br>{{$m_nhomphilephi->dvt}}</th>
     </tr>
     @foreach($modelct as $key=>$tt)
