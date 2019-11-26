@@ -199,7 +199,7 @@ class PhiLePhiController extends Controller
             $model = PhiLePhiCt::Leftjoin('philephi','philephi.mahs','=','philephict.mahs')
 //                ->Leftjoin('dmphilephi','dmphilephi.manhom','=','dmphilephi.manhom')
                 ->whereIn('philephi.trangthai',['HT','CB'])
-                ->select('philephict.*','philephi.soqd','philephi.ngayapdung','philephi.trangthai','dmphilephi.tennhom');
+                ->select('philephict.*','philephi.soqd','philephi.ngayapdung','philephi.trangthai');
             if($inputs['nam'] != 'all')
                 $model = $model->whereYear('ngayapdung',$inputs['nam']);
             if($inputs['manhom'] != '')
