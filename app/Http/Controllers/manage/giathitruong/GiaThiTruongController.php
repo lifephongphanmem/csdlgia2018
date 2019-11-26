@@ -49,7 +49,6 @@ class GiaThiTruongController extends Controller
                 $tthuyen = District::where('mahuyen',$inputs['mahuyen'])
                     ->first();
             }
-            dd($tthuyen);
             $model = $model->get();
 
             return view('manage.giathitruong.kekhai.index')
