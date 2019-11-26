@@ -67,7 +67,7 @@
                                                     </div>
                                                     <div class="cont-col2">
                                                         <div class="desc" id="tentb" name="tentb">
-                                                            <button onclick="get_attack('{{$tt->id}}')"  style="color: #ff0000;border: none;background-color: #fafafa" data-target="#dinhkem-modal-confirm" data-toggle="modal">&nbsp;{{$tt->tieude}} &emsp; </button><br>
+                                                            <button onclick="get_attack('{{$tt->id}}')"  style="color: #ff0000;border: none;background-color: #fafafa; text-align: left" data-target="#dinhkem-modal-confirm" data-toggle="modal">&nbsp;{{$tt->tieude}} &emsp; </button><br>
                                                         </div>
                                                     </div>
                                                 </div>
