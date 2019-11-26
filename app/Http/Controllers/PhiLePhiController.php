@@ -17,16 +17,16 @@ class PhiLePhiController extends Controller
     public function index(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
-            $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-            $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CHT';
+            $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : 'all';
+//            $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'CHT';
 
 
             $model = PhiLePhi::join('dmphilephi','dmphilephi.manhom','=','philephi.manhom')
                 ->select('philephi.*','dmphilephi.tennhom','dmphilephi.dvt');
             if($inputs['nam'] != 'all')
                 $model = $model->whereYear('philephi.ngayapdung',$inputs['nam']);
-            if($inputs['trangthai'] != '')
-                $model = $model->where('philephi.trangthai',$inputs['trangthai']);
+//            if($inputs['trangthai'] != '')
+//                $model = $model->where('philephi.trangthai',$inputs['trangthai']);
 
             $model=$model->get();
             $m_nhomphilephi = DmPhiLePhi::all();

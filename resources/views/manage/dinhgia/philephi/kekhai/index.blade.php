@@ -38,8 +38,8 @@
             });
             $('#trangthai').change(function() {
                 var namhs = '&nam=' + $('#nam').val();
-                var trangthai = '&trangthai=' + $('#trangthai').val();
-                var url = '/philephi?' + namhs + trangthai;
+//                var trangthai = '&trangthai=' + $('#trangthai').val();
+                var url = '/philephi?' + namhs;
                 window.location.href = url;
             });
 
@@ -111,19 +111,19 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Trạng thái hồ sơ</label>
-                                <select name="trangthai" id="trangthai" class="form-control">
-                                    @if(can('kkgiaphilephi','create'))
-                                    <option value="CHT" {{$trangthai == 'CHT' ? 'selected' : ''}}>Chưa hoàn thành</option>
-                                    @endif
-                                    <option value="HT" {{$trangthai == 'HT' ? 'selected' : ''}}>Hoàn thành</option>
-                                    <option value="HHT" {{$trangthai == 'HHT' ? 'selected' : ''}}>Hủy hoàn thành</option>
-                                    <option value="CB" {{$trangthai == 'CB' ? 'selected' : ''}}>Công bố</option>
-                                </select>
-                            </div>
-                        </div>
+                        {{--<div class="col-md-3">--}}
+                            {{--<div class="form-group">--}}
+                                {{--<label>Trạng thái hồ sơ</label>--}}
+                                {{--<select name="trangthai" id="trangthai" class="form-control">--}}
+                                    {{--@if(can('kkgiaphilephi','create'))--}}
+                                    {{--<option value="CHT" {{$trangthai == 'CHT' ? 'selected' : ''}}>Chưa hoàn thành</option>--}}
+                                    {{--@endif--}}
+                                    {{--<option value="HT" {{$trangthai == 'HT' ? 'selected' : ''}}>Hoàn thành</option>--}}
+                                    {{--<option value="HHT" {{$trangthai == 'HHT' ? 'selected' : ''}}>Hủy hoàn thành</option>--}}
+                                    {{--<option value="CB" {{$trangthai == 'CB' ? 'selected' : ''}}>Công bố</option>--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                     </div>
                     <div class="table-toolbar">
                     </div>
