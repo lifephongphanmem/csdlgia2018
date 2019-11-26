@@ -360,17 +360,17 @@
                             <ul class="sub-menu">
                                 @if(can('dmtrogiatrocuoc','index'))
                                     <li>
-                                        <a href="">Danh mục mức trợ giá, trợ cước</a>
+                                        <a href="javascript:;">Danh mục mức trợ giá, trợ cước</a>
                                     </li>
                                 @endif
                                 @if(can('kktrogiatrocuoc','index'))
                                     <li>
-                                        <a href="">Thông tin mức trợ giá trợ cước</a>
+                                        <a href="javascript:;">Thông tin mức trợ giá trợ cước</a>
                                     </li>
                                 @endif
                                 @if(can('thtrogiatrocuoc','timkiem'))
                                     <li>
-                                        <a href="">Tìm kiếm thông tin mức trợ giá trợ cước</a>
+                                        <a href="javascript:;">Tìm kiếm thông tin mức trợ giá trợ cước</a>
                                     </li>
                                 @endif
                             </ul>
