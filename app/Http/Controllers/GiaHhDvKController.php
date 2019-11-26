@@ -82,7 +82,7 @@ class GiaHhDvKController extends Controller
                             $gialk = GiaHhDvKCt::where('manhom',$ct->manhom)
                                 ->where('mahhdv',$ct->mahhdv)
                                 ->where('mahs',$modellk->mahs)
-                                ->first();
+                                ->first()->gia;
                             $modelctnew = new GiaHhDvKCtDf();
                             $modelctnew->district = $inputs['districtbc'];
                             $modelctnew->manhom = $ct->manhom;
