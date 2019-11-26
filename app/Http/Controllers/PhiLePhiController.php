@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\District;
 use App\DmPhiLePhi;
 use App\PhiLePhi;
 use App\PhiLePhiCt;
 use App\PhiLePhiCtDf;
+use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -114,6 +116,22 @@ class PhiLePhiController extends Controller
             $modelct = PhiLePhiCt::where('mahs',$model->mahs)
                 ->get();
             $m_nhomphilephi = DmPhiLePhi::where('manhom',$model->manhom)->first();
+            if(session('admin')->level == 'T'){
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }elseif(session('admin')->level == 'H'){
+                $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }else{
+                $modeldv = Town::where('maxa',session('admin')->maxa)
+                    ->where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }
 
             return view('manage.dinhgia.philephi.reports.print')
                 ->with('model',$model)
