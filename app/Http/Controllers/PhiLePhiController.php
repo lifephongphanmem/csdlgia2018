@@ -197,9 +197,9 @@ class PhiLePhiController extends Controller
             $inputs['manhom'] = isset($inputs['manhom']) ? $inputs['manhom'] : '';
             $inputs['ptcp'] = isset($inputs['ptcp']) ? $inputs['ptcp'] : '';
             $model = PhiLePhiCt::Leftjoin('philephi','philephi.mahs','=','philephict.mahs')
-//                ->Leftjoin('dmphilephi','dmphilephi.manhom','=','dmphilephi.manhom')
+                ->Leftjoin('dmphilephi','dmphilephi.manhom','=','philephict.manhom')
                 ->whereIn('philephi.trangthai',['HT','CB'])
-                ->select('philephict.*','philephi.soqd','philephi.ngayapdung','philephi.trangthai');
+                ->select('philephict.*','philephi.soqd','philephi.ngayapdung','philephi.trangthai','dmphilephi.tennhom');
             if($inputs['nam'] != 'all')
                 $model = $model->whereYear('ngayapdung',$inputs['nam']);
             if($inputs['manhom'] != '')
