@@ -68,6 +68,7 @@
         Tìm kiếm thông tin <small>&nbsp;giá hàng hóa dịch vụ khác</small>
     </h3>
     <!-- END PAGE HEADER-->
+    <hr>
     <div class="row">
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->

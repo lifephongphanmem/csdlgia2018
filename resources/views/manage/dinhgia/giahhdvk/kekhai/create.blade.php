@@ -86,7 +86,7 @@
         Báo cáo giá hàng hóa dịch vụ<small> thêm mới</small>
     </h3>
     <!-- END PAGE HEADER-->
-
+<hr>
     <!-- BEGIN DASHBOARD STATS -->
     <div class="row center">
         <div class="col-md-12 center">

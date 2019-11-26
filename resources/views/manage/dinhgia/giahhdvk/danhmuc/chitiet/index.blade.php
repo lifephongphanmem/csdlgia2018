@@ -106,6 +106,7 @@
                         <a href="{{url('nhomhanghoadichvu')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                     </div>
                 </div>
+                <hr>
                 <div class="portlet-body">
                     <div class="portlet-body">
                     <table class="table table-striped table-bordered table-hover" id="sample_3">

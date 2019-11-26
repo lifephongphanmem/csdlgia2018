@@ -102,6 +102,7 @@
                         @endif
                     </div>
                 </div>
+                <hr>
                 <div class="portlet-body">
                     <div class="portlet-body">
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
