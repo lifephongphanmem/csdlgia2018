@@ -90,7 +90,7 @@ class GiaHhDvKController extends Controller
                             $modelctnew->tenhhdv = $ct->tenhhdv;
                             $modelctnew->dacdiemkt = $ct->dacdiemkt;
                             $modelctnew->dvt = $ct->dvt;
-                            $modelctnew->gialk = $gialk->gia;
+                            $modelctnew->gialk = isset($gialk) ? $gialk->gia : 0;
                             $modelctnew->save();
                         }
                     } else {
