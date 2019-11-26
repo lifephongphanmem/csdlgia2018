@@ -106,26 +106,26 @@
                                     <td style="width:15%"><b>Email quản lý</b></td>
                                     <td style="width:35%"><span class="text-muted">{{$model->email}}</span></td>
                                 </tr>
-                                <tr>
-                                    <td style="width:15%"><b>Nơi đăng ký nộp thuế</b></td>
-                                    <td style="width:35%"><span class="text-muted">{{$model->noidknopthue}}</span></td>
-                                </tr>
-                                <tr>
-                                    <td style="width:15%"><b>Giấy phép kinh doanh</b></td>
-                                    <td style="width:35%"><span class="text-muted">{{$model->giayphepkd}}</span></td>
-                                </tr>
-                                <tr>
-                                    <td style="width:15%"><b>Giấy phép đăng ký kinh doanh</b></td>
-                                    <td style="width:35%"><span class="text-muted"><a href="{{url('data/doanhnghiep/'.$model->tailieu)}}" target="_blank">Xem chi tiết</a></span></td>
-                                </tr>
-                                <tr>
-                                    <td style="width:15%"><b>Chức danh người ký</b></td>
-                                    <td style="width:35%"><span class="text-muted">{{$model->chucdanh}}</span></td>
-                                </tr>
-                                <tr>
-                                    <td style="width:15%"><b>Họ và tên người ký</b></td>
-                                    <td style="width:35%"><span class="text-muted">{{$model->nguoiky}}</span></td>
-                                </tr>
+                                {{--<tr>--}}
+                                    {{--<td style="width:15%"><b>Nơi đăng ký nộp thuế</b></td>--}}
+                                    {{--<td style="width:35%"><span class="text-muted">{{$model->noidknopthue}}</span></td>--}}
+                                {{--</tr>--}}
+                                {{--<tr>--}}
+                                    {{--<td style="width:15%"><b>Giấy phép kinh doanh</b></td>--}}
+                                    {{--<td style="width:35%"><span class="text-muted">{{$model->giayphepkd}}</span></td>--}}
+                                {{--</tr>--}}
+                                {{--<tr>--}}
+                                    {{--<td style="width:15%"><b>Giấy phép đăng ký kinh doanh</b></td>--}}
+                                    {{--<td style="width:35%"><span class="text-muted"><a href="{{url('data/doanhnghiep/'.$model->tailieu)}}" target="_blank">Xem chi tiết</a></span></td>--}}
+                                {{--</tr>--}}
+                                {{--<tr>--}}
+                                    {{--<td style="width:15%"><b>Chức danh người ký</b></td>--}}
+                                    {{--<td style="width:35%"><span class="text-muted">{{$model->chucdanh}}</span></td>--}}
+                                {{--</tr>--}}
+                                {{--<tr>--}}
+                                    {{--<td style="width:15%"><b>Họ và tên người ký</b></td>--}}
+                                    {{--<td style="width:35%"><span class="text-muted">{{$model->nguoiky}}</span></td>--}}
+                                {{--</tr>--}}
                                 <tr>
                                     <td style="width:15%"><b>Địa danh</b></td>
                                     <td style="width:35%"><span class="text-muted">{{$model->diadanh}}</span></td>

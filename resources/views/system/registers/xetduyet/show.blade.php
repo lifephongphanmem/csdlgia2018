@@ -104,42 +104,42 @@
                                 </span>
                                 </td>
                             </tr>
-                            <tr>
-                                <td style="width:15%">
-                                    <b>Nới đăng ký nộp thuế</b>
-                                </td>
-                                <td style="width:35%">
-                                <span class="text-muted">{{$modelcompany->noidknopthue}}
-                                </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width:15%">
-                                    <b>Giấy đăng ký kinh doanh</b>
-                                </td>
-                                <td style="width:35%">
-                                <span class="text-muted"><a href="{{url('data/doanhnghiep/'.$modelcompany->tailieu)}}" target="_blank">{{$modelcompany->giayphepkd}}</a>
-                                </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width:15%">
-                                    <b>Chức danh</b>
-                                </td>
-                                <td style="width:35%">
-                                <span class="text-muted">{{$modelcompany->chucdanh}}
-                                </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width:15%">
-                                    <b>Người ký</b>
-                                </td>
-                                <td style="width:35%">
-                                <span class="text-muted">{{$modelcompany->nguoiky}}
-                                </span>
-                                </td>
-                            </tr>
+                            {{--<tr>--}}
+                                {{--<td style="width:15%">--}}
+                                    {{--<b>Nới đăng ký nộp thuế</b>--}}
+                                {{--</td>--}}
+                                {{--<td style="width:35%">--}}
+                                {{--<span class="text-muted">{{$modelcompany->noidknopthue}}--}}
+                                {{--</span>--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--<tr>--}}
+                                {{--<td style="width:15%">--}}
+                                    {{--<b>Giấy đăng ký kinh doanh</b>--}}
+                                {{--</td>--}}
+                                {{--<td style="width:35%">--}}
+                                {{--<span class="text-muted"><a href="{{url('data/doanhnghiep/'.$modelcompany->tailieu)}}" target="_blank">{{$modelcompany->giayphepkd}}</a>--}}
+                                {{--</span>--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--<tr>--}}
+                                {{--<td style="width:15%">--}}
+                                    {{--<b>Chức danh</b>--}}
+                                {{--</td>--}}
+                                {{--<td style="width:35%">--}}
+                                {{--<span class="text-muted">{{$modelcompany->chucdanh}}--}}
+                                {{--</span>--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--<tr>--}}
+                                {{--<td style="width:15%">--}}
+                                    {{--<b>Người ký</b>--}}
+                                {{--</td>--}}
+                                {{--<td style="width:35%">--}}
+                                {{--<span class="text-muted">{{$modelcompany->nguoiky}}--}}
+                                {{--</span>--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
                             <tr>
                                 <td style="width:15%">
                                     <b>Địa danh</b>

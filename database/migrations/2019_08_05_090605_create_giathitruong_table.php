@@ -21,10 +21,10 @@ class CreateGiathitruongTable extends Migration
             $table->string('nam',4)->nullable();
             $table->string('sobc')->nullable();
             $table->date('ngaybc')->nullable();
-            $table->string('mahuyen',20)->nullable();
+            $table->string('mahuyen')->nullable();
             $table->string('trangthai',10)->nullable();
-            $table->string('mahs',20)->nullable();
-            $table->string('matt',20)->nullable();
+            $table->string('mahs')->nullable();
+            $table->string('matt')->nullable();
             $table->timestamps();
         });
     }

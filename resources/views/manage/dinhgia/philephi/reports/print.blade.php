@@ -70,7 +70,7 @@
     <tr>
         <td style="text-align: center">{{$key+1}}</td>
         <td>{{$tt->ptcp}}</td>
-        <td style="text-align: right; font-weight: bold">{{$tt->mucthuphi != 0 ? number_format($tt->mucthuphi) : $tt->ghichu}}</td>
+        <td style="text-align: left; font-weight: bold">{{$tt->mucthuphi != 0 ? number_format($tt->mucthuphi) : $tt->ghichu}}</td>
     </tr>
     @endforeach
 </table>

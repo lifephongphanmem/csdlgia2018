@@ -73,11 +73,16 @@ class GiaHhDvKController extends Controller
                     if ($modelidlk != null) {
                         $modellk = GiaHhDvK::where('id', $modelidlk)
                             ->first();
-                        $modelctlk = GiaHhDvKCt::where('mahs', $modellk->mahs)
-                            ->get();
+//                        $modelctlk = GiaHhDvKCt::where('mahs', $modellk->mahs)
+//                            ->get();
                         $modeldel = GiaHhDvKCtDf::where('district', $inputs['districtbc'])
                             ->where('manhom', $inputs['manhombc'])->delete();
-                        foreach ($modelctlk as $ct) {
+                        $modeldm = DmHhDvK::where('manhom', $inputs['manhombc'])->get();
+                        foreach ($modeldm as $ct) {
+                            $gialk = GiaHhDvKCt::where('manhom',$ct->manhom)
+                                ->where('mahhdv',$ct->mahhdv)
+                                ->where('mahs',$modellk->mahs)
+                                ->first();
                             $modelctnew = new GiaHhDvKCtDf();
                             $modelctnew->district = $inputs['districtbc'];
                             $modelctnew->manhom = $ct->manhom;
@@ -85,7 +90,7 @@ class GiaHhDvKController extends Controller
                             $modelctnew->tenhhdv = $ct->tenhhdv;
                             $modelctnew->dacdiemkt = $ct->dacdiemkt;
                             $modelctnew->dvt = $ct->dvt;
-                            $modelctnew->gialk = $ct->gia;
+                            $modelctnew->gialk = $gialk;
                             $modelctnew->save();
                         }
                     } else {

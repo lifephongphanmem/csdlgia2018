@@ -15,7 +15,7 @@ class CreateGiathitruongctTable extends Migration
     {
         Schema::create('giathitruongct', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('mahs',20)->nullable();
+            $table->string('mahs')->nullable();
             $table->string('manhom')->nullable();
             $table->string('tennhom')->nullable();
             $table->string('mahh')->nullable();

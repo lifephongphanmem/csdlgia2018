@@ -99,47 +99,47 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Nơi đăng ký nộp thuế</label>
-                                    {!!Form::text('noidknopthue', null, array('id' => 'noidknopthue','class' => 'form-control required'))!!}
-                                    @if ($errors->any())
-                                        <em class="invalid">{{ $errors->first('noidknopthue') }}</em>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Giấy đăng ký kinh doanh</label>
-                                    {!!Form::text('giayphepkd', null, array('id' => 'giayphepkd','class' => 'form-control required'))!!}
-                                    @if ($errors->any())
-                                        <em class="invalid" >{{ $errors->first('giayphepkd') }}</em>
-                                    @endif
-                                </div>
-                            </div>
+                        {{--<div class="row">--}}
+                            {{--<div class="col-md-6">--}}
+                                {{--<div class="form-group">--}}
+                                    {{--<label class="control-label">Nơi đăng ký nộp thuế</label>--}}
+                                    {{--{!!Form::text('noidknopthue', null, array('id' => 'noidknopthue','class' => 'form-control required'))!!}--}}
+                                    {{--@if ($errors->any())--}}
+                                        {{--<em class="invalid">{{ $errors->first('noidknopthue') }}</em>--}}
+                                    {{--@endif--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-md-6">--}}
+                                {{--<div class="form-group">--}}
+                                    {{--<label class="control-label">Giấy đăng ký kinh doanh</label>--}}
+                                    {{--{!!Form::text('giayphepkd', null, array('id' => 'giayphepkd','class' => 'form-control required'))!!}--}}
+                                    {{--@if ($errors->any())--}}
+                                        {{--<em class="invalid" >{{ $errors->first('giayphepkd') }}</em>--}}
+                                    {{--@endif--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
 
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Chức danh</label>
-                                    {!!Form::text('chucdanh', null, array('id' => 'chucdanh','class' => 'form-control required'))!!}
-                                    @if ($errors->any())
-                                        <em class="invalid">{{ $errors->first('chucdanh') }}</em>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Họ tên người ký</label>
-                                    {!!Form::text('nguoiky', null, array('id' => 'nguoiky','class' => 'form-control required'))!!}
-                                    @if ($errors->any())
-                                        <em class="invalid">{{ $errors->first('nguoiky') }}</em>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
+                        {{--</div>--}}
+                        {{--<div class="row">--}}
+                            {{--<div class="col-md-6">--}}
+                                {{--<div class="form-group">--}}
+                                    {{--<label class="control-label">Chức danh</label>--}}
+                                    {{--{!!Form::text('chucdanh', null, array('id' => 'chucdanh','class' => 'form-control required'))!!}--}}
+                                    {{--@if ($errors->any())--}}
+                                        {{--<em class="invalid">{{ $errors->first('chucdanh') }}</em>--}}
+                                    {{--@endif--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-md-6">--}}
+                                {{--<div class="form-group">--}}
+                                    {{--<label class="control-label">Họ tên người ký</label>--}}
+                                    {{--{!!Form::text('nguoiky', null, array('id' => 'nguoiky','class' => 'form-control required'))!!}--}}
+                                    {{--@if ($errors->any())--}}
+                                        {{--<em class="invalid">{{ $errors->first('nguoiky') }}</em>--}}
+                                    {{--@endif--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
