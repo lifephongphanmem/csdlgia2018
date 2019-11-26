@@ -197,7 +197,7 @@ class PhiLePhiController extends Controller
             $inputs['manhom'] = isset($inputs['manhom']) ? $inputs['manhom'] : '';
             $inputs['ptcp'] = isset($inputs['ptcp']) ? $inputs['ptcp'] : '';
             $model = PhiLePhiCt::join('philephi','philephi.mahs','=','philephict.mahs')
-                ->join('dmphilephi','dmphilephi.manhom','=','dmphilephi.manhom')
+                ->Leftjoin('dmphilephi','dmphilephi.manhom','=','dmphilephi.manhom')
                 ->select('philephict.*','philephi.soqd','philephi.ngayapdung','philephi.trangthai','dmphilephi.tennhom')
 
                 ->where('philephi.trangthai','HT')

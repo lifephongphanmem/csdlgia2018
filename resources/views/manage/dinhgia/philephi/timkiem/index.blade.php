@@ -122,7 +122,7 @@
                                 <td>{{getDayVn($tt->ngayapdung)}}</td>
                                 <td>{{$tt->tennhom}}</td>
                                 <td class="active">{{$tt->ptcp}}</td>
-                                <td style="text-align: right;font-weight: bold">{{$tt->mucthuphi != '' ? number_format($tt->mucthuphi) : $tt->ghichu}}</td>
+                                <td style="text-align: right;font-weight: bold">{{$tt->mucthuphi != '' && $tt->mucthuphi == 0 ? number_format($tt->mucthuphi) : $tt->ghichu}}</td>
                         @endforeach
                         </tbody>
                     </table>
