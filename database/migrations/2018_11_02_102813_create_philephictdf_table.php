@@ -18,7 +18,7 @@ class CreatePhilephictdfTable extends Migration
             $table->string('mahuyen')->nullable();
             $table->text('ptcp')->nullable();
             $table->string('mucthuphi')->nullable();
-            $table->string('ghichu')->nullable();
+            $table->text('ghichu')->nullable();
             $table->timestamps();
         });
     }
