@@ -22,9 +22,9 @@ class PhiLePhiController extends Controller
 
 
             $model = PhiLePhi::join('dmphilephi','dmphilephi.manhom','=','philephi.manhom')
-                ->whereYear('philephi.ngayapdung',$inputs['nam'])
                 ->select('philephi.*','dmphilephi.tennhom','dmphilephi.dvt');
-
+            if($inputs['nam'] != 'all')
+                $model = $model->whereYear('philephi.ngayapdung',$inputs['nam']);
             if($inputs['trangthai'] != '')
                 $model = $model->where('philephi.trangthai',$inputs['trangthai']);
 
@@ -203,7 +203,7 @@ class PhiLePhiController extends Controller
 
                 ->where('philephi.trangthai','HT')
                 ->OrWhere('philephi.trangthai','CB');
-            if($inputs['nam'] != '')
+            if($inputs['nam'] != 'all')
                 $model = $model->whereYear('philephi.ngayapdung',$inputs['nam']);
             if($inputs['manhom'] != '')
                 $model = $model->where('philephi.manhom',$inputs['manhom']);
