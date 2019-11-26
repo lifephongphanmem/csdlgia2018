@@ -137,6 +137,7 @@ class PhiLePhiController extends Controller
                 ->with('model',$model)
                 ->with('modelct',$modelct)
                 ->with('m_nhomphilephi',$m_nhomphilephi)
+                ->with('inputs',$inputs)
                 ->with('pageTitle','Phí lệ phí');
         }else
             return view('errors.notlogin');
