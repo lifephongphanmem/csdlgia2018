@@ -32,8 +32,7 @@ class PhiLePhiController extends Controller
             $m_nhomphilephi = DmPhiLePhi::all();
             return view('manage.dinhgia.philephi.kekhai.index')
                 ->with('model',$model)
-                ->with('nam',$inputs['nam'])
-                ->with('trangthai',$inputs['trangthai'])
+                ->with('inputs',$inputs)
                 ->with('m_nhomphilephi',$m_nhomphilephi)
                 ->with('pageTitle','Thông tin hồ sơ phí, lệ phí');
         }else
