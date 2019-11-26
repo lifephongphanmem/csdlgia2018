@@ -322,14 +322,14 @@ License: You must have a valid license purchased only from themeforest(the above
                             <li><a href="{{url('coming')}}"><i class="icon-folder"></i> &nbsp;CPI</a></li>
                         </ul>
                     </li>
-                    <li class="menu-dropdown classic-menu-dropdown ">
-                        <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
-                            Tập huấn<i class="fa fa-angle-down"></i>
-                        </a>
-                        <ul class="dropdown-menu pull-left">
-                            <li><a href="{{url('danhsachusertaphuan')}}"><i class="icon-folder"></i> &nbsp;Danh sách user tập huấn</a></li>
-                        </ul>
-                    </li>
+                    {{--<li class="menu-dropdown classic-menu-dropdown ">--}}
+                        {{--<a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">--}}
+                            {{--Tập huấn<i class="fa fa-angle-down"></i>--}}
+                        {{--</a>--}}
+                        {{--<ul class="dropdown-menu pull-left">--}}
+                            {{--<li><a href="{{url('danhsachusertaphuan')}}"><i class="icon-folder"></i> &nbsp;Danh sách user tập huấn</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
                 </ul>
             </div>
             <!-- END MEGA MENU -->
