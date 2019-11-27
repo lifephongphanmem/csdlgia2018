@@ -28,10 +28,10 @@ class GiaNuocShBcController extends Controller
             $model = GiaNuocSachShDm::all();
             foreach($model as $ct){
                 $modellk = GiaNuocShCt::where('mahs',$inputs['mahslk'])
-                    ->where('madoituong',$ct->madoituong)
+                    ->where('doituongsd',$ct->doituongsd)
                     ->first();
                 $modelbc = GiaNuocShCt::where('mahs',$inputs['mahsbc'])
-                    ->where('madoituong',$ct->madoituong)
+                    ->where('doituongsd',$ct->doituongsd)
                     ->first();
                 $ct->gialk = $modellk->giachuathue;
                 $ct->giabc = $modelbc->giachuathue;
