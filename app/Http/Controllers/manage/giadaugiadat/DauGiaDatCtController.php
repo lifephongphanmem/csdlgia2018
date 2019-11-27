@@ -38,6 +38,7 @@ class DauGiaDatCtController extends Controller
     public function store(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
+            $inputs['dientich'] = getMoneyToDb($inputs['dientich']);
             $inputs['qdgiadato'] = getMoneyToDb($inputs['qdgiadato']);
             $inputs['qdgiadattmdv'] = getMoneyToDb($inputs['qdgiadattmdv']);
             $inputs['qdgiadatsxkd'] = getMoneyToDb($inputs['qdgiadatsxkd']);
@@ -96,6 +97,8 @@ class DauGiaDatCtController extends Controller
             $model->loaiduong = $inputs['edit_loaiduong'];
             $model->vitri= $inputs['edit_vitri'];
 
+            $model->dientich = getMoneyToDb($inputs['edit_dientich']);
+
             $model->qdgiadato = getMoneyToDb($inputs['edit_qdgiadato']);
             $model->qdgiadattmdv = getMoneyToDb($inputs['edit_qdgiadattmdv']);
             $model->qdgiadatsxkd = getMoneyToDb($inputs['edit_qdgiadatsxkd']);
@@ -110,8 +113,8 @@ class DauGiaDatCtController extends Controller
             $model->qdpddatnuoits = getMoneyToDb($inputs['edit_qdpddatnuoits']);
             $model->qdpddatmuoi = getMoneyToDb($inputs['edit_qdpddatmuoi']);
 
-            $model->giakhoidiem = getMoneyToDb($inputs['edit_giakhoidiem']);
-            $model->giadaugia = getMoneyToDb($inputs['edit_giadaugia']);
+//            $model->giakhoidiem = getMoneyToDb($inputs['edit_giakhoidiem']);
+//            $model->giadaugia = getMoneyToDb($inputs['edit_giadaugia']);
 
             $model->kqdgdato = getMoneyToDb($inputs['edit_kqdgdato']);
             $model->kqdgdattmdv = getMoneyToDb($inputs['edit_kqdgdattmdv']);

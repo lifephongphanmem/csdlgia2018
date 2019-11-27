@@ -114,13 +114,17 @@
         <?php
             $model = $model->where('mahuyen',$huyen->district);
         ?>
+
         @foreach($model as $gr2=>$tt)
+            <?php
+            $modeltt = $modelct->where('mahs',$tt->mahs);
+            ?>
         <tr style="font-weight: bold;font-style: italic;">
             <td>{{IntToRoman($gr2+1)}}</td>
             <td style="text-align: left">{{$tt->tenduan}}</td>
             <td style="text-align: left">{{$tt->tenxa}}</td>
             <td>{{getDayVn($tt->thoidiem)}}</td>
-            <td style="text-align: right">{{dinhdangsothapphan($tt->dientich,3)}}</td>
+            <td style="text-align: right">{{dinhdangsothapphan($modeltt->sum('dientich'),3)}}</td>
             <td>{{$tt->soqdpagia}}</td>
             <td>{{$tt->soqddaugia}}</td>
             <td>{{$tt->soqdgiakhoidiem}}</td>
@@ -148,16 +152,14 @@
             <td></td>
             <td></td>
         </tr>
-            <?php
-                $modeltt = $modelct->where('mahs',$tt->mahs);
-            ?>
+
             @foreach($modeltt as $gr3=>$ct)
             <tr>
                 <td>{{$gr3+1}}</td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
+                <td style="text-align: right">{{dinhdangsothapphan($ct->dientich,5)}}</td>
                 <td></td>
                 <td></td>
                 <td></td>

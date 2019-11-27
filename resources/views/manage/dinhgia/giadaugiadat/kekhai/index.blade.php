@@ -213,7 +213,7 @@
                                 <th style="text-align: center">Xã/phường</th>
                                 <th style="text-align: center">Tên dự án</th>
                                 <th style="text-align: center">Thời điểm <br>xác định</th>
-                                <th style="text-align: center">Diện tích</th>
+                                {{--<th style="text-align: center">Diện tích</th>--}}
                                 <th style="text-align: center">Trạng thái</th>
                                 <th style="text-align: center" width="20%">Thao tác</th>
                             </tr>
@@ -227,7 +227,7 @@
                                         <td style="text-align: center">{{$tt->tenxa}}</td>
                                         <td style="text-align: left">{{$tt->tenduan}}</td>
                                         <td style="text-align: center">{{getDayVn($tt->thoidiem)}}</td>
-                                        <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->dientich,3)}}</td>
+                                        {{--<td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->dientich,3)}}</td>--}}
                                         <td style="text-align: center">
                                             @if($tt->trangthai == 'CB')
                                                 <span class="badge badge-warning">Công bố</span>

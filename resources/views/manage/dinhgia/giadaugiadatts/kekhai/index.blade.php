@@ -205,8 +205,8 @@
                                 <th style="text-align: center">Xã/phường</th>
                                 <th style="text-align: center">Tên dự án</th>
                                 <th style="text-align: center">Thời điểm <br>xác định</th>
-                                <th style="text-align: center">Diện tích đất</th>
-                                <th style="text-align: center">Diện tích sàn xây dựng</th>
+                                {{--<th style="text-align: center">Diện tích đất</th>--}}
+                                {{--<th style="text-align: center">Diện tích sàn xây dựng</th>--}}
                                 <th style="text-align: center">Trạng thái</th>
                                 <th style="text-align: center" width="20%">Thao tác</th>
                             </tr>
@@ -220,8 +220,8 @@
                                         <td style="text-align: center">{{$tt->tenxa}}</td>
                                         <td style="text-align: left">{{$tt->tenduan}}</td>
                                         <td style="text-align: center">{{getDayVn($tt->thoidiem)}}</td>
-                                        <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->dientichdat,3)}}</td>
-                                        <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->dientichsanxd,3)}}</td>
+                                        {{--<td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->dientichdat,3)}}</td>--}}
+                                        {{--<td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->dientichsanxd,3)}}</td>--}}
                                         <td style="text-align: center">
                                             @if($tt->trangthai == 'CB')
                                                 <span class="badge badge-warning">Công bố</span>
@@ -241,7 +241,8 @@
                                             @elseif($tt->trangthai == 'CHT')
                                                 {{--Chưa hoàn thành--}}
                                                 @if(can('kkdaugiadatts','edit'))
-                                                    <button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                                    {{--<button type="button" onclick="edittt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>--}}
+                                                    <a href="{{url('thongtindaugiadatts/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                                     <a href="{{url('thongtindaugiadattsct?&mahs='.$tt->mahs)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chi tiết</a>
                                                 @endif
                                                 @if(can('kkdaugiadatts','delete'))

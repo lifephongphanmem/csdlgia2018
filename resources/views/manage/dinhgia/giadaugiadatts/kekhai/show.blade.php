@@ -109,8 +109,8 @@
         <td style="text-align: left">{{$model->tenduan}}</td>
         <td style="text-align: left">{{$modelxa->diaban}}</td>
         <td>{{getDayVn($model->thoidiem)}}</td>
-        <td style="text-align: right">{{dinhdangsothapphan($model->dientichdat,3)}}</td>
-        <td style="text-align: right">{{dinhdangsothapphan($model->dientichsanxd,3)}}</td>
+        <td style="text-align: right">{{dinhdangsothapphan($modelct->sum('dientichdat'),3)}}</td>
+        <td style="text-align: right">{{dinhdangsothapphan($modelct->sum('dientichsanxd'),3)}}</td>
         <td>{{$model->soqdpagia}}</td>
         <td>{{$model->soqddaugia}}</td>
         <td>{{$model->soqdgiakhoidiem}}</td>
@@ -142,8 +142,8 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td style="text-align: right">{{dinhdangsothapphan($tt->dientichdat,5)}}</td>
+            <td style="text-align: right">{{dinhdangsothapphan($tt->dientichsanxd,5)}}</td>
             <td></td>
             <td></td>
             <td></td>
@@ -177,7 +177,7 @@
 </table>
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%" style="text-align: left">
+        <td width="40%" style="text-align: left;vertical-align: top;">
             <span style="font-weight: bold;font-style: italic">Nơi nhận:</span><br>
             - UBND tỉnh;<br>
             - Bộ tài chính;<br>

@@ -88,7 +88,7 @@ class DauGiaDatController extends Controller
             $inputs['mahs'] = $inputs['mahuyen'].getdate()[0];
             $inputs['trangthai'] = 'CHT';
             $inputs['thoidiem'] = getDateToDb($inputs['thoidiem']);
-            $inputs['dientich'] = getMoneyToDb($inputs['dientich']);
+//            $inputs['dientich'] = getMoneyToDb($inputs['dientich']);
             $model = new DauGiaDat();
             $model->create($inputs);
             return redirect('thongtindaugiadat?&mahuyen='.$inputs['mahuyen']);
@@ -122,7 +122,7 @@ class DauGiaDatController extends Controller
             $inputs = $request->all();
 
             $inputs['thoidiem'] = getDateToDb($inputs['thoidiem']);
-            $inputs['dientich'] = getMoneyToDb($inputs['dientich']);
+//            $inputs['dientich'] = getMoneyToDb($inputs['dientich']);
             $model = DauGiaDat::findOrFail($id);
             $model->update($inputs);
 

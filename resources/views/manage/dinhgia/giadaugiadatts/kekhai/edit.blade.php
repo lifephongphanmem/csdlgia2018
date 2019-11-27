@@ -71,18 +71,18 @@
                                 {!!Form::text('thoidiem',isset($model) ? date('d/m/Y',  strtotime($model->thoidiem)) : null , array('id' => 'thoidiem','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label class="control-label">Diện tích đất<span class="require">*</span></label>
-                                {!!Form::text('dientichdat',null, array('id' => 'dientichdat','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label class="control-label">Diện tích sàn xây dựng<span class="require">*</span></label>
-                                {!!Form::text('dientichsanxd',null, array('id' => 'dientichsanxd','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
-                            </div>
-                        </div>
+                        {{--<div class="col-md-3">--}}
+                            {{--<div class="form-group">--}}
+                                {{--<label class="control-label">Diện tích đất<span class="require">*</span></label>--}}
+                                {{--{!!Form::text('dientichdat',null, array('id' => 'dientichdat','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-md-3">--}}
+                            {{--<div class="form-group">--}}
+                                {{--<label class="control-label">Diện tích sàn xây dựng<span class="require">*</span></label>--}}
+                                {{--{!!Form::text('dientichsanxd',null, array('id' => 'dientichsanxd','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                     </div>
                     <div class="row">
                         <div class="col-md-6">

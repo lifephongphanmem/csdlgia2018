@@ -38,6 +38,9 @@ class DauGiaDatTsCtController extends Controller
     public function store(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
+            $inputs['dientichdat'] = getMoneyToDb($inputs['dientichdat']);
+            $inputs['dientichsanxd'] = getMoneyToDb($inputs['dientichsanxd']);
+
             $inputs['qdgiadato'] = getMoneyToDb($inputs['qdgiadato']);
             $inputs['qdgiadattmdv'] = getMoneyToDb($inputs['qdgiadattmdv']);
             $inputs['qdgiadatsxkd'] = getMoneyToDb($inputs['qdgiadatsxkd']);
@@ -100,6 +103,9 @@ class DauGiaDatTsCtController extends Controller
             $model->tenduong = $inputs['edit_tenduong'];
             $model->loaiduong = $inputs['edit_loaiduong'];
             $model->vitri= $inputs['edit_vitri'];
+
+            $model->dientichdat = getMoneyToDb($inputs['edit_dientichdat']);
+            $model->dientichsanxd = getMoneyToDb($inputs['edit_dientichsanxd']);
 
             $model->qdgiadato = getMoneyToDb($inputs['edit_qdgiadato']);
             $model->qdgiadattmdv = getMoneyToDb($inputs['edit_qdgiadattmdv']);

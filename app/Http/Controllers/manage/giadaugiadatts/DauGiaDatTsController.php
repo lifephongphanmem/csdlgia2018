@@ -87,8 +87,8 @@ class DauGiaDatTsController extends Controller
             $inputs['mahs'] = $inputs['mahuyen'].getdate()[0];
             $inputs['trangthai'] = 'CHT';
             $inputs['thoidiem'] = getDateToDb($inputs['thoidiem']);
-            $inputs['dientichdat'] = getMoneyToDb($inputs['dientichdat']);
-            $inputs['dientichsanxd'] = getMoneyToDb($inputs['dientichsanxd']);
+//            $inputs['dientichdat'] = getMoneyToDb($inputs['dientichdat']);
+//            $inputs['dientichsanxd'] = getMoneyToDb($inputs['dientichsanxd']);
             $model = new DauGiaDatTs();
             $model->create($inputs);
             return redirect('thongtindaugiadatts?&mahuyen='.$inputs['mahuyen']);
@@ -121,8 +121,8 @@ class DauGiaDatTsController extends Controller
         if(Session::has('admin')){
             $inputs = $request->all();
             $inputs['thoidiem'] = getDateToDb($inputs['thoidiem']);
-            $inputs['dientichdat'] = getMoneyToDb($inputs['dientichdat']);
-            $inputs['dientichsanxd'] = getMoneyToDb($inputs['dientichsanxd']);
+//            $inputs['dientichdat'] = getMoneyToDb($inputs['dientichdat']);
+//            $inputs['dientichsanxd'] = getMoneyToDb($inputs['dientichsanxd']);
             $model = DauGiaDatTs::findOrFail($id);
             $model->update($inputs);
 

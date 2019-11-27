@@ -35,6 +35,7 @@ class DauGiaDatCt extends Model
         'kqdgdatnn',
         'kqdgdatnuoits',
         'kqdgdatmuoi',
+        'dientich',
 
 //        'giakhoidiem',
 //        'giadaugia',

@@ -44,6 +44,7 @@
                     $('#edit_tenduong').val(data.tenduong);
                     $('#edit_loaiduong').val(data.loaiduong);
                     $('#edit_vitri').val(data.vitri);
+                    $('#edit_dientich').val(data.dientich);
 
                     $('#edit_qdgiadato').val(data.qdgiadato);
                     $('#edit_qdgiadattmdv').val(data.qdgiadattmdv);
@@ -155,6 +156,7 @@
                             <th style="text-align: center">Tên đường</th>
                             <th style="text-align: center">Loại đường</th>
                             <th style="text-align: center">Vị trí</th>
+                            <th style="text-align: center">Diện tích</th>
                             <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
                         </thead>
@@ -166,6 +168,7 @@
                             <td>{{$tt->tenduong}}</td>
                             <td>{{$tt->loaiduong}}</td>
                             <td>{{$tt->vitri}}</td>
+                            <td>{{dinhdangsothapphan($tt->dientich,5)}}</td>
                             <td>
                                 <button type="button" onclick="EditTt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
                                 <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-delete" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
@@ -243,9 +246,16 @@
                                 {!!Form::text('vitri',null, array('id' => 'vitri','class' => 'form-control required'))!!}
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Diện tích<span class="require">*</span></label>
+                                {!!Form::text('dientich',null, array('id' => 'dientich','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                            </div>
+                        </div>
                     </div>
                     <h4 style="color: blue">Quyết định bảng giá đất của tỉnh</h4>
                     <div class="row">
+
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">Đất ở<span class="require">*</span></label>
@@ -414,6 +424,12 @@
                                     {!!Form::text('edit_vitri',null, array('id' => 'edit_vitri','class' => 'form-control required'))!!}
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                <label class="control-label">Diện tích<span class="require">*</span></label>
+                                    {!!Form::text('edit_dientich',null, array('id' => 'edit_dientich','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                </div>
+                            </div>
                         </div>
                         <h4 style="color: blue">Quyết định bảng giá đất của tỉnh</h4>
                         <div class="row">
@@ -547,4 +563,5 @@
         <!-- /.modal-dialog -->
     </div>
     @include('includes.script.inputmask-ajax-scripts')
+    @include('includes.script.create-header-scripts')
 @stop

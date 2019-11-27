@@ -45,6 +45,9 @@
                     $('#edit_loaiduong').val(data.loaiduong);
                     $('#edit_vitri').val(data.vitri);
 
+                    $('#edit_dientichsanxd').val(data.dientichsanxd);
+                    $('#edit_dientichdat').val(data.dientichdat);
+
                     $('#edit_qdgiadato').val(data.qdgiadato);
                     $('#edit_qdgiadattmdv').val(data.qdgiadattmdv);
                     $('#edit_qdgiadatsxkd').val(data.qdgiadatsxkd);
@@ -162,6 +165,8 @@
                             <th style="text-align: center">Tên đường</th>
                             <th style="text-align: center">Loại đường</th>
                             <th style="text-align: center">Vị trí</th>
+                            <th style="text-align: center">Diện tịch đất</th>
+                            <th style="text-align: center">Diện tịch sàn xây dựng</th>
                             <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
                         </thead>
@@ -173,6 +178,8 @@
                             <td>{{$tt->tenduong}}</td>
                             <td>{{$tt->loaiduong}}</td>
                             <td>{{$tt->vitri}}</td>
+                            <td style="text-align: right">{{dinhdangsothapphan($tt->dientichdat,5)}}</td>
+                            <td style="text-align: right">{{dinhdangsothapphan($tt->dientichsanxd,5)}}</td>
                             <td>
                                 <button type="button" onclick="EditTt('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit" data-toggle="modal" style="margin: 2px"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
                                 <button type="button" onclick="getId('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-delete" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
@@ -248,6 +255,20 @@
                             <div class="form-group">
                                 <label class="control-label">Vị trí<span class="require">*</span></label>
                                 {!!Form::text('vitri',null, array('id' => 'vitri','class' => 'form-control required'))!!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Diện tích đất<span class="require">*</span></label>
+                                {!!Form::text('dientichdat',null, array('id' => 'dientichdat','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Diện tích sàn xây dựng<span class="require">*</span></label>
+                                {!!Form::text('dientichsanxd',null, array('id' => 'dientichsanxd','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
                             </div>
                         </div>
                     </div>
@@ -416,6 +437,20 @@
                                 <div class="form-group">
                                     <label class="control-label">Vị trí<span class="require">*</span></label>
                                     {!!Form::text('edit_vitri',null, array('id' => 'edit_vitri','class' => 'form-control required'))!!}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label">Diện tích đất<span class="require">*</span></label>
+                                    {!!Form::text('edit_dientichdat',null, array('id' => 'edit_dientichdat','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label">Diện tích sàn xây dựng<span class="require">*</span></label>
+                                    {!!Form::text('edit_dientichsanxd',null, array('id' => 'edit_dientichsanxd','data-mask'=>'fdecimal','class' => 'form-control required','style'=>'text-align: right;font-weight: bold'))!!}
                                 </div>
                             </div>
                         </div>

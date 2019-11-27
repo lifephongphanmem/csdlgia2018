@@ -39,6 +39,8 @@ class CreateDaugiadattsctTable extends Migration
             $table->string('kqgiadaugiats')->nullable();
             $table->string('kqgiadaugiadatts')->nullable();
             $table->string('ghichu')->nullable();
+            $table->string('dientichdat')->nullable();
+            $table->string('dientichsanxd')->nullable();
 
 //            $table->string('giakhoidiemdat')->nullable();
 //            $table->string('giakhoidiemsanxd')->nullable();
