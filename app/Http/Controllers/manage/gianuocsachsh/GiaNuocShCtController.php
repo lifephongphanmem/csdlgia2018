@@ -57,7 +57,7 @@ class GiaNuocShCtController extends Controller
             $result['message'] .= '<thead>';
             $result['message'] .= '<tr>';
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
-            $result['message'] .= '<th style="text-align: center">Đối tượng </th>';
+            $result['message'] .= '<th style="text-align: center">Mục đích sự dụng </th>';
             $result['message'] .= '<th style="text-align: center">Đơn giá</th>';
             $result['message'] .= '<th style="text-align: center" width="20%">Thao tác</th>';
             $result['message'] .= '</tr>';

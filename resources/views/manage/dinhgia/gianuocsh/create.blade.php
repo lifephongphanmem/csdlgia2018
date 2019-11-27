@@ -118,7 +118,7 @@
                                             <thead>
                                             <tr>
                                                 <th style="text-align: center" width="2%">STT</th>
-                                                <th style="text-align: center">Đối tượng</th>
+                                                <th style="text-align: center">Mục đích sử dụng</th>
                                                 <th style="text-align: center">Đơn giá</th>
                                                 <th style="text-align: center" width="20%">Thao tác</th>
                                             </tr>

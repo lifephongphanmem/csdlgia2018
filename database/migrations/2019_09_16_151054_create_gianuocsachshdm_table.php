@@ -16,7 +16,7 @@ class CreateGianuocsachshdmTable extends Migration
         Schema::create('gianuocsachshdm', function (Blueprint $table) {
             $table->increments('id');
             $table->string('madoituong')->nullable();
-            $table->string('doituongsd')->nullable();;
+            $table->string('doituongsd')->nullable();
             $table->timestamps();
         });
     }

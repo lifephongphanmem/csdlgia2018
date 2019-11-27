@@ -102,8 +102,8 @@
                             <thead>
                             <tr>
                                 <th style="text-align: center" width="2%">STT</th>
-                                <th style="text-align: center">Mã đối tượng</th>
-                                <th style="text-align: center">Đối tượng sử dụng</th>
+                                {{--<th style="text-align: center">Mã đối tượng</th>--}}
+                                <th style="text-align: center">Mục đích sử dụng</th>
                                 <th style="text-align: center" width="10%"> Thao tác</th>
                             </tr>
                             </thead>
@@ -112,7 +112,7 @@
                                 @foreach($model as $key => $tt)
                                     <tr>
                                         <td style="text-align: center">{{$key+1}}</td>
-                                        <td style="text-align: center" >{{$tt->madoituong}}</td>
+                                        {{--<td style="text-align: center" >{{$tt->madoituong}}</td>--}}
                                         <td style="text-align: left" class="active">{{$tt->doituongsd}}</td>
                                         <td style="text-align: center">
                                             @if(can('dmtgianuocsh','edit'))

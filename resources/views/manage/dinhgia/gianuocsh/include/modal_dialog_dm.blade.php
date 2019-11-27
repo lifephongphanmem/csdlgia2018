@@ -3,11 +3,11 @@
         var str = '';
         var ok = true;
 
-        if (!$('#add_madoituong').val()) {
-            str += '  - Mã đối tượng \n';
-            $('#add_madoituong').parent().addClass('has-error');
-            ok = false;
-        }
+//        if (!$('#add_madoituong').val()) {
+//            str += '  - Mã đối tượng \n';
+//            $('#add_madoituong').parent().addClass('has-error');
+//            ok = false;
+//        }
 
         if (!$('#add_doituongsd').val()) {
             str += '  - Đối tượng sử dụng \n';
@@ -35,11 +35,11 @@
         var str = '';
         var ok = true;
 
-        if (!$('#edit_madoituong').val()) {
-            str += '  - Mã đối tượng \n';
-            $('#edit_madoituong').parent().addClass('has-error');
-            ok = false;
-        }
+//        if (!$('#edit_madoituong').val()) {
+//            str += '  - Mã đối tượng \n';
+//            $('#edit_madoituong').parent().addClass('has-error');
+//            ok = false;
+//        }
 
         if (!$('#edit_doituongsd').val()) {
             str += '  - Đối tượng sử dụng \n';
@@ -78,14 +78,14 @@
                 <h4 id="modal-header-primary-label" class="modal-title">Thêm mới danh mục giá nước sinh hoạt</h4>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label">Mã đối tượng<span class="require">*</span></label>
-                            <input name="add_madoituong" id="add_madoituong" class="form-control">
-                        </div>
-                    </div>
-                </div>
+                {{--<div class="row">--}}
+                    {{--<div class="col-md-6">--}}
+                        {{--<div class="form-group">--}}
+                            {{--<label class="control-label">Mã đối tượng<span class="require">*</span></label>--}}
+                            {{--<input name="add_madoituong" id="add_madoituong" class="form-control">--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
@@ -114,14 +114,14 @@
                 <h4 id="modal-header-primary-label" class="modal-title">Chỉnh sửa thông tin danh mục giá nước sạch sinh hoạt</h4>
             </div>
             <div class="modal-body" id="edit_node">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label">Mã đối tượng<span class="require">*</span></label>
-                            <input name="edit_madoituong" id="edit_madoituong" class="form-control">
-                        </div>
-                    </div>
-                </div>
+                {{--<div class="row">--}}
+                    {{--<div class="col-md-6">--}}
+                        {{--<div class="form-group">--}}
+                            {{--<label class="control-label">Mã đối tượng<span class="require">*</span></label>--}}
+                            {{--<input name="edit_madoituong" id="edit_madoituong" class="form-control">--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">

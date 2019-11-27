@@ -42,7 +42,7 @@ class GiaNuocShController extends Controller
             foreach($dms as $dm){
                 $modeladd = new GiaNuocShCt();
                 $modeladd->doituongsd = $dm->doituongsd;
-                $modeladd->madoituong = $dm->madoituong;
+//                $modeladd->madoituong = $dm->madoituong;
                 $modeladd->mahs = $inputs['mahs'];
                 $modeladd->trangthai = 'CXD';
                 $modeladd->save();
