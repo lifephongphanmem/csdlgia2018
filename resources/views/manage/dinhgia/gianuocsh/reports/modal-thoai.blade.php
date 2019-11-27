@@ -23,7 +23,7 @@
                             <label><b>Báo cáo liền kề</b></label>
                             <select name="mahslk" id="mahslk" class="form-control">
                                 @foreach($modelhs as $hslk)
-                                    <option value="{{$hslk->mahs}}">Số {{$hslk->soqd}}- Ngày {{getDayVn($hslk->ngayapdung)}}</option>
+                                    <option value="{{$hslk->mahs}}">Số {{$hslk->soqd}}- Ngày {{getDayVn($hslk->ngayapdung)}}-{{$hslk->mota}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -33,7 +33,7 @@
                             <label><b>Báo cáo so sánh</b></label>
                             <select name="mahsbc" id="mahsbc" class="form-control">
                                 @foreach($modelhs as $hsbc)
-                                    <option value="{{$hsbc->mahs}}">Số {{$hslk->soqd}}- Ngày {{getDayVn($hsbc->ngayapdung)}}</option>
+                                    <option value="{{$hsbc->mahs}}">Số {{$hslk->soqd}}- Ngày {{getDayVn($hsbc->ngayapdung)}}-{{$hsbc->mota}}</option>
                                 @endforeach
                             </select>
                         </div>
