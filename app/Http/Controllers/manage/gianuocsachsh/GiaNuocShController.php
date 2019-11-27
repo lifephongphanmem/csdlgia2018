@@ -61,16 +61,10 @@ class GiaNuocShController extends Controller
     public function store(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
-
             $model = new GiaNuocSh();
-            $model->ngayapdung = getDateToDb($inputs['ngayapdung']);
-            $model->trangthai = 'CHT';
-            $model->soqd = $inputs['soqd'];
-            $model->ghichu = $inputs['ghichu'];
-            $model->mota = $inputs['mota'];
-            $model->mahs = $inputs['mahs'];
-            $model->trangthai = 'CHT';
-            $model->save();
+            $inputs['ngayapdung'] = getDateToDb($inputs['ngayapdung']);
+            $inputs['trangthai'] = 'CHT';
+            $model->create($inputs);
             $modelct = GiaNuocShCt::where('mahs',$inputs['mahs'])
                 ->update(['trangthai' => 'XD']);
             $nam = date('Y',strtotime(getDateToDb($inputs['ngayapdung'])));
@@ -110,6 +104,7 @@ class GiaNuocShController extends Controller
             $inputs = $request->all();
             $id = $inputs['destroy_id'];
             $model = GiaNuocSh::findOrFail($id);
+            $modelct = GiaNuocShCt::where('mahs',$model->mahs)->delete();
             $model->delete();
             return redirect('gianuocsachsinhhoat');
 
