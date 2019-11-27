@@ -134,8 +134,8 @@
                                         <td style="text-align: center">{{$key+1}}</td>
                                         <td style="text-align: center">{{$tt->soqd}}</td>
                                         <td style="text-align: center;"><b>{{getDayVn($tt->ngayapdung)}}</b></td>
-                                        <td style="text-align: center">{{$tt->mota}}</td>
-                                        <td style="text-align: center">{{$tt->ghichu}}</td>
+                                        <td style="text-align: left">{{$tt->mota}}</td>
+                                        <td style="text-align: left">{{$tt->ghichu}}</td>
                                         <td style="text-align: center">
                                             @if($tt->trangthai == 'CB')
                                                 <span class="badge badge-warning">Công bố</span>
