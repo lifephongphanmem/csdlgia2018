@@ -71,7 +71,7 @@ class GiaNuocSachShDmController extends Controller
         if(Session::has('admin')){
             $inputs = $request->all();
             $model = GiaNuocSachShDm::where('id',$inputs['edit_id'])->first();
-            $model->madoituong = $inputs['edit_madoituong'];
+//            $model->madoituong = $inputs['edit_madoituong'];
             $model->doituongsd = $inputs['edit_doituongsd'];
             $model->save();
             return redirect('dmgianuocsachsinhhoat');
