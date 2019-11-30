@@ -136,8 +136,8 @@
                             <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center">Thời điểm báo cáo</th>
                             <th style="text-align: center">Nhóm hàng hóa dịch vụ</th>
-                            <th style="text-align: center" width="20%">Số quyết định <br>Ngày áp dụng</th>
-                            <th style="text-align: center" width="20%">Số QĐ liền kề<br>Ngày áp dụng liền kề</th>
+                            <th style="text-align: center" width="20%">Số quyết định <br>Ngày báo cáo</th>
+                            <th style="text-align: center" width="20%">Số QĐ liền kề<br>Ngày báo cáo liền kề</th>
                             <th style="text-align: center" width="10%">Trạng thái</th>
                             <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
@@ -148,8 +148,8 @@
                                 <td style="text-align: center">{{$key + 1}}</td>
                                 <td>Tháng {{$tt->thang}}/{{$tt->nam}}</td>
                                 <td class="active" style="font-weight: bold">{{$tt->tennhom}}</td>
-                                <td>Số: {{$tt->soqd}}<br>Ngày áp dụng: {{getDayVn($tt->ngayapdung)}}</td>
-                                <td>Số: {{$tt->soqdlk}}<br>Ngày áp dụng: {{getDayVn($tt->ngayapdunglk)}}</td>
+                                <td>Số: {{$tt->soqd}}<br>Ngày báo cáo: {{getDayVn($tt->ngayapdung)}}</td>
+                                <td>Số: {{$tt->soqdlk}}<br>Ngày báo cáo: {{getDayVn($tt->ngayapdunglk)}}</td>
                                 <td style="text-align: center">
                                     @if($tt->trangthai == 'HT')
                                         <span class="badge badge-warning">Hoàn thành</span>

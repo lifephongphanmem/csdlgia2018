@@ -93,7 +93,7 @@ class RegisterController extends Controller
             ->with('pageTitle','Đăng ký tài khoản truy cập');
     }
 
-    public function store(RegisterRequest $request){
+    public function store(Request $request){
         $inputs = $request->all();
         $inputs['trangthai'] = 'Chưa kích hoạt';
         $model = new Company();

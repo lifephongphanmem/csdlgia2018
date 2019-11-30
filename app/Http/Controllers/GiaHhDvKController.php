@@ -233,19 +233,24 @@ class GiaHhDvKController extends Controller
         if(Session::has('admin')){
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
+            $inputs['thang'] = isset($inputs['thang']) ? $inputs['thang'] : date('m');
             $inputs['tenhhdv'] = isset($inputs['tenhhdv']) ? $inputs['tenhhdv'] : '';
             $inputs['district'] =  isset($inputs['district']) ? $inputs['district'] : '';
             $inputs['manhom'] =  isset($inputs['manhom']) ? $inputs['manhom'] : '';
+            $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
+
             $modeldb = DiaBanHd::where('level','H')->get();
             $modelnhomtn = NhomHhDvK::where('theodoi','TD')->get();
             $model = GiaHhDvKCt::join('giahhdvk','giahhdvk.mahs','=','giahhdvkct.mahs')
                 ->join('nhomhhdvk','nhomhhdvk.manhom','=','giahhdvkct.manhom')
                 ->join('diabanhd','diabanhd.district','=','giahhdvk.district')
                 ->select('giahhdvkct.*','giahhdvk.soqd','giahhdvk.ngayapdung','diabanhd.diaban',
-                    'nhomhhdvk.tennhom')
+                    'nhomhhdvk.tennhom', 'giahhdvk.thang','giahhdvk.nam')
                 ->whereIn('giahhdvk.trangthai',['HT','CB']);
-            if($inputs['nam'] != '')
-                $model = $model->whereYear('giahhdvk.ngayapdung',$inputs['nam']);
+            if($inputs['thang'] != 'all')
+                $model = $model->where('giahhdvk.thang',$inputs['thang']);
+            if($inputs['nam'] != 'all')
+                $model = $model->where('giahhdvk.nam',$inputs['nam']);
             if($inputs['district'] != '')
                 $model = $model->where('giahhdvk.district','=',$inputs['district']);
             if($inputs['manhom'] != '')
@@ -253,12 +258,10 @@ class GiaHhDvKController extends Controller
             if($inputs['tenhhdv'] != '')
                 $model = $model->where('giahhdvkct.tenhhdv','like','%'.$inputs['tenhhdv'].'%');
 
-            $model = $model->get();
+            $model = $model->paginate($inputs['paginate']);
+
             return view('manage.dinhgia.giahhdvk.timkiem.index')
-                ->with('nam',$inputs['nam'])
-                ->with('tenhhdv',$inputs['tenhhdv'])
-                ->with('district',$inputs['district'])
-                ->with('manhom',$inputs['manhom'])
+                ->with('inputs',$inputs)
                 ->with('model',$model)
                 ->with('modeldb',$modeldb)
                 ->with('modelnhomtn',$modelnhomtn)

@@ -23,7 +23,7 @@
             <i>{{$inputs['diadanh']}}, ngày .... tháng .... năm ....</i>
         </td>
     </tr>
-</table>>
+</table>
 <p style="font-weight: bold;font-size: 16px;text-transform: uppercase;text-align: center">THÔNG TIN VỀ GIÁ ĐẤU GIÁ ĐẤT</p>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;" id="data">
     <tr>

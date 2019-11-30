@@ -27,9 +27,10 @@
             var current_path_url = '/dichvukcb?';
             var nam = '&nam='+$('#nam').val();
             var district = '&district='+$('#district').val();
-            var mota = '&mota='+$('#mota').val();
+            var district = '&district='+$('#district').val();
+            var tenbv = '&tenbv='+$('#tenbv').val();
             var paginate = '&paginate='+$('#paginate').val();
-            var url = current_path_url+nam+district+mota+paginate;
+            var url = current_path_url+nam+district+mota+paginate +tenbv;
             window.location.href = url;
         }
 
@@ -39,8 +40,9 @@
                 var nam = '&nam='+$('#nam').val();
                 var district = '&district='+$('#district').val();
                 var mota = '&mota='+$('#mota').val();
+                var tenbv = '&tenbv='+$('#tenbv').val();
                 var paginate = '&paginate='+$('#paginate').val();
-                var url = current_path_url+nam+district+mota+paginate;
+                var url = current_path_url+nam+district+mota+paginate + tenbv;
                 window.location.href = url;
             });
         });
@@ -204,11 +206,11 @@
                             <tr>
                                 <th style="text-align: center" width="2%">STT</th>
                                 <th style="text-align: center" width="5%">Thời điểm</th>
-                                <th style="text-align: center">Địa bàn</th>
-                                <th style="text-align: center">Bệnh viện</th>
+                                <th style="text-align: center" width="15%">Địa bàn</th>
+                                <th style="text-align: center" width="15%">Bệnh viện</th>
                                 <th style="text-align: center">Mô tả</th>
-                                <th style="text-align: center" >Đơn vị tính</th>
-                                <th style="text-align: center" >Đơn giá</th>
+                                <th style="text-align: center" width="10%">Đơn vị tính</th>
+                                <th style="text-align: center" width="10%">Đơn giá</th>
                                 <th style="text-align: center"  width="5%"> Trạng thái</th>
                                 <th style="text-align: center" width="15%"> Thao tác</th>
                             </tr>

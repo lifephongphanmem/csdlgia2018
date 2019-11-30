@@ -116,7 +116,7 @@
                                         '5'=>'5',
                                         '6'=>'6',
                                         '7'=>'7',
-                                        ),2, array('id'=>'district','class'=>'form-control'))!!}
+                                        ),2, array('id'=>'songaylv','class'=>'form-control'))!!}
                                     </div>
                                 </div>
                                 <div class="col-md-6">

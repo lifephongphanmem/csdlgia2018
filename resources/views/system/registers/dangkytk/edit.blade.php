@@ -128,7 +128,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="control-label">Email</label>
-                        {!!Form::text('email', null, array('id' => 'email','class' => 'form-control required','data-mask'=>'email'))!!}
+                        {!!Form::text('email', null, array('id' => 'email','class' => 'form-control required'))!!}
                         @if ($errors->any())
                             <em class="invalid">{{ $errors->first('email') }}</em>
                         @endif
@@ -243,7 +243,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
             <p style="color: #000000">Thông tin đăng nhập</p>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label class="control-label">Username</label>
                         {!!Form::text('username', $modeluser->username, array('id' => 'username','class' => 'form-control required','data-mask'=>"user",'disabled'))!!}
@@ -273,7 +273,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="form-actions">
                 <button type="button" class="btn"><a href="{{url('login')}}">
                         <i class="m-icon-swapleft"></i> Quay lại </a> </button>
-                <button type="submit" class="btn blue pull-right" onclick="validate()">
+                <button type="submit" class="btn blue pull-right" onclick="validate()" id="ClickUpdate" name="submitform">
                     Cập nhật <i class="m-icon-swapright m-icon-white"></i>
                 </button>
             </div>
@@ -348,26 +348,49 @@ License: You must have a valid license purchased only from themeforest(the above
 </script>
 
 <script type="text/javascript">
-    function validate(){
+    function ClickUpdate(){
+        var str = '';
+        var ok = true;
 
-        var validator = $("#update_register").validate({
-            rules: {
-                captcha: "required",
-                tendn: "required",
-                maxa:"required",
-                diachi:"required",
-                emaildn:"required",
-                noidknopthue:"required",
-            },
-            messages: {
-                captcha: "Tích vào đây!!!",
-                tendn: "Nhập thông tin về doanh nghiệp!!!",
-                maxa: "Nhập thông tin mã số thuế!!!",
-                diachi: "Nhập thông tin địa chỉ!!!",
-                email: "Nhập thông tin email!!!",
-                noidknopthue: "Nhập thông tin nơi đăng ký nộp thuế!!!",
-            }
-        });
+        if (!$('#tendn').val()) {
+            str += '  - Tên doanh nghiệp \n';
+            $('#tendn').parent().addClass('has-error');
+            ok = false;
+        }
+        if (!$('#maxa').val()) {
+            str += '  - Mã số thuế \n';
+            $('#maxa').parent().addClass('has-error');
+            ok = false;
+        }
+        if (!$('#diachi').val()) {
+            str += '  - Địa chỉ \n';
+            $('#diachi').parent().addClass('has-error');
+            ok = false;
+        }
+        if (!$('#email').val()) {
+            str += '  - Email \n';
+            $('#email').parent().addClass('has-error');
+            ok = false;
+        }
+        if (!$('#diadanh').val()) {
+            str += '  - Địa danh \n';
+            $('#diadanh').parent().addClass('has-error');
+            ok = false;
+        }
+
+        if (ok == false) {
+            //alert('Các trường: \n' + str + 'Không được để trống');
+            toastr.error('Thông tin: \n' + str + 'Không được để trống','Lỗi!.');
+            $("#update_register").submit(function (e) {
+                e.preventDefault();
+            });
+        }
+        else {
+            $("#update_register").unbind('submit').submit();
+            var btn = document.getElementById('submitform');
+            btn.disabled = true;
+            btn.innerText = 'Loading...'
+        }
     }
 </script>
 @include('system.company.include.js-modal')

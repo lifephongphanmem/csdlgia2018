@@ -63,7 +63,9 @@ Route::resource('userscompany','UsersCompanyController');
 Route::get('userscompany/{id}/permission','UsersCompanyController@permission');
 Route::post('userscompany/phan-quyen','UsersCompanyController@uppermission');
 //EndUsers
-Route::resource('thongtindonvi','ThongTinDonViController');
+Route::get('thongtindonvi','ThongTinDonViController@index');
+Route::get('thongtindonvi/edit','ThongTinDonViController@edit');
+Route::post('thongtindonvi','ThongTinDonViController@update');
 
 //Danh mục ngành nghề
 Route::get('danhmucnganhkd','system\dmnganhnghekd\DmNganhKdController@index');

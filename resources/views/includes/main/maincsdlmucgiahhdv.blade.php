@@ -198,11 +198,11 @@
                         <a href="{{url('tonghopgiagocvlxd')}}">Tổng hợp hồ sơ</a>
                     </li>
                 @endif
-                @if(can('thgiagocvlxd','timkiem'))
-                    <li>
-                        <a href="{{url('timkiemttgiabantaisan')}}">Tìm kiếm thông tin</a>
-                    </li>
-                @endif
+                {{--@if(can('thgiagocvlxd','timkiem'))--}}
+                    {{--<li>--}}
+                        {{--<a href="{{url('timkiemttgiagocvlxd')}}">Tìm kiếm thông tin</a>--}}
+                    {{--</li>--}}
+                {{--@endif--}}
             </ul>
         </li>
     @endif

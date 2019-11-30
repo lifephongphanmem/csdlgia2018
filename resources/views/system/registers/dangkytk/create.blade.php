@@ -73,7 +73,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN LOGIN -->
 <div class="content">
     <!-- BEGIN REGISTER FORM -->
-    {!! Form::open(['url'=>'dangkytaikhoantruycap','id' => 'form-register', 'class'=>'form control','files'=>true,'enctype'=>'multipart/form-data']) !!}
+    {!! Form::open(['url'=>'dangkytaikhoantruycap','id' => 'register_create', 'class'=>'form control','files'=>true,'enctype'=>'multipart/form-data']) !!}
     <!--form class="register-form" action="index.html" method="post" novalidate="novalidate" style="display: block;"-->
     <div class="row">
         <div class="col-md-12">
@@ -276,7 +276,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="form-actions">
                 <button type="button" class="btn"><a href="{{url('login')}}">
                         <i class="m-icon-swapleft"></i> Quay lại </a> </button>
-                <button type="submit" class="btn blue pull-right" onclick="validate()">
+                <button type="submit" class="btn blue pull-right" onclick="ClickCreate()" id="submitform" name="submitform">
                     Đăng ký <i class="m-icon-swapright m-icon-white"></i>
                 </button>
             </div>
@@ -290,6 +290,9 @@ License: You must have a valid license purchased only from themeforest(the above
 <div class="copyright">
     Copyright &copy;  2016 - {{date('Y')}} LifeSoft <a href="" >Tiện ích hơn - Hiệu quả hơn</a>
 </div>
+<script>
+
+</script>
 
 <!-- END COPYRIGHT -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
@@ -350,39 +353,97 @@ License: You must have a valid license purchased only from themeforest(the above
     });
 </script>
 
-<script type="text/javascript">
-    function validate(){
-        var validator = $("#form-register").validate({
-            rules: {
-                captcha: "required",
-                tendn: "required",
-                maxa:"required",
-                diachi:"required",
-                emaildn:"required",
-                noidknopthue:"required",
-                tailieu: "required",
-                password :"required",
-                username:"required",
-                cqcq:"required",
-                rpassword:{
-                    equalTo: "#password"
-                }
-            },
-            messages: {
-                captcha: "Tích vào đây!!!",
-                tendn: "Nhập thông tin về doanh nghiệp!!!",
-                maxa: "Nhập thông tin mã số thuế!!!",
-                diachi: "Nhập thông tin địa chỉ!!!",
-                email: "Nhập thông tin email!!!",
-                noidknopthue: "Nhập thông tin nơi đăng ký nộp thuế!!!",
-                tailieu: "Bạn cần chia sẻ giấy chứng nhận đăng ký kinh doanh!!!",
-                username:"Nhập username đăng ký!!!",
-                password :" Nhập mật khẩu!!!",
-                mahuyen:"Nhập thông tin cơ quan quản lý",
-                rpassword :" Nhập lại mật khẩu không chính xác!!!!"
-            }
-        });
+{{--<script type="text/javascript">--}}
+    {{--function validate(){--}}
+        {{--var validator = $("#form-register").validate({--}}
+            {{--rules: {--}}
+                {{--captcha: "required",--}}
+                {{--tendn: "required",--}}
+                {{--maxa:"required",--}}
+                {{--diachi:"required",--}}
+                {{--emaildn:"required",--}}
+                {{--noidknopthue:"required",--}}
+                {{--tailieu: "required",--}}
+                {{--password :"required",--}}
+                {{--username:"required",--}}
+                {{--cqcq:"required",--}}
+                {{--rpassword:{--}}
+                    {{--equalTo: "#password"--}}
+                {{--}--}}
+            {{--},--}}
+            {{--messages: {--}}
+                {{--captcha: "Tích vào đây!!!",--}}
+                {{--tendn: "Nhập thông tin về doanh nghiệp!!!",--}}
+                {{--maxa: "Nhập thông tin mã số thuế!!!",--}}
+                {{--diachi: "Nhập thông tin địa chỉ!!!",--}}
+                {{--email: "Nhập thông tin email!!!",--}}
+                {{--noidknopthue: "Nhập thông tin nơi đăng ký nộp thuế!!!",--}}
+                {{--tailieu: "Bạn cần chia sẻ giấy chứng nhận đăng ký kinh doanh!!!",--}}
+                {{--username:"Nhập username đăng ký!!!",--}}
+                {{--password :" Nhập mật khẩu!!!",--}}
+                {{--mahuyen:"Nhập thông tin cơ quan quản lý",--}}
+                {{--rpassword :" Nhập lại mật khẩu không chính xác!!!!"--}}
+            {{--}--}}
+        {{--});--}}
+    {{--}--}}
+{{--</script>--}}
+<script>
+    function ClickCreate(){
+        var str = '';
+        var ok = true;
+
+        if (!$('#tendn').val()) {
+            str += '  - Tên doanh nghiệp \n';
+            $('#tendn').parent().addClass('has-error');
+            ok = false;
+        }
+        if (!$('#maxa').val()) {
+            str += '  - Mã số thuế \n';
+            $('#maxa').parent().addClass('has-error');
+            ok = false;
+        }
+        if (!$('#diachi').val()) {
+            str += '  - Địa chỉ \n';
+            $('#diachi').parent().addClass('has-error');
+            ok = false;
+        }
+        if (!$('#email').val()) {
+            str += '  - Email \n';
+            $('#email').parent().addClass('has-error');
+            ok = false;
+        }
+        if (!$('#diadanh').val()) {
+            str += '  - Địa danh \n';
+            $('#diadanh').parent().addClass('has-error');
+            ok = false;
+        }
+        if (!$('#username').val()) {
+            str += '  - Username \n';
+            $('#username').parent().addClass('has-error');
+            ok = false;
+        }
+        if (!$('#password').val()) {
+            str += '  - Password \n';
+            $('#password').parent().addClass('has-error');
+            ok = false;
+        }
+
+
+        if (ok == false) {
+            //alert('Các trường: \n' + str + 'Không được để trống');
+            toastr.error('Thông tin: \n' + str + 'Không được để trống','Lỗi!.');
+            $("#register_create").submit(function (e) {
+                e.preventDefault();
+            });
+        }
+        else {
+            $("#register_create").unbind('submit').submit();
+            var btn = document.getElementById('submitform');
+            btn.disabled = true;
+            btn.innerText = 'Loading...'
+        }
     }
+
 </script>
 @include('system.company.include.js-modal')
 @include('includes.script.create-header-scripts')

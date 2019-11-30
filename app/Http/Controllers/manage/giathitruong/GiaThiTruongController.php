@@ -242,7 +242,7 @@ class GiaThiTruongController extends Controller
             $inputs = $request->all();
             $model = GiaThiTruong::where('id',$inputs['idhuyhoanthanh'])
                 ->first();
-            $model->trangthai = 'HHT';
+            $model->trangthai = 'CHT';
             $model->save();
             return redirect('kekhaigiathitruong?&nam='.$model->nam.'&mahuyen='.$model->mahuyen);
         }else

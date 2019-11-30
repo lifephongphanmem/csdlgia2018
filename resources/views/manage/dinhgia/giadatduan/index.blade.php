@@ -45,7 +45,7 @@
         function resettt(){
             window.location.href = '/giadatdiaban';
         }
-        function confirmDelete(id) {
+        function getId(id) {
             document.getElementById("iddelete").value=id;
         }
         function getIdHt(id) {
@@ -307,7 +307,7 @@
     </div>
     @include('includes.e.modal-attackfile')
     <!--Modal Delete-->
-    <div id="delete-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    <div id="destroy-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
         {!! Form::open(['url'=>'thongtingiadatduan/delete','id' => 'frm_delete'])!!}
         <div class="modal-dialog">
             <div class="modal-content">

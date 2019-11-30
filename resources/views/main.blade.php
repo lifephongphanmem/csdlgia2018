@@ -215,7 +215,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <i class="icon-settings"></i> Thông tin tài khoản</a>
                         </li>
                         @endif
-                        @if(session('admin')->level == 'H' || session('admin')->level =='X')
+                        @if(session('admin')->level =='X')
                         <li>
                             <a href="{{url('thongtindonvi')}}">
                                 <i class="icon-settings"></i> Thông tin đơn vị</a>

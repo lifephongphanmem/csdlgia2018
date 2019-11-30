@@ -439,4 +439,24 @@ Route::get('giathuenhacongvu/nhandulieutuexcel','manage\thuenhacongvu\GiaThueNha
 Route::post('giathuenhacongvu/import_excel','manage\thuenhacongvu\GiaThueNhaCongVuController@importexcel');
 Route::get('giathuenhacongvu/prints','manage\thuenhacongvu\GiaThueNhaCongVuController@BcGiaThueNhaCongVu');
 
+//Giá sản phẩm dịch vụ công ích
+Route::get('giaspdvci','manage\giaspdvci\GiaSpDvCiController@index');
+Route::get('giaspdvci/create','manage\giaspdvci\GiaSpDvCiController@create');
+Route::post('giaspdvci','manage\giaspdvci\GiaSpDvCiController@store');
+Route::get('giaspdvci/{id}/edit','manage\giaspdvci\GiaSpDvCiController@edit');
+Route::patch('giaspdvci/{id}','manage\giaspdvci\GiaSpDvCiController@update');
+Route::get('giaspdvci/{id}','manage\giaspdvci\GiaSpDvCiController@show');
+Route::post('giaspdvci/destroy','manage\giaspdvci\GiaSpDvCiController@destroy');
+
+Route::post('giaspdvci/congbo','manage\giaspdvci\GiaSpDvCiController@congbo');
+Route::post('giaspdvci/huycongbo','manage\giaspdvci\GiaSpDvCiController@huycongbo');
+Route::post('giaspdvci/hoanthanh','manage\giaspdvci\GiaSpDvCiController@hoanthanh');
+Route::post('giaspdvci/huyhoanthanh','manage\giaspdvci\GiaSpDvCiController@huyhoanthanh');
+Route::get('tkgiaspdvci','manage\giaspdvci\GiaSpDvCiController@search');
+
+
+Route::post('giaspdvcict/store','manage\giaspdvci\GiaSpDvCiCtController@store');
+Route::get('giaspdvcict/edit','manage\giaspdvci\GiaSpDvCiCtController@edit');
+Route::post('giaspdvcict/update','manage\giaspdvci\GiaSpDvCiCtController@update');
+
 ?>

@@ -384,19 +384,19 @@
                                 Giá SP, DVCI, DVSNC, HH-DV đặt hàng <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
-                                @if(can('dmgiaspdvci','index'))
-                                    <li>
-                                        <a href="javascript:;">Danh mục SP, DVCI, DVSNC, HH-DV đặt hàng</a>
-                                    </li>
-                                @endif
+                                {{--@if(can('dmgiaspdvci','index'))--}}
+                                    {{--<li>--}}
+                                        {{--<a href="javascript:;">Danh mục SP, DVCI, DVSNC, HH-DV đặt hàng</a>--}}
+                                    {{--</li>--}}
+                                {{--@endif--}}
                                 @if(can('kkgiaspdvci','index'))
                                     <li>
-                                        <a href="javascript:;">Thông tin giá SP, DVCI, DVSNC, HH-DV đặt hàng</a>
+                                        <a href="{{url('giaspdvci')}}">Thông tin giá SP, DVCI, DVSNC, HH-DV đặt hàng</a>
                                     </li>
                                 @endif
                                 @if(can('thgiaspdvci','timkiem'))
                                     <li>
-                                        <a href="javascript:;">Tìm kiếm thông tin</a>
+                                        <a href="{{url('tkgiaspdvci')}}">Tìm kiếm thông tin</a>
                                     </li>
                                 @endif
                             </ul>

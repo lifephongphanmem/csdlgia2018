@@ -39,11 +39,11 @@ class RegisterRequest extends FormRequest
 
                     'diachi'=>'required',
                     'noidknopthue'=>'required',
-                    'giayphepkd'=>'required',
+//                    'giayphepkd'=>'required',
                     'email'=>'required|email',
-                    'chucdanh'=>'required',
-                    'nguoiky'=>'required',
-                    'diadanh'=>'required',
+//                    'chucdanh'=>'required',
+//                    'nguoiky'=>'required',
+//                    'diadanh'=>'required',
                 ];
             }
             case 'POST':
@@ -56,12 +56,12 @@ class RegisterRequest extends FormRequest
                     'password' => 'required|min:6',
                     'rpassword' => 'required_with:password|same:password|min:6|required',
 
-                    'noidknopthue'=>'required',
-                    'giayphepkd'=>'required',
+//                    'noidknopthue'=>'required',
+//                    'giayphepkd'=>'required',
                     'email'=>'required|email',
                     'tailieu'=>'required',
-                    'chucdanh'=>'required',
-                    'nguoiky'=>'required',
+//                    'chucdanh'=>'required',
+//                    'nguoiky'=>'required',
                     'diadanh'=>'required',
                 ];
             }
@@ -84,11 +84,11 @@ class RegisterRequest extends FormRequest
             'rpassword.required'=>'Mật khẩu nhập lại không được để trống',
             'rpassword.required_with'=>'Mật khẩu nhập lại không chính xác',
 
-            'noidknopthue.required'=>'Mật khẩu của doanh nghiệp không được để trống',
-            'giayphepkd.required'=>'Thông tin giấy đăng ký kinh doanh không được để trống',
+//            'noidknopthue.required'=>'Mật khẩu của doanh nghiệp không được để trống',
+//            'giayphepkd.required'=>'Thông tin giấy đăng ký kinh doanh không được để trống',
             'tailieu.required'=>'File giấy đăng ký kinh doanh không được để trống',
-            'chucdanh.required'=>'Chức danh người ký kinh doanh không được để trống',
-            'nguoiky.required'=>'Họ và tên người ký không được để trống',
+//            'chucdanh.required'=>'Chức danh người ký kinh doanh không được để trống',
+//            'nguoiky.required'=>'Họ và tên người ký không được để trống',
             'diadanh.required'=>'Địa danh không được để trống',
             'email.required'=>'Email quản lý không được để trống',
             'email.email'=>'Không đúng email',
