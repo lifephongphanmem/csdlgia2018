@@ -20,13 +20,18 @@ class CreateGiahhdvkctTable extends Migration
             $table->string('mahuyen')->nullable();
             $table->string('district')->nullable();
             $table->string('manhom')->nullable();
+            $table->string('nhom')->nullable();
             $table->string('mahhdv')->nullable();
             $table->string('tenhhdv')->nullable();
-            $table->string('dacdiemkt')->nullable();
+            $table->text('dacdiemkt')->nullable();
             $table->string('xuatxu')->nullable();
             $table->string('dvt')->nullable();
             $table->string('gialk')->nullable();
             $table->string('gia')->nullable();
+            $table->string('loaigia')->nullable();
+            $table->string('nguontt')->nullable();
+            $table->text('ghichu')->nullable();
+            $table->string('trangthai')->nullable();
             $table->timestamps();
         });
     }

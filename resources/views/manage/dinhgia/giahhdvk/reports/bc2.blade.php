@@ -62,21 +62,29 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($model as $key=>$tt)
-            <tr>
-                <td style="text-align: center">{{$key+1}}</td>
-                <td style="text-align: center">{{$tt->mahhdv}}</td>
-                <td class="active" style="font-weight: bold">{{$tt->tenhhdv}}</td>
-                <td>{{$tt->dacdiemkt}}</td>
-                <td style="text-align: center">{{$tt->dvt}}</td>
-                <td style="text-align: center">{{$tt->loaigia}}</td>
-                <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->gialk,5)}}</td>
-                <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->gia,5)}}</td>
-                <td>{{dinhdangsothapphan($tt->gia-$tt->gialk,5)}}</td>
-                <td>{{$tt->gialk == 0 ? '' : dinhdangsothapphan(($tt->gia-$tt->gialk)/$tt->gialk,5)}}</td>
-                <td></td>
-                <td></td>
-            </tr>
+    @foreach($modelgr as $sttgr=>$gr)
+        <tr>
+            <td>{{romanNumerals($sttgr + 1)}}</td>
+            <td style="text-align: center">{{$gr->manhom}}</td>
+            <td colspan="10" style="font-weight: bold">{{$gr->nhom}}</td>
+        </tr>
+        @if($ttct = $model->where('manhom',$gr->manhom))@endif
+            @foreach($ttct as $key=>$tt)
+                <tr>
+                    <td style="text-align: center">{{$key+1}}</td>
+                    <td style="text-align: center">{{$tt->mahhdv}}</td>
+                    <td class="active" style="font-weight: bold">{{$tt->tenhhdv}}</td>
+                    <td>{{$tt->dacdiemkt}}</td>
+                    <td style="text-align: center">{{$tt->dvt}}</td>
+                    <td style="text-align: center">{{$tt->loaigia}}</td>
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->gialk,5)}}</td>
+                    <td style="text-align: right;font-weight: bold">{{dinhdangsothapphan($tt->gia,5)}}</td>
+                    <td>{{dinhdangsothapphan($tt->gia-$tt->gialk,5)}}</td>
+                    <td>{{$tt->gialk == 0 ? '' : dinhdangsothapphan(($tt->gia-$tt->gialk)/$tt->gialk,5)}}</td>
+                    <td>{{$tt->nguontt}}</td>
+                    <td>{{$tt->ghichu}}</td>
+                </tr>
+            @endforeach
         @endforeach
     </tbody>
 </table>

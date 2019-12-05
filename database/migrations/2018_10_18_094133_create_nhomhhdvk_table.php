@@ -15,8 +15,8 @@ class CreateNhomhhdvkTable extends Migration
     {
         Schema::create('nhomhhdvk', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('manhom')->nullable();
-            $table->string('tennhom')->nullable();
+            $table->string('matt')->nullable();
+            $table->string('tentt')->nullable();
             $table->string('theodoi')->nullable();
             $table->timestamps();
         });

@@ -29,9 +29,9 @@
                     <div class="form-group">
                         <div class="col-md-12">
                             <label><b>Nhóm hàng hóa dịch vụ khác</b></label>
-                            <select name="manhom" id="manhom" class="form-control">
+                            <select name="matt" id="matt" class="form-control">
                                 @foreach($modelnhomhhdvk as $nhomhhdvk)
-                                <option value="{{$nhomhhdvk->manhom}}">{{$nhomhhdvk->tennhom}}</option>
+                                <option value="{{$nhomhhdvk->matt}}">{{$nhomhhdvk->tentt}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -74,9 +74,9 @@
                     <div class="form-group">
                         <div class="col-md-12">
                             <label><b>Nhóm hàng hóa dịch vụ khác theo tháng</b></label>
-                            <select name="manhom" id="manhom" class="form-control">
+                            <select name="matt" id="matt" class="form-control">
                                 @foreach($modelnhomhhdvk as $nhomhhdvk)
-                                    <option value="{{$nhomhhdvk->manhom}}">{{$nhomhhdvk->tennhom}}</option>
+                                    <option value="{{$nhomhhdvk->matt}}">{{$nhomhhdvk->tentt}}</option>
                                 @endforeach
                             </select>
                         </div>

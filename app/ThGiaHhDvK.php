@@ -9,10 +9,11 @@ class ThGiaHhDvK extends Model
     protected $table = 'thgiahhdvk';
     protected $fillable = [
         'id',
+        'sobc',
         'ngaybc',
         'ngaychotbc',
         'ttbc',
-        'manhom',
+        'matt',
         'mahs',
         'thang',
         'nam',

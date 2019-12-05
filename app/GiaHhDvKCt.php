@@ -14,6 +14,7 @@ class GiaHhDvKCt extends Model
         'mahuyen',
         'district',
         'manhom',
+        'nhom',
         'mahhdv',
         'tenhhdv',
         'dacdiemkt',
@@ -21,5 +22,9 @@ class GiaHhDvKCt extends Model
         'xuatxu',
         'gialk',
         'gia',
+        'loaigia',
+        'nguontt',
+        'ghichu',
+        'trangthai',
     ];
 }

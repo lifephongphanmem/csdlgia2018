@@ -194,7 +194,7 @@ Route::get('/giahhdvkhacctdf/edit','GiaHhDvKCtDfController@edit');
 Route::get('/giahhdvkhacctdf/update','GiaHhDvKCtDfController@update');
 
 Route::get('/giahhdvkhacct/edit','GiaHhDvKCtController@edit');
-Route::get('/giahhdvkhacct/update','GiaHhDvKCtController@update');
+Route::post('/giahhdvkhacct/update','GiaHhDvKCtController@update');
 
 Route::get('reportshanghoadichvukhac','ReportsHhDvKController@index');
 Route::post('reportshanghoadichvukhac/bc1','ReportsHhDvKController@bc1');
@@ -207,17 +207,19 @@ Route::post('tonghopgiahhdvk/delete','ThGiaHhDvKController@destroy');
 Route::post('tonghopgiahhdvk/hoanthanh','ThGiaHhDvKController@hoanthanh');
 Route::post('tonghopgiahhdvk/huyhoanthanh','ThGiaHhDvKController@huyhoanthanh');
 Route::post('tonghopgiahhdvk/congbo','ThGiaHhDvKController@congbo');
-Route::post('tonghopgiahhdvkthang/create','ThGiaHhDvKController@createthang');
+//Route::post('tonghopgiahhdvkthang/create','ThGiaHhDvKController@createthang');
+Route::post('tonghopgiahhdvkthang/create','ThGiaHhDvKController@tonghopthang');
 
 Route::get('thgiahhdvk/{id}/exportXML','ThGiaHhDvKController@exportXML');
 Route::get('thgiahhdvk/{id}/exportEx','ThGiaHhDvKController@exportEx');
 
 
-Route::get('thgiahhdvkctdf/edit','ThGiaHhDvKCtDfController@show');
-Route::get('thgiahhdvkctdf/update','ThGiaHhDvKCtDfController@update');
+Route::get('/thgiahhdvkct/edit','ThGiaHhDvKCtController@edit');
+Route::post('/thgiahhdvkct/update','ThGiaHhDvKCtController@update');
+//
+//Route::get('thgiahhdvkctdf/edit','ThGiaHhDvKCtDfController@show');
+//Route::get('thgiahhdvkctdf/update','ThGiaHhDvKCtDfController@update');
 
-Route::get('thgiahhdvkct/edit','ThGiaHhDvKCtController@show');
-Route::get('thgiahhdvkct/update','ThGiaHhDvKCtController@update');
         //End Tổng hợp
 
 //Phí Lệ phí

@@ -13,14 +13,12 @@ class DmHhDvKController extends Controller
     public function index(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
-            $modelnhom = NhomHhDvK::where('manhom',$inputs['manhom'])->first();
-            $model = DmHhDvK::where('dmhhdvk.manhom',$inputs['manhom'])
-                ->join('nhomhhdvk','nhomhhdvk.manhom','=','dmhhdvk.manhom')
-                ->select('dmhhdvk.*','nhomhhdvk.tennhom')
+            $modelnhom = NhomHhDvK::where('matt',$inputs['matt'])->first();
+            $model = DmHhDvK::where('matt',$inputs['matt'])
                 ->get();
             return view('manage.dinhgia.giahhdvk.danhmuc.chitiet.index')
                 ->with('model',$model)
-                ->with('manhom',$inputs['manhom'])
+                ->with('matt',$inputs['matt'])
                 ->with('modelnhom',$modelnhom)
                 ->with('pageTitle','Thông tin chi tiết hàng hóa dịch vụ');
 
@@ -56,25 +54,33 @@ class DmHhDvKController extends Controller
         $inputs = $request->all();
         $id = $inputs['id'];
         $model = DmHhDvK::findOrFail($id);
-        $check = 0;
-        $check1 = 0;
 
         $result['message'] = '<div class="modal-body" id="edit-tt">';
 
         $result['message'] .= '<div class="row">';
         $result['message'] .= '<div class="col-md-6">';
         $result['message'] .= '<div class="form-group">';
+        $result['message'] .= '<label class="control-label">Mã nhóm hàng hóa<span class="require">*</span></label>';
+        $result['message'] .= '<input type="text" name="edit_manhom" id="edit_manhom" class="form-control" value="'.$model->manhom.'"/>';
+        $result['message'] .= '</div>';
+        $result['message'] .= '</div>';
+        $result['message'] .= '</div>';
+
+        $result['message'] .= '<div class="row">';
+        $result['message'] .= '<div class="col-md-12">';
+        $result['message'] .= '<div class="form-group">';
+        $result['message'] .= '<label class="control-label">Nhóm hàng hóa<span class="require">*</span></label>';
+        $result['message'] .= '<input type="text" name="edit_nhom" id="edit_nhom" class="form-control" value="'.$model->nhom.'"/>';
+        $result['message'] .= '</div>';
+        $result['message'] .= '</div>';
+
+        $result['message'] .= '<div class="col-md-6">';
+        $result['message'] .= '<div class="form-group">';
         $result['message'] .= '<label class="control-label">Mã hàng hóa dịch vụ<span class="require">*</span></label>';
         $result['message'] .= '<input type="text" id="edit_mahhdv" name="edit_mahhdv"  class="form-control" value="'.$model->mahhdv.'">';
         $result['message'] .= '</div>';
         $result['message'] .= '</div>';
-        $result['message'] .= '<div class="col-md-6">';
-        $result['message'] .= '<div class="form-group">';
-        $result['message'] .= '<label class="control-label">Đơn vị tính<span class="require">*</span></label>';
-        $result['message'] .= '<input type="text" name="edit_dvt" id="edit_dvt" class="form-control" value="'.$model->dvt.'"/>';
 
-        $result['message'] .= '</div>';
-        $result['message'] .= '</div>';
         $result['message'] .= '</div>';
 
         $result['message'] .= '<div class="row">';
@@ -93,11 +99,13 @@ class DmHhDvKController extends Controller
         $result['message'] .= '</div>';
 
         $result['message'] .= '<div class="row">';
-        $result['message'] .= '<div class="col-md-12">';
+        $result['message'] .= '<div class="col-md-6">';
         $result['message'] .= '<div class="form-group">';
-        $result['message'] .= '<label class="control-label">Nguồn gốc / Xuất xứ</label>';
-        $result['message'] .= '<input type="text" name="edit_xuatxu" id="edit_xuatxu" class="form-control" value="'.$model->xuatxu.'"/>';
-        $result['message'] .= '</div></div>';
+        $result['message'] .= '<label class="control-label">Đơn vị tính<span class="require">*</span></label>';
+        $result['message'] .= '<input type="text" name="edit_dvt" id="edit_dvt" class="form-control" value="'.$model->dvt.'"/>';
+
+        $result['message'] .= '</div>';
+        $result['message'] .= '</div>';
         $result['message'] .= '</div>';
 
         $result['message'] .= '<div class="row">';
@@ -126,15 +134,17 @@ class DmHhDvKController extends Controller
         if (Session::has('admin')) {
             $inputs = $request->all();
             $id = $inputs['edit_id'];
+            $inputs['manhom'] = $inputs['edit_manhom'];
             $inputs['mahhdv'] = $inputs['edit_mahhdv'];
+            $inputs['nhom'] = $inputs['edit_nhom'];
             $inputs['dvt'] = $inputs['edit_dvt'];
             $inputs['tenhhdv'] = $inputs['edit_tenhhdv'];
             $inputs['dacdiemkt'] = $inputs['edit_dacdiemkt'];
-            $inputs['xuatxu'] = $inputs['edit_xuatxu'];
+//            $inputs['xuatxu'] = $inputs['edit_xuatxu'];
             $inputs['theodoi'] = $inputs['edit_theodoi'];
             $model = DmHhDvK::findOrFail($id);
             $model->update($inputs);
-            return redirect('dmhanghoadichvu?&manhom='.$model->manhom);
+            return redirect('dmhanghoadichvu?&matt='.$model->matt);
         }else
             return view('errors.notlogin');
     }

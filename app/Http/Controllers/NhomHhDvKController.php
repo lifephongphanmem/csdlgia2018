@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DmHhDvK;
 use App\NhomHhDvK;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -47,26 +48,26 @@ class NhomHhDvKController extends Controller
         $inputs = $request->all();
         $id = $inputs['id'];
         $model = NhomHhDvK::findOrFail($id);
-        $check = 0;
-        $check1 = 0;
+        $modelct = DmHhDvK::where('matt',$model->matt)
+            ->count();
 
         $result['message'] = '<div class="modal-body" id="edit-tt">';
         $result['message'] .= '<div class="row">';
         $result['message'] .= '<div class="col-md-12">';
         $result['message'] .= '<div class="form-group">';
-        $result['message'] .= '<label class="control-label">Mã nhóm<span class="require">*</span></label>';
-        if($check == 0 && $check1 == 0)
-            $result['message'] .= '<input type="text" name="edit_manhom" id="edit_manhom" class="form-control" value="'.$model->manhom.'"/>';
+        $result['message'] .= '<label class="control-label">Mã thông tư<span class="require">*</span></label>';
+        if($modelct == 0)
+            $result['message'] .= '<input type="text" name="edit_matt" id="edit_matt" class="form-control" value="'.$model->matt.'"/>';
         else
-            $result['message'] .= '<label  class="form-control" style="color: #0000ff">'.$model->manhom.'</label>';
+            $result['message'] .= '<label  class="form-control" style="color: #0000ff">'.$model->matt.'</label>';
         $result['message'] .= '</div></div>';
         $result['message'] .= '</div>';
 
         $result['message'] .= '<div class="row">';
         $result['message'] .= '<div class="col-md-12">';
         $result['message'] .= '<div class="form-group">';
-        $result['message'] .= '<label class="control-label">Tên nhóm <span class="require">*</span></label>';
-        $result['message'] .= '<input type="text" name="edit_tennhom" id="edit_tennhom" class="form-control" value="'.$model->tennhom.'"/>';
+        $result['message'] .= '<label class="control-label">Thông tin thông tư <span class="require">*</span></label>';
+        $result['message'] .= '<input type="text" name="edit_tentt" id="edit_tentt" class="form-control" value="'.$model->tentt.'"/>';
         $result['message'] .= '</div></div>';
         $result['message'] .= '</div>';
         $result['message'] .= '<div class="row">';
@@ -95,8 +96,8 @@ class NhomHhDvKController extends Controller
         if(Session::has('admin')){
             $inputs = $request->all();
             $id = $inputs['edit_id'];
-            $inputs['manhom']= $inputs['edit_manhom'];
-            $inputs['tennhom'] = $inputs['edit_tennhom'];
+            $inputs['matt']= $inputs['edit_matt'];
+            $inputs['tentt'] = $inputs['edit_tentt'];
             $inputs['theodoi'] = $inputs['edit_theodoi'];
             $model = NhomHhDvK::findOrFail($id);
             $model->update($inputs);

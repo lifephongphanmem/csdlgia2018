@@ -28,11 +28,11 @@
         function ClickCreate(){
             var valid=true;
             var message='';
-            var tennhom = $('#tennhom').val();
-            var manhom = $('#manhom').val();
+            var tentt = $('#tentt').val();
+            var matt = $('#matt').val();
 
 
-            if(tennhom == '' || manhom == ''){
+            if(matt == '' || tentt == ''){
                 valid=false;
                 message +='Các thông tin nhập không được bỏ trống \n';
             }
@@ -48,7 +48,7 @@
         function ClickUpdate(){
             var valid=true;
             var message='';
-            var tennhom = $('#edit_tennhom').val();
+            var tentt = $('#edit_tentt').val();
 
             if(tennhom == '' ){
                 valid=false;
@@ -109,8 +109,8 @@
                         <thead>
                         <tr>
                             <th style="text-align: center" width="2%">STT</th>
-                            <th style="text-align: center">Mã nhóm</th>
-                            <th style="text-align: center">Tên nhóm</th>
+                            <th style="text-align: center">Mã thông tư</th>
+                            <th style="text-align: center">Tên thông tư</th>
                             <th style="text-align: center">Theo dõi</th>
                             <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
@@ -119,8 +119,8 @@
                         @foreach($model as $key=>$tt)
                         <tr class="odd gradeX">
                             <td style="text-align: center">{{$key + 1}}</td>
-                            <td>{{$tt->manhom}}</td>
-                            <td class="active" >{{$tt->tennhom}}</td>
+                            <td>{{$tt->matt}}</td>
+                            <td class="active" >{{$tt->tentt}}</td>
                             <td style="text-align: center">
                                 @if($tt->theodoi == 'KTD')
                                     <span class="badge badge-active">Không theo dõi</span>
@@ -133,7 +133,7 @@
                                 <button type="button" onclick="ClickEdit('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
                                 @endif
                                 @if($tt->theodoi == 'TD')
-                                <a href="{{url('dmhanghoadichvu?&manhom='.$tt->manhom)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
+                                <a href="{{url('dmhanghoadichvu?&matt='.$tt->matt)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                 @endif
                             </td>
                         </tr>
@@ -164,16 +164,16 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="control-label">Mã nhóm<span class="require">*</span></label>
-                                <input type="text" name="manhom" id="manhom" class="form-control">
+                                <label class="control-label">Mã thông tư<span class="require">*</span></label>
+                                <input type="text" name="matt" id="matt" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="control-label">Tên nhóm<span class="require">*</span></label>
-                                <input type="text" name="tennhom" id="tennhom" class="form-control">
+                                <label class="control-label">Tên thông tư<span class="require">*</span></label>
+                                <input type="text" name="tentt" id="tentt" class="form-control">
                             </div>
                         </div>
                     </div>

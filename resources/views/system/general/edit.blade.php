@@ -64,28 +64,28 @@
                             <!--/span-->
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Thủ trưởng<span class="require">*</span></label>
-                                    {!!Form::text('thutruong', null , array('id' => 'thutruong','class' => 'form-control required'))!!}
-                                </div>
-                            </div>
-                            <!--/span-->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Kế toán<span class="require">*</span></label>
-                                    {!!Form::text('ketoan', null , array('id' => 'ketoan','class' => 'form-control required'))!!}
-                                </div>
-                            </div>
-                            <!--/span-->
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Người lập biểu<span class="require">*</span></label>
-                                    {!!Form::text('nguoilapbieu', null , array('id' => 'nguoilapbieu','class' => 'form-control required'))!!}
-                                </div>
-                            </div>
+                            {{--<div class="col-md-6">--}}
+                                {{--<div class="form-group">--}}
+                                    {{--<label class="control-label">Thủ trưởng<span class="require">*</span></label>--}}
+                                    {{--{!!Form::text('thutruong', null , array('id' => 'thutruong','class' => 'form-control required'))!!}--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<!--/span-->--}}
+                            {{--<div class="col-md-6">--}}
+                                {{--<div class="form-group">--}}
+                                    {{--<label class="control-label">Kế toán<span class="require">*</span></label>--}}
+                                    {{--{!!Form::text('ketoan', null , array('id' => 'ketoan','class' => 'form-control required'))!!}--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<!--/span-->--}}
+                        {{--</div>--}}
+                        {{--<div class="row">--}}
+                            {{--<div class="col-md-6">--}}
+                                {{--<div class="form-group">--}}
+                                    {{--<label class="control-label">Người lập biểu<span class="require">*</span></label>--}}
+                                    {{--{!!Form::text('nguoilapbieu', null , array('id' => 'nguoilapbieu','class' => 'form-control required'))!!}--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Địa danh<span class="require">*</span></label>

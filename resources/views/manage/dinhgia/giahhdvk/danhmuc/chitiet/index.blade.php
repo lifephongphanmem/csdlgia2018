@@ -91,7 +91,7 @@
 @section('content')
 
     <h3 class="page-title">
-        {{$modelnhom->tennhom}}<small>&nbsp;chi tiết</small>
+        {{$modelnhom->tentt}}<small>&nbsp;chi tiết</small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -113,7 +113,8 @@
                         <thead>
                         <tr>
                             <th style="text-align: center" width="2%">STT</th>
-                            <th style="text-align: center">Tên nhóm</th>
+                            <th style="text-align: center">Mã Nhóm</th>
+                            <th style="text-align: center">Nhóm</th>
                             <th style="text-align: center">Mã hàng hóa<br>dịch vụ</th>
                             <th style="text-align: center">Tên hàng hóa dịch vụ</th>
                             <th style="text-align: center">Đặc điểm kỹ thuật</th>
@@ -126,7 +127,8 @@
                         @foreach($model as $key=>$tt)
                         <tr class="odd gradeX">
                             <td style="text-align: center">{{$key + 1}}</td>
-                            <td class="active" >{{$tt->tennhom}}</td>
+                            <td class="active" >{{$tt->manhom}}</td>
+                            <td class="active" >{{$tt->nhom}}</td>
                             <td style="text-align: center">{{$tt->mahhdv}}</td>
                             <td class="success" style="font-weight: bold">{{$tt->tenhhdv}}</td>
                             <td>{{$tt->dacdiemkt}}</td>
@@ -171,14 +173,24 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">Mã hàng hóa dịch vụ<span class="require">*</span></label>
-                                <input type="text" name="mahhdv" id="mahhdv" class="form-control">
+                                <label class="control-label">Mã nhóm hàng hóa<span class="require">*</span></label>
+                                <input type="text" name="manhom" id="manhom" class="form-control require">
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">Nhóm hàng hóa<span class="require">*</span></label>
+                                <input type="text" name="nhom" id="nhom" class="form-control require">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">Đơn vị tính<span class="require">*</span></label>
-                                <input type="text" name="dvt" id="dvt" class="form-control require">
+                                <label class="control-label">Mã hàng hóa dịch vụ<span class="require">*</span></label>
+                                <input type="text" name="mahhdv" id="mahhdv" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -200,15 +212,15 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">Nguồn gốc / Xuất xứ</label>
-                                <input type="text" name="xuatxu" id="xuatxu" class="form-control">
+                                <label class="control-label">Đơn vị tính<span class="require">*</span></label>
+                                <input type="text" name="dvt" id="dvt" class="form-control require">
                             </div>
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="manhom" id="manhom" value="{{$manhom}}">
+                <input type="hidden" name="matt" id="matt" value="{{$matt}}">
                 <div class="modal-footer">
                     <button type="submit" class="btn blue" onclick="ClickCreate()">Đồng ý</button>
                     <button type="button" class="btn default" data-dismiss="modal">Hủy</button>

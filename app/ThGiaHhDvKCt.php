@@ -20,6 +20,8 @@ class ThGiaHhDvKCt extends Model
         'gialk',
         'gia',
         'nguontt',
+        'loaigia',
         'ghichu',
+        'trangthai',
     ];
 }

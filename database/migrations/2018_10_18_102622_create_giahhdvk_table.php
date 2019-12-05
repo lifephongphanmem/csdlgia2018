@@ -19,7 +19,7 @@ class CreateGiahhdvkTable extends Migration
             $table->string('maxa')->nullable();
             $table->string('mahuyen')->nullable();
             $table->string('district')->nullable();
-            $table->string('manhom')->nullable();
+            $table->string('matt')->nullable();
             $table->date('ngayapdung')->nullable();
             $table->string('soqd')->nullable();
             $table->text('ghichu')->nullable();

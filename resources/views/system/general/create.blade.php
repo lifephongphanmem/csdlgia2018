@@ -62,29 +62,29 @@
                                 <!--/span-->
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Thủ trưởng<span class="require">*</span></label>
-                                        <input type="text" class="form-control required" name="thutruong" id="thutruong"/>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Kế toán<span class="require">*</span></label>
-                                        <input type="text" class="form-control required" name="ketoan" id="ketoan">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Người lập biểu<span class="require">*</span></label>
-                                        <input type="text" class="form-control required" name="nguoilapbieu" id="nguoilapbieu"/>
-                                    </div>
-                                </div>
-                                <!--/span-->
+                                {{--<div class="col-md-6">--}}
+                                    {{--<div class="form-group">--}}
+                                        {{--<label class="control-label">Thủ trưởng<span class="require">*</span></label>--}}
+                                        {{--<input type="text" class="form-control required" name="thutruong" id="thutruong"/>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<!--/span-->--}}
+                                {{--<div class="col-md-6">--}}
+                                    {{--<div class="form-group">--}}
+                                        {{--<label class="control-label">Kế toán<span class="require">*</span></label>--}}
+                                        {{--<input type="text" class="form-control required" name="ketoan" id="ketoan">--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<!--/span-->--}}
+                            {{--</div>--}}
+                            {{--<div class="row">--}}
+                                {{--<div class="col-md-6">--}}
+                                    {{--<div class="form-group">--}}
+                                        {{--<label class="control-label">Người lập biểu<span class="require">*</span></label>--}}
+                                        {{--<input type="text" class="form-control required" name="nguoilapbieu" id="nguoilapbieu"/>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<!--/span-->--}}
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Địa danh<span class="require">*</span></label>

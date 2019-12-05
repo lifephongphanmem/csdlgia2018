@@ -13,7 +13,7 @@ class GiaHhDvK extends Model
         'maxa',
         'mahuyen',
         'district',
-        'manhom',
+        'matt',
         'ngayapdung',
         'soqd',
         'ghichu',

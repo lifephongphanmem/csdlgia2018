@@ -18,6 +18,7 @@ class CreateThgiahhdvkctTable extends Migration
             $table->string('mahs')->nullable();
             $table->date('ngaychotbc')->nullable();
             $table->string('manhom')->nullable();
+            $table->string('nhom')->nullable();
             $table->string('mahhdv')->nullable();
             $table->string('tenhhdv')->nullable();
             $table->string('dacdiemkt')->nullable();
@@ -25,6 +26,10 @@ class CreateThgiahhdvkctTable extends Migration
             $table->string('dvt')->nullable();
             $table->string('gialk')->nullable();
             $table->string('gia')->nullable();
+            $table->string('loaigia')->nullable();
+            $table->string('nguontt')->nullable();
+            $table->text('ghichu')->nullable();
+            $table->string('trangthai')->nullable();
             $table->timestamps();
         });
     }

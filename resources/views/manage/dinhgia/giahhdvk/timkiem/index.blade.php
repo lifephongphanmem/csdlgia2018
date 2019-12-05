@@ -55,33 +55,33 @@
                 var url = 'timkiemgiahhdvkhac?' +thang +  nam + district + paginate;
                 window.location.href = url;
             });
-            $('#manhom').change(function() {
+            $('#matt').change(function() {
                 var thang = '&thang=' + $('#thang').val();
                 var district = '&district=' + $('#district').val();
                 var nam = '&nam=' + $('#nam').val();
-                var manhom = '&manhom='+ $('#manhom').val();
+                var matt = '&matt='+ $('#matt').val();
                 var paginate = '&paginate='+$('#paginate').val();
-                var url = 'timkiemgiahhdvkhac?' +thang + nam + district + manhom + paginate;
+                var url = 'timkiemgiahhdvkhac?' +thang + nam + district + matt + paginate;
                 window.location.href = url;
             });
             $('#tenhhdv').change(function() {
                 var district = '&district=' + $('#district').val();
                 var thang = '&thang=' + $('#thang').val();
                 var nam = '&nam=' + $('#nam').val();
-                var manhom = '&manhom='+ $('#manhom').val();
+                var matt = '&matt='+ $('#matt').val();
                 var tenhhdv = '&tenhhdv=' + $('#tenhhdv').val();
                 var paginate = '&paginate='+$('#paginate').val();
-                var url = 'timkiemgiahhdvkhac?' + thang + nam + district + manhom + tenhhdv + paginate;
+                var url = 'timkiemgiahhdvkhac?' + thang + nam + district + matt + tenhhdv + paginate;
                 window.location.href = url;
             });
             $('#paginate').change(function() {
                 var district = '&district=' + $('#district').val();
                 var nam = '&nam=' + $('#nam').val();
                 var thang = '&thang=' + $('#thang').val();
-                var manhom = '&manhom='+ $('#manhom').val();
+                var matt = '&matt='+ $('#matt').val();
                 var tenhhdv = '&tenhhdv=' + $('#tenhhdv').val();
                 var paginate = '&paginate='+$('#paginate').val();
-                var url = 'timkiemgiahhdvkhac?' + thang + nam + district + manhom + tenhhdv + paginate;
+                var url = 'timkiemgiahhdvkhac?' + thang + nam + district + matt + tenhhdv + paginate;
                 window.location.href = url;
             });
 
@@ -140,11 +140,11 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label>Nhóm mặt hàng</label>
-                            <select name="manhom" id="manhom" class="form-control">
-                                <option value="">--Chọn mặt hàng--</option>
+                            <label>Thông tư quyết định</label>
+                            <select name="matt" id="matt" class="form-control">
+                                <option value="">--Chọn thông tư quyết định--</option>
                                 @foreach($modelnhomtn as $nhomtn)
-                                    <option value="{{$nhomtn->manhom}}" {{$nhomtn->manhom == $inputs['manhom'] ? 'selected' : ''}}>{{$nhomtn->tennhom}}</option>
+                                    <option value="{{$nhomtn->matt}}" {{$nhomtn->matt == $inputs['matt'] ? 'selected' : ''}}>{{$nhomtn->tentt}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -210,7 +210,7 @@
                             @endforeach
                         @else
                             <tr>
-                                <td style="text-align: center" colspan="8">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
+                                <td style="text-align: center" colspan="9">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
                             </tr>
                         @endif
                         </tbody>
@@ -231,7 +231,7 @@
                                     {{$model->appends(['nam' => $inputs['nam'],
                                                    'thang'=>$inputs['thang'],
                                                    'district'=>$inputs['district'],
-                                                   'manhom'=>$inputs['manhom'],
+                                                   'matt'=>$inputs['matt'],
                                                    'tenhhdv'=>$inputs['tenhhdv'],
                                                    'paginate'=>$inputs['paginate'],
                                 ])->links()}}

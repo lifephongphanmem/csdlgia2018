@@ -9,92 +9,24 @@ use Illuminate\Support\Facades\Session;
 
 class ThGiaHhDvKCtController extends Controller
 {
-    public function show(Request $request)
-    {
+    public function edit(Request $request){
         $result = array(
             'status' => 'fail',
             'message' => 'error',
         );
-        if(!Session::has('admin')) {
+        if (!Session::has('admin')) {
             $result = array(
                 'status' => 'fail',
                 'message' => 'permission denied',
             );
             die(json_encode($result));
         }
-        //dd($request);
+
         $inputs = $request->all();
+        $id = $inputs['id'];
+        $model = ThGiaHhDvKCt::findOrFail($id);
 
-        if(isset($inputs['id'])){
-
-            $model = ThGiaHhDvKCt::where('id',$inputs['id'])
-                ->first();
-            //dd($model);
-            $result['message'] = '<div class="modal-body" id="tttsedit">';
-
-
-            $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Tên hàng hóa, dịch vụ<span class="require">*</span></label>';
-            $result['message'] .= '<div><label style="color: blue">'.$model->tenhhdv.'</label></div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-
-            $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Đặc điểm kinh tế, kỹ thuật, quy cách<span class="require">*</span></label>';
-            $result['message'] .= '<div><label style="color: blue">'.$model->dacdiemkt.'</label></div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-
-            $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-6">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Đơn vị tính<span class="require">*</span></label>';
-            $result['message'] .= '<div><label style="color:blue;">'.$model->dvt.'</label></div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-
-            $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-6">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Đơn giá liền lề<span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" name="gialkedit" id="gialkedit" class="form-control" data-mask="fdecimal" value="'.$model->gialk.'" style="text-align: right;font-weight: bold"></div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '<div class="col-md-6">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Đơn giá<span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" name="giaedit" id="giaedit" class="form-control" data-mask="fdecimal" value="'.$model->gia.'" style="text-align: right;font-weight: bold"></div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-
-            $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Nguồn thông tin<span class="require">*</span></label>';
-            $result['message'] .= '<input type="text" name="nguonttedit" id="nguonttedit" class="form-control" value="'.$model->nguontt.'"/>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-
-
-            $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Ghi chú<span class="require">*</span></label>';
-            $result['message'] .= '<input type="text" name="ghichuedit" id="ghichuedit" class="form-control" value="'.$model->ghichu.'"/>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-
-            $result['message'] .= '<input type="hidden" id="idedit" name="idedit" value="'.$model->id.'">';
-
-
-            $result['message'] .= '</div>';
-            $result['status'] = 'success';
-
-        }
-        die(json_encode($result));
+        die($model);
     }
 
     public function update(Request $request){
@@ -111,11 +43,11 @@ class ThGiaHhDvKCtController extends Controller
         }
         //dd($request);
         $inputs = $request->all();
-
+//        dd($inputs);
         if(isset($inputs['id'])){
             $modelupdate = ThGiaHhDvKCt::where('id',$inputs['id'])->first();
-            $inputs['gia'] = getDbl($inputs['gia']);
-            $inputs['gialk'] = getDbl($inputs['gialk']);
+            $inputs['gialk'] = getDoubleToDb($inputs['gialk']);
+            $inputs['gia'] = getDoubleToDb($inputs['gia']);
             $modelupdate->update($inputs);
 
             $model = ThGiaHhDvKCt::where('mahs',$inputs['mahs'])
@@ -127,27 +59,33 @@ class ThGiaHhDvKCtController extends Controller
             $result['message'] .= '<thead>';
             $result['message'] .= '<tr>';
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
-            $result['message'] .= '<th style="text-align: center" width="25%">Hàng hóa, dịch vụ</th>';
-            $result['message'] .= '<th style="text-align: center">Đặc điểm kinh tế,<br>kỹ thuật, quy cách</th>';
-            $result['message'] .= '<th style="text-align: center" width="10%">Đơn vị</br>tính</th>';
-            $result['message'] .= '<th style="text-align: center" width="10%">Đơn giá liền kề</th>';
-            $result['message'] .= '<th style="text-align: center" width="10%">Đơn giá</th>';
-            $result['message'] .= '<th style="text-align: center">Thao tác</th>';
+            $result['message'] .= '<th style="text-align: center">Mã nhóm<br> hàng hóa<br> dịch vụ</th>';
+            $result['message'] .= '<th style="text-align: center">Tên nhóm<br> hàng hóa<br> dịch vụ</th>';
+            $result['message'] .= '<th style="text-align: center">Mã <br>hàng hóa<br> dịch vụ</th>';
+            $result['message'] .= '<th style="text-align: center">Tên hàng hóa dịch vụ</th>';
+            $result['message'] .= '<th style="text-align: center">Đặc điểm kỹ thuật</th>';
+            $result['message'] .= '<th style="text-align: center">Đơn <br>vị<br> tính</th>';
+            $result['message'] .= '<th style="text-align: center" width="10%">Giá kỳ trước</th>';
+            $result['message'] .= '<th style="text-align: center" width="10%">Giá kỳ này</th>';
+            $result['message'] .= '<th style="text-align: center" width="15%">Thao tác</th>';
             $result['message'] .= '</tr>';
             $result['message'] .= '</thead>';
             $result['message'] .= '<tbody id="ttts">';
             if(count($model) > 0){
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
+                    $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
+                    $result['message'] .= '<td style="text-align: center">'.$tents->manhom.'</td>';
+                    $result['message'] .= '<td style="text-align: left">'.$tents->nhom.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.$tents->mahhdv.'</td>';
-                    $result['message'] .= '<td class="active">'.$tents->tenhhdv.'</td>';
-                    $result['message'] .= '<td class="active">'.$tents->dacdiemkt.'</td>';
+                    $result['message'] .= '<td class="active" style="font-weight: bold">'.$tents->tenhhdv.'</td>';
+                    $result['message'] .= '<td>'.$tents->dacdiemkt.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.$tents->dvt.'</td>';
-                    $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->gialk).'</td>';
-                    $result['message'] .= '<td style="text-align: right;font-weight: bold">'.number_format($tents->gia).'</td>';
-                    $result['message'] .= '<td>'.
-                        '<button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('.$tents->id.');"><i class="fa fa-edit"></i>&nbsp;Kê khai</button>'.
-                        '</td>';
+                    $result['message'] .= '<td style="text-align: right;font-weight: bold">'. dinhdangsothapphan($tents->gialk,5).'</td>';
+                    $result['message'] .= '<td style="text-align: right;font-weight: bold">'. dinhdangsothapphan($tents->gia,5).'</td>';
+                    $result['message'] .= '<td>';
+                    $result['message'] .= '<button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('.$tents->id.');"><i class="fa fa-edit"></i>&nbsp;Nhập giá</button>';
+                    $result['message'] .= '</td>';
                     $result['message'] .= '</tr>';
                 }
                 $result['message'] .= '</tbody>';

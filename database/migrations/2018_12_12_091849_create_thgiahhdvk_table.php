@@ -17,6 +17,7 @@ class CreateThgiahhdvkTable extends Migration
             $table->increments('id');
             $table->date('ngaybc')->nullable();
             $table->date('ngaychotbc')->nullable();
+            $table->string('sobc')->nullable();
             $table->string('ttbc')->nullable();
             $table->string('manhom')->nullable();
             $table->string('mahs')->nullable();

@@ -10,6 +10,7 @@ class DmHhDvK extends Model
     protected $fillable = [
         'id',
         'manhom',
+        'nhom',
         'mahhdv',
         'tenhhdv',
         'dacdiemkt',

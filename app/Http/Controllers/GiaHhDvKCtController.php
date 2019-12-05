@@ -14,48 +14,21 @@ class GiaHhDvKCtController extends Controller
             'status' => 'fail',
             'message' => 'error',
         );
-        if(!Session::has('admin')) {
+        if (!Session::has('admin')) {
             $result = array(
                 'status' => 'fail',
                 'message' => 'permission denied',
             );
             die(json_encode($result));
         }
-        //dd($request);
+
         $inputs = $request->all();
+        $id = $inputs['id'];
+        $model = GiaHhDvKCt::findOrFail($id);
 
-        if(isset($inputs['id'])){
-
-            $model = GiaHhDvKCt::where('id',$inputs['id'])
-                ->first();
-            //dd($model);
-            $result['message'] = '<div class="modal-body" id="tttsedit">';
-
-
-            $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Giá liền kề<span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" name="edit_gialk" id="edit_gialk" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold" value="'.$model->gialk.'"></div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Giá<span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" name="edit_gia" id="edit_gia" class="form-control" data-mask="fdecimal" style="text-align: right;font-weight: bold" value="'.$model->gia.'"></div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-
-            $result['message'] .= '<input type="hidden" id="idedit" name="idedit" value="'.$model->id.'">';
-
-
-            $result['message'] .= '</div>';
-            $result['status'] = 'success';
-
-        }
-        die(json_encode($result));
+        die($model);
     }
+
 
     public function update(Request $request){
         $result = array(
@@ -71,11 +44,10 @@ class GiaHhDvKCtController extends Controller
         }
         //dd($request);
         $inputs = $request->all();
-
         if(isset($inputs['id'])){
             $modelupdate = GiaHhDvKCt::where('id',$inputs['id'])->first();
-            $inputs['gialk'] = getDbl($inputs['gialk']);
-            $inputs['gia'] = getDbl($inputs['gia']);
+            $inputs['gialk'] = getDoubleToDb($inputs['gialk']);
+            $inputs['gia'] = getDoubleToDb($inputs['gia']);
             $modelupdate->update($inputs);
 
             $model = GiaHhDvKCt::where('mahs',$inputs['mahs'])
@@ -87,12 +59,14 @@ class GiaHhDvKCtController extends Controller
             $result['message'] .= '<thead>';
             $result['message'] .= '<tr>';
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
-            $result['message'] .= '<th style="text-align: center">Mã hàng hóa<br> dịch vụ</th>';
+            $result['message'] .= '<th style="text-align: center">Mã nhóm<br> hàng hóa<br> dịch vụ</th>';
+            $result['message'] .= '<th style="text-align: center">Tên nhóm<br> hàng hóa<br> dịch vụ</th>';
+            $result['message'] .= '<th style="text-align: center">Mã <br>hàng hóa<br> dịch vụ</th>';
             $result['message'] .= '<th style="text-align: center">Tên hàng hóa dịch vụ</th>';
             $result['message'] .= '<th style="text-align: center">Đặc điểm kỹ thuật</th>';
-            $result['message'] .= '<th style="text-align: center">Đơn vị tính</th>';
-            $result['message'] .= '<th style="text-align: center" width="10%">Giá liền kề</th>';
-            $result['message'] .= '<th style="text-align: center" width="10%">Giá </th>';
+            $result['message'] .= '<th style="text-align: center">Đơn <br>vị<br> tính</th>';
+            $result['message'] .= '<th style="text-align: center" width="10%">Giá kỳ trước</th>';
+            $result['message'] .= '<th style="text-align: center" width="10%">Giá kỳ này</th>';
             $result['message'] .= '<th style="text-align: center" width="15%">Thao tác</th>';
             $result['message'] .= '</tr>';
             $result['message'] .= '</thead>';
@@ -101,6 +75,8 @@ class GiaHhDvKCtController extends Controller
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
+                    $result['message'] .= '<td style="text-align: center">'.$tents->manhom.'</td>';
+                    $result['message'] .= '<td style="text-align: left">'.$tents->nhom.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.$tents->mahhdv.'</td>';
                     $result['message'] .= '<td class="active" style="font-weight: bold">'.$tents->tenhhdv.'</td>';
                     $result['message'] .= '<td>'.$tents->dacdiemkt.'</td>';

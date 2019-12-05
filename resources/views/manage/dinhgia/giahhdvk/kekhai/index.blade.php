@@ -147,7 +147,7 @@
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
                                 <td>Tháng {{$tt->thang}}/{{$tt->nam}}</td>
-                                <td class="active" style="font-weight: bold">{{$tt->tennhom}}</td>
+                                <td class="active" style="font-weight: bold">{{$tt->tentt}}</td>
                                 <td>Số: {{$tt->soqd}}<br>Ngày báo cáo: {{getDayVn($tt->ngayapdung)}}</td>
                                 <td>Số: {{$tt->soqdlk}}<br>Ngày báo cáo: {{getDayVn($tt->ngayapdunglk)}}</td>
                                 <td style="text-align: center">
@@ -234,7 +234,7 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <label>Phân loại nhóm hàng hóa dịch vụ</label>
-                                {!!Form::select('manhombc', $a_nhom, null, array('id' => 'manhombc','class' => 'form-control select2me'))!!}
+                                {!!Form::select('mattbc', $a_nhom, null, array('id' => 'mattbc','class' => 'form-control select2me'))!!}
                             </div>
                         </div>
                         <!--div class="form-group">

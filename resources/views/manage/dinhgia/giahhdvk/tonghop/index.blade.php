@@ -141,7 +141,7 @@
                                 <label>Nhóm hàng hóa</label>
                                 <select name="manhom" id="manhom" class="form-control">
                                     @foreach($m_nhom as $nhom)
-                                    <option value="{{$nhom->manhom}}" {{$inputs['manhom'] == $nhom->manhom ? 'selected' : ''}}>{{$nhom->tennhom}}</option>
+                                    <option value="{{$nhom->matt}}" {{$inputs['matt'] == $nhom->matt ? 'selected' : ''}}>{{$nhom->tentt}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -152,24 +152,24 @@
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Nhóm hàng hóa</th>
+                            <th style="text-align: center" width="20%">Theo thông tư quyết định</th>
                             <th style="text-align: center" width="10%">Thời điểm báo cáo</th>
-                            <th style="text-align: center">Thông tin báo cáo</th>
+                            {{--<th style="text-align: center">Thông tin báo cáo</th>--}}
                             <th style="text-align: center" width="10%">Ngày báo cáo</th>
-                            <th style="text-align: center" width="10%">Ngày chốt<br> báo cáo</th>
+                            <th style="text-align: center" width="10%">Số báo cáo</th>
                             <th style="text-align: center" width="10%">Trạng thái</th>
-                            <th style="text-align: center" width="20%">Thao tác</th>
+                            <th style="text-align: center" >Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($model as $key=>$ct)
                             <tr>
                                 <td style="text-align: center">{{$key+1}}</td>
-                                <td style="font-weight: bold">{{$ct->tennhom}}</td>
+                                <td style="font-weight: bold">{{$ct->tentt}}</td>
                                 <td style="font-weight: bold">Tháng {{$ct->thang}} /Năm {{$ct->nam}}</td>
-                                <td>{{$ct->ttbc}}</td>
+                                {{--<td>{{$ct->ttbc}}</td>--}}
                                 <td style="text-align: center">{{getDayVn($ct->ngaybc)}}</td>
-                                <td style="text-align: center">{{getDayVn($ct->ngaychotbc)}}</td>
+                                <td style="text-align: center">{{$ct->sobc}}</td>
                                 <td style="text-align: center">
                                     @if($ct->trangthai == 'HT')
                                         <span class="badge badge-warning">Hoàn thành</span>
@@ -236,10 +236,10 @@
                     <div class="form-horizontal">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <label>Phân loại nhóm hàng hóa dịch vụ</label>
-                                <select name="manhombc" id="manhombc" class="form-control">
+                                <label>Phân loại thông tư quyết định</label>
+                                <select name="mattbc" id="mattbc" class="form-control">
                                     @foreach($m_nhom as $ct)
-                                        <option value="{{$ct->manhom}}">{{$ct->tennhom}}</option>
+                                        <option value="{{$ct->matt}}">{{$ct->tentt}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -395,10 +395,10 @@
                     <div class="form-horizontal">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <label>Phân loại nhóm hàng hóa dịch vụ</label>
-                                <select name="manhombct" id="manhombct" class="form-control">
+                                <label>Theo thông tư quyết định</label>
+                                <select name="mattbct" id="mattbct" class="form-control">
                                     @foreach($m_nhom as $ct)
-                                        <option value="{{$ct->manhom}}">{{$ct->tennhom}}</option>
+                                        <option value="{{$ct->matt}}">{{$ct->tentt}}</option>
                                     @endforeach
                                 </select>
                             </div>

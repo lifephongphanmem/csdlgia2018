@@ -25,59 +25,6 @@
             $(":input").inputmask();
         });
     </script>
-    <script>
-        function editItem(id) {
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            //alert(id);
-            $.ajax({
-                url: '/giahhdvkhacct/edit',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    id: id
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if(data.status == 'success') {
-                        $('#tttsedit').replaceWith(data.message);
-                        InputMask();
-                    }
-                    else
-                        toastr.error("Không thể chỉnh sửa thông tin hàng hóa dịch vụ!", "Lỗi!");
-                }
-            })
-        }
-
-        function updatets(){
-            //alert('vcl');
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '/giahhdvkhacct/update',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    id: $('input[name="idedit"]').val(),
-                    gialk: $('input[name="edit_gialk"]').val(),
-                    gia: $('input[name="edit_gia"]').val(),
-                    mahs: $('input[name="mahs"]').val(),
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if(data.status == 'success') {
-                        toastr.success("Chỉnh sửa thông tin hàng hóa dịch vụ thành công", "Thành công!");
-                        $('#dsts').replaceWith(data.message);
-                        jQuery(document).ready(function() {
-                            TableManaged.init();
-                        });
-                        $('#modal-edit').modal("hide");
-
-
-                    }else
-                        toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
-                }
-            })
-        }
-    </script>
 @stop
 
 @section('content')
@@ -91,6 +38,7 @@
         <div class="col-md-12 center">
             <!-- BEGIN VALIDATION STATES-->
             {!! Form::model($model, ['method' => 'PATCH', 'url'=>'giahhdvkhac/'. $model->id, 'class'=>'horizontal-form','id'=>'update_giahhdvkhac']) !!}
+            <meta name="csrf-token" content="{{ csrf_token() }}" />
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
@@ -99,7 +47,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Nhóm hàng hóa dịch vụ:</label>
+                                    <label class="control-label">Theo thông tư quyết định</label>
                                     <label class="control-label" style="color: blue;font-weight: bold">{{$tennhom}}</label>
                                 </div>
                             </div>
@@ -165,7 +113,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" name="mahs" id="manhom" value="{{$model->mahs}}">
+                        <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}">
                         <h4 style="color: blue">Thông tin chi tiết</h4>
                         <div class="row" id="dsts">
                             <div class="col-md-12">
@@ -173,12 +121,14 @@
                                     <thead>
                                     <tr>
                                         <th width="2%" style="text-align: center">STT</th>
-                                        <th style="text-align: center">Mã hàng hóa<br> dịch vụ</th>
+                                        <th style="text-align: center">Mã nhóm<br>hàng hóa<br> dịch vụ</th>
+                                        <th style="text-align: center">Tên nhóm <br>hàng hóa<br> dịch vụ</th>
+                                        <th style="text-align: center">Mã <br>hàng hóa<br> dịch vụ</th>
                                         <th style="text-align: center">Tên hàng hóa dịch vụ</th>
                                         <th style="text-align: center">Đặc điểm kỹ thuật</th>
-                                        <th style="text-align: center">Đơn vị tính</th>
-                                        <th style="text-align: center" width="10%">Giá liền kề</th>
-                                        <th style="text-align: center" width="10%">Giá</th>
+                                        <th style="text-align: center">Đơn<br> vị<br> tính</th>
+                                        <th style="text-align: center" width="10%">Giá kỳ trước</th>
+                                        <th style="text-align: center" width="10%">Giá kỳ này</th>
                                         <th style="text-align: center" width="15%">Thao tác</th>
                                     </tr>
                                     </thead>
@@ -186,9 +136,11 @@
                                     @foreach($modelct as $key=>$tt)
                                         <tr>
                                             <td style="text-align: center">{{$key+1}}</td>
+                                            <td style="text-align: center">{{$tt->manhom}}</td>
+                                            <td style="text-align: left">{{$tt->nhom}}</td>
                                             <td style="text-align: center">{{$tt->mahhdv}}</td>
                                             <td class="active" style="font-weight: bold">{{$tt->tenhhdv}}</td>
-                                            <td style="text-align: center">{{$tt->dacdiemkt}}</td>
+                                            <td style="text-align: left">{{$tt->dacdiemkt}}</td>
                                             <td style="text-align: center">{{$tt->dvt}}</td>
                                             <td style="text-align: right;font-weight: bold">{{number_format($tt->gialk)}}</td>
                                             <td style="text-align: right;font-weight: bold">{{number_format($tt->gia)}}</td>
@@ -235,27 +187,7 @@
         }
     </script>
 
-
-
-    <!--Modal Edit-->
-    <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Kê khai giá hàng hóa dịch vụ </h4>
-                </div>
-                <div class="modal-body" id="tttsedit">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
-                    <button type="button" class="btn btn-primary" onclick="updatets()">Cập nhật</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
     @include('includes.script.inputmask-ajax-scripts')
     @include('includes.script.create-header-scripts')
+    @include('manage.dinhgia.giahhdvk.kekhai.modalct')
 @stop

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\DiaBanHd;
+use App\District;
 use App\DmHhDvK;
 use App\GiaHhDvK;
 use App\GiaHhDvKCt;
 use App\GiaHhDvKCtDf;
 use App\NhomHhDvK;
+use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -28,15 +30,15 @@ class GiaHhDvKController extends Controller
                 $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : $modeldb->first()->district;
             }
 
-            $model = GiaHhDvK::join('nhomhhdvk','nhomhhdvk.manhom','=','giahhdvk.manhom')
-                ->select('giahhdvk.*', 'nhomhhdvk.tennhom')
+            $model = GiaHhDvK::join('nhomhhdvk','nhomhhdvk.matt','=','giahhdvk.matt')
+                ->select('giahhdvk.*', 'nhomhhdvk.tentt')
                 ->where('giahhdvk.district', $inputs['district'])
                 ->where('giahhdvk.nam',$inputs['nam']);
                 //->where('giahhdvk.thang',$inputs['thang']);
 
             $model = $model->get();
             $m_nhom =array_column(NhomHhDvK::where('theodoi', 'TD')
-                ->get()->toarray(), 'tennhom','manhom');
+                ->get()->toarray(), 'tentt','matt');
             $diaban = DiaBanHd::where('district',$inputs['district'])->first();
             return view('manage.dinhgia.giahhdvk.kekhai.index')
                 ->with('model', $model)
@@ -54,8 +56,8 @@ class GiaHhDvKController extends Controller
     public function create(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
-            if(isset($inputs['manhombc']) && isset($inputs['districtbc'])) {
-                $modelkt = GiaHhDvK::where('manhom',$inputs['manhombc'])
+            if(isset($inputs['mattbc']) && isset($inputs['districtbc'])) {
+                $modelkt = GiaHhDvK::where('matt',$inputs['mattbc'])
                     ->where('thang',$inputs['thangbc'])
                     ->where('nam',$inputs['nambc'])
                     //->where('phanloai',$inputs['phanloaibc'])
@@ -64,64 +66,102 @@ class GiaHhDvKController extends Controller
                 if($modelkt > 0){
                     dd('Bạn đã tạo báo cáo!Nếu thay đổi số liệu bạn cần xóa báo cáo của thời điểm đó rồi tạo lại báo cáo');
                 }else {
-                    $tennhom = NhomHhDvK::where('manhom', $inputs['manhombc'])->first()->tennhom;
+                    $tennhom = NhomHhDvK::where('matt', $inputs['mattbc'])->first()->tentt;
                     $diaban = DiaBanHd::where('district', $inputs['districtbc'])->where('level', 'H')->first()->diaban;
-                    $modelidlk = GiaHhDvK::where('trangthai', 'HT')
-                        ->where('manhom', $inputs['manhombc'])
+                    $idlk = GiaHhDvK::where('trangthai', 'HT')
+                        ->where('matt', $inputs['mattbc'])
                         ->where('district', $inputs['districtbc'])
                         ->max('id');
-                    if ($modelidlk != null) {
-                        $modellk = GiaHhDvK::where('id', $modelidlk)
+                    if($idlk != null){
+                        $modellk = GiaHhDvK::where('id',$idlk)
                             ->first();
-//                        $modelctlk = GiaHhDvKCt::where('mahs', $modellk->mahs)
-//                            ->get();
-                        $modeldel = GiaHhDvKCtDf::where('district', $inputs['districtbc'])
-                            ->where('manhom', $inputs['manhombc'])->delete();
-                        $modeldm = DmHhDvK::where('manhom', $inputs['manhombc'])->get();
-                        foreach ($modeldm as $ct) {
-                            $gialk = GiaHhDvKCt::where('manhom',$ct->manhom)
-                                ->where('mahhdv',$ct->mahhdv)
-                                ->where('mahs',$modellk->mahs)
-                                ->first();
-                            $modelctnew = new GiaHhDvKCtDf();
-                            $modelctnew->district = $inputs['districtbc'];
-                            $modelctnew->manhom = $ct->manhom;
-                            $modelctnew->mahhdv = $ct->mahhdv;
-                            $modelctnew->tenhhdv = $ct->tenhhdv;
-                            $modelctnew->dacdiemkt = $ct->dacdiemkt;
-                            $modelctnew->dvt = $ct->dvt;
-                            $modelctnew->gialk = isset($gialk) ? $gialk->gia : 0;
-                            $modelctnew->save();
-                        }
-                    } else {
-                        $modellk = '';
-                        $checkct = GiaHhDvKCtDf::where('district', $inputs['districtbc'])
-                            ->where('manhom', $inputs['manhombc'])->count();
-                        if ($checkct == 0) {
-                            $modeldm = DmHhDvK::where('manhom', $inputs['manhombc'])->get();
-                            foreach ($modeldm as $dm) {
-                                $modelctnew = new GiaHhDvKCtDf();
-                                $modelctnew->district = $inputs['districtbc'];
-                                $modelctnew->manhom = $dm->manhom;
-                                $modelctnew->mahhdv = $dm->mahhdv;
-                                $modelctnew->tenhhdv = $dm->tenhhdv;
-                                $modelctnew->dacdiemkt = $dm->dacdiemkt;
-                                $modelctnew->dvt = $dm->dvt;
-                                $modelctnew->save();
-                            }
-                        }
+                        $inputs['soqdlk'] = $modellk->soqd;
+                        $inputs['ngayapdunglk'] = $modellk->ngayapdung;
                     }
+                    $inputs['mahs'] = $inputs['districtbc'].getdate()[0];
+                    $del = GiaHhDvKCt::where('district',$inputs['districtbc'])
+                        ->where('trangthai','CXD')->delete();
+                    $modeldm = DmHhDvK::where('matt',$inputs['mattbc'])
+                        ->get();
+                    foreach($modeldm as $dm){
+                        $modelctadd = new GiaHhDvKCt();
+                        $modelctadd->mahs = $inputs['mahs'];
+                        $modelctadd->trangthai = 'CXD';
+                        $modelctadd->district = $inputs['districtbc'];
+                        $modelctadd->manhom = $dm->manhom;
+                        $modelctadd->nhom = $dm->nhom;
+                        $modelctadd->mahhdv = $dm->mahhdv;
+                        $modelctadd->tenhhdv = $dm->tenhhdv;
+                        $modelctadd->dacdiemkt = $dm->dacdiemkt;
+                        $modelctadd->dacdiemkt = $dm->dacdiemkt;
+                        $modelctadd->dvt = $dm->dvt;
+                        if($idlk != null){
+                            $modelctlk = GiaHhDvKCt::where('mahs',$modellk->mahs)
+                                ->where('mahhdv',$dm->mahhdv)
+                                ->first();
+                            $modelctadd->gialk = $modelctlk->gia;
+                        }
+                        $modelctadd->save();
+                    }
+                    $modelct = GiaHhDvKCt::where('mahs',$inputs['mahs'])
+                        ->get();
+                    return view('manage.dinhgia.giahhdvk.kekhai.create')
+                        ->with('diaban', $diaban)
+                        ->with('tennhom', $tennhom)
+                        ->with('modelct',$modelct)
+                        ->with('inputs',$inputs)
+                        ->with('pageTitle', 'Báo cáo giá hàng hóa dịch vụ thêm mới');
                 }
+//                    if ($modelidlk != null) {
+//                        $modellk = GiaHhDvK::where('id', $modelidlk)
+//                            ->first();
+////                        $modelctlk = GiaHhDvKCt::where('mahs', $modellk->mahs)
+////                            ->get();
+//                        $modeldel = GiaHhDvKCt::where('district', $inputs['districtbc'])
+//                            ->where('matt', $inputs['matt'])
+//                            ->where('trangthai','CXD')
+//                            ->delete();
+//                        $modeldm = DmHhDvK::where('matt', $inputs[',matt'])->get();
+//                        foreach ($modeldm as $ct) {
+//                            $gialk = GiaHhDvKCt::where('matt',$ct->matt)
+//                                ->where('mahhdv',$ct->mahhdv)
+//                                ->where('mahs',$modellk->mahs)
+//                                ->first();
+//                            $modelctnew = new GiaHhDvKCtDf();
+//                            $modelctnew->district = $inputs['districtbc'];
+//                            $modelctnew->matt = $ct->matt;
+//                            $modelctnew->manhom = $ct->manhom;
+//                            $modelctnew->nhom = $ct->nhom;
+//                            $modelctnew->mahhdv = $ct->mahhdv;
+//                            $modelctnew->tenhhdv = $ct->tenhhdv;
+//                            $modelctnew->dacdiemkt = $ct->dacdiemkt;
+//                            $modelctnew->dvt = $ct->dvt;
+//                            $modelctnew->gialk = isset($gialk) ? $gialk->gia : 0;
+//                            $modelctnew->save();
+//                        }
+//                    } else {
+//                        $modellk = '';
+//                        $checkct = GiaHhDvKCtDf::where('district', $inputs['districtbc'])
+//                            ->where('manhom', $inputs['manhombc'])->count();
+//                        if ($checkct == 0) {
+//                            $modeldm = DmHhDvK::where('manhom', $inputs['manhombc'])->get();
+//                            foreach ($modeldm as $dm) {
+//                                $modelctnew = new GiaHhDvKCtDf();
+//                                $modelctnew->district = $inputs['districtbc'];
+//                                $modelctnew->manhom = $dm->manhom;
+//                                $modelctnew->mahhdv = $dm->mahhdv;
+//                                $modelctnew->tenhhdv = $dm->tenhhdv;
+//                                $modelctnew->dacdiemkt = $dm->dacdiemkt;
+//                                $modelctnew->dvt = $dm->dvt;
+//                                $modelctnew->save();
+//                            }
+//                        }
+//                    }
+//                }
 
-                $modelct = GiaHhDvKCtDf::where('district',$inputs['districtbc'])
-                    ->where('manhom',$inputs['manhombc'])->get();
-                return view('manage.dinhgia.giahhdvk.kekhai.create')
-                    ->with('diaban', $diaban)
-                    ->with('tennhom', $tennhom)
-                    ->with('modelct',$modelct)
-                    ->with('modellk',$modellk)
-                    ->with('inputs',$inputs)
-                    ->with('pageTitle', 'Báo cáo giá hàng hóa dịch vụ thêm mới');
+//                $modelct = GiaHhDvKCtDf::where('district',$inputs['districtbc'])
+//                    ->where('manhom',$inputs['manhombc'])->get();
+
             }else
                 dd('Lỗi!Bạn cần xem lại thao tác!');
 
@@ -133,7 +173,6 @@ class GiaHhDvKController extends Controller
         if(Session::has('admin')){
             $inputs = $request->all();
             $inputs['ngayapdung'] = getDateToDb($inputs['ngayapdung']);
-            $inputs['mahs'] = $inputs['district'].getdate()[0];
             $inputs['trangthai'] = 'CHT';
             if($inputs['ngayapdunglk'] != '')
                 $inputs['ngayapdunglk'] = getDateToDb($inputs['ngayapdunglk']);
@@ -142,21 +181,8 @@ class GiaHhDvKController extends Controller
 
             $model = new GiaHhDvK();
             if($model->create($inputs)){
-                $modelctdf = GiaHhDvKCtDf::where('district',$inputs['district'])
-                    ->where('manhom',$inputs['manhom']);
-                foreach($modelctdf->get() as $ctdf){
-                    $modelct = new GiaHhDvKCt();
-                    $modelct->manhom = $ctdf->manhom;
-                    $modelct->mahhdv = $ctdf->mahhdv;
-                    $modelct->tenhhdv = $ctdf->tenhhdv;
-                    $modelct->dacdiemkt = $ctdf->dacdiemkt;
-                    $modelct->dvt = $ctdf->dvt;
-                    $modelct->mahs = $inputs['mahs'];
-                    $modelct->gialk = $ctdf->gialk;
-                    $modelct->gia = $ctdf->gia;
-                    $modelct->save();
-                }
-                $modelctdf->delete();
+                $modelct = GiaHhDvKCt::where('mahs',$inputs['mahs'])
+                    ->update(['trangthai' => 'XD']);
             }
             return redirect('giahhdvkhac?&district='.$inputs['district'].'&thang='.$inputs['thang'].'&nam='.$inputs['nam']);
 
@@ -167,15 +193,37 @@ class GiaHhDvKController extends Controller
     public function show($id){
         if(Session::has('admin')){
             $model = GiaHhDvK::findOrFail($id);
-            $tennhom = NhomHhDvK::where('manhom', $model->manhom)->first()->tennhom;
+            $tennhom = NhomHhDvK::where('matt', $model->matt)->first()->tentt;
             $diaban = DiaBanHd::where('district',$model->district)->where('level', 'H')->first()->diaban;
             $modelct = GiaHhDvKCt::where('mahs',$model->mahs)
                 ->get();
+            $modelgr = GiaHhDvKCt::where('mahs',$model->mahs)
+                ->select('manhom','nhom')
+                ->groupBy('manhom','nhom')
+                ->get();
+            if(session('admin')->level == 'T'){
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
+                $inputs['diadanh'] = $diaban;
+            }elseif(session('admin')->level == 'H'){
+                $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = $diaban;
+            }else{
+                $modeldv = Town::where('maxa',session('admin')->maxa)
+                    ->where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = $diaban;
+            }
             return view('manage.dinhgia.giahhdvk.reports.prints')
                 ->with('diaban', $diaban)
                 ->with('tennhom', $tennhom)
                 ->with('modelct',$modelct)
                 ->with('model',$model)
+                ->with('modelgr',$modelgr)
+                ->with('inputs',$inputs)
                 ->with('pageTitle', 'Kê khai giá hàng hóa dịch vụ chi tiết');
 
         }else
@@ -185,7 +233,7 @@ class GiaHhDvKController extends Controller
     public function edit($id){
         if(Session::has('admin')){
             $model = GiaHhDvK::findOrFail($id);
-            $tennhom = NhomHhDvK::where('manhom', $model->manhom)->first()->tennhom;
+            $tennhom = NhomHhDvK::where('matt', $model->matt)->first()->tentt;
             $diaban = DiaBanHd::where('district',$model->district)->where('level', 'H')->first()->diaban;
             $modelct = GiaHhDvKCt::where('mahs',$model->mahs)
                 ->get();
@@ -236,16 +284,16 @@ class GiaHhDvKController extends Controller
             $inputs['thang'] = isset($inputs['thang']) ? $inputs['thang'] : date('m');
             $inputs['tenhhdv'] = isset($inputs['tenhhdv']) ? $inputs['tenhhdv'] : '';
             $inputs['district'] =  isset($inputs['district']) ? $inputs['district'] : '';
-            $inputs['manhom'] =  isset($inputs['manhom']) ? $inputs['manhom'] : '';
+            $inputs['matt'] =  isset($inputs['matt']) ? $inputs['matt'] : '';
             $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
 
             $modeldb = DiaBanHd::where('level','H')->get();
             $modelnhomtn = NhomHhDvK::where('theodoi','TD')->get();
             $model = GiaHhDvKCt::join('giahhdvk','giahhdvk.mahs','=','giahhdvkct.mahs')
-                ->join('nhomhhdvk','nhomhhdvk.manhom','=','giahhdvkct.manhom')
+                ->join('nhomhhdvk','nhomhhdvk.matt','=','giahhdvk.matt')
                 ->join('diabanhd','diabanhd.district','=','giahhdvk.district')
                 ->select('giahhdvkct.*','giahhdvk.soqd','giahhdvk.ngayapdung','diabanhd.diaban',
-                    'nhomhhdvk.tennhom', 'giahhdvk.thang','giahhdvk.nam')
+                    'nhomhhdvk.tentt', 'giahhdvk.thang','giahhdvk.nam')
                 ->whereIn('giahhdvk.trangthai',['HT','CB']);
             if($inputs['thang'] != 'all')
                 $model = $model->where('giahhdvk.thang',$inputs['thang']);
@@ -253,8 +301,8 @@ class GiaHhDvKController extends Controller
                 $model = $model->where('giahhdvk.nam',$inputs['nam']);
             if($inputs['district'] != '')
                 $model = $model->where('giahhdvk.district','=',$inputs['district']);
-            if($inputs['manhom'] != '')
-                $model = $model->where('giahhdvk.manhom','=',$inputs['manhom']);
+            if($inputs['matt'] != '')
+                $model = $model->where('giahhdvk.matt','=',$inputs['matt']);
             if($inputs['tenhhdv'] != '')
                 $model = $model->where('giahhdvkct.tenhhdv','like','%'.$inputs['tenhhdv'].'%');
 
