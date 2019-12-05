@@ -335,7 +335,7 @@ class GiaHhDvKController extends Controller
             $inputs = $request->all();
             $id = $inputs['idhuyhoanthanh'];
             $model = GiaHhDvK::findOrFail($id);
-            $model->trangthai = 'HHT';
+            $model->trangthai = 'CHT';
             $model->save();
             return redirect('giahhdvkhac?&district='.$model->district.'&thang='.$model->thang.'&nam='.$model->nam);
         }else
