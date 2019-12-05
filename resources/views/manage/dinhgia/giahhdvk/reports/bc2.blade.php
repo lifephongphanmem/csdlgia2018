@@ -73,7 +73,7 @@
                 <tr>
                     <td style="text-align: center">{{$key+1}}</td>
                     <td style="text-align: center">{{$tt->mahhdv}}</td>
-                    <td class="active" style="font-weight: bold">{{$tt->tenhhdv}}</td>
+                    <td>{{$tt->tenhhdv}}</td>
                     <td>{{$tt->dacdiemkt}}</td>
                     <td style="text-align: center">{{$tt->dvt}}</td>
                     <td style="text-align: center">{{$tt->loaigia}}</td>
