@@ -93,14 +93,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Số báo cáo liền kề<span class="require">*</span></label>
-                                    {!!Form::text('soqdlk',$inputs['soqdlk'], array('id' => 'soqdlk','class' => 'form-control'))!!}
+                                    {!!Form::text('soqdlk',isset($inputs['soqdlk']) ? $inputs['soqdlk'] : '', array('id' => 'soqdlk','class' => 'form-control'))!!}
                                 </div>
                             </div>
                             <!--/span-->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Ngày báo cáo liền kề<span class="require">*</span></label>
-                                    {!!Form::text('ngayapdunglk',($inputs['ngayapdunglk'] != '' ? date('d/m/Y',  strtotime($inputs['ngayapdunglk'])) : null), array('id' => 'ngayapdunglk','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
+                                    {!!Form::text('ngayapdunglk',(isset($inputs['ngayapdunglk']) && $inputs['ngayapdunglk'] != '' ? date('d/m/Y',  strtotime($inputs['ngayapdunglk'])) : null), array('id' => 'ngayapdunglk','data-inputmask'=>"'alias': 'date'",'class' => 'form-control'))!!}
                                 </div>
                             </div>
                             <!--/span-->
