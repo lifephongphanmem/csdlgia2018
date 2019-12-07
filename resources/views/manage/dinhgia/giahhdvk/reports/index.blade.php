@@ -16,7 +16,7 @@
        Báo cáo tổng hợp<small> giá hàng hóa dịch vụ khác</small>
     </h3>
     <!-- END PAGE HEADER-->
-
+<hr>
     <!-- BEGIN DASHBOARD STATS -->
     <div class="row">
         <div class="col-md-12">
