@@ -94,6 +94,8 @@ class GiaHhDvKController extends Controller
                         $modelctadd->tenhhdv = $dm->tenhhdv;
                         $modelctadd->dacdiemkt = $dm->dacdiemkt;
                         $modelctadd->dacdiemkt = $dm->dacdiemkt;
+                        $modelctadd->loaigia = 'Giá bán lẻ';
+                        $modelctadd->nguontt = 'Do cơ quan/đơn vị quản lý nhà nước có liên quan cung cấp/báo cáo theo quy định';
                         $modelctadd->dvt = $dm->dvt;
                         if($idlk != null){
                             $modelctlk = GiaHhDvKCt::where('mahs',$modellk->mahs)
