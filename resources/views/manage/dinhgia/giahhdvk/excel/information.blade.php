@@ -75,21 +75,20 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <label>Phân loại nhóm hàng hóa dịch vụ</label>
-                                                        {!!Form::select('manhom', $a_nhom, null, array('id' => 'manhom','class' => 'form-control select2me'))!!}
+                                                        <label>Theo thông tư quyết định</label>
+                                                        {!!Form::select('matt', $a_nhom, null, array('id' => 'matt','class' => 'form-control select2me'))!!}
                                                     </div>
-
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Mã hàng hóa<span class="require">*</span></label>
-                                                            {!!Form::text('mahhdv', 'B', array('id' => 'mahhdv','class' => 'form-control required'))!!}
+                                                            <label class="control-label">Mã nhóm hàng hóa<span class="require">*</span></label>
+                                                            {!!Form::text('manhom', 'A', array('id' => 'manhom','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Tên hàng hóa<span class="require">*</span></label>
-                                                            {!!Form::text('tenhhdv', 'C', array('id' => 'tenhhdv','class' => 'form-control required'))!!}
+                                                            <label class="control-label">Tên nhóm hàng hóa<span class="require">*</span></label>
+                                                            {!!Form::text('nhom', 'B', array('id' => 'nhom','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -97,37 +96,57 @@
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
+                                                            <label class="control-label">Mã hàng hóa<span class="require">*</span></label>
+                                                            {!!Form::text('mahhdv', 'C', array('id' => 'mahhdv','class' => 'form-control required'))!!}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Tên hàng hóa<span class="require">*</span></label>
+                                                            {!!Form::text('tenhhdv', 'D', array('id' => 'tenhhdv','class' => 'form-control required'))!!}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
                                                             <label class="control-label">Đặc điểm kỹ thuật<span class="require">*</span></label>
-                                                            {!!Form::text('dacdiemkt', 'D', array('id' => 'dacdiemkt','class' => 'form-control required'))!!}
+                                                            {!!Form::text('dacdiemkt', 'E', array('id' => 'dacdiemkt','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Nguồn gốc / Xuất xứ<span class="require">*</span></label>
-                                                            {!!Form::text('xuatxu', 'E', array('id' => 'xuatxu','class' => 'form-control required'))!!}
-                                                        </div>
-                                                    </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Đơn vị tính<span class="require">*</span></label>
                                                             {!!Form::text('dvt', 'F', array('id' => 'dvt','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
-
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Giá liền kề<span class="require">*</span></label>
-                                                            {!!Form::text('gialk', 'G', array('id' => 'gialk','class' => 'form-control required'))!!}
+                                                            <label class="control-label">Loại giá<span class="require">*</span></label>
+                                                            {!!Form::text('loaigia', 'G', array('id' => 'loaigia','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
-                                                </div>
-
-                                                <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Giá hàng hóa<span class="require">*</span></label>
-                                                            {!!Form::text('gia', 'H', array('id' => 'gia','class' => 'form-control required'))!!}
+                                                            <label class="control-label">Giá kỳ trước<span class="require">*</span></label>
+                                                            {!!Form::text('gialk', 'H', array('id' => 'gialk','class' => 'form-control required'))!!}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Giá kỳ này<span class="require">*</span></label>
+                                                            {!!Form::text('gia', 'I', array('id' => 'gia','class' => 'form-control required'))!!}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Nguồn thông tin<span class="require">*</span></label>
+                                                            {!!Form::text('nguontt', 'J', array('id' => 'nguontt','class' => 'form-control required'))!!}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Ghi chú<span class="require">*</span></label>
+                                                            {!!Form::text('ghichu', 'K', array('id' => 'ghichu','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
 
@@ -181,6 +200,17 @@
         function ClickCreate(){
             var str = '';
             var ok = true;
+            if (!$('#manhom').val()) {
+                str += '  - Mã nhóm hàng hóa \n';
+                $('#manhom').parent().addClass('has-error');
+                ok = false;
+            }
+
+            if (!$('#nhom').val()) {
+                str += '  - Tên nhóm hàng hóa \n';
+                $('#nhom').parent().addClass('has-error');
+                ok = false;
+            }
 
             if (!$('#mahhdv').val()) {
                 str += '  - Mã hàng hóa \n';
@@ -206,21 +236,32 @@
                 ok = false;
             }
 
-            if (!$('#xuatxu').val()) {
-                str += '  - Nguồn gốc / Xuất xứ \n';
-                $('#xuatxu').parent().addClass('has-error');
+            if (!$('#loaigia').val()) {
+                str += '  - Loại giá \n';
+                $('#loaigia').parent().addClass('has-error');
                 ok = false;
             }
 
             if (!$('#gialk').val()) {
-                str += '  - Giá liền kề \n';
+                str += '  - Giá kỳ trước \n';
                 $('#gialk').parent().addClass('has-error');
                 ok = false;
             }
 
-            if (!$('#gialk').val()) {
-                str += '  - Giá hàng hóa \n';
-                $('#gialk').parent().addClass('has-error');
+            if (!$('#gia').val()) {
+                str += '  - Giá kỳ này \n';
+                $('#gia').parent().addClass('has-error');
+                ok = false;
+            }
+            if (!$('#nguontt').val()) {
+                str += '  - Nguồn thông tin \n';
+                $('#nguontt').parent().addClass('has-error');
+                ok = false;
+            }
+
+            if (!$('#ghichu').val()) {
+                str += '  - Ghi chú \n';
+                $('#ghichu').parent().addClass('has-error');
                 ok = false;
             }
 

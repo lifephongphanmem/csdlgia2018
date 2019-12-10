@@ -327,8 +327,8 @@
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <label>Phân loại nhóm hàng hóa dịch vụ</label>
-                                {!!Form::select('manhom', $a_nhom, null, array('id' => 'manhom','class' => 'form-control select2me'))!!}
+                                <label>Thông tư quyết định</label>
+                                {!!Form::select('matt', $a_nhom, null, array('id' => 'matt','class' => 'form-control select2me'))!!}
                             </div>
                         </div>
                     </div>

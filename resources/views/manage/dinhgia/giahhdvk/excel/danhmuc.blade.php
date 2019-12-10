@@ -19,41 +19,41 @@
 <body>
     <table>
         <tr>
-            <th colspan="8" style="text-align: center; font-weight: bold; font-size: 20px;">
-                DANH MỤC HÀNG HÓA, DỊCH VỤ
+            <th colspan="11" style="text-align: center; font-weight: bold; font-size: 20px;">
+                BẢNG GIÁ THỊ TRƯỜNG {{$model_nhom->tentt}}
             </th>
         </tr>
     </table>
 
     <table>
         <tr>
-            <td>STT</td>
+            <td>Mã nhóm</td>
+            <td>Tên nhóm</td>
             <td>Mã hàng</td>
             <td>Tên hàng</td>
             <td>Đặc điểm kỹ thuật</td>
-            <td>Xuất xứ</td>
             <td>Đơn vị tính</td>
-            <td>Giá liền kề</td>
-            <td>Giá hàng hóa</td>
+            <td>Loại giá</td>
+            <td>Giá kỳ trước</td>
+            <td>Giá kỳ này</td>
+            <td>Nguồn thông tin</td>
+            <td>Ghi chú</td>
         </tr>
 
-        <?php $stt=1; ?>
-        @foreach($model_nhom as $nhom)
-            <?php $model_hh = $model->where('manhom',$nhom->manhom)?>
-            @if(count($model_hh)> 0)
-                @foreach($model_hh as $ct)
-                    <tr>
-                        <td>{{$stt++}}</td>
-                        <td>{{$ct->mahhdv}}</td>
-                        <td>{{$ct->tenhhdv}}</td>
-                        <td>{{$ct->dacdiemkt}}</td>
-                        <td>{{$ct->xuatxu}}</td>
-                        <td>{{$ct->dvt}}</td>
-                        <td>{{$ct->gialk}}</td>
-                        <td>{{$ct->gia}}</td>
-                    </tr>
-                @endforeach
-            @endif
+        @foreach($model as $ct)
+            <tr>
+                <td>{{$ct->manhom}}</td>
+                <td>{{$ct->nhom}}</td>
+                <td>{{$ct->mahhdv}}</td>
+                <td>{{$ct->tenhhdv}}</td>
+                <td>{{$ct->dacdiemkt}}</td>
+                <td>{{$ct->dvt}}</td>
+                <td>{{$ct->loaigia}}</td>
+                <td>{{$ct->gialk}}</td>
+                <td>{{$ct->gia}}</td>
+                <td>{{$ct->nguontt}}</td>
+                <td>{{$ct->ghichu}}</td>
+            </tr>
         @endforeach
     </table>
 </body>
