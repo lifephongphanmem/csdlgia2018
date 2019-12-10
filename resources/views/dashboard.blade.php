@@ -89,10 +89,21 @@
                                     <img class="user-pic" src="{{url('images/avatar/default-user.png')}}">
                                 </td>
                                 <td>
-                                    <a href="" class="primary-link">Ngô Thế Dương</a>
+                                    <a href="" class="primary-link">Tạ Đình Hữu</a>
                                 </td>
                                 <td style="text-align: center">
-                                    <span class="bold theme-font">0916 678 911</span>
+                                    <span class="bold theme-font">0917 179993</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fit">
+                                    <img class="user-pic" src="{{url('images/avatar/default-user.png')}}">
+                                </td>
+                                <td>
+                                    <a href="" class="primary-link">Trần Đức Long</a>
+                                </td>
+                                <td style="text-align: center">
+                                    <span class="bold theme-font">0396 074886</span>
                                 </td>
                             </tr>
                             </tbody>
@@ -156,6 +167,17 @@
                                 </td>
                                 <td style="text-align: center">
                                     <span class="bold theme-font">0966 305 359</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fit">
+                                    <img class="user-pic" src="{{url('images/avatar/default-user.png')}}">
+                                </td>
+                                <td>
+                                    <a href="" class="primary-link">Ngô Thế Dương</a>
+                                </td>
+                                <td style="text-align: center">
+                                    <span class="bold theme-font">0916 678 911</span>
                                 </td>
                             </tr>
                             </tbody>
