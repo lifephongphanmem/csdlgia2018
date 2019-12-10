@@ -460,12 +460,15 @@ class GiaHhDvKController extends Controller
             $inputs['districtbc'] = $inputs['district'];
             $inputs['mattbc'] = $inputs['matt'];
             //dd($inputs);
+            $dels = GiaHhDvKCt::where('district',$inputs['district'])
+                ->where('trangthai','CXD')->delete();
             $modelkt = GiaHhDvK::where('matt',$inputs['matt'])
                 ->where('thang',$inputs['thang'])
                 ->where('nam',$inputs['nam'])
                 ->where('district',$inputs['district'])
                 //->where('phanloai',$inputs['phanloai'])
                 ->count();
+
             if($modelkt > 0)
                 dd('Báo cáo đã tồn tại, bạn cần kiểm tra lại! Nếu thay đổi thông tin bạn cần xóa báo cáo và nhận lại file');
             else {
