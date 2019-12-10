@@ -19,6 +19,8 @@
                 $('#edit_gialk').val(data.gialk);
                 $('#edit_gia').val(data.gia);
                 $('#edit_ghichu').val(data.ghichu);
+                $('#edit_nguontt').val(data.nguontt);
+                $('#edit_loaigia').val(data.loaigia);
                 $('#edit_id').val(data.id);
             },
             error: function (message) {
