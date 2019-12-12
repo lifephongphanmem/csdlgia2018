@@ -53,8 +53,8 @@
                         </div>
                     </div>
                     <div class="portlet-body" >
-                        <div class="scroller" style="height: 308px;" data-always-visible="1" data-rail-visible="0" >
-                            <ul class="feeds" style="min-height: 587px">
+                        <div class="scroller" style="height: 308px;" data-always-visible="1" data-rail-visible="0"  style="min-height: 587px" >
+                            <ul class="feeds">
                                 @foreach($model as $tt)
                                         <li>
                                             <div class="col1">
