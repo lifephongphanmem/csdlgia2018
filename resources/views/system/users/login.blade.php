@@ -95,10 +95,10 @@ License: You must have a valid license purchased only from themeforest(the above
 		</div>
 		{!! Form::close() !!}
 		<div class="forget-password">
-			<p>
-				Bạn quên mật khẩu truy cập? Click <a href="{{url('forgot_password')}}">
-					here </a>
-			</p>
+			{{--<p>--}}
+				{{--Bạn quên mật khẩu truy cập? Click <a href="{{url('forgot_password')}}">--}}
+					{{--here </a>--}}
+			{{--</p>--}}
 		</div>
 		<div class="create-account">
 			<p>
