@@ -1,5 +1,9 @@
 <?php
 Route::get('','HomeController@index');
+Route::get('thongtinhotro',function(){
+    return view('thongtinhotro')
+        ->with('pageTitle','Thông tin hỗ trợ');
+});
 //Route::get('/testword', 'HomeController@testword');
 //Route::get('/ajax/checkngay','AjaxController@checkngay');
 //Route::get('/ajax/checkngaykk','AjaxController@checkngaykk');
