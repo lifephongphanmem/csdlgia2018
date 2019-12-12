@@ -16,11 +16,13 @@ class CongboVanBanQLNNController extends Controller
     public function index(Request $request)
     {
         $inputs = $request->all();
-        $inputs['phanloai'] = isset($inputs['phanloai']) ? $inputs['phanloai'] : 'gia';
-        $inputs['loaivb'] = isset($inputs['loaivb']) ? $inputs['loaivb'] : '';
-        $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : '';
-        $model = VanBanQlNn::where('phanloai',$inputs['phanloai']);
-        if($inputs['loaivb'] != '')
+        $inputs['phanloai'] = isset($inputs['phanloai']) ? $inputs['phanloai'] : 'all';
+        $inputs['loaivb'] = isset($inputs['loaivb']) ? $inputs['loaivb'] : 'all';
+        $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : '5';
+        $model = new VanBanQlNn;
+        if($inputs['phanloai']!= 'all')
+            $model = $model->where('phanloai',$inputs['phanloai']);
+        if($inputs['loaivb'] != '' && $inputs['loaivb'] != 'all')
             $model = $model->where('loaivb',$inputs['loaivb']);
         $model = $model->paginate($inputs['paginate']);
         return view('congbo.VanBanQLNN.index')

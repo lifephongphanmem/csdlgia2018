@@ -52,11 +52,10 @@
                             <span class="caption-subject theme-font bold uppercase">DANH MỤC VĂN BẢN PHÁP LUẬT</span>
                         </div>
                     </div>
-                    <div class="portlet-body">
-                        <div class="scroller" style="height: 308px;" data-always-visible="1" data-rail-visible="0">
-                            <ul class="feeds">
+                    <div class="portlet-body" >
+                        <div class="scroller" style="height: 308px;" data-always-visible="1" data-rail-visible="0" >
+                            <ul class="feeds" style="min-height: 587px">
                                 @foreach($model as $tt)
-                                    <ul class="feeds">
                                         <li>
                                             <div class="col1">
                                                 <div class="cont">
@@ -80,13 +79,13 @@
                                             </div>
 
                                         </li>
-                                    </ul>
                                 @endforeach
                             </ul>
                         </div>
+                        <hr>
                         <div class="scroller-footer">
                             <div class="btn-arrow-link pull-right">
-                                <a href="cbvanbanqlnnvegia">Xem tất cả</a>
+                                <a href="{{url('cbvanbanqlnnvegia')}}">Xem tất cả</a>
                                 <i class="icon-arrow-right"></i>
                             </div>
                         </div>
