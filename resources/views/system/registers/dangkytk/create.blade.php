@@ -84,18 +84,12 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="form-group">
                         <label class="control-label">Tên doanh nghiệp<span class="require">*</span></label>
                         {!!Form::text('tendn', null, array('id' => 'tendn','class' => 'form-control required'))!!}
-                        @if ($errors->any())
-                            <em class="invalid">{{ $errors->first('tendn') }}</em>
-                        @endif
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="control-label">Mã số thuế</label>
                         {!!Form::text('maxa', null, array('id' => 'maxa','class' => 'form-control required'))!!}
-                        @if ($errors->any())
-                            <em class="invalid">{{ $errors->first('maxa') }}</em>
-                        @endif
                     </div>
                 </div>
             </div>
@@ -130,9 +124,6 @@ License: You must have a valid license purchased only from themeforest(the above
                         <label class="control-label">Email</label>
                         {!!Form::email('email', null, array('id' => 'email','class' => 'form-control required'))!!}
                         {{--{!!Form::text('email', null, array('id' => 'email','class' => 'form-control required','data-mask'=>'email'))!!}--}}
-                        @if ($errors->any())
-                            <em class="invalid">{{ $errors->first('email') }}</em>
-                        @endif
                     </div>
                 </div>
             </div>
@@ -182,18 +173,12 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="form-group">
                         <label class="control-label">Địa danh</label>
                         {!!Form::text('diadanh', null, array('id' => 'diadanh','class' => 'form-control required'))!!}
-                        @if ($errors->any())
-                            <em class="invalid">{{ $errors->first('diadanh') }}</em>
-                        @endif
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="control-label">Giấy đăng ký kinh doanh</label>
-                        <input name="tailieu" id="tailieu" type="file">
-                        @if ($errors->any())
-                            <em class="invalid">{{ $errors->first('tailieu') }}</em>
-                        @endif
+                        <input name="tailieu" id="tailieu" type="file" class="required">
                     </div>
                 </div>
             </div>
@@ -247,9 +232,6 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="form-group">
                         <label class="control-label">Username</label>
                         {!!Form::text('username', null, array('id' => 'username','class' => 'form-control required','data-mask'=>"user"))!!}
-                        @if ($errors->any())
-                            <em class="invalid">{{ $errors->first('username') }}</em>
-                        @endif
                     </div>
                 </div>
             </div>
@@ -258,25 +240,19 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="form-group">
                         <label class="control-label">Password</label>
                         {!!Form::text('password', null, array('id' => 'password','class' => 'form-control required'))!!}
-                        @if ($errors->any())
-                            <em class="invalid">{{ $errors->first('password') }}</em>
-                        @endif
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="control-label">Re-type Your Password</label>
                         {!!Form::text('rpassword', null, array('id' => 'rpassword','class' => 'form-control required'))!!}
-                        @if ($errors->any())
-                            <em class="invalid">{{ $errors->first('rpassword') }}</em>
-                        @endif
                     </div>
                 </div>
             </div>
             <div class="form-actions">
                 <button type="button" class="btn"><a href="{{url('login')}}">
                         <i class="m-icon-swapleft"></i> Quay lại </a> </button>
-                <button type="submit" class="btn blue pull-right" onclick="ClickCreate()" id="submitform" name="submitform">
+                <button type="submit" class="btn blue pull-right"  onclick="validate()" id="submitform" name="submitform">
                     Đăng ký <i class="m-icon-swapright m-icon-white"></i>
                 </button>
             </div>
@@ -353,40 +329,123 @@ License: You must have a valid license purchased only from themeforest(the above
     });
 </script>
 
-{{--<script type="text/javascript">--}}
-    {{--function validate(){--}}
-        {{--var validator = $("#form-register").validate({--}}
-            {{--rules: {--}}
-                {{--captcha: "required",--}}
-                {{--tendn: "required",--}}
-                {{--maxa:"required",--}}
-                {{--diachi:"required",--}}
-                {{--emaildn:"required",--}}
-                {{--noidknopthue:"required",--}}
-                {{--tailieu: "required",--}}
-                {{--password :"required",--}}
-                {{--username:"required",--}}
-                {{--cqcq:"required",--}}
-                {{--rpassword:{--}}
-                    {{--equalTo: "#password"--}}
-                {{--}--}}
-            {{--},--}}
-            {{--messages: {--}}
-                {{--captcha: "Tích vào đây!!!",--}}
-                {{--tendn: "Nhập thông tin về doanh nghiệp!!!",--}}
-                {{--maxa: "Nhập thông tin mã số thuế!!!",--}}
-                {{--diachi: "Nhập thông tin địa chỉ!!!",--}}
-                {{--email: "Nhập thông tin email!!!",--}}
-                {{--noidknopthue: "Nhập thông tin nơi đăng ký nộp thuế!!!",--}}
-                {{--tailieu: "Bạn cần chia sẻ giấy chứng nhận đăng ký kinh doanh!!!",--}}
-                {{--username:"Nhập username đăng ký!!!",--}}
-                {{--password :" Nhập mật khẩu!!!",--}}
-                {{--mahuyen:"Nhập thông tin cơ quan quản lý",--}}
-                {{--rpassword :" Nhập lại mật khẩu không chính xác!!!!"--}}
-            {{--}--}}
-        {{--});--}}
-    {{--}--}}
-{{--</script>--}}
+<script type="text/javascript">
+    function validate(){
+//        var validator = $("#form-register").validate({
+//            rules: {
+//                captcha: "required",
+//                tendn: "required",
+//                maxa:"required",
+//                diachi:"required",
+//                emaildn:"required",
+//                noidknopthue:"required",
+//                tailieu: "required",
+//                password :"required",
+//                username:"required",
+//                cqcq:"required",
+//                rpassword:{
+//                    equalTo: "#password"
+//                }
+//            },
+//            messages: {
+//                captcha: "Tích vào đây!!!",
+//                tendn: "Nhập thông tin về doanh nghiệp!!!",
+//                maxa: "Nhập thông tin mã số thuế!!!",
+//                diachi: "Nhập thông tin địa chỉ!!!",
+//                email: "Nhập thông tin email!!!",
+//                noidknopthue: "Nhập thông tin nơi đăng ký nộp thuế!!!",
+//                tailieu: "Bạn cần chia sẻ giấy chứng nhận đăng ký kinh doanh!!!",
+//                username:"Nhập username đăng ký!!!",
+//                password :" Nhập mật khẩu!!!",
+//                mahuyen:"Nhập thông tin cơ quan quản lý",
+//                rpassword :" Nhập lại mật khẩu không chính xác!!!!"
+//            }
+//        });
+       $('#register_create').validate({
+            errorElement: 'span', //default input error message container
+            errorClass: 'help-block', // default input error message class
+            focusInvalid: false, // do not focus the last invalid input
+            ignore: "",
+            rules: {
+
+                tendn: {
+                    required: true
+                },
+                maxa: {
+                    required: true
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                address: {
+                    required: true
+                },
+                city: {
+                    required: true
+                },
+                country: {
+                    required: true
+                },
+
+                username: {
+                    required: true
+                },
+                password: {
+                    required: true
+                },
+                rpassword: {
+                    equalTo: "#password"
+                }
+
+            },
+
+            messages: { // custom messages for radio buttons and checkboxes
+                tendn: "Nhập thông tin về doanh nghiệp!!!",
+                maxa: "Nhập thông tin mã số thuế!!!",
+                diachi: "Nhập thông tin địa chỉ!!!",
+                email: "Nhập thông tin email!!!",
+                noidknopthue: "Nhập thông tin nơi đăng ký nộp thuế!!!",
+                tailieu: "Bạn cần chia sẻ giấy chứng nhận đăng ký kinh doanh!!!",
+                username:"Nhập username đăng ký!!!",
+                password :" Nhập mật khẩu!!!",
+                mahuyen:"Nhập thông tin cơ quan quản lý",
+                rpassword :" Nhập lại mật khẩu không chính xác!!!!"
+            },
+
+            invalidHandler: function (event, validator) { //display error alert on form submit
+
+            },
+
+            highlight: function (element) { // hightlight error inputs
+                $(element)
+                        .closest('.form-group').addClass('has-error'); // set error class to the control group
+            },
+
+            success: function (label) {
+                label.closest('.form-group').removeClass('has-error');
+                label.remove();
+            },
+
+            errorPlacement: function (error, element) {
+                if (element.attr("name") == "tnc") { // insert checkbox errors after the container
+                    error.insertAfter($('#register_tnc_error'));
+                } else if (element.closest('.input-icon').size() === 1) {
+                    error.insertAfter(element.closest('.input-icon'));
+                } else {
+                    error.insertAfter(element);
+                }
+            },
+
+            submitHandler: function (form) {
+                form.submit();
+                var btn = document.getElementById('submitform');
+                btn.disabled = true;
+                btn.innerText = 'Loading...'
+            }
+        });
+    }
+</script>
 <script>
     function ClickCreate(){
         var str = '';

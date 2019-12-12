@@ -83,14 +83,26 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Đơn giá<span class="require">*</span></label>
-                                                            {!!Form::text('dongia', 'D', array('id' => 'dongia','class' => 'form-control required'))!!}
+                                                            <label class="control-label">Đơn vị tính<span class="require">*</span></label>
+                                                            {!!Form::text('dvt', 'D', array('id' => 'dvt','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Đơn vị tính<span class="require">*</span></label>
-                                                            {!!Form::text('dvt', 'E', array('id' => 'dvt','class' => 'form-control required'))!!}
+                                                            <label class="control-label">Đơn giá<span class="require">*</span></label>
+                                                            {!!Form::text('dongia', 'E', array('id' => 'dongia','class' => 'form-control required'))!!}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Thông tin quyết định<span class="require">*</span></label>
+                                                            {!!Form::text('ttqd', 'F', array('id' => 'ttqd','class' => 'form-control required'))!!}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Ghi chú<span class="require">*</span></label>
+                                                            {!!Form::text('ghichu', 'G', array('id' => 'ghichu','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
