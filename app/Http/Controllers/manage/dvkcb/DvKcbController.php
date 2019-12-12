@@ -62,6 +62,8 @@ class DvKcbController extends Controller
     public function importexcel(Request $request){
         if(Session::has('admin')){
             $inputs=$request->all();
+            $inputs['tudong'] = getMoneyToDb($inputs['tudong']);
+            $inputs['dendong'] = getMoneyToDb($inputs['dendong']);
             $filename = $inputs['district'] . '_' . getdate()[0];
             $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
             $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
