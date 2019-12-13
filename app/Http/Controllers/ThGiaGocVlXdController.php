@@ -92,11 +92,27 @@ class ThGiaGocVlXdController extends Controller
             $model->tendiaban = $tendiaban;
             $modelct = ThGiaGocVlXdCt::where('mahs',$model->mahs)
                 ->get();
-
+            if(session('admin')->level == 'T'){
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }elseif(session('admin')->level == 'H'){
+                $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }else{
+                $modeldv = Town::where('maxa',session('admin')->maxa)
+                    ->where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }
             return view('manage.dinhgia.giagocvlxd.report.printth')
                 ->with('model',$model)
                 ->with('modelct',$modelct)
                 ->with('diabans',$diabans)
+                ->with('inputs',$inputs)
                 ->with('pageTitle','Tổng hợp giá gốc vật liệu xây dựng');
         }else
             return view('errors.notlogin');

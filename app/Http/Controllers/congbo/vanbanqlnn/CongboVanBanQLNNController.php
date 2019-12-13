@@ -18,12 +18,16 @@ class CongboVanBanQLNNController extends Controller
         $inputs = $request->all();
         $inputs['phanloai'] = isset($inputs['phanloai']) ? $inputs['phanloai'] : 'all';
         $inputs['loaivb'] = isset($inputs['loaivb']) ? $inputs['loaivb'] : 'all';
+        $inputs['tieude'] = isset($inputs['tieude']) ? $inputs['tieude'] : '';
         $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : '5';
-        $model = new VanBanQlNn;
+        $model = VanBanQlNn::orderBy('ngayapdung','desc');
+
         if($inputs['phanloai']!= 'all')
             $model = $model->where('phanloai',$inputs['phanloai']);
         if($inputs['loaivb'] != '' && $inputs['loaivb'] != 'all')
             $model = $model->where('loaivb',$inputs['loaivb']);
+        if($inputs['tieude'] != '')
+            $model = $model->where('tieude','like', '%'.$inputs['tieude'].'%');
         $model = $model->paginate($inputs['paginate']);
         return view('congbo.VanBanQLNN.index')
             ->with('model', $model)

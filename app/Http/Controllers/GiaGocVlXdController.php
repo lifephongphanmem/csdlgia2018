@@ -124,10 +124,27 @@ class GiaGocVlXdController extends Controller
                 ->get();
             $diaban = DiaBanHd::where('district',$model->district)
                 ->first();
+            if(session('admin')->level == 'T'){
+                $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+                $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }elseif(session('admin')->level == 'H'){
+                $modeldv = District::where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }else{
+                $modeldv = Town::where('maxa',session('admin')->maxa)
+                    ->where('mahuyen',session('admin')->mahuyen)->first();
+                $inputs['dvcaptren'] = $modeldv->tendvcqhienthi;
+                $inputs['dv'] = $modeldv->tendvhienthi;
+                $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+            }
             return view('manage.dinhgia.giagocvlxd.report.prints')
                 ->with('model',$model)
                 ->with('modelct',$modelct)
                 ->with('diaban',$diaban)
+                ->with('inputs',$inputs)
                 ->with('pageTitle','Công bố giá gốc vật liệu xây dựng');
 
         } else

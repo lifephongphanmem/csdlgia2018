@@ -27,7 +27,6 @@
             var current_path_url = '/dichvukcb?';
             var nam = '&nam='+$('#nam').val();
             var district = '&district='+$('#district').val();
-            var district = '&district='+$('#district').val();
             var tenbv = '&tenbv='+$('#tenbv').val();
             var paginate = '&paginate='+$('#paginate').val();
             var url = current_path_url+nam+district+mota+paginate +tenbv;

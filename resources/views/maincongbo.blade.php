@@ -185,8 +185,13 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="hor-menu ">
                 <ul class="nav navbar-nav">
                     <li class="menu-dropdown classic-menu-dropdown ">
+                        <a href="{{url('giahanghoadichvu')}}">
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="menu-dropdown classic-menu-dropdown ">
                         <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
-                            CSDL về mức giá hàng hóa, dịch vụ<i class="fa fa-angle-down"></i>
+                            CSDL về mức giá HH-DV<i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu pull-left">
                             <li class=" dropdown-submenu">
@@ -303,15 +308,21 @@ License: You must have a valid license purchased only from themeforest(the above
                     </li>
                     <li class="menu-dropdown classic-menu-dropdown ">
                         <a data-hover="megamenu-dropdown" data-close-others="true"  href="cbthamdinhgia">
-                            CSDL Thẩm định giá tại địa phương
+                            CSDL Thẩm định giá
                         </a>
                     </li>
                     <li class="menu-dropdown classic-menu-dropdown ">
                         <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
-                           &nbsp;Văn bản quản lý NN về giá
+                           &nbsp;Văn bản QLNN về giá <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu pull-left">
                             <li><a href="{{url('cbvanbanqlnnvegia')}}"><i class="icon-folder"></i> &nbsp;Văn bản QLNN về giá, phí lệ phí</a></li>
+                            <?php $modelbcthvegia = \App\Model\manage\vanbanplvegia\baocaoth\BcThVeGiaDm::where('theodoi','TD')->get();?>
+                            @foreach($modelbcthvegia as $bcthvegia)
+                                <li>
+                                    <a href="{{url('coming')}}"><i class="icon-folder"></i> &nbsp;{{$bcthvegia->mota}}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </li>
                     <li class="menu-dropdown classic-menu-dropdown ">
@@ -319,8 +330,18 @@ License: You must have a valid license purchased only from themeforest(the above
                             TT phục vụ công tác QLNN về giá <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu pull-left">
-                            <li><a href="{{url('coming')}}"><i class="icon-folder"></i> &nbsp;CPI</a></li>
+                            <?php $ttpvctqlnn = \App\Model\manage\ttpvctqlnn\TtPvCtQlNnDm::where('theodoi','TD')->get();?>
+                            @foreach($ttpvctqlnn as $ttpv)
+                                <li>
+                                    <a href="{{url('coming')}}"><i class="icon-folder"></i> {{$ttpv->mota}}</span></a>
+                                </li>
+                            @endforeach
                         </ul>
+                    </li>
+                    <li class="menu-dropdown classic-menu-dropdown ">
+                        <a href="{{url('thongtinhotro')}}" target="_blank">
+                            Support
+                        </a>
                     </li>
                     {{--<li class="menu-dropdown classic-menu-dropdown ">--}}
                         {{--<a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">--}}

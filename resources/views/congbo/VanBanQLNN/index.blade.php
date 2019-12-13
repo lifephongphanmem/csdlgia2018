@@ -27,22 +27,33 @@
             $('#phanloai').change(function() {
                 var phanloai = '&phanloai=' +$('#phanloai').val();
                 var loaivb = '&loaivb=' +$('#loaivb').val();
+                var tieude = '&tieude=' +$('#tieude').val();
                 var paginate = '&paginate=' +$('#paginate').val();
-                var url = 'cbvanbanqlnnvegia?'  + phanloai + loaivb + paginate;
+                var url = 'cbvanbanqlnnvegia?'  + phanloai + loaivb + tieude +  paginate;
                 window.location.href = url;
             });
             $('#loaivb').change(function() {
                 var phanloai = '&phanloai=' +$('#phanloai').val();
                 var loaivb = '&loaivb=' +$('#loaivb').val();
+                var tieude = '&tieude=' +$('#tieude').val();
                 var paginate = '&paginate=' +$('#paginate').val();
-                var url = 'cbvanbanqlnnvegia?'  + phanloai + loaivb + paginate;
+                var url = 'cbvanbanqlnnvegia?'  + phanloai + loaivb + tieude +  paginate;
+                window.location.href = url;
+            });
+            $('#tieude').change(function() {
+                var phanloai = '&phanloai=' +$('#phanloai').val();
+                var loaivb = '&loaivb=' +$('#loaivb').val();
+                var tieude = '&tieude=' +$('#tieude').val();
+                var paginate = '&paginate=' +$('#paginate').val();
+                var url = 'cbvanbanqlnnvegia?'  + phanloai + loaivb + tieude +  paginate;
                 window.location.href = url;
             });
             $('#paginate').change(function() {
                 var phanloai = '&phanloai=' +$('#phanloai').val();
                 var loaivb = '&loaivb=' +$('#loaivb').val();
+                var tieude = '&tieude=' +$('#tieude').val();
                 var paginate = '&paginate=' +$('#paginate').val();
-                var url = 'cbvanbanqlnnvegia?'  + phanloai + loaivb + paginate;
+                var url = 'cbvanbanqlnnvegia?'  + phanloai + loaivb + tieude +  paginate;
                 window.location.href = url;
             });
         })
@@ -106,11 +117,18 @@
                                             {!! Form::select('loaivb',getLoaiVbQlNn(),$inputs['loaivb'], ['id' => 'loaivb','class' => 'form-control']) !!}
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Nội dung</label>
+                                            {!! Form::text('tieude',$inputs['tieude'], ['id' => 'tieude','class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
                                 </div>
+                                <br>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label>
-                                            Hiển thị
+                                            Hiển thị&nbsp;
                                             <div class="select2-container form-control input-xsmall input-inline" >
                                                 <select class="form-control" name="paginate" id="paginate" >
                                                     <option value="5" {{$inputs['paginate'] == 5 ? 'selected' : ''}}>5</option>
@@ -119,22 +137,21 @@
                                                     <option value="100" {{$inputs['paginate'] == 100? 'selected' : ''}}>100</option>
                                                 </select>
                                             </div>
-                                            thông tin
+                                            &nbsp;thông tin
                                         </label>
                                     </div>
-                                </div></br>
+                                </div>
                                 <div class="portlet-body">
                                     <div class="table-scrollable">
                                         <table class="table table-striped table-bordered table-hover">
                                             <thead>
                                             <tr>
                                                 <th width="2%" style="text-align: center">STT</th>
-                                                <th style="text-align: center" width="15%">Đơn vị ban hành</th>
-                                                <th style="text-align: center" width="10%">Số hiệu văn bản</th>
+                                                <th style="text-align: center" width="10%">Đơn vị <br>ban hành</th>
+                                                <th style="text-align: center">Số hiệu <br>văn bản</th>
                                                 <th style="text-align: center">Nội dung</th>
-                                                <th style="text-align: center" width="10%">Ngày ban hành</th>
-                                                <th style="text-align: center" width="10%">Ngày áp dụng</th>
-                                                <th style="text-align: center" width="20%">Thao tác</th>
+                                                <th style="text-align: center">Ngày <br>áp dụng</th>
+                                                <th style="text-align: center" width="5%">Thao tác</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -145,7 +162,6 @@
                                                         <td class="active">{{$tt->dvbanhanh}}</td>
                                                         <td class="success">{{$tt->kyhieuvb}}</td>
                                                         <td>{{$tt->tieude}}</td>
-                                                        <td style="text-align: center">{{getDayVn($tt->ngaybanhanh)}}</td>
                                                         <td style="text-align: center">{{getDayVn($tt->ngayapdung)}}</td>
                                                         <td>
                                                             <button type="button" onclick="get_attack('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#dinhkem-modal-confirm" data-toggle="modal"><i class="fa fa-cloud-download"></i>&nbsp;Tải tệp</button>
@@ -171,6 +187,7 @@
                                                 <div class="dataTables_paginate paging_simple_numbers" id="sample_3_paginate">
                                                     {{$model->appends(['phanloai' => $inputs['phanloai'],
                                                                    'loaivb'=>$inputs['loaivb'],
+                                                                   'tieude'=>$inputs['tieude'],
                                                                    'paginate'=>$inputs['paginate'],
                                                 ])->links()}}
                                                 </div>

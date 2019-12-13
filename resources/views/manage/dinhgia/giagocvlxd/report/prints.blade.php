@@ -25,12 +25,10 @@
     </tr>
     <tr>
         <td>Số: {{$model->soqd}}</td>
-        <td style="text-align: right"><i>, ngày..{{ date("d",strtotime($model->ngaybc))}}..tháng..{{ date("m",strtotime($model->ngaybc))}}..năm..{{ date("Y",strtotime($model->ngaybc))}}..</i></td>
+        <td style="text-align: center"><i>{{$inputs['diadanh']}}, ngày..{{ date("d",strtotime($model->ngaybc))}}..tháng..{{ date("m",strtotime($model->ngaybc))}}..năm..{{ date("Y",strtotime($model->ngaybc))}}..</i></td>
     </tr>
 </table>
-<p style="text-align: center; font-weight: bold;font-size: 20px"> <b>CÔNG BỐ</b></p>
-<bR>
-<p style="text-align: center; font-weight: bold;font-size: 20px">Giá gốc vật liệu xây dựng {{$diaban->diaban}}</p>
+<p style="text-align: center; font-weight: bold;font-size: 20px">CÔNG BỐ<br>Giá gốc vật liệu xây dựng {{$diaban->diaban}}</p>
 <br>
 <p style="text-align: center;font-size: 16px; font-weight: bold" ><u>Thời điểm: Quý {{$model->quy}}/{{$model->nam}}</u></p>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;" id="data">
