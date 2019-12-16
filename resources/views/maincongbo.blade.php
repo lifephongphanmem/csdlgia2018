@@ -186,7 +186,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <ul class="nav navbar-nav">
                     <li class="menu-dropdown classic-menu-dropdown ">
                         <a href="{{url('giahanghoadichvu')}}">
-                            Dashboard
+                            Trang chủ
                         </a>
                     </li>
                     <li class="menu-dropdown classic-menu-dropdown ">
@@ -340,7 +340,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </li>
                     <li class="menu-dropdown classic-menu-dropdown ">
                         <a href="{{url('thongtinhotro')}}" target="_blank">
-                            Support
+                            Hỗ trợ
                         </a>
                     </li>
                     {{--<li class="menu-dropdown classic-menu-dropdown ">--}}

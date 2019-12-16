@@ -48,7 +48,6 @@
                         @include('system.users.include.perms.csdlvbqlnn')
                         @include('system.users.include.perms.csdlttpvctqlnn')
                         @include('system.users.include.perms.system')
-
                 </div>
             </div>
         </div>

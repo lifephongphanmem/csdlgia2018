@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Company;
+use App\Model\system\company\Company;
 use App\Town;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
