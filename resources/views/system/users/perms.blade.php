@@ -42,24 +42,22 @@
                     <div class="actions">
                     </div>
                 </div>
+                <hr>
                 <div class="portlet-body">
-                        @include('system.users.include.perms.csdlmucgiahhdv')
-                        @include('system.users.include.perms.csdlthamdinhgia')
-                        @include('system.users.include.perms.csdlvbqlnn')
-                        @include('system.users.include.perms.csdlttpvctqlnn')
-                        @include('system.users.include.perms.system')
+                    @include('system.users.include.perms.csdlmucgiahhdv')
+                    @include('system.users.include.perms.csdlthamdinhgia')
+                    @include('system.users.include.perms.csdlvbqlnn')
+                    @include('system.users.include.perms.csdlttpvctqlnn')
+                    @include('system.users.include.perms.system')
                 </div>
             </div>
         </div>
         <div class="col-md-12" style="text-align: center">
-            <?php
-            if($model->level == 'satc' || $model->level == 'sact' || $model->level == 'sagt' || $model->level == 'sa')
-                $phanloai = 'HT';
-            else
-                $phanloai = $model->level;
-            ?>
-
-            <a href="{{url('users?&level='.$phanloai)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+            @if($model->level == 'X')
+                <a href="{{url('users?&level='.$model->level.'&mahuyen='.$model->mahuyen)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+            @else
+                <a href="{{url('users?&level='.$model->level)}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+            @endif
             <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
             <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Cập nhật</button>
         </div>
