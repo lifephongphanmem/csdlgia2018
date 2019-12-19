@@ -105,6 +105,32 @@
         </li>
     @endif
 @endif
+
+@if(canGeneral('gialephitruocbanha','index'))
+    @if(can('gialephitruocbanha','index'))
+        <li class="tooltips" data-container="body" data-placement="right" data-html="true"
+            data-original-title="Giá tính lệ phí trước bạ do UBND tỉnh, thành phố trực thuộc trung ương ban hành">
+            <a href="javascript:;">
+                <i class="icon-folder"></i>
+                <span class="title">Giá lệ phí trước bạ đối với nhà </span>
+                <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                @if(can('kkgialephitruocbanha','index'))
+                    <li>
+                        <a href="{{url('lephitruocbanha')}}">Thông tin hồ sơ</a>
+                    </li>
+                @endif
+                {{--@if(can('thgialephitruocbanha','timkiem'))--}}
+                    {{--<li>--}}
+                        {{--<a href="{{url('tklephitruocbanha')}}">Tìm kiếm thông tin</a>--}}
+                    {{--</li>--}}
+                {{--@endif--}}
+            </ul>
+        </li>
+    @endif
+@endif
+
 @if(canGeneral('giaphilephi','index'))
     @if(can('giaphilephi','index'))
         <li class="">

@@ -461,4 +461,30 @@ Route::post('giaspdvcict/store','manage\giaspdvci\GiaSpDvCiCtController@store');
 Route::get('giaspdvcict/edit','manage\giaspdvci\GiaSpDvCiCtController@edit');
 Route::post('giaspdvcict/update','manage\giaspdvci\GiaSpDvCiCtController@update');
 
+//Giá lệ phí trước bạ nhà
+Route::get('lephitruocbanha','manage\gialephitruocbanha\GiaLpTbNhaController@index');
+Route::get('lephitruocbanha/create','manage\gialephitruocbanha\GiaLpTbNhaController@create');
+Route::post('lephitruocbanha','manage\gialephitruocbanha\GiaLpTbNhaController@store');
+Route::get('lephitruocbanha/{id}/edit','manage\gialephitruocbanha\GiaLpTbNhaController@edit');
+Route::patch('lephitruocbanha/{id}','manage\gialephitruocbanha\GiaLpTbNhaController@update');
+Route::get('lephitruocbanha/{id}','manage\gialephitruocbanha\GiaLpTbNhaController@show');
+
+Route::post('lephitruocbanha/delete','manage\gialephitruocbanha\GiaLpTbNhaController@destroy');
+
+Route::post('lephitruocbanha/huyhoanthanh','manage\gialephitruocbanha\GiaLpTbNhaController@huyhoanthanh');
+Route::post('lephitruocbanha/hoanthanh','manage\gialephitruocbanha\GiaLpTbNhaController@hoanthanh');
+Route::post('lephitruocbanha/congbo','manage\gialephitruocbanha\GiaLpTbNhaController@congbo');
+Route::post('lephitruocbanha/huycongbo','manage\gialephitruocbanha\GiaLpTbNhaController@huycongbo');
+
+
+Route::post('lptbnhaxdm/add','manage\gialephitruocbanha\GiaLpTbNhaCtXdmController@store');
+Route::get('lptbnhaxdm/edit','manage\gialephitruocbanha\GiaLpTbNhaCtXdmController@edit');
+Route::post('lptbnhaxdm/update','manage\gialephitruocbanha\GiaLpTbNhaCtXdmController@update');
+Route::get('lptbnhaxdm/del','manage\gialephitruocbanha\GiaLpTbNhaCtXdmController@destroy');
+
+Route::post('lptbnhaclcl/add','manage\gialephitruocbanha\GiaLpTbNhaCtClclController@store');
+Route::get('lptbnhaclcl/edit','manage\gialephitruocbanha\GiaLpTbNhaCtClclController@edit');
+Route::post('lptbnhaclcl/update','manage\gialephitruocbanha\GiaLpTbNhaCtClclController@update');
+Route::get('lptbnhaclcl/del','manage\gialephitruocbanha\GiaLpTbNhaCtClclController@destroy');
+
 ?>

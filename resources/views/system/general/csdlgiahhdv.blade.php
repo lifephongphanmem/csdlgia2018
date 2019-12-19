@@ -122,6 +122,12 @@
 </tr>
 
 <tr style="font-style: italic; font-weight: bold" class="success">
+    <td>&nbsp;&nbsp;Giá lệ phí trước bạ đối với nhà</td>
+    <td style="text-align: center"><input type="checkbox" {{ (isset($setting->gialephitruocbanha->index) && $setting->gialephitruocbanha->index == 1) ? 'checked' : '' }} value="1" name="roles[gialephitruocbanha][index]"/></td>
+    <td style="text-align: center"><input type="checkbox" {{ (isset($setting->gialephitruocbanha->congbo) && $setting->gialephitruocbanha->congbo == 1) ? 'checked' : '' }} value="1" name="roles[gialephitruocbanha][congbo]"/></td>
+</tr>
+
+<tr style="font-style: italic; font-weight: bold" class="success">
     <td>&nbsp;&nbsp;Giá phí lệ phí</td>
     <td style="text-align: center"><input type="checkbox" {{ (isset($setting->giaphilephi->index) && $setting->giaphilephi->index == 1) ? 'checked' : '' }} value="1" name="roles[giaphilephi][index]"/></td>
     <td style="text-align: center"><input type="checkbox" {{ (isset($setting->giaphilephi->congbo) && $setting->giaphilephi->congbo == 1) ? 'checked' : '' }} value="1" name="roles[giaphilephi][congbo]"/></td>

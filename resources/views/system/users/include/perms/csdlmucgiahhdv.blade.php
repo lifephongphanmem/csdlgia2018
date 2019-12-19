@@ -30,6 +30,7 @@
                     @include('system.users.include.perms.csdlmucgiahhdv.giahhdvk')
                     @include('system.users.include.perms.csdlmucgiahhdv.giathitruong')
                     @include('system.users.include.perms.csdlmucgiahhdv.gialephitruocba')
+                    @include('system.users.include.perms.csdlmucgiahhdv.gialephitruocbanha')
                     @include('system.users.include.perms.csdlmucgiahhdv.giaphilephi')
 
                     @include('system.users.include.perms.csdlmucgiahhdv.thanhlytaisan')
