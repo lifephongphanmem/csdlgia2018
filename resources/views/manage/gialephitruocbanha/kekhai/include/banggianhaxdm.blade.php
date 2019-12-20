@@ -72,6 +72,7 @@
                         <div class="form-group"><label for="selGender" class="control-label"><b>Cấp nhà</b><span class="require">*</span></label>
                             <div><select name="capnhaxdm" id="capnhaxdm" class="form-control">
                                     <option value="">--Chọn cấp nhà--</option>
+                                    <option value="I">Cấp I</option>
                                     <option value="II">Cấp II</option>
                                     <option value="III">Cấp III</option>
                                     <option value="IV">Cấp IV</option>
@@ -121,6 +122,7 @@
                         <div class="form-group"><label for="selGender" class="control-label"><b>Cấp nhà</b><span class="require">*</span></label>
                             <div><select name="edit_capnhaxdm" id="edit_capnhaxdm" class="form-control">
                                     <option value="">--Chọn cấp nhà--</option>
+                                    <option value="I">Cấp I</option>
                                     <option value="II">Cấp II</option>
                                     <option value="III">Cấp III</option>
                                     <option value="IV">Cấp IV</option>
