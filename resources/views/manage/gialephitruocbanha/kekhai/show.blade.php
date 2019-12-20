@@ -57,7 +57,7 @@
         @endforeach
         </tbody>
     </table>
-    <p>{{$model->ghichuxdm}}</p>
+    <p>{!! nl2br(e$model->ghichuxdm) !!}}</p>
     <p style="text-align: left; font-weight: bold">II. Tỷ lệ phần trăm (%) chất lượng còn lại của nhà</p>
     <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;" id="data">
         <thead>
@@ -77,7 +77,7 @@
         @endforeach
         </tbody>
     </table>
-    <p>{{$model->ghichuclcl}}</p>
+    <p>{!! nl2br(e$model->ghichuclcl!! }</p>
     <table width="96%" border="0" cellspacing="0" height cellpadding="0" style="margin: 20px auto;text-align: center; height:200px">
         <tr>
             <td width="40%" style="text-align: left; vertical-align: top;">
