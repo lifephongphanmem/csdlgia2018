@@ -72,7 +72,7 @@
             <tr>
                 <td style="text-align: left">{{$ct->capnha}}</td>
                 <td style="text-align: center">{{dinhdangsothapphan($ct->thoigiansd,3)}}</td>
-                <td style="text-align: center">{{dinhdangsothapphan($ct->thoigiansd,3)}}</td>
+                <td style="text-align: center">{{dinhdangsothapphan($ct->tylehm,3)}}</td>
             </tr>
         @endforeach
         </tbody>
