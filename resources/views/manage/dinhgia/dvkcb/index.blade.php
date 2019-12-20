@@ -29,7 +29,7 @@
             var district = '&district='+$('#district').val();
             var tenbv = '&tenbv='+$('#tenbv').val();
             var paginate = '&paginate='+$('#paginate').val();
-            var url = current_path_url+nam+district+mota+paginate +tenbv;
+            var url = current_path_url+nam+district+tenbv+paginate +tenbv;
             window.location.href = url;
         }
 
@@ -41,7 +41,7 @@
                 var mota = '&mota='+$('#mota').val();
                 var tenbv = '&tenbv='+$('#tenbv').val();
                 var paginate = '&paginate='+$('#paginate').val();
-                var url = current_path_url+nam+district+mota+paginate + tenbv;
+                var url = current_path_url+nam+district+tenbv+paginate + tenbv;
                 window.location.href = url;
             });
         });
