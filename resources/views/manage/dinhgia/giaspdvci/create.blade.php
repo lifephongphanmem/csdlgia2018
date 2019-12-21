@@ -103,6 +103,34 @@
                 }
             })
         }
+        function getid(id){
+            document.getElementById("iddelete").value=id;
+        }
+        function delrow(){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '/giaspdvcict/del',
+                type: 'GET',
+                data: {
+                    _token: CSRF_TOKEN,
+                    id: $('input[name="iddelete"]').val(),
+                    mahs: $('#mahs').val(),
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    //if(data.status == 'success') {
+                    toastr.success("Bạn đã xóa thông tin tài sản thành công!", "Thành công!");
+                    $('#dsts').replaceWith(data.message);
+                    jQuery(document).ready(function() {
+                        TableManaged.init();
+                    });
+                    $('#modal-delete').modal("hide");
+
+                    //}
+                }
+            })
+
+        }
     </script>
 @stop
 
@@ -265,6 +293,25 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!--Model Delete-->
+    <div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Đồng ý xóa thông tin?</h4>
+                </div>
+                <input type="hidden" id="iddelete" name="iddelete">
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
+                    <button type="button" class="btn btn-primary" onclick="delrow()">Đồng ý</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
     </div>
 
     {{-- @include('manage.dinhgia.gianuocsh.include.modal_dialog')--}}

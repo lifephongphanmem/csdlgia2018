@@ -460,6 +460,7 @@ Route::get('tkgiaspdvci','manage\giaspdvci\GiaSpDvCiController@search');
 Route::post('giaspdvcict/store','manage\giaspdvci\GiaSpDvCiCtController@store');
 Route::get('giaspdvcict/edit','manage\giaspdvci\GiaSpDvCiCtController@edit');
 Route::post('giaspdvcict/update','manage\giaspdvci\GiaSpDvCiCtController@update');
+Route::get('giaspdvcict/del','manage\giaspdvci\GiaSpDvCiCtController@destroy');
 
 //Giá lệ phí trước bạ nhà
 Route::get('lephitruocbanha','manage\gialephitruocbanha\GiaLpTbNhaController@index');
