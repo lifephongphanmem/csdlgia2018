@@ -205,7 +205,7 @@
                                         <td style="text-align: right">{{dinhdangsothapphan($ct->gia,5)}}</td>
                                         <td>
                                             <button type="button" data-target="#edit-modal" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="edittt({{$ct->id}})"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa thông tin</button>
-                                            <button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid({{$tt->id}})" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                            <button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid({{$ct->id}})" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                         </td>
                                     </tr>
                                 @endforeach
