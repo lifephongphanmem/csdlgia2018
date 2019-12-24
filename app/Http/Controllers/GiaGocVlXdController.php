@@ -251,7 +251,7 @@ class GiaGocVlXdController extends Controller
             });
             //dd($data);
             $inputs['mahs'] = $inputs['district'].getdate()[0];
-            for ($i = $inputs['tudong']; $i < ($inputs['tudong'] + $inputs['dendong']); $i++) {
+            for ($i = $inputs['tudong']; $i < ($inputs['tudong'] + getDbl($inputs['dendong'])); $i++) {
 //                dd($data[$i]);
                 if (!isset($data[$i][$inputs['tenhhdv']]) || $data[$i][$inputs['tenhhdv']] == '') {
                     continue;//Tên cán bộ rỗng => thoát
