@@ -149,6 +149,9 @@
                     dataType: 'JSON',
                     success: function (data) {
                         if(data.status == 'success') {
+                            var btn = document.getElementById('submitformip');
+                            btn.disabled = true;
+                            btn.innerText = 'Loading...'
                             $("#frm_ipcreate").unbind('submit').submit();
                         }else{
                             $("#frm_ipcreate").submit(function (e) {
@@ -436,7 +439,7 @@
                 {!! Form::close() !!}
                 <div class="modal-footer">
                     <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
-                    <button type="submit" class="btn blue" onclick="ClickIpCreate()">Đồng ý</button>
+                    <button type="submit" class="btn blue" id="submitformip" onclick="ClickIpCreate()">Đồng ý</button>
 
                 </div>
 
