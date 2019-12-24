@@ -18,15 +18,23 @@ class UsersCompanyController extends Controller
             if (can('users','index')) {
                 if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                     $inputs = $request->all();
+                    $inputs['name'] = isset($inputs['name']) ? $inputs['name'] : '';
+                    $inputs['username'] = isset($inputs['username']) ? $inputs['username'] : '';
+                    $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : '5';
+//                    dd($inputs);
                     $model = Users::where('level', 'DN')
                         ->where('status','Kích hoạt')
                         ->OrWhere('status','Vô hiệu hóa')
-                        ->orderBy('id', 'desc')
-                        ->get();
-
+                        ->orderBy('id', 'desc');
+                    if($inputs['name'] != '')
+                        $model = $model->where('name','like', '%'.$inputs['name'].'%');
+                    if($inputs['username'] != '')
+                        $model = $model->where('username','like', '%'.$inputs['username'].'%');
+                    $model = $model->paginate($inputs['paginate']);
 
                     return view('system.userscompany.index')
                         ->with('model', $model)
+                        ->with('inputs',$inputs)
                         ->with('pageTitle', 'Danh sách tài khoản doanh nghiệp');
                 }else
                     return view('errors.perm');
