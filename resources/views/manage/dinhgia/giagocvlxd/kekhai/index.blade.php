@@ -149,9 +149,9 @@
                     dataType: 'JSON',
                     success: function (data) {
                         if(data.status == 'success') {
-                            $("#frm_create").unbind('submit').submit();
+                            $("#frm_ipcreate").unbind('submit').submit();
                         }else{
-                            $("#frm_create").submit(function (e) {
+                            $("#frm_ipcreate").submit(function (e) {
                                 e.preventDefault();
                             });
                             toastr.error('Hồ sơ đã được tạo bạn cần kiểm tra lại','Lỗi!.');
@@ -343,7 +343,7 @@
     <div class="modal fade bs-modal-lg" id="modal-ipcreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                {!! Form::open(['url'=>'thongtingiagocvlxd/importex','id' => 'frm_ipcreate'])!!}
+                {!! Form::open(['url'=>'thongtingiagocvlxd/importex','id' => 'frm_ipcreate','files'=>true,'enctype'=>'multipart/form-data'])!!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title">Nhận dữ liệu hồ sơ giá gốc vật liệu xây dựng?</h4>

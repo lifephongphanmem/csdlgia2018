@@ -16,12 +16,14 @@ class CreateGiagocvlxdctTable extends Migration
         Schema::create('giagocvlxdct', function (Blueprint $table) {
             $table->increments('id');
             $table->string('mahs')->nullable();
-            $table->string('tenhhdv')->nullable();
-            $table->string('qccl')->nullable();
+            $table->text('tenhhdv')->nullable();
+            $table->text('qccl')->nullable();
             $table->string('dvt')->nullable();
             $table->string('giagoc')->nullable();
             $table->string('qcad')->nullable();
             $table->text('ghichu')->nullable();
+            $table->string('trangthai')->nullable();
+            $table->string('district')->nullable();
             $table->timestamps();
         });
     }

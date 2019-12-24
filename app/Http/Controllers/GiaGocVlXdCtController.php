@@ -26,6 +26,7 @@ class GiaGocVlXdCtController extends Controller
 
         if(isset($inputs['tenhhdv'])){
             $inputs['giagoc'] = getDbl($inputs['giagoc']);
+            $inputs['trangthai'] = 'CXD';
             $modelts = new GiaGocVlXdCt();
             $modelts->create($inputs);
 
@@ -81,76 +82,18 @@ class GiaGocVlXdCtController extends Controller
             'status' => 'fail',
             'message' => 'error',
         );
-        if(!Session::has('admin')) {
+        if (!Session::has('admin')) {
             $result = array(
                 'status' => 'fail',
                 'message' => 'permission denied',
             );
             die(json_encode($result));
         }
-        //dd($request);
+
         $inputs = $request->all();
-
-        if(isset($inputs['id'])){
-
-            $model = GiaGocVlXdCt::where('id',$inputs['id'])
-                ->first();
-            //dd($model);
-            $result['message'] = '<div class="modal-body" id="ttpedit">';
-
-            $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Tên vật liệu<span class="require">*</span></label>';
-            $result['message'] .= '<div><textarea id="tenhhdvedit" class="form-control" name="tenhhdvedit" cols="30" rows="2">'.$model->tenhhdv.'</textarea></div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-
-            $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Quy cách chất lượng<span class="require">*</span></label>';
-            $result['message'] .= '<div><textarea id="qccledit" class="form-control" name="qccledit" cols="30" rows="2">'.$model->qccl.'</textarea></div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-
-            $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-6">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Đơn vị tính<span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" name="dvtedit" id="dvtedit" class="form-control" value="'.$model->dvt.'"></div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '<div class="col-md-6">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Giá gốc<span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" name="giagocedit" id="giagocedit" class="form-control" data-mask="fdecimal" value="'.$model->giagoc.'" style="text-align: right;font-weight: bold"></div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-
-            $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Tiêu chuẩn, quy chuẩn áp dụng<span class="require">*</span></label>';
-            $result['message'] .= '<div><textarea id="qcadedit" class="form-control" name="qcadedit" cols="30" rows="2">'.$model->qcad.'</textarea></div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-
-
-            $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Ghi chú<span class="require">*</span></label>';
-            $result['message'] .= '<div><textarea id="ghichuedit" class="form-control" name="ghichuedit" cols="30" rows="3">'.$model->ghichu.'</textarea></div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-
-            $result['message'] .= '<input type="hidden" id="idedit" name="idedit" value="'.$model->id.'">';
-
-            $result['message'] .= '</div>';
-            $result['status'] = 'success';
-
-        }
-        die(json_encode($result));
+        $id = $inputs['id'];
+        $model = GiaGocVlXdCt::findOrFail($id);
+        die($model);
     }
 
     public function update(Request $request){

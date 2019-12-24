@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\DiaBanHd;
+use App\District;
 use App\GiaGocVlXd;
 use App\GiaGocVlXdCt;
 use App\GiaGocVlXdCtDf;
+use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\File;
 
 class GiaGocVlXdController extends Controller
 {
@@ -46,7 +50,9 @@ class GiaGocVlXdController extends Controller
     public function create(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
-            $modelct = GiaGocVlXdCtDf::where('district',$inputs['diaban'])
+            $modeldel = GiaGocVlXdCt::where('trangthai','CXD')->delete();
+            $inputs['mahs'] =  $inputs['diaban'].getdate()[0];
+            $modelct = GiaGocVlXdCt::where('mahs',$inputs['mahs'])
                 ->get();
             $diaban = DiaBanHd::where('district',$inputs['diaban'])
                 ->first();
@@ -65,24 +71,12 @@ class GiaGocVlXdController extends Controller
         if (Session::has('admin')) {
             $inputs = $request->all();
             $inputs['ngaybc'] = getDateToDb($inputs['ngaybc']);
-            $inputs['mahs'] = $inputs['district'].getdate()[0];
             $inputs['trangthai'] = 'CHT';
             $inputs['ttthaotac'] = session('admin')->name.'('.session('admin')->username.') thêm mới';
             $model = new GiaGocVlXd();
             if($model->create($inputs)){
-                $modelctdf = GiaGocVlXdCtDf::where('district',$inputs['district']);
-                foreach($modelctdf->get() as $ctdf){
-                    $modelct = new GiaGocVlXdCt();
-                    $modelct->tenhhdv = $ctdf->tenhhdv;
-                    $modelct->qccl = $ctdf->qccl;
-                    $modelct->dvt = $ctdf->dvt;
-                    $modelct->giagoc = $ctdf->giagoc;
-                    $modelct->qcad = $ctdf->qcad;
-                    $modelct->ghichu = $ctdf->ghichu;
-                    $modelct->mahs = $inputs['mahs'];
-                    $modelct->save();
-                }
-                $modelctdf->delete();
+                $modelct = GiaGocVlXdCt::where('mahs',$inputs['mahs'])
+                    ->update(['trangthai' => 'XD']);
             }
             return redirect('thongtingiagocvlxd?&nam='.$inputs['nam'].'&district='.$inputs['district']);
 
@@ -175,7 +169,9 @@ class GiaGocVlXdController extends Controller
             $inputs['ngaybc'] = getDateToDb($inputs['ngaybc']);
             $inputs['ttthaotac'] = session('admin')->name.'('.session('admin')->username.') chỉnh sửa';
             $model = GiaGocVlXd::findOrFail($id);
-            $model->update($inputs);
+            if($model->update($inputs))
+                $modelct = GiaGocVlXdCt::where('mahs',$inputs['mahs'])
+                    ->update(['trangthai' => 'XD']);
             return redirect('thongtingiagocvlxd?&nam='.$model->nam.'&district='.$model->district);
 
 
@@ -228,6 +224,62 @@ class GiaGocVlXdController extends Controller
             $model->save();
             return redirect('thongtingiagocvlxd?&nam='.$model->nam.'&district='.$model->district);
         } else
+            return view('errors.notlogin');
+    }
+
+    public function importex(Request $request){
+        if(Session::has('admin')){
+            $inputs=$request->all();
+            $inputs['nam'] = $inputs['namip'];
+            $inputs['namhs'] = $inputs['namip'];
+            $inputs['quy'] = $inputs['quyip'];
+            $inputs['district'] = $inputs['districtip'];
+            $inputs['diaban'] = $inputs['districtip'];
+
+            $dels = GiaGocVlXdCt::where('district',$inputs['district'])
+                ->where('trangthai','CXD')->delete();
+
+            $filename = $inputs['district'] . '_' . getdate()[0];
+            $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
+            $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
+            $data = [];
+
+            Excel::load($path, function ($reader) use (&$data, $inputs) {
+                $obj = $reader->getExcel();
+                $sheet = $obj->getSheet(0);
+                $data = $sheet->toArray(null, true, true, true);// giữ lại tiêu đề A=>'val';
+            });
+            //dd($data);
+            $inputs['mahs'] = $inputs['district'].getdate()[0];
+            for ($i = $inputs['tudong']; $i < ($inputs['tudong'] + $inputs['dendong']); $i++) {
+//                dd($data[$i]);
+                if (!isset($data[$i][$inputs['tenhhdv']]) || $data[$i][$inputs['tenhhdv']] == '') {
+                    continue;//Tên cán bộ rỗng => thoát
+                }
+                $modelctnew = new GiaGocVlXdCt();
+                $modelctnew->mahs = $inputs['mahs'];
+                $modelctnew->district = $inputs['district'];
+                $modelctnew->trangthai = 'CXD';
+                $modelctnew->tenhhdv = $data[$i][$inputs['tenhhdv']];
+                $modelctnew->qccl = $data[$i][$inputs['qccl']];
+                $modelctnew->dvt = $data[$i][$inputs['dvt']];
+                $modelctnew->giagoc = $data[$i][$inputs['giagoc']];
+                $modelctnew->qcad = $data[$i][$inputs['qcad']];
+                $modelctnew->ghichu = $data[$i][$inputs['ghichu']];
+                $modelctnew->save();
+            }
+            File::Delete($path);
+            $modelct = GiaGocVlXdCt::where('mahs', $inputs['mahs'])
+                ->get();
+            $diaban = DiaBanHd::where('district',$inputs['district'])
+                ->first();
+            return view('manage.dinhgia.giagocvlxd.kekhai.create')
+                ->with('inputs',$inputs)
+                ->with('diaban',$diaban)
+                ->with('modelct',$modelct)
+                ->with('pageTitle', 'Thông tin giá gốc vật liệu xây dựng thêm mới');
+
+        }else
             return view('errors.notlogin');
     }
 }

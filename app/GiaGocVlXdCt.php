@@ -16,5 +16,7 @@ class GiaGocVlXdCt extends Model
         'giagoc',
         'qcad',
         'ghichu',
+        'trangthai',
+        'district',
     ];
 }

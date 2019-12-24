@@ -11,17 +11,17 @@ Route::post('thongtingiagocvlxd/hoanthanh','GiaGocVlXdController@hoanthanh');
 Route::post('thongtingiagocvlxd/huyhoanthanh','GiaGocVlXdController@huyhoanthanh');
 Route::post('thongtingiagocvlxd/congbo','GiaGocVlXdController@congbo');
 
+Route::post('thongtingiagocvlxd/importex','GiaGocVlXdController@importex');
 
 Route::get('giagocvlxdctdf/storett','GiaGocVlXdCtDfController@store');
 Route::get('giagocvlxdctdf/edittt','GiaGocVlXdCtDfController@edit');
 Route::get('giagocvlxdctdf/updatett','GiaGocVlXdCtDfController@update');
 Route::get('giagocvlxdctdf/deletett','GiaGocVlXdCtDfController@destroy');
 
-Route::get('giagocvlxdct/storett','GiaGocVlXdCtController@store');
+Route::post('giagocvlxdct/storett','GiaGocVlXdCtController@store');
 Route::get('giagocvlxdct/edittt','GiaGocVlXdCtController@edit');
-Route::get('giagocvlxdct/updatett','GiaGocVlXdCtController@update');
+Route::post('giagocvlxdct/updatett','GiaGocVlXdCtController@update');
 Route::get('giagocvlxdct/deletett','GiaGocVlXdCtController@destroy');
-
 
 Route::get('tonghopgiagocvlxd','ThGiaGocVlXdController@index');
 Route::post('tonghopgiagocvlxd/create','ThGiaGocVlXdController@create');
