@@ -23,8 +23,7 @@ class UsersCompanyController extends Controller
                     $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : '5';
 //                    dd($inputs);
                     $model = Users::where('level', 'DN')
-                        ->where('status','Kích hoạt')
-                        ->OrWhere('status','Vô hiệu hóa')
+                        ->whereIn('status',['Kích hoạt','Vô hiệu hóa'])
                         ->orderBy('id', 'desc');
                     if($inputs['name'] != '')
                         $model = $model->where('name','like', '%'.$inputs['name'].'%');
