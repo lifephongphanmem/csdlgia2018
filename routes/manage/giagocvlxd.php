@@ -28,6 +28,7 @@ Route::post('tonghopgiagocvlxd/create','ThGiaGocVlXdController@create');
 Route::get('tonghopgiagocvlxd/{id}','ThGiaGocVlXdController@show');
 Route::get('tonghopgiagocvlxd/{id}/edit','ThGiaGocVlXdController@edit');
 Route::patch('tonghopgiagocvlxd/{id}','ThGiaGocVlXdController@update');
+Route::post('tonghopgiagocvlxd/delete','ThGiaGocVlXdController@destroy');
 Route::post('tonghopgiagocvlxd/hoanthanh','ThGiaGocVlXdController@hoanthanh');
 Route::post('tonghopgiagocvlxd/huyhoanthanh','ThGiaGocVlXdController@huyhoanthanh');
 Route::post('tonghopgiagocvlxd/congbo','ThGiaGocVlXdController@congbo');

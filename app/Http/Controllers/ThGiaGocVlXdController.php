@@ -156,7 +156,7 @@ class ThGiaGocVlXdController extends Controller
     public function hoanthanh(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
-            $model = ThGiaGocVlXd::where('id',$inputs['idhoanthanh'])->first();;
+            $model = ThGiaGocVlXd::where('id',$inputs['idhoanthanh'])->first();
             $model->trangthai = 'HT';
             $model->save();
             return redirect('tonghopgiagocvlxd?&quy='.$model->quy.'&nam='.$model->nam);
@@ -167,7 +167,7 @@ class ThGiaGocVlXdController extends Controller
     public function huyhoanthanh(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
-            $model = ThGiaGocVlXd::where('id',$inputs['idhuyhoanthanh'])->first();;
+            $model = ThGiaGocVlXd::where('id',$inputs['idhuyhoanthanh'])->first();
             $model->trangthai = 'HHT';
             $model->congbo = 'CCB';
             $model->save();
@@ -180,10 +180,23 @@ class ThGiaGocVlXdController extends Controller
     {
         if (Session::has('admin')) {
             $inputs = $request->all();
-            $model = ThGiaGocVlXd::where('id', $inputs['idcongbo'])->first();;
+            $model = ThGiaGocVlXd::where('id', $inputs['idcongbo'])->first();
             $model->congbo = 'CB';
             $model->save();
             return redirect('tonghopgiagocvlxd?&quy='.$model->quy.'&nam='.$model->nam);
+        } else
+            return view('errors.notlogin');
+    }
+
+    public function destroy(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $model = ThGiaGocVlXd::where('id', $inputs['iddelete'])->first();
+            if($model->delete()){
+                $modelct = ThGiaGocVlXdCt::where('mahs',$model->mahs)
+                    ->delete();
+            }
+            return redirect('tonghopgiagocvlxd');
         } else
             return view('errors.notlogin');
     }
