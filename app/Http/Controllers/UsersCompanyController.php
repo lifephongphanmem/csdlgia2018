@@ -20,7 +20,7 @@ class UsersCompanyController extends Controller
                     $inputs = $request->all();
                     $inputs['name'] = isset($inputs['name']) ? $inputs['name'] : '';
                     $inputs['username'] = isset($inputs['username']) ? $inputs['username'] : '';
-                    $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : '5';
+                    $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
 //                    dd($inputs);
                     $model = Users::where('level', 'DN')
                         ->whereIn('status',['Kích hoạt','Vô hiệu hóa'])

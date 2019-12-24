@@ -28,7 +28,7 @@ class CompanyController extends Controller
                 $inputs['masothue'] = isset($inputs['masothue']) ? $inputs['masothue'] : '';
                 $inputs['tendn'] = isset($inputs['tendn']) ? $inputs['tendn'] : '';
                 $inputs['diachi'] = isset($inputs['diachi']) ? $inputs['diachi'] : '';
-                $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['diachi'] : '5';
+                $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['diachi'] : 5;
                 $model = Company::where('trangthai','Kích hoạt');
                 if($inputs['tendn'] != '')
                     $model = $model->where('tendn','like', '%'.$inputs['tendn'].'%');
