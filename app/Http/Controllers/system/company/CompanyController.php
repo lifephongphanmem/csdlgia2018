@@ -24,12 +24,22 @@ class CompanyController extends Controller
     public function index(Request $request){
         if (Session::has('admin')) {
             if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level =='X') {
-
-                $model = Company::where('trangthai','Kích hoạt')
-                    ->get();
-
+                $inputs = $request->all();
+                $inputs['masothue'] = isset($inputs['masothue']) ? $inputs['masothue'] : '';
+                $inputs['tendn'] = isset($inputs['tendn']) ? $inputs['tendn'] : '';
+                $inputs['diachi'] = isset($inputs['diachi']) ? $inputs['diachi'] : '';
+                $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['diachi'] : '5';
+                $model = Company::where('trangthai','Kích hoạt');
+                if($inputs['tendn'] != '')
+                    $model = $model->where('tendn','like', '%'.$inputs['tendn'].'%');
+                if($inputs['masothue'] != '')
+                    $model = $model->where('maxa','like', '%'.$inputs['masothue'].'%');
+                if($inputs['diachi'] != '')
+                    $model = $model->where('diachi','like', '%'.$inputs['diachi'].'%');
+                $model = $model->paginate($inputs['paginate']);
                 return view('system.company.index')
                     ->with('model', $model)
+                    ->with('inputs',$inputs)
                     ->with('pageTitle', 'Danh sách doanh nghiệp cung cấp dịch vụ');
             }else
                 return view('errors.perm');
