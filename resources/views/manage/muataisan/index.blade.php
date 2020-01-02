@@ -19,24 +19,25 @@
             TableManaged.init();
         });
         $(function(){
-            $('#nam').change(function() {
-                var namhs = '&nam=' + $('#nam').val();
-                var url = '/thongtinmuataisan?'+namhs;
-                window.location.href = url;
-            });
+//            $('#nam').change(function() {
+//                var namhs = '&nam=' + $('#nam').val();
+//                var url = '/thongtinmuataisan?'+namhs;
+//                window.location.href = url;
+//            });
+//
+//            $('#mahuyen').change(function() {
+//                var nam = '&nam='+ $('#nam').val();
+//                var mahuyen = '&mahuyen='+ $('#mahuyen').val();
+//                var url = '/thongtinmuataisan?' + nam  + mahuyen;
+//                window.location.href = url;
+//            });
 
-            $('#mahuyen').change(function() {
+            $('#maxa,#mahuyen,#nam,#manhom').change(function() {
                 var nam = '&nam='+ $('#nam').val();
-                var mahuyen = '&mahuyen='+ $('#mahuyen').val();
-                var url = '/thongtinmuataisan?' + nam  + mahuyen;
-                window.location.href = url;
-            });
-
-            $('#maxa').change(function() {
-                var nam = '&nam='+ $('#nam').val();
+                var manhom = '&manhom='+ $('#manhom').val();
                 var mahuyen = '&mahuyen='+ $('#mahuyen').val();
                 var maxa = '&maxa='+ $('#maxa').val();
-                var url = '/thongtinmuataisan?' + nam  + mahuyen + maxa;
+                var url = '/thongtinmuataisan?' + nam  + mahuyen + maxa + manhom;
                 window.location.href = url;
             });
 
@@ -53,10 +54,13 @@
         function confirmCB(id){
             document.getElementById("idcongbo").value=id;
         }
+        function confirmHCB(id){
+            document.getElementById("idhuycongbo").value=id;
+        }
         function get_attack(id){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/filethamdinhgia/dinhkem',
+                url: '/thongtinmuataisan/dinhkem',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -92,12 +96,13 @@
                     </div>
                     <div class="actions">
                         @if(can('kkmuataisan','create'))
-                        <a href="{{url('thongtinmuataisan/create?&maxa='.$inputs['maxa'])}}" class="btn btn-default btn-sm">
+                        <a href="{{url('thongtinmuataisan/create?&mahuyen='.$inputs['mahuyen'].'&maxa='.$inputs['maxa'])}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
-                        <a href="{{url('thongtinmuataisan/nhanexcel?&maxa='. $inputs['maxa'])}}" class="btn btn-default btn-sm"><i class="fa fa-file-excel-o"></i>&nbsp;Nhận dữ liệu</a>
+                        {{--<a href="{{url('thongtinmuataisan/nhanexcel?&maxa='. $inputs['maxa'])}}" class="btn btn-default btn-sm"><i class="fa fa-file-excel-o"></i>&nbsp;Nhận dữ liệu</a>--}}
                         @endif
                     </div>
                 </div>
+                <hr>
                 <div class="portlet-body">
                     <div class="row">
                         <div class="col-md-2">
@@ -112,8 +117,19 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label style="font-weight: bold">Nhóm hàng hóa</label>
+                                <select name="manhom" id="manhom" class="form-control">
+                                    <option value="all">--Tất cả các nhóm--</option>
+                                    @foreach($modelnhomhh as $nhomhh)
+                                        <option value="{{$nhomhh->manhom}}" {{$nhomhh->manhom == $inputs['manhom'] ? 'selected' : ''}}>{{$nhomhh->tennhom}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         @if(session('admin')->level == 'T')
-                            <div class="col-md-5">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label style="font-weight: bold">Đơn vị chủ quản</label>
                                     <select name="mahuyen" id="mahuyen" class="form-control">
@@ -127,7 +143,7 @@
                             <input type="hidden" name="mahuyen" id="mahuyen" value="{{$inputs['mahuyen']}}">
                         @endif
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H')
-                            <div class="col-md-5">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label style="font-weight: bold">Đơn vị</label>
                                     <select name="maxa" id="maxa" class="form-control">
@@ -143,12 +159,11 @@
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Thời điểm <br>thẩm định</th>
-                            <th style="text-align: center">Thông tin tờ trình</th>
-                            <th style="text-align: center">Số thông báo<br>kết luận</th>
-                            <th style="text-align: center">Thông tin tài sản thẩm định</th>
-                            <th style="text-align: center">Đơn vị yêu cầu thẩm định</th>
-                            <th style="text-align: center" with="3%">Thời hạn <br>thẩm định</th>
+                            <th style="text-align: center">Tên nhóm</th>
+                            <th style="text-align: center">Ngày quyết định</th>
+                            <th style="text-align: center">Thông tin quyết định</th>
+                            <th style="text-align: center">Số quyết định</th>
+                            <th style="text-align: center">Tên nhà thầu</th>
                             <th style="text-align: center">Trạng thái</th>
                             <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
@@ -157,55 +172,55 @@
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
-                                <td style="text-align: center">{{getDayVn($tt->thoidiem)}}</td>
-                                <td style="text-align: left">{{$tt->hosotdgia}}</td>
-                                <td style="text-align: center">{{$tt->sotbkl}}</td>
-                                <td>{{$tt->tttstd}}</td>
-                                <td>{{$tt->dvyeucau}}</td>
-                                <td style="text-align: center">{{getDayVn($tt->thoihan)}}</td>
+                                <td>{{$tt->tennhom}}</td>
+                                <td style="text-align: center">{{getDayVn($tt->ngayqd)}}</td>
+                                <td style="text-align: left">{{$tt->thongtinqd}}</td>
+                                <td style="text-align: center">{{$tt->soqd}}</td>
+                                <td>{{$tt->tennhathau}}</td>
                                 <td style="text-align: center">
                                     @if($tt->trangthai == 'HT')
                                         <span class="badge badge-warning">Hoàn thành</span>
                                     @elseif($tt->trangthai == 'CHT')
                                         <span class="badge badge-danger">Chưa hoàn thành</span>
-                                    @elseif($tt->trangthai == 'HHT')
-                                        <span class="badge badge-danger">Hủy hoàn thành</span>
                                     @else
                                         <span class="badge badge-success">Công bố</span>
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{url('thamdinhgia/'.$tt->id)}}" target="_blank" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</a>
                                     <button type="button" onclick="get_attack('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#dinhkem-modal-confirm" data-toggle="modal"><i class="fa fa-cloud-download"></i>&nbsp;File đính kèm</button>
-                                    @if($tt->trangthai == 'CHT' || $tt->trangthai == 'HHT')
-                                        @if(can('kkthamdinhgia','edit'))
-                                        <a href="{{url('thamdinhgia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                    @if($tt->trangthai == 'CHT')
+                                        @if(can('hsmuataisan','edit'))
+                                        <a href="{{url('thongtinmuataisan/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                         @endif
-                                        @if(can('kkthamdinhgia','approve'))
+                                        @if(can('hsmuataisan','approve'))
                                         <button type="button" onclick="confirmHoanthanh('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn thành</button>
                                         @endif
-                                        @if($tt->trangthai == 'CHT')
-                                            @if(can('kkthamdinhgia','delete'))
+                                        @if(can('hsmuataisan','delete'))
                                             <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                             Xóa</button>
-                                            @endif
                                         @endif
                                     @endif
                                     @if($tt->trangthai == 'HT' || $tt->trangthai == 'CB')
                                         @if(session('admin')->level == 'T' || session('admin')->level == 'H')
                                             @if($tt->trangthai == 'HT')
-                                                @if(can('ththamdinhgia','congbo'))
+                                                @if(can('thmuataisan','congbo'))
                                                 <button type="button" onclick="confirmCB('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal-confirm" data-toggle="modal"><i class="fa fa-send"></i>&nbsp;
                                                     Công bố</button>
                                                 @endif
+                                                @if(can('thmuataisan','approve'))
+                                                    <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
+                                                        Hủy hoàn thành</button>
+                                                @endif
+                                            @else
+                                                @if(can('thmuataisan','approve'))
+                                                    <button type="button" onclick="confirmHCB('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huycongbo-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
+                                                        Hủy công bố</button>
+                                                @endif
                                             @endif
-                                            @if(can('kkthamdinhgia','approve'))
-                                            <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
-                                                Hủy hoàn thành</button>
-                                            @endif
+
+
                                         @endif
                                     @endif
-                                    <!--a href="{{url('hoso-thamdinhgia/'.$tt->mahs.'/history')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Lịch sử</a-->
                                 </td>
                             </tr>
                         @endforeach
@@ -225,7 +240,7 @@
     @include('includes.e.modal-attackfile')
     <!--Modal Delete-->
     <div id="delete-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-        {!! Form::open(['url'=>'thamdinhgia/delete','id' => 'frm_delete'])!!}
+        {!! Form::open(['url'=>'thongtinmuataisan/delete','id' => 'frm_delete'])!!}
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
@@ -250,7 +265,7 @@
     </script>
     <!--Modal Hoàn thành-->
     <div id="hoanthanh-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-        {!! Form::open(['url'=>'thamdinhgia/hoanthanh','id' => 'frm_hoanthanh'])!!}
+        {!! Form::open(['url'=>'thongtinmuataisan/hoanthanh','id' => 'frm_hoanthanh'])!!}
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
@@ -272,7 +287,7 @@
     </div>
     <!--Modal Hủy Hoàn thành-->
     <div id="huyhoanthanh-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-        {!! Form::open(['url'=>'thamdinhgia/huyhoanthanh','id' => 'frm_huyhoanthanh'])!!}
+        {!! Form::open(['url'=>'thongtinmuataisan/huyhoanthanh','id' => 'frm_huyhoanthanh'])!!}
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
@@ -292,9 +307,9 @@
         </div>
         {!! Form::close() !!}
     </div>
-    <!--Modal Hủy Hoàn thành-->
+    <!--Modal Công bô-->
     <div id="congbo-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-        {!! Form::open(['url'=>'thamdinhgia/congbo','id' => 'frm_congbo'])!!}
+        {!! Form::open(['url'=>'thongtinmuataisan/congbo','id' => 'frm_congbo'])!!}
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
@@ -314,6 +329,28 @@
         </div>
         {!! Form::close() !!}
     </div>
+    <!--Modal Công bô-->
+    <div id="huycongbo-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+        {!! Form::open(['url'=>'thongtinmuataisan/huycongbo','id' => 'frm_huycongbo'])!!}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true"
+                            class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Đồng ý hủy công bố hồ sơ?</h4>
+                    <input type="hidden" name="idhuycongbo" id="idhuycongbo">
+                </div>
+                <div class="modal-body">
+                    <p style="color: #0000FF">Hồ sơ sẽ được hủy công bố lên trang công bố của tỉnh!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickhuycongbo()">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+        {!! Form::close() !!}
+    </div>
     <script>
         function clickhoanthanh(){
             $('#frm_hoanthanh').submit();
@@ -323,6 +360,9 @@
         }
         function clickhuyhoanthanh(){
             $('#frm_huyhoanthanh').submit();
+        }
+        function clickhuycongbo(){
+            $('#frm_huycongbo').submit();
         }
     </script>
     @include('includes.e.modal-attackfile')

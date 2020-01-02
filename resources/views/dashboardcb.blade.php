@@ -49,7 +49,7 @@
                     <div class="portlet-title">
                         <div class="caption caption-md font-blue">
                             <i class="icon-share font-blue"></i>
-                            <span class="caption-subject theme-font bold uppercase">DANH MỤC VĂN BẢN PHÁP LUẬT</span>
+                            <span class="caption-subject theme-font bold uppercase">VĂN BẢN QUẢN LÝ NHÀ NƯỚC VỀ GIÁ, PHÍ LỆ PHÍ</span>
                         </div>
                     </div>
                     <div class="portlet-body" >

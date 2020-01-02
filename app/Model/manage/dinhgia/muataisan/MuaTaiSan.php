@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model\manage\dinhgia\muataisan;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,9 +12,11 @@ class MuaTaiSan extends Model
         'mahs',
         'maxa',
         'mahuyen',
-        'thongtinhs',
-        'ngaynhap',
-        'ngayapdung',
+        'manhom',
+        'ngayqd',
+        'thongtinqd',
+        'soqd',
+        'tennhathau',
         'ghichu',
         'ipt1',
         'ipf1',

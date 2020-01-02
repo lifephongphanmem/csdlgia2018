@@ -4,6 +4,7 @@ namespace App\Http\Controllers\congbo\dinhgia;
 
 use App\DiaBanHd;
 use App\Model\manage\dinhgia\giadaugiadat\DauGiaDat;
+use App\Model\manage\dinhgia\giadaugiadat\DauGiaDatCt;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -27,7 +28,7 @@ class CongboGiaDauGiaDatController extends Controller
                 ->get();
             $xas = DiaBanHd::where('level','X')
                 ->get();
-            $model = new DauGiaDat();
+            $model = DauGiaDat::where('trangthai','CB');
             if($inputs['nam'] != 'all')
                 $model = $model->whereYear('thoidiem',$inputs['nam']);
             if($inputs['mahuyen'] != 'all') {
@@ -36,12 +37,12 @@ class CongboGiaDauGiaDatController extends Controller
                     ->where('district',$inputs['mahuyen'])
                     ->get();
             }
+
             if($inputs['maxa'] != 'all')
                 $model = $model->where('maxa', $inputs['maxa']);
             if($inputs['tenduan'] != '')
                 $model = $model->where('tenduan','like', '%'.$inputs['tenduan'].'%');
             $model = $model->paginate($inputs['paginate']);
-            $model = $model->where('trangthai','CB');
 
             foreach($model as $tt){
                 $tenhuyen = DiaBanHd::where('level','H')
@@ -92,7 +93,27 @@ class CongboGiaDauGiaDatController extends Controller
      */
     public function show($id)
     {
-        //
+        $model = DauGiaDat::findOrFail($id);
+        $modelct = DauGiaDatCt::where('mahs',$model->mahs)
+            ->get();
+        $modeldb = DiaBanHd::where('level','H')
+            ->where('district',$model->mahuyen)
+            ->first();
+        $modelxa = DiaBanHd::where('level','X')
+            ->where('town',$model->maxa)
+            ->first();
+
+        $inputs['dvcaptren'] = getGeneralConfigs()['tendvcqhienthi'];
+        $inputs['dv'] = getGeneralConfigs()['tendvhienthi'];
+        $inputs['diadanh'] = getGeneralConfigs()['diadanh'];
+
+        return view('congbo.DinhGia.GiaDauGiaDat.show')
+            ->with('model',$model)
+            ->with('modelct',$modelct)
+            ->with('modeldb',$modeldb)
+            ->with('modelxa',$modelxa)
+            ->with('inputs',$inputs)
+            ->with('pageTitle','Hồ sơ đấu giá đất');
     }
 
     /**

@@ -207,6 +207,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <a href="{{url('cbgiadaugiadat')}}">
                                             Giá đấu giá đất</a>
                                     </li>
+                                    <li>
+                                        <a href="{{url('cbgiathuetainguyen')}}">
+                                            &nbsp;Giá thuế tài nguyên</a>
+                                    </li>
                                     <li class="">
                                         <a href="{{url('cbgiathuedatnuoc')}}">
                                             Giá thuê mặt đất-nước</a>
@@ -254,11 +258,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <i class="icon-folder"></i>
                                     &nbsp;Giá HH-DV khác</a>
                             </li>
-                            <li>
-                                <a href="">
-                                    <i class="icon-folder"></i>
-                                    &nbsp;Giá thuế tài nguyên</a>
-                            </li>
+
                             <li>
                                 <a href="{{url('cbgialephitruocba')}}">
                                     <i class="icon-folder"></i>

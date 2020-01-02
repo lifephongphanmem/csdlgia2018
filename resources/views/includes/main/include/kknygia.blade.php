@@ -4,7 +4,7 @@
             data-original-title="Giá kê khai của hàng hóa, dịch vụ thuộc dah mục kê khai giá">
             <a href="javascript:;">
                 <i class="icon-folder"></i>
-                <span class="title">Kê khai - Đăng ký giá</span>
+                <span class="title">Mức giá kê khai - đăng ký</span>
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu">

@@ -18,9 +18,11 @@ class CreateMuataisanTable extends Migration
             $table->string('mahs')->nullable();
             $table->string('maxa')->nullable();
             $table->string('mahuyen')->nullable();
-            $table->string('thongtinhs')->nullable();
-            $table->date('ngaynhap')->nullable();
-            $table->date('ngayapdung')->nullable();
+            $table->string('manhom')->nullable();
+            $table->date('ngayqd')->nullable();
+            $table->text('thongtinqd')->nullable();
+            $table->string('soqd')->nullable();
+            $table->string('tennhathau')->nullable();
             $table->text('ghichu')->nullable();
             $table->string('ipt1')->nullable();
             $table->string('ipf1')->nullable();

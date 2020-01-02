@@ -145,10 +145,16 @@
     <td style="text-align: center"><input type="checkbox" {{ (isset($setting->giagocvlxd->congbo) && $setting->giagocvlxd->congbo == 1) ? 'checked' : '' }} value="1" name="roles[giagocvlxd][congbo]"/></td>
 </tr>
 <tr style="font-style: italic; font-weight: bold" class="success">
+    <td>&nbsp;&nbsp;Giá giao dịch bất động sản</td>
+    <td style="text-align: center"><input type="checkbox" {{ (isset($setting->giabatdongsan->index) && $setting->giabatdongsan->index == 1) ? 'checked' : '' }} value="1" name="roles[giabatdongsan][index]"/></td>
+    <td style="text-align: center"><input type="checkbox" {{ (isset($setting->giabatdongsan->congbo) && $setting->giabatdongsan->congbo == 1) ? 'checked' : '' }} value="1" name="roles[giabatdongsan][congbo]"/></td>
+</tr>
+<tr style="font-style: italic; font-weight: bold" class="success">
     <td>&nbsp;&nbsp;Giá trúng thầu của HH-DV được mua sắm theo QĐ của PL về đấu thầu</td>
     <td style="text-align: center"><input type="checkbox" {{ (isset($setting->muataisan->index) && $setting->muataisan->index == 1) ? 'checked' : '' }} value="1" name="roles[muataisan][index]"/></td>
     <td style="text-align: center"><input type="checkbox" {{ (isset($setting->muataisan->congbo) && $setting->muataisan->congbo == 1) ? 'checked' : '' }} value="1" name="roles[muataisan][congbo]"/></td>
 </tr>
+
 <tr style="font-style: italic; font-weight: bold" class="success">
     <td>&nbsp;&nbsp;Kê khai - đăng ký giá hàng hóa, dịch vụ thuộc danh mục</td>
     <td style="text-align: center"><input type="checkbox" {{ (isset($setting->kknygia->index) && $setting->kknygia->index == 1) ? 'checked' : '' }} value="1" name="roles[kknygia][index]"/></td>

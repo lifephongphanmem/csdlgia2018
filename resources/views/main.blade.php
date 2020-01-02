@@ -184,7 +184,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- BEGIN USER LOGIN DROPDOWN -->
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                 <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
-                    <a href="{{url('giahanghoadichvu')}}" class="dropdown-toggle">
+                    <a href="{{url('giahanghoadichvu')}}" class="dropdown-toggle" target="_blank">
                         <i class="fa fa-cloud"></i>
 					<span class="badge badge-danger">
 					View</span>

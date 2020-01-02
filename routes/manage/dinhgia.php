@@ -488,4 +488,19 @@ Route::get('lptbnhaclcl/edit','manage\gialephitruocbanha\GiaLpTbNhaCtClclControl
 Route::post('lptbnhaclcl/update','manage\gialephitruocbanha\GiaLpTbNhaCtClclController@update');
 Route::get('lptbnhaclcl/del','manage\gialephitruocbanha\GiaLpTbNhaCtClclController@destroy');
 
+//Giá giao dịch bất động sản
+Route::get('giagiaodichbatdongsan','manage\giagdbatdatsan\GiaGdBatDongSanController@index');
+Route::get('giagiaodichbatdongsan/create','manage\giagdbatdatsan\GiaGdBatDongSanController@create');
+Route::post('giagiaodichbatdongsan','manage\giagdbatdatsan\GiaGdBatDongSanController@store');
+Route::get('giagiaodichbatdongsan/{id}/edit','manage\giagdbatdatsan\GiaGdBatDongSanController@edit');
+Route::patch('giagiaodichbatdongsan/{id}','manage\giagdbatdatsan\GiaGdBatDongSanController@update');
+Route::post('giagiaodichbatdongsan/delete','manage\giagdbatdatsan\GiaGdBatDongSanController@destroy');
+Route::get('giagiaodichbatdongsan/dinhkem','manage\giagdbatdatsan\GiaGdBatDongSanController@show');
+
+Route::post('giagiaodichbatdongsan/hoanthanh','manage\giagdbatdatsan\GiaGdBatDongSanController@hoanthanh');
+Route::post('giagiaodichbatdongsan/huyhoanthanh','manage\giagdbatdatsan\GiaGdBatDongSanController@huyhoanthanh');
+Route::post('giagiaodichbatdongsan/congbo','manage\giagdbatdatsan\GiaGdBatDongSanController@congbo');
+Route::post('giagiaodichbatdongsan/huycongbo','manage\giagdbatdatsan\GiaGdBatDongSanController@huycongbo');
+
+
 ?>

@@ -1,2 +1,12 @@
 <?php
-Route::resource('thongtinmuataisan','MuaTaiSanController');
+Route::get('thongtinmuataisan','manage\muataisan\MuaTaiSanController@index');
+Route::get('thongtinmuataisan/create','manage\muataisan\MuaTaiSanController@create');
+Route::post('thongtinmuataisan','manage\muataisan\MuaTaiSanController@store');
+Route::get('thongtinmuataisan/dinhkem','manage\muataisan\MuaTaiSanController@show');
+Route::post('thongtinmuataisan/delete','manage\muataisan\MuaTaiSanController@destroy');
+Route::get('thongtinmuataisan/{id}/edit','manage\muataisan\MuaTaiSanController@edit');
+Route::patch('thongtinmuataisan/{id}','manage\muataisan\MuaTaiSanController@update');
+Route::post('thongtinmuataisan/hoanthanh','manage\muataisan\MuaTaiSanController@hoanthanh');
+Route::post('thongtinmuataisan/huyhoanthanh','manage\muataisan\MuaTaiSanController@huyhoanthanh');
+Route::post('thongtinmuataisan/congbo','manage\muataisan\MuaTaiSanController@congbo');
+Route::post('thongtinmuataisan/huycongbo','manage\muataisan\MuaTaiSanController@huycongbo');

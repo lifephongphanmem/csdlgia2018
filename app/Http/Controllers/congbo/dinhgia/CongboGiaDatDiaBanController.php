@@ -21,6 +21,7 @@ class CongboGiaDatDiaBanController extends Controller
         //if (Session::has('admin')) {
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
+            $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : 'All';
             $inputs['maloaidat'] = isset($inputs['maloaidat']) ? $inputs['maloaidat'] : 'All';
             $inputs['khuvuc'] = isset($inputs['khuvuc']) ? $inputs['khuvuc'] : '';
             $inputs['mota'] = isset($inputs['mota']) ? $inputs['mota'] : '';
@@ -28,7 +29,7 @@ class CongboGiaDatDiaBanController extends Controller
             $diabans = DiaBanHd::where('level','H')
                 ->get();
             $loaidats = GiaDatDiaBanDm::all();
-            $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : 'All';
+
             $model  = GiaDatDiaBan::join('diabanhd','diabanhd.district','=','giadatdiaban.district')
                 ->join('giadatdiabandm','giadatdiaban.maloaidat','=','giadatdiabandm.maloaidat')
                 ->select('giadatdiaban.*','diabanhd.diaban','giadatdiabandm.loaidat');

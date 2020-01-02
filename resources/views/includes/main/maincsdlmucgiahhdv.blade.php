@@ -182,27 +182,49 @@
     </li>
     @endif
 @endif
+@if(canGeneral('giabatdongsan','index'))
+    @if(can('giabatdongsan','index'))
+        @if(can('hsgiabatdongsan','index'))
+        <li class="">
+            <a href="{{url('giagiaodichbatdongsan')}}">
+                <i class="icon-folder"></i>
+                <span class="title">Giá giao dịch bất động sản</span>
+                {{--<span class="arrow"></span>--}}
+            </a>
+            {{--<ul class="sub-menu">--}}
+                {{--@if(can('hsgiabatdongsan','index'))--}}
+                    {{--<li>--}}
+                        {{--<a href="{{url('giagiaodichbatdongsan')}}">Thông tin giá giao dịch bất động sản</a>--}}
+                    {{--</li>--}}
+                {{--@endif--}}
+            {{--</ul>--}}
+        </li>
+        @endif
+    @endif
+@endif
 @if(canGeneral('muataisan','index'))
     @if(can('muataisan','index'))
+        @if(can('hsmuataisan','index'))
     <li class="">
-        <a href="javascript:;">
+        <a href="{{url('thongtinmuataisan')}}">
             <i class="icon-folder"></i>
             <span class="title">Giá trúng thầu của HH-DV được mua sắm theo QĐ của PL về đấu thầu</span>
-            <span class="arrow"></span>
+            {{--<span class="arrow"></span>--}}
         </a>
-        <ul class="sub-menu">
-            @if(can('hsmuataisan','index'))
-                <li>
-                    <a href="{{url('thongtinmuataisan')}}">Thông tin trúng thầu HH-DV</a>
-                </li>
-            @endif
-            @if(can('thmuataisan','timkiem'))
-                <li>
-                    <a href="{{url('timkiemmuataisan')}}">Tìm kiếm thông tin</a>
-                </li>
-            @endif
-        </ul>
+        {{--<ul class="sub-menu">--}}
+            {{--@if(can('hsmuataisan','index'))--}}
+                {{--<li>--}}
+                    {{--<a href="{{url('thongtinmuataisan')}}">Thông tin trúng thầu HH-DV</a>--}}
+                {{--</li>--}}
+            {{--@endif--}}
+            {{--@if(can('thmuataisan','timkiem'))--}}
+                {{--<li>--}}
+                    {{--<a href="{{url('timkiemmuataisan')}}">Tìm kiếm thông tin</a>--}}
+                {{--</li>--}}
+            {{--@endif--}}
+        {{--</ul>--}}
     </li>
+        @endif
     @endif
 @endif
 @if(canGeneral('giagocvlxd','index'))

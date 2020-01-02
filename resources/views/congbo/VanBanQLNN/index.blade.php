@@ -83,127 +83,127 @@
 @section('content-cb')
 
     <div class="container">
-    <div class="row margin-top-10">
-        <div class=" col-sm-12">
-            <!-- BEGIN PORTLET-->
-            <!--div class="portlet light"-->
-                <div class="portlet-title">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- BEGIN SAMPLE TABLE PORTLET-->
-                            <div class="portlet light" style="min-height: 587px">
-                                <div class="portlet-title">
-                                    <div class="caption">
-                                        <i class="fa fa-cogs font-green-sharp"></i>
-                                        <span class="caption-subject theme-font bold uppercase">Văn bản quản lý nhà nước về giá, phí lệ phí</span>
-                                    </div>
-                                    <div class="tools">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Phân loại</label>
-                                            <select class="form-control" name="phanloai" id="phanloai">
-                                                <option value="all" {{$inputs['phanloai'] == 'all' ? 'selected' : ''}}>--Tất cả--</option>
-                                                <option value="gia" {{$inputs['phanloai'] == 'gia' ? 'selected' : ''}}>Văn bản về Giá</option>
-                                                <option value="philephi"{{$inputs['phanloai'] == 'philephi' ? 'selected' : ''}}>Văn bản Phí lệ phí</option>
-                                            </select>
+        <div class="row margin-top-10">
+            <div class=" col-sm-12">
+                <!-- BEGIN PORTLET-->
+                <!--div class="portlet light"-->
+                    <div class="portlet-title">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- BEGIN SAMPLE TABLE PORTLET-->
+                                <div class="portlet light" style="min-height: 587px">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-cogs font-green-sharp"></i>
+                                            <span class="caption-subject theme-font bold uppercase">Văn bản quản lý nhà nước về giá, phí lệ phí</span>
                                         </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Loại văn bản</label>
-                                            {!! Form::select('loaivb',getLoaiVbQlNn(),$inputs['loaivb'], ['id' => 'loaivb','class' => 'form-control']) !!}
+                                        <div class="tools">
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Nội dung</label>
-                                            {!! Form::text('tieude',$inputs['tieude'], ['id' => 'tieude','class' => 'form-control']) !!}
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label>
-                                            Hiển thị&nbsp;
-                                            <div class="select2-container form-control input-xsmall input-inline" >
-                                                <select class="form-control" name="paginate" id="paginate" >
-                                                    <option value="5" {{$inputs['paginate'] == 5 ? 'selected' : ''}}>5</option>
-                                                    <option value="20" {{$inputs['paginate'] == 20 ? 'selected' : ''}}>20</option>
-                                                    <option value="50" {{$inputs['paginate'] == 50 ? 'selected' : ''}}>50</option>
-                                                    <option value="100" {{$inputs['paginate'] == 100? 'selected' : ''}}>100</option>
-                                                </select>
-                                            </div>
-                                            &nbsp;thông tin
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="portlet-body">
-                                    <div class="table-scrollable">
-                                        <table class="table table-striped table-bordered table-hover">
-                                            <thead>
-                                            <tr>
-                                                <th width="2%" style="text-align: center">STT</th>
-                                                <th style="text-align: center" width="10%">Đơn vị <br>ban hành</th>
-                                                <th style="text-align: center">Số hiệu <br>văn bản</th>
-                                                <th style="text-align: center">Nội dung</th>
-                                                <th style="text-align: center">Ngày <br>áp dụng</th>
-                                                <th style="text-align: center" width="5%">Thao tác</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            @if(count($model) != 0)
-                                                @foreach($model as $key=>$tt)
-                                                    <tr>
-                                                        <td style="text-align: center">{{$key + 1}}</td>
-                                                        <td class="active">{{$tt->dvbanhanh}}</td>
-                                                        <td class="success">{{$tt->kyhieuvb}}</td>
-                                                        <td>{{$tt->tieude}}</td>
-                                                        <td style="text-align: center">{{getDayVn($tt->ngayapdung)}}</td>
-                                                        <td>
-                                                            <button type="button" onclick="get_attack('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#dinhkem-modal-confirm" data-toggle="modal"><i class="fa fa-cloud-download"></i>&nbsp;Tải tệp</button>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            @else
-                                                <tr>
-                                                    <td style="text-align: center" colspan="10">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
-                                                </tr>
-                                            @endif
-                                            </tbody>
-                                        </table>
                                     </div>
                                     <div class="row">
-                                        @if(count($model) != 0)
-                                            <div class="col-md-5 col-sm-12">
-                                                <div class="dataTables_info" id="sample_3_info" role="status" aria-live="polite">
-                                                    Hiển thị 1 đến {{$model->count()}} trên {{$model->total()}} thông tin
-                                                </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Phân loại</label>
+                                                <select class="form-control" name="phanloai" id="phanloai">
+                                                    <option value="all" {{$inputs['phanloai'] == 'all' ? 'selected' : ''}}>--Tất cả--</option>
+                                                    <option value="gia" {{$inputs['phanloai'] == 'gia' ? 'selected' : ''}}>Văn bản về Giá</option>
+                                                    <option value="philephi"{{$inputs['phanloai'] == 'philephi' ? 'selected' : ''}}>Văn bản Phí lệ phí</option>
+                                                </select>
                                             </div>
-                                            <div class="col-md-7 col-sm-12">
-                                                <div class="dataTables_paginate paging_simple_numbers" id="sample_3_paginate">
-                                                    {{$model->appends(['phanloai' => $inputs['phanloai'],
-                                                                   'loaivb'=>$inputs['loaivb'],
-                                                                   'tieude'=>$inputs['tieude'],
-                                                                   'paginate'=>$inputs['paginate'],
-                                                ])->links()}}
-                                                </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Loại văn bản</label>
+                                                {!! Form::select('loaivb',getLoaiVbQlNn(),$inputs['loaivb'], ['id' => 'loaivb','class' => 'form-control']) !!}
                                             </div>
-                                        @endif
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nội dung</label>
+                                                {!! Form::text('tieude',$inputs['tieude'], ['id' => 'tieude','class' => 'form-control']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>
+                                                Hiển thị&nbsp;
+                                                <div class="select2-container form-control input-xsmall input-inline" >
+                                                    <select class="form-control" name="paginate" id="paginate" >
+                                                        <option value="5" {{$inputs['paginate'] == 5 ? 'selected' : ''}}>5</option>
+                                                        <option value="20" {{$inputs['paginate'] == 20 ? 'selected' : ''}}>20</option>
+                                                        <option value="50" {{$inputs['paginate'] == 50 ? 'selected' : ''}}>50</option>
+                                                        <option value="100" {{$inputs['paginate'] == 100? 'selected' : ''}}>100</option>
+                                                    </select>
+                                                </div>
+                                                &nbsp;thông tin
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="table-scrollable">
+                                            <table class="table table-striped table-bordered table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th width="2%" style="text-align: center">STT</th>
+                                                    <th style="text-align: center" width="10%">Đơn vị <br>ban hành</th>
+                                                    <th style="text-align: center">Số hiệu <br>văn bản</th>
+                                                    <th style="text-align: center">Nội dung</th>
+                                                    <th style="text-align: center">Ngày <br>áp dụng</th>
+                                                    <th style="text-align: center" width="5%">Thao tác</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @if(count($model) != 0)
+                                                    @foreach($model as $key=>$tt)
+                                                        <tr>
+                                                            <td style="text-align: center">{{$key + 1}}</td>
+                                                            <td class="active">{{$tt->dvbanhanh}}</td>
+                                                            <td class="success">{{$tt->kyhieuvb}}</td>
+                                                            <td>{{$tt->tieude}}</td>
+                                                            <td style="text-align: center">{{getDayVn($tt->ngayapdung)}}</td>
+                                                            <td>
+                                                                <button type="button" onclick="get_attack('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#dinhkem-modal-confirm" data-toggle="modal"><i class="fa fa-cloud-download"></i>&nbsp;Tải tệp</button>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @else
+                                                    <tr>
+                                                        <td style="text-align: center" colspan="10">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
+                                                    </tr>
+                                                @endif
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="row">
+                                            @if(count($model) != 0)
+                                                <div class="col-md-5 col-sm-12">
+                                                    <div class="dataTables_info" id="sample_3_info" role="status" aria-live="polite">
+                                                        Hiển thị 1 đến {{$model->count()}} trên {{$model->total()}} thông tin
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-7 col-sm-12">
+                                                    <div class="dataTables_paginate paging_simple_numbers" id="sample_3_paginate">
+                                                        {{$model->appends(['phanloai' => $inputs['phanloai'],
+                                                                       'loaivb'=>$inputs['loaivb'],
+                                                                       'tieude'=>$inputs['tieude'],
+                                                                       'paginate'=>$inputs['paginate'],
+                                                    ])->links()}}
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- END SAMPLE TABLE PORTLET-->
                             </div>
-                            <!-- END SAMPLE TABLE PORTLET-->
                         </div>
-                    </div>
 
-            <!--/div-->
-            <!-- END PORTLET-->
+                <!--/div-->
+                <!-- END PORTLET-->
+            </div>
         </div>
-    </div>
     </div>
     @include('includes.e.modal-attackfile')
     @include('includes.script.inputmask-ajax-scripts')

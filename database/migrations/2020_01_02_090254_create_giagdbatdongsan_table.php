@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVanbanqlnnTable extends Migration
+class CreateGiagdbatdongsanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,31 +13,20 @@ class CreateVanbanqlnnTable extends Migration
      */
     public function up()
     {
-        Schema::create('vanbanqlnn', function (Blueprint $table) {
+        Schema::create('giagdbatdongsan', function (Blueprint $table) {
             $table->increments('id');
             $table->string('mahs')->nullable();
             $table->string('kyhieuvb')->nullable();
             $table->string('dvbanhanh')->nullable();
-            $table->string('loaivb')->nullable();
             $table->date('ngaybanhanh')->nullable();
             $table->date('ngayapdung')->nullable();
             $table->text('tieude')->nullable();
             $table->text('ghichu')->nullable();
-            $table->string('phanloai')->nullable();
+            $table->string('maxa')->nullable();
+            $table->string('mahuyen')->nullable();
             $table->string('ipt1')->nullable();
             $table->string('ipf1')->nullable();
-
-            $table->string('ipt2')->nullable();
-            $table->string('ipf2')->nullable();
-
-            $table->string('ipt3')->nullable();
-            $table->string('ipf3')->nullable();
-
-            $table->string('ipt4')->nullable();
-            $table->string('ipf4')->nullable();
-
-            $table->string('ipt5')->nullable();
-            $table->string('ipf5')->nullable();
+            $table->string('trangthai')->nullable();
             $table->timestamps();
         });
     }
@@ -49,6 +38,6 @@ class CreateVanbanqlnnTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vanbanqlnn');
+        Schema::dropIfExists('giagdbatdongsan');
     }
 }

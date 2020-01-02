@@ -3,7 +3,12 @@
 Route::get('giahanghoadichvu','HomeController@congbo');
 Route::get('coming','HomeController@coming');
 Route::get('cbgiadatdiaban','congbo\dinhgia\CongboGiaDatDiaBanController@index');
+
 Route::get('cbgiadaugiadat','congbo\dinhgia\CongboGiaDauGiaDatController@index');
+Route::get('cbgiadaugiadat/{id}','congbo\dinhgia\CongboGiaDauGiaDatController@show');
+
+Route::get('cbgiathuetainguyen','congbo\dinhgia\CongBoGiaThueTaiNguyenController@index');
+
 Route::get('cbgiathuedatnuoc','congbo\dinhgia\CongboGiaThueDatNuocController@index');
 Route::get('cbgiarung','congbo\dinhgia\CongboGiaRungController@index');
 Route::get('cbthuemuanhaxh','congbo\dinhgia\CongboThueMuaNhaXHController@index');
