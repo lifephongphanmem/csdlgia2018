@@ -297,9 +297,9 @@
                                             <td class="active">{{$tt->tenhh}}</td>
                                             <td style="text-align: left">{{$tt->quycach}}</td>
                                             <td style="text-align: center">{{$tt->dvt}}</td>
-                                            <td style="text-align: right">{{number_format($tt->gialk)}}</td>
-                                            <td style="text-align: right">{{number_format($tt->giakk)}}</td>
-                                            <td>Ghi chú</td>
+                                            <td style="text-align: right">{{dinhdangsothapphan($tt->gialk,2)}}</td>
+                                            <td style="text-align: right">{{dinhdangsothapphan($tt->giakk,2)}}</td>
+                                            <td>{{$tt->ghichu}}</td>
                                             <td>
                                                 <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editmhbog({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>
                                                 {{--<button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editmhbog({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>--}}
