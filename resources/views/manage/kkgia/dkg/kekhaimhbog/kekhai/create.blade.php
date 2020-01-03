@@ -290,7 +290,7 @@
                                     <thead>
                                     <tr>
                                         <th style="text-align: center">STT</th>
-                                        <th style="text-align: center">Tên hoàng hoá<br>dịch vụ</th>
+                                        <th style="text-align: center">Tên hàng hoá<br>dịch vụ</th>
                                         <th style="text-align: center">Quy cách<br>Chất lượng</th>
                                         <th style="text-align: center">Đơn vị<br>tính</th>
                                         <th style="text-align: center">Mức giá <br>liền kề</th>

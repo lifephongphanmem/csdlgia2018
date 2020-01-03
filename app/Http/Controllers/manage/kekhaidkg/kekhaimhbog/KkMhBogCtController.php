@@ -40,7 +40,7 @@ class KkMhBogCtController extends Controller
             $result['message'] .= '<thead>';
             $result['message'] .= '<tr>';
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
-            $result['message'] .= '<th style="text-align: center">Tên hoàng hoá<br>dịch vụ</th>';
+            $result['message'] .= '<th style="text-align: center">Tên hàng hoá<br>dịch vụ</th>';
             $result['message'] .= '<th style="text-align: center">Quy cách<br>Chất lượng</th>';
             $result['message'] .= '<th style="text-align: center">Đơn vị<br>tính</th>';
             $result['message'] .= '<th style="text-align: center">Mức giá <br>liền kề</th>';
@@ -200,7 +200,7 @@ class KkMhBogCtController extends Controller
             $result['message'] .= '<thead>';
             $result['message'] .= '<tr>';
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
-            $result['message'] .= '<th style="text-align: center">Tên hoàng hoá<br>dịch vụ</th>';
+            $result['message'] .= '<th style="text-align: center">Tên hàng hoá<br>dịch vụ</th>';
             $result['message'] .= '<th style="text-align: center">Quy cách<br>Chất lượng</th>';
             $result['message'] .= '<th style="text-align: center">Đơn vị<br>tính</th>';
             $result['message'] .= '<th style="text-align: center">Mức giá <br>liền kề</th>';
@@ -265,7 +265,7 @@ class KkMhBogCtController extends Controller
             $result['message'] .= '<thead>';
             $result['message'] .= '<tr>';
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
-            $result['message'] .= '<th style="text-align: center">Tên hoàng hoá<br>dịch vụ</th>';
+            $result['message'] .= '<th style="text-align: center">Tên hàng hoá<br>dịch vụ</th>';
             $result['message'] .= '<th style="text-align: center">Quy cách<br>Chất lượng</th>';
             $result['message'] .= '<th style="text-align: center">Đơn vị<br>tính</th>';
             $result['message'] .= '<th style="text-align: center">Mức giá <br>liền kề</th>';
@@ -363,7 +363,7 @@ class KkMhBogCtController extends Controller
             $result['message'] .= '<thead>';
             $result['message'] .= '<tr>';
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
-            $result['message'] .= '<th style="text-align: center">Tên hoàng hoá<br>dịch vụ</th>';
+            $result['message'] .= '<th style="text-align: center">Tên hàng hoá<br>dịch vụ</th>';
             $result['message'] .= '<th style="text-align: center">Quy cách<br>Chất lượng</th>';
             $result['message'] .= '<th style="text-align: center">Đơn vị<br>tính</th>';
             $result['message'] .= '<th style="text-align: center">Mức giá <br>liền kề</th>';
