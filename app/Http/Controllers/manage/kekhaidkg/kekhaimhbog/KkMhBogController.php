@@ -134,7 +134,7 @@ class KkMhBogController extends Controller
                 foreach ($modellkct as $ctdf) {
                     $addct = new KkMhBogCt();
                     $addct->tenhh = $ctdf->tenhh;
-                    $addct->qccl = $ctdf->qccl;
+                    $addct->quycach = $ctdf->quycach;
                     $addct->dvt = $ctdf->dvt;
                     $addct->gialk = $ctdf->gia;
                     $addct->maxa = $inputs['maxa'];
