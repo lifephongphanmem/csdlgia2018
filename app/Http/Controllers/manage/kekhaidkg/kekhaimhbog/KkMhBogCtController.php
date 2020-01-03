@@ -45,6 +45,7 @@ class KkMhBogCtController extends Controller
             $result['message'] .= '<th style="text-align: center">Đơn vị<br>tính</th>';
             $result['message'] .= '<th style="text-align: center">Mức giá <br>liền kề</th>';
             $result['message'] .= '<th style="text-align: center">Mức giá <br>kê khai</th>';
+            $result['message'] .= '<th style="text-align: center">Ghi chú</th>';
             $result['message'] .= '<th style="text-align: center" width="15%">Thao tác</th>';
             $result['message'] .= '</tr>';
             $result['message'] .= '</thead>';
@@ -60,6 +61,7 @@ class KkMhBogCtController extends Controller
                     $result['message'] .= '<td class="active">'.$ttmh->dvt.'</td>';
                     $result['message'] .= '<td style="text-align: right;font-weight: bold;">'.dinhdangsothapphan($ttmh->gialk,5).'</td>';
                     $result['message'] .= '<td style="text-align: right;font-weight: bold;">'.dinhdangsothapphan($ttmh->giakk,5).'</td>';
+                    $result['message'] .= '<td>'.$ttmh->ghichu.'</td>';
                     $result['message'] .= '<td>'.
                         '<button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editmhbog('.$ttmh->id.');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>'.
                         '<button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid('.$ttmh->id.');" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>'
@@ -114,7 +116,7 @@ class KkMhBogCtController extends Controller
             $result['message'] .= '</div>';
 
             $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="col-md-6">';
             $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Đơn vị tính</b><span class="require">*</span></label>';
             $result['message'] .= '<div><input type="text" id="dvtedit" class="form-control" name="dvtedit" value='.$model->dvt.'></div>';
             $result['message'] .= '</div>';
@@ -130,6 +132,14 @@ class KkMhBogCtController extends Controller
             $result['message'] .= '<div class="col-md-6">';
             $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Giá kê khai</b><span class="require">*</span></label>';
             $result['message'] .= '<div><input type="text" style="text-align: right" id="giakkedit" name="giakkedit" class="form-control" data-mask="fdecimal" value="'.$model->giakk.'"></div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+
+            $result['message'] .= '<div class="row">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Ghi chus</b><span class="require">*</span></label>';
+            $result['message'] .= '<div><input type="text" id="ghichuedit" class="form-control" name="ghichuedit" value='.$model->ghichu.'></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
@@ -179,6 +189,7 @@ class KkMhBogCtController extends Controller
             $result['message'] .= '<th style="text-align: center">Đơn vị<br>tính</th>';
             $result['message'] .= '<th style="text-align: center">Mức giá <br>liền kề</th>';
             $result['message'] .= '<th style="text-align: center">Mức giá <br>kê khai</th>';
+            $result['message'] .= '<th style="text-align: center">Ghi chú</th>';
             $result['message'] .= '<th style="text-align: center" width="15%">Thao tác</th>';
             $result['message'] .= '</tr>';
             $result['message'] .= '</thead>';
@@ -194,6 +205,7 @@ class KkMhBogCtController extends Controller
                     $result['message'] .= '<td class="active">'.$ttmh->dvt.'</td>';
                     $result['message'] .= '<td style="text-align: right;font-weight: bold;">'.dinhdangsothapphan($ttmh->gialk,5).'</td>';
                     $result['message'] .= '<td style="text-align: right;font-weight: bold;">'.dinhdangsothapphan($ttmh->giakk,5).'</td>';
+                    $result['message'] .= '<td>'.$ttmh->ghichu.'</td>';
                     $result['message'] .= '<td>'.
                         '<button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editmhbog('.$ttmh->id.');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>'.
                         '<button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid('.$ttmh->id.');" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>'
@@ -242,6 +254,7 @@ class KkMhBogCtController extends Controller
             $result['message'] .= '<th style="text-align: center">Đơn vị<br>tính</th>';
             $result['message'] .= '<th style="text-align: center">Mức giá <br>liền kề</th>';
             $result['message'] .= '<th style="text-align: center">Mức giá <br>kê khai</th>';
+            $result['message'] .= '<th style="text-align: center">Ghi chú</th>';
             $result['message'] .= '<th style="text-align: center" width="15%">Thao tác</th>';
             $result['message'] .= '</tr>';
             $result['message'] .= '</thead>';
@@ -257,6 +270,7 @@ class KkMhBogCtController extends Controller
                     $result['message'] .= '<td class="active">'.$ttmh->dvt.'</td>';
                     $result['message'] .= '<td style="text-align: right;font-weight: bold;">'.dinhdangsothapphan($ttmh->gialk,5).'</td>';
                     $result['message'] .= '<td style="text-align: right;font-weight: bold;">'.dinhdangsothapphan($ttmh->giakk,5).'</td>';
+                    $result['message'] .= '<td>'.$ttmh->ghichu.'</td>';
                     $result['message'] .= '<td>'.
                         '<button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editmhbog('.$ttmh->id.');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>'.
                         '<button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid('.$ttmh->id.');" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>'

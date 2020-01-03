@@ -28,11 +28,11 @@
                                 <li><a href="{{url('thongtinmathangbog?manghe='.$dm->manghe)}}">Phân loại TTMH</a></li>
                                 @if($dm->phanloai == 'DK')
                                     <li><a href="{{url('thongtindnkkgdk?manghe='.$dm->manghe)}}">Giá đăng ký</a></li>
-                                    <li><a href="{{url('xetduyetkkdkg?manghe='.$dm->manghe)}}">Xét duyệt hồ sơ Giá đăng ký</a></li>
+                                    <li><a href="{{url('xetduyetkkdkg?manghe='.$dm->manghe)}}">Xét duyệt HS Giá đăng ký</a></li>
 
                                 @else
                                     <li><a href="{{url('thongtindnkkmhbog?manghe='.$dm->manghe)}}">Giá kê khai</a></li>
-                                    <li><a href="{{url('xetduyetkkmhbog?manghe='.$dm->manghe)}}">Xét duyệt hồ sơ giá kê khai</a></li>
+                                    <li><a href="{{url('xetduyetkkmhbog?manghe='.$dm->manghe)}}">Xét duyệt HS giá kê khai</a></li>
                                 @endif
                                 <li><a href="{{url('timkiemkkdkg?manghe='.$dm->manghe)}}">Tìm kiếm TT Giá đăng ký</a></li>
                                 <li><a href="{{url('timkiemkkmhbog?manghe='.$dm->manghe)}}">Tìm kiếm TT giá kê khai</a></li>

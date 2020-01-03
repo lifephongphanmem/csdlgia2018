@@ -59,6 +59,7 @@
                     gialk: $('#gialk').val(),
                     giakk: $('#giakk').val(),
                     dvt: $('#dvt').val(),
+                    ghichu: $('#ghichu').val(),
                     maxa: $('#maxa').val(),
                     mahs: $('#mahs').val()
                 },
@@ -111,6 +112,7 @@
                     gialk: $('#gialkedit').val(),
                     giakk: $('#giakkedit').val(),
                     dvt: $('#dvtedit').val(),
+                    ghichu: $('#ghichuedit').val(),
                     mahs: $('#mahs').val(),
                 },
                 dataType: 'JSON',
@@ -278,6 +280,7 @@
                                         <th style="text-align: center">Đơn vị<br>tính</th>
                                         <th style="text-align: center">Mức giá <br>liền kề</th>
                                         <th style="text-align: center">Mức giá <br>kê khai</th>
+                                        <th style="text-align: center">Ghi chú</th>
                                         <th style="text-align: center" width="20%">Thao tác</th>
                                     </tr>
                                     </thead>
@@ -290,6 +293,7 @@
                                             <td style="text-align: center">{{$tt->dvt}}</td>
                                             <td style="text-align: right">{{dinhdangsothapphan($tt->gialk,5)}}</td>
                                             <td style="text-align: right">{{dinhdangsothapphan($tt->giakk,5)}}</td>
+                                            <td>{{$tt->ghichu}}</td>
                                             <td>
                                                 <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editmhbog({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>
                                                 <button type="button" data-target="#modal-delete" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid({{$tt->id}});" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
@@ -334,7 +338,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Thêm mới thông tin mặt hàng đăng ký giá</h4>
+                    <h4 class="modal-title">Thêm mới thông tin mặt hàng</h4>
                 </div>
                 <div class="modal-body" id="ttmhbog">
                     <div class="row">
@@ -368,6 +372,13 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group"><label for="selGender" class="control-label"><b>Ghi chú</b><span class="require">*</span></label>
+                                <div><input type="text" name="ghichu" id="ghichu" class="form-control" ></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
@@ -384,7 +395,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Thêm mới thông tin mặt hàng đăng ký giá</h4>
+                    <h4 class="modal-title">Thêm mới thông tin mặt hàng</h4>
                 </div>
                 <div class="modal-body" id="ttmhbogedit">
                 </div>
