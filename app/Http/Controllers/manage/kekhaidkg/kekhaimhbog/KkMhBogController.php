@@ -136,7 +136,8 @@ class KkMhBogController extends Controller
                     $addct->tenhh = $ctdf->tenhh;
                     $addct->quycach = $ctdf->quycach;
                     $addct->dvt = $ctdf->dvt;
-                    $addct->gialk = $ctdf->gia;
+                    $addct->gialk = $ctdf->giakk;
+                    $addct->giakk = $ctdf->giakk;
                     $addct->maxa = $inputs['maxa'];
                     $addct->mahs = $inputs['mahs'];
                     $addct->trangthai = 'CXD';
