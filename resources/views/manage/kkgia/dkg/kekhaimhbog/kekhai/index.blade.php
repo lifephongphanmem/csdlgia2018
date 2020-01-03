@@ -121,7 +121,7 @@
                 <div class="portlet-title">
                     <div class="actions">
                         <a href="{{url('kkgiamhbog/create?&manghe='.$inputs['manghe'].'&maxa='.$inputs['maxa'])}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-plus"></i> Kê khai giá mới </a>
+                            <i class="fa fa-plus"></i> Giá Kê khai mới </a>
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
                             <a href="{{url('thongtindnkkmhbog?manghe='.$inputs['manghe'].'&maxa='.$modeldn->mahuyen)}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-reply"></i> Quay lại </a>
