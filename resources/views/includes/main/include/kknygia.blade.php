@@ -1,7 +1,7 @@
 @if(canGeneral('kknygia','index'))
     @if(can('kknygia','index'))
         <li class="tooltips" data-container="body" data-placement="right" data-html="true"
-            data-original-title="Giá kê khai của hàng hóa, dịch vụ thuộc dah mục kê khai giá">
+            data-original-title="Giá kê khai của hàng hóa, dịch vụ thuộc dah mục Giá kê khai">
             <a href="javascript:;">
                 <i class="icon-folder"></i>
                 <span class="title">Mức giá kê khai - đăng ký</span>
@@ -26,11 +26,11 @@
                         </a>
                         <ul class="sub-menu">
                             @if(session('admin')->level == 'DN')
-                                <li><a href="{{url('thongtinkekhaigiavatlieuxaydung')}}">Kê khai giá VLXD</a> </li>
+                                <li><a href="{{url('thongtinkekhaigiavatlieuxaydung')}}">Giá kê khai VLXD</a> </li>
                             @endif
                             @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
                                 <li><a href="{{url('danhmucvatlieuxaydung')}}">Danh mục VLXD</a></li>
-                                <li><a href="{{url('thongtindnkkgiavlxd')}}">Kê khai giá VLXD</a></li>
+                                <li><a href="{{url('thongtindnkkgiavlxd')}}">Giá kê khai VLXD</a></li>
                                 <li><a href="{{url('xetduyetkkgiavlxd')}}">Thông tin hồ sơ xét duyệt</a></li>
                                 <li><a href="{{url('timkiemkkgiavlxd')}}">Tìm kiếm thông tin</a> </li>
                                 <li><a href="{{url('baocaokekhaigiavlxd')}}">Báo cáo thống kê</a></li>
@@ -49,10 +49,10 @@
                             </a>
                             <ul class="sub-menu">
                                 @if(session('admin')->level == 'DN')
-                                    <li><a href="{{url('thongtinkekhaiximangthepxaydung')}}">Kê khai giá xi măng, thép xây dựng</a> </li>
+                                    <li><a href="{{url('thongtinkekhaiximangthepxaydung')}}">Giá kê khai xi măng, thép xây dựng</a> </li>
                                 @endif
                                 @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
-                                    <li><a href="{{url('thongtindnkkgiaxmtxd')}}">Kê khai giá xi măng, thép xây dựng</a></li>
+                                    <li><a href="{{url('thongtindnkkgiaxmtxd')}}">Giá kê khai xi măng, thép xây dựng</a></li>
                                     <li><a href="{{url('xetduyetkkgiaxmtxd')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiaxmtxd')}}">Tìm kiếm thông tin</a> </li>
                                     <li><a href="{{url('baocaokekhaigiaxmtxd')}}">Báo cáo thống kê</a></li>
@@ -72,10 +72,10 @@
                             </a>
                             <ul class="sub-menu">
                                 @if(session('admin')->level == 'DN')
-                                    <li><a href="{{url('thongtinkkdvhoatdongthuongmai')}}">Kê khai giá dịch vụ</a> </li>
+                                    <li><a href="{{url('thongtinkkdvhoatdongthuongmai')}}">Giá kê khai dịch vụ</a> </li>
                                 @endif
                                 @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
-                                    <li><a href="{{url('thongtindnkkgiadvhdtm')}}">Kê khai giá dịch vụ</a></li>
+                                    <li><a href="{{url('thongtindnkkgiadvhdtm')}}">Giá kê khai dịch vụ</a></li>
                                     <li><a href="{{url('xetduyetkkgiadvhdtm')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiadvhdtm')}}">Tìm kiếm thông tin</a> </li>
                                     <li><a href="{{url('baocaokkgiadvhdtm')}}">Báo cáo thống kê</a></li>
@@ -94,10 +94,10 @@
                         </a>
                         <ul class="sub-menu">
                             @if(session('admin')->level == 'DN')
-                                <li><a href="{{url('kekhaigiathan')}}">Kê khai giá than</a> </li>
+                                <li><a href="{{url('kekhaigiathan')}}">Giá kê khai than</a> </li>
                             @endif
                             @if(session('admin')->level == 'X' || session('admin')->level == 'T' || session('admin')->level == 'H')
-                                <li><a href="{{url('thongtindnthan')}}">Kê khai giá than</a> </li>
+                                <li><a href="{{url('thongtindnthan')}}">Giá kê khai than</a> </li>
                                 <li><a href="{{url('xetduyetgiathan')}}">Thông tin hồ sơ xét duyệt</a></li>
                                 <li><a href="{{url('timkiemgiathan')}}">Tìm kiếm thông tin</a> </li>
                                 <li><a href="{{url('baocaokkgiathan')}}">Báo cáo thống kê</a></li>
@@ -116,10 +116,10 @@
                         </a>
                         <ul class="sub-menu">
                             @if(session('admin')->level == 'DN')
-                                    <li><a href="{{url('kekhaigiathucanchannuoi')}}">Kê khai giá TACN</a> </li>
+                                    <li><a href="{{url('kekhaigiathucanchannuoi')}}">Giá kê khai TACN</a> </li>
                             @endif
                             @if(session('admin')->level == 'X' || session('admin')->level == 'T' || session('admin')->level == 'H')
-                                <li><a href="{{url('thontindntacn')}}">Kê khai giá TACN</a> </li>
+                                <li><a href="{{url('thontindntacn')}}">Giá kê khai TACN</a> </li>
                                 <li><a href="{{url('xetduyetkekhaigiatacn')}}">Thông tin hồ sơ xét duyệt</a></li>
                                 <li><a href="{{url('timkiemkekhaigiatacn')}}">Tìm kiếm thông tin</a> </li>
                                 <li><a href="{{url('baocaokekhaitacn')}}">Báo cáo thống kê</a></li>
@@ -138,10 +138,10 @@
                             </a>
                             <ul class="sub-menu">
                                 @if(session('admin')->level == 'DN')
-                                        <li><a href="{{url('kekhaigiagiay')}}">Kê khai giá</a> </li>
+                                        <li><a href="{{url('kekhaigiagiay')}}">Giá kê khai</a> </li>
                                 @endif
                                 @if(session('admin')->level == 'X' || session('admin')->level == 'T' || session('admin')->level == 'H')
-                                    <li><a href="{{url('thongtindngiay')}}">Kê khai giá </a> </li>
+                                    <li><a href="{{url('thongtindngiay')}}">Giá kê khai </a> </li>
                                     <li><a href="{{url('xetduyetgiagiay')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiagiay')}}">Tìm kiếm thông tin</a> </li>
                                     <li><a href="{{url('baocaokkgiagiay')}}">Báo cáo thống kê</a></li>
@@ -159,10 +159,10 @@
                             </a>
                             <ul class="sub-menu">
                                 @if(session('admin')->level == 'DN')
-                                        <li><a href="{{url('kekhaigiasach')}}">Kê khai giá</a> </li>
+                                        <li><a href="{{url('kekhaigiasach')}}">Giá kê khai</a> </li>
                                 @endif
                                 @if(session('admin')->level == 'X' || session('admin')->level == 'T' || session('admin')->level == 'H')
-                                    <li><a href="{{url('thongtindnsach')}}">Kê khai giá </a> </li>
+                                    <li><a href="{{url('thongtindnsach')}}">Giá kê khai </a> </li>
                                     <li><a href="{{url('xetduyetgiasach')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiasach')}}">Tìm kiếm thông tin</a> </li>
                                     <li><a href="{{url('baocaokkgiasach')}}">Báo cáo thống kê</a></li>
@@ -181,10 +181,10 @@
                             </a>
                             <ul class="sub-menu">
                                 @if(session('admin')->level == 'DN')
-                                    <li><a href="{{url('kekhaigiaetanol')}}">Kê khai giá</a> </li>
+                                    <li><a href="{{url('kekhaigiaetanol')}}">Giá kê khai</a> </li>
                                 @endif
                                 @if(session('admin')->level == 'X' || session('admin')->level == 'T' || session('admin')->level == 'H')
-                                    <li><a href="{{url('thongtindnetanol')}}">Kê khai giá </a> </li>
+                                    <li><a href="{{url('thongtindnetanol')}}">Giá kê khai </a> </li>
                                     <li><a href="{{url('xetduyetgiaetanol')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiaetanol')}}">Tìm kiếm thông tin</a> </li>
                                     <li><a href="{{url('baocaokkgiaetanol')}}">Báo cáo thống kê</a></li>
@@ -203,10 +203,10 @@
                         </a>
                         <ul class="sub-menu">
                             @if(session('admin')->level == 'DN')
-                                <li><a href="{{url('kekhaigiadvcang')}}">Kê khai giá</a> </li>
+                                <li><a href="{{url('kekhaigiadvcang')}}">Giá kê khai</a> </li>
                             @endif
                             @if(session('admin')->level == 'X' || session('admin')->level == 'T' || session('admin')->level == 'H')
-                                <li><a href="{{url('thongtindndvcang')}}">Kê khai giá </a> </li>
+                                <li><a href="{{url('thongtindndvcang')}}">Giá kê khai </a> </li>
                                 <li><a href="{{url('xetduyetgiadvcang')}}">Thông tin hồ sơ xét duyệt</a></li>
                                 <li><a href="{{url('timkiemgiadvcang')}}">Tìm kiếm thông tin</a> </li>
                                 <li><a href="{{url('baocaokkgiadvcang')}}">Báo cáo thống kê</a></li>
@@ -225,10 +225,10 @@
                             </a>
                             <ul class="sub-menu">
                                 @if(session('admin')->level == 'DN')
-                                    <li><a href="{{url('kekhaigiaotonksx')}}">Kê khai giá</a> </li>
+                                    <li><a href="{{url('kekhaigiaotonksx')}}">Giá kê khai</a> </li>
                                 @endif
                                 @if(session('admin')->level == 'X' || session('admin')->level == 'T' || session('admin')->level == 'H')
-                                    <li><a href="{{url('thongtindnotonksx')}}">Kê khai giá </a> </li>
+                                    <li><a href="{{url('thongtindnotonksx')}}">Giá kê khai </a> </li>
                                     <li><a href="{{url('xetduyetgiaotonksx')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiaotonksx')}}">Tìm kiếm thông tin</a> </li>
                                     <li><a href="{{url('baocaokkgiaotonksx')}}">Báo cáo thống kê</a></li>
@@ -247,10 +247,10 @@
                             </a>
                             <ul class="sub-menu">
                                 @if(session('admin')->level == 'DN')
-                                    <li><a href="{{url('kekhaigiaxemaynksx')}}">Kê khai giá</a> </li>
+                                    <li><a href="{{url('kekhaigiaxemaynksx')}}">Giá kê khai</a> </li>
                                 @endif
                                 @if(session('admin')->level == 'X' || session('admin')->level == 'T' || session('admin')->level == 'H')
-                                    <li><a href="{{url('thongtindnxemaynksx')}}">Kê khai giá </a> </li>
+                                    <li><a href="{{url('thongtindnxemaynksx')}}">Giá kê khai </a> </li>
                                     <li><a href="{{url('xetduyetgiaxemaynksx')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiaxemaynksx')}}">Tìm kiếm thông tin</a> </li>
                                     <li><a href="{{url('baocaokkgiaxemaynksx')}}">Báo cáo thống kê</a></li>
@@ -267,7 +267,7 @@
                     </a>
                     <ul class="sub-menu">
                         <li><a href="javascript:;">---</a> </li>
-                        <li><a href="javascript:;">Kê khai giá</a></li>
+                        <li><a href="javascript:;">Giá kê khai</a></li>
                     </ul>
                 </li>
                 <li>
@@ -277,7 +277,7 @@
                     </a>
                     <ul class="sub-menu">
                         <li><a href="javascript:;">---</a> </li>
-                        <li><a href="javascript:;">Kê khai giá</a></li>
+                        <li><a href="javascript:;">Giá kê khai</a></li>
                     </ul>
                 </li-->
                 @if(canKkGiaGr('KCBTN'))
@@ -289,10 +289,10 @@
                             </a>
                             <ul class="sub-menu">
                                 @if(session('admin')->level == 'DN')
-                                        <li><a href="{{url('kekhaigiakcbtn')}}">Kê khai giá</a> </li>
+                                        <li><a href="{{url('kekhaigiakcbtn')}}">Giá kê khai</a> </li>
                                 @endif
                                 @if(session('admin')->level == 'X' || session('admin')->level == 'T' || session('admin')->level == 'H')
-                                    <li><a href="{{url('thongtindnkcbtn')}}">Kê khai giá </a> </li>
+                                    <li><a href="{{url('thongtindnkcbtn')}}">Giá kê khai </a> </li>
                                     <li><a href="{{url('xetduyetgiakcbtn')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiakcbtn')}}">Tìm kiếm thông tin</a> </li>
                                     <li><a href="{{url('baocaogiakcbtn')}}">Báo cáo thống kê</a></li>
@@ -316,10 +316,10 @@
                                     <ul class="sub-menu">
                                         @if(session('admin')->level == 'DN')
                                             <!--li><a href="javascript:;">Danh mục dịch vụ</a> </li-->
-                                            <li><a href="{{url('kekhaigiavantaixekhach')}}">Kê khai giá</a></li>
+                                            <li><a href="{{url('kekhaigiavantaixekhach')}}">Giá kê khai</a></li>
                                         @endif
                                         @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
-                                            <li><a href="{{url('thongtindnvtxk')}}">Kê khai giá vận tải xe khách</a></li>
+                                            <li><a href="{{url('thongtindnvtxk')}}">Giá kê khai vận tải xe khách</a></li>
                                             <li><a href="{{url('xetduyetkekhaigiavtxk')}}">Xét duyệt hồ sơ kê khai</a></li>
                                             <li><a href="{{url('timkiemgiavantaixekhach')}}">Tìm kiếm hồ sơ kê khai</a></li>
                                             <li><a href="{{url('baocaogiavantaixekhach')}}">Báo cáo thống kê</a></li>
@@ -335,10 +335,10 @@
                                     </a>
                                     <ul class="sub-menu">
                                         @if(session('admin')->level == 'DN')
-                                            <li><a href="{{url('kekhaivantaixebuyt')}}">Kê khai giá</a></li>
+                                            <li><a href="{{url('kekhaivantaixebuyt')}}">Giá kê khai</a></li>
                                         @endif
                                         @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
-                                            <li><a href="{{url('thongtindnvtxb')}}">Kê khai giá vận tải xe buýt</a></li>
+                                            <li><a href="{{url('thongtindnvtxb')}}">Giá kê khai vận tải xe buýt</a></li>
                                             <li><a href="{{url('xetduyetkekhaigiavtxb')}}">Xét duyệt hồ sơ kê khai</a></li>
                                             <li><a href="{{url('timkiemgiavantaixebuyt')}}">Tìm kiếm hồ sơ kê khai</a></li>
                                             <li><a href="{{url('baocaogiavantaixebuyt')}}">Báo cáo thống kê</a></li>
@@ -354,10 +354,10 @@
                                     </a>
                                     <ul class="sub-menu">
                                         @if(session('admin')->level == 'DN')
-                                                <li><a href="{{url('kekhaigiavantaixetaxi')}}">Kê khai giá</a></li>
+                                                <li><a href="{{url('kekhaigiavantaixetaxi')}}">Giá kê khai</a></li>
                                         @endif
                                         @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
-                                            <li><a href="{{url('thongtindnvtxtx')}}">Kê khai giá vận tải xe taxi</a></li>
+                                            <li><a href="{{url('thongtindnvtxtx')}}">Giá kê khai vận tải xe taxi</a></li>
                                             <li><a href="{{url('xetduyetkekhaigiavtxtx')}}">Xét duyệt hồ sơ kê khai</a></li>
                                             <li><a href="{{url('timkiemgiavantaixetaxi')}}">Tìm kiếm hồ sơ kê khai</a></li>
                                             <li><a href="{{url('baocaogiavantaixetaxi')}}">Báo cáo thống kê</a></li>
@@ -373,10 +373,10 @@
                                     </a>
                                     <ul class="sub-menu">
                                         @if(session('admin')->level == 'DN')
-                                            <li><a href="{{url('kekhaicuocvchk')}}">Kê khai giá</a></li>
+                                            <li><a href="{{url('kekhaicuocvchk')}}">Giá kê khai</a></li>
                                         @endif
                                         @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
-                                            <li><a href="{{url('thongtindnvchk')}}">Kê khai giá</a></li>
+                                            <li><a href="{{url('thongtindnvchk')}}">Giá kê khai</a></li>
                                             <li><a href="{{url('xetduyetkekhaicuocvchk')}}">Xét duyệt hồ sơ kê khai</a></li>
                                             <li><a href="{{url('timkiemcuocvchk')}}">Tìm kiếm hồ sơ kê khai</a></li>
                                             <li><a href="{{url('baocaogiacuocvchk')}}">Báo cáo thống kê</a></li>
@@ -396,10 +396,10 @@
                             </a>
                             <ul class="sub-menu">
                                 @if(session('admin')->level == 'DN')
-                                    <li><a href="{{url('kekhaithucphamchucnangchote6t')}}">Kê khai giá TPCN cho TE dưới 6 tuổi</a> </li>
+                                    <li><a href="{{url('kekhaithucphamchucnangchote6t')}}">Giá kê khai TPCN cho TE dưới 6 tuổi</a> </li>
                                 @endif
                                 @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
-                                    <li><a href="{{url('thongtindntpcn6t')}}">Kê khai giá TPCN cho TE dưới 6 tuổi</a></li>
+                                    <li><a href="{{url('thongtindntpcn6t')}}">Giá kê khai TPCN cho TE dưới 6 tuổi</a></li>
                                     <li><a href="{{url('xdkekhaigiatpcnte6t')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemkekhaigiatpcnte6t')}}">Tìm kiếm thông tin</a> </li>
                                     <li><a href="{{url('baocaokekhaigiatpcnte6t')}}">Báo cáo thống kê</a></li>
@@ -419,10 +419,10 @@
                             <ul class="sub-menu">
                                 @if(session('admin')->level == 'DN')
                                         <li><a href="{{url('thongtincskd')}}">Danh sách CSKD</a> </li>
-                                        <li><a href="{{url('thongtincskdkkdvlt')}}">Kê khai giá DVLT</a> </li>
+                                        <li><a href="{{url('thongtincskdkkdvlt')}}">Giá kê khai DVLT</a> </li>
                                 @endif
                                 @if(session('admin')->level == 'X' || session('admin')->level == 'H' || session('admin')->level == 'T' )
-                                    <li><a href="{{url('thongtincskdkkdvlt')}}">Kê khai giá DVLT</a></li>
+                                    <li><a href="{{url('thongtincskdkkdvlt')}}">Giá kê khai DVLT</a></li>
                                     <li><a href="{{url('xetduyetkkgiadvlt')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemkkgiadvlt')}}">Tìm kiếm thông tin</a> </li>
                                     <li><a href="{{url('baocaokekhaidvlt')}}">Báo cáo thống kê</a></li>
@@ -440,10 +440,10 @@
                             </a>
                             <ul class="sub-menu">
                                 @if(session('admin')->level == 'DN')
-                                    <li><a href="{{url('kekhaigiadvdlbb')}}">Kê khai giá</a> </li>
+                                    <li><a href="{{url('kekhaigiadvdlbb')}}">Giá kê khai</a> </li>
                                 @endif
                                 @if(session('admin')->level == 'X' || session('admin')->level == 'T' || session('admin')->level == 'H')
-                                    <li><a href="{{url('thongtindndlbb')}}">Kê khai giá </a> </li>
+                                    <li><a href="{{url('thongtindndlbb')}}">Giá kê khai </a> </li>
                                     <li><a href="{{url('xetduyetgiadvdlbb')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiadvdlbb')}}">Tìm kiếm thông tin</a> </li>
                                     <li><a href="{{url('baocaokekhaidvdlbb')}}">Báo cáo thống kê</a></li>
@@ -462,10 +462,10 @@
                             </a>
                             <ul class="sub-menu">
                                 @if(session('admin')->level == 'DN')
-                                    <li><a href="{{url('kekhaigiavetqkdl')}}">Kê khai giá</a> </li>
+                                    <li><a href="{{url('kekhaigiavetqkdl')}}">Giá kê khai</a> </li>
                                 @endif
                                 @if(session('admin')->level == 'X' || session('admin')->level == 'T' || session('admin')->level == 'H')
-                                    <li><a href="{{url('thongtindntqkdl')}}">Kê khai giá </a> </li>
+                                    <li><a href="{{url('thongtindntqkdl')}}">Giá kê khai </a> </li>
                                     <li><a href="{{url('xetduyetgiavetqkdl')}}">Thông tin hồ sơ xét duyệt</a></li>
                                     <li><a href="{{url('timkiemgiavetqkdl')}}">Tìm kiếm thông tin</a> </li>
                                     <li><a href="{{url('baocaokekhaigiavetqkdl')}}">Báo cáo thống kê</a></li>

@@ -146,9 +146,8 @@
                                             <table class="table table-striped table-bordered table-hover">
                                                 <thead>
                                                 <tr>
-                                                    <th width="2%" style="text-align: center">STT</th>
-                                                    <th style="text-align: center" width="10%">Đơn vị <br>ban hành</th>
-                                                    <th style="text-align: center">Số hiệu <br>văn bản</th>
+                                                    <th style="text-align: center">Đơn vị ban hành</th>
+                                                    <th style="text-align: center" width="5%">Số hiệu <br>văn bản</th>
                                                     <th style="text-align: center">Nội dung</th>
                                                     <th style="text-align: center">Ngày <br>áp dụng</th>
                                                     <th style="text-align: center" width="5%">Thao tác</th>
@@ -158,7 +157,6 @@
                                                 @if(count($model) != 0)
                                                     @foreach($model as $key=>$tt)
                                                         <tr>
-                                                            <td style="text-align: center">{{$key + 1}}</td>
                                                             <td class="active">{{$tt->dvbanhanh}}</td>
                                                             <td class="success">{{$tt->kyhieuvb}}</td>
                                                             <td>{{$tt->tieude}}</td>
@@ -170,7 +168,7 @@
                                                     @endforeach
                                                 @else
                                                     <tr>
-                                                        <td style="text-align: center" colspan="10">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
+                                                        <td style="text-align: center" colspan="9">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
                                                     </tr>
                                                 @endif
                                                 </tbody>

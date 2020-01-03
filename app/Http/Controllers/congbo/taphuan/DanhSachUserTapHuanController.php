@@ -10,7 +10,8 @@ class DanhSachUserTapHuanController extends Controller
 {
     public function index(Request $request){
         $inputs = $request->all();
-        $inputs['level'] = isset($inputs['level']) ? $inputs['level'] : 'H';
+//        $inputs['level'] = isset($inputs['level']) ? $inputs['level'] : 'H';
+        $inputs['level'] = 'DN';
         $model = Users::where('status','Kích hoạt')
             ->where('level',$inputs['level'])
             ->get();

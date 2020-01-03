@@ -23,18 +23,17 @@ class CongboThamDinhGiaController extends Controller
             ->join('town','thamdinhgia.maxa','=','town.maxa')
             ->select('thamdinhgiact.*','thamdinhgia.thoidiem','thamdinhgia.thuevat','thamdinhgia.sotbkl','thamdinhgia.thaotac','thamdinhgia.dvyeucau',
                 'thamdinhgia.thoihan','thamdinhgia.ppthamdinh','town.tendv')
-            ->whereYear('thamdinhgia.thoidiem',$inputs['nam'])
             ->where('thamdinhgia.congbo','CB');
+        if($inputs['nam'] != 'all')
+            $model = $model->whereYear('thamdinhgia.thoidiem',$inputs['nam']);
         if($inputs['tents'] != '')
             $model = $model->where('thamdinhgiact.tents','like','%'.$inputs['tents'].'%');
         $model = $model->paginate($inputs['paginate']);
 
         return view('congbo.ThamDinhGia.index')
-            ->with('nam',$inputs['nam'])
-            ->with('tents',$inputs['tents'])
             ->with('inputs',$inputs)
             ->with('model',$model)
-            ->with('pageTitle','Tìm kiếm thông tin thẩm định giá tài sản NN');
+            ->with('pageTitle','Thông tin thẩm định giá tại địa phương');
     }
 
     /**
