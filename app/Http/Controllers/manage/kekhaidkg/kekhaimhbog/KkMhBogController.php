@@ -59,7 +59,7 @@ class KkMhBogController extends Controller
                     ->with('modeldv',$modeldv)
                     ->with('ttql',$ttql)
                     ->with('inputs',$inputs)
-                    ->with('pageTitle', 'Danh sách thông tin doanh nghiệp kê khai giá');
+                    ->with('pageTitle', 'Danh sách thông tin doanh nghiệp giá kê khai');
             } else {
                 return view('errors.perm');
             }
@@ -97,7 +97,7 @@ class KkMhBogController extends Controller
                 ->with('modeldn', $modeldn)
                 ->with('inputs',$inputs)
                 ->with('modeldv',$modeldv)
-                ->with('pageTitle', 'Danh sách hồ sơ kê khai giá mặt hàng BOG');
+                ->with('pageTitle', 'Danh sách hồ sơ giá kê khai mặt hàng BOG');
 
         }else
             return view('errors.notlogin');
@@ -153,7 +153,7 @@ class KkMhBogController extends Controller
                 ->with('inputs', $inputs)
                 ->with('modelct', $modelct)
                 ->with('dmnghe', $dmnghe)
-                ->with('pageTitle', 'Kê khai giá mặt hàng BOG');
+                ->with('pageTitle', 'giá kê khai mặt hàng BOG');
 
         }
     }
@@ -201,7 +201,7 @@ class KkMhBogController extends Controller
                 ->with('modeldn',$modeldn)
                 ->with('modelkkct',$modelkkct)
                 ->with('modelcqcq',$modelcqcq)
-                ->with('pageTitle','Kê khai giá mặt hàng BOG');
+                ->with('pageTitle','giá kê khai mặt hàng BOG');
 
         }else
             return view('errors.notlogin');
@@ -231,7 +231,7 @@ class KkMhBogController extends Controller
                 ->with('model',$model)
                 ->with('modelct',$modelct)
                 ->with('dmnghe',$dmnghe)
-                ->with('pageTitle', 'Chỉnh sửa hồ sơ kê khai giá mặt hàng BOG');
+                ->with('pageTitle', 'Chỉnh sửa hồ sơ giá kê khai mặt hàng BOG');
         }else
             return view('errors.notlogin');
     }
@@ -386,7 +386,7 @@ class KkMhBogController extends Controller
             return view('manage.kkgia.dkg.kekhaimhbog.timkiem.index')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
-                ->with('pageTitle','Tìm kiếm thông tin kê khai giá ' .$inputs['mh']);
+                ->with('pageTitle','Tìm kiếm thông tin giá kê khai ' .$inputs['mh']);
         }else
             return view('errors.notlogin');
     }

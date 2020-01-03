@@ -114,8 +114,8 @@
             <td>{{$tt->tenhh}}</td>
             <td>{{$tt->quycach}}</td>
             <td style="text-align: center">{{$tt->dvt}}</td>
-            <td style="text-align: right">{{number_format($tt->gialk)}}</td>
-            <td style="text-align: right">{{number_format($tt->giakk)}}</td>
+            <td style="text-align: right">{{dinhdangsothapphan($tt->gialk,2)}}</td>
+            <td style="text-align: right">{{dinhdangsothapphan($tt->giakk,2)}}</td>
             <td style="text-align: center">{{$tt->gialk == 0 ? '' : $tt->giakk-$tt->gialk}}</td>
             <td style="text-align: center">{{$tt->gialk == 0 ? '' : dinhdangsothapphan(($tt->giakk - $tt->gialk)/$tt->gialk*100,2).'%'}}</td>
 
