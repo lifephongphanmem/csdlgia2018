@@ -133,7 +133,7 @@ class KkMhBogController extends Controller
                 $inputs['ngaycvlk'] = $modellk->ngaynhap;
                 foreach ($modellkct as $ctdf) {
                     $addct = new KkMhBogCt();
-                    $addct->tenhhdv = $ctdf->tenhhdv;
+                    $addct->tenhh = $ctdf->tenhh;
                     $addct->qccl = $ctdf->qccl;
                     $addct->dvt = $ctdf->dvt;
                     $addct->gialk = $ctdf->gia;
