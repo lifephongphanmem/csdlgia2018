@@ -79,9 +79,9 @@ Route::get('/ttdnkkmhbog','manage\kekhaidkg\kekhaimhbog\KkMhBogXdController@ttdn
 
 
 
-Route::get('kkgiamhbogct/add','manage\kekhaidkg\kekhaimhbog\KkMhBogCtController@add');
+Route::post('kkgiamhbogct/add','manage\kekhaidkg\kekhaimhbog\KkMhBogCtController@add');
 Route::get('kkgiamhbogct/show','manage\kekhaidkg\kekhaimhbog\KkMhBogCtController@show');
-Route::get('kkgiamhbogct/update','manage\kekhaidkg\kekhaimhbog\KkMhBogCtController@update');
+Route::post('kkgiamhbogct/update','manage\kekhaidkg\kekhaimhbog\KkMhBogCtController@update');
 Route::get('kkgiamhbogct/del','manage\kekhaidkg\kekhaimhbog\KkMhBogCtController@destroy');
 
 

@@ -52,7 +52,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
                 url: '/kkgiamhbogct/add',
-                type: 'GET',
+                type: 'POST',
                 data: {
                     _token: CSRF_TOKEN,
                     tenhh:  $('#tenhh').val(),
@@ -91,12 +91,21 @@
                 },
                 dataType: 'JSON',
                 success: function (data) {
-                    if (data.status == 'success') {
-                        $('#ttmhbogedit').replaceWith(data.message);
-                        InputMask();
-                    }
-                    else
-                        toastr.error("Không thể chỉnh sửa thông tin mặt hàng!", "Lỗi!");
+//                    if (data.status == 'success') {
+//                        $('#ttmhbogedit').replaceWith(data.message);
+//                        alert(data);
+//                        InputMask();
+//
+//                    }
+//                    else
+//                        toastr.error("Không thể chỉnh sửa thông tin mặt hàng!", "Lỗi!");
+                    $('#tenhhedit').val(data.tenhh);
+                    $('#quycachedit').val(data.quycach);
+                    $('#dvtedit').val(data.dvt);
+                    $('#gialkedit').val(data.gialk);
+                    $('#giakkedit').val(data.giakk);
+                    $('#ghichuedit').val(data.ghichu);
+                    $('#idedit').val(data.id);
                 }
             })
         }
@@ -104,7 +113,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
                 url: '/kkgiamhbogct/update',
-                type: 'GET',
+                type: 'POST',
                 data: {
                     _token: CSRF_TOKEN,
                     tenhh:  $('#tenhhedit').val(),
@@ -301,7 +310,7 @@
                                             <td style="text-align: right">{{dinhdangsothapphan($tt->giakk,2)}}</td>
                                             <td>{{$tt->ghichu}}</td>
                                             <td>
-                                                <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editmhbog({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>
+                                                <button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editmhbog({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Mức giá mới</button>
                                                 {{--<button type="button" data-target="#modal-edit" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editmhbog({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>--}}
                                                 {{--<button type="button" data-target="#modal-nhapkhau" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editnhapkhau({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Thuyết minh với MH nhập khẩu</button>--}}
                                                 {{--<button type="button" data-target="#modal-sanxuat" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editsanxuat({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Thuyết minh với MH sản xuất</button>--}}
@@ -387,6 +396,7 @@
                         </div>
                     </div>
 
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
@@ -403,10 +413,48 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Thêm mới thông tin mặt hàng </h4>
+                    <h4 class="modal-title">Chỉnh sửa thông tin mặt hàng </h4>
                 </div>
                 <div class="modal-body" id="ttmhbogedit">
-
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group"><label for="selGender" class="control-label"><b>Tên mặt hàng</b><span class="require">*</span></label>
+                                <div><input type="text" name="tenhhedit" id="tenhhedit" class="form-control" ></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group"><label for="selGender" class="control-label"><b>Quy cách, chất lượng</b><span class="require">*</span></label>
+                                <div><input type="text" name="quycachedit" id="quycachedit" class="form-control" ></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group"><label for="selGender" class="control-label"><b>đơn vị tính</b><span class="require">*</span></label>
+                                <div><input type="text" name="dvtedit" id="dvtedit" class="form-control" ></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group"><label for="selGender" class="control-label"><b>Giá liền kề</b><span class="require">*</span></label>
+                                <div><input type="text" style="text-align: right" id="gialkedit" name="gialkedit" class="form-control" data-mask="fdecimal"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group"><label for="selGender" class="control-label"><b>Giá kê khai</b><span class="require">*</span></label>
+                                <div><input type="text" style="text-align: right" id="giakkedit" name="giakkedit" class="form-control" data-mask="fdecimal"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group"><label for="selGender" class="control-label"><b>Ghi chú</b><span class="require">*</span></label>
+                                <div><input type="text" id="ghichuedit" name="ghichuedit" class="form-control"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="idedit" name="idedit">
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
