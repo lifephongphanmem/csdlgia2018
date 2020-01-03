@@ -46,6 +46,7 @@
             $('#gialk').val('');
             $('#giakk').val('');
             $('#dvt').val('');
+            $('#ghichu').val('');
         }
         function createmhbog(){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
