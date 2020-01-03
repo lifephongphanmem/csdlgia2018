@@ -125,7 +125,7 @@ class KkMhBogController extends Controller
                 ->where('phanloai', $inputs['manghe'])
                 ->max('id');
             if (isset($idhslk)) {
-                $modellk = KkMhBog::where('id', $idlk)
+                $modellk = KkMhBog::where('id', $idhslk)
                     ->first();
                 $modellkct = KkMhBogCt::where('mahs', $modellk->mahs)
                     ->get();
