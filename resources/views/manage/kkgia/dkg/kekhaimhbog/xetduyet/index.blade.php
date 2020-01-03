@@ -259,8 +259,9 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin xét duyệt hồ sơ kê khai<small>&nbsp;{{$inputs['mh']}}</small>
+        Thông tin xét duyệt hồ sơ giá kê khai<small>&nbsp;{{$inputs['mh']}}</small>
     </h3>
+    <hr>
     <div class="row">
         <div class="col-md-2">
             <div class="form-group">

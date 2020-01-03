@@ -43,7 +43,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Tìm kiếm thông tin kê khai<small>&nbsp;{{$inputs['mh']}}</small>
+        Tìm kiếm thông tin giá kê khai<small>&nbsp;{{$inputs['mh']}}</small>
     </h3>
     <div class="row">
         <div class="col-md-2">
