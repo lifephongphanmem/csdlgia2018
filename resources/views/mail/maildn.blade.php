@@ -6,6 +6,6 @@
 <h1>Kính gửi: {{$modeldn->tendn}} - Mã số thuế {{$modeldn->maxa}}</h1>
 <p>{{$contentdn}}</p>
 <p>Vui lòng kiểm tra email thường xuyên để biết kết quả.</p>
-<p>Ghi chú: Thông báo này được gửi tự động từ hệ thống tiếp nhận thông tin của chương trình CSDL về giá ./.</p>
+<p>Ghi chú: Thông báo này được gửi tự động từ hệ thống tiếp nhận thông tin của chương trình CSDL về giá {{isset(getGeneralConfigs()['diadanh']) ? getGeneralConfigs()['diadanh'] : ''}}./.</p>
 </body>
 </html>
