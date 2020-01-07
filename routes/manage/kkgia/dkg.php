@@ -59,6 +59,8 @@ Route::post('thongtinmathangbog/update','manage\kekhaidkg\MatHangBogController@u
 Route::get('thongtindnkkmhbog','manage\kekhaidkg\kekhaimhbog\KkMhBogController@ttdn');
 Route::get('kkgiamhbog','manage\kekhaidkg\kekhaimhbog\KkMhBogController@index');
 Route::get('kkgiamhbog/create','manage\kekhaidkg\kekhaimhbog\KkMhBogController@create');
+Route::get('kkgiamhbog/nhandulieutuexcel','manage\kekhaidkg\kekhaimhbog\KkMhBogController@nhandulieutuexcel'); //Nhận dữ liệu excel
+Route::post('kkgiamhbog/import_excel','manage\kekhaidkg\kekhaimhbog\KkMhBogController@importexcel'); //Nhận dữ liệu excel
 Route::post('kkgiamhbog','manage\kekhaidkg\kekhaimhbog\KkMhBogController@store');
 Route::get('kkgiamhbog/{id}/edit','manage\kekhaidkg\kekhaimhbog\KkMhBogController@edit');
 Route::patch('kkgiamhbog/{id}','manage\kekhaidkg\kekhaimhbog\KkMhBogController@update');

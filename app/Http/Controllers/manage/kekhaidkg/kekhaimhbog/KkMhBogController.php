@@ -14,6 +14,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KkMhBogController extends Controller
 {
@@ -393,4 +395,86 @@ class KkMhBogController extends Controller
             return view('errors.notlogin');
     }
 
+    public function nhandulieutuexcel(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $modeldn = Company::join('companylvcc', 'companylvcc.maxa', '=', 'company.maxa')
+                ->where('company.trangthai', 'Kích hoạt')
+                ->where('company.maxa', $inputs['maxa'])
+                ->where('companylvcc.manghe', $inputs['manghe'])
+                ->select('company.*', 'companylvcc.mahuyen')
+                ->first();
+            $dmnghe = DmNgheKd::where('manghe', $inputs['manghe'])
+                ->where('manganh', 'BOG')
+                ->first();
+            return view('manage.kkgia.dkg.kekhaimhbog.kekhai.importexcel')
+                ->with('inputs', $inputs)
+                ->with('modeldn',$modeldn)
+                ->with('dmnghe',$dmnghe)
+                ->with('pageTitle', 'Nhận dữ liệu Giá kê khai mặt hàng BOG');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function importexcel(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $inputs['mh'] = DmNgheKd::where('manganh','BOG')
+                ->where('manghe',$inputs['manghe'])
+                ->first()->tennghe;
+            $delct = KkMhBogCt::where('trangthai', 'CXD')
+                ->where('maxa', $inputs['maxa'])
+                ->delete();
+            $inputs['mahs'] = $inputs['manghe'] . '' . $inputs['maxa'] . getdate()[0];
+            $modeldn = Company::join('companylvcc', 'companylvcc.maxa', '=', 'company.maxa')
+                ->where('company.trangthai', 'Kích hoạt')
+                ->where('company.maxa', $inputs['maxa'])
+                ->where('companylvcc.manghe', $inputs['manghe'])
+                ->select('company.*', 'companylvcc.mahuyen')
+                ->first();
+            $inputs['mahs'] = $inputs['maxa'].getdate()[0];
+            $filename = $inputs['maxa'] . '_' . getdate()[0];
+            $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
+            $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
+            $data = [];
+
+            Excel::load($path, function ($reader) use (&$data, $inputs) {
+                $obj = $reader->getExcel();
+                $sheet = $obj->getSheet(0);
+                $data = $sheet->toArray(null, true, true, true);// giữ lại tiêu đề A=>'val';
+            });
+            //dd($data);
+            for ($i = getDbl($inputs['tudong']); $i <= getDbl($inputs['dendong']); $i++) {
+                //dd($data[$i]);
+                if (!isset($data[$i][$inputs['tenhh']]) || $data[$i][$inputs['tenhh']] == '') {
+                    continue;//Tên cán bộ rỗng => thoát
+                }
+                $modelctnew = new KkMhBogCt();
+                $modelctnew->maxa = $inputs['maxa'];
+                $modelctnew->mahs = $inputs['mahs'];
+                $modelctnew->trangthai = 'CXD';
+                $modelctnew->tenhh = $data[$i][$inputs['tenhh']];
+                $modelctnew->quycach = $data[$i][$inputs['quycach']];
+                $modelctnew->dvt = $data[$i][$inputs['dvt']];
+                $modelctnew->ghichu = $data[$i][$inputs['ghichu']];
+                $modelctnew->gialk = getDbl($data[$i][$inputs['gialk']]);
+                $modelctnew->giakk = getDbl($data[$i][$inputs['giakk']]);
+                $modelctnew->save();
+            }
+            File::Delete($path);
+            $modelct = KkMhBogCt::where('mahs', $inputs['mahs'])
+                ->get();
+            $dmnghe = DmNgheKd::where('manghe', $inputs['manghe'])
+                ->where('manganh', 'BOG')
+                ->first();
+            return view('manage.kkgia.dkg.kekhaimhbog.kekhai.create')
+                ->with('modeldn', $modeldn)
+                ->with('inputs', $inputs)
+                ->with('modelct', $modelct)
+                ->with('dmnghe', $dmnghe)
+                ->with('pageTitle', 'Giá kê khai mặt hàng BOG');
+
+        }else
+            return view('errors.notlogin');
+    }
 }
