@@ -36,14 +36,14 @@
 
 <table width="96%" border="0" cellspacing="0" cellpadding="0" style="margin:10px auto;" id="data">
     <tr>
-        <td style="text-align: left" width="40%">
+        <td style="text-align: left;vertical-align: top;" width="40%">
             <b style="padding-top:0px;"><i>Nơi nhận:</i></b><br>
             - Như trên:<br>
             - Lưu.
             <br>
         </td>
 
-        <td style="text-align: center; text-transform: uppercase;" width="60%">
+        <td style="text-align: center; text-transform: uppercase;vertical-align: top;" width="60%">
             <b>{{$modeldn->chucdanhky != '' ? $modeldn->chucdanhky : 'Giám đốc'}}</b>
             <br>
             <br>
