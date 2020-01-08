@@ -110,6 +110,7 @@ class TdTtDnController extends Controller
                     $model = TtDnTd::findOrFail($id);
                     $inputs = $model->toArray();
                     unset($inputs['id']);
+                    unset($inputs['trangthai']);
                     $modeldn = Company::where('maxa', $model->maxa)
                         ->first();
                     if($modeldn->update($inputs)){
