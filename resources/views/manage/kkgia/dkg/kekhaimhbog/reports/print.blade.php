@@ -43,9 +43,9 @@
             <br>
         </td>
 
-        <td style="text-align: center; text-transform: uppercase;vertical-align: top;" width="60%">
-            <b>{{$modeldn->chucdanhky != '' ? $modeldn->chucdanhky : 'Giám đốc'}}</b>
-            <br>
+        <td style="text-align: center; vertical-align: top;" width="60%">
+            <b style="text-transform: uppercase;">{{$modeldn->chucdanhky != '' ? $modeldn->chucdanhky : 'Thủ trưởng đơn vị'}}</b>
+            <br><i>(Ký tên, đóng dấu)</i>
             <br>
             <br>
             <br>
