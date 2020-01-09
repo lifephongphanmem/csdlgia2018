@@ -19,7 +19,10 @@ class KkGiaGiay extends Model
         'ngaycvlk',
         'ytcauthanhgia',
         'thydggadgia',
-        'ttnguoinop',
+        'nguoinop',
+        'dtll',
+        'email',
+        'fax',
         'ngaynhan',
         'sohsnhan',
         'ngaychuyen',
@@ -30,5 +33,7 @@ class KkGiaGiay extends Model
         'dvt',
         'congbo',
         'ghichu',
+        'ptnguyennhan',
+        'chinhsachkm',
     ];
 }

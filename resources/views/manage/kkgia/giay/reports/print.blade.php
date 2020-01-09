@@ -8,6 +8,8 @@
 @stop
 
 @section('content')
+<p style="text-align: center; font-weight: bold">Phụ lục 4: MẪU VĂN BẢN KÊ KHAI GIÁ</p>
+<p style="font-style: italic; text-align: center">(Ban hành kèm theo Thông tư số 233/2016/TT-BTC ngày 11/11/2016 của Bộ Tài chính)</p>
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
         <td width="40%" style="vertical-align: top;">
@@ -68,6 +70,7 @@
         </td>
     </tr>
 </table>
+<hr class="in">
 <p style="page-break-before: always">
     <!--Trang2-->
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
@@ -90,14 +93,8 @@
     </tr>
 </table>
 <p style="text-align: center; font-weight: bold; font-size: 16px;">BẢNG KÊ KHAI MỨC GIÁ</p>
-<p style="text-align: center;">(Kèm theo công văn số {{$modelkk->socv}}  ngày {{ date("d",strtotime($modelkk->ngaynhap))}} tháng {{ date("m",strtotime($modelkk->ngaynhap))}} năm {{ date("Y",strtotime($modelkk->ngaynhap))}} của {{$modeldn->tendn}})</p>
-<p>1. Tên đơn vị thực hiện kê khai giá: {{$modeldn->tendn}}</p>
-
-<p>2. Trụ sở (nơi đơn vị đăng ký kinh doanh): {{$modeldn->diachi}}</p>
-
-<p>3. Mã số thuế: {{$modeldn->maxa}}</p>
-
-<p>4. Nội dung kê khai theo từng loại hình vận tải, loại hình dịch vụ:</p>
+<p style="text-align: center;;font-style: italic">(Kèm theo công văn số {{$modelkk->socv}}  ngày {{ date("d",strtotime($modelkk->ngaynhap))}} tháng {{ date("m",strtotime($modelkk->ngaynhap))}} năm {{ date("Y",strtotime($modelkk->ngaynhap))}} của {{$modeldn->tendn}})</p>
+<p>1. Mức giá kê khai bán trong nước hoặc xuất khẩu (bán buôn, bán lẻ):  Các mức giá tại cửa kho/ nhà máy, tại các địa bàn, khu vực khác (nếu có)</p>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;" id="data">
     <tr>
         <th width="2%">STT</th>
@@ -124,24 +121,9 @@
     </tr>
     @endforeach
 </table>
-
-<table width="96%" border="0" cellspacing="0" cellpadding="0" style="margin:10px auto; text-align: center;">
-    <tr>
-        <td></td>
-        <td style="text-align: center;text-transform: uppercase; " width="60%">
-            <b>{{$modeldn->chucdanhky != '' ? $modeldn->chucdanhky : 'Giám đốc'}}</b><br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <b style="text-transform: uppercase;">{{$modeldn->nguoiky}}</b>
-
-        </td>
-    </tr>
-</table>
+<p>2. Phân tích nguyên nhân, nêu rõ biến động của các yếu tố hình thành giá tác động làm tăng hoặc giảm giá hàng hóa dịch vụ thực hiện kê khai giá</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$modelkk->ptnguyennhan}}</p>
+<p>3. Ghi rõ các chính sách và mức khuyến mại, giảm giá hoặc chiết khấu đối với các đối tượng khách hàng, các Điều kiện vận chuyển, giao hàng, bán hàng kèm theo mức giá kê khai (nếu có)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$modelkk->chinhsachkm}}</p>
+<p>Mức giá kê khai này thực hiện từ ngày {{getDayVn($modelkk->ngayhieuluc)}}</p>
 @stop

@@ -1,11 +1,19 @@
 <?php
 Route::get('thongtindnsach','manage\kekhaigia\kkgiasach\KkGiaSachController@ttdn');
-Route::resource('kekhaigiasach','manage\kekhaigia\kkgiasach\KkGiaSachController');
+Route::get('kekhaigiasach','manage\kekhaigia\kkgiasach\KkGiaSachController@index');
+Route::get('kekhaigiasach/create','manage\kekhaigia\kkgiasach\KkGiaSachController@create');
+Route::post('kekhaigiasach','manage\kekhaigia\kkgiasach\KkGiaSachController@store');
+Route::get('kekhaigiasach/{id}/edit','manage\kekhaigia\kkgiasach\KkGiaSachController@edit');
+Route::patch('kekhaigiasach/{id}','manage\kekhaigia\kkgiasach\KkGiaSachController@update');
+
+
 Route::get('giasach/kiemtra','manage\kekhaigia\kkgiasach\KkGiaSachController@kiemtra');
 Route::post('kekhaigiasach/chuyen','manage\kekhaigia\kkgiasach\KkGiaSachController@chuyen');
 Route::get('/giasach/showlydo','manage\kekhaigia\kkgiasach\KkGiaSachController@showlydo');
 Route::post('kekhaigiasach/delete','manage\kekhaigia\kkgiasach\KkGiaSachController@delete');
-Route::get('kekhaigiasach/prints','manage\kekhaigia\kkgiasach\KkGiaSachController@prints');
+Route::get('kekhaigiasach/prints','manage\kekhaigia\kkgiasach\KkGiaSachController@show');
+Route::get('kekhaigiasach/nhandulieutuexcel','manage\kekhaigia\kkgiasach\KkGiaSachController@nhandulieutuexcel');
+Route::post('kekhaigiasach/import_excel','manage\kekhaigia\kkgiasach\KkGiaSachController@importexcel');
 
 Route::get('giasachctdf/storett','manage\kekhaigia\kkgiasach\KkGiaSachCtDfController@store');
 Route::get('giasachctdf/edittt','manage\kekhaigia\kkgiasach\KkGiaSachCtDfController@edit');

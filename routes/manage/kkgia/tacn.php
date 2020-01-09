@@ -1,10 +1,17 @@
 <?php
 Route::get('thontindntacn','manage\kekhaigia\kkgiatacn\KkGiaTaCnController@ttdn');
-Route::resource('kekhaigiathucanchannuoi','manage\kekhaigia\kkgiatacn\KkGiaTaCnController');
+Route::get('kekhaigiathucanchannuoi','manage\kekhaigia\kkgiatacn\KkGiaTaCnController@index');
+Route::get('kekhaigiathucanchannuoi/create','manage\kekhaigia\kkgiatacn\KkGiaTaCnController@create');
+Route::post('kekhaigiathucanchannuoi','manage\kekhaigia\kkgiatacn\KkGiaTaCnController@store');
+Route::get('kekhaigiathucanchannuoi/{id}/edit','manage\kekhaigia\kkgiatacn\KkGiaTaCnController@edit');
+Route::patch('kekhaigiathucanchannuoi/{id}','manage\kekhaigia\kkgiatacn\KkGiaTaCnController@update');
+
 Route::post('kekhaigiathucanchannuoi/chuyen','manage\kekhaigia\kkgiatacn\KkGiaTaCnController@chuyen');
 Route::get('/kktacn/showlydo','manage\kekhaigia\kkgiatacn\KkGiaTaCnController@showlydo');
 Route::post('kekhaigiathucanchannuoi/delete','manage\kekhaigia\kkgiatacn\KkGiaTaCnController@delete');
-Route::get('kekhaigiathucanchannuoi/prints','manage\kekhaigia\kkgiatacn\KkGiaTaCnController@prints');
+Route::get('kekhaigiathucanchannuoi/prints','manage\kekhaigia\kkgiatacn\KkGiaTaCnController@show');
+Route::get('kekhaigiathucanchannuoi/nhandulieutuexcel','manage\kekhaigia\kkgiatacn\KkGiaTaCnController@nhandulieutuexcel');
+Route::post('kekhaigiathucanchannuoi/import_excel','manage\kekhaigia\kkgiatacn\KkGiaTaCnController@importexcel');
 
 
 //Ajax chuyen

@@ -122,8 +122,10 @@
                     <div class="actions">
                         <a href="{{url('kkgiamhbog/create?&manghe='.$inputs['manghe'].'&maxa='.$inputs['maxa'])}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Giá Kê khai mới </a>
-                        <a href="{{url('kkgiamhbog/nhandulieutuexcel?&manghe='.$inputs['manghe'].'&maxa='.$inputs['maxa'])}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-plus"></i> Nhận dữ liệu</a>
+                        @if(isset($inputs['hsdd']) && $inputs['hsdd'] == 0)
+                            <a href="{{url('kkgiamhbog/nhandulieutuexcel?&manghe='.$inputs['manghe'].'&maxa='.$inputs['maxa'])}}" class="btn btn-default btn-sm">
+                                <i class="fa fa-file-excel-o"></i> Nhận dữ liệu</a>
+                        @endif
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
                             <a href="{{url('thongtindnkkmhbog?manghe='.$inputs['manghe'].'&maxa='.$modeldn->mahuyen)}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-reply"></i> Quay lại </a>

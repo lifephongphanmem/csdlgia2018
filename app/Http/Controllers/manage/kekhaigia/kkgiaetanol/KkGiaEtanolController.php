@@ -6,7 +6,6 @@ use App\District;
 use App\Jobs\SendMail;
 use App\Model\manage\kekhaigia\kkgiaetanol\KkGiaEtanol;
 use App\Model\manage\kekhaigia\kkgiaetanol\KkGiaEtanolCt;
-use App\Model\manage\kekhaigia\kkgiaetanol\KkGiaEtanolCtDF;
 use App\Model\system\company\Company;
 use App\Model\system\dmnganhnghekd\DmNgheKd;
 use App\NgayNghiLe;
@@ -14,8 +13,9 @@ use App\Town;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KkGiaEtanolController extends Controller
 {
@@ -90,6 +90,7 @@ class KkGiaEtanolController extends Controller
                 if(isset($modeldn)) {
                     $modeldv = Town::where('maxa', $modeldn->mahuyen)
                         ->first();
+                    $inputs['hsdd'] = KkGiaEtanol::where('maxa', $inputs['masothue'])->where('trangthai','DD')->count();
                     return view('manage.kkgia.etanol.kkgia.kkgiadv.index')
                         ->with('model', $model)
                         ->with('modeldn', $modeldn)
@@ -388,5 +389,75 @@ class KkGiaEtanolController extends Controller
 
         }
         die(json_encode($result));
+    }
+
+    public function nhandulieutuexcel(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
+                ->where('company.trangthai','Kích hoạt')
+                ->where('company.maxa',$inputs['maxa'])
+                ->where('companylvcc.manghe','ETANOL')
+                ->select('company.*','companylvcc.mahuyen')
+                ->first();
+            return view('manage.kkgia.etanol.kkgia.kkgiadv.importexcel')
+                ->with('inputs', $inputs)
+                ->with('modeldn',$modeldn)
+                ->with('pageTitle', 'Nhận dữ liệu Giá kê khai Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG)');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function importexcel(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $inputs['masothue'] = $inputs['maxa'];
+            $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
+                ->where('company.trangthai','Kích hoạt')
+                ->where('company.maxa',$inputs['maxa'])
+                ->where('companylvcc.manghe','ETANOL')
+                ->select('company.*','companylvcc.mahuyen')
+                ->first();
+            $inputs['mahs'] = $inputs['maxa'].getdate()[0];
+
+            $filename = $inputs['maxa'] . '_' . getdate()[0];
+            $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
+            $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
+            $data = [];
+
+            Excel::load($path, function ($reader) use (&$data, $inputs) {
+                $obj = $reader->getExcel();
+                $sheet = $obj->getSheet(0);
+                $data = $sheet->toArray(null, true, true, true);// giữ lại tiêu đề A=>'val';
+            });
+            //dd($data);
+            for ($i = getDbl($inputs['tudong']); $i <= getDbl($inputs['dendong']); $i++) {
+                //dd($data[$i]);
+                if (!isset($data[$i][$inputs['tthhdv']]) || $data[$i][$inputs['tthhdv']] == '') {
+                    continue;//Tên cán bộ rỗng => thoát
+                }
+                $modelctnew = new KkGiaEtanolCt();
+                $modelctnew->maxa = $inputs['maxa'];
+                $modelctnew->mahs = $inputs['mahs'];
+                $modelctnew->trangthai = 'CXD';
+                $modelctnew->tthhdv = $data[$i][$inputs['tthhdv']];
+                $modelctnew->qccl = $data[$i][$inputs['qccl']];
+                $modelctnew->dvt = $data[$i][$inputs['dvt']];
+                $modelctnew->ghichu = $data[$i][$inputs['ghichu']];
+                $modelctnew->dongialk = getDbl($data[$i][$inputs['dongialk']]);
+                $modelctnew->dongia = getDbl($data[$i][$inputs['dongia']]);
+                $modelctnew->save();
+            }
+            File::Delete($path);
+            $modelct = KkGiaEtanolCt::where('mahs', $inputs['mahs'])
+                ->get();
+            return view('manage.kkgia.etanol.kkgia.kkgiadv.create')
+                ->with('modeldn', $modeldn)
+                ->with('modelct',$modelct)
+                ->with('inputs', $inputs)
+                ->with('pageTitle', 'Kê khai giá Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG) thêm mới');
+
+        }else
+            return view('errors.notlogin');
     }
 }

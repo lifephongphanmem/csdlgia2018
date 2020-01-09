@@ -127,6 +127,10 @@
                     <div class="actions">
                         <a href="{{url('kekhaigiasach/create?&masothue='.$inputs['masothue'])}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Kê khai mới </a>
+                        @if(isset($inputs['hsdd']) && $inputs['hsdd'] == 0)
+                            <a href="{{url('kekhaigiasach/nhandulieutuexcel?&maxa='.$inputs['masothue'])}}" class="btn btn-default btn-sm">
+                                <i class="fa fa-file-excel-o"></i> Nhận dữ liệu</a>
+                        @endif
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
                             <a href="{{url('thongtindnsach?&maxa='.$modeldn->mahuyen)}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-reply"></i> Quay lại </a>

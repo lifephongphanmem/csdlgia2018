@@ -14,8 +14,9 @@ use App\Town;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KkGiaTaCnController extends Controller
 {
@@ -91,6 +92,7 @@ class KkGiaTaCnController extends Controller
                 if(isset($modeldn)) {
                     $modeldv = Town::where('maxa', $modeldn->mahuyen)
                         ->first();
+                    $inputs['hsdd'] = KkGiaTaCn::where('maxa', $inputs['masothue'])->where('trangthai','DD')->count();
                     return view('manage.kkgia.dvtacn.kkgia.kkgiadv.index')
                         ->with('model', $model)
                         ->with('modeldn', $modeldn)
@@ -403,6 +405,76 @@ class KkGiaTaCnController extends Controller
             }else{
                 return view('errors.perm');
             }
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function nhandulieutuexcel(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
+                ->where('company.trangthai','Kích hoạt')
+                ->where('company.maxa',$inputs['maxa'])
+                ->where('companylvcc.manghe','TACN')
+                ->select('company.*','companylvcc.mahuyen')
+                ->first();
+             return view('manage.kkgia.dvtacn.kkgia.kkgiadv.importexcel')
+                ->with('inputs', $inputs)
+                ->with('modeldn',$modeldn)
+                ->with('pageTitle', 'Nhận dữ liệu Giá kê khai giá thức ăn chăn nuôi');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function importexcel(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $inputs['masothue'] = $inputs['maxa'];
+            $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
+                ->where('company.trangthai','Kích hoạt')
+                ->where('company.maxa',$inputs['maxa'])
+                ->where('companylvcc.manghe','TACN')
+                ->select('company.*','companylvcc.mahuyen')
+                ->first();
+            $inputs['mahs'] = $inputs['maxa'].getdate()[0];
+
+            $filename = $inputs['maxa'] . '_' . getdate()[0];
+            $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
+            $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
+            $data = [];
+
+            Excel::load($path, function ($reader) use (&$data, $inputs) {
+                $obj = $reader->getExcel();
+                $sheet = $obj->getSheet(0);
+                $data = $sheet->toArray(null, true, true, true);// giữ lại tiêu đề A=>'val';
+            });
+            //dd($data);
+            for ($i = getDbl($inputs['tudong']); $i <= getDbl($inputs['dendong']); $i++) {
+                //dd($data[$i]);
+                if (!isset($data[$i][$inputs['tenhh']]) || $data[$i][$inputs['tenhh']] == '') {
+                    continue;//Tên cán bộ rỗng => thoát
+                }
+                $modelctnew = new KkGiaTaCnCt();
+                $modelctnew->maxa = $inputs['maxa'];
+                $modelctnew->mahs = $inputs['mahs'];
+                $modelctnew->trangthai = 'CXD';
+                $modelctnew->tenhh = $data[$i][$inputs['tenhh']];
+                $modelctnew->qccl = $data[$i][$inputs['qccl']];
+                $modelctnew->dvt = $data[$i][$inputs['dvt']];
+                $modelctnew->ghichu = $data[$i][$inputs['ghichu']];
+                $modelctnew->dongialk = getDbl($data[$i][$inputs['dongialk']]);
+                $modelctnew->dongia = getDbl($data[$i][$inputs['dongia']]);
+                $modelctnew->save();
+            }
+            File::Delete($path);
+            $modelct = KkGiaTaCnCt::where('mahs', $inputs['mahs'])
+                ->get();
+            return view('manage.kkgia.dvtacn.kkgia.kkgiadv.create')
+                ->with('modeldn', $modeldn)
+                ->with('modelct',$modelct)
+                ->with('inputs', $inputs)
+                ->with('pageTitle', 'Kê khai giá thức ăn chăn nuôi thêm mới');
 
         }else
             return view('errors.notlogin');

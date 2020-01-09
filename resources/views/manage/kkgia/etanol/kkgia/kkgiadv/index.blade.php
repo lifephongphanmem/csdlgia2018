@@ -111,6 +111,9 @@
 @stop
 
 @section('content')
+    <marquee>
+        <b style="color: #ff0000">{{$modeldv->tendv}} xin thông báo:</b> Ngày áp dụng hồ sơ kê khai giá Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG) phải sau {{$modeldv->songaylv}} ngày làm việc, tính từ thời điểm chuyển hồ sơ. Hồ sơ chuyển  trước 17h sẽ tính từ ngày gửi, sau 17h sẽ tính ngày hôm sau!!! (Ngày làm việc không tính thứ 7, CN và ngày nghỉ lể)
+    </marquee>
 
     <h3 class="page-title">
         Thông tin kê khai giá<small>&nbsp;Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG)</small>
@@ -126,6 +129,10 @@
                     <div class="actions">
                         <a href="{{url('kekhaigiaetanol/create?&masothue='.$inputs['masothue'])}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Kê khai mới </a>
+                        @if(isset($inputs['hsdd']) && $inputs['hsdd'] == 0)
+                            <a href="{{url('kekhaigiaetanol/nhandulieutuexcel?&maxa='.$inputs['masothue'])}}" class="btn btn-default btn-sm">
+                                <i class="fa fa-file-excel-o"></i> Nhận dữ liệu</a>
+                        @endif
                         @if(session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X')
                             <a href="{{url('thongtindnetanol?&maxa='.$modeldn->mahuyen)}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-reply"></i> Quay lại </a>

@@ -8,7 +8,8 @@
 @stop
 
 @section('content')
-
+<p style="text-align: center; font-weight: bold">Phụ lục 4: MẪU VĂN BẢN KÊ KHAI GIÁ</p>
+<p style="font-style: italic; text-align: center">(Ban hành kèm theo Thông tư số 233/2016/TT-BTC ngày 11/11/2016 của Bộ Tài chính)</p>
 <table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
         <td width="50%">

@@ -6,7 +6,6 @@ use App\District;
 use App\Jobs\SendMail;
 use App\Model\manage\kekhaigia\kkgiay\KkGiaGiay;
 use App\Model\manage\kekhaigia\kkgiay\KkGiaGiayCt;
-use App\Model\manage\kekhaigia\kkgiay\KkGiaGiayCtDf;
 use App\Model\system\company\Company;
 use App\Model\system\dmnganhnghekd\DmNgheKd;
 use App\NgayNghiLe;
@@ -14,8 +13,9 @@ use App\Town;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KkGiaGiayController extends Controller
 {
@@ -87,6 +87,7 @@ class KkGiaGiayController extends Controller
                 if(isset($modeldn)) {
                     $modeldv = Town::where('maxa', $modeldn->mahuyen)
                         ->first();
+                    $inputs['hsdd'] = KkGiaGiay::where('maxa', $inputs['masothue'])->where('trangthai','DD')->count();
                     return view('manage.kkgia.giay.kkgia.kkgiadv.index')
                         ->with('model', $model)
                         ->with('modeldn', $modeldn)
@@ -114,8 +115,10 @@ class KkGiaGiayController extends Controller
                 ->where('companylvcc.manghe','GIAY')
                 ->select('company.*','companylvcc.mahuyen')
                 ->first();
+            $inputs['mahs'] = $inputs['masothue'].getdate()[0];
             if(isset($modeldn)) {
-                $delctdf = KkGiaGiayCtDf::where('maxa',$inputs['masothue'])->delete();
+                $delctdf = KkGiaGiayCt::where('maxa',$inputs['masothue'])
+                    ->where('trangthai','CXD')->delete();
                 $idlk = KkGiaGiay::where('maxa',$inputs['masothue'])
                     ->where('trangthai','DD')
                     ->max('id');
@@ -124,19 +127,23 @@ class KkGiaGiayController extends Controller
                         ->first();
                     $modellkct = KkGiaGiayCt::where('mahs',$modellk->mahs)
                         ->get();
+                    $inputs['socvlk'] = $modellk->socv;
+                    $inputs['ngaycvlk'] = $modellk->ngaynhap;
                     foreach($modellkct as  $ctdf){
-                        $addct = new KkGiaGiayCtDf();
+                        $addct = new KkGiaGiayCt();
                         $addct->tthhdv = $ctdf->tthhdv;
                         $addct->qccl = $ctdf->qccl;
                         $addct->dvt = $ctdf->dvt;
                         $addct->dongialk = $ctdf->dongia;
-                        $addct->maxa = $ctdf->$inputs['masothue'];
+                        $addct->ghichu = $ctdf->ghichu;
+                        $addct->maxa = $inputs['masothue'];
+                        $addct->mahs = $inputs['mahs'];
+                        $addct->trangthai = 'CXD';
                         $addct->save();
                     }
                 }
-                $modelct = KkGiaGiayCtDf::where('maxa',$inputs['masothue'])
+                $modelct = KkGiaGiayCt::where('mahs',$inputs['mahs'])
                     ->get();
-
                 return view('manage.kkgia.giay.kkgia.kkgiadv.create')
                     ->with('modeldn', $modeldn)
                     ->with('modelct',$modelct)
@@ -153,7 +160,6 @@ class KkGiaGiayController extends Controller
             if (session('admin')->level == 'DN' || session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
                 $inputs = $request->all();
                 $model = new KkGiaGiay();
-                $inputs['mahs'] = $inputs['maxa'].getdate()[0];
                 $inputs['ngaynhap'] = getDateToDb($inputs['ngaynhap']);
                 $inputs['ngayhieuluc'] = getDateToDb($inputs['ngayhieuluc']);
                 if($inputs['ngaycvlk'] != '')
@@ -162,16 +168,8 @@ class KkGiaGiayController extends Controller
                     unset($inputs['ngaycvlk']);
                 $inputs['trangthai'] = 'CC';
                 if($model->create($inputs)){
-                    $modelctdf = KkGiaGiayCtDf::where('maxa',$inputs['maxa']);
-
-                    foreach($modelctdf->geT() as $ctdf) {
-                        $modelct = new KkGiaGiayCt();
-                        $arrays = $ctdf->toArray();
-                        unset($arrays['id']);
-                        $arrays['mahs'] = $inputs['mahs'];
-                        $modelct->create($arrays);
-                    }
-                    $modelctdf->delete();
+                    $modelctdf = KkGiaGiayCt::where('mahs',$inputs['mahs'])
+                        ->update(['trangthai' => 'XD']);
                 }
                 return redirect('kekhaigiagiay?&masothue='.$inputs['maxa']);
             } else {
@@ -233,7 +231,9 @@ class KkGiaGiayController extends Controller
                     $inputs['ngaycvlk']= getDateToDb($inputs['ngaycvlk']);
                 else
                     unset($inputs['ngaycvlk']);
-                $model->update($inputs);
+                if($model->update($inputs))
+                    $modelctdf = KkGiaGiayCt::where('mahs',$inputs['mahs'])
+                        ->update(['trangthai' => 'XD']);
                 return redirect('kekhaigiagiay?&masothue='.$model->maxa);
             } else {
                 return view('errors.perm');
@@ -340,9 +340,9 @@ class KkGiaGiayController extends Controller
                         ->first();
                     $tg = getDateTime(Carbon::now()->toDateTimeString());
                     $contentdn = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận được hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp. Số công văn: '.$model->socv.
-                        ' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['ttnguoinop'].'!!!';
+                        ' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['nguoinop'].'-Số điện thoại liên lạc: '.$inputs['dtll'].'!!!';
                     $contentht = 'Vào lúc: '.$tg.', hệ thống CSDL giá đã nhận được hồ sơ '.$dmnghe->tennghe.' của doanh nghiệp '.$modeldn->tendn.' - mã số thuế '.$modeldn->maxa.
-                        ' Số công văn: '.$model->socv.' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['ttnguoinop'].'!!!';
+                        ' Số công văn: '.$model->socv.' - Ngày áp dung: '.getDayVn($model->ngayhieuluc).'- Thông tin người nộp: '.$inputs['nguoinop'].'-Số điện thoại liên lạc: '.$inputs['dtll'].'!!!';
                     $run = new SendMail($modeldn,$contentdn,$modeldv,$contentht);
                     $run->handle();
                 }
@@ -382,5 +382,74 @@ class KkGiaGiayController extends Controller
 
         }
         die(json_encode($result));
+    }
+
+    public function nhandulieutuexcel(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
+                ->where('company.maxa',$inputs['maxa'])
+                ->where('companylvcc.manghe','GIAY')
+                ->select('company.*','companylvcc.mahuyen')
+                ->first();
+            return view('manage.kkgia.giay.kkgia.kkgiadv.importexcel')
+                ->with('inputs', $inputs)
+                ->with('modeldn',$modeldn)
+                ->with('pageTitle', 'Nhận dữ liệu Giá kê khai giấy in, viết (dạng cuộn), giấy in báo sản xuất trong nước');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function importexcel(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $inputs['masothue'] = $inputs['maxa'];
+            $modeldn = Company::join('companylvcc','companylvcc.maxa','=','company.maxa')
+                ->where('company.trangthai','Kích hoạt')
+                ->where('company.maxa',$inputs['maxa'])
+                ->where('companylvcc.manghe','GIAY')
+                ->select('company.*','companylvcc.mahuyen')
+                ->first();
+            $inputs['mahs'] = $inputs['maxa'].getdate()[0];
+
+            $filename = $inputs['maxa'] . '_' . getdate()[0];
+            $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
+            $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
+            $data = [];
+
+            Excel::load($path, function ($reader) use (&$data, $inputs) {
+                $obj = $reader->getExcel();
+                $sheet = $obj->getSheet(0);
+                $data = $sheet->toArray(null, true, true, true);// giữ lại tiêu đề A=>'val';
+            });
+            //dd($data);
+            for ($i = getDbl($inputs['tudong']); $i <= getDbl($inputs['dendong']); $i++) {
+                //dd($data[$i]);
+                if (!isset($data[$i][$inputs['tthhdv']]) || $data[$i][$inputs['tthhdv']] == '') {
+                    continue;//Tên cán bộ rỗng => thoát
+                }
+                $modelctnew = new KkGiaGiayCt();
+                $modelctnew->maxa = $inputs['maxa'];
+                $modelctnew->mahs = $inputs['mahs'];
+                $modelctnew->trangthai = 'CXD';
+                $modelctnew->tthhdv = $data[$i][$inputs['tthhdv']];
+                $modelctnew->qccl = $data[$i][$inputs['qccl']];
+                $modelctnew->dvt = $data[$i][$inputs['dvt']];
+                $modelctnew->ghichu = $data[$i][$inputs['ghichu']];
+                $modelctnew->dongialk = getDbl($data[$i][$inputs['dongialk']]);
+                $modelctnew->dongia = getDbl($data[$i][$inputs['dongia']]);
+                $modelctnew->save();
+            }
+            File::Delete($path);
+            $modelct = KkGiaGiayCt::where('mahs', $inputs['mahs'])
+                ->get();
+            return view('manage.kkgia.giay.kkgia.kkgiadv.create')
+                ->with('modeldn', $modeldn)
+                ->with('modelct',$modelct)
+                ->with('inputs', $inputs)
+                ->with('pageTitle', 'Kê khai giá giấy in, viết (dạng cuộn), giấy in báo sản xuất trong nước thêm mới');
+
+        }else
+            return view('errors.notlogin');
     }
 }

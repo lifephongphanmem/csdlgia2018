@@ -94,6 +94,9 @@ class KkMhBogController extends Controller
                 ->first();
             $modeldv = Town::where('maxa',$modeldn->mahuyen)
                 ->first();
+            $inputs['hsdd'] = KkMhBog::where('maxa', $inputs['maxa'])
+                ->where('phanloai',$inputs['manghe'])
+                ->where('trangthai','DD')->count();
             return view('manage.kkgia.dkg.kekhaimhbog.kekhai.index')
                 ->with('model', $model)
                 ->with('modeldn', $modeldn)

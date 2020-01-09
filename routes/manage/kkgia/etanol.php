@@ -1,11 +1,21 @@
 <?php
 Route::get('thongtindnetanol','manage\kekhaigia\kkgiaetanol\KkGiaEtanolController@ttdn');
-Route::resource('kekhaigiaetanol','manage\kekhaigia\kkgiaetanol\KkGiaEtanolController');
+Route::get('kekhaigiaetanol','manage\kekhaigia\kkgiaetanol\KkGiaEtanolController@index');
+Route::get('kekhaigiaetanol/create','manage\kekhaigia\kkgiaetanol\KkGiaEtanolController@create');
+Route::post('kekhaigiaetanol','manage\kekhaigia\kkgiaetanol\KkGiaEtanolController@store');
+Route::get('kekhaigiaetanol/{id}/edit','manage\kekhaigia\kkgiaetanol\KkGiaEtanolController@edit');
+Route::patch('kekhaigiaetanol/{id}','manage\kekhaigia\kkgiaetanol\KkGiaEtanolController@update');
+
+
 Route::get('giaetanol/kiemtra','manage\kekhaigia\kkgiaetanol\KkGiaEtanolController@kiemtra');
 Route::post('kekhaigiaetanol/chuyen','manage\kekhaigia\kkgiaetanol\KkGiaEtanolController@chuyen');
 Route::get('/giaetanol/showlydo','manage\kekhaigia\kkgiaetanol\KkGiaEtanolController@showlydo');
 Route::post('kekhaigiaetanol/delete','manage\kekhaigia\kkgiaetanol\KkGiaEtanolController@delete');
-Route::get('kekhaigiaetanol/prints','manage\kekhaigia\kkgiaetanol\KkGiaEtanolController@prints');
+Route::get('kekhaigiaetanol/prints','manage\kekhaigia\kkgiaetanol\KkGiaEtanolController@show');
+
+Route::get('kekhaigiaetanol/nhandulieutuexcel','manage\kekhaigia\kkgiaetanol\KkGiaEtanolController@nhandulieutuexcel');
+Route::post('kekhaigiaetanol/import_excel','manage\kekhaigia\kkgiaetanol\KkGiaEtanolController@importexcel');
+
 
 Route::get('giaetanolctdf/storett','manage\kekhaigia\kkgiaetanol\KkGiaEtanolCtDfController@store');
 Route::get('giaetanolctdf/edittt','manage\kekhaigia\kkgiaetanol\KkGiaEtanolCtDfController@edit');
