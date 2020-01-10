@@ -208,13 +208,13 @@ class PhiLePhiController extends Controller
             $model = PhiLePhiCt::Leftjoin('philephi','philephi.mahs','=','philephict.mahs')
                 ->Leftjoin('dmphilephi','dmphilephi.manhom','=','philephi.manhom')
                 ->whereIn('philephi.trangthai',['HT','CB'])
-                ->select('philephict.*','philephi.soqd','philephi.ngayapdung','philephi.trangthai','dmphilephi.tennhom');
+                ->select('philephict.*','philephi.soqd','philephi.ngayapdung','philephi.trangthai','dmphilephi.tennhom','philephi.manhom');
             if($inputs['nam'] != 'all')
-                $model = $model->whereYear('ngayapdung',$inputs['nam']);
+                $model = $model->whereYear('philephi.ngayapdung',$inputs['nam']);
             if($inputs['manhom'] != '')
-                $model = $model->where('manhom',$inputs['manhom']);
+                $model = $model->where('philephi.manhom',$inputs['manhom']);
             if($inputs['ptcp'] != '')
-                $model = $model->where('ptcp','like','%'.$inputs['ptcp'].'%');
+                $model = $model->where('philephict.ptcp','like','%'.$inputs['ptcp'].'%');
             $model = $model->get();
 
             $modelnhom = DmPhiLePhi::all();
