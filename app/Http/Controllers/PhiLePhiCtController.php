@@ -24,6 +24,7 @@ class PhiLePhiCtController extends Controller
         $inputs = $request->all();
         if(isset($inputs['ptcp'])){
             $inputs['mucthuphi'] = getMoneyToDb($inputs['mucthuphi']);
+            $inputs['trangthai'] = 'CXD';
             $modeladd = new PhiLePhiCt();
             $modeladd->create($inputs);
 
@@ -67,55 +68,23 @@ class PhiLePhiCtController extends Controller
         die(json_encode($result));
     }
 
-    public function show(Request $request){
+    public function edit(Request $request){
         $result = array(
             'status' => 'fail',
             'message' => 'error',
         );
-        if(!Session::has('admin')) {
+        if (!Session::has('admin')) {
             $result = array(
                 'status' => 'fail',
                 'message' => 'permission denied',
             );
             die(json_encode($result));
         }
-        //dd($request);
+
         $inputs = $request->all();
-
-        if(isset($inputs['id'])){
-            $id = $inputs['id'];
-
-            $model = PhiLePhiCt::findOrFail($id);
-            $result['message'] = '<div class="modal-body" id="ttmhbogedit">';
-
-
-            $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Tên phí</b><span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" id="ptcpedit" name="ptcpedit" class="form-control" value="'.$model->ptcp.'"></div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-
-            $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-6">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Mức thu phí</b><span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" style="text-align: right; font-weight: bold" id="mucthuphiedit" name="mucthuphiedit" class="form-control" data-mask="fdecimal" value="'.$model->mucthuphi.'"></div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '<div class="col-md-6">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label"><b>Ghi chú</b><span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" id="ghichuctedit" name="ghichuctedit" class="form-control" value="'.$model->ghichu.'"></div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-
-            $result['message'] .= '<input type="hidden" id="idedit" name="idedit" value="'.$model->id.'">';
-            $result['message'] .= '</div>';
-            $result['status'] = 'success';
-
-        }
-        die(json_encode($result));
+        $id = $inputs['id'];
+        $model = PhiLePhiCt::findOrFail($id);
+        die($model);
     }
 
     public function update(Request $request){
@@ -191,10 +160,10 @@ class PhiLePhiCtController extends Controller
         }
         $inputs = $request->all();
         if(isset($inputs['id'])){
-            $modeladd = PhiLePhiCt::where('id',$inputs['id'])->first();
-            $modeladd->delete();
+            $modeladd = PhiLePhiCt::where('id',$inputs['id'])->delete();
 
             $model = PhiLePhiCt::where('mahs',$inputs['mahs'])->get();
+
             $result['message'] = '<div class="row" id="dsmhbog">';
             $result['message'] .= '<div class="col-md-12">';
             $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';

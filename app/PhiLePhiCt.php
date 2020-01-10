@@ -12,7 +12,8 @@ class PhiLePhiCt extends Model
         'mahs',
         'ptcp',
         'mucthuphi',
-        'ghichu'
+        'ghichu',
+        'trangthai'
 
     ];
 }

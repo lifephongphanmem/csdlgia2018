@@ -40,116 +40,6 @@
         jQuery(document).ready(function() {
             TableManaged.init();
         });
-        function clearForm(){
-            $('#ptcp').val('');
-            $('#mucthuphi').val('0');
-        }
-        function createmhbog(){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '/philephict/store',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    ptcp: $('#ptcp').val(),
-                    mucthuphi: $('#mucthuphi').val(),
-                    ghichu: $('#ghichuct').val(),
-                    mahs: $('#mahs').val()
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        toastr.success("Cập nhật thông tin phí lệ phí", "Thành công!");
-                        $('#dsmhbog').replaceWith(data.message);
-                        jQuery(document).ready(function() {
-                            TableManaged.init();
-                        });
-                        $('#modal-create').modal("hide");
-
-                    } else
-                        toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
-                }
-            })
-
-        }
-        function editmhbog(id) {
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            //alert(id);
-            $.ajax({
-                url: '/philephict/show',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    id: id
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        $('#ttmhbogedit').replaceWith(data.message);
-                        InputMask();
-                    }
-                    else
-                        toastr.error("Không thể chỉnh sửa thông tin loại rừng!", "Lỗi!");
-                }
-            })
-        }
-        function updatemhbog(){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '/philephict/update',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    id: $('#idedit').val(),
-                    ptcp: $('#ptcpedit').val(),
-                    mucthuphi: $('#mucthuphiedit').val(),
-                    ghichu: $('#ghichuctedit').val(),
-                    mahs: $('#mahs').val()
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        toastr.success("Cập nhật thông tin phí, lệ phí", "Thành công!");
-                        $('#dsmhbog').replaceWith(data.message);
-                        jQuery(document).ready(function() {
-                            TableManaged.init();
-                        });
-                        $('#modal-edit').modal("hide");
-
-                    } else
-                        toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
-                }
-            })
-
-        }
-        function getid(id){
-            document.getElementById("iddelete").value=id;
-        }
-        function delmhbog() {
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '/philephict/del',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    id: $('input[name="iddelete"]').val(),
-                    mahs: $('#mahs').val()
-                },
-                dataType: 'JSON',
-                success: function (data) {
-                    //if(data.status == 'success') {
-                    toastr.success("Bạn đã xóa thông tin phí lệ phí!", "Thành công!");
-                    $('#dsmhbog').replaceWith(data.message);
-                    jQuery(document).ready(function() {
-                        TableManaged.init();
-                    });
-
-                    $('#modal-delete').modal("hide");
-
-                    //}
-                }
-            })
-        }
     </script>
 
 @stop
@@ -175,6 +65,7 @@
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
                         <div class="form-body">
+                            <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -221,6 +112,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -288,82 +180,7 @@
             });
         }
     </script>
-    <!--Model Create-->
-    <div class="modal fade bs-modal-lg" id="modal-create" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Thêm mới thông tin phí lệ phí</h4>
-                </div>
-                <div class="modal-body" id="ttmhbog">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group"><label for="selGender" class="control-label"><b>Tên phí</b><span class="require">*</span></label>
-                                <div><input type="text" id="ptcp" name="ptcp" class="form-control"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group"><label for="selGender" class="control-label"><b>Mức thu phí</b><span class="require">*</span></label>
-                                <div><input type="text" style="text-align: right; font-weight: bold" id="mucthuphi" name="mucthuphi" class="form-control" data-mask="fdecimal"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group"><label for="selGender" class="control-label"><b>Ghi chú</b><span class="require">*</span></label>
-                                <div><input type="text" style="text-align: right; font-weight: bold" id="ghichuct" name="ghichuct" class="form-control"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
-                    <button type="button" class="btn btn-primary" onclick="createmhbog()">Thêm mới</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!--Model Eđit-->
-    <div class="modal fade bs-modal-lg" id="modal-edit" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Chỉnh sửa thông tin phí, lệ phí</h4>
-                </div>
-                <div class="modal-body" id="ttmhbogedit">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
-                    <button type="button" class="btn btn-primary" onclick="updatemhbog()">Cập nhật</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!--Model Delete-->
-    <div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Đồng ý xóa thông tin?</h4>
-                </div>
-                <input type="hidden" id="iddelete" name="iddelete">
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
-                    <button type="button" class="btn btn-primary" onclick="delmhbog()">Đồng ý</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
+    @include('manage.dinhgia.philephi.kekhai.include.modal')
     @include('includes.script.create-header-scripts')
     @include('includes.script.inputmask-ajax-scripts')
 @stop

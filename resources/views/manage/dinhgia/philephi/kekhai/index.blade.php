@@ -56,6 +56,9 @@
         function confirmCB(id){
             document.getElementById("idcongbo").value=id;
         }
+        function confirmHCB(id){
+            document.getElementById("idhuycongbo").value=id;
+        }
         function clickcreate(){
             $('#frm_create').submit();
         }
@@ -81,21 +84,14 @@
                             <button type="button" class="btn btn-default btn-sm" data-target="#create-modal-confirm" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;
                                 Thêm mới</button>
                             <div class="btn-group">
-                                <a class="btn btn-default btn-sm" href="" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <i class="fa fa-file-excel-o"></i>&nbsp;Nhận dữ liệu <i class="fa fa-angle-down"></i>
+                                <a class="btn btn-default btn-sm" href="{{url('philephi/nhandulieutuexcel')}}">
+                                    <i class="fa fa-file-excel-o"></i>&nbsp;Nhận dữ liệu
                                 </a>
-                                <ul class="dropdown-menu pull-right">
-                                    <li>
-                                        <a href="">File dữ liệu mẫu</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Nhận dữ liệu</a>
-                                    </li>
-                                </ul>
                             </div>
                         @endif
                     </div>
                 </div>
+                <hr>
                 <div class="portlet-body">
                     <div class="row">
                         <div class="col-md-2">
@@ -111,28 +107,12 @@
                                 </select>
                             </div>
                         </div>
-                        {{--<div class="col-md-3">--}}
-                            {{--<div class="form-group">--}}
-                                {{--<label>Trạng thái hồ sơ</label>--}}
-                                {{--<select name="trangthai" id="trangthai" class="form-control">--}}
-                                    {{--@if(can('kkgiaphilephi','create'))--}}
-                                    {{--<option value="CHT" {{$trangthai == 'CHT' ? 'selected' : ''}}>Chưa hoàn thành</option>--}}
-                                    {{--@endif--}}
-                                    {{--<option value="HT" {{$trangthai == 'HT' ? 'selected' : ''}}>Hoàn thành</option>--}}
-                                    {{--<option value="HHT" {{$trangthai == 'HHT' ? 'selected' : ''}}>Hủy hoàn thành</option>--}}
-                                    {{--<option value="CB" {{$trangthai == 'CB' ? 'selected' : ''}}>Công bố</option>--}}
-                                {{--</select>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
                     </div>
                     <div class="table-toolbar">
                     </div>
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>
                         <tr>
-                            <!--th class="table-checkbox">
-                                <input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/>
-                            </th-->
                             <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center" width="20%">Nhóm phí lệ phí</th>
                             <th style="text-align: center" width="20%">Mô tả</th>
@@ -157,8 +137,6 @@
                                     <span class="badge badge-warning">Hoàn thành</span>
                                 @elseif($tt->trangthai == 'CHT')
                                     <span class="badge badge-danger">Chưa hoàn thành</span>
-                                @elseif($tt->trangthai == 'HHT')
-                                    <span class="badge badge-danger">Hủy hoàn thành</span>
                                 @else
                                     <span class="badge badge-success">Công bố</span>
                                 @endif
@@ -187,14 +165,18 @@
                                             <button type="button" onclick="confirmCB('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#congbo-modal-confirm" data-toggle="modal"><i class="fa fa-send"></i>&nbsp;
                                                 Công bố</button>
                                             @endif
-                                        @endif
-                                        @if(can('kkgiaphilephi','approve'))
-                                        <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
-                                            Hủy hoàn thành</button>
+                                            @if(can('kkgiaphilephi','approve'))
+                                                <button type="button" onclick="confirmHHT('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huyhoanthanh-modal-confirm" data-toggle="modal"><i class="fa fa-times"></i>&nbsp;
+                                                    Hủy hoàn thành</button>
+                                            @endif
+                                        @else
+                                            @if(can('thgiaphilephi','congbo'))
+                                                <button type="button" onclick="confirmHCB('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huycongbo-modal-confirm" data-toggle="modal"><i class="fa fa-send"></i>&nbsp;
+                                                    Hủy Công bố</button>
+                                            @endif
                                         @endif
                                     @endif
                                 @endif
-
                             </td>
                         </tr>
                         @endforeach
@@ -316,7 +298,7 @@
         </div>
         {!! Form::close() !!}
     </div>
-    <!--Modal Hủy Hoàn thành-->
+    <!--Modal Công bố-->
     <div id="congbo-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
         {!! Form::open(['url'=>'philephi/congbo','id' => 'frm_congbo'])!!}
         <div class="modal-dialog">
@@ -340,12 +322,39 @@
         </div>
         {!! Form::close() !!}
     </div>
+    <!--Modal Hủy Công bố-->
+    <div id="huycongbo-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+        {!! Form::open(['url'=>'philephi/huycongbo','id' => 'frm_huycongbo'])!!}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true"
+                            class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Đồng ý hủy công bố hồ sơ?</h4>
+
+                    <input type="hidden" name="idhuycongbo" id="idhuycongbo">
+
+                </div>
+                <div class="modal-body">
+                    <p style="color: #0000FF">Hồ sơ sẽ được hủy công bố trên trang công bố của tỉnh!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickhuycongbo()">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+        {!! Form::close() !!}
+    </div>
     <script>
         function clickhoanthanh(){
             $('#frm_hoanthanh').submit();
         }
         function clickcongbo(){
             $('#frm_congbo').submit();
+        }
+        function clickhuycongbo(){
+            $('#frm_huycongbo').submit();
         }
         function clickhuyhoanthanh(){
             $('#frm_huyhoanthanh').submit();

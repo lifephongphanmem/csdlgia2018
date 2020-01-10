@@ -6,11 +6,12 @@ use App\District;
 use App\DmPhiLePhi;
 use App\PhiLePhi;
 use App\PhiLePhiCt;
-use App\PhiLePhiCtDf;
 use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PhiLePhiController extends Controller
 {
@@ -42,11 +43,14 @@ class PhiLePhiController extends Controller
     public function create(Request $request){
         if (Session::has('admin')) {
             $inputs = $request->all();
+            $delmodel = PhiLePhiCt::where('trangthai','CXD')->delete();
             $m_nhomphilephi = DmPhiLePhi::where('manhom',$inputs['manhom'])->first();
-            $inputs['mahuyen'] = session('admin')->mahuyen!= '' ? session('admin')->mahuyen : 'T';
-            $modelct = PhiLePhiCtDf::where('mahuyen',$inputs['mahuyen'])->get();
+            $inputs['mahs'] = getdate()[0];
+            $modelct = PhiLePhiCt::where('mahs',$inputs['mahs'])
+                ->get();
             return view('manage.dinhgia.philephi.kekhai.create')
                 ->with('m_nhomphilephi',$m_nhomphilephi)
+                ->with('inputs',$inputs)
                 ->with('modelct',$modelct)
                 ->with('pageTitle','Thêm mới thông tin hồ sơ phí, lệ phí');
         }else
@@ -56,22 +60,14 @@ class PhiLePhiController extends Controller
     public function store(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
+
             $inputs['mahuyen'] = session('admin')->mahuyen!= '' ? session('admin')->mahuyen : 'T';
             $inputs['ngayapdung'] = getDateToDb($inputs['ngayapdung']);
-            $inputs['mahs'] = $inputs['mahuyen'].getdate()[0];
             $inputs['trangthai'] = 'CHT';
             $model = new PhiLePhi();
             if($model->create($inputs)){
-                $modelctdf = PhiLePhiCtDf::where('mahuyen',$inputs['mahuyen']);
-                foreach($modelctdf->get() as $ctdf){
-                    $modelct = new PhiLePhiCt();
-                    $modelct->ptcp= $ctdf->ptcp;
-                    $modelct->mucthuphi = $ctdf->mucthuphi;
-                    $modelct->ghichu = $ctdf->ghichu;
-                    $modelct->mahs = $inputs['mahs'];
-                    $modelct->save();
-                }
-                $modelctdf->delete();
+                $modelctdf = PhiLePhiCt::where('mahs',$inputs['mahs'])
+                    ->update(['trangthai' => 'XD']);
             }
             return redirect('philephi');
 
@@ -101,8 +97,9 @@ class PhiLePhiController extends Controller
             $inputs = $request->all();
             $inputs['ngayapdung'] = getDateToDb($inputs['ngayapdung']);
             $model = PhiLePhi::findOrFail($id);
-            $model->update($inputs);
-
+            if($model->update($inputs))
+                $modelctdf = PhiLePhiCt::where('mahs',$inputs['mahs'])
+                    ->update(['trangthai' => 'XD']);
             return redirect('philephi');
 
         }else
@@ -161,7 +158,7 @@ class PhiLePhiController extends Controller
             $model = PhiLePhi::findOrFail($id);
             $model->trangthai = 'HT';
             $model->save();
-            return redirect('philephi?&trangthai=HT');
+            return redirect('philephi');
         }else
             return view('errors.notlogin');
     }
@@ -171,9 +168,9 @@ class PhiLePhiController extends Controller
             $inputs = $request->all();
             $id = $inputs['idhuyhoanthanh'];
             $model = PhiLePhi::findOrFail($id);
-            $model->trangthai = 'HHT';
+            $model->trangthai = 'CHT';
             $model->save();
-            return redirect('philephi?&trangthai=HHT');
+            return redirect('philephi');
         }else
             return view('errors.notlogin');
     }
@@ -185,7 +182,19 @@ class PhiLePhiController extends Controller
             $model = PhiLePhi::findOrFail($id);
             $model->trangthai = 'CB';
             $model->save();
-            return redirect('philephi?&trangthai=CB');
+            return redirect('philephi');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huycongbo(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $id = $inputs['idhuycongbo'];
+            $model = PhiLePhi::findOrFail($id);
+            $model->trangthai = 'HT';
+            $model->save();
+            return redirect('philephi');
         }else
             return view('errors.notlogin');
     }
@@ -215,6 +224,64 @@ class PhiLePhiController extends Controller
                 ->with('model',$model)
                 ->with('modelnhom',$modelnhom)
                 ->with('pageTitle','Tìm kiếm thông tin phí lệ phí');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function nhandulieutuexcel(){
+        if (Session::has('admin')) {
+            $delmodel = PhiLePhiCt::where('trangthai','CXD')->delete();
+            $m_nhomphilephi = DmPhiLePhi::all();
+            $inputs['mahs'] = getdate()[0];
+            return view('manage.dinhgia.philephi.kekhai.importexcel')
+                ->with('m_nhomphilephi',$m_nhomphilephi)
+                ->with('inputs',$inputs)
+                ->with('pageTitle','Nhận dữ liệu excel thông tin hồ sơ phí, lệ phí');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function importexcel(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $delmodel = PhiLePhiCt::where('trangthai','CXD')->delete();
+            $m_nhomphilephi = DmPhiLePhi::where('manhom',$inputs['manhom'])->first();
+            $inputs['mahs'] = getdate()[0];
+
+            $filename = getdate()[0];
+            $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
+            $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
+            $data = [];
+
+            Excel::load($path, function ($reader) use (&$data, $inputs) {
+                $obj = $reader->getExcel();
+                $sheet = $obj->getSheet(0);
+                $data = $sheet->toArray(null, true, true, true);// giữ lại tiêu đề A=>'val';
+            });
+            //dd($data);
+            for ($i = getDbl($inputs['tudong']); $i <= getDbl($inputs['dendong']); $i++) {
+                //dd($data[$i]);
+                if (!isset($data[$i][$inputs['ptcp']]) || $data[$i][$inputs['ptcp']] == '') {
+                    continue;//Tên cán bộ rỗng => thoát
+                }
+                $modelctnew = new PhiLePhiCt();
+                $modelctnew->mahs = $inputs['mahs'];
+                $modelctnew->trangthai = 'CXD';
+                $modelctnew->ptcp = $data[$i][$inputs['ptcp']];
+                $modelctnew->ghichu = $data[$i][$inputs['ghichu']];
+                $modelctnew->mucthuphi = getDbl($data[$i][$inputs['mucthuphi']]);
+                $modelctnew->save();
+            }
+            File::Delete($path);
+
+            $modelct = PhiLePhiCt::where('mahs',$inputs['mahs'])
+                ->get();
+            return view('manage.dinhgia.philephi.kekhai.create')
+                ->with('m_nhomphilephi',$m_nhomphilephi)
+                ->with('inputs',$inputs)
+                ->with('modelct',$modelct)
+                ->with('pageTitle','Thêm mới thông tin hồ sơ phí, lệ phí');
+
         }else
             return view('errors.notlogin');
     }

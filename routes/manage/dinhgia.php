@@ -226,13 +226,20 @@ Route::post('/thgiahhdvkct/update','ThGiaHhDvKCtController@update');
 Route::resource('nhomphilephi','DmPhiLePhiController');
 Route::post('nhomphilephi/update','DmPhiLePhiController@update');
 
-Route::resource('philephi','PhiLePhiController');
+Route::get('philephi','PhiLePhiController@index');
 Route::post('philephi/create','PhiLePhiController@create');
+Route::post('philephi','PhiLePhiController@store');
+Route::get('philephi/{id}/edit','PhiLePhiController@edit');
+Route::patch('philephi/{id}','PhiLePhiController@update');
+Route::get('philephi/{id}','PhiLePhiController@show');
 Route::post('philephi/delete','PhiLePhiController@destroy');
 
 Route::post('philephi/hoanthanh','PhiLePhiController@hoanthanh');
 Route::post('philephi/huyhoanthanh','PhiLePhiController@huyhoanthanh');
 Route::post('philephi/congbo','PhiLePhiController@congbo');
+Route::post('philephi/huycongbo','PhiLePhiController@huycongbo');
+Route::get('philephi/nhandulieutuexcel','PhiLePhiController@nhandulieutuexcel');
+Route::post('philephi/importexcel','PhiLePhiController@importexcel');
 
 Route::get('timkiemthongtinphilephi','PhiLePhiController@search');
 
@@ -241,9 +248,9 @@ Route::get('philephictdf/show','PhiLePhiCtDfController@show');
 Route::get('philephictdf/update','PhiLePhiCtDfController@update');
 Route::get('philephictdf/del','PhiLePhiCtDfController@destroy');
 
-Route::get('philephict/store','PhiLePhiCtController@store');
-Route::get('philephict/show','PhiLePhiCtController@show');
-Route::get('philephict/update','PhiLePhiCtController@update');
+Route::post('philephict/store','PhiLePhiCtController@store');
+Route::get('philephict/edit','PhiLePhiCtController@edit');
+Route::post('philephict/update','PhiLePhiCtController@update');
 Route::get('philephict/del','PhiLePhiCtController@destroy');
 
 //Đầu giá đất
