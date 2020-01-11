@@ -153,7 +153,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="{{url('giahanghoadichvu')}}">
-                <h3 style="text-transform: uppercase;"><b style="color: #BCC2CB">CƠ SỞ DỮ LIỆU VỀ GIÁ</b>&nbsp;<b style="color: #BCC2CB">{{isset(getGeneralConfigs()['diadanh']) ? getGeneralConfigs()['diadanh'] : ''}}</b></h3>
+                <h3 style="text-transform: uppercase;"><b style="color: #BCC2CB">CƠ SỞ DỮ LIỆU VỀ GIÁ</b>&nbsp;<b style="color: #25aae2">{{isset(getGeneralConfigs()['diadanh']) ? getGeneralConfigs()['diadanh'] : ''}}</b></h3>
                 </a>
             </div>
             <!-- END LOGO -->
@@ -362,7 +362,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <div class="container">
         <div class="row">
             <div class="col-md-12 footer-block" style="text-align: center">
-                <h2><strong>Giá hàng hóa dịch vụ&nbsp;<b style="color: #25aae2">{{isset(getGeneralConfigs()['diadanh']) ? getGeneralConfigs()['diadanh'] : ''}}</b></strong></h2>
+                <h2><strong>Cơ sở dữ liệu về giá&nbsp;<b style="color: #25aae2">{{isset(getGeneralConfigs()['diadanh']) ? getGeneralConfigs()['diadanh'] : ''}}</b></strong></h2>
                 <p>Bản quyền thuộc về &nbsp;<b style="color: #25aae2">{{isset(getGeneralConfigs()['tendonvi']) ? getGeneralConfigs()['tendonvi'] : ''}}</b></p>
                 <p>Địa chỉ: &nbsp;<b style="color: #25aae2">{{isset(getGeneralConfigs()['diachi']) ? getGeneralConfigs()['diachi'] : ''}}</b></p>
                 <p>Thông tin liên hệ: &nbsp;<b style="color: #25aae2">{{isset(getGeneralConfigs()['tel']) ? getGeneralConfigs()['tel'] : ''}}</b></p>
