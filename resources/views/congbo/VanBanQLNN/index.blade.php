@@ -103,7 +103,7 @@
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label>Phân loại</label>
+                                                <label style="font-weight: bold">Phân loại</label>
                                                 <select class="form-control" name="phanloai" id="phanloai">
                                                     <option value="all" {{$inputs['phanloai'] == 'all' ? 'selected' : ''}}>--Tất cả--</option>
                                                     <option value="gia" {{$inputs['phanloai'] == 'gia' ? 'selected' : ''}}>Văn bản về Giá</option>
@@ -113,13 +113,13 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label>Loại văn bản</label>
+                                                <label style="font-weight: bold">Loại văn bản</label>
                                                 {!! Form::select('loaivb',getLoaiVbQlNn(),$inputs['loaivb'], ['id' => 'loaivb','class' => 'form-control']) !!}
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Nội dung</label>
+                                                <label style="font-weight: bold">Nội dung</label>
                                                 {!! Form::text('tieude',$inputs['tieude'], ['id' => 'tieude','class' => 'form-control']) !!}
                                             </div>
                                         </div>

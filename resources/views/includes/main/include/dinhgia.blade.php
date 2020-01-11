@@ -248,7 +248,6 @@
                             @if(can('kkbannhataidinhcu','index'))
                                 <a href="{{url('bannhataidinhcu')}}">
                                     Giá bán nhà tái định cư
-
                                 </a>
                             @endif
                         </li>

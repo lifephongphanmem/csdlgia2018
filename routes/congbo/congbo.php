@@ -7,8 +7,10 @@ Route::get('cbgiadatdiaban','congbo\dinhgia\CongboGiaDatDiaBanController@index')
 Route::get('cbgiadaugiadat','congbo\dinhgia\CongboGiaDauGiaDatController@index');
 Route::get('cbgiadaugiadat/{id}','congbo\dinhgia\CongboGiaDauGiaDatController@show');
 
-Route::get('cbgiathuetainguyen','congbo\dinhgia\CongBoGiaThueTaiNguyenController@index');
+Route::get('cbgialephitruocbanha','congbo\gialephitruocbanha\CbGiaLePhiTruocBaNhaController@index');
+Route::get('cbgialephitruocbanha/{id}','congbo\gialephitruocbanha\CbGiaLePhiTruocBaNhaController@show');
 
+Route::get('cbgiathuetainguyen','congbo\dinhgia\CongBoGiaThueTaiNguyenController@index');
 Route::get('cbgiathuedatnuoc','congbo\dinhgia\CongboGiaThueDatNuocController@index');
 Route::get('cbgiarung','congbo\dinhgia\CongboGiaRungController@index');
 Route::get('cbthuemuanhaxh','congbo\dinhgia\CongboThueMuaNhaXHController@index');

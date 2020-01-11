@@ -153,7 +153,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="{{url('giahanghoadichvu')}}">
-                <h3 style="text-transform: uppercase;"><b style="color: #25aae2">CƠ SỞ DỮ LIỆU VỀ GIÁ</b>&nbsp;<b style="color: #454545">{{isset(getGeneralConfigs()['diadanh']) ? getGeneralConfigs()['diadanh'] : ''}}</b></h3>
+                <h3 style="text-transform: uppercase;"><b style="color: #BCC2CB">CƠ SỞ DỮ LIỆU VỀ GIÁ</b>&nbsp;<b style="color: #BCC2CB">{{isset(getGeneralConfigs()['diadanh']) ? getGeneralConfigs()['diadanh'] : ''}}</b></h3>
                 </a>
             </div>
             <!-- END LOGO -->
@@ -162,7 +162,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- END RESPONSIVE MENU TOGGLER -->
             <!-- BEGIN TOP NAVIGATION MENU -->
             <div class="top-menu">
-                <b style="color: #25aae2"><div id="clock"></div></b>
+                <b style="color: #BCC2CB"><div id="clock"></div></b>
                 @if(Illuminate\Support\Facades\Session::has('admin'))
                     <a class="text-bold text-white no-underline" href="{{url('')}}" data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">Vào chương trình</a>
                 @else
@@ -191,62 +191,103 @@ License: You must have a valid license purchased only from themeforest(the above
                     <li class="menu-dropdown classic-menu-dropdown ">
                         <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">&nbsp;CSDL về mức giá HH-DV<i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu pull-left">
+                            @if(canGeneral('dinhgia','congbo'))
                             <li class=" dropdown-submenu">
-                                <a href="">
-                                    <i class="icon-folder"></i>
-                                    &nbsp;Định giá</a>
+                                <a><i class="icon-folder"></i>&nbsp;Định giá</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{url('cbgiadatdiaban')}}">Giá đất theo địa bàn</a></li>
-                                    <li><a href="{{url('cbgiadaugiadat')}}">Giá đấu giá đất</a></li>
+                                    @if(canGeneral('giacldat','congbo'))
+                                    <li><a href="{{url('cbgiadatdiaban')}}">&nbsp;Giá đất theo địa bàn</a></li>
+                                    @endif
+                                    @if(canGeneral('giadaugiadat','congbo'))
+                                    <li><a href="{{url('cbgiadaugiadat')}}">&nbsp;Giá đấu giá đất</a></li>
+                                    @endif
+                                    @if(canGeneral('giathuetn','congbo'))
                                     <li><a href="{{url('cbgiathuetainguyen')}}">&nbsp;Giá thuế tài nguyên</a></li>
-                                    <li><a href="{{url('cbgiathuedatnuoc')}}">Giá thuê mặt đất-nước</a></li>
-                                    <li><a href="{{url('cbgiarung')}}">Giá rừng</a></li>
-                                    <li><a href="{{url('cbthuemuanhaxh')}}">Giá thuê mua nhà XH</a></li>
-                                    <li><a href="{{url('cbgiathuenhacongvu')}}">Giá thuê nhà công vụ</a></li>
-                                    <li><a href="{{url('cbgianuocsachsinhhoat')}}">Giá nước sạch sinh hoạt</a></li>
-                                    <li><a href="{{url('cbgiathuetaisan')}}">Giá thuê tài sản công</a></li>
-                                    <li><a href="{{url('cbgiadvgiaoducdaotao')}}">Giá dịch vụ GD-ĐT</a></li>
-                                    <li><a href="{{url('cbdichvukcb')}}">Giá dịch vụ KCB</a></li>
-                                    <li><a href="{{url('coming')}}">Mức trợ giá, trợ cước</a></li>
+                                    @endif
+                                    @if(canGeneral('giathuedatnuoc','congbo'))
+                                    <li><a href="{{url('cbgiathuedatnuoc')}}">&nbsp;Giá thuê mặt đất-nước</a></li>
+                                    @endif
+                                    @if(canGeneral('giarung','congbo'))
+                                    <li><a href="{{url('cbgiarung')}}">&nbsp;Giá rừng</a></li>
+                                    @endif
+                                    @if(canGeneral('giathuemuanhaxh','congbo'))
+                                    <li><a href="{{url('cbthuemuanhaxh')}}">&nbsp;Giá thuê mua nhà XH</a></li>
+                                    @endif
+                                    @if(canGeneral('giathuenhacongvu','congbo'))
+                                    <li><a href="{{url('cbgiathuenhacongvu')}}">&nbsp;Giá thuê nhà công vụ</a></li>
+                                    @endif
+                                    @if(canGeneral('gianuocsh','congbo'))
+                                    <li><a href="{{url('cbgianuocsachsinhhoat')}}">&nbsp;Giá nước sạch sinh hoạt</a></li>
+                                    @endif
+                                    @if(canGeneral('giathuetscong','congbo'))
+                                    <li><a href="{{url('cbgiathuetaisan')}}">&nbsp;Giá thuê tài sản công</a></li>
+                                    @endif
+                                    @if(canGeneral('giadvgddt','congbo'))
+                                    <li><a href="{{url('cbgiadvgiaoducdaotao')}}">&nbsp;Giá dịch vụ GD-ĐT</a></li>
+                                    @endif
+                                    @if(canGeneral('giadvkcb','congbo'))
+                                    <li><a href="{{url('cbdichvukcb')}}">&nbsp;Giá dịch vụ KCB</a></li>
+                                    @endif
+                                    {{--<li><a href="{{url('coming')}}">Mức trợ giá, trợ cước</a></li>--}}
                                 </ul>
                             </li>
-                            <li><a href="{{url('coming')}}"><i class="icon-folder"></i>&nbsp;Giá HH-DV khác</a></li>
-                            <li><a href="{{url('cbgialephitruocba')}}"><i class="icon-folder"></i>&nbsp;Giá lệ phí trước bạ</a></li>
+                            @endif
+                            {{--<li><a href="{{url('coming')}}"><i class="icon-folder"></i>&nbsp;Giá HH-DV khác</a></li>--}}
+                            {{--<li><a href="{{url('cbgialephitruocba')}}"><i class="icon-folder"></i>&nbsp;Giá lệ phí trước bạ</a></li>--}}
+                            @if(canGeneral('gialephitruocbanha','congbo'))
+                            <li><a href="{{url('cbgialephitruocbanha')}}"><i class="icon-folder"></i>&nbsp;Giá lệ phí trước bạ nhà</a></li>
+                            @endif
+                            @if(canGeneral('giaphilephi','congbo'))
                             <li><a href="{{url('cbphilephi')}}"><i class="icon-folder"></i>&nbsp;Phí, lệ phí</a></li>
+                            @endif
+                            @if(canGeneral('giabatdongsan','congbo'))
+                                <li><a href="{{url('cbgiagdbatdongsan')}}"><i class="icon-folder"></i>&nbsp;Giá giao dịch bất động sản</a></li>
+                            @endif
+                            @if(canGeneral('muataisan','congbo'))
+                                <li><a href="{{url('cbmuataisan')}}"><i class="icon-folder"></i>&nbsp;Giá trúng thầu của HH-DV được mua sắm theo QĐ của PL về đấu thầu</a></li>
+                            @endif
                             @if(canGeneral('kkgia','congbo'))
-                            <li class=" dropdown-submenu">
-                                <a href="">
-                                    <i class="icon-folder"></i>
-                                    &nbsp;Kê khai - niêm yết giá</a>
+                            <li class="dropdown-submenu">
+                                <a><i class="icon-folder"></i>&nbsp;Kê khai - niêm yết giá</a>
                                 <ul class="dropdown-menu">
-                                    <li class="">
-                                        <a href="{{url('cbkkgiavlxd')}}">
-                                            Vật liệu xây dựng</a>
-                                    </li>
-                                    <li class="">
-                                        <a href="{{url('cbkkgiaxmtxd')}}">
-                                            Xi măng, thép xây dựng</a>
-                                    </li>
-                                    <li class="">
-                                        <a href="{{url('cbkkgiadvhdtm')}}">
-                                            Giá Dv hỗ trợ HĐTM tại cửa khẩu</a>
-                                    </li>
-                                    <li class="">
-                                        <a href="{{url('cbkkgiatacn')}}">
-                                            Thức ăn chăn nuôi</a>
-                                    </li>
-                                    <li class="">
-                                        <a href="{{url('cbgiagiay')}}">
-                                            Giấy in, viết, giấy in báo sản xuất trong nước</a>
-                                    </li>
-                                    <li class="">
-                                        <a href="{{url('cbgiasach')}}">
-                                            Sách giáo khoa</a>
-                                    </li>
-                                    <li class="">
-                                        <a href="{{url('cbgiaetanol')}}">
-                                            Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG)</a>
-                                    </li>
+                                    {{--<li class="">--}}
+                                        {{--<a href="{{url('cbkkgiavlxd')}}">--}}
+                                            {{--Vật liệu xây dựng</a>--}}
+                                    {{--</li>--}}
+                                    @if(canCbKkGiaGr('XMTXD'))
+                                        @if(canCbKkGiaCt('XMTXD','XMTXD'))
+                                        <li><a href="{{url('cbkkgiaxmtxd')}}">Xi măng, thép xây dựng</a></li>
+                                        @endif
+                                    @endif
+                                    @if(canCbKkGiaGr('THAN'))
+                                        @if(canCbKkGiaCt('THAN','THAN'))
+                                            <li><a href="{{url('cbgiathan')}}">Than</a></li>
+                                        @endif
+                                    @endif
+                                    {{--<li class="">--}}
+                                        {{--<a href="{{url('cbkkgiadvhdtm')}}">--}}
+                                            {{--Giá Dv hỗ trợ HĐTM tại cửa khẩu</a>--}}
+                                    {{--</li>--}}
+                                    @if(canCbKkGiaGr('TACN'))
+                                        @if(canCbKkGiaCt('TACN','TACN'))
+                                        <li><a href="{{url('cbkkgiatacn')}}">Thức ăn chăn nuôi</a></li>
+                                        @endif
+                                    @endif
+                                    @if(canCbKkGiaGr('GIAY'))
+                                        @if(canCbKkGiaCt('GIAY','GIAY'))
+                                        <li><a href="{{url('cbgiagiay')}}">Giấy in, viết, giấy in báo sản xuất trong nước</a></li>
+                                        @endif
+                                    @endif
+                                    @if(canCbKkGiaGr('SACH'))
+                                        @if(canCbKkGiaCt('SACH','SACH'))
+                                        <li><a href="{{url('cbgiasach')}}">Sách giáo khoa</a></li>
+                                        @endif
+                                    @endif
+                                    @if(canCbKkGiaGr('ETANOL'))
+                                        @if(canCbKkGiaCt('ETANOL','ETANOL'))
+                                        <li><a href="{{url('cbgiaetanol')}}">Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG)</a></li>
+                                        @endif
+                                    @endif
                                 </ul>
                             </li>
                             @endif
@@ -282,9 +323,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <ul class="dropdown-menu pull-left">
                             @if($ttpvctqlnn = \App\Model\manage\ttpvctqlnn\TtPvCtQlNnDm::where('theodoi','TD')->get())@endif
                             @foreach($ttpvctqlnn as $ttpv)
-                                <li>
-                                    <a href="{{url('coming')}}"><i class="icon-folder"></i> {{$ttpv->mota}}</span></a>
-                                </li>
+                                <li><a href="{{url('coming')}}"><i class="icon-folder"></i>&nbsp;{{$ttpv->mota}}</a></li>
                             @endforeach
                         </ul>
                     </li>
@@ -292,7 +331,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <li class="menu-dropdown classic-menu-dropdown ">
                         <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">&nbsp;Support<i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu pull-left">
-                            <li><a href="{{url('danhsachusertaphuan')}}"><i class="icon-folder"></i> &nbsp;Danh sách tài khoản tập huấn</a></li>
+                            {{--<li><a href="{{url('danhsachusertaphuan')}}"><i class="icon-folder"></i> &nbsp;Danh sách tài khoản tập huấn</a></li>--}}
                             <li><a href="{{url('thongtinhotro')}}" target="_blank"><i class="icon-folder"></i> &nbsp;Thông tin hỗ trợ</a></li>
                         </ul>
                     </li>

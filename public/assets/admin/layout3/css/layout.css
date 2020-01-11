@@ -104,11 +104,14 @@ Page Header
 ******/
 .page-header {
   background-color: #fff;
+
   /* Page Header Top */
   /* Page Header Menu */
 }
 .page-header .page-header-top {
   /* Top menu */
+  /*background-image: url(/../assets/app/media/img/bg/bg-4.jpg);*/
+  background: #48525e;
 }
 .page-header .page-header-top.fixed {
   background: #fff !important;
@@ -1627,7 +1630,8 @@ Pace - Page Progress
 }
 
 .page-content {
-  background: #eff3f8;
+  /*background: #eff3f8;*/
+  background-image: url(/../assets/app/media/img/bg/bg-3.jpg);
   padding: 15px 0 15px;
 }
 
@@ -1635,6 +1639,7 @@ Pace - Page Progress
   /* 991px */
   .page-head {
     background: #EFF3F8;
+
   }
   .page-head > .container {
     width: 100%;

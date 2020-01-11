@@ -4,6 +4,7 @@ namespace App\Http\Controllers\congbo\philephi;
 
 use App\DmPhiLePhi;
 use App\PhiLePhi;
+use App\PhiLePhiCt;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -18,16 +19,26 @@ class CongboPhiLePhiController extends Controller
     {
         $inputs = $request->all();
         $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-        $model = PhiLePhi::join('dmphilephi','dmphilephi.manhom','=','philephi.manhom')
-            ->join('philephict','philephict.mahs','PhiLePhi.mahs')
-            ->whereYear('philephi.ngayapdung',$inputs['nam'])
-            ->select('philephi.*','philephict.*','dmphilephi.tennhom','dmphilephi.dvt')
-            ->where('trangthai','CB')->get();
+        $inputs['manhom'] = isset($inputs['manhom']) ? $inputs['manhom'] : 'all';
+        $inputs['ptcp'] = isset($inputs['ptcp']) ? $inputs['ptcp'] : '';
+        $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
+        $model = PhiLePhiCt::Leftjoin('philephi','philephi.mahs','=','philephict.mahs')
+            ->Leftjoin('dmphilephi','dmphilephi.manhom','=','philephi.manhom')
+            ->where('philephi.trangthai','CB')
+            ->select('philephict.*','philephi.soqd','philephi.ngayapdung','philephi.trangthai','dmphilephi.tennhom','philephi.manhom');
+        if($inputs['nam'] != 'all')
+            $model = $model->whereYear('philephi.ngayapdung',$inputs['nam']);
+        if($inputs['manhom'] != 'all')
+            $model = $model->where('philephi.manhom',$inputs['manhom']);
+        if($inputs['ptcp'] != '')
+            $model = $model->where('philephict.ptcp','like','%'.$inputs['ptcp'].'%');
+        $model = $model->paginate($inputs['paginate']);
+
         $m_nhomphilephi = DmPhiLePhi::all();
         return view('congbo.PhiLePhi.index')
             ->with('model',$model)
-            ->with('nam',$inputs['nam'])
             ->with('m_nhomphilephi',$m_nhomphilephi)
+            ->with('inputs',$inputs)
             ->with('pageTitle','Thông tin hồ sơ phí, lệ phí');
     }
 

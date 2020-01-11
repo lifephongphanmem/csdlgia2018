@@ -4,6 +4,7 @@ namespace App\Http\Controllers\congbo\dinhgia;
 
 use App\DiaBanHd;
 use App\GiaThueDatNuoc;
+use App\GiaThueDatNuocCt;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -18,15 +19,22 @@ class CongboGiaThueDatNuocController extends Controller
     {
         $inputs = $request->all();
         $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-        $modeldb = DiaBanHd::where('level','H')->get();
-        $inputs['diaban'] = isset($inputs['diaban']) ? $inputs['diaban'] : $modeldb->first()->district;
-        $inputs['trangthai'] = isset($inputs['trangthai']) ? $inputs['trangthai'] : 'HT';
-        $model = GiaThueDatNuoc::join('giathuedatnuocct','giathuedatnuocct.mahs','GiaThueDatNuoc.mahs')
-            ->whereYear('ngayapdung',$inputs['nam']);
-        if($inputs['diaban'] != '')
-            $model = $model->where('district',$inputs['diaban']);
+        $inputs['vitri'] = isset($inputs['vitri']) ? $inputs['vitri'] : '';
+        $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
+        $inputs['district'] = isset($inputs['district']) ? $inputs['district'] : 'all';
+        $model = GiaThueDatNuocCt::join('giathuedatnuoc','giathuedatnuoc.mahs','=','giathuedatnuocct.mahs')
+            ->select('giathuedatnuocct.*','giathuedatnuoc.soqd','giathuedatnuoc.ngayapdung','giathuedatnuoc.trangthai','giathuedatnuoc.ghichu')
+            ->where('giathuedatnuoc.trangthai','CB');
+        if($inputs['nam']!= '')
+            $model = $model->whereYear('giathuedatnuoc.ngayapdung',$inputs['nam']);
+        if($inputs['vitri'] != '')
+            $model = $model->where('giathuedatnuocct.vitri','like','%'.$inputs['vitri'].'%');
+        if($inputs['district'] != 'all')
+            $model = $model->where('giathuedatnuoc.district',$inputs['district']);
+        $model = $model->paginate($inputs['paginate']);
 
-        $model=$model->where('trangthai','CB')->get();
+        $modeldb = DiaBanHd::where('level','H')
+            ->get();
         return view('congbo.DinhGia.GiaThueDatNuoc.index')
             ->with('model',$model)
             ->with('modeldb',$modeldb)
