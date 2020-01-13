@@ -15,8 +15,7 @@ class CongboGiaRungController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request){
         $inputs = $request->all();
         $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
         $inputs['manhom'] = isset($inputs['manhom']) ? $inputs['manhom'] : 'all';
@@ -38,14 +37,14 @@ class CongboGiaRungController extends Controller
             $model = $model->where('giarung.manhom',$inputs['manhom']);
         if($inputs['tenduan'] != '')
             $model = $model->where('giarung.tenduan','like', '%'.$inputs['tenduan'].'%');
-        $model = $model->where('trangthai','CB')->get();
-        //$model = $model->paginate($inputs['paginate']);
+        $model = $model->where('giarung.trangthai','CB');
+        $model = $model->paginate($inputs['paginate']);
         return view('congbo.DinhGia.GiaRung.index')
             ->with('model',$model)
             ->with('inputs',$inputs)
             ->with('districts',$districts)
             ->with('loairungs',$loairungs)
-            ->with('pageTitle','Thông tin giá thuê môi trường rừng');
+            ->with('pageTitle','Thông tin giá rừng');
     }
 
     /**

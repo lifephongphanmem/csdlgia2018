@@ -18,23 +18,8 @@
         });
     </script>
     <script>
-        jQuery(document).ready(function() {
-            TableManaged.init();
-        });
-
-        function searchtt(){
-            var current_path_url = '/cbgiarung?';
-            var nam = '&nam='+$('#nam').val();
-            var district = '&district='+$('#district').val();
-            var manhom = '&manhom='+$('#manhom').val();
-            var tenduan = '&tenduan='+$('#tenduan').val();
-            var paginate = '&paginate='+$('#paginate').val();
-            var url = current_path_url+nam+district+manhom+tenduan+paginate;
-            window.location.href = url;
-        }
-
         $(function(){
-            $('#paginate').change(function() {
+            $('#nam,#district,#manhom,#tenduan,#paginate').change(function() {
                 var current_path_url = '/cbgiarung?';
                 var nam = '&nam='+$('#nam').val();
                 var district = '&district='+$('#district').val();
@@ -45,32 +30,28 @@
                 window.location.href = url;
             });
         });
-
-        function resettt(){
-            window.location.href = '/cbgiarung';
-        }
-
-
-
     </script>
 @stop
 
 @section('content-cb')
     <div class="container">
-    <div class="row margin-top-10">
-        <div class=" col-sm-12">
-            <!-- BEGIN PORTLET-->
-            <!--div class="portlet light"-->
+        <div class="row margin-top-10">
+            <div class=" col-sm-12">
+                <!-- BEGIN PORTLET-->
+                <!--div class="portlet light"-->
                 <div class="portlet-title">
                     <div class="row">
-                    <div class="caption caption-md">
-                        <i class="icon-bar-chart theme-font hide"></i>
-                        <span class="caption-subject theme-font bold uppercase">Giá đấu giá đất</span>
-                    </div>
-                    </div>
-                    <div class="row">
-                        <div class="portlet-body form" id="form_wizard">
-                            <div class="form-body">
+                        <div class="col-md-12">
+                            <!-- BEGIN SAMPLE TABLE PORTLET-->
+                            <div class="portlet light" style="min-height: 587px">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="fa fa-cogs font-green-sharp"></i>
+                                        <span class="caption-subject theme-font bold uppercase">Giá rừng</span>
+                                    </div>
+                                    <div class="tools">
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group">
@@ -96,8 +77,6 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label style="font-weight: bold">Loại rừng</label>
@@ -109,85 +88,97 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label" style="font-weight: bold">Tên dự án<span class="require">*</span></label>
                                             {!! Form::text('tenduan', $inputs['tenduan'], ['id' => 'tenduan', 'rows' => 4, 'cols' => 10, 'class' => 'form-control']) !!}
                                         </div>
                                     </div>
                                 </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>
+                                            Hiển thị&nbsp;
+                                            <div class="select2-container form-control input-xsmall input-inline" >
+                                                <select class="form-control" name="paginate" id="paginate" >
+                                                    <option value="5" {{$inputs['paginate'] == 5 ? 'selected' : ''}}>5</option>
+                                                    <option value="20" {{$inputs['paginate'] == 20 ? 'selected' : ''}}>20</option>
+                                                    <option value="50" {{$inputs['paginate'] == 50 ? 'selected' : ''}}>50</option>
+                                                    <option value="100" {{$inputs['paginate'] == 100? 'selected' : ''}}>100</option>
+                                                </select>
+                                            </div>
+                                            &nbsp;thông tin
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="table-scrollable">
+                                        <table class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th style="text-align: center" width="2%">STT</th>
+                                                <th style="text-align: center">Thời điểm</th>
+                                                <th style="text-align: center">Địa bàn</th>
+                                                <th style="text-align: center">Loại rừng</th>
+                                                <th style="text-align: center">Tên dự án</th>
+                                                <th style="text-align: center" >Đơn giá</th>
+                                                <th style="text-align: center" >Thông tin quyết định</th>
+                                                <th style="text-align: center" >Ghi chú</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @if(count($model) != 0)
+                                                @foreach($model as $key => $tt)
+                                                    <tr>
+                                                        <td style="text-align: center">{{$key+1}}</td>
+                                                        <td><b>{{getDayVn($tt->thoidiem)}}</b></td>
+                                                        <td><b>{{$tt->diaban}}</b></td>
+                                                        <td style="text-align: left;"><b>{{$tt->tennhom}}</b></td>
+                                                        <td style="text-align: left" class="active">{{$tt->tenduan}}</td>
+                                                        <td style="text-align: center">{{dinhdangsothapphan($tt->dongia,2)}}</td>
+                                                        <td style="text-align: center">{{$tt->ttqd}}</td>
+                                                        <td style="text-align: center">{{$tt->ghichu}}</td>
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                <tr>
+                                                    <td style="text-align: center" colspan="10">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
+                                                </tr>
+                                            @endif
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="row">
+                                        @if(count($model) != 0)
+                                            <div class="col-md-5 col-sm-12">
+                                                <div class="dataTables_info" id="sample_3_info" role="status" aria-live="polite">
+                                                    Hiển thị 1 đến {{$model->count()}} trên {{$model->total()}} thông tin
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7 col-sm-12">
+                                                <div class="dataTables_paginate paging_simple_numbers" id="sample_3_paginate">
+                                                    {{$model->appends(['nam' => $inputs['nam'],
+                                                                   'district'=>$inputs['district'],
+                                                                   'manhom'=>$inputs['manhom'],
+                                                                   'tenduan'=>$inputs['tenduan'],
+                                                                   'paginate'=>$inputs['paginate'],
+                                                ])->links()}}
+                                                </div>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div style="text-align: center">
-                            <button type="reset" class="btn btn-circle" onclick="resettt()"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
-                            <button type="submit" class="btn btn-circle green" onclick="searchtt()"><i class="fa fa-search"></i>Tìm kiếm</button>
+                            <!-- END SAMPLE TABLE PORTLET-->
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label>
-                                Hiển thị
-                                <div class="select2-container form-control input-xsmall input-inline" >
-                                    <select class="form-control" name="paginate" id="paginate" >
-                                        <option value="5" {{$inputs['paginate'] == 5 ? 'selected' : ''}}>5</option>
-                                        <option value="20" {{$inputs['paginate'] == 20 ? 'selected' : ''}}>20</option>
-                                        <option value="50" {{$inputs['paginate'] == 50 ? 'selected' : ''}}>50</option>
-                                        <option value="100" {{$inputs['paginate'] == 100? 'selected' : ''}}>100</option>
-                                    </select>
-                                </div>
-                                thông tin
-                            </label>
-                        </div>
-                    </div></br>
-                </div>
 
-                <table class="table table-striped table-bordered table-hover">
-                    <thead>
-                    <tr>
-                        <th style="text-align: center" width="2%">STT</th>
-                        <th style="text-align: center">Thời điểm</th>
-                        <th style="text-align: center">Địa bàn</th>
-                        <th style="text-align: center">Loại rừng</th>
-                        <th style="text-align: center">Tên dự án</th>
-                        <th style="text-align: center" >Đơn giá</th>
-                        <th style="text-align: center" >Thông tin quyết định</th>
-                        <th style="text-align: center" >Ghi chú</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @if(count($model) != 0)
-                        @foreach($model as $key => $tt)
-                            <tr>
-                                <td style="text-align: center">{{$key+1}}</td>
-                                <td><b>{{getDayVn($tt->thoidiem)}}</b></td>
-                                <td><b>{{$tt->diaban}}</b></td>
-                                <td style="text-align: left;"><b>{{$tt->tennhom}}</b></td>
-                                <td style="text-align: left" class="active">{{$tt->tenduan}}</td>
-                                <td style="text-align: center">{{dinhdangsothapphan($tt->dongia,2)}}</td>
-                                <td style="text-align: center">{{$tt->ttqd}}</td>
-                                <td style="text-align: center">{{$tt->ghichu}}</td>
-                            </tr>
-                        @endforeach
-                    @else
-                        <tr>
-                            <td style="text-align: center" colspan="10">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
-                        </tr>
-                    @endif
-                    </tbody>
-                </table>
-                <div class="row">
-                    @if(count($model) != 0)
-                        <div class="col-md-5 col-sm-12">
-                            <div class="dataTables_info" id="sample_3_info" role="status" aria-live="polite">
-                                Hiển thị 1 đến {{$model->count()}} trên {{count($model)}} thông tin
-                            </div>
-                        </div>
-                    @endif
+                    <!--/div-->
+                    <!-- END PORTLET-->
                 </div>
-            <!--/div-->
-            <!-- END PORTLET-->
+            </div>
         </div>
-    </div>
     </div>
     @include('includes.script.inputmask-ajax-scripts')
     @include('includes.script.create-header-scripts')

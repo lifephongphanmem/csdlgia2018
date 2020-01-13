@@ -17,11 +17,17 @@ class CongboGiaNuocSinhHoatController extends Controller
     {
         $inputs = $request->all();
         $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
+        $inputs['mota'] = isset($inputs['mota']) ? $inputs['mota'] : '';
+        $inputs['doituong'] = isset($inputs['doituong']) ? $inputs['doituong'] : '';
         $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
-        $model = GiaNuocSh::join('gianuocshct','gianuocshct.mahs','GiaNuocSh.mahs')
+        $model = GiaNuocSh::join('gianuocshct','gianuocshct.mahs','gianuocsh.mahs')
             ->where('GiaNuocSh.trangthai','CB');
         if($inputs['nam'] != 'all')
             $model = $model->whereYear('ngayapdung',$inputs['nam']);
+        if($inputs['mota'] != '')
+            $model = $model->where('gianuocshct.mota','like', '%'.$inputs['mota'].'%');
+        if($inputs['doituong'] != '')
+            $model = $model->where('gianuocshct.doituong','like', '%'.$inputs['doituong'].'%');
         $model = $model->paginate($inputs['paginate']);
         return view('congbo.DinhGia.GiaNuocSinhHoat.index')
             ->with('model',$model)
