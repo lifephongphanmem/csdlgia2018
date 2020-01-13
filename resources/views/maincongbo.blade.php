@@ -161,7 +161,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <a href="javascript:;" class="menu-toggler"></a>
             <!-- END RESPONSIVE MENU TOGGLER -->
             <!-- BEGIN TOP NAVIGATION MENU -->
-            <div class="top-menu">
+            <div class="top-menu" style="background: #48525e; margin-bottom: 10px" >
                 <b style="color: #BCC2CB"><div id="clock"></div></b>
                 @if(Illuminate\Support\Facades\Session::has('admin'))
                     <a class="text-bold text-white no-underline" href="{{url('')}}" data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">Vào chương trình</a>

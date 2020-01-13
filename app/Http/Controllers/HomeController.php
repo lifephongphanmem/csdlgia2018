@@ -123,7 +123,7 @@ License code: PRO4-69G6Q4M-8YGNXX-M2N8-KCHVWYK
 
     public function congbo(){
         $viewpage = ViewPage::count();
-        $model = VanBanQlNn::orderBy('ngayapdung','desc')->take(10)->get();
+        $model = VanBanQlNn::orderBy('ngayapdung','desc')->take(8)->get();
         return view('dashboardcb')
             ->with('viewpage', $viewpage)
             ->with('model', $model)

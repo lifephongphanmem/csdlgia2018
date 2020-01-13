@@ -1327,7 +1327,7 @@ Page Header
   }
   .page-header .page-header-menu {
     background: #eff3f8;
-    padding: 20px 0 0 0;
+    padding: 20px 0 20px 0;
     height: auto;
     display: none;
   }
