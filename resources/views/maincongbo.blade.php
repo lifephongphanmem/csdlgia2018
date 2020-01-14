@@ -232,8 +232,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </ul>
                             </li>
                             @endif
-                            <li><a href="{{url('coming')}}"><i class="icon-folder"></i>&nbsp;Giá HH-DV khác</a></li>
-                            <li><a href="{{url('cbgialephitruocba')}}"><i class="icon-folder"></i>&nbsp;Giá lệ phí trước bạ</a></li>
+                            {{--<li><a href="{{url('coming')}}"><i class="icon-folder"></i>&nbsp;Giá HH-DV khác</a></li>--}}
+                            {{--<li><a href="{{url('cbgialephitruocba')}}"><i class="icon-folder"></i>&nbsp;Giá lệ phí trước bạ</a></li>--}}
                             @if(canGeneral('gialephitruocbanha','congbo'))
                             <li><a href="{{url('cbgialephitruocbanha')}}"><i class="icon-folder"></i>&nbsp;Giá lệ phí trước bạ nhà</a></li>
                             @endif
