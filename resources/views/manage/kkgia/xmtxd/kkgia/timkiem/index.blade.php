@@ -26,10 +26,10 @@
                 var url = '/timkiemgiaxmtxd?'+namhs;
                 window.location.href = url;
             });
-            $('#ten').change(function() {
+            $('#tenhhdv').change(function() {
                 var namhs = '&nam='+ $('#nam').val();
-                var ten = '&ten=' + $('#ten').val();
-                var url = '/timkiemgiaxmtxd?'+namhs + ten;
+                var tenhhdv = '&tenhhdv=' + $('#tenhhdv').val();
+                var url = '/timkiemgiaxmtxd?'+namhs + tenhhdv;
                 window.location.href = url;
             });
 
@@ -58,7 +58,7 @@
         <div class="col-md-5">
             <div class="form-group">
                 <label>Tên xi măng, thép xây dựng</label>
-                <input type="text" class="form-control" id="ten" name="ten" value="{{$inputs['ten']}}">
+                <input type="text" class="form-control" id="tenhhdv" name="tenhhdv" value="{{$inputs['tenhhdv']}}">
             </div>
         </div>
 
@@ -92,7 +92,7 @@
                                 <td class="active"><b>Tên DN: </b> {{$tt->tendn}}
                                     <br><b>Mã số thuế:</b> {{$tt->maxa}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->ngayhieuluc)}}</td>
-                                <td style="text-align: left">{{$tt->ten}}</td>
+                                <td style="text-align: left">{{$tt->tenhhdv}}</td>
                                 <td style="text-align: left">{{$tt->qccl}}</td>
                                 <td style="text-align: left">{{$tt->dvt}}</td>
                                 <td style="text-align: right;font-weight: bold">{{number_format($tt->gia)}}</td>

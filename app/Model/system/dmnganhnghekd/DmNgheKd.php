@@ -14,6 +14,7 @@ class DmNgheKd extends Model
         'tennghe',
         'mahuyen',
         'theodoi',
+        'congbo',
         'phanloai',
     ];
 }

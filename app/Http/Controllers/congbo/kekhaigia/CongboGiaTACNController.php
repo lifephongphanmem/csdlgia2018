@@ -18,12 +18,16 @@ class CongboGiaTACNController extends Controller
         $inputs = $request->all();
         $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
         $inputs['tenhh'] = isset($inputs['tenhh']) ? $inputs['tenhh'] : '';
+        $inputs['tendn'] = isset($inputs['tendn']) ? $inputs['tendn'] : '';
         $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
         $model = KkGiaTaCnCt::Join('kkgiatacn','kkgiatacn.mahs','=','kkgiatacnct.mahs')
             ->join('company','company.maxa','=','kkgiatacn.maxa')
             ->whereYear('kkgiatacn.ngayhieuluc',$inputs['nam'])
             ->select('kkgiatacnct.*','company.tendn','kkgiatacn.ngayhieuluc')
-            ->where('kkgiatacn.trangthai','CB');
+            ->where('kkgiatacn.trangthai','DD')
+            ->where('kkgiatacn.congbo','CB');
+        if($inputs['tendn'] != '')
+            $model = $model->where('company.tendn','like','%'.$inputs['tendn'].'%');
         if($inputs['tenhh'] != '')
             $model = $model->where('kkgiatacnct.tenhh','like','%'.$inputs['tenhh'].'%');
         $model = $model->paginate($inputs['paginate']);
@@ -31,7 +35,7 @@ class CongboGiaTACNController extends Controller
         return view('congbo.KeKhaiGia.GiaTACN.index')
             ->with('model',$model)
             ->with('inputs',$inputs)
-            ->with('pageTitle','Tìm kiếm thông tin kê khai giá TACN');
+            ->with('pageTitle','Thông tin kê khai giá thức ăn chăn nuôi');
     }
 
     /**

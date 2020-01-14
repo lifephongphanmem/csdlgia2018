@@ -44,6 +44,7 @@ class KkGiaXmTxdXdController extends Controller
                 $model = KkGiaXmTxd::join('company','company.maxa','=','kkgiaxmtxd.maxa')
                     ->where('kkgiaxmtxd.mahuyen',$inputs['mahuyen'])
                     ->where('kkgiaxmtxd.trangthai',$inputs['trangthai'])
+                    ->whereYear('kkgiaxmtxd.ngaychuyen',$inputs['nam'])
                     ->select('kkgiaxmtxd.*','company.tendn')
                     ->get();
                 return view('manage.kkgia.xmtxd.kkgia.xetduyet.index')
@@ -192,6 +193,8 @@ class KkGiaXmTxdXdController extends Controller
             $id = $inputs['idnhanhs'];
             $model = KkGiaXmTxd::findOrFail($id);
             $inputs['trangthai'] = 'DD';
+            $inputs['congbo'] = 'HCB';
+            $inputs['ngaynhan'] = getDateToDb($inputs['ngaynhan']);
 //            $inputs['thoihan'] = getThXdHsDvLt($model->ngaychuyen,$inputs['ngaynhan']);
 
             if($model->update($inputs)){
@@ -221,20 +224,44 @@ class KkGiaXmTxdXdController extends Controller
         if (Session::has('admin')) {
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-            $inputs['ten'] = isset($inputs['ten']) ? $inputs['ten'] : '';
+            $inputs['tenhhdv'] = isset($inputs['tenhhdv']) ? $inputs['tenhhdv'] : '';
             $model = KkGiaXmTxdCt::leftJoin('kkgiaxmtxd','kkgiaxmtxd.mahs','=','kkgiaxmtxdct.mahs')
                 ->leftjoin('company','company.maxa','=','kkgiaxmtxd.maxa')
                 ->whereYear('kkgiaxmtxd.ngayhieuluc',$inputs['nam'])
                 ->select('kkgiaxmtxdct.*','company.tendn','company.maxa','kkgiaxmtxd.ngayhieuluc')
                 ->where('kkgiaxmtxd.trangthai','DD');
-            if($inputs['ten'] != '')
-                $model = $model->where('kkgiaxmtxdct.ten','like','%'.$inputs['ten'].'%');
+            if($inputs['tenhhdv'] != '')
+                $model = $model->where('kkgiaxmtxdct.tenhhdv','like','%'.$inputs['tenhhdv'].'%');
             $model = $model->get();
 
             return view('manage.kkgia.xmtxd.kkgia.timkiem.index')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
                 ->with('pageTitle','Tìm kiếm thông tin kê khai giá xi măng, thép xây dựng');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function congbo(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $id = $inputs['idcongbo'];
+            $model = KkGiaXmTxd::findOrFail($id);
+            $inputs['congbo'] = 'CB';
+            $model->update($inputs);
+            return redirect('xetduyetkkgiaxmtxd?&trangthai=DD&mahuyen='.$model->mahuyen);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huycongbo(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $id = $inputs['idhuycongbo'];
+            $model = KkGiaXmTxd::findOrFail($id);
+            $inputs['congbo'] = 'HCB';
+            $model->update($inputs);
+            return redirect('xetduyetkkgiaxmtxd?&trangthai=DD&mahuyen='.$model->mahuyen);
         }else
             return view('errors.notlogin');
     }

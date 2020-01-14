@@ -378,7 +378,8 @@ class KkDkgController extends Controller
                 ->whereYear('kkdkg.ngayhieuluc',$inputs['nam'])
                 ->select('kkdkgct.*','company.tendn','kkdkg.ngayhieuluc')
                 ->where('phanloai',$inputs['manghe'])
-                ->where('kkdkg.trangthai','DD');
+                ->where('kkdkg.trangthai','DD')
+                ->where('company.trangthai','Kích hoạt');
             if($inputs['tenhh'] != '')
                 $model = $model->where('kkdkgct.tenhh','like','%'.$inputs['tenhh'].'%');
             $model = $model->get();

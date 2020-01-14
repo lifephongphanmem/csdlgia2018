@@ -22,13 +22,14 @@
             TableManaged.init();
         });
         $(function(){
-            $('#nam,#tendn,#tenhhdv,#paginate').change(function() {
-                var current_path_url = '/cbkkgiaxmtxd?';
+            $('#nam,#phanloai,#tendn,#tenhh,#paginate').change(function() {
+                var current_path_url = '/cbgiakkmhbog?';
                 var nam = '&nam='+$('#nam').val();
-                var tenhhdv = '&tenhhdv=' + $('#tenhhdv').val();
+                var phanloai = '&phanloai='+$('#phanloai').val();
+                var tenhh = '&tenhh=' + $('#tenhh').val();
                 var tendn = '&tendn=' + $('#tendn').val();
                 var paginate = '&paginate='+$('#paginate').val();
-                var url = current_path_url+nam+tendn+tenhhdv+paginate;
+                var url = current_path_url+nam+phanloai+tendn+tenhh+paginate;
                 window.location.href = url;
             });
         });
@@ -49,7 +50,7 @@
                                 <div class="portlet-title">
                                     <div class="caption">
                                         <i class="fa fa-cogs font-green-sharp"></i>
-                                        <span class="caption-subject theme-font bold uppercase">Giá xi măng, thép xây dựng</span>
+                                        <span class="caption-subject theme-font bold uppercase">Mức giá kê khai Mặt hàng trong danh mục bình ổn giá</span>
                                     </div>
                                     <div class="tools">
                                     </div>
@@ -68,16 +69,27 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-10">
+                                        <div class="form-group">
+                                            <label style="font-weight: bold">Mặt hàng</label>
+                                            <select name="phanloai" id="phanloai" class="form-control">
+                                                <option value="all">--Tất cả mặt hàng--</option>
+                                                @foreach($dmnghe as $nghe)
+                                                    <option value="{{$nghe->manghe}}" {{$nghe->manghe == $inputs['phanloai'] ? 'selected' : ''}}>{{$nghe->tennghe}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label style="font-weight: bold">Tên doanh nghiệp</label>
                                             <input type="text" class="form-control" id="tendn" name="tendn" value="{{$inputs['tendn']}}">
                                         </div>
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label style="font-weight: bold">Tên hàng hóa, dịch vụ</label>
-                                            <input type="text" class="form-control" id="tenhhdv" name="tenhhdv" value="{{$inputs['tenhhdv']}}">
+                                            <input type="text" class="form-control" id="tenhh" name="tenhh" value="{{$inputs['tenhh']}}">
                                         </div>
                                     </div>
                                 </div>
@@ -104,13 +116,13 @@
                                             <thead>
                                             <tr>
                                                 <th style="text-align: center" width="20%">Doanh nghiệp</th>
-                                                <th style="text-align: center">Ngày thực hiện<br>mức giá</th>
-                                                <th style="text-align: center">Tên hàng hóa dịch vụ</th>
+                                                <th style="text-align: center" width="8%">Ngày thực hiện<br>mức giá</th>
+                                                <th style="text-align: center" >Tên hàng hóa, dịch vụ</th>
                                                 <th style="text-align: center" >Quy cách chất lượng</th>
-                                                <th style="text-align: center" >Đơn vị<br> tính</th>
-                                                <th style="text-align: center" >Mức giá <br>kê khai</th>
-
+                                                <th style="text-align: center" >Đơn vị <br>tính</th>
+                                                <th style="text-align: center" >Mức giá<br> kê khai</th>
                                             </tr>
+
                                             </thead>
                                             <tbody>
                                             @if(count($model) != 0)
@@ -119,11 +131,10 @@
                                                         <td class="active"><b>Tên DN: </b> {{$tt->tendn}}
                                                             <br><b>Mã số thuế:</b> {{$tt->maxa}}</td>
                                                         <td style="text-align: center">{{getDayVn($tt->ngayhieuluc)}}</td>
-                                                        <td style="text-align: left">{{$tt->tenhhdv}}</td>
-                                                        <td style="text-align: left">{{$tt->qccl}}</td>
+                                                        <td style="text-align: left">{{$tt->tenhh}}</td>
+                                                        <td style="text-align: left">{{$tt->quycach}}</td>
                                                         <td style="text-align: center">{{$tt->dvt}}</td>
-                                                        <td style="text-align: right;font-weight: bold">{{number_format($tt->gia)}}</td>
-
+                                                        <td style="text-align: right;font-weight: bold">{{number_format($tt->giakk)}}</td>
                                                     </tr>
                                                 @endforeach
                                             @else
@@ -144,7 +155,7 @@
                                             <div class="col-md-7 col-sm-12">
                                                 <div class="dataTables_paginate paging_simple_numbers" id="sample_3_paginate">
                                                     {{$model->appends(['nam' => $inputs['nam'],
-                                                                   'tenhhdv'=>$inputs['tenhhdv'],
+                                                                   'tenhh'=>$inputs['tenhh'],
                                                                    'tendn'=>$inputs['tendn'],
                                                                    'paginate'=>$inputs['paginate'],
                                                 ])->links()}}
@@ -167,4 +178,5 @@
     @include('includes.script.inputmask-ajax-scripts')
     @include('includes.script.create-header-scripts')
 @stop
+
 

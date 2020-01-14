@@ -167,7 +167,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <a class="text-bold text-white no-underline" href="{{url('')}}" data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">Vào chương trình</a>
                 @else
                     <a class="text-bold text-white no-underline" href="{{url('login')}}" data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">Đăng nhập</a>
-                    or <a class="text-bold text-white no-underline" href="{{url('searchtkdangky')}}" data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">Kiểm tra tài khoản đăng ký</a>
+                    <b style="color: #BCC2CB">or</b> <a class="text-bold text-white no-underline" href="{{url('searchtkdangky')}}" data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">Kiểm tra tài khoản đăng ký</a>
                 @endif
             </div>
             <!-- END TOP NAVIGATION MENU -->
@@ -228,12 +228,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                     @if(canGeneral('giadvkcb','congbo'))
                                     <li><a href="{{url('cbdichvukcb')}}">&nbsp;Giá dịch vụ KCB</a></li>
                                     @endif
-                                    {{--<li><a href="{{url('coming')}}">Mức trợ giá, trợ cước</a></li>--}}
+                                    <li><a href="{{url('coming')}}">Mức trợ giá, trợ cước</a></li>
                                 </ul>
                             </li>
                             @endif
-                            {{--<li><a href="{{url('coming')}}"><i class="icon-folder"></i>&nbsp;Giá HH-DV khác</a></li>--}}
-                            {{--<li><a href="{{url('cbgialephitruocba')}}"><i class="icon-folder"></i>&nbsp;Giá lệ phí trước bạ</a></li>--}}
+                            <li><a href="{{url('coming')}}"><i class="icon-folder"></i>&nbsp;Giá HH-DV khác</a></li>
+                            <li><a href="{{url('cbgialephitruocba')}}"><i class="icon-folder"></i>&nbsp;Giá lệ phí trước bạ</a></li>
                             @if(canGeneral('gialephitruocbanha','congbo'))
                             <li><a href="{{url('cbgialephitruocbanha')}}"><i class="icon-folder"></i>&nbsp;Giá lệ phí trước bạ nhà</a></li>
                             @endif
@@ -248,7 +248,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             @endif
                             @if(canGeneral('kkgia','congbo'))
                             <li class="dropdown-submenu">
-                                <a><i class="icon-folder"></i>&nbsp;Kê khai - niêm yết giá</a>
+                                <a><i class="icon-folder"></i>&nbsp;Mức giá kê khai- đăng ký</a>
                                 <ul class="dropdown-menu">
                                     {{--<li class="">--}}
                                         {{--<a href="{{url('cbkkgiavlxd')}}">--}}
@@ -287,6 +287,16 @@ License: You must have a valid license purchased only from themeforest(the above
                                         @if(canCbKkGiaCt('ETANOL','ETANOL'))
                                         <li><a href="{{url('cbgiaetanol')}}">Etanol nhiên liệu không biến tính, khí tự nhiên hóa lỏng(LNG); khí thiên nhiên nén (CNG)</a></li>
                                         @endif
+                                    @endif
+                                    @if(canCbKkGiaGr('BOG'))
+
+                                        <li class=" dropdown-submenu">
+                                            <a>Mặt hàng trong danh mục BOG</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{url('cbgiakkmhbog')}}">Mức giá kê khai</a></li>
+                                                <li><a href="{{url('cbgiadkmhbog')}}">Mức giá đăng ký</a></li>
+                                            </ul>
+                                        </li>
                                     @endif
                                 </ul>
                             </li>

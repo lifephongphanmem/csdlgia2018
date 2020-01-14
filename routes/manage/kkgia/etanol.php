@@ -32,6 +32,8 @@ Route::get('ttdnkketanol','manage\kekhaigia\kkgiaetanol\KkGiaEtanolXdController@
 Route::post('xetduyetgiaetanol/tralai','manage\kekhaigia\kkgiaetanol\KkGiaEtanolXdController@tralai');
 Route::get('xetduyetgiaetanol/ttnhanhs','manage\kekhaigia\kkgiaetanol\KkGiaEtanolXdController@ttnhanhs');
 Route::post('xetduyetgiaetanol/nhanhs','manage\kekhaigia\kkgiaetanol\KkGiaEtanolXdController@nhanhs');
+Route::post('xetduyetgiaetanol/congbo','manage\kekhaigia\kkgiaetanol\KkGiaEtanolXdController@congbo');
+Route::post('xetduyetgiaetanol/huycongbo','manage\kekhaigia\kkgiaetanol\KkGiaEtanolXdController@huycongbo');
 Route::get('timkiemgiaetanol','manage\kekhaigia\kkgiaetanol\KkGiaEtanolXdController@search');
 
 Route::get('baocaokkgiaetanol','manage\kekhaigia\kkgiaetanol\KkGiaEtanolBcController@index');

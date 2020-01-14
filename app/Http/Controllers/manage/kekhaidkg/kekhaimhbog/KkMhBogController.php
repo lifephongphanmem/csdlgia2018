@@ -385,7 +385,8 @@ class KkMhBogController extends Controller
                 ->whereYear('kkmhbog.ngayhieuluc',$inputs['nam'])
                 ->select('kkmhbogct.*','company.tendn','kkmhbog.ngayhieuluc')
                 ->where('phanloai',$inputs['manghe'])
-                ->where('kkmhbog.trangthai','DD');
+                ->where('kkmhbog.trangthai','DD')
+                ->where('company.trangthai','Kích hoạt');
             if($inputs['tenhh'] != '')
                 $model = $model->where('kkmhbogct.tenhh','like','%'.$inputs['tenhh'].'%');
             $model = $model->get();

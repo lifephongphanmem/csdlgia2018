@@ -26,10 +26,10 @@
                 var url = '/timkiemgiathan?'+namhs;
                 window.location.href = url;
             });
-            $('#tthhdv').change(function() {
+            $('#tenhhdv').change(function() {
                 var namhs = '&nam='+ $('#nam').val();
-                var tthhdv = '&tthhdv=' + $('#tthhdv').val();
-                var url = '/timkiemgiathan?'+namhs + tthhdv;
+                var tenhhdv = '&tenhhdv=' + $('#tenhhdv').val();
+                var url = '/timkiemgiathan?'+namhs + tenhhdv;
                 window.location.href = url;
             });
 
@@ -58,7 +58,7 @@
         <div class="col-md-5">
             <div class="form-group">
                 <label>Tên hàng hóa dịch vụ</label>
-                <input type="text" class="form-control" id="tthhdv" name="tthhdv" value="{{$inputs['tthhdv']}}">
+                <input type="text" class="form-control" id="tenhhdv" name="tenhhdv" value="{{$inputs['tenhhdv']}}">
             </div>
         </div>
     </div>
@@ -77,8 +77,8 @@
                             <th style="text-align: center" width="8%">Ngày thực hiện<br>mức giá</th>
                             <th style="text-align: center" >Tên hàng hóa, dịch vụ</th>
                             <th style="text-align: center" >Quy cách chất lượng</th>
-                            <th style="text-align: center" >Đơn vị tính</th>
-                            <th style="text-align: center" >Mức giá kê khai</th>
+                            <th style="text-align: center" >Đơn vị<br> tính</th>
+                            <th style="text-align: center" >Mức giá<br> kê khai</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -88,10 +88,10 @@
                                 <td class="active"><b>Tên DN: </b> {{$tt->tendn}}
                                     <br><b>Mã số thuế:</b> {{$tt->maxa}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->ngayhieuluc)}}</td>
-                                <td style="text-align: left">{{$tt->tthhdv}}</td>
+                                <td style="text-align: left">{{$tt->tenhhdv}}</td>
                                 <td style="text-align: left">{{$tt->qccl}}</td>
-                                <td style="text-align: left">{{$tt->dvt}}</td>
-                                <td style="text-align: right;font-weight: bold">{{number_format($tt->dongia)}}</td>
+                                <td style="text-align: center">{{$tt->dvt}}</td>
+                                <td style="text-align: right;font-weight: bold">{{number_format($tt->gia)}}</td>
 
                             </tr>
                         @endforeach

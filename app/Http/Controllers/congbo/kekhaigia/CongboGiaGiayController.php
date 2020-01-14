@@ -18,12 +18,16 @@ class CongboGiaGiayController extends Controller
         $inputs = $request->all();
         $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
         $inputs['tthhdv'] = isset($inputs['tthhdv']) ? $inputs['tthhdv'] : '';
+        $inputs['tendn'] = isset($inputs['tendn']) ? $inputs['tendn'] : '';
         $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
         $model = KkGiaGiay::leftJoin('kkgiagiayct','kkgiagiayct.mahs','=','kkgiagiay.mahs')
             ->leftjoin('company','company.maxa','=','kkgiagiay.maxa')
             ->whereYear('kkgiagiay.ngayhieuluc',$inputs['nam'])
             ->select('kkgiagiayct.*','company.tendn','kkgiagiay.ngayhieuluc','kkgiagiay.maxa')
-            ->where('kkgiagiay.trangthai','CB');
+            ->where('kkgiagiay.trangthai','DD')
+            ->where('kkgiagiay.congbo','CB');
+        if($inputs['tendn'] != '')
+            $model = $model->where('company.tendn','like','%'.$inputs['tendn'].'%');
         if($inputs['tthhdv'] != '')
             $model = $model->where('kkgiagiayct.tthhdv','like','%'.$inputs['tthhdv'].'%');
         $model = $model->paginate($inputs['paginate']);
@@ -31,7 +35,7 @@ class CongboGiaGiayController extends Controller
         return view('congbo.KeKhaiGia.GiaGiay.index')
             ->with('model',$model)
             ->with('inputs',$inputs)
-            ->with('pageTitle','Tìm kiếm thông tin kê khai giá giấy in, viết (dạng cuộn), giấy in báo sản xuất trong nước');
+            ->with('pageTitle','Thông tin kê khai giá giấy in, viết (dạng cuộn), giấy in báo sản xuất trong nước');
     }
 
     /**

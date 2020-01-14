@@ -118,7 +118,6 @@
                                         <table class="table table-striped table-bordered table-hover">
                                             <thead>
                                             <tr>
-                                                <th width="2%" style="text-align: center">STT</th>
                                                 <th style="text-align: center">Quận/ huyện</th>
                                                 <th style="text-align: center">Xã/phường</th>
                                                 <th style="text-align: center">Tên dự án</th>
@@ -131,7 +130,6 @@
                                             @if($model->count() != 0)
                                                 @foreach($model as $key=>$tt)
                                                     <tr>
-                                                        <td style="text-align: center">{{$key + 1}}</td>
                                                         <td style="text-align: center">{{$tt->tenhuyen}}</td>
                                                         <td style="text-align: center">{{$tt->tenxa}}</td>
                                                         <td style="text-align: left">{{$tt->tenduan}}</td>
@@ -144,7 +142,7 @@
                                                 @endforeach
                                             @else
                                                 <tr>
-                                                    <td style="text-align: center" colspan="6">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
+                                                    <td style="text-align: center" colspan="5">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
                                                 </tr>
                                             @endif
                                             </tbody>

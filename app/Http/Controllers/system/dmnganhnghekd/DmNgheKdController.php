@@ -58,6 +58,7 @@ class DmNgheKdController extends Controller
             $model = DmNgheKd::where('id',$inputs['edit_id'])
                 ->first();
             $model->theodoi = $inputs['edit_theodoi'];
+            $model->congbo = $inputs['edit_congbo'];
 //            $model->mahuyen =  implode(',', $inputs['edit_mahuyen']);
             $model->mahuyen =  $inputs['edit_mahuyen'];
             $model->save();

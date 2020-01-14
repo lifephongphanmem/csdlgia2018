@@ -192,6 +192,8 @@ class KkGiaTaCnXdController extends Controller
             $id = $inputs['idnhanhs'];
             $model = KkGiaTaCn::findOrFail($id);
             $inputs['trangthai'] = 'DD';
+            $inputs['congbo'] = 'HCB';
+            $inputs['ngaynhan'] = getDateToDb($inputs['ngaynhan']);
 //            $inputs['thoihan'] = getThXdHsDvLt($model->ngaychuyen,$inputs['ngaynhan']);
 
             if($model->update($inputs)){
@@ -234,6 +236,30 @@ class KkGiaTaCnXdController extends Controller
                 ->with('model',$model)
                 ->with('inputs',$inputs)
                 ->with('pageTitle','Tìm kiếm thông tin kê khai giá TACN');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function congbo(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $id = $inputs['idcongbo'];
+            $model = KkGiaTaCn::findOrFail($id);
+            $inputs['congbo'] = 'CB';
+            $model->update($inputs);
+            return redirect('xetduyetkekhaigiatacn?&trangthai=DD&mahuyen='.$model->mahuyen);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huycongbo(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $id = $inputs['idhuycongbo'];
+            $model = KkGiaTaCn::findOrFail($id);
+            $inputs['congbo'] = 'HCB';
+            $model->update($inputs);
+            return redirect('xetduyetkekhaigiatacn?&trangthai=DD&mahuyen='.$model->mahuyen);
         }else
             return view('errors.notlogin');
     }

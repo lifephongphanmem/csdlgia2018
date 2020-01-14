@@ -33,5 +33,6 @@ class KkGiaTaCn extends Model
         'trangthai',
         'plhs',
         'thoihan',
+        'congbo',
     ];
 }

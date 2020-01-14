@@ -17,13 +17,17 @@ class CongboGiaSachController extends Controller
     {
         $inputs = $request->all();
         $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
+        $inputs['tendn'] = isset($inputs['tendn']) ? $inputs['tendn'] : '';
         $inputs['tthhdv'] = isset($inputs['tthhdv']) ? $inputs['tthhdv'] : '';
         $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : '';
         $model = KkGiaSach::leftJoin('kkgiasachct','kkgiasachct.mahs','=','kkgiasach.mahs')
             ->leftjoin('company','company.maxa','=','kkgiasach.maxa')
             ->whereYear('kkgiasach.ngayhieuluc',$inputs['nam'])
             ->select('kkgiasachct.*','company.tendn','kkgiasach.ngayhieuluc','kkgiasach.maxa')
-            ->where('kkgiasach.trangthai','CB');
+            ->where('kkgiasach.trangthai','DD')
+            ->where('kkgiasach.congbo','CB');
+        if($inputs['tendn'] != '')
+            $model = $model->where('company.tendn','like','%'.$inputs['tendn'].'%');
         if($inputs['tthhdv'] != '')
             $model = $model->where('kkgiasachct.tthhdv','like','%'.$inputs['tthhdv'].'%');
         $model = $model->paginate($inputs['paginate']);

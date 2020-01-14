@@ -188,6 +188,7 @@ class KkGiaSachXdController extends Controller
             $id = $inputs['idnhanhs'];
             $model = KkGiaSach::findOrFail($id);
             $inputs['trangthai'] = 'DD';
+            $inputs['congbo'] = 'HCB';
             $inputs['ngaynhan'] = getDateToDb($inputs['ngaynhan']);
             //$inputs['thoihan'] = getThXdHsDvLt($model->ngaychuyen,$inputs['ngaynhan']);
 
@@ -231,6 +232,30 @@ class KkGiaSachXdController extends Controller
                 ->with('model',$model)
                 ->with('inputs',$inputs)
                 ->with('pageTitle','Tìm kiếm thông tin kê khai giá sách giáo khoa');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function congbo(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $id = $inputs['idcongbo'];
+            $model = KkGiaSach::findOrFail($id);
+            $inputs['congbo'] = 'CB';
+            $model->update($inputs);
+            return redirect('xetduyetgiasach?&trangthai=DD&maxa='.$model->mahuyen);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huycongbo(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $id = $inputs['idhuycongbo'];
+            $model = KkGiaSach::findOrFail($id);
+            $inputs['congbo'] = 'HCB';
+            $model->update($inputs);
+            return redirect('xetduyetgiasach?&trangthai=DD&maxa='.$model->mahuyen);
         }else
             return view('errors.notlogin');
     }

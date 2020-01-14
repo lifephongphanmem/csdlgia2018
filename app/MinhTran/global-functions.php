@@ -2552,6 +2552,7 @@ function canKkGiaCt($manganh = null, $manghe = null){
 function canCbKkGiaGr($manganh){
     $checkXH = \App\Model\system\dmnganhnghekd\DmNganhKd::where('manganh',$manganh)
         ->where('theodoi','TD')
+        ->where('congbo','CB')
         ->count();
     if($checkXH > 0)
         return true;
@@ -2564,7 +2565,8 @@ function canCbKkGiaGr($manganh){
 function canCbKkGiaCt($manganh = null, $manghe = null){
     $modelnghe = \App\Model\system\dmnganhnghekd\DmNgheKd::where('manganh',$manganh)
         ->where('manghe',$manghe)
-        ->where('theodoi','TD');
+        ->where('theodoi','TD')
+        ->where('congbo','CB');
     if($modelnghe->count() > 0)
         return true;
     else

@@ -23,6 +23,8 @@ Route::post('xetduyetgiathan/tralai','manage\kekhaigia\kkgiathan\KkGiaThanXdCont
 Route::get('xetduyetgiathan/ttnhanhs','manage\kekhaigia\kkgiathan\KkGiaThanXdController@ttnhanhs');
 Route::post('xetduyetgiathan/nhanhs','manage\kekhaigia\kkgiathan\KkGiaThanXdController@nhanhs');
 Route::get('timkiemgiathan','manage\kekhaigia\kkgiathan\KkGiaThanXdController@search');
+Route::post('/xetduyetgiathan/congbo','manage\kekhaigia\kkgiathan\KkGiaThanXdController@congbo');
+Route::post('/xetduyetgiathan/huycongbo','manage\kekhaigia\kkgiathan\KkGiaThanXdController@huycongbo');
 
 
 Route::get('baocaokkgiathan','manage\kekhaigia\kkgiathan\KkGiaThanBcController@index');

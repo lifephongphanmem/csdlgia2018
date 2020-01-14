@@ -30,6 +30,8 @@ Route::get('ttdnkkgiay','manage\kekhaigia\kkgiay\KkGiaGiayXdController@ttdn');
 Route::post('xetduyetgiagiay/tralai','manage\kekhaigia\kkgiay\KkGiaGiayXdController@tralai');
 Route::get('xetduyetgiagiay/ttnhanhs','manage\kekhaigia\kkgiay\KkGiaGiayXdController@ttnhanhs');
 Route::post('xetduyetgiagiay/nhanhs','manage\kekhaigia\kkgiay\KkGiaGiayXdController@nhanhs');
+Route::post('xetduyetgiagiay/congbo','manage\kekhaigia\kkgiay\KkGiaGiayXdController@congbo');
+Route::post('xetduyetgiagiay/huycongbo','manage\kekhaigia\kkgiay\KkGiaGiayXdController@huycongbo');
 Route::get('timkiemgiagiay','manage\kekhaigia\kkgiay\KkGiaGiayXdController@search');
 
 Route::get('baocaokkgiagiay','manage\kekhaigia\kkgiay\KkGiaGiayBcController@index');

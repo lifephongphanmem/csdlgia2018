@@ -195,8 +195,8 @@ class KkMhBogXdController extends Controller
             $id = $inputs['idnhanhs'];
             $model = KkMhBog::findOrFail($id);
             $inputs['trangthai'] = 'DD';
+            $inputs['congbo'] = 'HCB';
             $inputs['ngaynhan'] = getDateToDb($inputs['ngaynhan']);
-            $model->update($inputs);
 
             if($model->update($inputs)){
                 $modeldn = Company::where('maxa', $model->maxa)
@@ -246,5 +246,29 @@ class KkMhBogXdController extends Controller
 
         }
         die(json_encode($result));
+    }
+
+    public function congbo(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $id = $inputs['idcongbo'];
+            $model = KkMhBog::findOrFail($id);
+            $inputs['congbo'] = 'CB';
+            $model->update($inputs);
+            return redirect('xetduyetkkmhbog?manghe='.$model->phanloai.'&trangthai=DD&mahuyen='.$model->mahuyen);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huycongbo(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $id = $inputs['idhuycongbo'];
+            $model = KkMhBog::findOrFail($id);
+            $inputs['congbo'] = 'HCB';
+            $model->update($inputs);
+            return redirect('xetduyetkkmhbog?manghe='.$model->phanloai.'&trangthai=DD&mahuyen='.$model->mahuyen);
+        }else
+            return view('errors.notlogin');
     }
 }

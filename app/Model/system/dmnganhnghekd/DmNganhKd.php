@@ -12,5 +12,6 @@ class DmNganhKd extends Model
         'manganh',
         'tennganh',
         'theodoi',
+        'congbo',
     ];
 }

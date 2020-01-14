@@ -44,6 +44,7 @@ class DmNganhKdController extends Controller
             $model = DmNganhKd::where('id',$inputs['edit_id'])
                 ->first();
             $model->theodoi = $inputs['edit_theodoi'];
+            $model->congbo = $inputs['edit_congbo'];
             $model->save();
             return redirect('danhmucnganhkd');
         }else

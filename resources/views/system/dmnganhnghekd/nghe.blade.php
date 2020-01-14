@@ -45,6 +45,7 @@
                     $('#edit_tennghe').val(data.tennghe);
                     $('#edit_theodoi').val(data.theodoi);
                     $('#edit_mahuyen').val(data.mahuyen);
+                    $('#edit_congbo').val(data.congbo);
 //                    $('#edit_mahuyen').select2("val",a_pc);
                     $('#edit_id').val(data.id);
                 },
@@ -102,6 +103,12 @@
                                             <span class="badge badge-active">Không theo dõi</span>
                                         @else
                                             <span class="badge badge-success">Theo dõi</span>
+                                            <br>
+                                            @if($tt->congbo == 'CB')
+                                                (Công bố)
+                                            @else
+                                                (Không công bố)
+                                            @endif
                                         @endif
                                     </td>
                                     <td>
@@ -167,6 +174,17 @@
                                 <select  name="edit_theodoi" id="edit_theodoi" class="form-control">
                                     <option value="KTD" >Dừng theo dõi</option>
                                     <option value="TD" >Theo dõi</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">Công bố<span class="require">*</span></label>
+                                <select  name="edit_congbo" id="edit_congbo" class="form-control">
+                                    <option value="CB" >Công bố</option>
+                                    <option value="KCB" >Không công bố</option>
                                 </select>
                             </div>
                         </div>

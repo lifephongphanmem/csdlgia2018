@@ -45,6 +45,8 @@ Route::get('xetduyetkekhaigiatacn','manage\kekhaigia\kkgiatacn\KkGiaTaCnXdContro
 Route::post('xetduyetkekhaigiatacn/tralai','manage\kekhaigia\kkgiatacn\KkGiaTaCnXdController@tralai');
 Route::get('xetduyetkekhaigiatacn/ttnhanhs','manage\kekhaigia\kkgiatacn\KkGiaTaCnXdController@ttnhanhs');
 Route::post('xetduyetkekhaigiatacn/nhanhs','manage\kekhaigia\kkgiatacn\KkGiaTaCnXdController@nhanhs');
+Route::post('xetduyetkekhaigiatacn/congbo','manage\kekhaigia\kkgiatacn\KkGiaTaCnXdController@congbo');
+Route::post('xetduyetkekhaigiatacn/huycongbo','manage\kekhaigia\kkgiatacn\KkGiaTaCnXdController@huycongbo');
 //End xét duyệt kk TACN
 Route::get('timkiemkekhaigiatacn','manage\kekhaigia\kkgiatacn\KkGiaTaCnXdController@search');
 

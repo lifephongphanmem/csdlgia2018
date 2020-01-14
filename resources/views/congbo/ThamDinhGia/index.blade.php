@@ -66,7 +66,7 @@
                                             @endfor
                                         </select>
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-9">
                                         <label style="font-weight: bold">Tên tài sản thẩm định giá</label>
                                         <div class="form-group">
                                             {!! Form::text('tents',$inputs['tents'], array('id'=>'tents','class'=>'form-control'))!!}

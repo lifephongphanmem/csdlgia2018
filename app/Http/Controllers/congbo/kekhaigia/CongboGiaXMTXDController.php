@@ -17,15 +17,20 @@ class CongboGiaXMTXDController extends Controller
     {
         $inputs = $request->all();
         $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-        $inputs['ten'] = isset($inputs['ten']) ? $inputs['ten'] : '';
+        $inputs['tenhhdv'] = isset($inputs['tenhhdv']) ? $inputs['tenhhdv'] : '';
+        $inputs['tendn'] = isset($inputs['tendn']) ? $inputs['tendn'] : '';
         $inputs['paginate'] = isset($inputs['paginate']) ? $inputs['paginate'] : 5;
         $model = KkGiaXmTxdCt::leftJoin('kkgiaxmtxd','kkgiaxmtxd.mahs','=','kkgiaxmtxdct.mahs')
             ->leftjoin('company','company.maxa','=','kkgiaxmtxd.maxa')
-            ->whereYear('kkgiaxmtxd.ngayhieuluc',$inputs['nam'])
             ->select('kkgiaxmtxdct.*','company.tendn','company.maxa','kkgiaxmtxd.ngayhieuluc')
-            ->where('kkgiaxmtxd.trangthai','CB');
-        if($inputs['ten'] != '')
-            $model = $model->where('kkgiaxmtxdct.ten','like','%'.$inputs['ten'].'%');
+            ->where('kkgiaxmtxd.trangthai','DD')
+            ->where('kkgiaxmtxd.congbo','CB');
+        if($inputs['nam'] != 'all')
+            $model = $model->whereYear('kkgiaxmtxd.ngayhieuluc',$inputs['nam']);
+        if($inputs['tenhhdv'] != '')
+            $model = $model->where('kkgiaxmtxdct.tenhhdv','like','%'.$inputs['tenhhdv'].'%');
+        if($inputs['tendn'] != '')
+            $model = $model->where('company.tendn','like','%'.$inputs['tendn'].'%');
         $model = $model->paginate($inputs['paginate']);
         return view('congbo.KeKhaiGia.XiMangTXD.index')
             ->with('model',$model)

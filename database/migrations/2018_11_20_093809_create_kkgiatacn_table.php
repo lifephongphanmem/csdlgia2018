@@ -38,6 +38,7 @@ class CreateKkgiatacnTable extends Migration
             $table->string('trangthai')->nullable();
             $table->string('plhs')->nullable();
             $table->string('thoihan')->nullable();
+            $table->string('congbo')->nullable();
             $table->timestamps();
         });
     }

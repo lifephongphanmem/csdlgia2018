@@ -18,6 +18,7 @@ class CreateDmnganhkdTable extends Migration
             $table->string('manganh')->nullable();
             $table->string('tennganh')->nulable();
             $table->string('theodoi')->nullable();
+            $table->string('congbo')->nullable();
             $table->timestamps();
         });
     }

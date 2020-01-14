@@ -63,7 +63,6 @@
                                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                                         <thead>
                                         <tr>
-                                            <th width="2%" style="text-align: center">STT</th>
                                             <th style="text-align: center">Năm ban hành</th>
                                             <th style="text-align: center">Số quyết định</th>
                                             <th style="text-align: center">Ngày quyết định</th>
@@ -74,7 +73,6 @@
                                         <tbody>
                                         @foreach($model as $key=>$tt)
                                             <tr>
-                                                <td style="text-align: center">{{$key+1}}</td>
                                                 <td style="text-align: center">{{$tt->nam}}</td>
                                                 <td style="text-align: center">{{$tt->soqd}}</td>
                                                 <td style="text-align: center">{{getDayVn($tt->ngayqd)}}</td>

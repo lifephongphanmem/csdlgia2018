@@ -44,6 +44,7 @@ class KkGiaThanXdController extends Controller
                 $model = KkGiaThan::join('company','company.maxa','=','kkgiathan.maxa')
                     ->where('kkgiathan.mahuyen',$inputs['mahuyen'])
                     ->where('kkgiathan.trangthai',$inputs['trangthai'])
+                    ->whereYear('kkgiathan.ngaychuyen',$inputs['nam'])
                     ->select('kkgiathan.*','company.tendn')
                     ->get();
                 return view('manage.kkgia.than.kkgia.xetduyet.index')
@@ -192,6 +193,7 @@ class KkGiaThanXdController extends Controller
             $id = $inputs['idnhanhs'];
             $model = KkGiaThan::findOrFail($id);
             $inputs['trangthai'] = 'DD';
+            $inputs['congbo'] = 'HCB';
             $inputs['ngaynhan'] = getDateToDb($inputs['ngaynhan']);
             //$inputs['thoihan'] = getThXdHsDvLt($model->ngaychuyen,$inputs['ngaynhan']);
 
@@ -221,20 +223,48 @@ class KkGiaThanXdController extends Controller
         if (Session::has('admin')) {
             $inputs = $request->all();
             $inputs['nam'] = isset($inputs['nam']) ? $inputs['nam'] : date('Y');
-            $inputs['tthhdv'] = isset($inputs['tthhdv']) ? $inputs['tthhdv'] : '';
+            $inputs['tenhhdv'] = isset($inputs['tenhhdv']) ? $inputs['tenhhdv'] : '';
             $model = KkGiaThan::leftJoin('kkgiathanct','kkgiathanct.mahs','=','kkgiathan.mahs')
                 ->leftjoin('company','company.maxa','=','kkgiathan.maxa')
                 ->whereYear('kkgiathan.ngayhieuluc',$inputs['nam'])
                 ->select('kkgiathanct.*','company.tendn','kkgiathan.ngayhieuluc','kkgiathan.maxa')
                 ->where('kkgiathan.trangthai','DD');
-            if($inputs['tthhdv'] != '')
-                $model = $model->where('kkgiathanct.tthhdv','like','%'.$inputs['tthhdv'].'%');
+            if($inputs['tenhhdv'] != '')
+                $model = $model->where('kkgiathanct.tenhhdv','like','%'.$inputs['tenhhdv'].'%');
             $model = $model->get();
 
             return view('manage.kkgia.than.kkgia.timkiem.index')
                 ->with('model',$model)
                 ->with('inputs',$inputs)
                 ->with('pageTitle','Tìm kiếm thông tin kê khai giá than');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function congbo(Request $request){
+        if (Session::has('admin')) {
+            if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+                $inputs = $request->all();
+                $inputs['congbo'] = 'CB';
+                $model = KkGiaThan::where('id',$inputs['idcongbo'])->first();
+                $model->update($inputs);
+                return redirect('xetduyetgiathan?&trangthai=DD&maxa='.$model->mahuyen);
+            }else
+                return view('errors.perm');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huycongbo(Request $request){
+        if (Session::has('admin')) {
+            if (session('admin')->level == 'T' || session('admin')->level == 'H' || session('admin')->level == 'X') {
+                $inputs = $request->all();
+                $inputs['congbo'] = 'HCB';
+                $model = KkGiaThan::where('id',$inputs['idhuycongbo'])->first();
+                $model->update($inputs);
+                return redirect('xetduyetgiathan?&trangthai=DD&maxa='.$model->mahuyen);
+            }else
+                return view('errors.perm');
         }else
             return view('errors.notlogin');
     }

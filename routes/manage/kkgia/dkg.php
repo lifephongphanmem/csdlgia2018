@@ -72,6 +72,8 @@ Route::get('xetduyetkkmhbog','manage\kekhaidkg\kekhaimhbog\KkMhBogXdController@i
 Route::post('xetduyetkkmhbog/tralai','manage\kekhaidkg\kekhaimhbog\KkMhBogXdController@tralai');
 Route::get('xetduyetkkmhbog/ttnhanhs','manage\kekhaidkg\kekhaimhbog\KkMhBogXdController@ttnhanhs');
 Route::post('xetduyetkkmhbog/nhanhs','manage\kekhaidkg\kekhaimhbog\KkMhBogXdController@nhanhs');
+Route::post('xetduyetkkmhbog/congbo','manage\kekhaidkg\kekhaimhbog\KkMhBogXdController@congbo');
+Route::post('xetduyetkkmhbog/huycongbo','manage\kekhaidkg\kekhaimhbog\KkMhBogXdController@huycongbo');
 Route::get('xetduyetkkmhbog/lydo','manage\kekhaidkg\kekhaimhbog\KkMhBogXdController@lydo');
 
 Route::get('timkiemkkmhbog','manage\kekhaidkg\kekhaimhbog\KkMhBogController@search');

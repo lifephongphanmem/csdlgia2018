@@ -192,6 +192,7 @@ class KkGiaEtanolXdController extends Controller
             $id = $inputs['idnhanhs'];
             $model = KkGiaEtanol::findOrFail($id);
             $inputs['trangthai'] = 'DD';
+            $inputs['congbo'] = 'HCB';
             $inputs['ngaynhan'] = getDateToDb($inputs['ngaynhan']);
             //$inputs['thoihan'] = getThXdHsDvLt($model->ngaychuyen,$inputs['ngaynhan']);
 
@@ -236,6 +237,30 @@ class KkGiaEtanolXdController extends Controller
                 ->with('model',$model)
                 ->with('inputs',$inputs)
                 ->with('pageTitle','Tìm kiếm thông tin kê khai giá sách giáo khoa');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function congbo(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $id = $inputs['idcongbo'];
+            $model = KkGiaEtanol::findOrFail($id);
+            $inputs['congbo'] = 'CB';
+            $model->update($inputs);
+            return redirect('xetduyetgiaetanol?&trangthai=DD&maxa='.$model->mahuyen);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huycongbo(Request $request){
+        if (Session::has('admin')) {
+            $inputs = $request->all();
+            $id = $inputs['idhuycongbo'];
+            $model = KkGiaEtanol::findOrFail($id);
+            $inputs['congbo'] = 'HCB';
+            $model->update($inputs);
+            return redirect('xetduyetgiaetanol?&trangthai=DD&maxa='.$model->mahuyen);
         }else
             return view('errors.notlogin');
     }

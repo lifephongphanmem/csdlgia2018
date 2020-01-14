@@ -23,7 +23,7 @@
         });
         $(function(){
             $('#nam,#tendn,#tenhhdv,#paginate').change(function() {
-                var current_path_url = '/cbkkgiaxmtxd?';
+                var current_path_url = '/cbgiathan?';
                 var nam = '&nam='+$('#nam').val();
                 var tenhhdv = '&tenhhdv=' + $('#tenhhdv').val();
                 var tendn = '&tendn=' + $('#tendn').val();
@@ -49,7 +49,7 @@
                                 <div class="portlet-title">
                                     <div class="caption">
                                         <i class="fa fa-cogs font-green-sharp"></i>
-                                        <span class="caption-subject theme-font bold uppercase">Giá xi măng, thép xây dựng</span>
+                                        <span class="caption-subject theme-font bold uppercase">Giá than</span>
                                     </div>
                                     <div class="tools">
                                     </div>
@@ -104,13 +104,13 @@
                                             <thead>
                                             <tr>
                                                 <th style="text-align: center" width="20%">Doanh nghiệp</th>
-                                                <th style="text-align: center">Ngày thực hiện<br>mức giá</th>
-                                                <th style="text-align: center">Tên hàng hóa dịch vụ</th>
+                                                <th style="text-align: center" width="8%">Ngày thực hiện<br>mức giá</th>
+                                                <th style="text-align: center" >Tên hàng hóa, dịch vụ</th>
                                                 <th style="text-align: center" >Quy cách chất lượng</th>
-                                                <th style="text-align: center" >Đơn vị<br> tính</th>
-                                                <th style="text-align: center" >Mức giá <br>kê khai</th>
-
+                                                <th style="text-align: center" >Đơn vị <br>tính</th>
+                                                <th style="text-align: center" >Mức giá<br> kê khai</th>
                                             </tr>
+
                                             </thead>
                                             <tbody>
                                             @if(count($model) != 0)
