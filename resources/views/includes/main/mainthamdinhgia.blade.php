@@ -34,38 +34,38 @@
 </li>
 @endif
 @endif
-@if(canGeneral('thamdinhgiahh','index'))
-    @if(can('thamdinhgiahh','index'))
-        <!--i class="tooltips" data-container="body" data-placement="right" data-html="true"
-            data-original-title="Giá trị tài sản được thẩm định giá(đất đai, nhà công trình xây dựng, máy thiết bị, phương tiện vận tải, dây truyền công nghệ, tài sản khác)
-            và thông tin, tài liệu liên quan đến kết quả thẩm định giá của Hội đồng Thẩm định giá">
-            <a href="javascript:;">
-                <i class="icon-folder"></i>
-                <span class="title">Giá hàng hóa</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-                @if(can('dmthamdinhgiahh','index'))
-                    <li>
-                        <a href="{{url('dmthamdinhgiahh')}}">DM hàng hóa</a>
-                    </li>
-                @endif
-                @if(can('kkthamdinhgiahh','index'))
-                    <li>
-                        <a href="{{url('thamdinhgiahanghoa')}}">Giá hàng hóa</a>
-                    </li>
-                @endif
-                @if(can('ththamdinhgiahh','timkiem'))
-                    <li>
-                        <a href="{{url('timkiemthamdinhgiahanghoa')}}">Tìm kiếm thông tin</a>
-                    </li>
-                @endif
-            <a href="{{url('baocaoththamdinhgiahanghoa')}}">Báo cáo tổng hợp</a>
-        </li
-            </ul>
-        </li-->
-    @endif
-@endif
+{{--@if(canGeneral('thamdinhgiahh','index'))--}}
+    {{--@if(can('thamdinhgiahh','index'))--}}
+        {{--<!--i class="tooltips" data-container="body" data-placement="right" data-html="true"--}}
+            {{--data-original-title="Giá trị tài sản được thẩm định giá(đất đai, nhà công trình xây dựng, máy thiết bị, phương tiện vận tải, dây truyền công nghệ, tài sản khác)--}}
+            {{--và thông tin, tài liệu liên quan đến kết quả thẩm định giá của Hội đồng Thẩm định giá">--}}
+            {{--<a href="javascript:;">--}}
+                {{--<i class="icon-folder"></i>--}}
+                {{--<span class="title">Giá hàng hóa</span>--}}
+                {{--<span class="arrow"></span>--}}
+            {{--</a>--}}
+            {{--<ul class="sub-menu">--}}
+                {{--@if(can('dmthamdinhgiahh','index'))--}}
+                    {{--<li>--}}
+                        {{--<a href="{{url('dmthamdinhgiahh')}}">DM hàng hóa</a>--}}
+                    {{--</li>--}}
+                {{--@endif--}}
+                {{--@if(can('kkthamdinhgiahh','index'))--}}
+                    {{--<li>--}}
+                        {{--<a href="{{url('thamdinhgiahanghoa')}}">Giá hàng hóa</a>--}}
+                    {{--</li>--}}
+                {{--@endif--}}
+                {{--@if(can('ththamdinhgiahh','timkiem'))--}}
+                    {{--<li>--}}
+                        {{--<a href="{{url('timkiemthamdinhgiahanghoa')}}">Tìm kiếm thông tin</a>--}}
+                    {{--</li>--}}
+                {{--@endif--}}
+            {{--<a href="{{url('baocaoththamdinhgiahanghoa')}}">Báo cáo tổng hợp</a>--}}
+        {{--</li--}}
+            {{--</ul>--}}
+        {{--</li-->--}}
+    {{--@endif--}}
+{{--@endif--}}
 @if(canGeneral('cungcapgia','index'))
     @if(can('cungcapgia','index'))
 <li class="tooltips" data-container="body" data-placement="right" data-html="true"
@@ -100,9 +100,9 @@
             </li>
             @endif
             @if(can('thcungcapgia','baocao'))
-            <li>
-                <a href="javascript:;">Báo cáo tổng hợp</a>
-            </li>
+            {{--<li>--}}
+                {{--<a href="javascript:;">Báo cáo tổng hợp</a>--}}
+            {{--</li>--}}
             @endif
         @endif
 

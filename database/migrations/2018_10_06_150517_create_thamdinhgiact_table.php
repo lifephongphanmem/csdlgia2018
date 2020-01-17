@@ -30,6 +30,7 @@ class CreateThamdinhgiactTable extends Migration
             $table->double('giakththamdinh')->default(0);
             $table->string('gc')->nullable();
             $table->string('mahs')->nullable();
+            $table->string('trangthai')->nullable();
             $table->timestamps();
         });
     }

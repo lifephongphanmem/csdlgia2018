@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\manage\thamdinhgia;
 
 use App\DiaBanHd;
 use App\District;
 use App\DmHangHoa;
-use App\DmNhomHangHoa;
-use App\ThamDinhGia;
-use App\ThamDinhGiaCt;
-use App\ThamDinhGiaCtDf;
-use App\ThanhLyTaiSan;
+use App\Model\manage\thamdinhgia\ThamDinhGia;
+use App\Model\manage\thamdinhgia\ThamDinhGiaCt;
 use App\Town;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -62,10 +59,11 @@ class ThamDinhGiaController extends Controller
     public function create(Request $request){
         if(Session::has('admin')){
             $inputs = $request->all();
-
+            $del = ThamDinhGiaCt::where('trangthai','CXD')->delete();
             if(session('admin')->level == 'X')
                 $inputs['maxa'] = session('admin')->maxa;
-            $modelct = ThamDinhGiaCtDf::where('maxa',$inputs['maxa'])
+            $inputs['mahs'] = $inputs['maxa'].getdate()[0];
+            $modelct = ThamDinhGiaCt::where('mahs',$inputs['mahs'])
                 ->get();
             $modeldv = Town::where('maxa',$inputs['maxa'])
                 ->first();
@@ -74,9 +72,9 @@ class ThamDinhGiaController extends Controller
                 ->first();
             return view('manage.thamdinhgia.create')
                 ->with('modeldv',$modeldv)
-                ->with('maxa',$inputs['maxa'])
                 ->with('modelct',$modelct)
                 ->with('modeldb',$modeldb)
+                ->with('inputs',$inputs)
                 ->with('pageTitle','Thêm mới hồ sơ thẩm định giá');
 
         }else
@@ -89,9 +87,8 @@ class ThamDinhGiaController extends Controller
             $inputs['thoidiem'] = getDateToDb($inputs['thoidiem']);
             $inputs['thoihan'] = getDateToDb($inputs['thoihan']);
             $inputs['quy'] = Thang2Quy(getMonth($inputs['thoidiem']));
-            $inputs['mahs'] = $inputs['maxa'].getdate()[0];
             $inputs['trangthai'] = 'CHT';
-            $inputs['congbo'] = 'chuacongbo';
+            $inputs['congbo'] = 'CCB';
             $inputs['thaotac'] = session('admin')->username.' thêm mới - ' . getDateTime(Carbon::now()->toDateTimeString());
             if(isset($inputs['ipf1'])){
                 $ipf1 = $request->file('ipf1');
@@ -125,27 +122,8 @@ class ThamDinhGiaController extends Controller
             }
             $model = new ThamDinhGia();
             if($model->create($inputs)){
-                $modelctdf = ThamDinhGiaCtDf::where('maxa',$inputs['maxa']);
-                foreach($modelctdf->get() as $ctdf){
-                    $modelct = new ThamDinhGiaCt();
-                    $modelct->mats = $ctdf->mats;
-                    $modelct->tents = $ctdf->tents;
-                    $modelct->dacdiempl= $ctdf->dacdiempl;
-                    $modelct->thongsokt = $ctdf->thongsokt;
-                    $modelct->nguongoc = $ctdf->nguongoc;
-                    $modelct->dvt = $ctdf->dvt;
-                    $modelct->sl = $ctdf->sl;
-                    $modelct->nguyengiadenghi = $ctdf->nguyengiadenghi;
-                    $modelct->giadenghi = $ctdf->giadenghi;
-                    $modelct->nguyengiathamdinh = $ctdf->nguyengiathamdinh;
-                    $modelct->giaththamdinh = $ctdf->giaththamdinh;
-                    $modelct->giakththamdinh = $ctdf->giakththamdinh;
-                    $modelct->giatritstd = $ctdf->giatritstd;
-                    $modelct->gc = $ctdf->gc;
-                    $modelct->mahs = $inputs['mahs'];
-                    $modelct->save();
-                }
-                $modelctdf->delete();
+                $modelct = ThamDinhGiaCt::where('mahs',$inputs['mahs'])
+                    ->update(['trangthai' => 'XD']);
             }
             return redirect('thamdinhgia?&maxa='.$inputs['maxa']);
 
@@ -174,7 +152,7 @@ class ThamDinhGiaController extends Controller
             $inputs['thoidiem'] = getDateToDb($inputs['thoidiem']);
             $inputs['thoihan'] = getDateToDb($inputs['thoihan']);
             $inputs['quy'] = Thang2Quy(getMonth($inputs['thoidiem']));
-            $inputs['thaotac'] = session('admin')->username.' thêm mới - ' . getDateTime(Carbon::now()->toDateTimeString());
+            $inputs['thaotac'] = session('admin')->username.' chỉnh sửa - ' . getDateTime(Carbon::now()->toDateTimeString());
             $model = ThamDinhGia::findOrFail($id);
             if(isset($inputs['ipf1'])){
                 $ipf1 = $request->file('ipf1');
@@ -206,7 +184,9 @@ class ThamDinhGiaController extends Controller
                 $ipf5->move(public_path() . '/data/thamdinhgia/', $inputs['ipt5']);
                 $inputs['ipf5']= $inputs['ipt5'];
             }
-            $model->update($inputs);
+            if($model->update($inputs))
+                $modelct = ThamDinhGiaCt::where('mahs',$inputs['mahs'])
+                    ->update(['trangthai' => 'XD']);
             return redirect('thamdinhgia?&maxa='.$inputs['maxa']);
 
         }else
@@ -267,7 +247,7 @@ class ThamDinhGiaController extends Controller
             'status' => 'fail',
             'message' => 'error',
         );
-        if(Session::has('admin')) {
+        if(!Session::has('admin')) {
             $result = array(
                 'status' => 'fail',
                 'message' => 'permission denied',
@@ -283,7 +263,6 @@ class ThamDinhGiaController extends Controller
                 ->join('thamdinhgia','thamdinhgiact.mahs','=','thamdinhgia.mahs')
                 ->select('thamdinhgiact.*','thamdinhgia.thoidiem','thamdinhgia.thuevat','thamdinhgia.sotbkl',
                     'thamdinhgia.thoihan','thamdinhgia.ppthamdinh')
-
                 ->first();
             $result['message'] = '<div class="modal-body" id="tttsedit">';
 
@@ -407,7 +386,8 @@ class ThamDinhGiaController extends Controller
             $inputs = $request->all();
             $id = $inputs['idhoanthanh'];
             $model = ThamDinhGia::findOrFail($id);
-            $model->congbo = 'chuacongbo';
+            $model->trangthai = 'HT';
+            $model->congbo = 'CCB';
             $model->save();
             return redirect('thamdinhgia?&trangthai=HT&maxa='.$model->maxa);
         }else
@@ -419,8 +399,8 @@ class ThamDinhGiaController extends Controller
             $inputs = $request->all();
             $id = $inputs['idhuyhoanthanh'];
             $model = ThamDinhGia::findOrFail($id);
-            $model->trangthai = 'HHT';
-            $model->congbo = 'huycongbo';
+            $model->trangthai = 'CHT';
+            $model->congbo = 'CCB';
             $model->save();
             return redirect('thamdinhgia?&maxa='.$model->maxa);
         }else
@@ -432,7 +412,18 @@ class ThamDinhGiaController extends Controller
             $inputs = $request->all();
             $id = $inputs['idcongbo'];
             $model = ThamDinhGia::findOrFail($id);
-            $model->congbo = 'congbo';
+            $model->congbo = 'CB';
+            $model->save();
+            return redirect('thamdinhgia?&maxa='.$model->maxa);
+        }else
+            return view('errors.notlogin');
+    }
+    public function huycongbo(Request $request){
+        if(Session::has('admin')){
+            $inputs = $request->all();
+            $id = $inputs['idhuycongbo'];
+            $model = ThamDinhGia::findOrFail($id);
+            $model->congbo = 'HCB';
             $model->save();
             return redirect('thamdinhgia?&maxa='.$model->maxa);
         }else
@@ -528,6 +519,7 @@ class ThamDinhGiaController extends Controller
     function import_excel(Request $request){
         if(Session::has('admin')){
             $inputs=$request->all();
+            $inputs['mahs'] = $inputs['maxa'].getdate()[0];
             $filename = $inputs['maxa'] . '_' . getdate()[0];
             $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
             $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
@@ -539,30 +531,30 @@ class ThamDinhGiaController extends Controller
                 $data = $sheet->toArray(null, true, true, true);// giữ lại tiêu đề A=>'val';
             });
             //dd($data);
-            $modeldel = ThamDinhGiaCtDf::where('maxa', $inputs['maxa'])->delete();
 
-            for ($i = $inputs['tudong']; $i < ($inputs['tudong'] + $inputs['sodong']); $i++) {
+            for ($i = getDbl($inputs['tudong']); $i <= ( getDbl($inputs['sodong'])); $i++) {
                 //dd($data[$i]);
                 if (!isset($data[$i][$inputs['mats']]) || $data[$i][$inputs['tents']] == '') {
                     continue;//Tên cán bộ rỗng => thoát
                 }
-                $modelctnew = new ThamDinhGiaCtDf();
-                $modelctnew->maxa = $inputs['maxa'];
-                $modelctnew->mats = $data[$i][$inputs['mats']];
+                $modelctnew = new ThamDinhGiaCt();
+                $modelctnew->mahs = $inputs['mahs'];
+//                $modelctnew->mats = $data[$i][$inputs['mats']];
                 $modelctnew->tents = $data[$i][$inputs['tents']];
                 $modelctnew->dacdiempl = $data[$i][$inputs['dacdiempl']];
                 $modelctnew->thongsokt = $data[$i][$inputs['thongsokt']];
                 $modelctnew->nguongoc = $data[$i][$inputs['nguongoc']];
                 $modelctnew->dvt = $data[$i][$inputs['dvt']];
-                $modelctnew->sl = $data[$i][$inputs['sl']];
-                $modelctnew->nguyengiadenghi = $data[$i][$inputs['nguyengiadenghi']];
-                $modelctnew->giadenghi = $data[$i][$inputs['giadenghi']];
-                $modelctnew->nguyengiathamdinh = $data[$i][$inputs['nguyengiathamdinh']];
-                $modelctnew->giatritstd = $data[$i][$inputs['giatritstd']];
+                $modelctnew->sl = getDbl($data[$i][$inputs['sl']]);
+                $modelctnew->nguyengiadenghi = getDbl($data[$i][$inputs['nguyengiadenghi']]);
+                $modelctnew->giadenghi = getDbl($data[$i][$inputs['giadenghi']]);
+                $modelctnew->nguyengiathamdinh = getDbl($data[$i][$inputs['nguyengiathamdinh']]);
+                $modelctnew->giatritstd = getDbl($data[$i][$inputs['giatritstd']]);
+                $modelctnew->gc = $data[$i][$inputs['gc']];
                 $modelctnew->save();
             }
             File::Delete($path);
-            $modelct = ThamDinhGiaCtDf::where('maxa',$inputs['maxa'])
+            $modelct = ThamDinhGiaCt::where('mahs',$inputs['mahs'])
                 ->get();
             $modeldv = Town::where('maxa',$inputs['maxa'])
                 ->first();

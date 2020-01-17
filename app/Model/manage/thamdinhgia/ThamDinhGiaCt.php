@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model\manage\thamdinhgia;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,6 +23,7 @@ class ThamDinhGiaCt extends Model
         'giakththamdinh',
         'giatritstd',
         'gc',
-        'mahs'
+        'mahs',
+        'trangthai'
     ];
 }

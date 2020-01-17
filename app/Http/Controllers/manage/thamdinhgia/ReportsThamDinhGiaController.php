@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\manage\thamdinhgia;
 
 use App\DiaBanHd;
-use App\ThamDinhGiaCt;
+use App\Model\manage\thamdinhgia\ThamDinhGiaCt;
 use App\Town;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

@@ -61,12 +61,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Mã hàng hóa<span class="require">*</span></label>
-                                                            {!!Form::text('mats', 'A', array('id' => 'mats','class' => 'form-control required'))!!}
-                                                        </div>
-                                                    </div>
+                                                    {{--<div class="col-md-3">--}}
+                                                        {{--<div class="form-group">--}}
+                                                            {{--<label class="control-label">Mã hàng hóa<span class="require">*</span></label>--}}
+                                                            {{--{!!Form::text('mats', 'A', array('id' => 'mats','class' => 'form-control required'))!!}--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Tên hàng hóa<span class="require">*</span></label>
@@ -85,9 +85,6 @@
                                                             {!!Form::text('thongsokt', 'D', array('id' => 'thongsokt','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
-                                                </div>
-
-                                                <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Nguồn gốc / Xuất xứ<span class="require">*</span></label>
@@ -106,9 +103,6 @@
                                                             {!!Form::text('sl', 'G', array('id' => 'sl','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
-                                                </div>
-
-                                                <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Mức giá đề nghị<span class="require">*</span></label>
@@ -133,9 +127,14 @@
                                                             {!!Form::text('giatritstd', 'K', array('id' => 'giatritstd','class' => 'form-control required'))!!}
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Ghi chú<span class="require">*</span></label>
+                                                            {!!Form::text('gc', 'L', array('id' => 'gc','class' => 'form-control required'))!!}
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="row">
-
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">Nhận từ dòng<span class="require">*</span></label>
@@ -149,10 +148,8 @@
                                                             {!!Form::text('sodong', '165', array('id' => 'sodong','class' => 'form-control','data-mask'=>'fdecimal'))!!}
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
                                                     <!--/span-->
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="control-label">File dữ liệu<span class="require">*</span></label>
                                                             <input id="fexcel" name="fexcel" type="file"  accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">

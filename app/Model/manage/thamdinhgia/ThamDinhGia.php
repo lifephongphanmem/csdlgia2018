@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model\manage\thamdinhgia;
 
 use Illuminate\Database\Eloquent\Model;
 

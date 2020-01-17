@@ -16,7 +16,7 @@
        Báo cáo tổng hợp<small> &nbsp;Thẩm định giá tài sản NN</small>
     </h3>
     <!-- END PAGE HEADER-->
-
+<hr>
     <!-- BEGIN DASHBOARD STATS -->
     <div class="row">
         <div class="col-md-12">

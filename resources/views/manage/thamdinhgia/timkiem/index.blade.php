@@ -48,7 +48,7 @@
     <script>
         function ShowItem(id) {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            //alert(id);
+//            alert(id);
             $.ajax({
                 url: '/timkiemthamdinhgia/xemtttk',
                 type: 'GET',
@@ -75,6 +75,7 @@
         Tìm kiếm thông tin <small>&nbsp;thẩm định giá tài sản NN</small>
     </h3>
     <!-- END PAGE HEADER-->
+    <hr>
     <div class="row">
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
@@ -82,7 +83,7 @@
                 <div class="portlet-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <label>Năm</label>
+                            <label style="font-weight: bold">Năm</label>
                             <select name="nam" id="nam" class="form-control">
                                 @if ($nam_start = intval(date('Y')) - 5 ) @endif
                                 @if ($nam_stop = intval(date('Y')) + 1 ) @endif
@@ -91,8 +92,8 @@
                                 @endfor
                             </select>
                         </div>
-                        <div class="col-md-3">
-                            <label>Tên tài sản thẩm định giá</label>
+                        <div class="col-md-9">
+                            <label style="font-weight: bold;">Tên tài sản thẩm định giá</label>
                             <div class="form-group">
                                 {!! Form::text('tents',$tents, array('id'=>'tents','class'=>'form-control'))!!}
                             </div>
@@ -111,7 +112,7 @@
                             <th style="text-align: center" >Đơn vị thẩm định/<br>/Đơn vị yêu cầu thẩm định</th>
                             <th style="text-align: center" >Thời gian<br> thẩm định</th>
                             <th style="text-align: center">Thời hạn <br>thẩm định</th>
-                            <th style="text-align: center" width="10%">Thông tin người nhập</th>
+                            {{--<th style="text-align: center" width="10%">Thông tin người nhập</th>--}}
                             <th style="text-align: center">Tên tài sản-<br>Thông số kỹ thuật</th>
                             <th style="text-align: center">Số lương-<br>Đơn vị tính</th>
                             <th style="text-align: center">Đơn giá<br> thẩm định</th>
@@ -125,7 +126,7 @@
                                 <td class="active">{{$tt->tendv}}/<br><b>{{$tt->dvyeucau}}</b></td>
                                 <td>{{getDayVn($tt->thoidiem)}}</td>
                                 <td>{{getDayVn($tt->thoihan)}}</td>
-                                <td>{{$tt->thaotac}}</td>
+                                {{--<td>{{$tt->thaotac}}</td>--}}
                                 <td class="success">{{$tt->tents}}-{{$tt->thongsokt}}</td>
                                 <td style="text-align: center; font-weight: bold;">{{$tt->sl}}-{{$tt->dvt}}</td>
                                 <td style="text-align: right; font-weight: bold;" class="active">{{number_format($tt->nguyengiathamdinh)}}</td>

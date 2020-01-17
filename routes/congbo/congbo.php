@@ -31,7 +31,7 @@ Route::get('cbkkgiatacn','congbo\kekhaigia\CongboGiaTACNController@index');
 Route::get('cbgiagiay','congbo\kekhaigia\CongboGiaGiayController@index');
 Route::get('cbgiasach','congbo\kekhaigia\CongboGiaSachController@index');
 Route::get('cbgiaetanol','congbo\kekhaigia\CongboGiaEtanolController@index');
-Route::get('cbthamdinhgia','congbo\kekhaigia\CongboThamDinhGiaController@index');
+Route::get('cbthamdinhgia','congbo\thamdinhgia\CongboThamDinhGiaController@index');
 Route::get('cbvanbanqlnnvegia','congbo\vanbanqlnn\CongboVanBanQLNNController@index');
 Route::get('danhsachusertaphuan','congbo\taphuan\DanhSachUserTapHuanController@index');
 Route::get('cbgiakkmhbog','congbo\kekhaigia\mhBOG\CongBoKkMhBogController@index');

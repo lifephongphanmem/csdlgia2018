@@ -1,60 +1,30 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html lang="vi">
+@extends('reports.main_rps')
+@section('custom-style')
+@stop
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>{{$pageTitle}}</title>
-    <link rel="shortcut icon" href="{{ url('images/LIFESOFT.png')}}" type="image/x-icon">
-    <style type="text/css">
-        body {
-            font: normal 14px/16px time, serif;
-        }
-        table, p {
-            width: 98%;
-            margin: auto;
-        }
-        table tr td:first-child {
-            text-align: center;
-        }
-        td, th {
-            padding: 10px;
-        }
-        p{
-            padding: 5px;
-            font-size: 16px;
-        }
-        span {
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-        @media print {
-            .in{
-                display: none !important;
-            }
-        }
-    </style>
-</head>
 
-<div class="in" style="margin-left: 20px;">
-    <input type="submit" onclick=" window.print()" value="In kê khai"  />
-</div>
+@section('custom-script')
 
-<body style="font:normal 14px Times, serif;">
+@stop
 
-<table width="96%" border="0" cellspacing="0" cellpadding="0" style="margin:0 auto 20px; text-align: center;">
+@section('content')
+<table width="96%" border="0" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
     <tr>
-        <td width="40%" style="text-transform: uppercase;">
-            {{$modeldv->tendvcqhienthi}}<br>
-            <b>{{$modeldv->tendvhienthi}}</b><br>
-            --------<br>
+        <td width="40%" style="vertical-align: top;">
+            <span style="text-transform: uppercase">{{$modeldv->tendvcqhienthi}}</span><br>
+            <span style="text-transform: uppercase;font-weight: bold">{{$modeldv->tendvhienthi}}</span>
+            <hr style="width: 10%;vertical-align: top;  margin-top: 2px">
+
         </td>
-        <td>
-            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>
-            <b><i><u>Độc lập - Tự do - Hạnh phúc</u></i></b><br>
+        <td style="vertical-align: top;">
+            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+                Độc lập - Tự do - Hạnh phúc</b>
+            <hr style="width: 15%;vertical-align: top; margin-top: 2px">
+
         </td>
     </tr>
     <tr>
-        <td>Số: {{$model->sotbkl}}<br>V/v thông báo kết quả thẩm định giá<br> {{$model->tttstd}}</td>
+        <td>Số: ..{{$model->sotbkl}}..<br>V/v thông báo kết quả thẩm định giá<br> {{$model->tttstd}}</td>
         <td><i>{{$modeldv->diadanh}} ,ngày .....tháng .....năm ..... </i> </td>
     </tr>
 </table>
@@ -98,19 +68,15 @@
 <p>&emsp;&emsp;{{$modeldv->tendvhienthi}} thông báo để đơn vị triển khai thực hiện theo quy định của pháp luật hiện hành./.</p>
 <table width="96%" border="0" cellspacing="0" cellpadding="0" style="margin:10px auto;">
     <tr>
-        <td style="text-align: left" width="40%">
+        <td style="text-align: left;vertical-align: top;" width="40%">
             <b style="padding-top:0px;"><i>Nơi nhận:</i></b><br>
             - Như trên:<br>
             - Lưu: VT,QLG
         </td>
 
-        <td style="text-align: center; text-transform: uppercase;font-size: 16px" width="60%">
-            <b>@if($modeldv->chucvukythay != '')
-                    KT. {{$modeldv->chucvuky}}<br> {{$modeldv->chucvukythay}}
-                @else
-                    {{$modeldv->chucvuky}}
-                @endif
-            </b>
+        <td style="text-align: center;font-size: 16px;vertical-align: top;" width="60%">
+            <b>THỦ TRƯỞNG ĐƠN VỊ</b>
+            <br><i>(Ký tên, đóng dấu)</i>
             <br>
             <br>
             <br>
@@ -118,16 +84,15 @@
             <br>
             <br>
             <br>
-            <br>
-            <b style="text-transform: uppercase;">{{$modeldv->nguoiky}}</b>
+            {{--<b style="text-transform: uppercase;">{{$modeldv->nguoiky}}</b>--}}
         </td>
     </tr>
 </table>
+<hr class="in">
 <p style="page-break-before: always">
 <p style="text-align: center;font-weight:bold;font-size: 20px;text-transform: uppercase;">PHỤ LỤC</p>
-<p style="text-align: center;font-size: 16px;"><i>(Kèm theo Công văn số: {{$model->sotbkl}}</i></p>
-<p style="text-align: center;font-size: 16px;"><i>Ngày ..... tháng ..... năm ..... của {{$modeldv->tendvhienthi}})</i></p>
-<table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
+<p style="text-align: center;font-size: 16px;"><i>(Kèm theo Công văn số: {{$model->sotbkl}}, ngày ..... tháng ..... năm ..... của {{$modeldv->tendvhienthi}})</i></p>
+<table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;" id="data">
     <thead>
     <tr>
         <th width="2%" style="text-align: center" rowspan="2">STT</th>
@@ -177,3 +142,4 @@
 <p style="text-align: center;font-weight: bold"><i>(Tổng giá trị sau thẩm định: <b>{{number_format($modelct->sum('giatritstd'))}}</b> VNĐ)</i></p>
 <p><u>Ghi chú:</u></p>
 <p>{!! nl2br(e($model->ghichu)) !!}</p>
+@stop

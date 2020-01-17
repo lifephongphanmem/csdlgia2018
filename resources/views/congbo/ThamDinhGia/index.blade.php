@@ -102,7 +102,8 @@
                                                 <th style="text-align: center">Tên tài sản-<br>Thông số kỹ thuật</th>
                                                 <th style="text-align: center">Số lương-<br>Đơn vị tính</th>
                                                 <th style="text-align: center">Đơn giá<br> thẩm định</th>
-                                                <th style="text-align: center">Thao tác</th>
+                                                <th style="text-align: center">Thuế VAT</th>
+                                                {{--<th style="text-align: center">Thao tác</th>--}}
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -116,14 +117,15 @@
                                                         <td class="success">{{$tt->tents}}-{{$tt->thongsokt}}</td>
                                                         <td style="text-align: center; font-weight: bold;">{{$tt->sl}}-{{$tt->dvt}}</td>
                                                         <td style="text-align: right; font-weight: bold;" class="active">{{number_format($tt->nguyengiathamdinh)}}</td>
-                                                        <td>
-                                                            <button type="button" data-target="#modal-show" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="ShowItem({{$tt->id}})"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</button>
-                                                        </td>
+                                                        {{--<td>--}}
+                                                            {{--<button type="button" data-target="#modal-show" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="ShowItem({{$tt->id}})"><i class="fa fa-eye"></i>&nbsp;Xem chi tiết</button>--}}
+                                                        {{--</td>--}}
+                                                        <td>{{$tt->thuevat}}</td>
                                                     </tr>
                                                 @endforeach
                                             @else
                                                 <tr>
-                                                    <td style="text-align: center" colspan="9">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
+                                                    <td style="text-align: center" colspan="8">Không tìm thấy thông tin. Bạn cần kiểm tra lại điều kiện tìm kiếm!!!</td>
                                                 </tr>
                                             @endif
                                             </tbody>

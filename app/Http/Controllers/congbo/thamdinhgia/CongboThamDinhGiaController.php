@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\congbo\kekhaigia;
+namespace App\Http\Controllers\congbo\thamdinhgia;
 
-use App\ThamDinhGiaCt;
+use App\Model\manage\thamdinhgia\ThamDinhGiaCt;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -23,6 +23,7 @@ class CongboThamDinhGiaController extends Controller
             ->join('town','thamdinhgia.maxa','=','town.maxa')
             ->select('thamdinhgiact.*','thamdinhgia.thoidiem','thamdinhgia.thuevat','thamdinhgia.sotbkl','thamdinhgia.thaotac','thamdinhgia.dvyeucau',
                 'thamdinhgia.thoihan','thamdinhgia.ppthamdinh','town.tendv')
+            ->where('thamdinhgia.trangthai','HT')
             ->where('thamdinhgia.congbo','CB');
         if($inputs['nam'] != 'all')
             $model = $model->whereYear('thamdinhgia.thoidiem',$inputs['nam']);
