@@ -367,6 +367,10 @@
                                                 Công bố</button>
                                         @endif
                                     @endif
+                                    @if(canApprove($tt->trangthai) && session('admin')->sadmin == 'ssa ')
+                                        <button type="button" onclick="ClickTraLai({{$tt->id}})" class="btn btn-default btn-xs mbs" data-target="#tralai-modal" data-toggle="modal"><i class="fa fa-reply"></i>&nbsp;
+                                            Trả lại</button>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -377,7 +381,6 @@
             <!-- END EXAMPLE TABLE PORTLET-->
         </div>
     </div>
-
     <!-- BEGIN DASHBOARD STATS -->
 
     <!-- END DASHBOARD STATS -->
