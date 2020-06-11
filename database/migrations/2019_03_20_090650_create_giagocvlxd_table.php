@@ -24,6 +24,7 @@ class CreateGiagocvlxdTable extends Migration
             $table->string('soqd')->nullable();
             $table->string('mahs')->nullable();
             $table->string('trangthai')->nullable();
+            $table->string('filedk')->nullable();
             $table->string('congbo')->nullable();
             $table->string('ttthaotac')->nullable();
             $table->timestamps();

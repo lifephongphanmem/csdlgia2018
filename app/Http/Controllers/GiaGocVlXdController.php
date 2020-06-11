@@ -34,6 +34,7 @@ class GiaGocVlXdController extends Controller
                 ->where('giagocvlxd.nam',$inputs['nam']);
 
             $model = $model->get();
+            //dd($model);
             $diaban = DiaBanHd::where('district',$inputs['district'])->first();
             $inputs['ngaybc'] = date('d/m/Y', strtotime(date('Y-m-d')));
             return view('manage.dinhgia.giagocvlxd.kekhai.index')
@@ -73,6 +74,12 @@ class GiaGocVlXdController extends Controller
             $inputs['ngaybc'] = getDateToDb($inputs['ngaybc']);
             $inputs['trangthai'] = 'CHT';
             $inputs['ttthaotac'] = session('admin')->name.'('.session('admin')->username.') thêm mới';
+            if(isset($inputs['filedk'])){
+                $ipf1 = $request->file('filedk');
+                $inputs['ipt1'] = $inputs['mahs'] .'&1.'.$ipf1->getClientOriginalExtension();
+                $ipf1->move(public_path() . '/data/giagocvlxd/', $inputs['ipt1']);
+                $inputs['filedk']= $inputs['ipt1'];
+            }
             $model = new GiaGocVlXd();
             if($model->create($inputs)){
                 $modelct = GiaGocVlXdCt::where('mahs',$inputs['mahs'])
@@ -169,6 +176,9 @@ class GiaGocVlXdController extends Controller
             $inputs['ngaybc'] = getDateToDb($inputs['ngaybc']);
             $inputs['ttthaotac'] = session('admin')->name.'('.session('admin')->username.') chỉnh sửa';
             $model = GiaGocVlXd::findOrFail($id);
+            if($inputs['filedk'] == "")
+               unset($inputs['filedk']);
+            //dd($inputs);
             if($model->update($inputs))
                 $modelct = GiaGocVlXdCt::where('mahs',$inputs['mahs'])
                     ->update(['trangthai' => 'XD']);

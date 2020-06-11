@@ -228,6 +228,7 @@
                             <th style="text-align: center">Quý - Năm</th>
                             <th style="text-align: center">Ngày báo cáo</th>
                             <th style="text-align: center">Số quyết định</th>
+                            <th style="text-align: center">File đính kèm</th>
                             <th style="text-align: center">Trạng thái</th>
                             <th style="text-align: center" width="33%">Thao tác</th>
                         </tr>
@@ -240,6 +241,7 @@
                                 <td style="text-align: center">Quý {{$tt->quy}}/ Năm {{$tt->nam}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->ngaybc)}}</td>
                                 <td style="text-align: center">{{$tt->soqd}}</td>
+                                <td style="text-align: center"><a href = "{{url('/data/giagocvlxd/' . $tt->filedk)}}">{{$tt->filedk}}</a ></td>
                                 <td style="text-align: center">
                                     @if($tt->trangthai == 'HT')
                                         <span class="badge badge-warning">Hoàn thành</span>

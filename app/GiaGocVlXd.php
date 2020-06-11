@@ -17,6 +17,7 @@ class GiaGocVlXd extends Model
         'ngaybc',
         'soqd',
         'mahs',
+        'filedk',
         'trangthai',
         'congbo',
         'ttthaotac',

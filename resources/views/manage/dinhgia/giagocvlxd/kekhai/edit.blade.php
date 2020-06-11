@@ -84,6 +84,13 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">File đính kèm</label>
+                            <input name="filedk" id="filedk" type="file">
+                        </div>
+                    </div>
+                    <label class="control-label">{{$model->filedk}}</label>
                     <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}">
                     <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
 

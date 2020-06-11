@@ -52,7 +52,7 @@
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
-        {!! Form::open(['url'=>'thongtingiagocvlxd', 'id' => 'create_giagocvlxd', 'class'=>'horizontal-form']) !!}
+        {!! Form::open(['url'=>'thongtingiagocvlxd', 'id' => 'create_giagocvlxd', 'files'=>true, 'class'=>'horizontal-form']) !!}
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
@@ -92,6 +92,12 @@
                                 <label class="control-label">Ngày báo cáo<span class="require">*</span></label>
                                 {!!Form::text('ngaybc',null, array('id' => 'ngaybc','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">File đính kèm</label>
+                            <input name="filedk" id="filedk" type="file">
                         </div>
                     </div>
                     <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
