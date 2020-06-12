@@ -246,6 +246,9 @@ License: You must have a valid license purchased only from themeforest(the above
                             @if(canGeneral('muataisan','congbo'))
                                 <li><a href="{{url('cbmuataisan')}}"><i class="icon-folder"></i>&nbsp;Giá trúng thầu của HH-DV được mua sắm theo QĐ của PL về đấu thầu</a></li>
                             @endif
+                            @if(canGeneral('giagocvlxd','congbo'))
+                                <li><a href="{{url('cbgiagocvlxd')}}"><i class="icon-folder"></i>&nbsp;Giá Gốc VLXD</a></li>
+                            @endif
                             @if(canGeneral('kkgia','congbo'))
                             <li class="dropdown-submenu">
                                 <a><i class="icon-folder"></i>&nbsp;Mức giá kê khai- đăng ký</a>

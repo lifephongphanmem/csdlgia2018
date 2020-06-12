@@ -21,6 +21,7 @@ Route::get('cbgiadvgiaoducdaotao','congbo\dinhgia\CongboGiaDvGiaoDucDaoTaoContro
 Route::get('cbdichvukcb','congbo\dinhgia\CongboGiaDvKhamChuaBenhController@index');
 Route::get('cbgialephitruocba','congbo\gialephi\CongboGiaLePhiTruocBaController@index');
 Route::get('cbphilephi','congbo\philephi\CongboPhiLePhiController@index');
+Route::get('cbgiagocvlxd','congbo\giagocvlxd\GiaGocVlXdController@index');
 
 //Kê khai giá
 Route::get('cbkkgiavlxd','congbo\kekhaigia\CongboVatLieuXayDungController@index');
