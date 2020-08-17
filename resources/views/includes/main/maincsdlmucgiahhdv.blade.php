@@ -255,5 +255,8 @@
         </li>
     @endif
 @endif
-
+@if(getGeneralConfigs()['diadanh'] == "Bà Rịa - Vũng Tàu")
+@include('includes.main.include.kknygiaVT')
+@else
 @include('includes.main.include.kknygia')
+@endif

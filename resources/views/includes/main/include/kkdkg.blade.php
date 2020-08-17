@@ -2,7 +2,13 @@
     <li class="tooltips" data-container="body" data-placement="right" data-html="true"
         data-original-title="Tổ chức, cá nhận Giá kê khai, đăng ký theo yêu cầu của Sở Tài chính, sở quản lý ngành">
         <a href="javascript:;">
-            <span class="title">Mặt hàng bình ổn giá</span>
+            @if(getGeneralConfigs()['diadanh'] == "Bà Rịa - Vũng Tàu")
+                <i class="icon-folder"></i>
+                <span class="title">Mức giá đăng ký giá</span>
+            @else
+                <span class="title">Mặt hàng bình ổn giá</span>
+            @endif
+
             <span class="arrow"></span>
         </a>
         <ul class="sub-menu">

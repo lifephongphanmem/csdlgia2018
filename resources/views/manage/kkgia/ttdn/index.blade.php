@@ -22,7 +22,7 @@
         }
 
     }
-</script>
+</script>hy
 @stop
 
 @section('content')
@@ -43,7 +43,7 @@
                     </div>
                     <div class="actions">
                         @if(can('ttdn','edit'))
-                            @if(count($modeltttd) == 0 )
+                            @if(count((array) $modeltttd) == 0 )
                                 <a href="{{url('thongtindoanhnghiep/'.$model->id.'/edit')}}" class="btn btn-default btn-sm">
                                     <i class="fa fa-edit"></i> Thay đổi thông tin </a>
                             @elseif($modeltttd->trangthai != 'CD')

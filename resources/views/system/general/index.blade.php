@@ -27,7 +27,7 @@
                     </div>
                     <div class="actions">
                         @if(session('admin')->sadmin=='ssa')
-                            @if(count($model) >0)
+                            @if(isset($model))
                                 <a href="{{url('general/'.$model->id.'/edit')}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-edit"></i> Chỉnh sửa </a>
                                 <a href="{{url('setting')}}" class="btn btn-default btn-sm">
