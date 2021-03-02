@@ -108,7 +108,7 @@ class GiaGocVlXdController extends Controller
                 ->where('quy',$inputs['quy'])
                 ->where('nam',$inputs['nam'])
                 ->first();
-            if (count($model)>0)
+            if (count((array)$model)>0)
                 $result['status'] = 'fail';
             else
                 $result['status'] = 'success';
